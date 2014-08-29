@@ -21,6 +21,8 @@
 					<formats>
 						<win32>zip</win32>
 						<macosx>tar.gz</macosx>
+						<solaris>tar.gz</solaris>
+						<linux>tar.gz</linux>
 					</formats>
 				</configuration>
 				<executions>
