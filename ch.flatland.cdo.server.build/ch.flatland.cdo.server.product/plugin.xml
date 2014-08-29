@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+
+<plugin>
+
+   	<extension id="cdo_flatland" point="org.eclipse.core.runtime.products">
+      	<product
+        	name="Flatland CDO Server"
+          description="Flatland CDO Server"
+          application="org.eclipse.emf.cdo.server.app">
+        		<property name="appName" value="CDO Server"/>
+      	</product>
+   	</extension>
+
+</plugin>
