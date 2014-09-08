@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.net4j.util.factories">
+      <factory
+            class="ch.flatland.cdo.server.ldap.LdapAuthenticatorFactory"
+            productGroup="org.eclipse.net4j.authenticators"
+            type="ldap">
+      </factory>
+      
+   </extension>
+
+</plugin>

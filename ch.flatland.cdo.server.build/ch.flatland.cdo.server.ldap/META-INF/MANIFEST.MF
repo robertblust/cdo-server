@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: CDO Server LDAP Authenticator
+Bundle-SymbolicName: ch.flatland.cdo.server.ldap;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Require-Bundle: org.eclipse.net4j.util;bundle-version="3.4.0"
