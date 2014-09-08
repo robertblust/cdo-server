@@ -16,6 +16,7 @@
 	</properties>
 
 	<modules>
+		<module>ch.flatland.cdo.server.ldap</module>
 		<module>ch.flatland.cdo.server.product</module>
 		<module>ch.flatland.cdo.server.feature</module>
 		<module>ch.flatland.cdo.targetplatform</module>
