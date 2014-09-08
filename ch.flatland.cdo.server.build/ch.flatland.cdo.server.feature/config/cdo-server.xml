@@ -23,9 +23,9 @@
     <property name="serializeCommits" value="false"/>
     <property name="optimisticLockingTimeout" value="10000"/>
 
-    <!-- Example http://wiki.eclipse.org/CDO/Security_Manager
-		  <securityManager type="default" description="/security:annotation:home(/home)"/>
-    -->
+    <!-- Example http://wiki.eclipse.org/CDO/Security_Manager -->
+	<securityManager type="default" description="/security:annotation:home(/home)"/>
+    
 
     <!-- Example http://bugs.eclipse.org/302775
 			<authenticator type="file" description="_database/repo1.users"/>
