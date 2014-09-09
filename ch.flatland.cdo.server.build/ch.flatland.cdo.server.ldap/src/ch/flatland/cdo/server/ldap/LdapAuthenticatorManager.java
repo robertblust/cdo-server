@@ -68,7 +68,6 @@ public class LdapAuthenticatorManager implements IAuthenticator {
 		env.put(Context.SECURITY_CREDENTIALS, password);
 
 		try {
-			// System.out.println(dn);
 			InitialDirContext ctx = new InitialDirContext(env);
 			ctx.close();
 		} catch (AuthenticationException ae) {
