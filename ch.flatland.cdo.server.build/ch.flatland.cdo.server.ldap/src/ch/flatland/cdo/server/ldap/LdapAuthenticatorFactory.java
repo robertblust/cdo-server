@@ -13,8 +13,7 @@ public class LdapAuthenticatorFactory extends UserManagerFactory {
 
 	@Override
 	public Object create(String description) throws ProductCreationException {
-		System.out.println(description);
-		LdapAuthenticatorManager manager = new LdapAuthenticatorManager();
+		LdapAuthenticatorManager manager = new LdapAuthenticatorManager(description);
 		return manager;
 	}
 

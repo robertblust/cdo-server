@@ -7,7 +7,7 @@
 <booleanAttribute key="automaticValidate" value="true"/>
 <stringAttribute key="bad_container_name" value="\org.eclipse.emf.cdo.server."/>
 <stringAttribute key="bootstrap" value=""/>
-<stringAttribute key="checked" value="org.eclipse.emf.cdo.security,org.eclipse.emf.cdo.server"/>
+<stringAttribute key="checked" value="ch.flatland.cdo.server.ldap,org.eclipse.emf.cdo.security,org.eclipse.emf.cdo.server"/>
 <booleanAttribute key="clearConfig" value="true"/>
 <booleanAttribute key="clearws" value="false"/>
 <booleanAttribute key="clearwslog" value="false"/>
@@ -26,7 +26,7 @@
 <stringAttribute key="org.eclipse.jdt.launching.JRE_CONTAINER" value="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.5"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="-os ${target.os} -ws ${target.ws} -arch ${target.arch} -nl ${target.nl}&#13;&#10;-debug&#13;&#10;-console"/>
 <stringAttribute key="org.eclipse.jdt.launching.SOURCE_PATH_PROVIDER" value="org.eclipse.pde.ui.workbenchClasspathProvider"/>
-<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Xms40m&#13;&#10;-Xmx1g&#13;&#10;-Ddebug=true&#13;&#10;-Dorg.eclipse.emf.cdo.server.browser.port=7777&#13;&#10;-Dorg.osgi.service.http.port=8080&#13;&#10;-Dnet4j.config=${resource_loc:/ch.flatland.cdo.server.feature/config}"/>
+<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Xms40m&#13;&#10;-Xmx1g&#13;&#10;-Ddebug=true&#13;&#10;-Dorg.eclipse.emf.cdo.server.browser.port=7777&#13;&#10;-Dorg.osgi.service.http.port=8080&#13;&#10;-Dnet4j.config=${resource_loc:/ch.flatland.cdo.server.feature/config}&#13;&#10;-Djavax.net.ssl.trustStore=${resource_loc:/ch.flatland.cdo.server.feature/config/keystore}"/>
 <stringAttribute key="org.eclipse.jdt.launching.WORKING_DIRECTORY" value="${workspace_loc:ch.flatland.cdo.server.product}"/>
 <stringAttribute key="pde.version" value="3.3"/>
 <stringAttribute key="product" value="org.eclipse.platform.ide"/>
