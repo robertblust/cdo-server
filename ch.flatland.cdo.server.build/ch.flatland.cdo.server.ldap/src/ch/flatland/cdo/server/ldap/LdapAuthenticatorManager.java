@@ -25,13 +25,15 @@ public class LdapAuthenticatorManager implements IAuthenticator {
 	private boolean faked = false;
 
 	/**
-	 * Contructor with description of ldap server connectivity.
+	 * Constructor with description of ldap server connectivity.
 	 * 
+	 * <code>
 	 * <li><b>protocol:</b> possible values (ldap | ldaps | fake), fake means no authentication is performed
 	 * <li><b>server:</b> server domain name or ip address
 	 * <li><b>port:</b> port
 	 * <li><b>domain base:</b> ldap node for searching the users e.g. ou=person,o=FLATLAND,c=CH
 	 * <li><b>user id field:</b> the attribute name in ldap representing the user id e.g. member-id
+	 * </code>
 	 * 
 	 * @param description
 	 *            <code>protocol://server:port|domain base|user id field</code>
