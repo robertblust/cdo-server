@@ -10,13 +10,16 @@ public class LdapAuthenticatorPlugin extends Plugin {
 	static BundleContext getContext() {
 		return context;
 	}
-	
+
 	// The shared instance
 	private static LdapAuthenticatorPlugin plugin;
 
 	/*
 	 * (non-Javadoc)
-	 * @see org.osgi.framework.BundleActivator#start(org.osgi.framework.BundleContext)
+	 * 
+	 * @see
+	 * org.osgi.framework.BundleActivator#start(org.osgi.framework.BundleContext
+	 * )
 	 */
 	public void start(BundleContext bundleContext) throws Exception {
 		LdapAuthenticatorPlugin.context = bundleContext;
@@ -25,13 +28,15 @@ public class LdapAuthenticatorPlugin extends Plugin {
 
 	/*
 	 * (non-Javadoc)
-	 * @see org.osgi.framework.BundleActivator#stop(org.osgi.framework.BundleContext)
+	 * 
+	 * @see
+	 * org.osgi.framework.BundleActivator#stop(org.osgi.framework.BundleContext)
 	 */
 	public void stop(BundleContext bundleContext) throws Exception {
 		plugin = null;
 		LdapAuthenticatorPlugin.context = null;
 	}
-	
+
 	/**
 	 * Returns the shared instance
 	 *
