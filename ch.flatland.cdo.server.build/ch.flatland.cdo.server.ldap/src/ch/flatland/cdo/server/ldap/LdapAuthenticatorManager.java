@@ -23,7 +23,7 @@ public class LdapAuthenticatorManager implements IAuthenticator {
 	private String ldapUserIdField = null;
 	private boolean useSSL = false;
 	private boolean faked = false;
-	
+
 	/**
 	 * Contructor with description of ldap server connectivity.
 	 * 
@@ -33,12 +33,13 @@ public class LdapAuthenticatorManager implements IAuthenticator {
 	 * <li><b>domain base:</b> ldap node for searching the users e.g. ou=person,o=FLATLAND,c=CH
 	 * <li><b>user id field:</b> the attribute name in ldap representing the user id e.g. member-id
 	 * 
-	 * @param description - <code>protocol://server:port|domain base|user id field</code>
+	 * @param description
+	 *            <code>protocol://server:port|domain base|user id field</code>
 	 */
 	public LdapAuthenticatorManager(String description) {
 		initLdap(description);
 	}
-	
+
 	public void authenticate(String userId, char[] password) throws SecurityException {
 		if (faked) {
 			// NO AUTHENTICATION PERFORMED
@@ -47,27 +48,27 @@ public class LdapAuthenticatorManager implements IAuthenticator {
 		}
 		String p = new String(password);
 		String ldapUserIdFieldFilter = ldapUserIdField + "=" + userId;
-		
-        String objectName = ldapLookupUser(ldapUserIdFieldFilter);
 
-        String distinguishedName = objectName + "," + ldapDomainBase;
-        ldapAuthenticate(distinguishedName, p);
+		String objectName = ldapLookupUser(ldapUserIdFieldFilter);
+
+		String distinguishedName = objectName + "," + ldapDomainBase;
+		ldapAuthenticate(distinguishedName, p);
 	}
-	
+
 	private void ldapAuthenticate(String distinguishedName, String password) throws SecurityException {
 		Hashtable<String, Object> env = new Hashtable<String, Object>();
 
 		env.put(Context.INITIAL_CONTEXT_FACTORY, LDAP_FACTORY);
 		env.put(Context.PROVIDER_URL, ldapServer);
 		if (useSSL) {
-			env.put(Context.SECURITY_PROTOCOL,"ssl");
+			env.put(Context.SECURITY_PROTOCOL, "ssl");
 		}
 		env.put(Context.SECURITY_AUTHENTICATION, "simple");
 		env.put(Context.SECURITY_PRINCIPAL, distinguishedName);
 		env.put(Context.SECURITY_CREDENTIALS, password);
-		
+
 		try {
-			//System.out.println(dn);
+			// System.out.println(dn);
 			InitialDirContext ctx = new InitialDirContext(env);
 			ctx.close();
 		} catch (AuthenticationException ae) {
@@ -76,58 +77,56 @@ public class LdapAuthenticatorManager implements IAuthenticator {
 			throw new SecurityException(ne);
 		}
 	}
-	
-	
+
 	private String ldapLookupUser(String ldapUserIdFieldFilter) throws SecurityException {
 		Hashtable<String, Object> env = new Hashtable<String, Object>();
 
 		env.put(Context.INITIAL_CONTEXT_FACTORY, LDAP_FACTORY);
 		env.put(Context.PROVIDER_URL, ldapServer);
 		if (useSSL) {
-			env.put(Context.SECURITY_PROTOCOL,"ssl");
+			env.put(Context.SECURITY_PROTOCOL, "ssl");
 		}
 		env.put(Context.SECURITY_AUTHENTICATION, "simple");
-		
+
 		try {
 
-	        LdapContext ctx = new InitialLdapContext(env,null);
-                
-            SearchControls searchControls = new SearchControls();
-       
-            String returnedAtts[]={};
-            searchControls.setReturningAttributes(returnedAtts);
-       
-            searchControls.setSearchScope(SearchControls.SUBTREE_SCOPE);
+			LdapContext ctx = new InitialLdapContext(env, null);
 
-            // Search for objects using the filter
-            NamingEnumeration<SearchResult> answer = ctx.search(ldapDomainBase, ldapUserIdFieldFilter, searchControls);
+			SearchControls searchControls = new SearchControls();
 
-            int i = 0;
-            
-            String objectName = null;
-            
-            while (answer.hasMoreElements()) {
-                 SearchResult searchResult = (SearchResult)answer.next();
+			String returnedAtts[] = {};
+			searchControls.setReturningAttributes(returnedAtts);
 
-                 objectName = searchResult.getName();
-                 i++;
-            }
-            ctx.close();
-            if (i == 1) {
-            	return objectName;
-            } else {
-            	throw new SecurityException(ldapUserIdField + " in domain base " + ldapDomainBase + " not found on " + ldapServer);
-            }
-            
+			searchControls.setSearchScope(SearchControls.SUBTREE_SCOPE);
+
+			// Search for objects using the filter
+			NamingEnumeration<SearchResult> answer = ctx.search(ldapDomainBase, ldapUserIdFieldFilter, searchControls);
+
+			int i = 0;
+
+			String objectName = null;
+
+			while (answer.hasMoreElements()) {
+				SearchResult searchResult = (SearchResult) answer.next();
+
+				objectName = searchResult.getName();
+				i++;
+			}
+			ctx.close();
+			if (i == 1) {
+				return objectName;
+			} else {
+				throw new SecurityException(ldapUserIdField + " in domain base " + ldapDomainBase + " not found on " + ldapServer);
+			}
+
 		} catch (NamingException e) {
 			throw new SecurityException(e);
 		}
 	}
-	
+
 	private void initLdap(String description) throws SecurityException {
-		// ldaps://uplex1-sec-ldap.appl.ubs.ch:54636|ou=person,o=UBS,c=CH|ubs-tnumber
 		StringTokenizer tokenizer = new StringTokenizer(description, "|");
-		
+
 		if (tokenizer.countTokens() != 3) {
 			throw new SecurityException("ldap description '" + description + "' not parsable!");
 		}
@@ -151,7 +150,7 @@ public class LdapAuthenticatorManager implements IAuthenticator {
 			System.out.println("    ldapUserIdField: " + ldapUserIdField);
 			System.out.println("    useSSL: " + useSSL);
 			System.out.println("<<< ");
-		}	
+		}
 	}
 
 }
