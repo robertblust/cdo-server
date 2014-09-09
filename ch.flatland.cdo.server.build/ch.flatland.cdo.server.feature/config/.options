@@ -1,24 +1,26 @@
 #Master Tracing Options
-org.eclipse.emf.cdo.common/debug.model=true
-org.eclipse.emf.cdo.common/debug.protocol=true
-org.eclipse.emf.cdo.common/debug.revision=true
-org.eclipse.emf.cdo.common/debug=true
+ch.flatland.cdo.server.ldap/debug=false
 
-org.eclipse.net4j/debug.acceptor=true
+org.eclipse.emf.cdo.common/debug.model=false
+org.eclipse.emf.cdo.common/debug.protocol=false
+org.eclipse.emf.cdo.common/debug.revision=false
+org.eclipse.emf.cdo.common/debug=false
+
+org.eclipse.net4j/debug.acceptor=false
 org.eclipse.net4j/debug.buffer.stream=false
-org.eclipse.net4j/debug.buffer=true
-org.eclipse.net4j/debug.channel=true
-org.eclipse.net4j/debug.connector=true
-org.eclipse.net4j/debug.selector=true
-org.eclipse.net4j/debug.signal=true
-org.eclipse.net4j/debug=true
+org.eclipse.net4j/debug.buffer=false
+org.eclipse.net4j/debug.channel=false
+org.eclipse.net4j/debug.connector=false
+org.eclipse.net4j/debug.selector=false
+org.eclipse.net4j/debug.signal=false
+org.eclipse.net4j/debug=false
 org.eclipse.net4j/perf=false
 
-org.eclipse.net4j.util/debug.concurrency=true
-org.eclipse.net4j.util/debug.lifecycle.dump=true
-org.eclipse.net4j.util/debug.lifecycle=true
-org.eclipse.net4j.util/debug.om=true
-org.eclipse.net4j.util/debug.registry=true
-org.eclipse.net4j.util/debug=true
+org.eclipse.net4j.util/debug.concurrency=false
+org.eclipse.net4j.util/debug.lifecycle.dump=false
+org.eclipse.net4j.util/debug.lifecycle=false
+org.eclipse.net4j.util/debug.om=false
+org.eclipse.net4j.util/debug.registry=false
+org.eclipse.net4j.util/debug=false
 
-org.eclipse.net4j.tcp/debug=true
+org.eclipse.net4j.tcp/debug=false

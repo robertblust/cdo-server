@@ -3,7 +3,6 @@
 
 <product name="ch.flatland.cdo.server" uid="ch.flatland.cdo.server" id="ch.flatland.cdo.server.product.cdo_flatland" application="org.eclipse.emf.cdo.server.app" version="1.0.0.qualifier" useFeatures="true" includeLaunchers="true">
 
-
    <configIni use="default">
    </configIni>
 
@@ -16,13 +15,13 @@
 -Dorg.eclipse.emf.cdo.server.browser.port=7777
 -Dorg.osgi.service.http.port=8080
 -Dnet4j.config=.
+-Djavax.net.ssl.trustStore=./keystore
       </vmArgs>
       <vmArgsMac>-XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts
       </vmArgsMac>
    </launcherArgs>
 
    <windowImages/>
-
 
    <launcher name="flatland-cdo-server">
       <solaris/>
@@ -31,11 +30,8 @@
       </win>
    </launcher>
 
-
    <vm>
-      <windows include="false">org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.5</windows>
    </vm>
-
 
    <plugins>
       <plugin id="ch.flatland.cdo.server.product"/>

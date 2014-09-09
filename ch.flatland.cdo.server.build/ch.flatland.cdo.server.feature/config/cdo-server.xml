@@ -28,7 +28,7 @@
     -->
 
     <!-- Example http://bugs.eclipse.org/302775 -->
-	<authenticator type="ldap" description="LDAP DESC HERE"/>
+	<authenticator type="ldap" description="ldaps://ldap.flatland.ch:555|ou=person,o=FLATLAND,c=CH|member-id"/>
     
 
     <!-- Example http://bugs.eclipse.org/345431
@@ -67,8 +67,7 @@
       </mappingStrategy>
 
       <dbAdapter name="h2"/>
-      <dataSource class="org.h2.jdbcx.JdbcDataSource"
-        URL="jdbc:h2:database/repo1"/>
+      <dataSource class="org.h2.jdbcx.JdbcDataSource" URL="jdbc:h2:database/repo1"/>
 
       <!-- Example:
       <dbAdapter name="derby-embedded"/>
