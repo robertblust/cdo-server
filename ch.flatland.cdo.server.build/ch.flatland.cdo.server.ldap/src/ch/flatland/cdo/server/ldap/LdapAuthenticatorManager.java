@@ -117,7 +117,7 @@ public class LdapAuthenticatorManager implements IAuthenticator {
 			if (i == 1) {
 				return objectName;
 			} else {
-				throw new SecurityException(ldapUserIdField + " in domain base " + ldapDomainBase + " not found on " + ldapServer);
+				throw new SecurityException(ldapUserIdFieldFilter + " in domain base " + ldapDomainBase + " not found on " + ldapServer);
 			}
 
 		} catch (NamingException e) {
