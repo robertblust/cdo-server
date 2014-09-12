@@ -34,7 +34,7 @@ class Repository {
 		
 		CDOServerUtil.addRepository(IPluginContainer.INSTANCE, REPOSITORY);
 		
-		val authenticator = new LdapAuthenticatorManager("faked://uplex1-sec-ldap.appl.ubs.ch:54636|ou=person,o=UBS,c=CH|ubs-tnumber")
+		val authenticator = new LdapAuthenticatorManager("faked://server:port|ou=person,o=bla,c=CH|emp-number")
 		SECURITY_MANAGER = new SecurityManager("/security", IPluginContainer.INSTANCE, authenticator)
 		
 		SECURITY_MANAGER.addCommitHandler(CommitHandlerFactory.createAnnotationCommitHandler)

@@ -5,7 +5,7 @@ import org.eclipse.net4j.util.container.IPluginContainer
 
 class CommitHandlerFactory {
 
-	private final static String COMMIT_HANDLERS_KEY = "org.eclipse.emf.cdo.server.security.commitHandlers";
+	private final static String COMMIT_HANDLERS_KEY = "org.eclipse.emf.cdo.server.security.commitHandlers"
 
 	private new() {
 		// hide constructor
