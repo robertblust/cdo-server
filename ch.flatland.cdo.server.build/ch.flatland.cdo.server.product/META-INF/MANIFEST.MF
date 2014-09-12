@@ -16,10 +16,12 @@ Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.5.0,4.0.0)",
  org.eclipse.emf.cdo.server.security;bundle-version="[4.3.0,5.0.0)",
  org.eclipse.emf.cdo.net4j;bundle-version="[4.1.200,5.0.0)",
  org.eclipse.net4j.jvm;bundle-version="[4.1.200,5.0.0)",
- org.eclipse.emf.cdo.server.admin;bundle-version="[4.2.0,5.0.0)"
+ org.eclipse.emf.cdo.server.admin;bundle-version="[4.2.0,5.0.0)",
+ org.eclipse.xtend.lib;bundle-version="2.7.1",
+ org.eclipse.emf.cdo.security;bundle-version="4.3.0"
 Bundle-Version: 1.0.0.qualifier
 Bundle-ActivationPolicy: lazy
-Bundle-Name: CDO Server
+Bundle-Name: Flatland CDO Server
 Bundle-ManifestVersion: 2
 
 

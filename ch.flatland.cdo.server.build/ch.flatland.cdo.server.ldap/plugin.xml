@@ -8,7 +8,6 @@
             productGroup="org.eclipse.net4j.authenticators"
             type="ldap">
       </factory>
-      
    </extension>
 
 </plugin>
