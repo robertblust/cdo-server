@@ -2,13 +2,22 @@
 <?eclipse version="3.4"?>
 
 <plugin>
-
-   	<extension id="cdo_flatland" point="org.eclipse.core.runtime.products">
+   <extension id="app"
+         name="CDOServer"
+         point="org.eclipse.core.runtime.applications">
+      <application cardinality="1" thread="main">
+         <run class="ch.flatland.cdo.server.product.App" />
+      </application>
+   </extension>
+   
+      	<extension
+        id="product"
+        point="org.eclipse.core.runtime.products">
       	<product
         	name="Flatland CDO Server"
-          description="Flatland CDO Server"
-          application="org.eclipse.emf.cdo.server.app">
-        		<property name="appName" value="CDO Server"/>
+            description="Flatland CDO Server"
+            application="ch.flatland.cdo.server.product.app">
+         	<property name="appName" value="Flatland CDO Server"/>
       	</product>
    	</extension>
 

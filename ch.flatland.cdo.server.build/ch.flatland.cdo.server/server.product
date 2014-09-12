@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="ch.flatland.cdo.server" uid="ch.flatland.cdo.server" id="ch.flatland.cdo.server.product.cdo_flatland" application="org.eclipse.emf.cdo.server.app" version="1.0.0.qualifier" useFeatures="true" includeLaunchers="true">
+<product name="ch.flatland.cdo.server" uid="ch.flatland.cdo.server" id="ch.flatland.cdo.server.product.product" application="ch.flatland.cdo.server.product.app" version="1.0.0.qualifier" useFeatures="true" includeLaunchers="true">
 
    <configIni use="default">
    </configIni>
