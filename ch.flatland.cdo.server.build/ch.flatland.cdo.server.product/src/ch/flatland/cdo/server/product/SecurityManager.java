@@ -267,6 +267,8 @@ public class SecurityManager extends Lifecycle implements InternalSecurityManage
 		modify(new RealmOperation() {
 			public void execute(Realm realm) {
 				result[0] = realm.addUser(id);
+				// ROB add user to Users group by default
+				result[0].getGroups().add(realm.getGroup(Directory.USERS));
 			}
 		});
 
@@ -282,6 +284,8 @@ public class SecurityManager extends Lifecycle implements InternalSecurityManage
 
 				result[0] = realm.addUser(id);
 				result[0].setPassword(userPassword);
+				// ROB add user to Users group by default
+				result[0].getGroups().add(realm.getGroup(Directory.USERS));
 			}
 		});
 
@@ -547,7 +551,8 @@ public class SecurityManager extends Lifecycle implements InternalSecurityManage
 		Group adminsGroup = realm.addGroup(Group.ADMINISTRATORS);
 		adminsGroup.getRoles().add(adminRole);
 
-		realm.addGroup(Directory.USERS);
+		Group usersGroup = realm.addGroup(Directory.USERS);
+		usersGroup.getRoles().add(allReaderRole);
 
 		// Create users
 
