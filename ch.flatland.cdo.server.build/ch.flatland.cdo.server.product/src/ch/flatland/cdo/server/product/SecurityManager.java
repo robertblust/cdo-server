@@ -93,15 +93,17 @@ import org.eclipse.net4j.util.om.monitor.OMMonitor;
 import org.eclipse.net4j.util.security.IAuthenticator;
 import org.eclipse.net4j.util.security.IPasswordCredentials;
 
-import ch.flatland.cdo.server.ldap.LdapAuthenticatorManager;
-
 /**
  * @author Eike Stepper
+ * Adapted by Robert Blust to support
+ * - Authentication via ldap
+ * - different admin user
  */
 public class SecurityManager extends Lifecycle implements InternalSecurityManager {
 	private static final Map<IRepository, InternalSecurityManager> SECURITY_MANAGERS = new HashMap<IRepository, InternalSecurityManager>();
 
 	private static final SecurityFactory SF = SecurityFactory.eINSTANCE;
+	private static final String ADMINUSER = "fr33061";
 
 	private final IListener repositoryListener = new LifecycleEventAdapter() {
 		@Override
@@ -556,7 +558,8 @@ public class SecurityManager extends Lifecycle implements InternalSecurityManage
 
 		// Create users
 
-		User adminUser = realm.addUser(User.ADMINISTRATOR, "0000");
+		//User adminUser = realm.addUser(User.ADMINISTRATOR, "0000");
+		User adminUser = realm.addUser(ADMINUSER, "0000");
 		adminUser.getGroups().add(adminsGroup);
 
 		return realm;
