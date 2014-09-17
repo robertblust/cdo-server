@@ -40,6 +40,20 @@ public class LdapAuthenticatorManager implements IAuthenticator {
 	 */
 	public LdapAuthenticatorManager(String description) {
 		initLdap(description);
+		log();
+	}
+	
+	public LdapAuthenticatorManager(String ldapServer, String ldapDomainBase, String ldapUserIdField) {
+		this.ldapServer = ldapServer;
+		this.ldapDomainBase = ldapDomainBase;
+		this.ldapUserIdField = ldapUserIdField;
+		if (ldapServer.startsWith("ldaps://")) {
+			useSSL = true;
+		}
+		if (ldapServer.startsWith("faked://")) {
+			faked = true;
+		}
+		log();
 	}
 
 	public void authenticate(String userId, char[] password) throws SecurityException {
@@ -142,7 +156,9 @@ public class LdapAuthenticatorManager implements IAuthenticator {
 		if (ldapServer.startsWith("faked://")) {
 			faked = true;
 		}
-
+	}
+	
+	private void log() {
 		if (LdapAuthenticatorPlugin.getDefault().isDebugging()) {
 			System.out.println(">>>");
 			System.out.println("    " + this.getClass().getSimpleName());
