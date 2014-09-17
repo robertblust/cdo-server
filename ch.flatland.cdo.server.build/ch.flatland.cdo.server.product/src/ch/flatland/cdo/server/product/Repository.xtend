@@ -1,6 +1,5 @@
 package ch.flatland.cdo.server.product
 
-import ch.flatland.cdo.server.ldap.LdapAuthenticatorManager
 import org.eclipse.emf.cdo.server.CDOServerUtil
 import org.eclipse.emf.cdo.server.IRepository
 import org.eclipse.emf.cdo.spi.server.InternalRepository
@@ -8,11 +7,11 @@ import org.eclipse.net4j.util.container.IPluginContainer
 import org.eclipse.net4j.util.lifecycle.LifecycleUtil
 
 class Repository {
-	
-	private new () {
+
+	private new() {
 		// hide constructor
 	}
-	
+
 	var static transient InternalRepository REPOSITORY
 	var static transient SecurityManager SECURITY_MANAGER
 
@@ -29,19 +28,16 @@ class Repository {
 			IRepository.Props.SERIALIZE_COMMITS -> "false",
 			IRepository.Props.OPTIMISTIC_LOCKING_TIMEOUT -> "10000"
 		)
-		
+
 		REPOSITORY = CDOServerUtil.createRepository("repo1", StoreFactory.createStore, repositoryProps) as InternalRepository
-		
+
 		CDOServerUtil.addRepository(IPluginContainer.INSTANCE, REPOSITORY);
-		
-		val authenticator = new LdapAuthenticatorManager("faked://server:port|ou=person,o=bla,c=CH|emp-number")
-		SECURITY_MANAGER = new SecurityManager("/security", IPluginContainer.INSTANCE, authenticator)
-		
+
+		SECURITY_MANAGER = SecurityManagerFactory.createSecurityManager
 		SECURITY_MANAGER.addCommitHandler(CommitHandlerFactory.createAnnotationCommitHandler)
 		SECURITY_MANAGER.addCommitHandler(CommitHandlerFactory.createHomeCommitHandler)
 		SECURITY_MANAGER.repository = REPOSITORY
 		SECURITY_MANAGER.activate
-
 	}
 
 	def static stop() {
