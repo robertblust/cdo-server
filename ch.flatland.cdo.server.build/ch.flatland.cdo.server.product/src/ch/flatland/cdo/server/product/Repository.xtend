@@ -43,6 +43,8 @@ class Repository {
 	def static stop() {
 		App.info("Stop repository")
 		SECURITY_MANAGER.deactivate
-		LifecycleUtil.deactivate(REPOSITORY)
+		if (REPOSITORY != null) {
+			LifecycleUtil.deactivate(REPOSITORY)
+		}	
 	}
 }
