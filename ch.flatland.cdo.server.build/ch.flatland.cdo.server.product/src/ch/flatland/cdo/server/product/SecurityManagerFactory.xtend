@@ -9,7 +9,7 @@ class SecurityManagerFactory {
 	}
 	
 	// network config
-	val static LDAP_SERVER = "ldaps://flatland.ch:333"
+	val static LDAP_SERVER = "faked://flatland.ch:333"
 	val static LDAP_DOMAIN_BASE = "ou=person,o=FLATLAND,c=CH"
 	val static LDAP_USER_ID_FIELD = "empid"
 	

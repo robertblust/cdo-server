@@ -99,6 +99,7 @@ import org.eclipse.net4j.util.security.IPasswordCredentials;
  * - Authentication via ldap
  * - different admin user
  */
+@SuppressWarnings("all")
 public class SecurityManager extends Lifecycle implements InternalSecurityManager {
 	private static final Map<IRepository, InternalSecurityManager> SECURITY_MANAGERS = new HashMap<IRepository, InternalSecurityManager>();
 
