@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<?pde version="3.8"?><target name="Flatland CDO Server" sequenceNumber="2">
+<?pde version="3.8"?><target name="Flatland CDO Server" sequenceNumber="3">
 <locations>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 <unit id="org.eclipse.equinox.sdk.feature.group" version="3.10.0.v20140606-1602"/>
@@ -16,11 +16,18 @@
 <repository location="http://download.eclipse.org/modeling/tmf/xtext/updates/composite/releases/"/>
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-<unit id="com.eclipsesource.jaxrs.connector.feature.feature.group" version="4.1.1.201407131319"/>
+<unit id="com.eclipsesource.jaxrs.provider.moxy.feature.source.feature.group" version="2.0.0.201407131319"/>
+<unit id="com.eclipsesource.jaxrs.provider.security.feature.source.feature.group" version="2.0.0.201407131319"/>
 <unit id="com.eclipsesource.jaxrs.connector.feature.source.feature.group" version="4.1.1.201407131319"/>
+<unit id="com.eclipsesource.jaxrs.provider.gson.feature.feature.group" version="2.0.0.201407131319"/>
+<unit id="com.eclipsesource.jaxrs.provider.gson.feature.source.feature.group" version="2.0.0.201407131319"/>
+<unit id="com.eclipsesource.jaxrs.provider.moxy.feature.feature.group" version="2.0.0.201407131319"/>
+<unit id="com.eclipsesource.jaxrs.provider.security.feature.feature.group" version="2.0.0.201407131319"/>
+<unit id="com.eclipsesource.jaxrs.provider.multipart.feature.source.feature.group" version="2.0.0.201407131319"/>
+<unit id="com.eclipsesource.jaxrs.provider.sse.feature.source.feature.group" version="2.0.0.201407131319"/>
+<unit id="com.eclipsesource.jaxrs.provider.multipart.feature.feature.group" version="2.0.0.201407131319"/>
+<unit id="com.eclipsesource.jaxrs.provider.sse.feature.feature.group" version="2.0.0.201407131319"/>
 <repository location="http://hstaudacher.github.com/osgi-jax-rs-connector"/>
 </location>
 </locations>
 </target>
-
-
