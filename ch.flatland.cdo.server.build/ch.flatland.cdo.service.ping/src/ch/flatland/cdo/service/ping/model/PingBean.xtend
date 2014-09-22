@@ -5,6 +5,6 @@ import org.eclipse.xtend.lib.annotations.Data
 
 @XmlRootElement
 @Data class PingBean {
-	String name;
-	String version;
+	String name
+	String version
 }
