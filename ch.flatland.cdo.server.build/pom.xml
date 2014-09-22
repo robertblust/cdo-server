@@ -20,6 +20,7 @@
 		<module>ch.flatland.cdo.server.product</module>
 		<module>ch.flatland.cdo.server.feature</module>
 		<module>ch.flatland.cdo.targetplatform</module>
+		<module>ch.flatland.cdo.service.ping</module>
 		<module>ch.flatland.cdo.server</module>
 	</modules>
 
