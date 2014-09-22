@@ -15,5 +15,12 @@
 <unit id="org.eclipse.xtend.sdk.feature.group" version="2.7.1.v201409090713"/>
 <repository location="http://download.eclipse.org/modeling/tmf/xtext/updates/composite/releases/"/>
 </location>
+<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
+<unit id="com.eclipsesource.jaxrs.connector.feature.feature.group" version="4.1.1.201407131319"/>
+<unit id="com.eclipsesource.jaxrs.connector.feature.source.feature.group" version="4.1.1.201407131319"/>
+<repository location="http://hstaudacher.github.com/osgi-jax-rs-connector"/>
+</location>
 </locations>
 </target>
+
+
