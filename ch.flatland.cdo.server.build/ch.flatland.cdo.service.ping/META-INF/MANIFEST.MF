@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Flatland Ping Service
+Bundle-SymbolicName: ch.flatland.cdo.service.ping
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: ch.flatland.cdo.service.ping.Activator
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-ActivationPolicy: lazy
+Import-Package: javax.ws.rs,
+ javax.ws.rs.core,
+ org.osgi.framework;version="[1.5.0,2.0.0)"
