@@ -5,7 +5,7 @@ import org.osgi.framework.BundleContext
 import org.osgi.framework.ServiceRegistration
 
 class Activator implements BundleActivator {
-	private var ServiceRegistration<?> registration
+	var ServiceRegistration<?> registration
 
 	def override start(BundleContext context) throws Exception {
 		val pingService = new PingService()
