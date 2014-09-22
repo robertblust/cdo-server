@@ -9,3 +9,8 @@ Bundle-ActivationPolicy: lazy
 Import-Package: javax.ws.rs,
  javax.ws.rs.core,
  org.osgi.framework;version="[1.5.0,2.0.0)"
+Require-Bundle: org.eclipse.xtend.lib,
+ org.eclipse.xtend.lib.macro,
+ com.google.guava,
+ org.eclipse.xtext.xbase.lib
+
