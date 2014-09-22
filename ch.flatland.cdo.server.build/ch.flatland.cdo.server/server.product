@@ -12,7 +12,6 @@
       <vmArgs>-Xms40m
 -Xmx1g
 -Ddebug=true
--Dorg.eclipse.emf.cdo.server.browser.port=7777
 -Dorg.osgi.service.http.port=8080
 -Dnet4j.config=.
 -Djavax.net.ssl.trustStore=./keystore
