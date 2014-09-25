@@ -22,6 +22,7 @@
 		<module>ch.flatland.cdo.targetplatform</module>
 		<module>ch.flatland.cdo.service.ping</module>
 		<module>ch.flatland.cdo.server</module>
+		<module>ch.flatland.cdo.util</module>
 	</modules>
 
 	<build>
