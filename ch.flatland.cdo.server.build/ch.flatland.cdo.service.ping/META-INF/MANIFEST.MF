@@ -5,7 +5,6 @@ Bundle-SymbolicName: ch.flatland.cdo.service.ping;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Require-Bundle: org.eclipse.xtend.lib,
- org.eclipse.xtend.lib.macro,
  com.google.guava,
  org.eclipse.xtext.xbase.lib,
  org.eclipse.core.runtime;bundle-version="3.10.0",
