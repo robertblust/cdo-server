@@ -20,8 +20,8 @@ class Repository {
 
 		// repository store
 		val repositoryProps = newHashMap(
-			IRepository.Props.SUPPORTING_AUDITS -> "false",
-			IRepository.Props.SUPPORTING_BRANCHES -> "false",
+			IRepository.Props.SUPPORTING_AUDITS -> "true",
+			IRepository.Props.SUPPORTING_BRANCHES -> "true",
 			IRepository.Props.ENSURE_REFERENTIAL_INTEGRITY -> "true",
 			IRepository.Props.ALLOW_INTERRUPT_RUNNING_QUERIES -> "true",
 			IRepository.Props.ID_GENERATION_LOCATION -> "STORE",
@@ -35,7 +35,7 @@ class Repository {
 
 		SECURITY_MANAGER = SecurityManagerFactory.createSecurityManager
 		SECURITY_MANAGER.addCommitHandler(CommitHandlerFactory.createAnnotationCommitHandler)
-		SECURITY_MANAGER.addCommitHandler(CommitHandlerFactory.createHomeCommitHandler)
+		//SECURITY_MANAGER.addCommitHandler(CommitHandlerFactory.createHomeCommitHandler)
 		SECURITY_MANAGER.repository = REPOSITORY
 		SECURITY_MANAGER.activate
 	}
