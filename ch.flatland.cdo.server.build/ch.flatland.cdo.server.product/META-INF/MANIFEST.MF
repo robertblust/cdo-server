@@ -24,5 +24,6 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-ActivationPolicy: lazy
 Bundle-Name: Flatland CDO Server
 Bundle-ManifestVersion: 2
+Export-Package: ch.flatland.cdo.server
 
 

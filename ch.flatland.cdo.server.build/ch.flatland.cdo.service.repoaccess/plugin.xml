@@ -6,7 +6,7 @@
       <servlet
             alias="/repo"
             class="ch.flatland.cdo.service.repoaccess.RepoAccessServlet"
-            load-on-startup="true">
+            load-on-startup="false">
       </servlet>
    </extension>
 

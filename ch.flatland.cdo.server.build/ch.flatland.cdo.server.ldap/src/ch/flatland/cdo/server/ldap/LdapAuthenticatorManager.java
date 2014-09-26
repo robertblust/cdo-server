@@ -15,6 +15,8 @@ import javax.naming.ldap.LdapContext;
 
 import org.eclipse.net4j.util.security.IAuthenticator;
 
+import ch.flatland.cdo.server.UserUtil;
+
 public class LdapAuthenticatorManager implements IAuthenticator {
 
 	private static final String LDAP_FACTORY = "com.sun.jndi.ldap.LdapCtxFactory";
@@ -62,7 +64,17 @@ public class LdapAuthenticatorManager implements IAuthenticator {
 			System.err.println("!!!! NO AUTHENTICATION PERFORMED !!!!");
 			return;
 		}
+
 		String p = new String(password);
+		
+		if (userId.equals(UserUtil.ADMIN_USER) && p.equals(UserUtil.ADMIN_PWD)) {
+			return;
+		}
+		
+		if (userId.equals(UserUtil.READONLY_USER) && p.equals(UserUtil.READONLY_PWD)) {
+			return;
+		}
+		
 		String ldapUserIdFieldFilter = ldapUserIdField + "=" + userId;
 
 		String objectName = ldapLookupUser(ldapUserIdFieldFilter);

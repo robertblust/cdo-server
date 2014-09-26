@@ -27,7 +27,7 @@
 <stringAttribute key="org.eclipse.jdt.launching.JRE_CONTAINER" value="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="-os ${target.os} -ws ${target.ws} -arch ${target.arch} -nl ${target.nl}&#13;&#10;-console&#13;&#10;-debug"/>
 <stringAttribute key="org.eclipse.jdt.launching.SOURCE_PATH_PROVIDER" value="org.eclipse.pde.ui.workbenchClasspathProvider"/>
-<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Xms40m&#13;&#10;-Xmx1024m&#13;&#10;-Ddebug=false&#13;&#10;-Dorg.osgi.service.http.port=8080&#13;&#10;-Dnet4j.config=${resource_loc:/ch.flatland.cdo.server.feature/config}&#13;&#10;-Djavax.net.ssl.trustStore=${resource_loc:/ch.flatland.cdo.server.feature/config/keystore}"/>
+<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Xms40m&#13;&#10;-Xmx1024m&#13;&#10;-Ddebug=false&#13;&#10;-Dorg.osgi.service.http.port=8080&#13;&#10;-Dnet4j.config=${resource_loc:/ch.flatland.cdo.server.feature/config}&#13;&#10;-Djavax.net.ssl.trustStore=${resource_loc:/ch.flatland.cdo.server.feature/config/keystore}&#10;-Dch.flatland.cdo.server.admin.pwd=password&#10;-Dch.flatland.cdo.server.readonly.pwd=password"/>
 <stringAttribute key="org.eclipse.jdt.launching.WORKING_DIRECTORY" value="${workspace_loc:ch.flatland.cdo.server.product}"/>
 <stringAttribute key="pde.version" value="3.3"/>
 <stringAttribute key="product" value="org.eclipse.platform.ide"/>
