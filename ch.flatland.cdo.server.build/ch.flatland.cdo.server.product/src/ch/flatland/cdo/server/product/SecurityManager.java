@@ -93,6 +93,8 @@ import org.eclipse.net4j.util.om.monitor.OMMonitor;
 import org.eclipse.net4j.util.security.IAuthenticator;
 import org.eclipse.net4j.util.security.IPasswordCredentials;
 
+import ch.flatland.cdo.server.UserUtil;
+
 /**
  * @author Eike Stepper
  * Adapted by Robert Blust to support
@@ -104,7 +106,7 @@ public class SecurityManager extends Lifecycle implements InternalSecurityManage
 	private static final Map<IRepository, InternalSecurityManager> SECURITY_MANAGERS = new HashMap<IRepository, InternalSecurityManager>();
 
 	private static final SecurityFactory SF = SecurityFactory.eINSTANCE;
-	private static final String ADMINUSER = "fr33061";
+	private static final String ADMINUSER = UserUtil.ADMIN_USER;
 
 	private final IListener repositoryListener = new LifecycleEventAdapter() {
 		@Override
