@@ -1,19 +1,20 @@
 package ch.flatland.cdo.util
 
-import com.google.gson.Gson
+import ch.flatland.cdo.util.converter.JsonConverter
 
 class Json {
-	static val gson = new Gson
-	
+
+	val static converter = new JsonConverter
+
 	def static String jsonContentType() {
 		"application/json"
 	}
-	
+
 	def static String jsonContentTypeUTF8() {
 		"application/json; charset=utf-8 "
 	}
-	
+
 	def static String toJson(Object object) {
-		gson.toJson(object)
+		converter.toJson(object)
 	}
 }

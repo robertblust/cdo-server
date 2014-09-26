@@ -1,12 +1,13 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Flatland CDO Util
-Bundle-SymbolicName: ch.flatland.cdo.util
+Bundle-SymbolicName: ch.flatland.cdo.util;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Require-Bundle: org.eclipse.xtend.lib,
  com.google.guava,
  org.eclipse.xtext.xbase.lib,
- com.google.gson
+ com.google.gson,
+ org.eclipse.emf.cdo;bundle-version="4.3.0"
 Export-Package: ch.flatland.cdo.util
 
