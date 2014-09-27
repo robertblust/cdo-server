@@ -7,8 +7,6 @@ import javax.servlet.http.HttpServletRequest
 import org.eclipse.emf.cdo.session.CDOSession
 import org.eclipse.emf.cdo.view.CDOView
 
-import static extension ch.flatland.cdo.util.Json.*
-
 class AbstractAccessServlet extends HttpServlet {
 
 	var CDOSession session = null;
@@ -42,7 +40,7 @@ class AbstractAccessServlet extends HttpServlet {
 				   req.serverName = «req.serverName»
 				   req.serverPort = «req.serverPort»
 				   req.pathInfo = «req.pathInfo»
-				   params = «req.parameterMap.toJson»
+				   params = «req.parameterMap»
 				<<<
 			''')
 	}
