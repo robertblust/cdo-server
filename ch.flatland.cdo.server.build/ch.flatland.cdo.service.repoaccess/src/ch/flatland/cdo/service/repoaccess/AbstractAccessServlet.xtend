@@ -1,9 +1,10 @@
 package ch.flatland.cdo.service.repoaccess
 
+import ch.flatland.cdo.server.ServerUtil
+import javax.servlet.ServletException
 import javax.servlet.http.HttpServlet
 import org.eclipse.emf.cdo.session.CDOSession
 import org.eclipse.emf.cdo.view.CDOView
-import ch.flatland.cdo.server.ServerUtil
 
 class AbstractAccessServlet extends HttpServlet {
 
@@ -17,16 +18,16 @@ class AbstractAccessServlet extends HttpServlet {
 		}
 		view
 	}
-	
-	override destroy() {
-		if (view != null && !view.closed) {
-			view.close
-			view = null
+
+	override init() throws ServletException {
+		super.init()
+		if (RepoAccessPlugin.getDefault.debugging) {
+			println(
+				'''
+					>>>
+					   init() «this.class.name»
+					<<<
+				''')
 		}
-		if (session != null && !session.closed) {
-			session.close
-			session = null
-		}
-		super.destroy()
-	}	
+	}
 }

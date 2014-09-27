@@ -11,8 +11,9 @@ class RepoAccessServlet extends AbstractAccessServlet {
 
 	override protected doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.contentType = jsonContentTypeUTF8
-		
-		resp.writer.append("Hallo Repo Access " + view.session.sessionID)
+
+		resp.writer.append("Hallo Repo Access " + view.rootResource.URI)
+
 	}
 
 }

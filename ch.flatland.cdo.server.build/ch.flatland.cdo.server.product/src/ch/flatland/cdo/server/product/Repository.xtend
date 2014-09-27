@@ -27,7 +27,8 @@ class Repository {
 			IRepository.Props.ALLOW_INTERRUPT_RUNNING_QUERIES -> "true",
 			IRepository.Props.ID_GENERATION_LOCATION -> "STORE",
 			IRepository.Props.SERIALIZE_COMMITS -> "false",
-			IRepository.Props.OPTIMISTIC_LOCKING_TIMEOUT -> "10000"
+			IRepository.Props.OPTIMISTIC_LOCKING_TIMEOUT -> "10000",
+			IRepository.Props.OVERRIDE_UUID -> ServerUtil.REPOSITORY_NAME
 		)
 
 		REPOSITORY = CDOServerUtil.createRepository(ServerUtil.REPOSITORY_NAME, StoreFactory.createStore, repositoryProps) as InternalRepository
