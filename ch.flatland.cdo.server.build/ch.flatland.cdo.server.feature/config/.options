@@ -1,5 +1,7 @@
 #Master Tracing Options
 ch.flatland.cdo.server.ldap/debug=false
+ch.flatland.cdo.service.repoaccess/debug=false
+ch.flatland.cdo.service.ping/debug=false
 
 org.eclipse.emf.cdo.common/debug.model=false
 org.eclipse.emf.cdo.common/debug.protocol=false

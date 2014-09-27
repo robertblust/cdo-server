@@ -59,6 +59,13 @@ public class LdapAuthenticatorManager implements IAuthenticator {
 	}
 
 	public void authenticate(String userId, char[] password) throws SecurityException {
+		if (LdapAuthenticatorPlugin.getDefault().isDebugging()) {
+			System.out.println(">>>");
+			System.out.println("    authenticate() " + this.getClass().getName());
+			System.out.println("    user = " + userId);
+			System.out.println("<<< ");
+		}
+		
 		if (faked) {
 			// NO AUTHENTICATION PERFORMED
 			System.err.println("!!!! NO AUTHENTICATION PERFORMED !!!!");
@@ -173,11 +180,11 @@ public class LdapAuthenticatorManager implements IAuthenticator {
 	private void log() {
 		if (LdapAuthenticatorPlugin.getDefault().isDebugging()) {
 			System.out.println(">>>");
-			System.out.println("    " + this.getClass().getSimpleName());
-			System.out.println("    ldapServer: " + ldapServer);
-			System.out.println("    ldapDomainBase: " + ldapDomainBase);
-			System.out.println("    ldapUserIdField: " + ldapUserIdField);
-			System.out.println("    useSSL: " + useSSL);
+			System.out.println("    new() " + this.getClass().getName());
+			System.out.println("    ldapServer = " + ldapServer);
+			System.out.println("    ldapDomainBase = " + ldapDomainBase);
+			System.out.println("    ldapUserIdField = " + ldapUserIdField);
+			System.out.println("    useSSL = " + useSSL);
 			System.out.println("<<< ");
 		}
 	}

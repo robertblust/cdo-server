@@ -6,7 +6,7 @@
       <servlet
             alias="/ping"
             class="ch.flatland.cdo.service.ping.PingServlet"
-            load-on-startup="true">
+            load-on-startup="false">
       </servlet>
    </extension>
 
