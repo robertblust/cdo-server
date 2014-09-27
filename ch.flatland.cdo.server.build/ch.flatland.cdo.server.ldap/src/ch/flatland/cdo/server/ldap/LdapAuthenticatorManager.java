@@ -15,7 +15,7 @@ import javax.naming.ldap.LdapContext;
 
 import org.eclipse.net4j.util.security.IAuthenticator;
 
-import ch.flatland.cdo.server.UserUtil;
+import ch.flatland.cdo.server.AuthenticationUtil;
 
 public class LdapAuthenticatorManager implements IAuthenticator {
 
@@ -67,11 +67,11 @@ public class LdapAuthenticatorManager implements IAuthenticator {
 
 		String p = new String(password);
 		
-		if (userId.equals(UserUtil.ADMIN_USER) && p.equals(UserUtil.ADMIN_PWD)) {
+		if (userId.equals(AuthenticationUtil.ADMIN_USER) && p.equals(AuthenticationUtil.ADMIN_PWD)) {
 			return;
 		}
 		
-		if (userId.equals(UserUtil.READONLY_USER) && p.equals(UserUtil.READONLY_PWD)) {
+		if (userId.equals(AuthenticationUtil.READONLY_USER) && p.equals(AuthenticationUtil.READONLY_PWD)) {
 			return;
 		}
 		
