@@ -4,6 +4,7 @@ import org.eclipse.emf.cdo.net4j.CDONet4jUtil
 import org.eclipse.net4j.Net4jUtil
 import org.eclipse.net4j.util.container.IPluginContainer
 import org.eclipse.emf.cdo.session.CDOSession
+import ch.flatland.cdo.server.product.CredentialsProvider
 
 class ServerUtil {
 	public val static SUPPORTING_AUDITS = false
@@ -22,8 +23,11 @@ class ServerUtil {
 		val config = CDONet4jUtil.createNet4jSessionConfiguration()
 		config.setConnector(connector)
 		config.setRepositoryName(repositoryName)
-		config.setUserID(UserUtil.READONLY_USER)
+		
+		config.credentialsProvider = new CredentialsProvider(UserUtil.READONLY_USER, UserUtil.READONLY_PWD)
 
 		config.openNet4jSession() as CDOSession
 	}
+	 
 }
+	

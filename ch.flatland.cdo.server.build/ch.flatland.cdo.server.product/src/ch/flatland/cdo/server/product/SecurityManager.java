@@ -106,7 +106,6 @@ public class SecurityManager extends Lifecycle implements InternalSecurityManage
 	private static final Map<IRepository, InternalSecurityManager> SECURITY_MANAGERS = new HashMap<IRepository, InternalSecurityManager>();
 
 	private static final SecurityFactory SF = SecurityFactory.eINSTANCE;
-	private static final String ADMINUSER = UserUtil.ADMIN_USER;
 
 	private final IListener repositoryListener = new LifecycleEventAdapter() {
 		@Override
@@ -567,9 +566,12 @@ public class SecurityManager extends Lifecycle implements InternalSecurityManage
 		// Create users
 
 		//User adminUser = realm.addUser(User.ADMINISTRATOR, "0000");
-		User adminUser = realm.addUser(ADMINUSER, "0000");
+		User adminUser = realm.addUser(UserUtil.ADMIN_USER, UserUtil.ADMIN_PWD);
 		adminUser.getGroups().add(adminsGroup);
-
+		
+		User readUser = realm.addUser(UserUtil.READONLY_USER, UserUtil.READONLY_USER);
+		readUser.getGroups().add(usersGroup);
+		
 		return realm;
 	}
 
