@@ -28,6 +28,5 @@ class AbstractAccessServlet extends HttpServlet {
 			session = null
 		}
 		super.destroy()
-	}
-	
+	}	
 }

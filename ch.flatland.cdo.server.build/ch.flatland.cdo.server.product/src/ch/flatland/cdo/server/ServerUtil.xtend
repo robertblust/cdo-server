@@ -13,9 +13,13 @@ class ServerUtil {
 	public val static REPOSITORY_NAME = "repo1"
 	public val static ACCEPTOR_PORT = "2036"
 	
+	private new() {
+		// hide constructor
+	}
+	
 	def static openReadOnlySession() {
 		val repositoryName = REPOSITORY_NAME
-		val acceptorName = repositoryName + "_" + UserUtil.READONLY_USER
+		val acceptorName = repositoryName + "_" + AuthenticationUtil.READONLY_USER
 		
 		Net4jUtil.getAcceptor(IPluginContainer.INSTANCE, "jvm", acceptorName)
 		val connector = Net4jUtil.getConnector(IPluginContainer.INSTANCE, "jvm", acceptorName)
@@ -24,7 +28,7 @@ class ServerUtil {
 		config.setConnector(connector)
 		config.setRepositoryName(repositoryName)
 		
-		config.credentialsProvider = new CredentialsProvider(UserUtil.READONLY_USER, UserUtil.READONLY_PWD)
+		config.credentialsProvider = new CredentialsProvider(AuthenticationUtil.READONLY_USER, AuthenticationUtil.READONLY_PWD)
 
 		config.openNet4jSession() as CDOSession
 	}

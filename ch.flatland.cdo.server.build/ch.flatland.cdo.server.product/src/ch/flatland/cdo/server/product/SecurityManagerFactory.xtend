@@ -1,5 +1,6 @@
 package ch.flatland.cdo.server.product
 
+import ch.flatland.cdo.server.AuthenticationUtil
 import ch.flatland.cdo.server.ldap.LdapAuthenticatorManager
 import org.eclipse.net4j.util.container.IPluginContainer
 
@@ -8,13 +9,8 @@ class SecurityManagerFactory {
 		// hide constructor
 	}
 	
-	// network config
-	val static LDAP_SERVER = "faked://flatland.ch:333"
-	val static LDAP_DOMAIN_BASE = "ou=person,o=FLATLAND,c=CH"
-	val static LDAP_USER_ID_FIELD = "empid"
-	
 	def static createSecurityManager() {
-		val authenticator = new LdapAuthenticatorManager(LDAP_SERVER, LDAP_DOMAIN_BASE, LDAP_USER_ID_FIELD)
+		val authenticator = new LdapAuthenticatorManager(AuthenticationUtil.LDAP_SERVER, AuthenticationUtil.LDAP_DOMAIN_BASE, AuthenticationUtil.LDAP_USER_ID_FIELD)
 		return new SecurityManager("/security", IPluginContainer.INSTANCE, authenticator)
 	}
 	
