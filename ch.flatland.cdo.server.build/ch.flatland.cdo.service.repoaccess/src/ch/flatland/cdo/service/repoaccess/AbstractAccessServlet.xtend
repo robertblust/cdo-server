@@ -3,8 +3,11 @@ package ch.flatland.cdo.service.repoaccess
 import ch.flatland.cdo.server.ServerUtil
 import javax.servlet.ServletException
 import javax.servlet.http.HttpServlet
+import javax.servlet.http.HttpServletRequest
 import org.eclipse.emf.cdo.session.CDOSession
 import org.eclipse.emf.cdo.view.CDOView
+
+import static extension ch.flatland.cdo.util.Json.*
 
 class AbstractAccessServlet extends HttpServlet {
 
@@ -29,5 +32,18 @@ class AbstractAccessServlet extends HttpServlet {
 					<<<
 				''')
 		}
+	}
+
+	def logRequest(HttpServletRequest req) {
+		println(
+			'''
+				>>>
+				   doGet() «this.class.name»
+				   req.serverName = «req.serverName»
+				   req.serverPort = «req.serverPort»
+				   req.pathInfo = «req.pathInfo»
+				   params = «req.parameterMap.toJson»
+				<<<
+			''')
 	}
 }
