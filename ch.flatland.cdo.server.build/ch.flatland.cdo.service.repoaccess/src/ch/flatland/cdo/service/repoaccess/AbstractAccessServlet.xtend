@@ -37,8 +37,6 @@ class AbstractAccessServlet extends HttpServlet {
 			'''
 				>>>
 				   doGet() «this.class.name»
-				   req.serverName = «req.serverName»
-				   req.serverPort = «req.serverPort»
 				   req.pathInfo = «req.pathInfo»
 				   params = «req.parameterMap»
 				<<<
