@@ -18,19 +18,23 @@ class ServerUtil {
 		// hide constructor
 	}
 
-	def static openReadOnlySession() {
-		val repositoryName = REPOSITORY_NAME
-		val acceptorName = repositoryName + "_" + AuthenticationUtil.READONLY_USER
-
+	val static acceptorName = REPOSITORY_NAME + "_jvm"
+	val static connector = {
 		Net4jUtil.getAcceptor(IPluginContainer.INSTANCE, "jvm", acceptorName)
-		val connector = Net4jUtil.getConnector(IPluginContainer.INSTANCE, "jvm", acceptorName)
+		Net4jUtil.getConnector(IPluginContainer.INSTANCE, "jvm", acceptorName)
+	}
+
+	def static openReadOnlySession() {
+		ServerUtil.openSession(AuthenticationUtil.READONLY_USER, AuthenticationUtil.READONLY_PWD)
+	}
+
+	def static openSession(String userID, String password) {
 
 		val config = CDONet4jUtil.createNet4jSessionConfiguration()
 		config.setConnector(connector)
-		config.setRepositoryName(repositoryName)
+		config.setRepositoryName(REPOSITORY_NAME)
 
-		config.credentialsProvider = new CredentialsProvider(AuthenticationUtil.READONLY_USER,
-			AuthenticationUtil.READONLY_PWD)
+		config.credentialsProvider = new CredentialsProvider(userID, password)
 
 		val session = config.openNet4jSession() as CDOSession
 
@@ -38,8 +42,8 @@ class ServerUtil {
 			println(
 				'''
 					>>>
-					   openReadOnlySession() «typeof(ServerUtil).name»
-					   respositoryName = «repositoryName»
+					   openSession() «typeof(ServerUtil).name»
+					   respositoryName = «REPOSITORY_NAME»
 					   user = «session.userID»
 					   session = «session.sessionID»
 					<<<
@@ -48,5 +52,4 @@ class ServerUtil {
 
 		return session
 	}
-
 }
