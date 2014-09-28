@@ -27,7 +27,10 @@ class JsonConverter {
 		val jsonBaseObject = object.toJsonBase(serverBaseUrl)
 
 		jsonBaseObject.addJsonAttributes(object, serverBaseUrl)
-		jsonBaseObject.add("references", addReferences(object, serverBaseUrl))
+		val references = addReferences(object, serverBaseUrl)
+		if (references.size > 0) {
+			jsonBaseObject.add("references", references)
+		}
 		jsonBaseObject.toString
 	}
 
@@ -61,7 +64,6 @@ class JsonConverter {
 			for (attribute : attributes.filter[!ignoredAttributes.contains(name)]) {
 				val name = attribute.name
 				if (attribute.many) {
-					println("!!!!!!!!!!!!!!!!! " + attribute.name + " is many " + attribute.many)
 					val values = object.eGet(attribute, true) as List<Object>
 					if (values.size > 0) {
 						val array = new JsonArray
@@ -92,7 +94,9 @@ class JsonConverter {
 				}
 
 			}
-			jsonBaseObject.add("attributes", jsonAttributeArray)
+			if (jsonAttributeArray.size > 0) {
+				jsonBaseObject.add("attributes", jsonAttributeArray)
+			}
 		}
 	}
 
