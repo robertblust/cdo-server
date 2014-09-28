@@ -23,8 +23,9 @@ class JsonConverter {
 	def dispatch String toJson(CDOObject object, String serverBaseUrl) {
 		val jsonBaseObject = object.toJsonBase(serverBaseUrl)
 
-		jsonBaseObject.addJsonContent(object, serverBaseUrl)
 		jsonBaseObject.addJsonAttributes(object, serverBaseUrl)
+		jsonBaseObject.addJsonContents(object, serverBaseUrl)
+		jsonBaseObject.addJsonReferences(object, serverBaseUrl)
 		jsonBaseObject.toString
 	}
 
@@ -38,7 +39,8 @@ class JsonConverter {
 		jsonBaseObject.toString
 	}
 
-	// helper
+	// helpers
+	
 	def private toJsonBase(CDOObject object, String serverBaseUrl) {
 		val jsonBaseObject = new JsonObject
 		jsonBaseObject.addProperty("type", object.eClass.EPackage.nsPrefix + "." + object.eClass.name)
@@ -48,13 +50,23 @@ class JsonConverter {
 		return jsonBaseObject
 	}
 
-	def private addJsonContent(JsonObject jsonBaseObject, CDOObject object, String serverBaseUrl) {
+	def private addJsonContents(JsonObject jsonBaseObject, CDOObject object, String serverBaseUrl) {
 		if (object.eContents.size > 0) {
 			val jsonContentArray = new JsonArray
 			for (o : object.eContents) {
 				jsonContentArray.add((o as CDOObject).toJsonBase(serverBaseUrl))
 			}
-			jsonBaseObject.add("content", jsonContentArray)
+			jsonBaseObject.add("contents", jsonContentArray)
+		}
+	}
+	
+	def private addJsonReferences(JsonObject jsonBaseObject, CDOObject object, String serverBaseUrl) {
+		if (object.eCrossReferences.size > 0) {
+			val jsonReferencesArray = new JsonArray
+			for (o : object.eContents) {
+				jsonReferencesArray.add((o as CDOObject).toJsonBase(serverBaseUrl))
+			}
+			jsonBaseObject.add("references", jsonReferencesArray)
 		}
 	}
 
@@ -63,11 +75,12 @@ class JsonConverter {
 		val jsonAttributeArray = new JsonArray
 		if (attributes.size > 0) {
 			for (attribute : attributes.filter[!ignoredAttributes.contains(name)]) {
-				println(attribute.name + " is many " + attribute.many)
+				if (attribute.many) {
+					println("!!!!!!!!!!!!!!!!! " + attribute.name + " is many " + attribute.many)
+				}
 				val name = attribute.name
 				val value = object.eGet(attribute, true)
 				if (value != null) {
-					println(value.class.name)
 					val jsonObject = new JsonObject
 					switch value.class {
 						case Long: jsonObject.addProperty(name, value as Long)
