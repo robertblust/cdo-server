@@ -14,7 +14,7 @@ class Json {
 		"application/json; charset=utf-8 "
 	}
 
-	def static String toJson(Object object) {
-		converter.toJson(object)
+	def static String toJson(Object object, String serverBaseUrl) {
+		converter.toJson(object, serverBaseUrl)
 	}
 }
