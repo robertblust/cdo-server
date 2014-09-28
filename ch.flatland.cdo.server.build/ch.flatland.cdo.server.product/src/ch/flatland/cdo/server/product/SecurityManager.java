@@ -93,6 +93,8 @@ import org.eclipse.net4j.util.om.monitor.OMMonitor;
 import org.eclipse.net4j.util.security.IAuthenticator;
 import org.eclipse.net4j.util.security.IPasswordCredentials;
 
+import ch.flatland.cdo.server.AuthenticationUtil;
+
 /**
  * @author Eike Stepper
  * Adapted by Robert Blust to support
@@ -104,7 +106,6 @@ public class SecurityManager extends Lifecycle implements InternalSecurityManage
 	private static final Map<IRepository, InternalSecurityManager> SECURITY_MANAGERS = new HashMap<IRepository, InternalSecurityManager>();
 
 	private static final SecurityFactory SF = SecurityFactory.eINSTANCE;
-	private static final String ADMINUSER = "fr33061";
 
 	private final IListener repositoryListener = new LifecycleEventAdapter() {
 		@Override
@@ -553,6 +554,11 @@ public class SecurityManager extends Lifecycle implements InternalSecurityManage
 
 		Group adminsGroup = realm.addGroup(Group.ADMINISTRATORS);
 		adminsGroup.getRoles().add(adminRole);
+		// give more rights to administrator
+		adminsGroup.getRoles().add(allReaderRole);
+		adminsGroup.getRoles().add(allWriterRole);
+		adminsGroup.getRoles().add(treeReaderRole);
+		adminsGroup.getRoles().add(treeWriterRole);
 
 		Group usersGroup = realm.addGroup(Directory.USERS);
 		usersGroup.getRoles().add(allReaderRole);
@@ -560,9 +566,12 @@ public class SecurityManager extends Lifecycle implements InternalSecurityManage
 		// Create users
 
 		//User adminUser = realm.addUser(User.ADMINISTRATOR, "0000");
-		User adminUser = realm.addUser(ADMINUSER, "0000");
+		User adminUser = realm.addUser(AuthenticationUtil.ADMIN_USER, AuthenticationUtil.ADMIN_PWD);
 		adminUser.getGroups().add(adminsGroup);
-
+		
+		User readUser = realm.addUser(AuthenticationUtil.READONLY_USER, AuthenticationUtil.READONLY_USER);
+		readUser.getGroups().add(usersGroup);
+		
 		return realm;
 	}
 

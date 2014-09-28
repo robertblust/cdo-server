@@ -4,6 +4,7 @@ import org.eclipse.emf.cdo.server.db.CDODBUtil
 import org.eclipse.emf.cdo.server.db.mapping.IMappingStrategy
 import org.eclipse.net4j.db.DBUtil
 import org.h2.jdbcx.JdbcDataSource
+import ch.flatland.cdo.server.ServerUtil
 
 class StoreFactory {
 	private new() {
@@ -19,7 +20,7 @@ class StoreFactory {
 
 		// db datasource
 		val dataSource = new JdbcDataSource()
-		dataSource.setURL("jdbc:h2:database/repo1")
+		dataSource.setURL("jdbc:h2:database/" + ServerUtil.REPOSITORY_NAME)
 
 		// dbAdapter
 		val dbAdapter = DBUtil.getDBAdapter("h2")
