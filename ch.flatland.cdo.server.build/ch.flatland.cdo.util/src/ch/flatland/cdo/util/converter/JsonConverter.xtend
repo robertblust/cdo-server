@@ -44,7 +44,7 @@ class JsonConverter {
 		jsonBaseObject.addProperty("type", object.eClass.EPackage.nsPrefix + "." + object.eClass.name)
 		jsonBaseObject.addProperty("label", ITEM_DELEGATOR.getText(object))
 		jsonBaseObject.addProperty("oid", Long.parseLong(object.cdoID.toURIFragment.replace("L", "")))
-		jsonBaseObject.addProperty("uri", serverBaseUrl + "?oid=" + object.cdoID.toURIFragment.replace("L", ""))
+		jsonBaseObject.addProperty("url", serverBaseUrl + "?oid=" + object.cdoID.toURIFragment.replace("L", ""))
 		return jsonBaseObject
 	}
 
