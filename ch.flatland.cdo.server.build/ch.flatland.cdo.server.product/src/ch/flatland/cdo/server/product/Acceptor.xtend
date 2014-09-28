@@ -3,6 +3,7 @@ package ch.flatland.cdo.server.product
 import org.eclipse.net4j.acceptor.IAcceptor
 import org.eclipse.net4j.util.container.IPluginContainer
 import org.eclipse.net4j.util.lifecycle.LifecycleUtil
+import ch.flatland.cdo.server.ServerUtil
 
 class Acceptor {
 	
@@ -17,7 +18,7 @@ class Acceptor {
 	val static ACCEPTORS_KEY = "org.eclipse.net4j.acceptors"
 	val static PROTOCOL = "tcp"
 	val static ALL_NETWORKS = "0.0.0.0"
-	val static PORT = "2036"
+	val static PORT = ServerUtil.ACCEPTOR_PORT
 	
 	def static void start() {
 		App.info("Start acceptor")
