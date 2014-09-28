@@ -51,9 +51,16 @@ class JsonConverter {
 		jsonBaseObject.addProperty("label", ITEM_DELEGATOR.getText(object))
 		jsonBaseObject.addProperty("oid", Long.parseLong(object.cdoID.toURIFragment.replace("L", "")))
 		jsonBaseObject.addProperty("url", serverBaseUrl + "?oid=" + object.cdoID.toURIFragment.replace("L", ""))
+		
+		var CDOObject container = null
 		if (object.eContainer != null) {
-			jsonBaseObject.addProperty("container", serverBaseUrl + "?oid=" + (object.eContainer as CDOObject).cdoID.toURIFragment.replace("L", ""))
+			container = object.eContainer as CDOObject
+		} else {
+			container = object.cdoResource
 		}
+
+		jsonBaseObject.addProperty("container", serverBaseUrl + "?oid=" + container.cdoID.toURIFragment.replace("L", ""))
+
 		return jsonBaseObject
 	}
 
