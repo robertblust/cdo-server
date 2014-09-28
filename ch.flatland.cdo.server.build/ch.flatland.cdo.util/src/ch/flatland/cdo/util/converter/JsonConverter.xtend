@@ -3,7 +3,12 @@ package ch.flatland.cdo.util.converter
 import com.google.gson.Gson
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
+import java.util.ArrayList
+import java.util.List
+import java.util.Map
 import org.eclipse.emf.cdo.CDOObject
+import org.eclipse.emf.common.util.EList
+import org.eclipse.emf.ecore.EReference
 import org.eclipse.emf.edit.EMFEditPlugin
 import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory
@@ -93,5 +98,32 @@ class JsonConverter {
 			}
 			jsonBaseObject.add("attributes", jsonAttributeArray)
 		}
+	}
+	
+	def private getReferences(CDOObject cdoObject, EList<EReference> references, String serverUrl) {
+		val Map<String, List<JsonObject>> objectMap = newHashMap
+		for (EReference r : references) {
+			val name = r.getName()
+			var List<JsonObject> list = null
+			if (objectMap.containsKey(name)) {
+				list = objectMap.get(r)
+			} else {
+				list = new ArrayList<JsonObject>()
+				objectMap.put(name, list);
+			}
+			if (r.isMany()) {
+				
+				val List<Object> manies = cdoObject.eGet(r, true) as List<Object>
+				for (Object o : manies) {
+					list.add((o as CDOObject).toJsonBase(serverUrl))
+				}
+			} else {
+				val o = cdoObject.eGet(r, true)
+				if (o != null) {
+					list.add((o as CDOObject).toJsonBase(serverUrl))
+				}	
+			}			
+		}
+		return objectMap;
 	}
 }
