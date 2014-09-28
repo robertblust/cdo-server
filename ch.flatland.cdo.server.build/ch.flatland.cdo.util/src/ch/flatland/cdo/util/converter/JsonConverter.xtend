@@ -42,13 +42,15 @@ class JsonConverter {
 	}
 
 	// helpers
-	
 	def private toJsonBase(CDOObject object, String serverBaseUrl) {
 		val jsonBaseObject = new JsonObject
 		jsonBaseObject.addProperty("type", object.eClass.EPackage.nsPrefix + "." + object.eClass.name)
 		jsonBaseObject.addProperty("label", ITEM_DELEGATOR.getText(object))
 		jsonBaseObject.addProperty("oid", Long.parseLong(object.cdoID.toURIFragment.replace("L", "")))
 		jsonBaseObject.addProperty("url", serverBaseUrl + "?oid=" + object.cdoID.toURIFragment.replace("L", ""))
+		if (object.eContainer != null) {
+			jsonBaseObject.addProperty("container", serverBaseUrl + "?oid=" + (object.eContainer as CDOObject).cdoID.toURIFragment.replace("L", ""))
+		}
 		return jsonBaseObject
 	}
 
@@ -57,26 +59,43 @@ class JsonConverter {
 		val jsonAttributeArray = new JsonArray
 		if (attributes.size > 0) {
 			for (attribute : attributes.filter[!ignoredAttributes.contains(name)]) {
+				val name = attribute.name
 				if (attribute.many) {
 					println("!!!!!!!!!!!!!!!!! " + attribute.name + " is many " + attribute.many)
-				}
-				val name = attribute.name
-				val value = object.eGet(attribute, true)
-				if (value != null) {
-					val jsonObject = new JsonObject
-					switch value.class {
-						case Long: jsonObject.addProperty(name, value as Long)
-						case Integer: jsonObject.addProperty(name, value as Integer)
-						case Boolean: jsonObject.addProperty(name, value as Boolean)
-						default: jsonObject.addProperty(name, value.toString)
+					val values = object.eGet(attribute, true) as List<Object>
+					if (values.size > 0) {
+						val array = new JsonArray
+						for (v : values) {
+							val jsonObject = new JsonObject
+							switch v.class {
+								case Long: jsonObject.addProperty(name, v as Long)
+								case Integer: jsonObject.addProperty(name, v as Integer)
+								case Boolean: jsonObject.addProperty(name, v as Boolean)
+								default: jsonObject.addProperty(name, v.toString)
+							}
+							array.add(jsonObject)
+						}
+						jsonAttributeArray.add(array)
 					}
-					jsonAttributeArray.add(jsonObject)
+				} else {
+					val value = object.eGet(attribute, true)
+					if (value != null) {
+						val jsonObject = new JsonObject
+						switch value.class {
+							case Long: jsonObject.addProperty(name, value as Long)
+							case Integer: jsonObject.addProperty(name, value as Integer)
+							case Boolean: jsonObject.addProperty(name, value as Boolean)
+							default: jsonObject.addProperty(name, value.toString)
+						}
+						jsonAttributeArray.add(jsonObject)
+					}
 				}
+
 			}
 			jsonBaseObject.add("attributes", jsonAttributeArray)
 		}
 	}
-	
+
 	def private addReferences(CDOObject cdoObject, String serverUrl) {
 		val references = cdoObject.eClass.EAllReferences
 		val Map<String, JsonArray> objectMap = newHashMap
@@ -89,7 +108,7 @@ class JsonConverter {
 				list = new JsonArray
 				objectMap.put(name, list);
 			}
-			if (r.isMany()) {	
+			if (r.isMany()) {
 				val List<Object> manies = cdoObject.eGet(r, true) as List<Object>
 				for (Object o : manies) {
 					list.add((o as CDOObject).toJsonBase(serverUrl))
@@ -98,8 +117,8 @@ class JsonConverter {
 				val o = cdoObject.eGet(r, true)
 				if (o != null) {
 					list.add((o as CDOObject).toJsonBase(serverUrl))
-				}	
-			}			
+				}
+			}
 		}
 		val refsArray = new JsonArray
 		for (key : objectMap.keySet) {
