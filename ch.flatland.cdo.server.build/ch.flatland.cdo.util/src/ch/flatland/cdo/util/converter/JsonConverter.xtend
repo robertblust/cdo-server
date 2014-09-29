@@ -3,14 +3,13 @@ package ch.flatland.cdo.util.converter
 import com.google.gson.Gson
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
+import com.google.gson.JsonPrimitive
 import java.util.List
-import java.util.Map
 import org.eclipse.emf.cdo.CDOObject
 import org.eclipse.emf.ecore.EReference
 import org.eclipse.emf.edit.EMFEditPlugin
 import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory
-import com.google.gson.JsonPrimitive
 
 class JsonConverter {
 	static val gson = new Gson
@@ -28,10 +27,7 @@ class JsonConverter {
 		val jsonBaseObject = object.toJsonBase(serverBaseUrl)
 
 		jsonBaseObject.addJsonAttributes(object, serverBaseUrl)
-		val references = addReferences(object, serverBaseUrl)
-		if (references.size > 0) {
-			jsonBaseObject.add("references", references)
-		}
+		jsonBaseObject.addReferences(object, serverBaseUrl)
 		jsonBaseObject.toString
 	}
 
@@ -104,39 +100,31 @@ class JsonConverter {
 		}
 	}
 
-	def private addReferences(CDOObject cdoObject, String serverUrl) {
+	def private addReferences(JsonObject jsonBaseObject, CDOObject cdoObject, String serverUrl) {
 		val references = cdoObject.eClass.EAllReferences
-		val Map<String, JsonArray> objectMap = newHashMap
-		for (EReference r : references) {
-			val name = r.getName()
-			var JsonArray list = null
-			if (objectMap.containsKey(name)) {
-				list = objectMap.get(r)
-			} else {
-				list = new JsonArray
-				objectMap.put(name, list);
-			}
-			if (r.isMany()) {
-				val List<Object> manies = cdoObject.eGet(r, true) as List<Object>
-				for (Object o : manies) {
-					list.add((o as CDOObject).toJsonBase(serverUrl))
+		val jsonReferences = new JsonObject
+		if (references.size > 0) {
+			for (EReference reference : references) {
+				val name = reference.name
+				if (reference.many) {
+					val List<Object> values = cdoObject.eGet(reference, true) as List<Object>
+					if (values.size > 0) {
+						val jsonReferencesArray = new JsonArray
+						for (v : values) {
+							jsonReferencesArray.add((v as CDOObject).toJsonBase(serverUrl))
+						}
+						jsonReferences.add(name, jsonReferencesArray)
+					}
+				} else {
+					val v = cdoObject.eGet(reference, true)
+					if (v != null) {
+						jsonReferences.add(name, (v as CDOObject).toJsonBase(serverUrl))
+					}
 				}
-			} else {
-				val o = cdoObject.eGet(r, true)
-				if (o != null) {
-					list.add((o as CDOObject).toJsonBase(serverUrl))
-				}
 			}
+			if (jsonReferences.entrySet.size > 0) {
+				jsonBaseObject.add("references", jsonReferences)
+			}		
 		}
-		val refsArray = new JsonArray
-		for (key : objectMap.keySet) {
-			val typedObjects = new JsonObject
-			typedObjects.addProperty("name", key)
-			typedObjects.add("values", objectMap.get(key))
-			if (objectMap.get(key).size > 0) {
-				refsArray.add(typedObjects)
-			}
-		}
-		return refsArray;
 	}
 }
