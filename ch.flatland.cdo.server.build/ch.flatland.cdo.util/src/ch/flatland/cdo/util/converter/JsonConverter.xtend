@@ -7,6 +7,7 @@ import com.google.gson.JsonPrimitive
 import java.util.List
 import org.eclipse.emf.cdo.CDOObject
 import org.eclipse.emf.common.util.Enumerator
+import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
 import org.eclipse.emf.edit.EMFEditPlugin
@@ -131,6 +132,10 @@ class JsonConverter {
 	
 	def private dispatch getJsonPrimitive(Number object) {
 		new JsonPrimitive(object)
+	}
+	
+	def private dispatch getJsonPrimitive(URI object) {
+		new JsonPrimitive(object.toString)
 	}
 	
 	def private dispatch getJsonPrimitive(String object) {
