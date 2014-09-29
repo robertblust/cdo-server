@@ -50,6 +50,15 @@ class JsonConverter {
 		jsonBaseObject.addProperty("oid", Long.parseLong(object.cdoID.toURIFragment.replace("L", "")))
 		jsonBaseObject.addProperty("url", serverBaseUrl + "?oid=" + object.cdoID.toURIFragment.replace("L", ""))
 		
+		//JUST TEST
+		val iter = object.cdoView.session.packageRegistry.getEPackage("http://www.eclipse.org/emf/CDO/Eresource/4.0.0").EClassifiers
+		for (i : iter) {
+			println(i.name)
+			for (c : i.eContents) {
+				println(c)
+			}
+		}
+		/////////////
 		var CDOObject container = null
 		if (object.eContainer != null) {
 			container = object.eContainer as CDOObject
@@ -63,7 +72,8 @@ class JsonConverter {
 	
 	def private toJsonBase(EObject object, String serverBaseUrl) {
 		val jsonBaseObject = new JsonObject
-		jsonBaseObject.addProperty("type", object.eClass.EPackage.nsPrefix + "." + object.eClass.name)
+
+		jsonBaseObject.addProperty("type", serverBaseUrl + "?meta=" + object.eClass.EPackage.nsURI + "(" + object.eClass.name + ")")
 		jsonBaseObject.addProperty("label", ITEM_DELEGATOR.getText(object))
 		return jsonBaseObject
 	}
@@ -74,6 +84,7 @@ class JsonConverter {
 		if (attributes.size > 0) {
 			for (attribute : attributes.filter[!ignoredAttributes.contains(name)]) {
 				val name = attribute.name
+				
 				if (attribute.many) {
 					val values = object.eGet(attribute, true) as List<Object>
 					if (values.size > 0) {
