@@ -27,7 +27,7 @@ class JsonConverter {
 	def dispatch String toJson(CDOObject object, String serverBaseUrl) {
 		val jsonBaseObject = object.toJsonBase(serverBaseUrl)
 
-		jsonBaseObject.addJsonAttributes(object, serverBaseUrl)
+		jsonBaseObject.addAttributes(object, serverBaseUrl)
 		jsonBaseObject.addReferences(object, serverBaseUrl)
 		jsonBaseObject.toString
 	}
@@ -66,7 +66,7 @@ class JsonConverter {
 		return jsonBaseObject
 	}
 
-	def private addJsonAttributes(JsonObject jsonBaseObject, CDOObject object, String serverBaseUrl) {
+	def private addAttributes(JsonObject jsonBaseObject, CDOObject object, String serverBaseUrl) {
 		val attributes = object.eClass.EAllAttributes
 		val jsonAttributes = new JsonObject
 		if (attributes.size > 0) {
@@ -76,25 +76,15 @@ class JsonConverter {
 					val values = object.eGet(attribute, true) as List<Object>
 					if (values.size > 0) {
 						val jsonPrimitiveArray = new JsonArray
-						for (v : values) {
-							switch v.class {
-								case Long: jsonPrimitiveArray.add(new JsonPrimitive(v as Long))
-								case Integer: jsonPrimitiveArray.add(new JsonPrimitive(v as Integer))
-								case Boolean: jsonPrimitiveArray.add(new JsonPrimitive(v as Boolean))
-								default: jsonPrimitiveArray.add(new JsonPrimitive(v.toString))
-							}
+						for (value : values) {	
+							jsonPrimitiveArray.add(value.jsonPrimitive)
 						}
 						jsonAttributes.add(name, jsonPrimitiveArray)
 					}
 				} else {
 					val value = object.eGet(attribute, true)
 					if (value != null) {
-						switch value.class {
-							case Long: jsonAttributes.addProperty(name, value as Long)
-							case Integer: jsonAttributes.addProperty(name, value as Integer)
-							case Boolean: jsonAttributes.addProperty(name, value as Boolean)
-							default: jsonAttributes.addProperty(name, value.toString)
-						}
+						jsonAttributes.add(name, value.jsonPrimitive)
 					}
 				}
 
@@ -115,27 +105,15 @@ class JsonConverter {
 					val List<Object> values = cdoObject.eGet(reference, true) as List<Object>
 					if (values.size > 0) {
 						val jsonReferencesArray = new JsonArray
-						for (v : values) {
-							if (v instanceof CDOObject) {
-								jsonReferencesArray.add(v.toJsonBase(serverUrl))
-							} else if (v instanceof EObject) {
-								jsonReferencesArray.add(v.toJsonBase(serverUrl))
-							} else {
-								jsonReferencesArray.add(new JsonPrimitive(v.toString))
-							}		
+						for (value : values) {
+							jsonReferencesArray.add(value.getJsonObject(serverUrl))	
 						}
 						jsonReferences.add(name, jsonReferencesArray)
 					}
 				} else {
-					val v = cdoObject.eGet(reference, true)
-					if (v != null) {
-						if (v instanceof CDOObject) {
-							jsonReferences.add(name, v.toJsonBase(serverUrl))
-						} else if (v instanceof EObject) {
-							jsonReferences.add(name, v.toJsonBase(serverUrl))
-						} else {
-							jsonReferences.add(name, new JsonPrimitive(v.toString))
-						}						
+					val value = cdoObject.eGet(reference, true)
+					if (value != null) {
+						jsonReferences.add(name, value.getJsonObject(serverUrl))							
 					}
 				}
 			}
@@ -143,5 +121,33 @@ class JsonConverter {
 				jsonBaseObject.add("references", jsonReferences)
 			}		
 		}
+	}
+	
+	def private dispatch getJsonPrimitive(Object object) {
+		new JsonPrimitive(object.toString)
+	}
+	
+	def private dispatch getJsonPrimitive(Number object) {
+		new JsonPrimitive(object)
+	}
+	
+	def private dispatch getJsonPrimitive(String object) {
+		new JsonPrimitive(object)
+	}
+	
+	def private dispatch getJsonPrimitive(Boolean object) {
+		new JsonPrimitive(object)
+	}
+	
+	def private dispatch getJsonObject(Object object, String serverUrl) {
+		new JsonPrimitive(object.toString)
+	}
+	
+	def private dispatch getJsonObject(CDOObject object, String serverUrl) {
+		object.toJsonBase(serverUrl)
+	}
+	
+	def private dispatch getJsonObject(EObject object, String serverUrl) {
+		object.toJsonBase(serverUrl)
 	}
 }
