@@ -6,6 +6,7 @@ import com.google.gson.JsonObject
 import com.google.gson.JsonPrimitive
 import java.util.List
 import org.eclipse.emf.cdo.CDOObject
+import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
 import org.eclipse.emf.edit.EMFEditPlugin
 import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator
@@ -43,9 +44,7 @@ class JsonConverter {
 
 	// helpers
 	def private toJsonBase(CDOObject object, String serverBaseUrl) {
-		val jsonBaseObject = new JsonObject
-		jsonBaseObject.addProperty("type", object.eClass.EPackage.nsPrefix + "." + object.eClass.name)
-		jsonBaseObject.addProperty("label", ITEM_DELEGATOR.getText(object))
+		val jsonBaseObject = toJsonBase(object as EObject, serverBaseUrl)
 		jsonBaseObject.addProperty("oid", Long.parseLong(object.cdoID.toURIFragment.replace("L", "")))
 		jsonBaseObject.addProperty("url", serverBaseUrl + "?oid=" + object.cdoID.toURIFragment.replace("L", ""))
 		
@@ -55,9 +54,15 @@ class JsonConverter {
 		} else {
 			container = object.cdoResource
 		}
-
 		jsonBaseObject.addProperty("container", serverBaseUrl + "?oid=" + container.cdoID.toURIFragment.replace("L", ""))
 
+		return jsonBaseObject
+	}
+	
+	def private toJsonBase(EObject object, String serverBaseUrl) {
+		val jsonBaseObject = new JsonObject
+		jsonBaseObject.addProperty("type", object.eClass.EPackage.nsPrefix + "." + object.eClass.name)
+		jsonBaseObject.addProperty("label", ITEM_DELEGATOR.getText(object))
 		return jsonBaseObject
 	}
 
@@ -113,6 +118,8 @@ class JsonConverter {
 						for (v : values) {
 							if (v instanceof CDOObject) {
 								jsonReferencesArray.add((v as CDOObject).toJsonBase(serverUrl))
+							} else if (v instanceof EObject) {
+								jsonReferencesArray.add((v as EObject).toJsonBase(serverUrl))
 							} else {
 								jsonReferencesArray.add(new JsonPrimitive(v.toString))
 							}		
@@ -124,6 +131,8 @@ class JsonConverter {
 					if (v != null) {
 						if (v instanceof CDOObject) {
 							jsonReferences.add(name, (v as CDOObject).toJsonBase(serverUrl))
+						} else if (v instanceof EObject) {
+							jsonReferences.add(name, (v as EObject).toJsonBase(serverUrl))
 						} else {
 							jsonReferences.add(name, new JsonPrimitive(v.toString))
 						}						
