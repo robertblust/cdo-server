@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EReference
 import org.eclipse.emf.edit.EMFEditPlugin
 import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory
+import com.google.gson.JsonPrimitive
 
 class JsonConverter {
 	static val gson = new Gson
@@ -66,43 +67,39 @@ class JsonConverter {
 
 	def private addJsonAttributes(JsonObject jsonBaseObject, CDOObject object, String serverBaseUrl) {
 		val attributes = object.eClass.EAllAttributes
-		val jsonAttributeArray = new JsonArray
+		val jsonAttributes = new JsonObject
 		if (attributes.size > 0) {
 			for (attribute : attributes.filter[!ignoredAttributes.contains(name)]) {
 				val name = attribute.name
 				if (attribute.many) {
 					val values = object.eGet(attribute, true) as List<Object>
 					if (values.size > 0) {
-						val array = new JsonArray
+						val jsonPrimitiveArray = new JsonArray
 						for (v : values) {
-							val jsonObject = new JsonObject
 							switch v.class {
-								case Long: jsonObject.addProperty(name, v as Long)
-								case Integer: jsonObject.addProperty(name, v as Integer)
-								case Boolean: jsonObject.addProperty(name, v as Boolean)
-								default: jsonObject.addProperty(name, v.toString)
+								case Long: jsonPrimitiveArray.add(new JsonPrimitive(v as Long))
+								case Integer: jsonPrimitiveArray.add(new JsonPrimitive(v as Integer))
+								case Boolean: jsonPrimitiveArray.add(new JsonPrimitive(v as Boolean))
+								default: jsonPrimitiveArray.add(new JsonPrimitive(v.toString))
 							}
-							array.add(jsonObject)
 						}
-						jsonAttributeArray.add(array)
+						jsonAttributes.add(name, jsonPrimitiveArray)
 					}
 				} else {
 					val value = object.eGet(attribute, true)
 					if (value != null) {
-						val jsonObject = new JsonObject
 						switch value.class {
-							case Long: jsonObject.addProperty(name, value as Long)
-							case Integer: jsonObject.addProperty(name, value as Integer)
-							case Boolean: jsonObject.addProperty(name, value as Boolean)
-							default: jsonObject.addProperty(name, value.toString)
+							case Long: jsonAttributes.addProperty(name, value as Long)
+							case Integer: jsonAttributes.addProperty(name, value as Integer)
+							case Boolean: jsonAttributes.addProperty(name, value as Boolean)
+							default: jsonAttributes.addProperty(name, value.toString)
 						}
-						jsonAttributeArray.add(jsonObject)
 					}
 				}
 
 			}
-			if (jsonAttributeArray.size > 0) {
-				jsonBaseObject.add("attributes", jsonAttributeArray)
+			if (jsonAttributes.entrySet.size > 0) {
+				jsonBaseObject.add("attributes", jsonAttributes)
 			}
 		}
 	}
