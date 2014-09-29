@@ -111,14 +111,22 @@ class JsonConverter {
 					if (values.size > 0) {
 						val jsonReferencesArray = new JsonArray
 						for (v : values) {
-							jsonReferencesArray.add((v as CDOObject).toJsonBase(serverUrl))
+							if (v instanceof CDOObject) {
+								jsonReferencesArray.add((v as CDOObject).toJsonBase(serverUrl))
+							} else {
+								jsonReferencesArray.add(new JsonPrimitive(v.toString))
+							}		
 						}
 						jsonReferences.add(name, jsonReferencesArray)
 					}
 				} else {
 					val v = cdoObject.eGet(reference, true)
 					if (v != null) {
-						jsonReferences.add(name, (v as CDOObject).toJsonBase(serverUrl))
+						if (v instanceof CDOObject) {
+							jsonReferences.add(name, (v as CDOObject).toJsonBase(serverUrl))
+						} else {
+							jsonReferences.add(name, new JsonPrimitive(v.toString))
+						}						
 					}
 				}
 			}
