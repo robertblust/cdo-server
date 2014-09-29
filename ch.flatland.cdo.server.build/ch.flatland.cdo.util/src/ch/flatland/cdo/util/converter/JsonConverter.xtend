@@ -6,6 +6,7 @@ import com.google.gson.JsonObject
 import com.google.gson.JsonPrimitive
 import java.util.List
 import org.eclipse.emf.cdo.CDOObject
+import org.eclipse.emf.common.util.Enumerator
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
 import org.eclipse.emf.edit.EMFEditPlugin
@@ -124,7 +125,7 @@ class JsonConverter {
 	}
 	
 	def private dispatch getJsonPrimitive(Object object) {
-		System.err.println("getJsonPrimitive(Object object) " + object.class.name)
+		System.err.println("getJsonPrimitive(Object object) " + object.class.name + " returns " + object.toString)
 		new JsonPrimitive(object.toString)
 	}
 	
@@ -136,12 +137,16 @@ class JsonConverter {
 		new JsonPrimitive(object)
 	}
 	
+	def private dispatch getJsonPrimitive(Enumerator object) {
+		new JsonPrimitive(object.name)
+	}
+	
 	def private dispatch getJsonPrimitive(Boolean object) {
 		new JsonPrimitive(object)
 	}
 	
 	def private dispatch getJsonObject(Object object, String serverUrl) {
-		System.err.println("getJsonObject(Object object, String serverUrl) " + object.class.name)
+		System.err.println("getJsonObject(Object object, String serverUrl) " + object.class.name + " returns " + object.toString)
 		new JsonPrimitive(object.toString)
 	}
 	
