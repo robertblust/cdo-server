@@ -124,6 +124,7 @@ class JsonConverter {
 	}
 	
 	def private dispatch getJsonPrimitive(Object object) {
+		System.err.println("getJsonPrimitive(Object object) " + object.class.name)
 		new JsonPrimitive(object.toString)
 	}
 	
@@ -140,6 +141,7 @@ class JsonConverter {
 	}
 	
 	def private dispatch getJsonObject(Object object, String serverUrl) {
+		System.err.println("getJsonObject(Object object, String serverUrl) " + object.class.name)
 		new JsonPrimitive(object.toString)
 	}
 	
