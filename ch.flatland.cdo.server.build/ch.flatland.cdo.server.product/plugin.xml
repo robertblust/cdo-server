@@ -14,10 +14,10 @@
         id="product"
         point="org.eclipse.core.runtime.products">
       	<product
-        	name="Flatland CDO Server"
+        	name="ch.flatland.cdo.server"
             description="Flatland CDO Server"
             application="ch.flatland.cdo.server.product.app">
-         	<property name="appName" value="Flatland CDO Server"/>
+         	<property name="appName" value="ch.flatland.cdo.server"/>
       	</product>
    	</extension>
 
