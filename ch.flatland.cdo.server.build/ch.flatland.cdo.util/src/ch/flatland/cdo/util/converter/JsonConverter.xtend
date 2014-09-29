@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EReference
 import org.eclipse.emf.edit.EMFEditPlugin
 import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory
+import org.eclipse.emf.ecore.EClassifier
 
 class JsonConverter {
 	static val gson = new Gson
@@ -24,6 +25,10 @@ class JsonConverter {
 
 	def dispatch String toJson(Object object, String serverBaseUrl) {
 		gson.toJson(object)
+	}
+	
+	def dispatch String toJson(EClassifier object, String serverBaseUrl) {
+		throw new UnsupportedOperationException
 	}
 
 	def dispatch String toJson(CDOObject object, String serverBaseUrl) {
