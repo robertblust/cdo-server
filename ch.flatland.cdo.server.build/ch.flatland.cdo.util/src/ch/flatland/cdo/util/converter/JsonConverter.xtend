@@ -73,7 +73,8 @@ class JsonConverter {
 	def private toJsonBase(EObject object, String serverBaseUrl) {
 		val jsonBaseObject = new JsonObject
 
-		jsonBaseObject.addProperty("type", serverBaseUrl + "?meta=" + object.eClass.EPackage.nsURI + "(" + object.eClass.name + ")")
+		jsonBaseObject.addProperty("type", object.eClass.EPackage.nsPrefix + "." + object.eClass.name)
+		jsonBaseObject.addProperty("typeMeta", serverBaseUrl + "?meta=" + object.eClass.EPackage.nsURI + "/" + object.eClass.name)
 		jsonBaseObject.addProperty("label", ITEM_DELEGATOR.getText(object))
 		return jsonBaseObject
 	}
