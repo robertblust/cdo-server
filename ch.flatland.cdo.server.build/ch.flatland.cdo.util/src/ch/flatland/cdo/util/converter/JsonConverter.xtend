@@ -10,6 +10,7 @@ import org.eclipse.emf.cdo.CDOObject
 import org.eclipse.emf.common.util.Enumerator
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.EAttribute
+import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EClassifier
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
@@ -42,14 +43,13 @@ class JsonConverter {
 		gson.toJson(object)
 	}
 
-	def dispatch String toJson(EClassifier object, String serverBaseUrl) {
-		val attributes = object.eContents.filter[
-			it instanceof EAttribute && !ignoredAttributes.contains((it as EAttribute).name)]
-		val references = object.eContents.filter[it instanceof EReference]
-
+	def dispatch String toJson(EClass object, String serverBaseUrl) {		
+		val attributes = object.EAllAttributes.filter[!ignoredAttributes.contains(it.name)]
+		val references = object.EAllReferences
+		
 		val jsonTypeMeta = new JsonObject
 		jsonTypeMeta.addTypeMeta(object, serverBaseUrl)
-
+		
 		if (attributes.size > 0) {
 			val jsonAttributes = new JsonArray
 			jsonTypeMeta.add(ATTRIBUTES, jsonAttributes)
@@ -61,11 +61,9 @@ class JsonConverter {
 				jsonAttribute.addProperty(LOWER_BOUND, a.lowerBound)
 				jsonAttribute.addProperty(UPPER_BOUND, a.upperBound)
 				jsonAttributes.add(jsonAttribute)
-
 			}
 		}
 
-		println("REFERENCES")
 		if (references.size > 0) {
 			val jsonReferences = new JsonArray
 			jsonTypeMeta.add(REFERENCES, jsonReferences)
