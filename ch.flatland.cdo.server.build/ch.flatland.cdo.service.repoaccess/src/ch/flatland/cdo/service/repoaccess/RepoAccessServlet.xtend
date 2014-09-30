@@ -1,20 +1,19 @@
 package ch.flatland.cdo.service.repoaccess
 
-import ch.flatland.cdo.util.FlatlandException
 import ch.flatland.cdo.util.Json
+import ch.flatland.cdo.util.JsonConverter
 import ch.flatland.cdo.util.JsonConverterConfig
 import java.io.IOException
 import javax.servlet.ServletException
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 import org.eclipse.emf.cdo.common.id.CDOIDUtil
-import ch.flatland.cdo.util.JsonConverter
+import org.eclipse.emf.ecore.EObject
 
 class RepoAccessServlet extends AbstractAccessServlet {
 
 	val static PARAM_OID = Json.PARAM_OID
-	val static PARAM_META = Json.PARAM_META
-	val static PARAM_META_TYPE = Json.PARAM_META_TYPE
+	val static PARAM_META = "meta"
 	val static PARAM_JSONP_CALLBACK = "callback"
 	val static SERVLET_CONTEXT = "/repo"
 
@@ -36,12 +35,6 @@ class RepoAccessServlet extends AbstractAccessServlet {
 
 			var processed = false
 
-			// processes meta info
-			if (req.getParameter(PARAM_META_TYPE) != null && req.getParameter(PARAM_META_TYPE).length > 0) {
-				requestedObject = resolveEClassifier(req.getParameter(PARAM_META_TYPE))
-				processed = true
-			}
-
 			// processes oid
 			if (req.getParameter(PARAM_OID) != null && req.getParameter(PARAM_OID).length > 0) {
 				requestedObject = view.getObject(CDOIDUtil.createLong(Long.parseLong(req.getParameter(PARAM_OID))))
@@ -51,6 +44,10 @@ class RepoAccessServlet extends AbstractAccessServlet {
 			// processes path
 			if (!processed) {
 				requestedObject = view.getResourceNode(req.pathInfo)
+			}
+			
+			if (meta) {
+				requestedObject = (requestedObject as EObject).eClass
 			}
 
 		} catch (Exception e) {
@@ -69,34 +66,5 @@ class RepoAccessServlet extends AbstractAccessServlet {
 				resp.writer.append(jsonString)
 			}
 		}
-	}
-
-	def private resolveEClassifier(String uri) throws FlatlandException {
-		val segments = uri.split('/').iterator
-		val classifierName = segments.last
-		val packageUri = uri.replace("/" + classifierName, "")
-
-		if (RepoAccessPlugin.getDefault.debugging) {
-			println(
-				'''
-					>>>
-					   resolveEClassifier(«uri») «this.class.name»
-					   classifierName = «classifierName»
-					   packageUri = «packageUri»
-					<<<
-				''')
-		}
-
-		val package = view.session.packageRegistry.getEPackage(packageUri)
-
-		if (package != null) {
-			for (classifier : package.EClassifiers) {
-				if (classifier.name == classifierName) {
-					return classifier
-				}
-			}
-		}
-
-		throw new FlatlandException("Could not resolve meta info for " + uri)
 	}
 }

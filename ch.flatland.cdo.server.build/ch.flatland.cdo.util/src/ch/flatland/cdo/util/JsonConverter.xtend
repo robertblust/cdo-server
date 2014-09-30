@@ -26,12 +26,10 @@ class JsonConverter {
 		new ComposedAdapterFactory(EMFEditPlugin.getComposedAdapterFactoryDescriptorRegistry))
 
 	static val TYPE = "type"
-	static val TYPE_META = "typeMeta"
 	static val LABEL = "label"
 	static val LOWER_BOUND = "lowerBound"
 	static val UPPER_BOUND = "upperBound"
 	static val OID = Json.PARAM_OID
-	static val META_TYPE = Json.PARAM_META_TYPE
 	static val URL = "url"
 	static val NAME = "name"
 	static val CONTAINER = "container"
@@ -43,12 +41,8 @@ class JsonConverter {
 		"warnings", "timeStamp")
 	
 	var JsonConverterConfig jsonConverterConfig
-	var meta = ""
 	new(JsonConverterConfig jsonConverterConfig) {
 		this.jsonConverterConfig = jsonConverterConfig
-		if (this.jsonConverterConfig.meta) {
-			meta = "&meta=" + this.jsonConverterConfig.meta
-		}
 	}
 
 	def dispatch String toJson(Object object) {
@@ -126,7 +120,7 @@ class JsonConverter {
 		val jsonBaseObject = toJsonBase(object as EObject)
 		jsonBaseObject.addProperty(OID, Long.parseLong(object.cdoID.toURIFragment.replace("L", "")))
 		jsonBaseObject.addProperty(URL,
-			jsonConverterConfig.serverBaseUrl + "?" + OID + "=" + object.cdoID.toURIFragment.replace("L", "") + meta)
+			jsonConverterConfig.serverBaseUrl + "?" + OID + "=" + object.cdoID.toURIFragment.replace("L", ""))
 
 		var CDOObject container = null
 		if (object.eContainer != null) {
@@ -135,7 +129,7 @@ class JsonConverter {
 			container = object.cdoResource
 		}
 		jsonBaseObject.addProperty(CONTAINER,
-			jsonConverterConfig.serverBaseUrl + "?" + OID + "=" + container.cdoID.toURIFragment.replace("L", "") + meta)
+			jsonConverterConfig.serverBaseUrl + "?" + OID + "=" + container.cdoID.toURIFragment.replace("L", ""))
 
 		return jsonBaseObject
 	}
@@ -208,11 +202,6 @@ class JsonConverter {
 
 	def private addTypeMeta(JsonObject jsonBaseObject, EClassifier classifier) {
 		jsonBaseObject.addProperty(TYPE, classifier.EPackage.nsPrefix + "." + classifier.name)
-		if (jsonConverterConfig.meta) {
-			jsonBaseObject.addProperty(TYPE_META,
-				jsonConverterConfig.serverBaseUrl + "?" + JsonConverter.META_TYPE + "=" + classifier.EPackage.nsURI +
-					"/" + classifier.name + meta)
-		}
 	}
 
 	def private dispatch getJsonPrimitive(Object object) {
