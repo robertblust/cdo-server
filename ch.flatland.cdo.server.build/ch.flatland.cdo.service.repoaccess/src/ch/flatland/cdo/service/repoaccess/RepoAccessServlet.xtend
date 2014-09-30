@@ -54,7 +54,7 @@ class RepoAccessServlet extends AbstractAccessServlet {
 			requestedObject = e
 			e.printStackTrace
 		} finally {
-			val jsonConverterConfig = new JsonConverterConfig(serverBaseUrl, meta)
+			val jsonConverterConfig = new JsonConverterConfig(serverBaseUrl)
 			val jsonString = new JsonConverter(jsonConverterConfig).toJson(requestedObject)
 
 			// write response

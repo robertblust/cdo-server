@@ -4,5 +4,4 @@ import org.eclipse.xtend.lib.annotations.Data
 
 @Data class JsonConverterConfig {
 	String serverBaseUrl
-	Boolean meta
 }
