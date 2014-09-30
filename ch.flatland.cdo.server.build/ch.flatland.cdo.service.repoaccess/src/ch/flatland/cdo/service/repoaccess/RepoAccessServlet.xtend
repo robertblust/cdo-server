@@ -1,20 +1,20 @@
 package ch.flatland.cdo.service.repoaccess
 
 import ch.flatland.cdo.util.FlatlandException
+import ch.flatland.cdo.util.Json
 import ch.flatland.cdo.util.JsonConverterConfig
 import java.io.IOException
 import javax.servlet.ServletException
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 import org.eclipse.emf.cdo.common.id.CDOIDUtil
-
-import static extension ch.flatland.cdo.util.Json.*
+import ch.flatland.cdo.util.JsonConverter
 
 class RepoAccessServlet extends AbstractAccessServlet {
 
-	val static PARAM_OID = paramOid
-	val static PARAM_META = paramMeta
-	val static PARAM_META_TYPE = paramMetaType
+	val static PARAM_OID = Json.PARAM_OID
+	val static PARAM_META = Json.PARAM_META
+	val static PARAM_META_TYPE = Json.PARAM_META_TYPE
 	val static PARAM_JSONP_CALLBACK = "callback"
 	val static SERVLET_CONTEXT = "/repo"
 
@@ -23,51 +23,50 @@ class RepoAccessServlet extends AbstractAccessServlet {
 			logRequest(req)
 		}
 		val serverBaseUrl = req.requestURL.substring(0, req.requestURL.indexOf(SERVLET_CONTEXT)) + SERVLET_CONTEXT
-		var String requestedObjectAsJson = null
+		var Object requestedObject = null
 
 		// jsonConvertConfig
-		var meta = true
-//		if (req.getParameter(PARAM_META) != null && req.getParameter(PARAM_META).length > 0) {
-//			if (req.getParameter(PARAM_META) == true.toString) {
-//				meta = true
-//			}
-//		}
-		val jsonConverterConfig = new JsonConverterConfig(serverBaseUrl, meta)
-
+		var meta = false
+		if (req.getParameter(PARAM_META) != null && req.getParameter(PARAM_META).length > 0) {
+			if (req.getParameter(PARAM_META) == true.toString) {
+				meta = true
+			}
+		}
 		try {
 
 			var processed = false
 
 			// processes meta info
 			if (req.getParameter(PARAM_META_TYPE) != null && req.getParameter(PARAM_META_TYPE).length > 0) {
-				requestedObjectAsJson = resolveEClassifier(req.getParameter(PARAM_META_TYPE)).toJson(new JsonConverterConfig(serverBaseUrl, true))
+				requestedObject = resolveEClassifier(req.getParameter(PARAM_META_TYPE))
 				processed = true
 			}
 
 			// processes oid
 			if (req.getParameter(PARAM_OID) != null && req.getParameter(PARAM_OID).length > 0) {
-				requestedObjectAsJson = view.getObject(CDOIDUtil.createLong(Long.parseLong(req.getParameter(PARAM_OID)))).
-					toJson(jsonConverterConfig)
+				requestedObject = view.getObject(CDOIDUtil.createLong(Long.parseLong(req.getParameter(PARAM_OID))))
 				processed = true
 			}
 
 			// processes path
 			if (!processed) {
-				requestedObjectAsJson = view.getResourceNode(req.pathInfo).toJson(jsonConverterConfig)
+				requestedObject = view.getResourceNode(req.pathInfo)
 			}
 
 		} catch (Exception e) {
-			requestedObjectAsJson = e.toJson(jsonConverterConfig)
+			requestedObject = e
 			e.printStackTrace
 		} finally {
+			val jsonConverterConfig = new JsonConverterConfig(serverBaseUrl, meta)
+			val jsonString = new JsonConverter(jsonConverterConfig).toJson(requestedObject)
 
 			// write response
 			if (req.getParameter(PARAM_JSONP_CALLBACK) != null && req.getParameter(PARAM_JSONP_CALLBACK).length > 0) {
-				resp.contentType = jsonpContentTypeUTF8
-				resp.writer.append('''«req.getParameter(PARAM_JSONP_CALLBACK)»(«requestedObjectAsJson»)''')
+				resp.contentType = Json.JSON_CONTENTTYPE_UTF8
+				resp.writer.append('''«req.getParameter(PARAM_JSONP_CALLBACK)»(«jsonString»)''')
 			} else {
-				resp.contentType = jsonContentTypeUTF8
-				resp.writer.append(requestedObjectAsJson)
+				resp.contentType = Json.JSONP_CONTENTTYPE_UTF8
+				resp.writer.append(jsonString)
 			}
 		}
 	}

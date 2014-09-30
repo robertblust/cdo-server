@@ -1,4 +1,4 @@
-package ch.flatland.cdo.util.converter
+package ch.flatland.cdo.util
 
 import ch.flatland.cdo.util.Json
 import ch.flatland.cdo.util.JsonConverterConfig
@@ -41,17 +41,26 @@ class JsonConverter {
 
 	static val ignoredAttributes = newArrayList("resourceSet", "modified", "loaded", "trackingModification", "errors",
 		"warnings", "timeStamp")
+	
+	var JsonConverterConfig jsonConverterConfig
+	var meta = ""
+	new(JsonConverterConfig jsonConverterConfig) {
+		this.jsonConverterConfig = jsonConverterConfig
+		if (this.jsonConverterConfig.meta) {
+			meta = "&meta=" + this.jsonConverterConfig.meta
+		}
+	}
 
-	def dispatch String toJson(Object object, JsonConverterConfig jsonConverterConfig) {
+	def dispatch String toJson(Object object) {
 		gson.toJson(object)
 	}
 
-	def dispatch String toJson(EClass object, JsonConverterConfig jsonConverterConfig) {
+	def dispatch String toJson(EClass object) {
 		val attributes = object.EAllAttributes.filter[!ignoredAttributes.contains(it.name)]
 		val references = object.EAllReferences
 
 		val jsonTypeMeta = new JsonObject
-		jsonTypeMeta.addTypeMeta(object, jsonConverterConfig)
+		jsonTypeMeta.addTypeMeta(object)
 
 		if (attributes.size > 0) {
 			val jsonAttributes = new JsonArray
@@ -84,7 +93,7 @@ class JsonConverter {
 				val r = reference as EReference
 				val jsonReference = new JsonObject
 				jsonReference.addProperty(NAME, r.name)
-				jsonReference.addTypeMeta(r.EReferenceType, jsonConverterConfig)
+				jsonReference.addTypeMeta(r.EReferenceType)
 				jsonReference.addProperty(LOWER_BOUND, r.lowerBound)
 				jsonReference.addProperty(UPPER_BOUND, r.upperBound)
 				jsonReference.addProperty(CONTAINMENT, r.containment)
@@ -94,15 +103,15 @@ class JsonConverter {
 		jsonTypeMeta.toString
 	}
 
-	def dispatch String toJson(CDOObject object, JsonConverterConfig jsonConverterConfig) {
-		val jsonBaseObject = object.toJsonBase(jsonConverterConfig)
+	def dispatch String toJson(CDOObject object) {
+		val jsonBaseObject = object.toJsonBase
 
-		jsonBaseObject.addAttributes(object, jsonConverterConfig)
-		jsonBaseObject.addReferences(object, jsonConverterConfig)
+		jsonBaseObject.addAttributes(object)
+		jsonBaseObject.addReferences(object)
 		jsonBaseObject.toString
 	}
 
-	def dispatch String toJson(Throwable object, JsonConverterConfig jsonConverterConfig) {
+	def dispatch String toJson(Throwable object) {
 		val jsonBaseObject = new JsonObject
 		jsonBaseObject.addProperty(TYPE, "ch.flatland.Exception")
 		jsonBaseObject.addProperty(LABEL, object.class.simpleName)
@@ -113,11 +122,11 @@ class JsonConverter {
 	}
 
 	// helpers
-	def private toJsonBase(CDOObject object, JsonConverterConfig jsonConverterConfig) {
-		val jsonBaseObject = toJsonBase(object as EObject, jsonConverterConfig)
+	def private toJsonBase(CDOObject object) {
+		val jsonBaseObject = toJsonBase(object as EObject)
 		jsonBaseObject.addProperty(OID, Long.parseLong(object.cdoID.toURIFragment.replace("L", "")))
 		jsonBaseObject.addProperty(URL,
-			jsonConverterConfig.serverBaseUrl + "?" + OID + "=" + object.cdoID.toURIFragment.replace("L", ""))
+			jsonConverterConfig.serverBaseUrl + "?" + OID + "=" + object.cdoID.toURIFragment.replace("L", "") + meta)
 
 		var CDOObject container = null
 		if (object.eContainer != null) {
@@ -126,20 +135,20 @@ class JsonConverter {
 			container = object.cdoResource
 		}
 		jsonBaseObject.addProperty(CONTAINER,
-			jsonConverterConfig.serverBaseUrl + "?" + OID + "=" + container.cdoID.toURIFragment.replace("L", ""))
+			jsonConverterConfig.serverBaseUrl + "?" + OID + "=" + container.cdoID.toURIFragment.replace("L", "") + meta)
 
 		return jsonBaseObject
 	}
 
-	def private toJsonBase(EObject object, JsonConverterConfig jsonConverterConfig) {
+	def private toJsonBase(EObject object) {
 		val jsonBaseObject = new JsonObject
 
-		jsonBaseObject.addTypeMeta(object.eClass, jsonConverterConfig)
+		jsonBaseObject.addTypeMeta(object.eClass)
 		jsonBaseObject.addProperty(LABEL, ITEM_DELEGATOR.getText(object))
 		return jsonBaseObject
 	}
 
-	def private addAttributes(JsonObject jsonBaseObject, CDOObject object, JsonConverterConfig jsonConverterConfig) {
+	def private addAttributes(JsonObject jsonBaseObject, CDOObject object) {
 		val attributes = object.eClass.EAllAttributes
 		val jsonAttributes = new JsonObject
 		if (attributes.size > 0) {
@@ -169,7 +178,7 @@ class JsonConverter {
 		}
 	}
 
-	def private addReferences(JsonObject jsonBaseObject, CDOObject cdoObject, JsonConverterConfig jsonConverterConfig) {
+	def private addReferences(JsonObject jsonBaseObject, CDOObject cdoObject) {
 		val references = cdoObject.eClass.EAllReferences
 		val jsonReferences = new JsonObject
 		if (references.size > 0) {
@@ -180,14 +189,14 @@ class JsonConverter {
 					if (values.size > 0) {
 						val jsonReferencesArray = new JsonArray
 						for (value : values) {
-							jsonReferencesArray.add(value.getJsonObject(jsonConverterConfig))
+							jsonReferencesArray.add(value.getJsonObject)
 						}
 						jsonReferences.add(name, jsonReferencesArray)
 					}
 				} else {
 					val value = cdoObject.eGet(reference, true)
 					if (value != null) {
-						jsonReferences.add(name, value.getJsonObject(jsonConverterConfig))
+						jsonReferences.add(name, value.getJsonObject)
 					}
 				}
 			}
@@ -197,12 +206,12 @@ class JsonConverter {
 		}
 	}
 
-	def private addTypeMeta(JsonObject jsonBaseObject, EClassifier classifier, JsonConverterConfig jsonConverterConfig) {
+	def private addTypeMeta(JsonObject jsonBaseObject, EClassifier classifier) {
 		jsonBaseObject.addProperty(TYPE, classifier.EPackage.nsPrefix + "." + classifier.name)
 		if (jsonConverterConfig.meta) {
 			jsonBaseObject.addProperty(TYPE_META,
 				jsonConverterConfig.serverBaseUrl + "?" + JsonConverter.META_TYPE + "=" + classifier.EPackage.nsURI +
-					"/" + classifier.name)
+					"/" + classifier.name + meta)
 		}
 	}
 
@@ -231,17 +240,17 @@ class JsonConverter {
 		new JsonPrimitive(object)
 	}
 
-	def private dispatch getJsonObject(Object object, JsonConverterConfig jsonConverterConfig) {
+	def private dispatch getJsonObject(Object object) {
 		System.err.println(
 			"getJsonObject(Object object, String serverUrl) " + object.class.name + " returns " + object.toString)
 		new JsonPrimitive(object.toString)
 	}
 
-	def private dispatch getJsonObject(CDOObject object, JsonConverterConfig jsonConverterConfig) {
-		object.toJsonBase(jsonConverterConfig)
+	def private dispatch getJsonObject(CDOObject object) {
+		object.toJsonBase
 	}
 
-	def private dispatch getJsonObject(EObject object, JsonConverterConfig jsonConverterConfig) {
-		object.toJsonBase(jsonConverterConfig)
+	def private dispatch getJsonObject(EObject object) {
+		object.toJsonBase
 	}
 }
