@@ -8,6 +8,7 @@ class Json {
 	
 	val public static PARAM_OID = "oid"
 	val public static PARAM_META = "meta"
+	val public static PARAM_META_TYPE = "typeMeta"
 	val public static JSON_CONTENTTYPE = "application/json"
 	val public static JSON_CONTENTTYPE_UTF8 = "application/json; charset=utf-8"
 	val public static JSONP_CONTENTTYPE = "application/javascript"
@@ -19,6 +20,10 @@ class Json {
 
 	def static String paramMeta() {
 		PARAM_META
+	}
+	
+	def static String paramMetaType() {
+		PARAM_META_TYPE
 	}
 	
 	def static String jsonContentType() {
@@ -37,7 +42,7 @@ class Json {
 		JSONP_CONTENTTYPE_UTF8
 	}
 
-	def static String toJson(Object object, String serverBaseUrl) {
-		converter.toJson(object, serverBaseUrl)
+	def static String toJson(Object object, JsonConverterConfig jsonConverterConfig) {
+		converter.toJson(object, jsonConverterConfig)
 	}
 }

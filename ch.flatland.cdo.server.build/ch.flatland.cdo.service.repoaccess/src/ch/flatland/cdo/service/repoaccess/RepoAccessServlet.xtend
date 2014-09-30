@@ -1,5 +1,7 @@
 package ch.flatland.cdo.service.repoaccess
 
+import ch.flatland.cdo.util.FlatlandException
+import ch.flatland.cdo.util.JsonConverterConfig
 import java.io.IOException
 import javax.servlet.ServletException
 import javax.servlet.http.HttpServletRequest
@@ -7,12 +9,12 @@ import javax.servlet.http.HttpServletResponse
 import org.eclipse.emf.cdo.common.id.CDOIDUtil
 
 import static extension ch.flatland.cdo.util.Json.*
-import ch.flatland.cdo.util.FlatlandException
 
 class RepoAccessServlet extends AbstractAccessServlet {
 
 	val static PARAM_OID = paramOid
 	val static PARAM_META = paramMeta
+	val static PARAM_META_TYPE = paramMetaType
 	val static PARAM_JSONP_CALLBACK = "callback"
 	val static SERVLET_CONTEXT = "/repo"
 
@@ -23,30 +25,39 @@ class RepoAccessServlet extends AbstractAccessServlet {
 		val serverBaseUrl = req.requestURL.substring(0, req.requestURL.indexOf(SERVLET_CONTEXT)) + SERVLET_CONTEXT
 		var String requestedObjectAsJson = null
 
+		// jsonConvertConfig
+		var meta = true
+//		if (req.getParameter(PARAM_META) != null && req.getParameter(PARAM_META).length > 0) {
+//			if (req.getParameter(PARAM_META) == true.toString) {
+//				meta = true
+//			}
+//		}
+		val jsonConverterConfig = new JsonConverterConfig(serverBaseUrl, meta)
+
 		try {
 
 			var processed = false
 
 			// processes meta info
-			if (req.getParameter(PARAM_META) != null && req.getParameter(PARAM_META).length > 0) {
-				requestedObjectAsJson = resolveEClassifier(req.getParameter(PARAM_META)).toJson(serverBaseUrl)
+			if (req.getParameter(PARAM_META_TYPE) != null && req.getParameter(PARAM_META_TYPE).length > 0) {
+				requestedObjectAsJson = resolveEClassifier(req.getParameter(PARAM_META_TYPE)).toJson(new JsonConverterConfig(serverBaseUrl, true))
 				processed = true
 			}
 
 			// processes oid
 			if (req.getParameter(PARAM_OID) != null && req.getParameter(PARAM_OID).length > 0) {
 				requestedObjectAsJson = view.getObject(CDOIDUtil.createLong(Long.parseLong(req.getParameter(PARAM_OID)))).
-					toJson(serverBaseUrl)
+					toJson(jsonConverterConfig)
 				processed = true
 			}
 
 			// processes path
 			if (!processed) {
-				requestedObjectAsJson = view.getResourceNode(req.pathInfo).toJson(serverBaseUrl)
+				requestedObjectAsJson = view.getResourceNode(req.pathInfo).toJson(jsonConverterConfig)
 			}
 
 		} catch (Exception e) {
-			requestedObjectAsJson = e.toJson(serverBaseUrl)
+			requestedObjectAsJson = e.toJson(jsonConverterConfig)
 			e.printStackTrace
 		} finally {
 
