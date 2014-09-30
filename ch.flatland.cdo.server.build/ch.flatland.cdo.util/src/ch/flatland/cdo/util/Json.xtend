@@ -14,6 +14,14 @@ class Json {
 		"application/json; charset=utf-8 "
 	}
 
+	def static String jsonpContentType() {
+		"application/javascript"
+	}
+
+	def static String jsonpContentTypeUTF8() {
+		"application/javascript; charset=utf-8 "
+	}
+
 	def static String toJson(Object object, String serverBaseUrl) {
 		converter.toJson(object, serverBaseUrl)
 	}
