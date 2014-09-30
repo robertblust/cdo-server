@@ -7,11 +7,12 @@ import javax.servlet.http.HttpServletResponse
 import org.eclipse.emf.cdo.common.id.CDOIDUtil
 
 import static extension ch.flatland.cdo.util.Json.*
+import ch.flatland.cdo.util.FlatlandException
 
 class RepoAccessServlet extends AbstractAccessServlet {
 
-	val static PARAM_OID = "oid"
-	val static PARAM_META = "meta"
+	val static PARAM_OID = paramOid
+	val static PARAM_META = paramMeta
 	val static PARAM_JSONP_CALLBACK = "callback"
 	val static SERVLET_CONTEXT = "/repo"
 
@@ -28,7 +29,7 @@ class RepoAccessServlet extends AbstractAccessServlet {
 
 			// processes meta info
 			if (req.getParameter(PARAM_META) != null && req.getParameter(PARAM_META).length > 0) {
-				requestedObjectAsJson = req.getParameter(PARAM_META).toJson(serverBaseUrl)
+				requestedObjectAsJson = resolveEClassifier(req.getParameter(PARAM_META)).toJson(serverBaseUrl)
 				processed = true
 			}
 
@@ -58,5 +59,34 @@ class RepoAccessServlet extends AbstractAccessServlet {
 				resp.writer.append(requestedObjectAsJson)
 			}
 		}
+	}
+
+	def private resolveEClassifier(String uri) throws FlatlandException {
+		val segments = uri.split('/').iterator
+		val classifierName = segments.last
+		val packageUri = uri.replace("/" + classifierName, "")
+
+		if (RepoAccessPlugin.getDefault.debugging) {
+			println(
+				'''
+					>>>
+					   resolveEClassifier(«uri») «this.class.name»
+					   classifierName = «classifierName»
+					   packageUri = «packageUri»
+					<<<
+				''')
+		}
+
+		val package = view.session.packageRegistry.getEPackage(packageUri)
+
+		if (package != null) {
+			for (classifier : package.EClassifiers) {
+				if (classifier.name == classifierName) {
+					return classifier
+				}
+			}
+		}
+
+		throw new FlatlandException("Could not resolve meta info for " + uri)
 	}
 }
