@@ -22,7 +22,10 @@ class RepoAccessServlet extends AbstractAccessServlet {
 			logRequest(req)
 		}
 		val serverBaseUrl = req.requestURL.substring(0, req.requestURL.indexOf(SERVLET_CONTEXT)) + SERVLET_CONTEXT
+		val jsonConverterConfig = new JsonConverterConfig(serverBaseUrl)
 		var Object requestedObject = null
+		var String jsonString = null 
+		
 
 		// jsonConvertConfig
 		var meta = false
@@ -49,14 +52,12 @@ class RepoAccessServlet extends AbstractAccessServlet {
 			if (meta) {
 				requestedObject = (requestedObject as EObject).eClass
 			}
-
+			jsonString = new JsonConverter(jsonConverterConfig).toJson(requestedObject)
+			
 		} catch (Exception e) {
-			requestedObject = e
+			jsonString = new JsonConverter(jsonConverterConfig).toJson(e)
 			e.printStackTrace
 		} finally {
-			val jsonConverterConfig = new JsonConverterConfig(serverBaseUrl)
-			val jsonString = new JsonConverter(jsonConverterConfig).toJson(requestedObject)
-
 			// write response
 			if (req.getParameter(PARAM_JSONP_CALLBACK) != null && req.getParameter(PARAM_JSONP_CALLBACK).length > 0) {
 				resp.contentType = Json.JSON_CONTENTTYPE_UTF8
