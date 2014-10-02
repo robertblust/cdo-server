@@ -8,7 +8,6 @@ import java.util.List
 import org.eclipse.emf.cdo.eresource.CDOResourceNode
 import org.eclipse.emf.common.util.Enumerator
 import org.eclipse.emf.common.util.URI
-import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EClassifier
 import org.eclipse.emf.ecore.EEnum
 import org.eclipse.emf.ecore.EObject
@@ -28,6 +27,7 @@ class JsonConverter {
 	static val LOWER_BOUND = "lowerBound"
 	static val UPPER_BOUND = "upperBound"
 	static val OID = Json.PARAM_OID
+	static val META = Json.PARAM_META
 	static val URL = "url"
 	static val NAME = "name"
 	static val CONTAINER = "container"
@@ -48,57 +48,15 @@ class JsonConverter {
 		gson.toJson(object)
 	}
 
-	def dispatch String toJson(EClass object) {
-		val attributes = object.EAllAttributes.filter[!ignoredAttributes.contains(it.name)]
-		val references = object.EAllReferences
-
-		val jsonTypeMeta = new JsonObject
-		jsonTypeMeta.addType(object)
-
-		if (attributes.size > 0) {
-			val jsonAttributes = new JsonArray
-			jsonTypeMeta.add(ATTRIBUTES, jsonAttributes)
-			for (attribute : attributes) {
-				val jsonAttribute = new JsonObject
-				jsonAttribute.addProperty(NAME, attribute.name)
-
-				if (attribute.EAttributeType.eClass.name == "EEnum") {
-					val enum = attribute.EAttributeType as EEnum
-					val jsonLiterals = new JsonArray
-					for (literal : enum.ELiterals) {
-						jsonLiterals.add(new JsonPrimitive(literal.name))
-						jsonAttribute.add(TYPE, jsonLiterals)
-					}
-				} else {
-					jsonAttribute.addProperty(TYPE, attribute.EAttributeType.name)
-				}
-				jsonAttribute.addProperty(LOWER_BOUND, attribute.lowerBound)
-				jsonAttribute.addProperty(UPPER_BOUND, attribute.upperBound)
-				jsonAttributes.add(jsonAttribute)
-			}
-		}
-
-		if (references.size > 0) {
-			val jsonReferences = new JsonArray
-			jsonTypeMeta.add(REFERENCES, jsonReferences)
-			for (reference : references) {
-				val jsonReference = new JsonObject
-				jsonReference.addProperty(NAME, reference.name)
-				jsonReference.addType(reference.EReferenceType)
-				jsonReference.addProperty(LOWER_BOUND, reference.lowerBound)
-				jsonReference.addProperty(UPPER_BOUND, reference.upperBound)
-				jsonReference.addProperty(CONTAINMENT, reference.containment)
-				jsonReferences.add(jsonReference)
-			}
-		}
-		jsonTypeMeta.toString
-	}
 
 	def dispatch String toJson(EObject object) {
 		val jsonBaseObject = object.toJsonBase
 
 		jsonBaseObject.addAttributes(object)
 		jsonBaseObject.addReferences(object)
+		if (jsonConverterConfig.meta) {
+			jsonBaseObject.addMeta(object)
+		}	
 		jsonBaseObject.toString
 	}
 
@@ -191,6 +149,51 @@ class JsonConverter {
 				jsonBaseObject.add(REFERENCES, jsonReferences)
 			}
 		}
+	}
+	
+	def private addMeta(JsonObject jsonBaseObject, EObject object) {
+		val attributes = object.eClass.EAllAttributes.filter[!ignoredAttributes.contains(it.name)]
+		val references = object.eClass.EAllReferences
+
+		val jsonTypeMeta = new JsonObject
+
+		if (attributes.size > 0) {
+			val jsonAttributes = new JsonArray
+			jsonTypeMeta.add(ATTRIBUTES, jsonAttributes)
+			for (attribute : attributes) {
+				val jsonAttribute = new JsonObject
+				jsonAttribute.addProperty(NAME, attribute.name)
+
+				if (attribute.EAttributeType.eClass.name == "EEnum") {
+					val enum = attribute.EAttributeType as EEnum
+					val jsonLiterals = new JsonArray
+					for (literal : enum.ELiterals) {
+						jsonLiterals.add(new JsonPrimitive(literal.name))
+						jsonAttribute.add(TYPE, jsonLiterals)
+					}
+				} else {
+					jsonAttribute.addProperty(TYPE, attribute.EAttributeType.name)
+				}
+				jsonAttribute.addProperty(LOWER_BOUND, attribute.lowerBound)
+				jsonAttribute.addProperty(UPPER_BOUND, attribute.upperBound)
+				jsonAttributes.add(jsonAttribute)
+			}
+		}
+
+		if (references.size > 0) {
+			val jsonReferences = new JsonArray
+			jsonTypeMeta.add(REFERENCES, jsonReferences)
+			for (reference : references) {
+				val jsonReference = new JsonObject
+				jsonReference.addProperty(NAME, reference.name)
+				jsonReference.addType(reference.EReferenceType)
+				jsonReference.addProperty(LOWER_BOUND, reference.lowerBound)
+				jsonReference.addProperty(UPPER_BOUND, reference.upperBound)
+				jsonReference.addProperty(CONTAINMENT, reference.containment)
+				jsonReferences.add(jsonReference)
+			}
+		}
+		jsonBaseObject.add(META, jsonTypeMeta)
 	}
 
 	def private addType(JsonObject jsonBaseObject, EClassifier classifier) {

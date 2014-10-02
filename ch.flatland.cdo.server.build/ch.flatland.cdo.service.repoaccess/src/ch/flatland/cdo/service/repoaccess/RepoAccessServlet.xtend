@@ -8,12 +8,11 @@ import javax.servlet.ServletException
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 import org.eclipse.emf.cdo.common.id.CDOIDUtil
-import org.eclipse.emf.ecore.EObject
 
 class RepoAccessServlet extends AbstractAccessServlet {
 
 	val static PARAM_OID = Json.PARAM_OID
-	val static PARAM_META = "meta"
+	val static PARAM_META = Json.PARAM_META
 	val static PARAM_JSONP_CALLBACK = "callback"
 	val static SERVLET_CONTEXT = "/repo"
 
@@ -21,17 +20,14 @@ class RepoAccessServlet extends AbstractAccessServlet {
 		if (RepoAccessPlugin.getDefault.debugging) {
 			logRequest(req)
 		}
-		val serverBaseUrl = req.requestURL.substring(0, req.requestURL.indexOf(SERVLET_CONTEXT)) + SERVLET_CONTEXT
-		val jsonConverterConfig = new JsonConverterConfig(serverBaseUrl, SERVLET_CONTEXT)
+		val servletUrl = req.requestURL.substring(0, req.requestURL.indexOf(SERVLET_CONTEXT)) + SERVLET_CONTEXT
+		val jsonConverterConfig = new JsonConverterConfig(servletUrl, SERVLET_CONTEXT)
 		var Object requestedObject = null
 		var String jsonString = null 
 		
-
-		// jsonConvertConfig
-		var meta = false
 		if (req.getParameter(PARAM_META) != null && req.getParameter(PARAM_META).length > 0) {
 			if (req.getParameter(PARAM_META) == true.toString) {
-				meta = true
+				jsonConverterConfig.meta = true
 			}
 		}
 		try {
@@ -49,9 +45,6 @@ class RepoAccessServlet extends AbstractAccessServlet {
 				requestedObject = view.getResourceNode(req.pathInfo)
 			}
 			
-			if (meta) {
-				requestedObject = (requestedObject as EObject).eClass
-			}
 			jsonString = new JsonConverter(jsonConverterConfig).toJson(requestedObject)
 			
 		} catch (Exception e) {
