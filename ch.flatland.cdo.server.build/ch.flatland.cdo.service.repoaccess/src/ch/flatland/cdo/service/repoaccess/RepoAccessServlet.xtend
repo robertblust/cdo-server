@@ -56,6 +56,9 @@ class RepoAccessServlet extends AbstractAccessServlet {
 			
 		} catch (Exception e) {
 			jsonString = new JsonConverter(jsonConverterConfig).toJson(e)
+			if (RepoAccessPlugin.getDefault.debugging) {
+				e.printStackTrace
+			}
 		} finally {
 			// write response
 			if (req.getParameter(PARAM_JSONP_CALLBACK) != null && req.getParameter(PARAM_JSONP_CALLBACK).length > 0) {

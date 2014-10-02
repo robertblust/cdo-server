@@ -6,7 +6,7 @@ import org.eclipse.xtend.lib.annotations.Data
 	String servletUrl
 	String servletContext
 	
-	def getServerUrl2() {
+	def getServerUrl() {
 		servletUrl.replace(servletContext, "")
 	}
 }

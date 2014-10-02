@@ -1,13 +1,12 @@
 package ch.flatland.cdo.util
 
-import ch.flatland.cdo.util.Json
-import ch.flatland.cdo.util.JsonConverterConfig
 import com.google.gson.Gson
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
 import com.google.gson.JsonPrimitive
 import java.util.List
 import org.eclipse.emf.cdo.CDOObject
+import org.eclipse.emf.cdo.eresource.CDOResourceNode
 import org.eclipse.emf.common.util.Enumerator
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.EAttribute
@@ -16,10 +15,10 @@ import org.eclipse.emf.ecore.EClassifier
 import org.eclipse.emf.ecore.EEnum
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
+import org.eclipse.emf.ecore.util.EcoreUtil
 import org.eclipse.emf.edit.EMFEditPlugin
 import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory
-import org.eclipse.emf.ecore.util.EcoreUtil
 
 class JsonConverter {
 	static val gson = new Gson
@@ -40,8 +39,9 @@ class JsonConverter {
 
 	static val ignoredAttributes = newArrayList("resourceSet", "modified", "loaded", "trackingModification", "errors",
 		"warnings", "timeStamp")
-	
+
 	var JsonConverterConfig jsonConverterConfig
+
 	new(JsonConverterConfig jsonConverterConfig) {
 		this.jsonConverterConfig = jsonConverterConfig
 	}
@@ -55,7 +55,7 @@ class JsonConverter {
 		val references = object.EAllReferences
 
 		val jsonTypeMeta = new JsonObject
-		jsonTypeMeta.addTypeMeta(object)
+		jsonTypeMeta.addType(object)
 
 		if (attributes.size > 0) {
 			val jsonAttributes = new JsonArray
@@ -88,7 +88,7 @@ class JsonConverter {
 				val r = reference as EReference
 				val jsonReference = new JsonObject
 				jsonReference.addProperty(NAME, r.name)
-				jsonReference.addTypeMeta(r.EReferenceType)
+				jsonReference.addType(r.EReferenceType)
 				jsonReference.addProperty(LOWER_BOUND, r.lowerBound)
 				jsonReference.addProperty(UPPER_BOUND, r.upperBound)
 				jsonReference.addProperty(CONTAINMENT, r.containment)
@@ -116,34 +116,19 @@ class JsonConverter {
 		jsonBaseObject.toString
 	}
 
-	// helpers
-	def private toJsonBase(CDOObject object) {
-		val jsonBaseObject = toJsonBase(object as EObject)
-		jsonBaseObject.addProperty(OID, Long.parseLong(object.cdoID.toURIFragment.replace("L", "")))
-		jsonBaseObject.addProperty(URL,
-			jsonConverterConfig.getServletUrl + "?" + OID + "=" + object.cdoID.toURIFragment.replace("L", ""))
-
-		var CDOObject container = null
-		if (object.eContainer != null) {
-			container = object.eContainer as CDOObject
-		} else {
-			container = object.cdoResource
-		}
-		jsonBaseObject.addProperty(CONTAINER,
-			jsonConverterConfig.getServletUrl + "?" + OID + "=" + container.cdoID.toURIFragment.replace("L", ""))
-
-		return jsonBaseObject
-	}
-
 	def private toJsonBase(EObject object) {
 		val jsonBaseObject = new JsonObject
-		val uri =  EcoreUtil.getURI(object)
-		println("device " + uri.device)
-		println("devicePath " + uri.devicePath)
-		println("fragment " + uri.fragment)
-		println(object + " " + EcoreUtil.getURI(object).toString)
-		jsonBaseObject.addTypeMeta(object.eClass)
+		jsonBaseObject.addType(object.eClass)
 		jsonBaseObject.addProperty(LABEL, ITEM_DELEGATOR.getText(object))
+		jsonBaseObject.addProperty(OID, object.oid)
+		jsonBaseObject.addProperty(URL, object.url)
+		if (object.eContainer != null) {
+			jsonBaseObject.addProperty(CONTAINER, object.eContainer.url)
+		} else {
+
+			// it must be contained in a CDOResourceNode
+			jsonBaseObject.addProperty(CONTAINER, (object.eResource as CDOResourceNode).url)
+		}
 		return jsonBaseObject
 	}
 
@@ -205,7 +190,7 @@ class JsonConverter {
 		}
 	}
 
-	def private addTypeMeta(JsonObject jsonBaseObject, EClassifier classifier) {
+	def private addType(JsonObject jsonBaseObject, EClassifier classifier) {
 		jsonBaseObject.addProperty(TYPE, classifier.EPackage.nsPrefix + "." + classifier.name)
 	}
 
@@ -246,5 +231,20 @@ class JsonConverter {
 
 	def private dispatch getJsonObject(EObject object) {
 		object.toJsonBase
+	}
+
+	def private dispatch getUrl(CDOResourceNode object) {
+		jsonConverterConfig.servletUrl + object.path
+	}
+
+	def private dispatch getUrl(EObject object) {
+		val uri = EcoreUtil.getURI(object)
+		return jsonConverterConfig.serverUrl + uri.devicePath.replace("//", "/") + "?oid=" +
+			uri.fragment.replace("L", "")
+	}
+
+	def private getOid(EObject object) {
+		val uri = EcoreUtil.getURI(object)
+		return Long.parseLong(uri.fragment.replace("L", ""))
 	}
 }
