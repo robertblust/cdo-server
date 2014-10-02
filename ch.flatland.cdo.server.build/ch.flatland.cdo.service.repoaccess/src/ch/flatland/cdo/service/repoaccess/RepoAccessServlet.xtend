@@ -22,7 +22,7 @@ class RepoAccessServlet extends AbstractAccessServlet {
 			logRequest(req)
 		}
 		val serverBaseUrl = req.requestURL.substring(0, req.requestURL.indexOf(SERVLET_CONTEXT)) + SERVLET_CONTEXT
-		val jsonConverterConfig = new JsonConverterConfig(serverBaseUrl)
+		val jsonConverterConfig = new JsonConverterConfig(serverBaseUrl, SERVLET_CONTEXT)
 		var Object requestedObject = null
 		var String jsonString = null 
 		

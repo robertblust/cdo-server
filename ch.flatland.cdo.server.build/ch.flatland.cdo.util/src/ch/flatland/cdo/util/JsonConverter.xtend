@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EReference
 import org.eclipse.emf.edit.EMFEditPlugin
 import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory
+import org.eclipse.emf.ecore.util.EcoreUtil
 
 class JsonConverter {
 	static val gson = new Gson
@@ -120,7 +121,7 @@ class JsonConverter {
 		val jsonBaseObject = toJsonBase(object as EObject)
 		jsonBaseObject.addProperty(OID, Long.parseLong(object.cdoID.toURIFragment.replace("L", "")))
 		jsonBaseObject.addProperty(URL,
-			jsonConverterConfig.serverBaseUrl + "?" + OID + "=" + object.cdoID.toURIFragment.replace("L", ""))
+			jsonConverterConfig.getServletUrl + "?" + OID + "=" + object.cdoID.toURIFragment.replace("L", ""))
 
 		var CDOObject container = null
 		if (object.eContainer != null) {
@@ -129,14 +130,18 @@ class JsonConverter {
 			container = object.cdoResource
 		}
 		jsonBaseObject.addProperty(CONTAINER,
-			jsonConverterConfig.serverBaseUrl + "?" + OID + "=" + container.cdoID.toURIFragment.replace("L", ""))
+			jsonConverterConfig.getServletUrl + "?" + OID + "=" + container.cdoID.toURIFragment.replace("L", ""))
 
 		return jsonBaseObject
 	}
 
 	def private toJsonBase(EObject object) {
 		val jsonBaseObject = new JsonObject
-
+		val uri =  EcoreUtil.getURI(object)
+		println("device " + uri.device)
+		println("devicePath " + uri.devicePath)
+		println("fragment " + uri.fragment)
+		println(object + " " + EcoreUtil.getURI(object).toString)
 		jsonBaseObject.addTypeMeta(object.eClass)
 		jsonBaseObject.addProperty(LABEL, ITEM_DELEGATOR.getText(object))
 		return jsonBaseObject
