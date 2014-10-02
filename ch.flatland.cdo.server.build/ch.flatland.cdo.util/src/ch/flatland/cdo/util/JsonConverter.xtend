@@ -5,7 +5,6 @@ import com.google.gson.JsonArray
 import com.google.gson.JsonObject
 import com.google.gson.JsonPrimitive
 import java.util.List
-import org.eclipse.emf.cdo.CDOObject
 import org.eclipse.emf.cdo.eresource.CDOResourceNode
 import org.eclipse.emf.common.util.Enumerator
 import org.eclipse.emf.common.util.URI
@@ -98,7 +97,7 @@ class JsonConverter {
 		jsonTypeMeta.toString
 	}
 
-	def dispatch String toJson(CDOObject object) {
+	def dispatch String toJson(EObject object) {
 		val jsonBaseObject = object.toJsonBase
 
 		jsonBaseObject.addAttributes(object)
