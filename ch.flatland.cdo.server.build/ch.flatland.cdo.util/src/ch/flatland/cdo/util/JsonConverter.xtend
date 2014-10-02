@@ -8,7 +8,6 @@ import java.util.List
 import org.eclipse.emf.cdo.eresource.CDOResourceNode
 import org.eclipse.emf.common.util.Enumerator
 import org.eclipse.emf.common.util.URI
-import org.eclipse.emf.ecore.EAttribute
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EClassifier
 import org.eclipse.emf.ecore.EEnum
@@ -60,22 +59,21 @@ class JsonConverter {
 			val jsonAttributes = new JsonArray
 			jsonTypeMeta.add(ATTRIBUTES, jsonAttributes)
 			for (attribute : attributes) {
-				val a = attribute as EAttribute
 				val jsonAttribute = new JsonObject
-				jsonAttribute.addProperty(NAME, a.name)
+				jsonAttribute.addProperty(NAME, attribute.name)
 
-				if (a.EAttributeType.eClass.name == "EEnum") {
-					val enum = a.EAttributeType as EEnum
+				if (attribute.EAttributeType.eClass.name == "EEnum") {
+					val enum = attribute.EAttributeType as EEnum
 					val jsonLiterals = new JsonArray
 					for (literal : enum.ELiterals) {
 						jsonLiterals.add(new JsonPrimitive(literal.name))
 						jsonAttribute.add(TYPE, jsonLiterals)
 					}
 				} else {
-					jsonAttribute.addProperty(TYPE, a.EAttributeType.name)
+					jsonAttribute.addProperty(TYPE, attribute.EAttributeType.name)
 				}
-				jsonAttribute.addProperty(LOWER_BOUND, a.lowerBound)
-				jsonAttribute.addProperty(UPPER_BOUND, a.upperBound)
+				jsonAttribute.addProperty(LOWER_BOUND, attribute.lowerBound)
+				jsonAttribute.addProperty(UPPER_BOUND, attribute.upperBound)
 				jsonAttributes.add(jsonAttribute)
 			}
 		}
@@ -84,13 +82,12 @@ class JsonConverter {
 			val jsonReferences = new JsonArray
 			jsonTypeMeta.add(REFERENCES, jsonReferences)
 			for (reference : references) {
-				val r = reference as EReference
 				val jsonReference = new JsonObject
-				jsonReference.addProperty(NAME, r.name)
-				jsonReference.addType(r.EReferenceType)
-				jsonReference.addProperty(LOWER_BOUND, r.lowerBound)
-				jsonReference.addProperty(UPPER_BOUND, r.upperBound)
-				jsonReference.addProperty(CONTAINMENT, r.containment)
+				jsonReference.addProperty(NAME, reference.name)
+				jsonReference.addType(reference.EReferenceType)
+				jsonReference.addProperty(LOWER_BOUND, reference.lowerBound)
+				jsonReference.addProperty(UPPER_BOUND, reference.upperBound)
+				jsonReference.addProperty(CONTAINMENT, reference.containment)
 				jsonReferences.add(jsonReference)
 			}
 		}
@@ -173,6 +170,7 @@ class JsonConverter {
 						val jsonReferencesArray = new JsonArray
 						for (value : values) {
 							val jsonRefObject = value.getJsonObject as JsonObject
+
 							// should we add attributes or not?
 							jsonRefObject.addAttributes(value as EObject)
 							jsonReferencesArray.add(jsonRefObject)
