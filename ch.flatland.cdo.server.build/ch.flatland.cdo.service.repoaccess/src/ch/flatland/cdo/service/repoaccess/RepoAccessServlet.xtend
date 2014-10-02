@@ -23,12 +23,10 @@ class RepoAccessServlet extends AbstractAccessServlet {
 		val servletUrl = req.requestURL.substring(0, req.requestURL.indexOf(SERVLET_CONTEXT)) + SERVLET_CONTEXT
 		val jsonConverterConfig = new JsonConverterConfig(servletUrl, SERVLET_CONTEXT)
 		var Object requestedObject = null
-		var String jsonString = null 
-		
-		if (req.getParameter(PARAM_META) != null && req.getParameter(PARAM_META).length > 0) {
-			if (req.getParameter(PARAM_META) == true.toString) {
-				jsonConverterConfig.meta = true
-			}
+		var String jsonString = null
+
+		if (req.getParameter(PARAM_META) != null) {
+			jsonConverterConfig.meta = true
 		}
 		try {
 
@@ -44,15 +42,16 @@ class RepoAccessServlet extends AbstractAccessServlet {
 			if (!processed) {
 				requestedObject = view.getResourceNode(req.pathInfo)
 			}
-			
+
 			jsonString = new JsonConverter(jsonConverterConfig).toJson(requestedObject)
-			
+
 		} catch (Exception e) {
 			jsonString = new JsonConverter(jsonConverterConfig).toJson(e)
 			if (RepoAccessPlugin.getDefault.debugging) {
 				e.printStackTrace
 			}
 		} finally {
+
 			// write response
 			if (req.getParameter(PARAM_JSONP_CALLBACK) != null && req.getParameter(PARAM_JSONP_CALLBACK).length > 0) {
 				resp.contentType = Json.JSON_CONTENTTYPE_UTF8
