@@ -35,7 +35,7 @@ class JsonConverter {
 	static val REFERENCES = "references"
 	static val CONTAINMENT = "containment"
 
-	static val ignoredAttributes = newArrayList("resourceSet", "modified", "loaded", "trackingModification", "errors",
+	static val ignoredAttributes = newArrayList("uRI", "resourceSet", "modified", "loaded", "trackingModification", "errors",
 		"warnings", "timeStamp")
 
 	var JsonConverterConfig jsonConverterConfig
