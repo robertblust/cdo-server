@@ -132,7 +132,7 @@ class JsonConverter {
 		return jsonBaseObject
 	}
 
-	def private addAttributes(JsonObject jsonBaseObject, CDOObject object) {
+	def private addAttributes(JsonObject jsonBaseObject, EObject object) {
 		val attributes = object.eClass.EAllAttributes
 		val jsonAttributes = new JsonObject
 		if (attributes.size > 0) {
@@ -162,24 +162,30 @@ class JsonConverter {
 		}
 	}
 
-	def private addReferences(JsonObject jsonBaseObject, CDOObject cdoObject) {
-		val references = cdoObject.eClass.EAllReferences
+	def private addReferences(JsonObject jsonBaseObject, EObject eObject) {
+		val references = eObject.eClass.EAllReferences
 		val jsonReferences = new JsonObject
 		if (references.size > 0) {
 			for (EReference reference : references) {
 				val name = reference.name
 				if (reference.many) {
-					val List<Object> values = cdoObject.eGet(reference, true) as List<Object>
+					val List<Object> values = eObject.eGet(reference, true) as List<Object>
 					if (values.size > 0) {
 						val jsonReferencesArray = new JsonArray
 						for (value : values) {
-							jsonReferencesArray.add(value.getJsonObject)
+							val jsonRefObject = value.getJsonObject as JsonObject
+							// should we add attributes or not?
+							jsonRefObject.addAttributes(value as EObject)
+							jsonReferencesArray.add(jsonRefObject)
 						}
 						jsonReferences.add(name, jsonReferencesArray)
 					}
 				} else {
-					val value = cdoObject.eGet(reference, true)
+					val value = eObject.eGet(reference, true)
 					if (value != null) {
+						val jsonRefObject = value.getJsonObject as JsonObject
+						jsonRefObject.addAttributes(value as EObject)
+
 						jsonReferences.add(name, value.getJsonObject)
 					}
 				}
@@ -223,10 +229,6 @@ class JsonConverter {
 		System.err.println(
 			"getJsonObject(Object object, String serverUrl) " + object.class.name + " returns " + object.toString)
 		new JsonPrimitive(object.toString)
-	}
-
-	def private dispatch getJsonObject(CDOObject object) {
-		object.toJsonBase
 	}
 
 	def private dispatch getJsonObject(EObject object) {
