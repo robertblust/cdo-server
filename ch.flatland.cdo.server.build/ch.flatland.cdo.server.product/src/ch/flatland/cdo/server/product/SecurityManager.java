@@ -10,6 +10,7 @@
  *    Christian W. Damus (CEA LIST) - bug 399306
  *    Christian W. Damus (CEA LIST) - bug 418454
  *    Christian W. Damus (CEA LIST) - bug 399487
+ *    Robert Blust - Adapted to support Authentication via ldap
  */
 package ch.flatland.cdo.server.product;
 
@@ -97,9 +98,6 @@ import ch.flatland.cdo.server.AuthenticationUtil;
 
 /**
  * @author Eike Stepper
- * Adapted by Robert Blust to support
- * - Authentication via ldap
- * - different admin user
  */
 @SuppressWarnings("all")
 public class SecurityManager extends Lifecycle implements InternalSecurityManager {
