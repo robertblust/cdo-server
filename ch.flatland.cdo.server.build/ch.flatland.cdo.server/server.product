@@ -12,10 +12,15 @@
       <vmArgs>-Xms40m
 -Xmx1g
 -Ddebug=true
--Dorg.osgi.service.http.port=8080
--Dnet4j.config=.
+-Dorg.eclipse.equinox.http.jetty.http.port=80
+-Dorg.eclipse.equinox.http.jetty.http.enabled=true
+-Dorg.eclipse.equinox.http.jetty.https.port=443
+-Dorg.eclipse.equinox.http.jetty.https.enabled=true
+-Dorg.eclipse.equinox.http.jetty.ssl.keystore=./keystore
 -Djavax.net.ssl.trustStore=./keystore
+-Dorg.eclipse.equinox.http.jetty.ssl.password=password
 -Dch.flatland.cdo.server.admin.pwd=password
+
 -Dch.flatland.cdo.server.readonly.pwd=password
       </vmArgs>
       <vmArgsMac>-XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts
