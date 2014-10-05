@@ -15,6 +15,7 @@ import javax.servlet.ServletException
 import javax.servlet.http.HttpServlet
 import javax.servlet.http.HttpServletRequest
 import org.eclipse.emf.cdo.session.CDOSession
+import org.eclipse.emf.cdo.view.CDOAdapterPolicy
 import org.eclipse.emf.cdo.view.CDOView
 
 class AbstractAccessServlet extends HttpServlet {
@@ -26,6 +27,7 @@ class AbstractAccessServlet extends HttpServlet {
 		if (view == null || view.closed) {
 			session = ServerUtil.openReadOnlySession
 			view = session.openView
+			view.options().addChangeSubscriptionPolicy(CDOAdapterPolicy.ALL);
 		}
 		view
 	}
