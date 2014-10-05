@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil
 import org.eclipse.emf.edit.EMFEditPlugin
 import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory
+import org.eclipse.emf.internal.cdo.object.CDOLegacyAdapter
 
 class JsonConverter {
 	static val gson = new Gson
@@ -83,7 +84,13 @@ class JsonConverter {
 	def private toJsonBase(EObject object) {
 		val jsonBaseObject = new JsonObject
 		jsonBaseObject.addType(object.eClass)
-		jsonBaseObject.addProperty(LABEL, ITEM_DELEGATOR.getText(object))
+		// CDO Legacy Adapter implements EObject but is not an EObject
+		// ITEM_DELEGATOR does a cast to EObject
+		if (object instanceof CDOLegacyAdapter) {
+			jsonBaseObject.addProperty(LABEL, object.toString)
+		} else {
+			jsonBaseObject.addProperty(LABEL, ITEM_DELEGATOR.getText(object))
+		}
 		jsonBaseObject.addProperty(OID, object.oid)
 		jsonBaseObject.addProperty(URL, object.url)
 		if (object.eContainer != null) {
