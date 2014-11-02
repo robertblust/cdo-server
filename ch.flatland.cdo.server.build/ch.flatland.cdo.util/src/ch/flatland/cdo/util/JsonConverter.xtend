@@ -27,6 +27,8 @@ import org.eclipse.emf.edit.EMFEditPlugin
 import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory
 import org.eclipse.emf.internal.cdo.object.CDOLegacyAdapter
+import org.eclipse.emf.cdo.CDOObject
+import org.eclipse.emf.cdo.common.security.CDOPermission
 
 class JsonConverter {
 	static val gson = new Gson
@@ -45,6 +47,8 @@ class JsonConverter {
 	static val ATTRIBUTES = "attributes"
 	static val REFERENCES = "references"
 	static val CONTAINMENT = "containment"
+	static val DERIVED = "derived"
+	static val PERMISSION = "permission"
 
 	static val ignoredAttributes = newArrayList("uRI", "resourceSet", "modified", "loaded", "trackingModification", "errors",
 		"warnings", "timeStamp")
@@ -53,6 +57,10 @@ class JsonConverter {
 
 	new(JsonConverterConfig jsonConverterConfig) {
 		this.jsonConverterConfig = jsonConverterConfig
+	}
+	
+	new() {
+		this.jsonConverterConfig = new JsonConverterConfig
 	}
 
 	def dispatch String toJson(Object object) {
@@ -99,6 +107,9 @@ class JsonConverter {
 
 			// it must be contained in a CDOResourceNode
 			jsonBaseObject.addProperty(CONTAINER, (object.eResource as CDOResourceNode).url)
+		}
+		if (object instanceof CDOObject) {
+			jsonBaseObject.addProperty(PERMISSION, (object as CDOObject).cdoPermission.name)		
 		}
 		return jsonBaseObject
 	}
@@ -193,6 +204,7 @@ class JsonConverter {
 				}
 				jsonAttribute.addProperty(LOWER_BOUND, attribute.lowerBound)
 				jsonAttribute.addProperty(UPPER_BOUND, attribute.upperBound)
+				jsonAttribute.addProperty(DERIVED, attribute.derived)
 				jsonAttributes.add(jsonAttribute)
 			}
 		}
@@ -207,6 +219,7 @@ class JsonConverter {
 				jsonReference.addProperty(LOWER_BOUND, reference.lowerBound)
 				jsonReference.addProperty(UPPER_BOUND, reference.upperBound)
 				jsonReference.addProperty(CONTAINMENT, reference.containment)
+				jsonReference.addProperty(DERIVED, reference.derived)
 				jsonReferences.add(jsonReference)
 			}
 		}

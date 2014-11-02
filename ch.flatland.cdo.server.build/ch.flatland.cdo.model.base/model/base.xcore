@@ -1,0 +1,81 @@
+@GenModel(featureDelegation="Dynamic",
+	rootExtendsClass="org.eclipse.emf.internal.cdo.CDOObjectImpl",
+	rootExtendsInterface="org.eclipse.emf.cdo.CDOObject",
+	modelPluginVariables="org.eclipse.xtext.xbase.lib org.eclipse.emf.ecore.xcore.lib org.eclipse.emf.cdo",
+	childCreationExtenders="true",
+	editDirectory="/ch.flatland.cdo.model.base.edit/src",
+	modelDirectory="/ch.flatland.cdo.model.base/src",
+	creationIcons="false")
+package ch.flatland.cdo.model.base
+
+/*
+ * Base elements all Concepts should at least inherit from.
+ * Provides generic features.
+ */
+abstract class FLElement {
+	String[1] name
+	/* 
+	 * Markdown formatted description
+	 * http://en.wikipedia.org/wiki/Markdown
+	 */
+	@GenModel(propertyMultiLine="true")
+	String description
+	contains FLTrace[] traces
+	contains FLProperty[] properties
+	@GenModel(property="Readonly", notify="true")
+	refers FLTrace[] tracesFrom opposite target
+}
+
+/*
+ * An encapsulation of functionality that is aligned to architectural structuring.
+ * Can be further detailed by nesting.
+ */
+class FLComponent extends FLElement {
+	/* 
+	 * Technical, machine readable identifier should only contain
+	 * characters matching <em><b>^[a-zA-Z0-9_\-\.]*$</em></b>
+	 */
+	String componentId
+	/* 
+	 * Recursive structure to define hierarchies of components.
+	 * Relationship not defined as containment allows restructuring of components.
+	 */
+	refers FLComponent[] children
+}
+
+class FLPackage extends FLElement {
+	contains FLElement[] elements
+	refers FLPackage[] subPackages get {
+		elements.filter(FLPackage).asEList
+	}
+	refers FLElement[] contents get {
+		elements.filter[!(it instanceof FLPackage)].asEList
+	}
+}
+
+class FLTrace {
+	FLTraceType[1] traceType
+	@GenModel(notify="true")
+	refers FLElement[1] target opposite tracesFrom
+}
+
+enum FLTraceType {
+	ownedBy = 0
+	verifies = 1
+	specifies = 2
+	satisfies = 3
+	mesures = 4
+}
+
+/*
+ * Generic Holder for name value pairs
+ */
+class FLProperty {
+	/* 
+	 * Technical, machine readable identifier should only contain
+	 * characters matching <em><b>^[a-zA-Z0-9_\-\.]*$</em></b>
+	 */
+	String[1] name
+	String[1] value
+}
+

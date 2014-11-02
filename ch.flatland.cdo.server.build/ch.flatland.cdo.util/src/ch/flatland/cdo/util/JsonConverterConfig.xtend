@@ -20,6 +20,11 @@ class JsonConverterConfig {
 		this.servletContext = servletContext
 	}
 	
+	new() {
+		servletUrl = ""
+		servletContext = ""
+	}
+	
 	def getServerUrl() {
 		servletUrl.replace(servletContext, "")
 	}

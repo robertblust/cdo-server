@@ -122,6 +122,7 @@
 
    <features>
       <feature id="ch.flatland.cdo.server.feature" version="1.0.0.qualifier"/>
+      <feature id="ch.flatland.cdo.model.feature" version="1.0.0.qualifier"/>
    </features>
 
    <configurations>
