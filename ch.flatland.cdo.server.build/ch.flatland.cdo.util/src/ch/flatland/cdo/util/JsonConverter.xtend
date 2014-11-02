@@ -45,6 +45,7 @@ class JsonConverter {
 	static val ATTRIBUTES = "attributes"
 	static val REFERENCES = "references"
 	static val CONTAINMENT = "containment"
+	static val DERIVED = "derived"
 
 	static val ignoredAttributes = newArrayList("uRI", "resourceSet", "modified", "loaded", "trackingModification", "errors",
 		"warnings", "timeStamp")
@@ -193,6 +194,7 @@ class JsonConverter {
 				}
 				jsonAttribute.addProperty(LOWER_BOUND, attribute.lowerBound)
 				jsonAttribute.addProperty(UPPER_BOUND, attribute.upperBound)
+				jsonAttribute.addProperty(DERIVED, attribute.derived)
 				jsonAttributes.add(jsonAttribute)
 			}
 		}
@@ -207,6 +209,7 @@ class JsonConverter {
 				jsonReference.addProperty(LOWER_BOUND, reference.lowerBound)
 				jsonReference.addProperty(UPPER_BOUND, reference.upperBound)
 				jsonReference.addProperty(CONTAINMENT, reference.containment)
+				jsonReference.addProperty(DERIVED, reference.derived)
 				jsonReferences.add(jsonReference)
 			}
 		}
