@@ -1,0 +1,49 @@
+@GenModel(rootExtendsClass="org.eclipse.emf.internal.cdo.CDOObjectImpl",
+	rootExtendsInterface="org.eclipse.emf.cdo.CDOObject",
+	modelPluginVariables="org.eclipse.xtext.xbase.lib org.eclipse.emf.ecore.xcore.lib org.eclipse.emf.cdo",
+	childCreationExtenders="true",
+	editDirectory="/ch.flatland.cdo.model.base.edit/src-gen", featureDelegation="Dynamic")
+package ch.flatland.cdo.model.base
+
+/*
+ * Base elements all Concepts should at least inherit from.
+ * Provides generic features.
+ */
+abstract class FLElement {
+	String[1] name
+	contains FLTrace[] traces
+}
+
+/*
+ * An encapsulation of functionality that is aligned to architectural structuring.
+ * Can be further detailed by nesting.
+ */
+class FLComponent extends FLElement {
+	/* technical, machine readable identifier */
+	String[1] componentId
+	refers FLComponent[] aggregates
+}
+
+class FLPackage extends FLElement {
+	contains FLElement[] elements
+	refers FLPackage[] subPackages get {
+		elements.filter(FLPackage).asEList
+	}
+	refers FLElement[] contents get {
+		elements.filter[!(it instanceof FLPackage)].asEList
+	}
+}
+
+class FLTrace {
+	FLTraceType[1] traceType
+	refers FLElement target
+}
+
+enum FLTraceType {
+	ownedBy
+	verifies
+	specifies
+	satisfies
+	mesures
+}
+
