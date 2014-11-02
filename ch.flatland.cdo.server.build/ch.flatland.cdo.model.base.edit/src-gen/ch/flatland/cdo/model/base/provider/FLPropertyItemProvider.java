@@ -3,9 +3,8 @@
 package ch.flatland.cdo.model.base.provider;
 
 
-import ch.flatland.cdo.model.base.BaseFactory;
 import ch.flatland.cdo.model.base.BasePackage;
-import ch.flatland.cdo.model.base.FLElement;
+import ch.flatland.cdo.model.base.FLProperty;
 
 import java.util.Collection;
 import java.util.List;
@@ -14,8 +13,6 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
-
-import org.eclipse.emf.ecore.EStructuralFeature;
 
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -29,12 +26,12 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link ch.flatland.cdo.model.base.FLElement} object.
+ * This is the item provider adapter for a {@link ch.flatland.cdo.model.base.FLProperty} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class FLElementItemProvider 
+public class FLPropertyItemProvider 
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -48,7 +45,7 @@ public class FLElementItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public FLElementItemProvider(AdapterFactory adapterFactory) {
+	public FLPropertyItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -64,6 +61,7 @@ public class FLElementItemProvider
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
+			addValuePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -79,9 +77,9 @@ public class FLElementItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_FLElement_name_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_FLElement_name_feature", "_UI_FLElement_type"),
-				 BasePackage.Literals.FL_ELEMENT__NAME,
+				 getString("_UI_FLProperty_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FLProperty_name_feature", "_UI_FLProperty_type"),
+				 BasePackage.Literals.FL_PROPERTY__NAME,
 				 true,
 				 false,
 				 false,
@@ -91,34 +89,36 @@ public class FLElementItemProvider
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * This adds a property descriptor for the Value feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
-			super.getChildrenFeatures(object);
-			childrenFeatures.add(BasePackage.Literals.FL_ELEMENT__TRACES);
-			childrenFeatures.add(BasePackage.Literals.FL_ELEMENT__PROPERTIES);
-		}
-		return childrenFeatures;
+	protected void addValuePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_FLProperty_value_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FLProperty_value_feature", "_UI_FLProperty_type"),
+				 BasePackage.Literals.FL_PROPERTY__VALUE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
+	 * This returns FLProperty.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper feature to use for
-		// adding (see {@link AddCommand}) it as a child.
-
-		return super.getChildFeature(object, child);
+	public Object getImage(Object object) {
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/FLProperty"));
 	}
 
 	/**
@@ -129,10 +129,10 @@ public class FLElementItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((FLElement)object).getName();
+		String label = ((FLProperty)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_FLElement_type") :
-			getString("_UI_FLElement_type") + " " + label;
+			getString("_UI_FLProperty_type") :
+			getString("_UI_FLProperty_type") + " " + label;
 	}
 	
 
@@ -147,13 +147,10 @@ public class FLElementItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(FLElement.class)) {
-			case BasePackage.FL_ELEMENT__NAME:
+		switch (notification.getFeatureID(FLProperty.class)) {
+			case BasePackage.FL_PROPERTY__NAME:
+			case BasePackage.FL_PROPERTY__VALUE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-			case BasePackage.FL_ELEMENT__TRACES:
-			case BasePackage.FL_ELEMENT__PROPERTIES:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);
@@ -169,16 +166,6 @@ public class FLElementItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BasePackage.Literals.FL_ELEMENT__TRACES,
-				 BaseFactory.eINSTANCE.createFLTrace()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BasePackage.Literals.FL_ELEMENT__PROPERTIES,
-				 BaseFactory.eINSTANCE.createFLProperty()));
 	}
 
 	/**

@@ -12,6 +12,7 @@ package ch.flatland.cdo.model.base
 abstract class FLElement {
 	String[1] name
 	contains FLTrace[] traces
+	contains FLProperty[] properties
 }
 
 /*
@@ -45,5 +46,10 @@ enum FLTraceType {
 	specifies
 	satisfies
 	mesures
+}
+
+class FLProperty {
+	String name
+	String value
 }
 

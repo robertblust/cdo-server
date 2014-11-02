@@ -4,6 +4,7 @@ package ch.flatland.cdo.model.base.impl;
 
 import ch.flatland.cdo.model.base.BasePackage;
 import ch.flatland.cdo.model.base.FLElement;
+import ch.flatland.cdo.model.base.FLProperty;
 import ch.flatland.cdo.model.base.FLTrace;
 
 import java.util.Collection;
@@ -28,6 +29,7 @@ import org.eclipse.emf.internal.cdo.CDOObjectImpl;
  * <ul>
  *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getName <em>Name</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getTraces <em>Traces</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getProperties <em>Properties</em>}</li>
  * </ul>
  * </p>
  *
@@ -106,11 +108,23 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
+	public EList<FLProperty> getProperties() {
+		return (EList<FLProperty>)eDynamicGet(BasePackage.FL_ELEMENT__PROPERTIES, BasePackage.Literals.FL_ELEMENT__PROPERTIES, true, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case BasePackage.FL_ELEMENT__TRACES:
 				return ((InternalEList<?>)getTraces()).basicRemove(otherEnd, msgs);
+			case BasePackage.FL_ELEMENT__PROPERTIES:
+				return ((InternalEList<?>)getProperties()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -127,6 +141,8 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 				return getName();
 			case BasePackage.FL_ELEMENT__TRACES:
 				return getTraces();
+			case BasePackage.FL_ELEMENT__PROPERTIES:
+				return getProperties();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -147,6 +163,10 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 				getTraces().clear();
 				getTraces().addAll((Collection<? extends FLTrace>)newValue);
 				return;
+			case BasePackage.FL_ELEMENT__PROPERTIES:
+				getProperties().clear();
+				getProperties().addAll((Collection<? extends FLProperty>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -165,6 +185,9 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 			case BasePackage.FL_ELEMENT__TRACES:
 				getTraces().clear();
 				return;
+			case BasePackage.FL_ELEMENT__PROPERTIES:
+				getProperties().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -181,6 +204,8 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 				return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT.equals(getName());
 			case BasePackage.FL_ELEMENT__TRACES:
 				return !getTraces().isEmpty();
+			case BasePackage.FL_ELEMENT__PROPERTIES:
+				return !getProperties().isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

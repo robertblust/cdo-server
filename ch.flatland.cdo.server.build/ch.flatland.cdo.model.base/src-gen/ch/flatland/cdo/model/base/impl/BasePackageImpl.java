@@ -7,6 +7,7 @@ import ch.flatland.cdo.model.base.BasePackage;
 import ch.flatland.cdo.model.base.FLComponent;
 import ch.flatland.cdo.model.base.FLElement;
 import ch.flatland.cdo.model.base.FLPackage;
+import ch.flatland.cdo.model.base.FLProperty;
 import ch.flatland.cdo.model.base.FLTrace;
 import ch.flatland.cdo.model.base.FLTraceType;
 
@@ -53,6 +54,13 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 	 * @generated
 	 */
 	private EClass flTraceEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass flPropertyEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -157,6 +165,15 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getFLElement_Properties() {
+		return (EReference)flElementEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getFLComponent() {
 		return flComponentEClass;
 	}
@@ -247,6 +264,33 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getFLProperty() {
+		return flPropertyEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getFLProperty_Name() {
+		return (EAttribute)flPropertyEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getFLProperty_Value() {
+		return (EAttribute)flPropertyEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getFLTraceType() {
 		return flTraceTypeEEnum;
 	}
@@ -282,6 +326,7 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 		flElementEClass = createEClass(FL_ELEMENT);
 		createEAttribute(flElementEClass, FL_ELEMENT__NAME);
 		createEReference(flElementEClass, FL_ELEMENT__TRACES);
+		createEReference(flElementEClass, FL_ELEMENT__PROPERTIES);
 
 		flComponentEClass = createEClass(FL_COMPONENT);
 		createEAttribute(flComponentEClass, FL_COMPONENT__COMPONENT_ID);
@@ -295,6 +340,10 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 		flTraceEClass = createEClass(FL_TRACE);
 		createEAttribute(flTraceEClass, FL_TRACE__TRACE_TYPE);
 		createEReference(flTraceEClass, FL_TRACE__TARGET);
+
+		flPropertyEClass = createEClass(FL_PROPERTY);
+		createEAttribute(flPropertyEClass, FL_PROPERTY__NAME);
+		createEAttribute(flPropertyEClass, FL_PROPERTY__VALUE);
 
 		// Create enums
 		flTraceTypeEEnum = createEEnum(FL_TRACE_TYPE);
@@ -338,6 +387,7 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 		initEClass(flElementEClass, FLElement.class, "FLElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getFLElement_Name(), theEcorePackage.getEString(), "name", null, 1, 1, FLElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFLElement_Traces(), this.getFLTrace(), null, "traces", null, 0, -1, FLElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFLElement_Properties(), this.getFLProperty(), null, "properties", null, 0, -1, FLElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(flComponentEClass, FLComponent.class, "FLComponent", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getFLComponent_ComponentId(), theEcorePackage.getEString(), "componentId", null, 1, 1, FLComponent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -351,6 +401,10 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 		initEClass(flTraceEClass, FLTrace.class, "FLTrace", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getFLTrace_TraceType(), this.getFLTraceType(), "traceType", null, 1, 1, FLTrace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFLTrace_Target(), this.getFLElement(), null, "target", null, 0, 1, FLTrace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(flPropertyEClass, FLProperty.class, "FLProperty", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getFLProperty_Name(), theEcorePackage.getEString(), "name", null, 0, 1, FLProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFLProperty_Value(), theEcorePackage.getEString(), "value", null, 0, 1, FLProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(flTraceTypeEEnum, FLTraceType.class, "FLTraceType");

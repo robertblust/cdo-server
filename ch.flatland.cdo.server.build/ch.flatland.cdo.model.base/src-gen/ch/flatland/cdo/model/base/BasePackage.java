@@ -87,13 +87,22 @@ public interface BasePackage extends EPackage {
 	int FL_ELEMENT__TRACES = 1;
 
 	/**
+	 * The feature id for the '<em><b>Properties</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_ELEMENT__PROPERTIES = 2;
+
+	/**
 	 * The number of structural features of the '<em>FL Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT_FEATURE_COUNT = 2;
+	int FL_ELEMENT_FEATURE_COUNT = 3;
 
 	/**
 	 * The number of operations of the '<em>FL Element</em>' class.
@@ -131,6 +140,15 @@ public interface BasePackage extends EPackage {
 	 * @ordered
 	 */
 	int FL_COMPONENT__TRACES = FL_ELEMENT__TRACES;
+
+	/**
+	 * The feature id for the '<em><b>Properties</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_COMPONENT__PROPERTIES = FL_ELEMENT__PROPERTIES;
 
 	/**
 	 * The feature id for the '<em><b>Component Id</b></em>' attribute.
@@ -195,6 +213,15 @@ public interface BasePackage extends EPackage {
 	 * @ordered
 	 */
 	int FL_PACKAGE__TRACES = FL_ELEMENT__TRACES;
+
+	/**
+	 * The feature id for the '<em><b>Properties</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_PACKAGE__PROPERTIES = FL_ELEMENT__PROPERTIES;
 
 	/**
 	 * The feature id for the '<em><b>Elements</b></em>' containment reference list.
@@ -288,6 +315,52 @@ public interface BasePackage extends EPackage {
 	int FL_TRACE_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link ch.flatland.cdo.model.base.impl.FLPropertyImpl <em>FL Property</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see ch.flatland.cdo.model.base.impl.FLPropertyImpl
+	 * @see ch.flatland.cdo.model.base.impl.BasePackageImpl#getFLProperty()
+	 * @generated
+	 */
+	int FL_PROPERTY = 4;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_PROPERTY__NAME = 0;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_PROPERTY__VALUE = 1;
+
+	/**
+	 * The number of structural features of the '<em>FL Property</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_PROPERTY_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>FL Property</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_PROPERTY_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link ch.flatland.cdo.model.base.FLTraceType <em>FL Trace Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -295,7 +368,7 @@ public interface BasePackage extends EPackage {
 	 * @see ch.flatland.cdo.model.base.impl.BasePackageImpl#getFLTraceType()
 	 * @generated
 	 */
-	int FL_TRACE_TYPE = 4;
+	int FL_TRACE_TYPE = 5;
 
 
 	/**
@@ -329,6 +402,17 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getFLElement_Traces();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link ch.flatland.cdo.model.base.FLElement#getProperties <em>Properties</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Properties</em>'.
+	 * @see ch.flatland.cdo.model.base.FLElement#getProperties()
+	 * @see #getFLElement()
+	 * @generated
+	 */
+	EReference getFLElement_Properties();
 
 	/**
 	 * Returns the meta object for class '{@link ch.flatland.cdo.model.base.FLComponent <em>FL Component</em>}'.
@@ -438,6 +522,38 @@ public interface BasePackage extends EPackage {
 	EReference getFLTrace_Target();
 
 	/**
+	 * Returns the meta object for class '{@link ch.flatland.cdo.model.base.FLProperty <em>FL Property</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>FL Property</em>'.
+	 * @see ch.flatland.cdo.model.base.FLProperty
+	 * @generated
+	 */
+	EClass getFLProperty();
+
+	/**
+	 * Returns the meta object for the attribute '{@link ch.flatland.cdo.model.base.FLProperty#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see ch.flatland.cdo.model.base.FLProperty#getName()
+	 * @see #getFLProperty()
+	 * @generated
+	 */
+	EAttribute getFLProperty_Name();
+
+	/**
+	 * Returns the meta object for the attribute '{@link ch.flatland.cdo.model.base.FLProperty#getValue <em>Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Value</em>'.
+	 * @see ch.flatland.cdo.model.base.FLProperty#getValue()
+	 * @see #getFLProperty()
+	 * @generated
+	 */
+	EAttribute getFLProperty_Value();
+
+	/**
 	 * Returns the meta object for enum '{@link ch.flatland.cdo.model.base.FLTraceType <em>FL Trace Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -495,6 +611,14 @@ public interface BasePackage extends EPackage {
 		 * @generated
 		 */
 		EReference FL_ELEMENT__TRACES = eINSTANCE.getFLElement_Traces();
+
+		/**
+		 * The meta object literal for the '<em><b>Properties</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FL_ELEMENT__PROPERTIES = eINSTANCE.getFLElement_Properties();
 
 		/**
 		 * The meta object literal for the '{@link ch.flatland.cdo.model.base.impl.FLComponentImpl <em>FL Component</em>}' class.
@@ -581,6 +705,32 @@ public interface BasePackage extends EPackage {
 		 * @generated
 		 */
 		EReference FL_TRACE__TARGET = eINSTANCE.getFLTrace_Target();
+
+		/**
+		 * The meta object literal for the '{@link ch.flatland.cdo.model.base.impl.FLPropertyImpl <em>FL Property</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see ch.flatland.cdo.model.base.impl.FLPropertyImpl
+		 * @see ch.flatland.cdo.model.base.impl.BasePackageImpl#getFLProperty()
+		 * @generated
+		 */
+		EClass FL_PROPERTY = eINSTANCE.getFLProperty();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FL_PROPERTY__NAME = eINSTANCE.getFLProperty_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FL_PROPERTY__VALUE = eINSTANCE.getFLProperty_Value();
 
 		/**
 		 * The meta object literal for the '{@link ch.flatland.cdo.model.base.FLTraceType <em>FL Trace Type</em>}' enum.

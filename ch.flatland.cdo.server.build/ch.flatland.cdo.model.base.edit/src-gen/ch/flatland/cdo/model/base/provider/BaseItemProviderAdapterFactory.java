@@ -141,6 +141,29 @@ public class BaseItemProviderAdapterFactory extends BaseAdapterFactory implement
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link ch.flatland.cdo.model.base.FLProperty} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected FLPropertyItemProvider flPropertyItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link ch.flatland.cdo.model.base.FLProperty}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createFLPropertyAdapter() {
+		if (flPropertyItemProvider == null) {
+			flPropertyItemProvider = new FLPropertyItemProvider(this);
+		}
+
+		return flPropertyItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -242,6 +265,7 @@ public class BaseItemProviderAdapterFactory extends BaseAdapterFactory implement
 		if (flComponentItemProvider != null) flComponentItemProvider.dispose();
 		if (flPackageItemProvider != null) flPackageItemProvider.dispose();
 		if (flTraceItemProvider != null) flTraceItemProvider.dispose();
+		if (flPropertyItemProvider != null) flPropertyItemProvider.dispose();
 	}
 
 }

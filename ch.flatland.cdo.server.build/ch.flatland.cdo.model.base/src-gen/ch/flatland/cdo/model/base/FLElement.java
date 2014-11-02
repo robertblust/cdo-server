@@ -21,6 +21,7 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link ch.flatland.cdo.model.base.FLElement#getName <em>Name</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.FLElement#getTraces <em>Traces</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.base.FLElement#getProperties <em>Properties</em>}</li>
  * </ul>
  * </p>
  *
@@ -71,5 +72,21 @@ public interface FLElement extends CDOObject {
 	 * @generated
 	 */
 	EList<FLTrace> getTraces();
+
+	/**
+	 * Returns the value of the '<em><b>Properties</b></em>' containment reference list.
+	 * The list contents are of type {@link ch.flatland.cdo.model.base.FLProperty}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Properties</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Properties</em>' containment reference list.
+	 * @see ch.flatland.cdo.model.base.BasePackage#getFLElement_Properties()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<FLProperty> getProperties();
 
 } // FLElement

@@ -84,6 +84,10 @@ public class BaseAdapterFactory extends AdapterFactoryImpl {
 				return createFLTraceAdapter();
 			}
 			@Override
+			public Adapter caseFLProperty(FLProperty object) {
+				return createFLPropertyAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -156,6 +160,20 @@ public class BaseAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createFLTraceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ch.flatland.cdo.model.base.FLProperty <em>FL Property</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ch.flatland.cdo.model.base.FLProperty
+	 * @generated
+	 */
+	public Adapter createFLPropertyAdapter() {
 		return null;
 	}
 

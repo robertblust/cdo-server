@@ -49,6 +49,15 @@ public interface BaseFactory extends EFactory {
 	FLTrace createFLTrace();
 
 	/**
+	 * Returns a new object of class '<em>FL Property</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>FL Property</em>'.
+	 * @generated
+	 */
+	FLProperty createFLProperty();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
