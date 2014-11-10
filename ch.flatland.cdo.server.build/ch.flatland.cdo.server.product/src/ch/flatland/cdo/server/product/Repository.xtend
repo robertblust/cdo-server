@@ -49,7 +49,7 @@ class Repository {
 		SECURITY_MANAGER = SecurityManagerFactory.createSecurityManager
 		SECURITY_MANAGER.addCommitHandler(CommitHandlerFactory.createAnnotationCommitHandler)
 
-		//SECURITY_MANAGER.addCommitHandler(CommitHandlerFactory.createHomeCommitHandler)
+		SECURITY_MANAGER.addCommitHandler(CommitHandlerFactory.createHomeCommitHandler)
 		SECURITY_MANAGER.repository = REPOSITORY
 		SECURITY_MANAGER.activate
 	}

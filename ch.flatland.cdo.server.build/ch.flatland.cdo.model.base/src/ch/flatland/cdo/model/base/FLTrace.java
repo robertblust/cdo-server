@@ -54,7 +54,6 @@ public interface FLTrace extends CDOObject {
 
 	/**
 	 * Returns the value of the '<em><b>Target</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link ch.flatland.cdo.model.base.FLElement#getTracesFrom <em>Traces From</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Target</em>' reference isn't clear,
@@ -64,9 +63,7 @@ public interface FLTrace extends CDOObject {
 	 * @return the value of the '<em>Target</em>' reference.
 	 * @see #setTarget(FLElement)
 	 * @see ch.flatland.cdo.model.base.BasePackage#getFLTrace_Target()
-	 * @see ch.flatland.cdo.model.base.FLElement#getTracesFrom
-	 * @model opposite="tracesFrom" required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel notify='true'"
+	 * @model required="true"
 	 * @generated
 	 */
 	FLElement getTarget();

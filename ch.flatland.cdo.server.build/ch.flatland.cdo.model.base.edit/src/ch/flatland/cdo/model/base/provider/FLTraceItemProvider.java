@@ -154,7 +154,6 @@ public class FLTraceItemProvider
 
 		switch (notification.getFeatureID(FLTrace.class)) {
 			case BasePackage.FL_TRACE__TRACE_TYPE:
-			case BasePackage.FL_TRACE__TARGET:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
