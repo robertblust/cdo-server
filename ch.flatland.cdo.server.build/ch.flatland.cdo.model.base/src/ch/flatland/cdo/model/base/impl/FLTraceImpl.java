@@ -6,11 +6,7 @@ import ch.flatland.cdo.model.base.BasePackage;
 import ch.flatland.cdo.model.base.FLElement;
 import ch.flatland.cdo.model.base.FLTrace;
 import ch.flatland.cdo.model.base.FLTraceType;
-
-import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
-
-import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.internal.cdo.CDOObjectImpl;
 
 /**
@@ -108,49 +104,8 @@ public class FLTraceImpl extends CDOObjectImpl implements FLTrace {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetTarget(FLElement newTarget, NotificationChain msgs) {
-		msgs = eDynamicInverseAdd((InternalEObject)newTarget, BasePackage.FL_TRACE__TARGET, msgs);
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public void setTarget(FLElement newTarget) {
 		eDynamicSet(BasePackage.FL_TRACE__TARGET, BasePackage.Literals.FL_TRACE__TARGET, newTarget);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case BasePackage.FL_TRACE__TARGET:
-				FLElement target = basicGetTarget();
-				if (target != null)
-					msgs = ((InternalEObject)target).eInverseRemove(this, BasePackage.FL_ELEMENT__TRACES_FROM, FLElement.class, msgs);
-				return basicSetTarget((FLElement)otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case BasePackage.FL_TRACE__TARGET:
-				return basicSetTarget(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**

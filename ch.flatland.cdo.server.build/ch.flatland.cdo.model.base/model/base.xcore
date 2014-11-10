@@ -22,8 +22,6 @@ abstract class FLElement {
 	String description
 	contains FLTrace[] traces
 	contains FLProperty[] properties
-	@GenModel(property="Readonly", notify="true")
-	refers FLTrace[] tracesFrom opposite target
 }
 
 /*
@@ -55,8 +53,7 @@ class FLPackage extends FLElement {
 
 class FLTrace {
 	FLTraceType[1] traceType
-	@GenModel(notify="true")
-	refers FLElement[1] target opposite tracesFrom
+	refers FLElement[1] target
 }
 
 enum FLTraceType {

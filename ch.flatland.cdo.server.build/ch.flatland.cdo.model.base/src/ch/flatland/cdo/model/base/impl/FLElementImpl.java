@@ -31,7 +31,6 @@ import org.eclipse.emf.internal.cdo.CDOObjectImpl;
  *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getTraces <em>Traces</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getProperties <em>Properties</em>}</li>
- *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getTracesFrom <em>Traces From</em>}</li>
  * </ul>
  * </p>
  *
@@ -148,31 +147,6 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
-	public EList<FLTrace> getTracesFrom() {
-		return (EList<FLTrace>)eDynamicGet(BasePackage.FL_ELEMENT__TRACES_FROM, BasePackage.Literals.FL_ELEMENT__TRACES_FROM, true, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case BasePackage.FL_ELEMENT__TRACES_FROM:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getTracesFrom()).basicAdd(otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -180,8 +154,6 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 				return ((InternalEList<?>)getTraces()).basicRemove(otherEnd, msgs);
 			case BasePackage.FL_ELEMENT__PROPERTIES:
 				return ((InternalEList<?>)getProperties()).basicRemove(otherEnd, msgs);
-			case BasePackage.FL_ELEMENT__TRACES_FROM:
-				return ((InternalEList<?>)getTracesFrom()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -202,8 +174,6 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 				return getTraces();
 			case BasePackage.FL_ELEMENT__PROPERTIES:
 				return getProperties();
-			case BasePackage.FL_ELEMENT__TRACES_FROM:
-				return getTracesFrom();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -231,10 +201,6 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 				getProperties().clear();
 				getProperties().addAll((Collection<? extends FLProperty>)newValue);
 				return;
-			case BasePackage.FL_ELEMENT__TRACES_FROM:
-				getTracesFrom().clear();
-				getTracesFrom().addAll((Collection<? extends FLTrace>)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -259,9 +225,6 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 			case BasePackage.FL_ELEMENT__PROPERTIES:
 				getProperties().clear();
 				return;
-			case BasePackage.FL_ELEMENT__TRACES_FROM:
-				getTracesFrom().clear();
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -282,8 +245,6 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 				return !getTraces().isEmpty();
 			case BasePackage.FL_ELEMENT__PROPERTIES:
 				return !getProperties().isEmpty();
-			case BasePackage.FL_ELEMENT__TRACES_FROM:
-				return !getTracesFrom().isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

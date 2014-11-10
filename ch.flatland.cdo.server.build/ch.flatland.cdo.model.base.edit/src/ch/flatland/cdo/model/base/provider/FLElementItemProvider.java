@@ -56,7 +56,6 @@ public class FLElementItemProvider
 
 			addNamePropertyDescriptor(object);
 			addDescriptionPropertyDescriptor(object);
-			addTracesFromPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -101,28 +100,6 @@ public class FLElementItemProvider
 				 true,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Traces From feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addTracesFromPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_FLElement_tracesFrom_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_FLElement_tracesFrom_feature", "_UI_FLElement_type"),
-				 BasePackage.Literals.FL_ELEMENT__TRACES_FROM,
-				 false,
-				 false,
-				 true,
-				 null,
 				 null,
 				 null));
 	}
@@ -197,7 +174,6 @@ public class FLElementItemProvider
 		switch (notification.getFeatureID(FLElement.class)) {
 			case BasePackage.FL_ELEMENT__NAME:
 			case BasePackage.FL_ELEMENT__DESCRIPTION:
-			case BasePackage.FL_ELEMENT__TRACES_FROM:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case BasePackage.FL_ELEMENT__TRACES:

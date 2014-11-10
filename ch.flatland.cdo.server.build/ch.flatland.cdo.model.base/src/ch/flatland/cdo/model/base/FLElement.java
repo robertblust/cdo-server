@@ -23,7 +23,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link ch.flatland.cdo.model.base.FLElement#getDescription <em>Description</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.FLElement#getTraces <em>Traces</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.FLElement#getProperties <em>Properties</em>}</li>
- *   <li>{@link ch.flatland.cdo.model.base.FLElement#getTracesFrom <em>Traces From</em>}</li>
  * </ul>
  * </p>
  *
@@ -117,24 +116,5 @@ public interface FLElement extends CDOObject {
 	 * @generated
 	 */
 	EList<FLProperty> getProperties();
-
-	/**
-	 * Returns the value of the '<em><b>Traces From</b></em>' reference list.
-	 * The list contents are of type {@link ch.flatland.cdo.model.base.FLTrace}.
-	 * It is bidirectional and its opposite is '{@link ch.flatland.cdo.model.base.FLTrace#getTarget <em>Target</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Traces From</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Traces From</em>' reference list.
-	 * @see ch.flatland.cdo.model.base.BasePackage#getFLElement_TracesFrom()
-	 * @see ch.flatland.cdo.model.base.FLTrace#getTarget
-	 * @model opposite="target"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel property='Readonly' notify='true'"
-	 * @generated
-	 */
-	EList<FLTrace> getTracesFrom();
 
 } // FLElement

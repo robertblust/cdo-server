@@ -105,22 +105,13 @@ public interface BasePackage extends EPackage {
 	int FL_ELEMENT__PROPERTIES = 3;
 
 	/**
-	 * The feature id for the '<em><b>Traces From</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FL_ELEMENT__TRACES_FROM = 4;
-
-	/**
 	 * The number of structural features of the '<em>FL Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT_FEATURE_COUNT = 5;
+	int FL_ELEMENT_FEATURE_COUNT = 4;
 
 	/**
 	 * The number of operations of the '<em>FL Element</em>' class.
@@ -176,15 +167,6 @@ public interface BasePackage extends EPackage {
 	 * @ordered
 	 */
 	int FL_COMPONENT__PROPERTIES = FL_ELEMENT__PROPERTIES;
-
-	/**
-	 * The feature id for the '<em><b>Traces From</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FL_COMPONENT__TRACES_FROM = FL_ELEMENT__TRACES_FROM;
 
 	/**
 	 * The feature id for the '<em><b>Component Id</b></em>' attribute.
@@ -267,15 +249,6 @@ public interface BasePackage extends EPackage {
 	 * @ordered
 	 */
 	int FL_PACKAGE__PROPERTIES = FL_ELEMENT__PROPERTIES;
-
-	/**
-	 * The feature id for the '<em><b>Traces From</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FL_PACKAGE__TRACES_FROM = FL_ELEMENT__TRACES_FROM;
 
 	/**
 	 * The feature id for the '<em><b>Elements</b></em>' containment reference list.
@@ -478,17 +451,6 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getFLElement_Properties();
-
-	/**
-	 * Returns the meta object for the reference list '{@link ch.flatland.cdo.model.base.FLElement#getTracesFrom <em>Traces From</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Traces From</em>'.
-	 * @see ch.flatland.cdo.model.base.FLElement#getTracesFrom()
-	 * @see #getFLElement()
-	 * @generated
-	 */
-	EReference getFLElement_TracesFrom();
 
 	/**
 	 * Returns the meta object for class '{@link ch.flatland.cdo.model.base.FLComponent <em>FL Component</em>}'.
@@ -703,14 +665,6 @@ public interface BasePackage extends EPackage {
 		 * @generated
 		 */
 		EReference FL_ELEMENT__PROPERTIES = eINSTANCE.getFLElement_Properties();
-
-		/**
-		 * The meta object literal for the '<em><b>Traces From</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference FL_ELEMENT__TRACES_FROM = eINSTANCE.getFLElement_TracesFrom();
 
 		/**
 		 * The meta object literal for the '{@link ch.flatland.cdo.model.base.impl.FLComponentImpl <em>FL Component</em>}' class.
