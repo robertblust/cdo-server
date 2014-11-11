@@ -18,6 +18,8 @@ import org.eclipse.emf.cdo.session.CDOSession
 import org.eclipse.emf.cdo.view.CDOAdapterPolicy
 import org.eclipse.emf.cdo.view.CDOView
 
+import static extension ch.flatland.cdo.service.repoaccess.BasicAuth.*
+
 class AbstractAccessServlet extends HttpServlet {
 
 	var CDOSession session = null;
@@ -51,6 +53,7 @@ class AbstractAccessServlet extends HttpServlet {
 				   doGet() «this.class.name»
 				   req.pathInfo = «req.pathInfo»
 				   params = «req.parameterMap»
+				   userId = «req.userId»
 				<<<
 			''')
 	}
