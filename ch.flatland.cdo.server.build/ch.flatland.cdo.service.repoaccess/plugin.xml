@@ -6,8 +6,16 @@
       <servlet
             alias="/repo"
             class="ch.flatland.cdo.service.repoaccess.RepoAccessServlet"
+            httpcontextId="ch.flatland.cdo.service.repoaccess.BasicAuthHttpContext"
             load-on-startup="false">
       </servlet>
+   </extension>
+   <extension
+         point="org.eclipse.equinox.http.registry.httpcontexts">
+      <httpcontext
+            class="ch.flatland.cdo.service.repoaccess.BasicAuthHttpContext"
+            id="ch.flatland.cdo.service.repoaccess.BasicAuthHttpContext">
+      </httpcontext>
    </extension>
 
 </plugin>
