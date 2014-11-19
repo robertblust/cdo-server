@@ -73,6 +73,9 @@ class RepoAccessServlet extends AbstractAccessServlet {
 				resp.contentType = Json.JSONP_CONTENTTYPE_UTF8
 				resp.writer.append(jsonString)
 			}
+			if (!view.closed) {
+				view.close
+			}
 		}
 	}	
 }
