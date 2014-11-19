@@ -62,9 +62,6 @@ class RepoAccessServlet extends AbstractAccessServlet {
 		} catch (Exception e) {
 			jsonString = new JsonConverter(jsonConverterConfig).toJson(e)
 			logger.error("Could not processing request", e)
-			if (RepoAccessPlugin.getDefault.debugging) {
-				e.printStackTrace
-			}
 		} finally {
 			logger.debug("Response json {}", jsonString)
 
