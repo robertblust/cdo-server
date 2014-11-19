@@ -1,12 +1,16 @@
 package ch.flatland.cdo.service.repoaccess
 
+import org.slf4j.LoggerFactory
+
 class SessionManager extends Thread {
 
 	val TIMEOUT_PROPERTY = "org.eclipse.equinox.http.jetty.context.sessioninactiveinterval"
 	val timeoutProperty = System.getProperty(TIMEOUT_PROPERTY)
+	
+	val logger = LoggerFactory.getLogger(this.class)
 
 	override run() {
-		name = "Thread [" + class.name + "]"
+		name = class.simpleName
 		if (timeoutProperty == null) {
 			throw new RuntimeException("-D" + TIMEOUT_PROPERTY + " not set!")
 		}
@@ -20,28 +24,19 @@ class SessionManager extends Thread {
 	}
 
 	def invalidateSessions(long timeout) {
-		if (RepoAccessPlugin.getDefault.debugging) {
-			println(
-				'''
-					>>>
-					   invalidateSessions(«timeout») «this.class.name»''')
-		}
+		
 		val sessionIds = SessionFactory.getSessionMap.keySet.clone
+		
+		logger.debug("Available sessions {}", sessionIds.size)
+		
 		for (sessionId : sessionIds) {
 			val sessionEntry = SessionFactory.getSessionMap.get(sessionId)
 			if (System.currentTimeMillis - sessionEntry.lastHttpSessionActivity > timeout) {
 				sessionEntry.invalidateCDOsession
 				SessionFactory.getSessionMap.remove(sessionId)
-				if (RepoAccessPlugin.getDefault.debugging) {
-					println(
-						'''      Removed inactive session [«sessionId»]''')
-				}
+				
+				logger.debug("Invalidate session {}", sessionId)
 			}
-		}
-		if (RepoAccessPlugin.getDefault.debugging) {
-			println(
-				'''<<<
-				''')
 		}
 	}
 }
