@@ -13,32 +13,20 @@ package ch.flatland.cdo.service.repoaccess
 import javax.servlet.ServletException
 import javax.servlet.http.HttpServlet
 import javax.servlet.http.HttpServletRequest
+import org.slf4j.LoggerFactory
 
 import static extension ch.flatland.cdo.service.repoaccess.BasicAuth.*
 
 class AbstractAccessServlet extends HttpServlet {
+	
+	val logger = LoggerFactory.getLogger(this.class)
 
 	override init() throws ServletException {
 		super.init()
-		if (RepoAccessPlugin.getDefault.debugging) {
-			println(
-				'''
-					>>>
-					   init() «this.class.name»
-					<<<
-				''')
-		}
+		logger.debug("init")
 	}
 
 	def logRequest(HttpServletRequest req) {
-		println(
-			'''
-				>>>
-				   doGet() «this.class.name»
-				   req.pathInfo = «req.pathInfo»
-				   params = «req.parameterMap»
-				   userId = «req.userId»
-				<<<
-			''')
+		logger.debug("Request {} with params {} from {}", req.pathInfo, req.parameterMap, req.userId)
 	}
 }

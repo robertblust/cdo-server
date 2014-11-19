@@ -18,19 +18,20 @@ import javax.servlet.ServletException
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 import org.eclipse.emf.cdo.common.id.CDOIDUtil
+import org.slf4j.LoggerFactory
 
 class RepoAccessServlet extends AbstractAccessServlet {
 
+	val logger = LoggerFactory.getLogger(this.class)
+	
 	val static PARAM_OID = Json.PARAM_OID
 	val static PARAM_META = Json.PARAM_META
 	val static PARAM_JSONP_CALLBACK = "callback"
 	val static SERVLET_CONTEXT = "/repo"
 
 	override protected doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		if (RepoAccessPlugin.getDefault.debugging) {
-			logRequest(req)
-		}
-		
+		logRequest(req)
+
 		val view = SessionFactory.getCDOSession(req.session.id).openView
 
 		val servletUrl = req.requestURL.substring(0, req.requestURL.indexOf(SERVLET_CONTEXT)) + SERVLET_CONTEXT
@@ -60,10 +61,12 @@ class RepoAccessServlet extends AbstractAccessServlet {
 
 		} catch (Exception e) {
 			jsonString = new JsonConverter(jsonConverterConfig).toJson(e)
+			logger.error("Could not processing request", e)
 			if (RepoAccessPlugin.getDefault.debugging) {
 				e.printStackTrace
 			}
 		} finally {
+			logger.debug("Response json {}", jsonString)
 
 			// write response
 			if (req.getParameter(PARAM_JSONP_CALLBACK) != null && req.getParameter(PARAM_JSONP_CALLBACK).length > 0) {
@@ -73,9 +76,10 @@ class RepoAccessServlet extends AbstractAccessServlet {
 				resp.contentType = Json.JSONP_CONTENTTYPE_UTF8
 				resp.writer.append(jsonString)
 			}
+
 			if (!view.closed) {
 				view.close
 			}
 		}
-	}	
+	}
 }

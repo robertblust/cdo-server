@@ -24,6 +24,8 @@ import javax.naming.ldap.InitialLdapContext;
 import javax.naming.ldap.LdapContext;
 
 import org.eclipse.net4j.util.security.IAuthenticator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import ch.flatland.cdo.server.AuthenticationUtil;
 
@@ -35,6 +37,8 @@ public class LdapAuthenticatorManager implements IAuthenticator {
 	private String ldapUserIdField = null;
 	private boolean useSSL = false;
 	private boolean faked = false;
+
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	/**
 	 * Constructor with description of ldap server connectivity.
@@ -54,7 +58,7 @@ public class LdapAuthenticatorManager implements IAuthenticator {
 		initLdap(description);
 		log();
 	}
-	
+
 	public LdapAuthenticatorManager(String ldapServer, String ldapDomainBase, String ldapUserIdField) {
 		this.ldapServer = ldapServer;
 		this.ldapDomainBase = ldapDomainBase;
@@ -69,29 +73,25 @@ public class LdapAuthenticatorManager implements IAuthenticator {
 	}
 
 	public void authenticate(String userId, char[] password) throws SecurityException {
-		if (LdapAuthenticatorPlugin.getDefault().isDebugging()) {
-			System.out.println(">>>");
-			System.out.println("    authenticate() " + this.getClass().getName());
-			System.out.println("    user = " + userId);
-			System.out.println("<<< ");
-		}
+		
+		logger.debug("authenticate {}", userId);
 		
 		if (faked) {
 			// NO AUTHENTICATION PERFORMED
-			System.err.println("!!!! NO AUTHENTICATION PERFORMED !!!!");
+			logger.error("!!!! NO AUTHENTICATION PERFORMED for {} !!!!", userId);
 			return;
 		}
 
 		String p = new String(password);
-		
+
 		if (userId.equals(AuthenticationUtil.ADMIN_USER) && p.equals(AuthenticationUtil.ADMIN_PWD)) {
 			return;
 		}
-		
+
 		if (userId.equals(AuthenticationUtil.READONLY_USER) && p.equals(AuthenticationUtil.READONLY_PWD)) {
 			return;
 		}
-		
+
 		String ldapUserIdFieldFilter = ldapUserIdField + "=" + userId;
 
 		String objectName = ldapLookupUser(ldapUserIdFieldFilter);
@@ -186,17 +186,9 @@ public class LdapAuthenticatorManager implements IAuthenticator {
 			faked = true;
 		}
 	}
-	
+
 	private void log() {
-		if (LdapAuthenticatorPlugin.getDefault().isDebugging()) {
-			System.out.println(">>>");
-			System.out.println("    new() " + this.getClass().getName());
-			System.out.println("    ldapServer = " + ldapServer);
-			System.out.println("    ldapDomainBase = " + ldapDomainBase);
-			System.out.println("    ldapUserIdField = " + ldapUserIdField);
-			System.out.println("    useSSL = " + useSSL);
-			System.out.println("<<< ");
-		}
+		logger.debug("Construct server {}, domain base {}, user id field {}, use ssl {}, faked {}", ldapServer, ldapDomainBase, ldapUserIdField, useSSL, faked);
 	}
 
 }

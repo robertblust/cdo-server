@@ -12,9 +12,11 @@ package ch.flatland.cdo.service.repoaccess
 
 import ch.flatland.cdo.server.ServerUtil
 import java.util.HashMap
+import org.slf4j.LoggerFactory
 
 class SessionFactory {
-
+	val static logger = LoggerFactory.getLogger(SessionFactory)
+	
 	val static sessionMap = new HashMap<String, SessionEntry>
 
 	def static getOrCreateCDOSession(String sessionId, String userID, String password) {
@@ -25,26 +27,12 @@ class SessionFactory {
 				sessionEntry.CDOSession = ServerUtil.openSession(userID, password)
 			}
 			sessionEntry.updateHttpSessionActivity
-			if (RepoAccessPlugin.getDefault.debugging) {
-				println(
-					'''
-						>>>
-						   getOrCreateCDOSession(«sessionId», «userID») «SessionFactory.name»
-						   reused CDOSession = «getCDOSession(sessionId).sessionID»
-						<<<
-					''')
-			}
+			
+			logger.debug("Reuse CDO Session {} for http Session {}", getCDOSession(sessionId).sessionID, sessionId)
 		} else {
 			sessionMap.put(sessionId, new SessionEntry(ServerUtil.openSession(userID, password)))
-			if (RepoAccessPlugin.getDefault.debugging) {
-				println(
-					'''
-						>>>
-						   getOrCreateCDOSession(«sessionId», «userID») «SessionFactory.name»
-						   new CDOSession = «getCDOSession(sessionId).sessionID»
-						<<<
-					''')
-			}
+			
+			logger.debug("Create CDO Session {} for http Session {}", getCDOSession(sessionId).sessionID, sessionId)
 		}
 		return getCDOSession(sessionId)
 	}
