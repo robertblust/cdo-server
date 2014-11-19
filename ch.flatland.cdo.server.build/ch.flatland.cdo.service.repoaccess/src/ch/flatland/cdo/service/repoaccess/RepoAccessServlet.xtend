@@ -30,6 +30,9 @@ class RepoAccessServlet extends AbstractAccessServlet {
 		if (RepoAccessPlugin.getDefault.debugging) {
 			logRequest(req)
 		}
+		
+		val view = SessionFactory.getCDOSession(req.session.id).openView
+
 		val servletUrl = req.requestURL.substring(0, req.requestURL.indexOf(SERVLET_CONTEXT)) + SERVLET_CONTEXT
 		val jsonConverterConfig = new JsonConverterConfig(servletUrl, SERVLET_CONTEXT)
 		var Object requestedObject = null
@@ -71,5 +74,5 @@ class RepoAccessServlet extends AbstractAccessServlet {
 				resp.writer.append(jsonString)
 			}
 		}
-	}
+	}	
 }

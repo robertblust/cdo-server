@@ -11,7 +11,15 @@
 package ch.flatland.cdo.service.repoaccess
 
 import ch.flatland.cdo.util.AbstractFlatlandPlugin
+import org.osgi.framework.BundleContext
 
 class RepoAccessPlugin extends AbstractFlatlandPlugin {
-	
+
+	var SessionManager sessionManager
+
+	def override start(BundleContext bundleContext) throws Exception {
+		super.start(bundleContext)
+		sessionManager = new SessionManager
+		sessionManager.start
+	}
 }
