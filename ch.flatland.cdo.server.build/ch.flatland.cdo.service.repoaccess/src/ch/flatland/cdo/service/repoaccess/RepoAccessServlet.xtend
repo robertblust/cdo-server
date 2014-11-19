@@ -23,7 +23,7 @@ import org.slf4j.LoggerFactory
 class RepoAccessServlet extends AbstractAccessServlet {
 
 	val logger = LoggerFactory.getLogger(this.class)
-	
+
 	val static PARAM_OID = Json.PARAM_OID
 	val static PARAM_META = Json.PARAM_META
 	val static PARAM_JSONP_CALLBACK = "callback"
@@ -32,7 +32,7 @@ class RepoAccessServlet extends AbstractAccessServlet {
 	override protected doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		logRequest(req)
 
-		val view = SessionFactory.getCDOSession(req.session.id).openView
+		val view = SessionFactory.getCDOSession(req).openView
 
 		val servletUrl = req.requestURL.substring(0, req.requestURL.indexOf(SERVLET_CONTEXT)) + SERVLET_CONTEXT
 		val jsonConverterConfig = new JsonConverterConfig(servletUrl, SERVLET_CONTEXT)

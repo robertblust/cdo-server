@@ -23,7 +23,8 @@ class BasicAuthHttpContext implements HttpContext {
 	val logger = LoggerFactory.getLogger(this.class)
 
 	override handleSecurity(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		val session = request.getSession(true)
+		// enusre that a http session is created
+		request.getSession(true)
 
 		// only allow https
 		if (!request.getScheme().equals("https")) {
@@ -44,7 +45,7 @@ class BasicAuthHttpContext implements HttpContext {
 		try {
 
 			// try to create a CDOSession and reuse the CDO Authentication
-			SessionFactory.getOrCreateCDOSession(session.id, request.userId, request.password)
+			SessionFactory.getOrCreateCDOSession(request)
 		} catch (Exception e) {
 			logger.debug("Authentication failed - {}", request.userId)
 			
