@@ -20,7 +20,7 @@ class BasicAuth {
 	def private static getUserNameAndPassword(HttpServletRequest request) throws FlatlandException {
 		val authHeader = request.getHeader("Authorization");
 		if (authHeader == null) {
-			throw new FlatlandException("request.getHeader(\"Authorization\"), should not happen")
+			throw new FlatlandException("request.getHeader(\"Authorization\") == null, should not happen")
 		}
 		val usernameAndPassword = new String(Base64.decodeBase64(authHeader.substring(6).getBytes()))
 		return usernameAndPassword
