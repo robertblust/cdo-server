@@ -10,6 +10,14 @@ class BasicAuth {
 		val userName = request.userNameAndPassword.substring(0, userNameIndex)
 		return userName
 	}
+	
+	def static getSessionId(HttpServletRequest request) {
+		return request.session.id
+	}
+	
+	def static getSessionKey(HttpServletRequest request) {
+		return request.sessionId + "-" + request.userId
+	}
 
 	def static getPassword(HttpServletRequest request) throws FlatlandException {
 		val userNameIndex = request.userNameAndPassword.indexOf(":")

@@ -13,35 +13,41 @@ package ch.flatland.cdo.service.repoaccess
 import ch.flatland.cdo.server.ServerUtil
 import java.util.HashMap
 import org.slf4j.LoggerFactory
+import javax.servlet.http.HttpServletRequest
+
+import static extension ch.flatland.cdo.service.repoaccess.BasicAuth.*
 
 class SessionFactory {
 	val static logger = LoggerFactory.getLogger(SessionFactory)
 	
 	val static sessionMap = new HashMap<String, SessionEntry>
 
-	def static getOrCreateCDOSession(String sessionId, String userID, String password) {
-		if (sessionMap.containsKey(sessionId)) {
-			val sessionEntry = sessionMap.get(sessionId)
+	def static getOrCreateCDOSession(HttpServletRequest request) {
+		if (sessionMap.containsKey(request.sessionKey)) {
+			val sessionEntry = sessionMap.get(request.sessionKey)
 			if (sessionEntry.CDOSession.closed) {
 				sessionEntry.invalidateCDOsession
-				sessionEntry.CDOSession = ServerUtil.openSession(userID, password)
+				sessionEntry.CDOSession = ServerUtil.openSession(request.userId, request.password)
 			}
 			sessionEntry.updateHttpSessionActivity
 			
-			logger.debug("Reuse CDO Session {} for http Session {}", getCDOSession(sessionId).sessionID, sessionId)
+			logger.debug("Reuse CDO Session")
 		} else {
-			sessionMap.put(sessionId, new SessionEntry(ServerUtil.openSession(userID, password)))
+			sessionMap.put(request.sessionKey, new SessionEntry(ServerUtil.openSession(request.userId, request.password)))
 			
-			logger.debug("Create CDO Session {} for http Session {}", getCDOSession(sessionId).sessionID, sessionId)
+			logger.debug("Create CDO Session")
 		}
-		return getCDOSession(sessionId)
+		
+		logger.debug("CDO Session {} for http Session {} and user {}", getCDOSession(request).sessionID, request.sessionId, request.userId)
+		
+		return getCDOSession(request)
 	}
 
 	def static getSessionMap() {
 		sessionMap
 	}
 
-	def static getCDOSession(String sessionId) {
-		sessionMap.get(sessionId).CDOSession
+	def static getCDOSession(HttpServletRequest request) {
+		sessionMap.get(request.sessionKey).CDOSession
 	}
 }
