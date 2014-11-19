@@ -16,6 +16,8 @@ class SessionManager extends Thread {
 		}
 
 		val timeout = Long.parseLong(timeoutProperty) * 1000
+		
+		logger.debug("run with session timeout {}ms", timeout)
 
 		while (true) {
 			sleep(timeout)
