@@ -227,7 +227,7 @@ class JsonConverter {
 	}
 
 	def private addType(JsonObject jsonBaseObject, EClassifier classifier) {
-		jsonBaseObject.addProperty(TYPE, classifier.EPackage.nsPrefix + "." + classifier.name)
+		jsonBaseObject.addProperty(TYPE, classifier.EPackage.nsURI + "." + classifier.name)
 	}
 
 	def private dispatch getJsonPrimitive(Object object) {
