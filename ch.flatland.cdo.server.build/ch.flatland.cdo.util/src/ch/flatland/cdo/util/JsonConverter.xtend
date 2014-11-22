@@ -15,6 +15,7 @@ import com.google.gson.JsonArray
 import com.google.gson.JsonObject
 import com.google.gson.JsonPrimitive
 import java.util.List
+import org.eclipse.emf.cdo.CDOObject
 import org.eclipse.emf.cdo.eresource.CDOResourceNode
 import org.eclipse.emf.common.util.Enumerator
 import org.eclipse.emf.common.util.URI
@@ -27,8 +28,6 @@ import org.eclipse.emf.edit.EMFEditPlugin
 import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory
 import org.eclipse.emf.internal.cdo.object.CDOLegacyAdapter
-import org.eclipse.emf.cdo.CDOObject
-import org.eclipse.emf.cdo.common.security.CDOPermission
 
 class JsonConverter {
 	static val gson = new Gson
@@ -39,11 +38,11 @@ class JsonConverter {
 	static val LABEL = "label"
 	static val LOWER_BOUND = "lowerBound"
 	static val UPPER_BOUND = "upperBound"
-	static val OID = Json.PARAM_OID
+	static val ID = Json.PARAM_ID
 	static val META = Json.PARAM_META
-	static val URL = "url"
+	static val HREF = "href"
 	static val NAME = "name"
-	static val CONTAINER = "container"
+	static val CONTAINER = "hrefContainer"
 	static val ATTRIBUTES = "attributes"
 	static val REFERENCES = "references"
 	static val CONTAINMENT = "containment"
@@ -99,8 +98,8 @@ class JsonConverter {
 		} else {
 			jsonBaseObject.addProperty(LABEL, ITEM_DELEGATOR.getText(object))
 		}
-		jsonBaseObject.addProperty(OID, object.oid)
-		jsonBaseObject.addProperty(URL, object.url)
+		jsonBaseObject.addProperty(ID, object.oid)
+		jsonBaseObject.addProperty(HREF, object.url)
 		if (object.eContainer != null) {
 			jsonBaseObject.addProperty(CONTAINER, object.eContainer.url)
 		} else {
@@ -271,7 +270,7 @@ class JsonConverter {
 
 	def private dispatch getUrl(EObject object) {
 		val uri = EcoreUtil.getURI(object)
-		return jsonConverterConfig.serverUrl + uri.devicePath.replace("//", "/") + "?oid=" +
+		return jsonConverterConfig.serverUrl + uri.devicePath.replace("//", "/") + "?" + ID + "=" +
 			uri.fragment.replace("L", "")
 	}
 
