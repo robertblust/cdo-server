@@ -24,7 +24,7 @@ class RepoAccessServlet extends AbstractAccessServlet {
 
 	val logger = LoggerFactory.getLogger(this.class)
 
-	val static PARAM_OID = Json.PARAM_OID
+	val static PARAM_ID = Json.PARAM_ID
 	val static PARAM_META = Json.PARAM_META
 	val static PARAM_JSONP_CALLBACK = "callback"
 	val static SERVLET_CONTEXT = "/repo"
@@ -47,8 +47,8 @@ class RepoAccessServlet extends AbstractAccessServlet {
 			var processed = false
 
 			// processes oid
-			if (req.getParameter(PARAM_OID) != null && req.getParameter(PARAM_OID).length > 0) {
-				requestedObject = view.getObject(CDOIDUtil.createLong(Long.parseLong(req.getParameter(PARAM_OID))))
+			if (req.getParameter(PARAM_ID) != null && req.getParameter(PARAM_ID).length > 0) {
+				requestedObject = view.getObject(CDOIDUtil.createLong(Long.parseLong(req.getParameter(ch.flatland.cdo.service.repoaccess.RepoAccessServlet.PARAM_ID))))
 				processed = true
 			}
 
