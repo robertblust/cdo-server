@@ -45,12 +45,9 @@ class BasicAuthHttpContext implements HttpContext {
 			// try to create a CDOSession and reuse the CDO Authentication
 			SessionFactory.getOrCreateCDOSession(request)
 		} catch (Exception e) {
-			logger.debug("Authentication failed - {}", request.userId)
+			logger.debug("Authentication failed - {} > stacktrace {}", request.userId, e)
 
 			response.sendError(HttpServletResponse.SC_UNAUTHORIZED)
-			if (RepoAccessPlugin.getDefault.debugging) {
-				e.printStackTrace
-			}
 			return false
 		}
 		logger.debug("Authentication OK - {}", request.userId)
