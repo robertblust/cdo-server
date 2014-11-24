@@ -15,6 +15,7 @@ import javax.servlet.ServletException
 import javax.servlet.http.HttpServlet
 import javax.servlet.http.HttpServletRequest
 import org.slf4j.LoggerFactory
+import static extension ch.flatland.cdo.util.BasicAuth.*
 
 class AbstractServlet extends HttpServlet {
 	
@@ -33,6 +34,10 @@ class AbstractServlet extends HttpServlet {
 	}
 
 	def logRequest(HttpServletRequest req) {
-		logger.debug("Request {} with params {}", req.pathInfo, req.parameterMap)
+		var userId = "anonymous"
+		if (req.basicAuthExits) {
+			userId = req.userId
+		}
+		logger.debug("Request {} with params {} from {}", req.requestURL, req.parameterMap, userId)
 	}
 }

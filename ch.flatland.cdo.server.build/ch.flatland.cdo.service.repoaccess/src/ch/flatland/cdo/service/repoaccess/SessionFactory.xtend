@@ -12,14 +12,14 @@ package ch.flatland.cdo.service.repoaccess
 
 import ch.flatland.cdo.server.ServerUtil
 import java.util.HashMap
-import org.slf4j.LoggerFactory
 import javax.servlet.http.HttpServletRequest
+import org.slf4j.LoggerFactory
 
-import static extension ch.flatland.cdo.service.repoaccess.BasicAuth.*
+import static extension ch.flatland.cdo.util.BasicAuth.*
 
 class SessionFactory {
 	val static logger = LoggerFactory.getLogger(SessionFactory)
-	
+
 	val static sessionMap = new HashMap<String, SessionEntry>
 
 	def static getOrCreateCDOSession(HttpServletRequest request) {
@@ -30,16 +30,18 @@ class SessionFactory {
 				sessionEntry.CDOSession = ServerUtil.openSession(request.userId, request.password)
 			}
 			sessionEntry.updateHttpSessionActivity
-			
+
 			logger.debug("Reuse CDO Session")
 		} else {
-			sessionMap.put(request.sessionKey, new SessionEntry(ServerUtil.openSession(request.userId, request.password)))
-			
+			sessionMap.put(request.sessionKey,
+				new SessionEntry(ServerUtil.openSession(request.userId, request.password)))
+
 			logger.debug("Create CDO Session")
 		}
-		
-		logger.debug("CDO Session {} for http Session {} and user {}", getCDOSession(request).sessionID, request.sessionId, request.userId)
-		
+
+		logger.debug("CDO Session {} for http Session {} and user {}", getCDOSession(request).sessionID,
+			request.sessionId, request.userId)
+
 		return getCDOSession(request)
 	}
 

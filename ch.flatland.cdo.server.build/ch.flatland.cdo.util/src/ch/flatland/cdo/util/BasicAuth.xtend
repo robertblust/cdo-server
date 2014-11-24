@@ -1,20 +1,22 @@
-package ch.flatland.cdo.service.repoaccess
+package ch.flatland.cdo.util
 
 import javax.servlet.http.HttpServletRequest
 import org.apache.commons.codec.binary.Base64
-import ch.flatland.cdo.util.FlatlandException
 
 class BasicAuth {
+
+	val static AUTH_HEADER = "Authorization"
+
 	def static getUserId(HttpServletRequest request) throws FlatlandException {
 		val userNameIndex = request.userNameAndPassword.indexOf(":")
 		val userName = request.userNameAndPassword.substring(0, userNameIndex)
 		return userName
 	}
-	
+
 	def static getSessionId(HttpServletRequest request) {
 		return request.session.id
 	}
-	
+
 	def static getSessionKey(HttpServletRequest request) {
 		return request.sessionId + "-" + request.userId
 	}
@@ -25,8 +27,12 @@ class BasicAuth {
 		return password
 	}
 
+	def static basicAuthExits(HttpServletRequest request) {
+		return request.getHeader(AUTH_HEADER) != null
+	}
+
 	def private static getUserNameAndPassword(HttpServletRequest request) throws FlatlandException {
-		val authHeader = request.getHeader("Authorization");
+		val authHeader = request.getHeader(AUTH_HEADER)
 		if (authHeader == null) {
 			throw new FlatlandException("request.getHeader(\"Authorization\") == null, should not happen")
 		}
