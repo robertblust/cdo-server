@@ -10,6 +10,7 @@
  */
 package ch.flatland.cdo.service.repoaccess
 
+import ch.flatland.cdo.util.AbstractServlet
 import ch.flatland.cdo.util.Json
 import ch.flatland.cdo.util.JsonConverter
 import ch.flatland.cdo.util.JsonConverterConfig
@@ -20,7 +21,7 @@ import javax.servlet.http.HttpServletResponse
 import org.eclipse.emf.cdo.common.id.CDOIDUtil
 import org.slf4j.LoggerFactory
 
-class RepoAccessServlet extends AbstractAccessServlet {
+class RepoAccessServlet extends AbstractServlet {
 
 	val logger = LoggerFactory.getLogger(this.class)
 
@@ -48,7 +49,7 @@ class RepoAccessServlet extends AbstractAccessServlet {
 
 			// processes oid
 			if (req.getParameter(PARAM_ID) != null && req.getParameter(PARAM_ID).length > 0) {
-				requestedObject = view.getObject(CDOIDUtil.createLong(Long.parseLong(req.getParameter(ch.flatland.cdo.service.repoaccess.RepoAccessServlet.PARAM_ID))))
+				requestedObject = view.getObject(CDOIDUtil.createLong(Long.parseLong(req.getParameter(RepoAccessServlet.PARAM_ID))))
 				processed = true
 			}
 

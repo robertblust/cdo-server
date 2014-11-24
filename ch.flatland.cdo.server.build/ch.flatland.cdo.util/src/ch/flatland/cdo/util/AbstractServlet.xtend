@@ -8,17 +8,15 @@
  * Contributors:
  *    Robert Blust - initial API and implementation
  */
-package ch.flatland.cdo.service.repoaccess
+package ch.flatland.cdo.util
 
+import javax.servlet.ServletConfig
 import javax.servlet.ServletException
 import javax.servlet.http.HttpServlet
 import javax.servlet.http.HttpServletRequest
 import org.slf4j.LoggerFactory
 
-import static extension ch.flatland.cdo.service.repoaccess.BasicAuth.*
-import javax.servlet.ServletConfig
-
-class AbstractAccessServlet extends HttpServlet {
+class AbstractServlet extends HttpServlet {
 	
 	val logger = LoggerFactory.getLogger(this.class)
 	val static SESSION_COOKIE = "CH-FLATLAND-CDO"
@@ -35,6 +33,6 @@ class AbstractAccessServlet extends HttpServlet {
 	}
 
 	def logRequest(HttpServletRequest req) {
-		logger.debug("Request {} with params {} from {}", req.pathInfo, req.parameterMap, req.userId)
+		logger.debug("Request {} with params {}", req.pathInfo, req.parameterMap)
 	}
 }
