@@ -23,8 +23,6 @@ class BasicAuthHttpContext implements HttpContext {
 	val logger = LoggerFactory.getLogger(this.class)
 
 	override handleSecurity(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		// enusre that a http session is created
-		request.getSession(true)
 
 		// only allow https
 		if (!request.getScheme().equals("https")) {

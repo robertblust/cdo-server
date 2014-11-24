@@ -16,14 +16,22 @@ import javax.servlet.http.HttpServletRequest
 import org.slf4j.LoggerFactory
 
 import static extension ch.flatland.cdo.service.repoaccess.BasicAuth.*
+import javax.servlet.ServletConfig
 
 class AbstractAccessServlet extends HttpServlet {
 	
 	val logger = LoggerFactory.getLogger(this.class)
+	val static SESSION_COOKIE = "CH-FLATLAND-CDO"
 
 	override init() throws ServletException {
 		super.init()
 		logger.debug("init")
+	}
+	
+	override init(ServletConfig config) throws ServletException {
+		config.servletContext.sessionCookieConfig.name = SESSION_COOKIE
+		super.init(config)
+		logger.debug("init(ServletConfig config) - set cookie name {}", SESSION_COOKIE)
 	}
 
 	def logRequest(HttpServletRequest req) {
