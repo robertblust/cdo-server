@@ -30,16 +30,4 @@ class PingServlet extends AbstractServlet {
 		resp.contentType = Json.JSON_CONTENTTYPE_UTF8
 		resp.writer.append(PING)
 	}
-
-	override init() throws ServletException {
-		super.init()
-		if (PingPlugin.getDefault.debugging) {
-			println(
-				'''
-					>>>
-					   init() «this.class.name»
-					<<<
-				''')
-		}
-	}
 }
