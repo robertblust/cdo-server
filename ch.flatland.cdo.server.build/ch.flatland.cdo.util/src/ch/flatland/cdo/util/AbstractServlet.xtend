@@ -36,7 +36,7 @@ class AbstractServlet extends HttpServlet {
 
 	def logRequest(HttpServletRequest req) {
 		var userId = "anonymous"
-		if (req.basicAuthExits) {
+		if (req.basicAuth) {
 			userId = req.userId
 		}
 		logger.debug("Request {} with params {} from {}", req.requestURL, req.parameterMap, userId)

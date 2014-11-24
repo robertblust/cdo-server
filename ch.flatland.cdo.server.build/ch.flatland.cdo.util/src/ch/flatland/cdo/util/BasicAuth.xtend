@@ -27,7 +27,7 @@ class BasicAuth {
 		return password
 	}
 
-	def static basicAuthExits(HttpServletRequest request) {
+	def static isBasicAuth(HttpServletRequest request) {
 		return request.getHeader(AUTH_HEADER) != null
 	}
 
