@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse
 import org.osgi.service.http.HttpContext
 import org.slf4j.LoggerFactory
 
-import static extension ch.flatland.cdo.service.repoaccess.BasicAuth.*
+import static extension ch.flatland.cdo.util.BasicAuth.*
 
 class BasicAuthHttpContext implements HttpContext {
 
@@ -27,7 +27,7 @@ class BasicAuthHttpContext implements HttpContext {
 		// only allow https
 		if (!request.getScheme().equals("https")) {
 			logger.debug("Forbidden")
-			
+
 			response.sendError(HttpServletResponse.SC_FORBIDDEN)
 			return false
 		}
@@ -35,7 +35,7 @@ class BasicAuthHttpContext implements HttpContext {
 		// check if authorization header is available
 		if (request.getHeader("Authorization") == null) {
 			logger.debug("No basic auth in request")
-			
+
 			response.sendError(HttpServletResponse.SC_UNAUTHORIZED)
 			return false
 		}
@@ -46,7 +46,7 @@ class BasicAuthHttpContext implements HttpContext {
 			SessionFactory.getOrCreateCDOSession(request)
 		} catch (Exception e) {
 			logger.debug("Authentication failed - {}", request.userId)
-			
+
 			response.sendError(HttpServletResponse.SC_UNAUTHORIZED)
 			if (RepoAccessPlugin.getDefault.debugging) {
 				e.printStackTrace
