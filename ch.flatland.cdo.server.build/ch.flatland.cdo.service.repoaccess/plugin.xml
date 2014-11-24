@@ -7,7 +7,7 @@
             alias="/repo"
             class="ch.flatland.cdo.service.repoaccess.RepoAccessServlet"
             httpcontextId="ch.flatland.cdo.service.repoaccess.BasicAuthHttpContext"
-            load-on-startup="false">
+            load-on-startup="true">
       </servlet>
    </extension>
    <extension
