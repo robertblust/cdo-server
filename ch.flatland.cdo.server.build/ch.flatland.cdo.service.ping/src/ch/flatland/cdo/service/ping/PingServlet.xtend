@@ -22,10 +22,13 @@ import javax.servlet.http.HttpServletResponse
 class PingServlet extends AbstractServlet {
 
 	public val static SERVLET_CONTEXT = "/ping"
+	
+	val static extension JsonConverter = new JsonConverter
+	val static PING = new PingBean("Flatland CDO Server", "1.0.0").toJson
 
 	override protected doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.contentType = Json.JSON_CONTENTTYPE_UTF8
-		resp.writer.append((new JsonConverter).toJson(new PingBean("Flatland CDO Server", "1.0.0")))
+		resp.writer.append(PING)
 	}
 
 	override init() throws ServletException {
