@@ -25,7 +25,7 @@ class BasicAuthHttpContext implements HttpContext {
 	override handleSecurity(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
 		// only allow https
-		if (!request.getScheme().equals("https")) {
+		if (!request.secure) {
 			logger.debug("Forbidden")
 
 			response.sendError(HttpServletResponse.SC_FORBIDDEN)
@@ -33,7 +33,7 @@ class BasicAuthHttpContext implements HttpContext {
 		}
 
 		// check if authorization header is available
-		if (request.getHeader("Authorization") == null) {
+		if (!request.basicAuth) {
 			logger.debug("No basic auth in request")
 
 			response.sendError(HttpServletResponse.SC_UNAUTHORIZED)
