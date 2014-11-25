@@ -17,23 +17,73 @@ import javax.servlet.http.HttpServletRequest
 import org.slf4j.LoggerFactory
 
 import static extension ch.flatland.cdo.util.BasicAuth.*
+import javax.servlet.http.HttpServletResponse
+import java.io.IOException
 
 class AbstractServlet extends HttpServlet {
-	
+
 	val logger = LoggerFactory.getLogger(this.class)
 	val static SESSION_COOKIE = "CH-FLATLAND-CDO"
+	val static PARAM_JSONP_CALLBACK = "callback"
+	val static extension JsonConverter = new JsonConverter
 
 	override init() throws ServletException {
 		super.init()
 		logger.debug("init")
 	}
-	
+
 	override init(ServletConfig config) throws ServletException {
 		config.servletContext.sessionCookieConfig.name = SESSION_COOKIE
 		super.init(config)
 		logger.debug("init(ServletConfig config) - set cookie name {}", SESSION_COOKIE)
 	}
 
+	override protected doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		methodNotAllowed(req, resp)
+	}
+
+	override protected doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		methodNotAllowed(req, resp)
+	}
+
+	override protected doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		methodNotAllowed(req, resp)
+	}
+
+	override protected doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		methodNotAllowed(req, resp)
+	}
+
+	override protected doHead(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		methodNotAllowed(req, resp)
+	}
+
+	override protected doOptions(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		methodNotAllowed(req, resp)
+	}
+
+	override protected doTrace(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		methodNotAllowed(req, resp)
+	}
+
+	def protected writeResponse(HttpServletRequest req, HttpServletResponse resp, String jsonString) {
+		logger.debug("Response json {}", jsonString)
+
+		// write response
+		if (req.getParameter(PARAM_JSONP_CALLBACK) != null && req.getParameter(PARAM_JSONP_CALLBACK).length > 0) {
+			resp.contentType = Json.JSONP_CONTENTTYPE_UTF8
+			resp.writer.append('''«req.getParameter(PARAM_JSONP_CALLBACK)»(«jsonString»)''')
+		} else {
+			resp.contentType = Json.JSON_CONTENTTYPE_UTF8
+			resp.writer.append(jsonString)
+		}
+	}
+
+	def methodNotAllowed(HttpServletRequest req, HttpServletResponse resp) {
+		val exception = new FlatlandException(HttpServletResponse.SC_METHOD_NOT_ALLOWED + " - " + req.method + " not allowed!")
+		writeResponse(req, resp, exception.toJson)
+	}
+	
 	def logRequest(HttpServletRequest req) {
 		var userId = "anonymous"
 		if (req.basicAuth) {
