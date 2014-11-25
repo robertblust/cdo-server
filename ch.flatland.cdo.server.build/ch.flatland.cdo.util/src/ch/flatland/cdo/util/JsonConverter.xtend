@@ -65,8 +65,13 @@ class JsonConverter {
 		this.jsonConverterConfig = new JsonConverterConfig
 	}
 
-	def fromJson(String jsonString) {
-		parser.parse(jsonString).asJsonObject
+	def JsonObject fromJson(String jsonString){
+		try {
+			parser.parse(jsonString).asJsonObject
+		} catch (Exception e) {
+			throw new FlatlandException("Failed to parse json!")
+		}
+		
 		//gson.fromJson(jsonString, JsonObject)
 	}
 

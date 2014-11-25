@@ -74,7 +74,7 @@ public class LdapAuthenticatorManager implements IAuthenticator {
 
 	public void authenticate(String userId, char[] password) throws SecurityException {
 		
-		logger.debug("authenticate {}", userId);
+		logger.debug("authenticate '{}'", userId);
 		
 		if (faked) {
 			// NO AUTHENTICATION PERFORMED
@@ -188,7 +188,7 @@ public class LdapAuthenticatorManager implements IAuthenticator {
 	}
 
 	private void log() {
-		logger.debug("Construct server {}, domain base {}, user id field {}, use ssl {}, faked {}", ldapServer, ldapDomainBase, ldapUserIdField, useSSL, faked);
+		logger.debug("Construct server '{}', domain base '{}', user id field '{}', use ssl '{}', faked '{}'", ldapServer, ldapDomainBase, ldapUserIdField, useSSL, faked);
 	}
 
 }
