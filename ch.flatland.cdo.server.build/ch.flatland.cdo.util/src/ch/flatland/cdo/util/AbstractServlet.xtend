@@ -25,7 +25,6 @@ class AbstractServlet extends HttpServlet {
 	val logger = LoggerFactory.getLogger(this.class)
 	val static SESSION_COOKIE = "CH-FLATLAND-CDO"
 	val static PARAM_JSONP_CALLBACK = "callback"
-	val static extension JsonConverter = new JsonConverter
 
 	override init() throws ServletException {
 		super.init()
@@ -80,6 +79,7 @@ class AbstractServlet extends HttpServlet {
 	}
 
 	def methodNotAllowed(HttpServletRequest req, HttpServletResponse resp) {
+		val extension JsonConverter = new JsonConverter
 		val exception = new FlatlandException(HttpServletResponse.SC_METHOD_NOT_ALLOWED + " - " + req.method + " not allowed!")
 		writeResponse(req, resp, exception.toJson)
 	}
