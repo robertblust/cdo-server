@@ -15,7 +15,7 @@ import java.util.HashMap
 import javax.servlet.http.HttpServletRequest
 import org.slf4j.LoggerFactory
 
-import static extension ch.flatland.cdo.util.BasicAuth.*
+import static extension ch.flatland.cdo.util.Request.*
 
 class SessionFactory {
 	val static logger = LoggerFactory.getLogger(SessionFactory)
@@ -39,7 +39,7 @@ class SessionFactory {
 			logger.debug("Create CDO Session")
 		}
 
-		logger.debug("CDO Session {} for http Session {} and user {}", getCDOSession(request).sessionID,
+		logger.debug("CDO Session '{}' for http Session '{}' and user '{}'", getCDOSession(request).sessionID,
 			request.sessionId, request.userId)
 
 		return getCDOSession(request)

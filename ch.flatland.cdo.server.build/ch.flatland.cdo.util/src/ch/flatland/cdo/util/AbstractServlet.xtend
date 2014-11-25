@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServlet
 import javax.servlet.http.HttpServletRequest
 import org.slf4j.LoggerFactory
 
-import static extension ch.flatland.cdo.util.BasicAuth.*
+import static extension ch.flatland.cdo.util.Request.*
 import javax.servlet.http.HttpServletResponse
 import java.io.IOException
 
@@ -66,7 +66,7 @@ class AbstractServlet extends HttpServlet {
 	}
 
 	def protected writeResponse(HttpServletRequest req, HttpServletResponse resp, String jsonString) {
-		logger.debug("Response json {}", jsonString)
+		logger.debug("Response json '{}'", jsonString)
 
 		// write response
 		if (req.getParameter(PARAM_JSONP_CALLBACK) != null && req.getParameter(PARAM_JSONP_CALLBACK).length > 0) {
@@ -89,6 +89,6 @@ class AbstractServlet extends HttpServlet {
 		if (req.basicAuth) {
 			userId = req.userId
 		}
-		logger.debug("Request {} with params {} from {}", req.requestURL, req.parameterMap, userId)
+		logger.debug("Request '{}' with params '{}' from '{}'", req.requestURL, req.parameterMap, userId)
 	}
 }

@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse
 import org.osgi.service.http.HttpContext
 import org.slf4j.LoggerFactory
 
-import static extension ch.flatland.cdo.util.BasicAuth.*
+import static extension ch.flatland.cdo.util.Request.*
 
 class BasicAuthHttpContext implements HttpContext {
 
@@ -45,12 +45,12 @@ class BasicAuthHttpContext implements HttpContext {
 			// try to create a CDOSession and reuse the CDO Authentication
 			SessionFactory.getOrCreateCDOSession(request)
 		} catch (Exception e) {
-			logger.debug("Authentication failed - {} > stacktrace {}", request.userId, e)
+			logger.debug("Authentication failed - '{}' > stacktrace '{}'", request.userId, e)
 
 			response.sendError(HttpServletResponse.SC_UNAUTHORIZED)
 			return false
 		}
-		logger.debug("Authentication OK - {}", request.userId)
+		logger.debug("Authentication OK for '{}'", request.userId)
 		return true
 
 	}

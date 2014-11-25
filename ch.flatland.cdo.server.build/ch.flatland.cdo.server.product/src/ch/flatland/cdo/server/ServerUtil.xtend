@@ -51,7 +51,7 @@ class ServerUtil {
 
 		val session = config.openNet4jSession() as CDOSession
 		
-		logger.debug("open session {} for user {}", session.sessionID, session.userID)
+		logger.debug("open session '{}' for user '{}'", session.sessionID, session.userID)
 
 		return session
 	}

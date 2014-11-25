@@ -19,56 +19,42 @@ import javax.servlet.ServletException
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 import org.eclipse.emf.cdo.common.id.CDOIDUtil
-import org.slf4j.LoggerFactory
 
 class RepoAccessServlet extends AbstractServlet {
 
-	val logger = LoggerFactory.getLogger(this.class)
-
-	val static PARAM_ID = Json.PARAM_ID
-	val static PARAM_META = Json.PARAM_META
-	val static SERVLET_CONTEXT = "/repo"
+	val public static PARAM_ID = Json.PARAM_ID
+	val public static PARAM_META = Json.PARAM_META
+	val public static SERVLET_CONTEXT = "/repo"
 
 	override protected doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		logRequest(req)
+		val get = new Get
+		writeResponse(req, resp, get.run(req))
+	}
 
-		val view = SessionFactory.getCDOSession(req).openView
+	override protected doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		logRequest(req)
+		val post = new Post
+		writeResponse(req, resp, post.run(req))
+	}
 
+	def static createJsonConverter(HttpServletRequest req) {
+		var meta = false
+		if (req.getParameter(PARAM_META) != null) {
+			meta = true
+		}
 		val servletUrl = req.requestURL.substring(0, req.requestURL.indexOf(SERVLET_CONTEXT)) + SERVLET_CONTEXT
 		val jsonConverterConfig = new JsonConverterConfig(servletUrl, SERVLET_CONTEXT)
-		val extension JsonConverter = new JsonConverter(jsonConverterConfig)
-		var Object requestedObject = null
-		var String jsonString = null
+		jsonConverterConfig.meta = meta
+		return new JsonConverter(jsonConverterConfig)
+	}
 
-		if (req.getParameter(PARAM_META) != null) {
-			jsonConverterConfig.meta = true
+	def static getCDOID(HttpServletRequest req) {
+		if (req.getParameter(RepoAccessServlet.PARAM_ID) != null &&
+			req.getParameter(RepoAccessServlet.PARAM_ID).length > 0) {
+
+			return CDOIDUtil.createLong(Long.parseLong(req.getParameter(RepoAccessServlet.PARAM_ID)))
 		}
-		try {
-
-			var processed = false
-
-			// processes id
-			if (req.getParameter(PARAM_ID) != null && req.getParameter(PARAM_ID).length > 0) {
-				requestedObject = view.getObject(CDOIDUtil.createLong(Long.parseLong(req.getParameter(RepoAccessServlet.PARAM_ID))))
-				processed = true
-			}
-
-			// processes path
-			if (!processed) {
-				requestedObject = view.getResourceNode(req.pathInfo)
-			}
-
-			jsonString = requestedObject.toJson
-
-		} catch (Exception e) {
-			jsonString = e.toJson
-			logger.error("Could not processing request", e)
-		} finally {
-			writeResponse(req, resp, jsonString)
-			
-			if (!view.closed) {
-				view.close
-			}
-		}
+		return null
 	}
 }
