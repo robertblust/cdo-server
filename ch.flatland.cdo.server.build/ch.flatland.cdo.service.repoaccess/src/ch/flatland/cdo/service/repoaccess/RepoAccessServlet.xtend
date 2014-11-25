@@ -27,7 +27,6 @@ class RepoAccessServlet extends AbstractServlet {
 
 	val static PARAM_ID = Json.PARAM_ID
 	val static PARAM_META = Json.PARAM_META
-	val static PARAM_JSONP_CALLBACK = "callback"
 	val static SERVLET_CONTEXT = "/repo"
 
 	override protected doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -37,6 +36,7 @@ class RepoAccessServlet extends AbstractServlet {
 
 		val servletUrl = req.requestURL.substring(0, req.requestURL.indexOf(SERVLET_CONTEXT)) + SERVLET_CONTEXT
 		val jsonConverterConfig = new JsonConverterConfig(servletUrl, SERVLET_CONTEXT)
+		val extension JsonConverter = new JsonConverter(jsonConverterConfig)
 		var Object requestedObject = null
 		var String jsonString = null
 
@@ -47,7 +47,7 @@ class RepoAccessServlet extends AbstractServlet {
 
 			var processed = false
 
-			// processes oid
+			// processes id
 			if (req.getParameter(PARAM_ID) != null && req.getParameter(PARAM_ID).length > 0) {
 				requestedObject = view.getObject(CDOIDUtil.createLong(Long.parseLong(req.getParameter(RepoAccessServlet.PARAM_ID))))
 				processed = true
@@ -58,23 +58,14 @@ class RepoAccessServlet extends AbstractServlet {
 				requestedObject = view.getResourceNode(req.pathInfo)
 			}
 
-			jsonString = new JsonConverter(jsonConverterConfig).toJson(requestedObject)
+			jsonString = requestedObject.toJson
 
 		} catch (Exception e) {
-			jsonString = new JsonConverter(jsonConverterConfig).toJson(e)
+			jsonString = e.toJson
 			logger.error("Could not processing request", e)
 		} finally {
-			logger.debug("Response json {}", jsonString)
-
-			// write response
-			if (req.getParameter(PARAM_JSONP_CALLBACK) != null && req.getParameter(PARAM_JSONP_CALLBACK).length > 0) {
-				resp.contentType = Json.JSON_CONTENTTYPE_UTF8
-				resp.writer.append('''«req.getParameter(PARAM_JSONP_CALLBACK)»(«jsonString»)''')
-			} else {
-				resp.contentType = Json.JSONP_CONTENTTYPE_UTF8
-				resp.writer.append(jsonString)
-			}
-
+			writeResponse(req, resp, jsonString)
+			
 			if (!view.closed) {
 				view.close
 			}
