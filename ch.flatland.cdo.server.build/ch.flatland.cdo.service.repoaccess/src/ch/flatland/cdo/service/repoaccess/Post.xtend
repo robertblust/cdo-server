@@ -38,11 +38,11 @@ class Post {
 			}
 			val jsonObject = body.fromJson
 			val id = jsonObject.entrySet.filter[it.key == RepoAccessServlet.PARAM_ID].head
-			logger.debug("CDOObject '{}' requested", id)
+			logger.debug("Object '{}' requested", id)
 			val requestedObject = view.getObject(CDOIDUtil.createLong(id.value.asLong))
 			
 			if (requestedObject.cdoPermission != CDOPermission.WRITE) {
-				throw new FlatlandException("No permission to edit object '" + id.value + "'")
+				throw new FlatlandException("No permission to edit object '" + id + "'")
 			}
 						
 			jsonObject.entrySet.filter[it.key != RepoAccessServlet.PARAM_ID].forEach[
