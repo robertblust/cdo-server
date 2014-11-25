@@ -18,6 +18,7 @@ import org.slf4j.LoggerFactory
 
 import static extension ch.flatland.cdo.service.repoaccess.RepoAccessServlet.*
 import static extension ch.flatland.cdo.util.Request.*
+import org.eclipse.emf.cdo.common.security.CDOPermission
 
 class Post {
 
@@ -39,6 +40,10 @@ class Post {
 			val id = jsonObject.entrySet.filter[it.key == RepoAccessServlet.PARAM_ID].head
 			logger.debug("CDOObject '{}' requested", id)
 			val requestedObject = view.getObject(CDOIDUtil.createLong(id.value.asLong))
+			
+			if (requestedObject.cdoPermission != CDOPermission.WRITE) {
+				throw new FlatlandException("No permission to edit object '" + id.value + "'")
+			}
 						
 			jsonObject.entrySet.filter[it.key != RepoAccessServlet.PARAM_ID].forEach[
 				logger.debug("Found json element with name '{}'", it.key)
