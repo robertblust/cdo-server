@@ -13,6 +13,7 @@ package ch.flatland.cdo.util
 import com.google.gson.Gson
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
+import com.google.gson.JsonParser
 import com.google.gson.JsonPrimitive
 import java.util.List
 import org.eclipse.emf.cdo.CDOObject
@@ -30,8 +31,10 @@ import org.eclipse.emf.edit.provider.ComposedAdapterFactory
 import org.eclipse.emf.internal.cdo.object.CDOLegacyAdapter
 
 class JsonConverter {
-	static val gson = new Gson
-	static val ITEM_DELEGATOR = new AdapterFactoryItemDelegator(
+	val gson = new Gson
+	val parser = new JsonParser
+	
+	val ITEM_DELEGATOR = new AdapterFactoryItemDelegator(
 		new ComposedAdapterFactory(EMFEditPlugin.getComposedAdapterFactoryDescriptorRegistry))
 
 	static val TYPE = "type"
@@ -62,10 +65,14 @@ class JsonConverter {
 		this.jsonConverterConfig = new JsonConverterConfig
 	}
 
+	def fromJson(String jsonString) {
+		parser.parse(jsonString).asJsonObject
+		//gson.fromJson(jsonString, JsonObject)
+	}
+
 	def dispatch String toJson(Object object) {
 		gson.toJson(object)
 	}
-
 
 	def dispatch String toJson(EObject object) {
 		val jsonBaseObject = object.toJsonBase
