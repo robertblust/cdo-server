@@ -21,47 +21,62 @@ import javax.servlet.http.HttpServletResponse
 import java.io.IOException
 
 class AbstractServlet extends HttpServlet {
-	
+
 	val logger = LoggerFactory.getLogger(this.class)
 	val static SESSION_COOKIE = "CH-FLATLAND-CDO"
+	val static PARAM_JSONP_CALLBACK = "callback"
+	val static extension JsonConverter = new JsonConverter
 
 	override init() throws ServletException {
 		super.init()
 		logger.debug("init")
 	}
-	
+
 	override init(ServletConfig config) throws ServletException {
 		config.servletContext.sessionCookieConfig.name = SESSION_COOKIE
 		super.init(config)
 		logger.debug("init(ServletConfig config) - set cookie name {}", SESSION_COOKIE)
 	}
-	
+
 	override protected doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		resp.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED, "GET not supported!")
+		writeResponse(req, resp, new FlatlandException(HttpServletResponse.SC_METHOD_NOT_ALLOWED.toString).toJson)
 	}
-	
+
 	override protected doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		resp.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED, "POST not supported!")
+		writeResponse(req, resp, new FlatlandException(HttpServletResponse.SC_METHOD_NOT_ALLOWED.toString).toJson)
 	}
-	
+
 	override protected doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		resp.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED, "PUT not supported!")
+		writeResponse(req, resp, new FlatlandException(HttpServletResponse.SC_METHOD_NOT_ALLOWED.toString).toJson)
 	}
-	
+
 	override protected doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		resp.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED, "DELETE not supported!")
+		writeResponse(req, resp, new FlatlandException(HttpServletResponse.SC_METHOD_NOT_ALLOWED.toString).toJson)
 	}
-	
+
 	override protected doHead(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		resp.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED, "HEAD not supported!")
+		writeResponse(req, resp, new FlatlandException(HttpServletResponse.SC_METHOD_NOT_ALLOWED.toString).toJson)
 	}
-	
+
 	override protected doOptions(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		resp.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED, "OPTIONS not supported!")
+		writeResponse(req, resp, new FlatlandException(HttpServletResponse.SC_METHOD_NOT_ALLOWED.toString).toJson)
 	}
-	
+
 	override protected doTrace(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		resp.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED, "TRACE not supported!")
+		writeResponse(req, resp, new FlatlandException(HttpServletResponse.SC_METHOD_NOT_ALLOWED.toString).toJson)
+	}
+
+	def protected writeResponse(HttpServletRequest req, HttpServletResponse resp, String jsonString) {
+		logger.debug("Response json {}", jsonString)
+
+		// write response
+		if (req.getParameter(PARAM_JSONP_CALLBACK) != null && req.getParameter(PARAM_JSONP_CALLBACK).length > 0) {
+			resp.contentType = Json.JSON_CONTENTTYPE_UTF8
+			resp.writer.append('''«req.getParameter(PARAM_JSONP_CALLBACK)»(«jsonString»)''')
+		} else {
+			resp.contentType = Json.JSONP_CONTENTTYPE_UTF8
+			resp.writer.append(jsonString)
+		}
 	}
 
 	def logRequest(HttpServletRequest req) {
