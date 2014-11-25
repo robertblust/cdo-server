@@ -17,6 +17,8 @@ import javax.servlet.http.HttpServletRequest
 import org.slf4j.LoggerFactory
 
 import static extension ch.flatland.cdo.util.BasicAuth.*
+import javax.servlet.http.HttpServletResponse
+import java.io.IOException
 
 class AbstractServlet extends HttpServlet {
 	
@@ -32,6 +34,34 @@ class AbstractServlet extends HttpServlet {
 		config.servletContext.sessionCookieConfig.name = SESSION_COOKIE
 		super.init(config)
 		logger.debug("init(ServletConfig config) - set cookie name {}", SESSION_COOKIE)
+	}
+	
+	override protected doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		resp.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED, "GET not supported!")
+	}
+	
+	override protected doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		resp.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED, "POST not supported!")
+	}
+	
+	override protected doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		resp.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED, "PUT not supported!")
+	}
+	
+	override protected doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		resp.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED, "DELETE not supported!")
+	}
+	
+	override protected doHead(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		resp.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED, "HEAD not supported!")
+	}
+	
+	override protected doOptions(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		resp.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED, "OPTIONS not supported!")
+	}
+	
+	override protected doTrace(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		resp.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED, "TRACE not supported!")
 	}
 
 	def logRequest(HttpServletRequest req) {
