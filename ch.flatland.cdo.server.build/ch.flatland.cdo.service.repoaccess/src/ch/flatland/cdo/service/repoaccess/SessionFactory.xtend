@@ -11,18 +11,19 @@
 package ch.flatland.cdo.service.repoaccess
 
 import ch.flatland.cdo.server.ServerUtil
+import ch.flatland.cdo.util.Request
 import java.util.HashMap
 import javax.servlet.http.HttpServletRequest
 import org.slf4j.LoggerFactory
-
-import static extension ch.flatland.cdo.util.Request.*
 
 class SessionFactory {
 	val static logger = LoggerFactory.getLogger(SessionFactory)
 
 	val static sessionMap = new HashMap<String, SessionEntry>
 
-	def static getOrCreateCDOSession(HttpServletRequest request) {
+	val static extension Request = new Request
+
+	def static synchronized getOrCreateCDOSession(HttpServletRequest request) {
 		if (sessionMap.containsKey(request.sessionKey)) {
 			val sessionEntry = sessionMap.get(request.sessionKey)
 			if (sessionEntry.CDOSession.closed) {

@@ -18,31 +18,31 @@ class Request {
 
 	val static AUTH_HEADER = "Authorization"
 
-	def static getUserId(HttpServletRequest request) {
+	def getUserId(HttpServletRequest request) {
 		val userNameIndex = request.userNameAndPassword.indexOf(":")
 		val userName = request.userNameAndPassword.substring(0, userNameIndex)
 		return userName
 	}
 
-	def static getSessionId(HttpServletRequest request) {
+	def getSessionId(HttpServletRequest request) {
 		return request.session.id
 	}
 
-	def static getSessionKey(HttpServletRequest request) {
+	def getSessionKey(HttpServletRequest request) {
 		return request.sessionId + "-" + request.userId
 	}
 
-	def static getPassword(HttpServletRequest request) {
+	def getPassword(HttpServletRequest request) {
 		val userNameIndex = request.userNameAndPassword.indexOf(":")
 		val password = request.userNameAndPassword.substring(userNameIndex + 1)
 		return password
 	}
 
-	def static isBasicAuth(HttpServletRequest request) {
+	def isBasicAuth(HttpServletRequest request) {
 		return request.getHeader(AUTH_HEADER) != null
 	}
 
-	def static String readBody(HttpServletRequest request) throws IOException {
+	def String readBody(HttpServletRequest request) throws IOException {
 		val buffer = new StringBuffer();
 		var String line = null;
 
@@ -53,7 +53,7 @@ class Request {
 		return buffer.toString
 	}
 
-	def private static getUserNameAndPassword(HttpServletRequest request) {
+	def private getUserNameAndPassword(HttpServletRequest request) {
 		val authHeader = request.getHeader(AUTH_HEADER)
 		if (authHeader == null) {
 			throw new FlatlandException("request.getHeader(\"Authorization\") == null, should not happen")

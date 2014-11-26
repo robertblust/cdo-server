@@ -18,13 +18,13 @@ import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 import org.slf4j.LoggerFactory
 
-import static extension ch.flatland.cdo.util.Response.*
-
-import static extension ch.flatland.cdo.util.Request.*
-
 class AbstractServlet extends HttpServlet {
 
 	val logger = LoggerFactory.getLogger(this.class)
+
+	val extension Request = new Request
+	val extension Response = new Response
+
 	val static SESSION_COOKIE = "CH-FLATLAND-CDO"
 
 	override init() throws ServletException {

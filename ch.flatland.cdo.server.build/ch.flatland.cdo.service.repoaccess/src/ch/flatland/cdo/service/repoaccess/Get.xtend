@@ -10,26 +10,28 @@
  */
 package ch.flatland.cdo.service.repoaccess
 
+import ch.flatland.cdo.util.Request
 import javax.servlet.http.HttpServletRequest
 import org.slf4j.LoggerFactory
 
 import static extension ch.flatland.cdo.service.repoaccess.RepoAccessServlet.*
-import static extension ch.flatland.cdo.util.Request.*
 
 class Get {
 
 	val logger = LoggerFactory.getLogger(this.class)
-	
+
+	val extension Request = new Request
+
 	def String run(HttpServletRequest req) {
 		logger.debug("Run for '{}'", req.userId)
-		
+
 		val view = SessionFactory.getCDOSession(req).openView
 
 		var Object requestedObject = null
 		var String jsonString = null
 
 		val extension JsonConverter = req.createJsonConverter
-		
+
 		try {
 
 			var processed = false

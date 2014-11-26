@@ -15,10 +15,10 @@ import javax.servlet.http.HttpServletResponse
 import org.slf4j.LoggerFactory
 
 class Response {
-	val static logger = LoggerFactory.getLogger(Response)
+	val logger = LoggerFactory.getLogger(this.class)
 	val static PARAM_JSONP_CALLBACK = "callback"
 	
-	def static writeResponse(HttpServletResponse resp, HttpServletRequest req, String jsonString) {
+	def writeResponse(HttpServletResponse resp, HttpServletRequest req, String jsonString) {
 		logger.debug("Json '{}'", jsonString)
 
 		// write response
