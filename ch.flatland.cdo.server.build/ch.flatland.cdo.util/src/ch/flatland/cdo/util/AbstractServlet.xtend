@@ -10,21 +10,22 @@
  */
 package ch.flatland.cdo.util
 
+import java.io.IOException
 import javax.servlet.ServletConfig
 import javax.servlet.ServletException
 import javax.servlet.http.HttpServlet
 import javax.servlet.http.HttpServletRequest
+import javax.servlet.http.HttpServletResponse
 import org.slf4j.LoggerFactory
 
+import static extension ch.flatland.cdo.util.Response.*
+
 import static extension ch.flatland.cdo.util.Request.*
-import javax.servlet.http.HttpServletResponse
-import java.io.IOException
 
 class AbstractServlet extends HttpServlet {
 
 	val logger = LoggerFactory.getLogger(this.class)
 	val static SESSION_COOKIE = "CH-FLATLAND-CDO"
-	val static PARAM_JSONP_CALLBACK = "callback"
 
 	override init() throws ServletException {
 		super.init()
@@ -65,26 +66,14 @@ class AbstractServlet extends HttpServlet {
 		methodNotAllowed(req, resp)
 	}
 
-	def protected writeResponse(HttpServletRequest req, HttpServletResponse resp, String jsonString) {
-		logger.debug("Response json '{}'", jsonString)
-
-		// write response
-		if (req.getParameter(PARAM_JSONP_CALLBACK) != null && req.getParameter(PARAM_JSONP_CALLBACK).length > 0) {
-			resp.contentType = Json.JSONP_CONTENTTYPE_UTF8
-			resp.writer.append('''«req.getParameter(PARAM_JSONP_CALLBACK)»(«jsonString»)''')
-		} else {
-			resp.contentType = Json.JSON_CONTENTTYPE_UTF8
-			resp.writer.append(jsonString)
-		}
-	}
-
 	def methodNotAllowed(HttpServletRequest req, HttpServletResponse resp) {
 		val extension JsonConverter = new JsonConverter
-		val exception = new FlatlandException(HttpServletResponse.SC_METHOD_NOT_ALLOWED + " - " + req.method + " not allowed!")
+		val exception = new FlatlandException(
+			HttpServletResponse.SC_METHOD_NOT_ALLOWED + " - " + req.method + " not allowed!")
 		resp.status = HttpServletResponse.SC_METHOD_NOT_ALLOWED
-		writeResponse(req, resp, exception.toJson)
+		resp.writeResponse(req, exception.toJson)
 	}
-	
+
 	def logRequest(HttpServletRequest req) {
 		var userId = "anonymous"
 		if (req.basicAuth) {

@@ -18,6 +18,8 @@ import javax.servlet.ServletException
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
+import static extension ch.flatland.cdo.util.Response.*
+
 class PingServlet extends AbstractServlet {
 
 	public val static SERVLET_CONTEXT = "/ping"
@@ -27,6 +29,6 @@ class PingServlet extends AbstractServlet {
 
 	override protected doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		logRequest(req)		
-		writeResponse(req, resp, PING)
+		resp.writeResponse(req, PING)
 	}
 }

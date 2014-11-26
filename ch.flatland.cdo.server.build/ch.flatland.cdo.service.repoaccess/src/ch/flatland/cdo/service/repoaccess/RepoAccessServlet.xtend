@@ -20,6 +20,8 @@ import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 import org.eclipse.emf.cdo.common.id.CDOIDUtil
 
+import static extension ch.flatland.cdo.util.Response.*
+
 class RepoAccessServlet extends AbstractServlet {
 
 	val public static PARAM_ID = Json.PARAM_ID
@@ -29,13 +31,13 @@ class RepoAccessServlet extends AbstractServlet {
 	override protected doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		logRequest(req)
 		val get = new Get
-		writeResponse(req, resp, get.run(req))
+		resp.writeResponse(req, get.run(req))
 	}
 
 	override protected doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		logRequest(req)
 		val post = new Post
-		writeResponse(req, resp, post.run(req))
+		resp.writeResponse(req, post.run(req))
 	}
 
 	def static createJsonConverter(HttpServletRequest req) {
