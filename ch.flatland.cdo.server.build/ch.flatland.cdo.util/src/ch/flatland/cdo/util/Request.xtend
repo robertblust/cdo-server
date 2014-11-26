@@ -13,6 +13,7 @@ package ch.flatland.cdo.util
 import java.io.IOException
 import javax.servlet.http.HttpServletRequest
 import org.apache.commons.codec.binary.Base64
+import org.eclipse.emf.cdo.common.id.CDOIDUtil
 
 class Request {
 
@@ -51,6 +52,26 @@ class Request {
 			buffer.append(line)
 		}
 		return buffer.toString
+	}
+	
+	def createJsonConverter(HttpServletRequest req, String servletContext) {
+		var meta = false
+		if (req.getParameter(Json.PARAM_META) != null) {
+			meta = true
+		}
+		val servletUrl = req.requestURL.substring(0, req.requestURL.indexOf(servletContext)) + servletContext
+		val jsonConverterConfig = new JsonConverterConfig(servletUrl, servletContext)
+		jsonConverterConfig.meta = meta
+		return new JsonConverter(jsonConverterConfig)
+	}
+
+	def getCDOID(HttpServletRequest req) {
+		if (req.getParameter(Json.PARAM_ID) != null &&
+			req.getParameter(Json.PARAM_ID).length > 0) {
+
+			return CDOIDUtil.createLong(Long.parseLong(req.getParameter(Json.PARAM_ID)))
+		}
+		return null
 	}
 
 	def private getUserNameAndPassword(HttpServletRequest request) {

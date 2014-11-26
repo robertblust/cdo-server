@@ -14,8 +14,6 @@ import ch.flatland.cdo.util.Request
 import javax.servlet.http.HttpServletRequest
 import org.slf4j.LoggerFactory
 
-import static extension ch.flatland.cdo.service.repoaccess.RepoAccessServlet.*
-
 class Get {
 
 	val logger = LoggerFactory.getLogger(this.class)
@@ -30,7 +28,7 @@ class Get {
 		var Object requestedObject = null
 		var String jsonString = null
 
-		val extension JsonConverter = req.createJsonConverter
+		val extension JsonConverter = req.createJsonConverter(RepoAccessServlet.SERVLET_CONTEXT)
 
 		try {
 
