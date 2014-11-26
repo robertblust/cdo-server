@@ -49,7 +49,7 @@ class SessionFactory {
 		sessionMap
 	}
 
-	def static getCDOSession(HttpServletRequest request) {
+	def static synchronized getCDOSession(HttpServletRequest request) {
 		val extension Request = new Request
 		sessionMap.get(request.sessionKey).CDOSession
 	}
