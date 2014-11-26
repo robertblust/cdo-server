@@ -10,6 +10,9 @@
  */
 package ch.flatland.cdo.service.repoaccess
 
+import ch.flatland.cdo.util.FlatlandException
+import ch.flatland.cdo.util.Json
+import ch.flatland.cdo.util.JsonConverter
 import java.io.IOException
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
@@ -27,16 +30,16 @@ class BasicAuthHttpContext implements HttpContext {
 		// only allow https
 		if (!request.secure) {
 			logger.debug("Forbidden")
-
-			response.sendError(HttpServletResponse.SC_FORBIDDEN)
+			response.status = HttpServletResponse.SC_FORBIDDEN
+			writeException(response, new FlatlandException(HttpServletResponse.SC_FORBIDDEN + " - Forbidden!"))
 			return false
 		}
 
 		// check if authorization header is available
 		if (!request.basicAuth) {
 			logger.debug("No basic auth in request")
-
-			response.sendError(HttpServletResponse.SC_UNAUTHORIZED)
+			response.status = HttpServletResponse.SC_UNAUTHORIZED
+			writeException(response, new FlatlandException(HttpServletResponse.SC_UNAUTHORIZED + " - Unauthorized!"))
 			return false
 		}
 
@@ -46,8 +49,8 @@ class BasicAuthHttpContext implements HttpContext {
 			SessionFactory.getOrCreateCDOSession(request)
 		} catch (Exception e) {
 			logger.debug("Authentication failed - '{}' > stacktrace '{}'", request.userId, e)
-
-			response.sendError(HttpServletResponse.SC_UNAUTHORIZED)
+			response.status = HttpServletResponse.SC_UNAUTHORIZED
+			writeException(response, e)
 			return false
 		}
 		logger.debug("Authentication OK for '{}'", request.userId)
@@ -61,5 +64,11 @@ class BasicAuthHttpContext implements HttpContext {
 
 	override getResource(String name) {
 		return null
+	}
+	
+	def writeException(HttpServletResponse response, Exception exception) {
+		val extension JsonConverter = new JsonConverter
+		response.contentType = Json.JSON_CONTENTTYPE_UTF8
+		response.writer.append(exception.toJson)
 	}
 }
