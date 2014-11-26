@@ -11,7 +11,6 @@
 package ch.flatland.cdo.service.repoaccess
 
 import ch.flatland.cdo.util.FlatlandException
-import ch.flatland.cdo.util.Json
 import ch.flatland.cdo.util.JsonConverter
 import java.io.IOException
 import javax.servlet.http.HttpServletRequest
@@ -20,40 +19,43 @@ import org.osgi.service.http.HttpContext
 import org.slf4j.LoggerFactory
 
 import static extension ch.flatland.cdo.util.Request.*
+import static extension ch.flatland.cdo.util.Response.*
 
 class BasicAuthHttpContext implements HttpContext {
 
 	val logger = LoggerFactory.getLogger(this.class)
 
-	override handleSecurity(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	override handleSecurity(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
 		// only allow https
-		if (!request.secure) {
+		if (!req.secure) {
 			logger.debug("Forbidden")
-			response.status = HttpServletResponse.SC_FORBIDDEN
-			writeException(response, new FlatlandException(HttpServletResponse.SC_FORBIDDEN + " - Forbidden!"))
+			resp.status = HttpServletResponse.SC_FORBIDDEN
+			writeException(req, resp, new FlatlandException(HttpServletResponse.SC_FORBIDDEN + " - Forbidden!"))
 			return false
 		}
 
 		// check if authorization header is available
-		if (!request.basicAuth) {
+		if (!req.basicAuth) {
 			logger.debug("No basic auth in request")
-			response.status = HttpServletResponse.SC_UNAUTHORIZED
-			writeException(response, new FlatlandException(HttpServletResponse.SC_UNAUTHORIZED + " - Unauthorized!"))
+			resp.status = HttpServletResponse.SC_UNAUTHORIZED
+			writeException(req, resp,
+				new FlatlandException(HttpServletResponse.SC_UNAUTHORIZED + " - Unauthorized!"))
 			return false
 		}
 
 		try {
 
 			// try to create a CDOSession and reuse the CDO Authentication
-			SessionFactory.getOrCreateCDOSession(request)
+			SessionFactory.getOrCreateCDOSession(req)
 		} catch (Exception e) {
-			logger.debug("Authentication failed - '{}' > stacktrace '{}'", request.userId, e)
-			response.status = HttpServletResponse.SC_UNAUTHORIZED
-			writeException(response, e)
+			logger.debug("Authentication failed - '{}' > stacktrace '{}'", req.userId, e)
+			resp.status = HttpServletResponse.SC_UNAUTHORIZED
+			writeException(req, resp,
+				new FlatlandException(HttpServletResponse.SC_UNAUTHORIZED + " - Unauthorized!"))
 			return false
 		}
-		logger.debug("Authentication OK for '{}'", request.userId)
+		logger.debug("Authentication OK for '{}'", req.userId)
 		return true
 
 	}
@@ -65,10 +67,9 @@ class BasicAuthHttpContext implements HttpContext {
 	override getResource(String name) {
 		return null
 	}
-	
-	def writeException(HttpServletResponse response, Exception exception) {
+
+	def writeException(HttpServletRequest req, HttpServletResponse resp, Exception exception) {
 		val extension JsonConverter = new JsonConverter
-		response.contentType = Json.JSON_CONTENTTYPE_UTF8
-		response.writer.append(exception.toJson)
+		resp.writeResponse(req, exception.toJson)
 	}
 }
