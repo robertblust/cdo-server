@@ -21,9 +21,8 @@ class SessionFactory {
 
 	val static sessionMap = new HashMap<String, SessionEntry>
 
-	val static extension Request = new Request
-
 	def static synchronized getOrCreateCDOSession(HttpServletRequest request) {
+		val extension Request = new Request
 		if (sessionMap.containsKey(request.sessionKey)) {
 			val sessionEntry = sessionMap.get(request.sessionKey)
 			if (sessionEntry.CDOSession.closed) {
@@ -51,6 +50,7 @@ class SessionFactory {
 	}
 
 	def static getCDOSession(HttpServletRequest request) {
+		val extension Request = new Request
 		sessionMap.get(request.sessionKey).CDOSession
 	}
 }
