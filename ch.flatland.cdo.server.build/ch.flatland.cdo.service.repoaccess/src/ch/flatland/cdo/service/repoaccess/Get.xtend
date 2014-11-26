@@ -11,7 +11,9 @@
 package ch.flatland.cdo.service.repoaccess
 
 import ch.flatland.cdo.util.Request
+import ch.flatland.cdo.util.Response
 import javax.servlet.http.HttpServletRequest
+import javax.servlet.http.HttpServletResponse
 import org.slf4j.LoggerFactory
 
 class Get {
@@ -19,8 +21,9 @@ class Get {
 	val logger = LoggerFactory.getLogger(this.class)
 
 	val extension Request = new Request
+	val extension Response = new Response
 
-	def String run(HttpServletRequest req) {
+	def void run(HttpServletRequest req, HttpServletResponse resp) {
 		logger.debug("Run for '{}'", req.userId)
 
 		val view = SessionFactory.getCDOSession(req).openView
@@ -55,6 +58,6 @@ class Get {
 				view.close
 			}
 		}
-		return jsonString
+		resp.writeResponse(req, jsonString)
 	}
 }

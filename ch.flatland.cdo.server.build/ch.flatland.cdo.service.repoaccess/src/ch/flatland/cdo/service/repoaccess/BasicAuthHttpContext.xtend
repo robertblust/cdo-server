@@ -24,11 +24,9 @@ class BasicAuthHttpContext implements HttpContext {
 
 	val logger = LoggerFactory.getLogger(this.class)
 
-	val extension Request = new Request
-	val extension Response = new Response
-
 	override handleSecurity(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
+		val extension Request = new Request
 		// only allow https
 		if (!req.secure) {
 			logger.debug("Forbidden")
@@ -71,6 +69,7 @@ class BasicAuthHttpContext implements HttpContext {
 	}
 
 	def writeException(HttpServletRequest req, HttpServletResponse resp, Exception exception) {
+		val extension Response = new Response
 		val extension JsonConverter = new JsonConverter
 		resp.writeResponse(req, exception.toJson)
 	}

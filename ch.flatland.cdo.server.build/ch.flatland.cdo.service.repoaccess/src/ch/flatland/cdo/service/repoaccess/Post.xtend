@@ -14,7 +14,9 @@ package ch.flatland.cdo.service.repoaccess
 import ch.flatland.cdo.util.FlatlandException
 import ch.flatland.cdo.util.Json
 import ch.flatland.cdo.util.Request
+import ch.flatland.cdo.util.Response
 import javax.servlet.http.HttpServletRequest
+import javax.servlet.http.HttpServletResponse
 import org.eclipse.emf.cdo.common.id.CDOIDUtil
 import org.eclipse.emf.cdo.common.security.CDOPermission
 import org.slf4j.LoggerFactory
@@ -24,8 +26,9 @@ class Post {
 	val logger = LoggerFactory.getLogger(this.class)
 	
 	val extension Request = new Request
+	val extension Response = new Response
 
-	def String run(HttpServletRequest req) {
+	def void run(HttpServletRequest req, HttpServletResponse resp) {
 		val body = req.readBody
 		logger.debug("Run for '{}' with body '{}'", req.userId, body)
 
@@ -60,6 +63,6 @@ class Post {
 				view.close
 			}
 		}
-		return jsonString
+		resp.writeResponse(req, jsonString)
 	}
 }

@@ -11,9 +11,6 @@
 package ch.flatland.cdo.service.repoaccess
 
 import ch.flatland.cdo.util.AbstractServlet
-import ch.flatland.cdo.util.Response
-import java.io.IOException
-import javax.servlet.ServletException
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
@@ -21,17 +18,15 @@ class RepoAccessServlet extends AbstractServlet {
 
 	val public static SERVLET_CONTEXT = "/repo"
 
-	val extension Response = new Response
-
-	override protected doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	override protected doGet(HttpServletRequest req, HttpServletResponse resp) {
 		logRequest(req)
 		val get = new Get
-		resp.writeResponse(req, get.run(req))
+		get.run(req, resp)
 	}
 
-	override protected doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	override protected doPost(HttpServletRequest req, HttpServletResponse resp) {
 		logRequest(req)
 		val post = new Post
-		resp.writeResponse(req, post.run(req))
+		post.run(req, resp)
 	}
 }
