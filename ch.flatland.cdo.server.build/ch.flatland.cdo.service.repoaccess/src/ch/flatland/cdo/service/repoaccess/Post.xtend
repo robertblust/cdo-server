@@ -12,13 +12,12 @@ package ch.flatland.cdo.service.repoaccess
  */
 
 import ch.flatland.cdo.util.FlatlandException
+import ch.flatland.cdo.util.Json
 import ch.flatland.cdo.util.Request
 import javax.servlet.http.HttpServletRequest
 import org.eclipse.emf.cdo.common.id.CDOIDUtil
 import org.eclipse.emf.cdo.common.security.CDOPermission
 import org.slf4j.LoggerFactory
-
-import static extension ch.flatland.cdo.service.repoaccess.RepoAccessServlet.*
 
 class Post {
 
@@ -30,7 +29,7 @@ class Post {
 		val body = req.readBody
 		logger.debug("Run for '{}' with body '{}'", req.userId, body)
 
-		val extension JsonConverter = req.createJsonConverter
+		val extension JsonConverter = req.createJsonConverter(RepoAccessServlet.SERVLET_CONTEXT)
 		val view = SessionFactory.getCDOSession(req).openTransaction
 		var String jsonString = null
 
@@ -39,7 +38,7 @@ class Post {
 				throw new FlatlandException("Request body must not be empty")
 			}
 			val jsonObject = body.fromJson
-			val id = jsonObject.entrySet.filter[it.key == RepoAccessServlet.PARAM_ID].head
+			val id = jsonObject.entrySet.filter[it.key == Json.PARAM_ID].head
 			logger.debug("Object '{}' requested", id)
 			val requestedObject = view.getObject(CDOIDUtil.createLong(id.value.asLong))
 			
@@ -47,7 +46,7 @@ class Post {
 				throw new FlatlandException("No permission to edit object '" + id + "'")
 			}
 						
-			jsonObject.entrySet.filter[it.key != RepoAccessServlet.PARAM_ID].forEach[
+			jsonObject.entrySet.filter[it.key != Json.PARAM_ID].forEach[
 				logger.debug("Found json element with name '{}'", it.key)
 				
 			]			
