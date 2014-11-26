@@ -14,19 +14,20 @@ import ch.flatland.cdo.util.AbstractServlet
 import ch.flatland.cdo.util.Json
 import ch.flatland.cdo.util.JsonConverter
 import ch.flatland.cdo.util.JsonConverterConfig
+import ch.flatland.cdo.util.Response
 import java.io.IOException
 import javax.servlet.ServletException
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 import org.eclipse.emf.cdo.common.id.CDOIDUtil
 
-import static extension ch.flatland.cdo.util.Response.*
-
 class RepoAccessServlet extends AbstractServlet {
 
 	val public static PARAM_ID = Json.PARAM_ID
 	val public static PARAM_META = Json.PARAM_META
 	val public static SERVLET_CONTEXT = "/repo"
+
+	val extension Response = new Response
 
 	override protected doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		logRequest(req)

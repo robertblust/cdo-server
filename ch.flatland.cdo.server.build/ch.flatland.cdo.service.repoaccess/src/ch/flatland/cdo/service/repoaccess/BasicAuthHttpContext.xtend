@@ -12,18 +12,20 @@ package ch.flatland.cdo.service.repoaccess
 
 import ch.flatland.cdo.util.FlatlandException
 import ch.flatland.cdo.util.JsonConverter
+import ch.flatland.cdo.util.Request
+import ch.flatland.cdo.util.Response
 import java.io.IOException
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 import org.osgi.service.http.HttpContext
 import org.slf4j.LoggerFactory
 
-import static extension ch.flatland.cdo.util.Request.*
-import static extension ch.flatland.cdo.util.Response.*
-
 class BasicAuthHttpContext implements HttpContext {
 
 	val logger = LoggerFactory.getLogger(this.class)
+
+	val extension Request = new Request
+	val extension Response = new Response
 
 	override handleSecurity(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 

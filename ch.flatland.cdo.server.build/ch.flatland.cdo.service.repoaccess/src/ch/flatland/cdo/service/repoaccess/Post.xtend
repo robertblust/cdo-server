@@ -12,17 +12,19 @@ package ch.flatland.cdo.service.repoaccess
  */
 
 import ch.flatland.cdo.util.FlatlandException
+import ch.flatland.cdo.util.Request
 import javax.servlet.http.HttpServletRequest
 import org.eclipse.emf.cdo.common.id.CDOIDUtil
+import org.eclipse.emf.cdo.common.security.CDOPermission
 import org.slf4j.LoggerFactory
 
 import static extension ch.flatland.cdo.service.repoaccess.RepoAccessServlet.*
-import static extension ch.flatland.cdo.util.Request.*
-import org.eclipse.emf.cdo.common.security.CDOPermission
 
 class Post {
 
 	val logger = LoggerFactory.getLogger(this.class)
+	
+	val extension Request = new Request
 
 	def String run(HttpServletRequest req) {
 		val body = req.readBody
