@@ -20,13 +20,11 @@ class RepoAccessServlet extends AbstractServlet {
 
 	override protected doGet(HttpServletRequest req, HttpServletResponse resp) {
 		logRequest(req)
-		val get = new Get
-		get.run(req, resp)
+		(new Get).run(req, resp)
 	}
 
 	override protected doPost(HttpServletRequest req, HttpServletResponse resp) {
 		logRequest(req)
-		val post = new Post
-		post.run(req, resp)
+		(new Post).run(req, resp)
 	}
 }
