@@ -16,6 +16,5 @@ class FlatlandException extends Exception {
 	
 	new(String message) {
 		super(message)
-	}
-	
+	}	
 }

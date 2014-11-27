@@ -71,8 +71,6 @@ class JsonConverter {
 		} catch (Exception e) {
 			throw new FlatlandException("Failed to parse json!")
 		}
-		
-		//gson.fromJson(jsonString, JsonObject)
 	}
 
 	def dispatch String toJson(Object object) {

@@ -16,15 +16,14 @@ import org.slf4j.LoggerFactory
 
 class Response {
 	val logger = LoggerFactory.getLogger(this.class)
-	val static PARAM_JSONP_CALLBACK = "callback"
 	
 	def writeResponse(HttpServletResponse resp, HttpServletRequest req, String jsonString) {
 		logger.debug("Json '{}'", jsonString)
 
 		// write response
-		if (req.getParameter(PARAM_JSONP_CALLBACK) != null && req.getParameter(PARAM_JSONP_CALLBACK).length > 0) {
+		if (req.getParameter(Json.PARAM_JSONP_CALLBACK) != null && req.getParameter(Json.PARAM_JSONP_CALLBACK).length > 0) {
 			resp.contentType = Json.JSONP_CONTENTTYPE_UTF8
-			resp.writer.append('''«req.getParameter(PARAM_JSONP_CALLBACK)»(«jsonString»)''')
+			resp.writer.append('''«req.getParameter(Json.PARAM_JSONP_CALLBACK)»(«jsonString»)''')
 		} else {
 			resp.contentType = Json.JSON_CONTENTTYPE_UTF8
 			resp.writer.append(jsonString)
