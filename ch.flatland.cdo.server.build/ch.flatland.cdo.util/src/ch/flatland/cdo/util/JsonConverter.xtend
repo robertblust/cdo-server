@@ -142,14 +142,14 @@ class JsonConverter {
 					if (values.size > 0) {
 						val jsonPrimitiveArray = new JsonArray
 						for (value : values) {
-							jsonPrimitiveArray.add(value.jsonPrimitive)
+							jsonPrimitiveArray.add(value.toJsonPrimitive)
 						}
 						jsonAttributes.add(name, jsonPrimitiveArray)
 					}
 				} else {
 					val value = object.eGet(attribute, true)
 					if (value != null) {
-						jsonAttributes.add(name, value.jsonPrimitive)
+						jsonAttributes.add(name, value.toJsonPrimitive)
 					}
 				}
 
@@ -171,7 +171,7 @@ class JsonConverter {
 					if (values.size > 0) {
 						val jsonReferencesArray = new JsonArray
 						for (value : values) {
-							val jsonRefObject = value.getJsonObject as JsonObject
+							val jsonRefObject = value.toJsonObject as JsonObject
 
 							// should we add attributes or not?
 							jsonRefObject.addAttributes(value as EObject)
@@ -182,10 +182,10 @@ class JsonConverter {
 				} else {
 					val value = eObject.eGet(reference, true)
 					if (value != null) {
-						val jsonRefObject = value.getJsonObject as JsonObject
+						val jsonRefObject = value.toJsonObject as JsonObject
 						jsonRefObject.addAttributes(value as EObject)
 
-						jsonReferences.add(name, value.getJsonObject)
+						jsonReferences.add(name, value.toJsonObject)
 					}
 				}
 			}
@@ -246,46 +246,12 @@ class JsonConverter {
 		jsonBaseObject.addProperty(JsonConverterConfig.TYPE, classifier.type)
 	}
 
-	def private dispatch getJsonPrimitive(Object object) {
-		logger.error("NO DISPATCH MEHTOD for getJsonPrimitive({}) ", object.class.name)
+	def private dispatch toJsonObject(Object object) {
+		logger.error("NO DISPATCH MEHTOD for toJsonObject({}) ", object.class.name)
 		new JsonPrimitive(object.toString)
 	}
 
-	def private dispatch getJsonPrimitive(Number object) {
-		new JsonPrimitive(object)
-	}
-	
-	def private dispatch getJsonPrimitive(Character object) {
-		new JsonPrimitive(object.toString)
-	}
-	
-	def private dispatch getJsonPrimitive(Date object) {
-		new JsonPrimitive(dateFormat.format(object))
-	}
-
-	def private dispatch getJsonPrimitive(URI object) {
-		new JsonPrimitive(object.toString)
-	}
-
-	def private dispatch getJsonPrimitive(String object) {
-		new JsonPrimitive(object)
-	}
-
-	def private dispatch getJsonPrimitive(Enumerator object) {
-		new JsonPrimitive(object.name)
-	}
-
-	def private dispatch getJsonPrimitive(Boolean object) {
-		new JsonPrimitive(object)
-	}
-
-	def private dispatch getJsonObject(Object object) {
-		System.err.println(
-			"getJsonObject(Object object, String serverUrl) " + object.class.name + " returns " + object.toString)
-		new JsonPrimitive(object.toString)
-	}
-
-	def private dispatch getJsonObject(EObject object) {
+	def private dispatch toJsonObject(EObject object) {
 		object.toJsonBase
 	}
 
@@ -336,26 +302,60 @@ class JsonConverter {
 			]
 		}
 	}
-	
+
 	def private toEType(JsonPrimitive jsonPrimitive, EAttribute eAttribute) {
 		logger.debug("eAttribute '{}' has data type {}", eAttribute.name, eAttribute.EAttributeType.name)
-		
+
 		switch eAttribute.EAttributeType.name {
-			case "EString" : return jsonPrimitive.asString
-			case "EBoolean" : return jsonPrimitive.asBoolean
-			case "EInt" : return jsonPrimitive.asInt
-			case "ELong" : return jsonPrimitive.asLong
-			case "EShort" : return jsonPrimitive.asShort
-			case "EDouble" : return jsonPrimitive.asDouble
-			case "EFloat" : return jsonPrimitive.asFloat
-			case "EByte" : return jsonPrimitive.asByte
-			case "EChar" : return jsonPrimitive.asCharacter
-			case "EDate" : return dateFormat.parse(jsonPrimitive.asString)
-			case "EBigDecimal" : return jsonPrimitive.asBigDecimal
-			case "EBigInteger" : return jsonPrimitive.asBigInteger
+			case "EString": return jsonPrimitive.asString
+			case "EBoolean": return jsonPrimitive.asBoolean
+			case "EInt": return jsonPrimitive.asInt
+			case "ELong": return jsonPrimitive.asLong
+			case "EShort": return jsonPrimitive.asShort
+			case "EDouble": return jsonPrimitive.asDouble
+			case "EFloat": return jsonPrimitive.asFloat
+			case "EByte": return jsonPrimitive.asByte
+			case "EChar": return jsonPrimitive.asCharacter
+			case "EDate": return dateFormat.parse(jsonPrimitive.asString)
+			case "EBigDecimal": return jsonPrimitive.asBigDecimal
+			case "EBigInteger": return jsonPrimitive.asBigInteger
 		}
-		
-		logger.error("NO CONVERSION WAS POSSIBLE of eAttribute '{}' to data type {}", eAttribute.name, eAttribute.EAttributeType.name)
+
+		logger.error("NO CONVERSION WAS POSSIBLE of eAttribute '{}' to data type {}", eAttribute.name,
+			eAttribute.EAttributeType.name)
 		return null
+	}
+
+	def private dispatch toJsonPrimitive(Object object) {
+		logger.error("NO DISPATCH MEHTOD for getJsonPrimitive({}) ", object.class.name)
+		new JsonPrimitive(object.toString)
+	}
+
+	def private dispatch toJsonPrimitive(Number object) {
+		new JsonPrimitive(object)
+	}
+
+	def private dispatch toJsonPrimitive(Character object) {
+		new JsonPrimitive(object.toString)
+	}
+
+	def private dispatch toJsonPrimitive(Date object) {
+		new JsonPrimitive(dateFormat.format(object))
+	}
+
+	def private dispatch toJsonPrimitive(URI object) {
+		new JsonPrimitive(object.toString)
+	}
+
+	def private dispatch toJsonPrimitive(String object) {
+		new JsonPrimitive(object)
+	}
+
+	def private dispatch toJsonPrimitive(Enumerator object) {
+		new JsonPrimitive(object.name)
+	}
+
+	def private dispatch toJsonPrimitive(Boolean object) {
+		new JsonPrimitive(object)
 	}
 }
