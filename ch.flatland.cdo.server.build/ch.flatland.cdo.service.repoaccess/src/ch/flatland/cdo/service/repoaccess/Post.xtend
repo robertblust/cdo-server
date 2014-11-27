@@ -41,7 +41,9 @@ class Post {
 			}
 			val jsonObject = body.fromJson
 			val id = jsonObject.entrySet.filter[it.key == Json.PARAM_ID].head
+			
 			logger.debug("Object '{}' requested", id)
+			
 			val requestedObject = view.getObject(CDOIDUtil.createLong(id.value.asLong))
 			
 			if (requestedObject.cdoPermission != CDOPermission.WRITE) {

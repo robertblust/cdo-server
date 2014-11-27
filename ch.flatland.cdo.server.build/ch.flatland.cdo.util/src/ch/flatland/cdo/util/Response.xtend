@@ -29,4 +29,19 @@ class Response {
 			resp.writer.append(jsonString)
 		}
 	}
+	
+	def statusForbidden(HttpServletResponse resp) {
+		resp.status = HttpServletResponse.SC_FORBIDDEN
+		return new FlatlandException(resp.status + " - Forbidden!")
+	}
+	
+	def statusUnauthorized(HttpServletResponse resp) {
+		resp.status = HttpServletResponse.SC_UNAUTHORIZED
+		return new FlatlandException(resp.status + " - Unauthorized!")
+	}
+	
+	def statusMethodNotAllowed(HttpServletResponse resp) {
+		resp.status = HttpServletResponse.SC_METHOD_NOT_ALLOWED
+		return new FlatlandException(resp.status + " - Method not allowed!")
+	}
 }
