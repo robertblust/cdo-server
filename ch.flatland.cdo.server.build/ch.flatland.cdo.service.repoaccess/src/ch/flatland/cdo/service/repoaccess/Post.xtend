@@ -9,7 +9,8 @@
  *    Robert Blust - initial API and implementation
  */
 package ch.flatland.cdo.service.repoaccess
- 
+
+import ch.flatland.cdo.util.EMF
 import ch.flatland.cdo.util.FlatlandException
 import ch.flatland.cdo.util.Json
 import ch.flatland.cdo.util.Request
@@ -23,15 +24,17 @@ import org.slf4j.LoggerFactory
 class Post {
 
 	val logger = LoggerFactory.getLogger(this.class)
-	
+
 	val extension Request = new Request
 	val extension Response = new Response
+	val extension EMF = new EMF
 
 	def void run(HttpServletRequest req, HttpServletResponse resp) {
 		val body = req.readBody
 		logger.debug("Run for '{}' with body '{}'", req.userId, body)
 
 		val extension JsonConverter = req.createJsonConverter(RepoAccessServlet.SERVLET_CONTEXT)
+
 		val view = SessionFactory.getCDOSession(req).openTransaction
 		var String jsonString = null
 
@@ -39,21 +42,29 @@ class Post {
 			if (body.length == 0) {
 				throw new FlatlandException("Request body must not be empty")
 			}
+
 			val jsonObject = body.fromJson
 			val id = jsonObject.entrySet.filter[it.key == Json.PARAM_ID].head
-			
+
+			if (id == null) {
+				throw new FlatlandException("Attribute '" + Json.PARAM_ID + "' not in json object!")
+			}
+
 			logger.debug("Object '{}' requested", id)
-			
+
 			val requestedObject = view.getObject(CDOIDUtil.createLong(id.value.asLong))
-			
+
+			logger.debug("Object '{}' loaded type of {}", id, requestedObject.eClass.type)
+
 			if (requestedObject.cdoPermission != CDOPermission.WRITE) {
 				throw new FlatlandException("No permission to edit object '" + id + "'")
 			}
-						
-			jsonObject.entrySet.filter[it.key != Json.PARAM_ID].forEach[
-				logger.debug("Found json element with name '{}'", it.key)
-				
-			]			
+
+			jsonObject.toEObject = requestedObject
+			
+			view.commit
+
+			// now transform manipulated object to json for the reponse			
 			jsonString = requestedObject.toJson
 
 		} catch (Exception e) {
@@ -66,4 +77,5 @@ class Post {
 		}
 		resp.writeResponse(req, jsonString)
 	}
+
 }
