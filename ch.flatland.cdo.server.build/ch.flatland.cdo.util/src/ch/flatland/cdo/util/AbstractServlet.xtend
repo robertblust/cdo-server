@@ -68,10 +68,7 @@ class AbstractServlet extends HttpServlet {
 
 	def methodNotAllowed(HttpServletRequest req, HttpServletResponse resp) {
 		val extension JsonConverter = new JsonConverter
-		val exception = new FlatlandException(
-			HttpServletResponse.SC_METHOD_NOT_ALLOWED + " - " + req.method + " not allowed!")
-		resp.status = HttpServletResponse.SC_METHOD_NOT_ALLOWED
-		resp.writeResponse(req, exception.toJson)
+		resp.writeResponse(req, resp.statusMethodNotAllowed.toJson)
 	}
 
 	def logRequest(HttpServletRequest req) {

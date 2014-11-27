@@ -10,7 +10,6 @@
  */
 package ch.flatland.cdo.service.repoaccess
 
-import ch.flatland.cdo.util.FlatlandException
 import ch.flatland.cdo.util.JsonConverter
 import ch.flatland.cdo.util.Request
 import ch.flatland.cdo.util.Response
@@ -27,32 +26,28 @@ class BasicAuthHttpContext implements HttpContext {
 	override handleSecurity(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
 		val extension Request = new Request
+		val extension Response = new Response
 		// only allow https
 		if (!req.secure) {
 			logger.debug("Forbidden")
-			resp.status = HttpServletResponse.SC_FORBIDDEN
-			writeException(req, resp, new FlatlandException(HttpServletResponse.SC_FORBIDDEN + " - Forbidden!"))
+			resp.authExeption(req, resp.statusForbidden)
 			return false
 		}
 
 		// check if authorization header is available
 		if (!req.basicAuth) {
 			logger.debug("No basic auth in request")
-			resp.status = HttpServletResponse.SC_UNAUTHORIZED
-			writeException(req, resp,
-				new FlatlandException(HttpServletResponse.SC_UNAUTHORIZED + " - Unauthorized!"))
+			resp.authExeption(req, resp.statusUnauthorized)
 			return false
 		}
 
 		try {
 
-			// try to create a CDOSession and reuse the CDO Authentication
+			// try to create or reuse the CDOSession
 			SessionFactory.getOrCreateCDOSession(req)
 		} catch (Exception e) {
 			logger.debug("Authentication failed - '{}' > stacktrace '{}'", req.userId, e)
-			resp.status = HttpServletResponse.SC_UNAUTHORIZED
-			writeException(req, resp,
-				new FlatlandException(HttpServletResponse.SC_UNAUTHORIZED + " - Unauthorized!"))
+			resp.authExeption(req, resp.statusUnauthorized)
 			return false
 		}
 		logger.debug("Authentication OK for '{}'", req.userId)
@@ -68,7 +63,7 @@ class BasicAuthHttpContext implements HttpContext {
 		return null
 	}
 
-	def writeException(HttpServletRequest req, HttpServletResponse resp, Exception exception) {
+	def private authExeption(HttpServletResponse resp, HttpServletRequest req, Exception exception) {
 		val extension Response = new Response
 		val extension JsonConverter = new JsonConverter
 		resp.writeResponse(req, exception.toJson)
