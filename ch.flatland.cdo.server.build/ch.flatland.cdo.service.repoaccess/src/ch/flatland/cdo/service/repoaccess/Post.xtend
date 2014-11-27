@@ -1,5 +1,3 @@
-package ch.flatland.cdo.service.repoaccess
-
 /*
  * Copyright (c) 2014 Robert Blust (Zürich, Switzerland) and others.
  * All rights reserved. This program and the accompanying materials
@@ -10,7 +8,8 @@ package ch.flatland.cdo.service.repoaccess
  * Contributors:
  *    Robert Blust - initial API and implementation
  */
-
+package ch.flatland.cdo.service.repoaccess
+ 
 import ch.flatland.cdo.util.FlatlandException
 import ch.flatland.cdo.util.Json
 import ch.flatland.cdo.util.Request
