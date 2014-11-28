@@ -285,16 +285,16 @@ class JsonConverter {
 
 					logger.debug("Found matching eAttribute with name '{}'", jsonName)
 
-					if (jsonElement.isSetable(eAttribute)) {
+					if (jsonElement.isSettable(eAttribute)) {
 
-						logger.debug("Match - json attribute is setable to eAttribute for '{}'", jsonName)
+						logger.debug("Match - json attribute is settable to eAttribute for '{}'", jsonName)
 						val eType = (jsonElement as JsonPrimitive).toEType(eAttribute)
 						if (eType != null) {
 							eObject.eSet(eAttribute, eType)
 						}
 					} else {
 
-						logger.debug("MISSmatch - json attribute is NOT setable to eAttribute for '{}'", jsonName)
+						logger.debug("MISSmatch - json attribute is NOT settable to eAttribute for '{}'", jsonName)
 					}
 
 				} else {
@@ -305,7 +305,7 @@ class JsonConverter {
 	}
 
 	def private toEType(JsonPrimitive jsonPrimitive, EAttribute eAttribute) {
-		logger.debug("eAttribute '{}' has data type {}", eAttribute.name, eAttribute.EAttributeType.name)
+		logger.debug("eAttribute '{}' has data type '{}'", eAttribute.name, eAttribute.EAttributeType.name)
 
 		switch eAttribute.EAttributeType {
 			case Literals.ESTRING: return jsonPrimitive.asString
@@ -320,6 +320,15 @@ class JsonConverter {
 			case Literals.EDATE: return dateFormat.parse(jsonPrimitive.asString)
 			case Literals.EBIG_DECIMAL: return jsonPrimitive.asBigDecimal
 			case Literals.EBIG_INTEGER: return jsonPrimitive.asBigInteger
+		}
+		
+		// check if EAttribute type implements Enumerator
+		if (eAttribute.EAttributeType.eClass.name == "EEnum") {
+			logger.debug("'{}' is an Enumerator", eAttribute.EAttributeType.name)
+			
+			val enum = eAttribute.EAttributeType as EEnum
+			val literal = enum.getEEnumLiteral(jsonPrimitive.asString)
+			
 		}
 
 		logger.error("NO CONVERSION WAS POSSIBLE of eAttribute '{}' to data type {}", eAttribute.name,

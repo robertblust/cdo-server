@@ -20,7 +20,7 @@ class EMF {
 		classifier.EPackage.nsURI + "." + classifier.name
 	}
 
-	def isSetable(JsonElement element, EStructuralFeature feature) {
+	def isSettable(JsonElement element, EStructuralFeature feature) {
 		if (feature.derived) {
 			return false
 		}
