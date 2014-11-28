@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.EClassifier
 import org.eclipse.emf.ecore.EEnum
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
+import org.eclipse.emf.ecore.EcorePackage.Literals
 import org.eclipse.emf.ecore.util.EcoreUtil
 import org.eclipse.emf.edit.EMFEditPlugin
 import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator
@@ -306,19 +307,19 @@ class JsonConverter {
 	def private toEType(JsonPrimitive jsonPrimitive, EAttribute eAttribute) {
 		logger.debug("eAttribute '{}' has data type {}", eAttribute.name, eAttribute.EAttributeType.name)
 
-		switch eAttribute.EAttributeType.name {
-			case "EString": return jsonPrimitive.asString
-			case "EBoolean": return jsonPrimitive.asBoolean
-			case "EInt": return jsonPrimitive.asInt
-			case "ELong": return jsonPrimitive.asLong
-			case "EShort": return jsonPrimitive.asShort
-			case "EDouble": return jsonPrimitive.asDouble
-			case "EFloat": return jsonPrimitive.asFloat
-			case "EByte": return jsonPrimitive.asByte
-			case "EChar": return jsonPrimitive.asCharacter
-			case "EDate": return dateFormat.parse(jsonPrimitive.asString)
-			case "EBigDecimal": return jsonPrimitive.asBigDecimal
-			case "EBigInteger": return jsonPrimitive.asBigInteger
+		switch eAttribute.EAttributeType {
+			case Literals.ESTRING: return jsonPrimitive.asString
+			case Literals.EBOOLEAN: return jsonPrimitive.asBoolean
+			case Literals.EINT: return jsonPrimitive.asInt
+			case Literals.ELONG: return jsonPrimitive.asLong
+			case Literals.ESHORT: return jsonPrimitive.asShort
+			case Literals.EDOUBLE: return jsonPrimitive.asDouble
+			case Literals.EFLOAT: return jsonPrimitive.asFloat
+			case Literals.EBYTE: return jsonPrimitive.asByte
+			case Literals.ECHAR: return jsonPrimitive.asCharacter
+			case Literals.EDATE: return dateFormat.parse(jsonPrimitive.asString)
+			case Literals.EBIG_DECIMAL: return jsonPrimitive.asBigDecimal
+			case Literals.EBIG_INTEGER: return jsonPrimitive.asBigInteger
 		}
 
 		logger.error("NO CONVERSION WAS POSSIBLE of eAttribute '{}' to data type {}", eAttribute.name,
