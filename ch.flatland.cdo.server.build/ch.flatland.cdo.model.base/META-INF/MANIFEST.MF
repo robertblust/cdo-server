@@ -4,7 +4,7 @@ Bundle-Name: Flatland CDO Base Model
 Bundle-SymbolicName: ch.flatland.cdo.model.base;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .
-Bundle-Vendor: flatand.ch
+Bundle-Vendor: flatland.ch
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: ch.flatland.cdo.model.base,

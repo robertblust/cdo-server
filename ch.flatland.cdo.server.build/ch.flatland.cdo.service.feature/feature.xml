@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="ch.flatland.cdo.model.feature"
-      label="Flatland CDO Model Feature"
+      id="ch.flatland.cdo.service.feature"
+      label="Flatland CDO Service Feature"
       version="1.0.0.qualifier"
       provider-name="flatland.ch">
 
@@ -18,28 +18,14 @@
    </license>
 
    <plugin
-         id="ch.flatland.cdo.model.base"
+         id="ch.flatland.cdo.service.ping"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="ch.flatland.cdo.model.base.edit"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="ch.flatland.cdo.model.test"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="ch.flatland.cdo.model.test.edit"
+         id="ch.flatland.cdo.service.repoaccess"
          download-size="0"
          install-size="0"
          version="0.0.0"

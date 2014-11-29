@@ -22,14 +22,22 @@
 		<module>ch.flatland.cdo.model.test</module>
 		<module>ch.flatland.cdo.model.test.edit</module>
 		<module>ch.flatland.cdo.model.feature</module>
+		
 		<module>ch.flatland.cdo.server.ldap</module>
+		<module>ch.flatland.cdo.server.ldap.feature</module>
+		
 		<module>ch.flatland.cdo.server.product</module>
 		<module>ch.flatland.cdo.server.feature</module>
-		<module>ch.flatland.cdo.targetplatform</module>
+		
 		<module>ch.flatland.cdo.service.ping</module>
 		<module>ch.flatland.cdo.service.repoaccess</module>
-		<module>ch.flatland.cdo.server</module>
+		<module>ch.flatland.cdo.service.feature</module>
+		
 		<module>ch.flatland.cdo.util</module>
+		<module>ch.flatland.cdo.util.feature</module>
+		
+		<module>ch.flatland.cdo.server</module>
+		<module>ch.flatland.cdo.targetplatform</module>
 	</modules>
 
 	<build>
