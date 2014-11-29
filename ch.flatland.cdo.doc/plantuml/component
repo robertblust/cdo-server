@@ -5,14 +5,23 @@ skinparam componentStyle uml2
 [ch.flatland.cdo.server.ldap.feature] as ldap
 [ch.flatland.cdo.service.feature] as service
 [ch.flatland.cdo.model.feature] as model
+[ch.flatland.cdo.util.feature] as util
 
 server ..> ldap : uses
 server ..> service : uses
-server ..> model : uses
+server ...> model : uses
+server ..> util : uses
+
+service ..> util : uses
+ldap ..> util : uses
 
 Rest - service : provides
 Net4J - server : provides
-ldap ..> LDAP : uses
+ldap ..> LDAP
+server .> DATASTORE
 
+note bottom of Rest
+ Json Rest API supports GET, POST, PUT, DELETE 
+end note
 
 @enduml

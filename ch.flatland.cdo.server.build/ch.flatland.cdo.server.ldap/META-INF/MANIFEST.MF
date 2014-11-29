@@ -16,5 +16,5 @@ Bundle-ActivationPolicy: lazy
 Bundle-Activator: ch.flatland.cdo.server.ldap.LdapAuthenticatorPlugin
 Export-Package: ch.flatland.cdo.server,
  ch.flatland.cdo.server.ldap
-Bundle-Vendor: flatand.ch
+Bundle-Vendor: flatland.ch
 

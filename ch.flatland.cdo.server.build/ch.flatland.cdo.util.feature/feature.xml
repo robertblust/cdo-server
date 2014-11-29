@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="ch.flatland.cdo.server.feature"
-      label="Flatland CDO Server Feature"
+      id="ch.flatland.cdo.util.feature"
+      label="Flatland CDO Util Feature"
       version="1.0.0.qualifier"
       provider-name="flatland.ch">
 
@@ -18,7 +18,7 @@
    </license>
 
    <plugin
-         id="ch.flatland.cdo.server.product"
+         id="ch.flatland.cdo.util"
          download-size="0"
          install-size="0"
          version="0.0.0"
