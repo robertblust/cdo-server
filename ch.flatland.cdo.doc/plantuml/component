@@ -1,0 +1,18 @@
+@startuml
+skinparam componentStyle uml2
+
+[ch.flatland.cdo.server.feature] as server
+[ch.flatland.cdo.server.ldap.feature] as ldap
+[ch.flatland.cdo.service.feature] as service
+[ch.flatland.cdo.model.feature] as model
+
+server ..> ldap : uses
+server ..> service : uses
+server ..> model : uses
+
+Rest - service : provides
+Net4J - server : provides
+ldap ..> LDAP : uses
+
+
+@enduml
