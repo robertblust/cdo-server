@@ -1,0 +1,47 @@
+@GenModel(featureDelegation="Dynamic",
+	rootExtendsClass="org.eclipse.emf.internal.cdo.CDOObjectImpl",
+	rootExtendsInterface="org.eclipse.emf.cdo.CDOObject",
+	modelPluginVariables="org.eclipse.xtext.xbase.lib org.eclipse.emf.ecore.xcore.lib org.eclipse.emf.cdo",
+	childCreationExtenders="true",
+	editDirectory="/ch.flatland.cdo.model.test.edit/src",
+	modelDirectory="/ch.flatland.cdo.model.test/src",
+	creationIcons="false")
+package ch.flatland.cdo.model.test
+
+class SimpleDataTypes {
+	String testString
+	boolean testBoolean
+	int testInt
+	long testLong
+	short testShort
+	double testDouble
+	float testFloat
+	byte testByte
+	char testChar
+	Date testDate
+	BigDecimal testBigDecimal
+	BigInteger testBigInteger
+	TestEnum testEnum
+}
+
+class SimpleDataTypesAsArray {
+	String[] testString
+	boolean[] testBoolean
+	int[] testInt
+	long[] testLong
+	short[] testShort
+	double[] testDouble
+	float[] testFloat
+	byte[] testByte
+	char[] testChar
+	Date[] testDate
+	BigDecimal[] testBigDecimal
+	BigInteger[] testBigInteger
+	TestEnum[] testEnum
+}
+
+enum TestEnum {
+	literal0 = 0
+	literal1 = 1
+	literal2 = 2
+}

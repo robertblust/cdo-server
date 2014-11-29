@@ -13,4 +13,5 @@ Require-Bundle: org.eclipse.xtend.lib,
  ch.flatland.cdo.util;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: ch.flatland.cdo.service.ping.PingPlugin
+Bundle-Vendor: flatand.ch
 

@@ -1,15 +1,15 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Flatland CDO Base Model
-Bundle-SymbolicName: ch.flatland.cdo.model.base;singleton:=true
+Bundle-Name: Flatland CDO Test Model
+Bundle-SymbolicName: ch.flatland.cdo.model.test;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: flatand.ch
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
-Export-Package: ch.flatland.cdo.model.base,
- ch.flatland.cdo.model.base.impl,
- ch.flatland.cdo.model.base.util
+Export-Package: ch.flatland.cdo.model.test,
+ ch.flatland.cdo.model.test.impl,
+ ch.flatland.cdo.model.test.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.xtext.xbase.lib,
