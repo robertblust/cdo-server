@@ -153,7 +153,6 @@ class JsonConverter {
 						jsonAttributes.add(name, value.toJsonPrimitive)
 					}
 				}
-
 			}
 			if (jsonAttributes.entrySet.size > 0) {
 				jsonBaseObject.add(JsonConverterConfig.ATTRIBUTES, jsonAttributes)
@@ -282,34 +281,36 @@ class JsonConverter {
 				logger.debug("Found attribute with name '{}'", jsonName)
 				val eAttribute = eObject.eClass.EAllAttributes.filter[it.name == jsonName].head
 				if (eAttribute != null) {
-
 					logger.debug("Found matching eAttribute with name '{}'", jsonName)
-
 					if (jsonElement.isSettable(eAttribute)) {
-
 						logger.debug("Match - json attribute is settable to eAttribute for '{}'", jsonName)
-
 						if (eAttribute.many) {
 							val eArray = newArrayList
-							jsonElement.asJsonArray.forEach [
-								val eType = it.asJsonPrimitive.toEType(eAttribute)
-								if (eType != null) {
-									eArray.add(eType)
-								}
-							]
+							if (jsonElement.jsonNull) {
+								logger.debug("JsonElement '{}' is null", jsonName)
+							} else {
+								jsonElement.asJsonArray.forEach [
+									val eType = it.asJsonPrimitive.toEType(eAttribute)
+									if (eType != null) {
+										eArray.add(eType)
+									}
+								]
+							}
 							eObject.eSet(eAttribute, eArray)
 						} else {
-							val eType = jsonElement.asJsonPrimitive.toEType(eAttribute)
-							if (eType != null) {
-								eObject.eSet(eAttribute, eType)
+							if (jsonElement.jsonNull) {
+								logger.debug("JsonElement '{}' is null", jsonName)
+								eObject.eUnset(eAttribute)
+							} else {
+								val eType = jsonElement.asJsonPrimitive.toEType(eAttribute)
+								if (eType != null) {
+									eObject.eSet(eAttribute, eType)
+								}
 							}
 						}
-
 					} else {
-
 						logger.debug("MISSmatch - json attribute is NOT settable to eAttribute for '{}'", jsonName)
 					}
-
 				} else {
 					logger.debug("NOT found matching eAttribute with name '{}'", jsonName)
 				}
@@ -318,7 +319,8 @@ class JsonConverter {
 	}
 
 	def private toEType(JsonPrimitive jsonPrimitive, EAttribute eAttribute) {
-		logger.debug("eAttribute '{}' has data type '{}', try to set json value '{}'", eAttribute.name, eAttribute.EAttributeType.name, jsonPrimitive)
+		logger.debug("eAttribute '{}' has data type '{}', try to set json value '{}'", eAttribute.name,
+			eAttribute.EAttributeType.name, jsonPrimitive)
 
 		switch eAttribute.EAttributeType {
 			case Literals.ESTRING: return jsonPrimitive.asString
