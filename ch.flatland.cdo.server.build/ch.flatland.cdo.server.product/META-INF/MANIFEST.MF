@@ -37,5 +37,6 @@ Bundle-Name: Flatland CDO Server
 Bundle-ManifestVersion: 2
 Export-Package: ch.flatland.cdo.server
 Bundle-Activator: ch.flatland.cdo.server.product.ProductPlugin
+Bundle-Vendor: flatand.ch
 
 

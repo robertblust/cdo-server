@@ -1,17 +1,16 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Flatland CDO Base Model Edit
-Bundle-SymbolicName: ch.flatland.cdo.model.base.edit;singleton:=true
+Bundle-Name: Flatland CDO Test Model Edit
+Bundle-SymbolicName: ch.flatland.cdo.model.test.edit;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .
-Bundle-Activator: ch.flatland.cdo.model.base.provider.BaseEditPlugin$Implementation
+Bundle-Activator: ch.flatland.cdo.model.test.provider.TestEditPlugin$Implementation
 Bundle-Vendor: flatand.ch
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
-Export-Package: ch.flatland.cdo.model.base.provider
+Export-Package: ch.flatland.cdo.model.test.provider
 Require-Bundle: org.eclipse.core.runtime,
- ch.flatland.cdo.model.base;visibility:=reexport,
+ ch.flatland.cdo.model.test;visibility:=reexport,
  org.eclipse.emf.edit;visibility:=reexport,
  org.eclipse.emf.ecore;visibility:=reexport
 Bundle-ActivationPolicy: lazy
-
