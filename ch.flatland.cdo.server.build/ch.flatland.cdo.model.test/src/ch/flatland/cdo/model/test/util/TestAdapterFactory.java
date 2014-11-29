@@ -76,6 +76,10 @@ public class TestAdapterFactory extends AdapterFactoryImpl {
 				return createSimpleDataTypesAsArrayAdapter();
 			}
 			@Override
+			public Adapter caseTestObject(TestObject object) {
+				return createTestObjectAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -120,6 +124,20 @@ public class TestAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createSimpleDataTypesAsArrayAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ch.flatland.cdo.model.test.TestObject <em>Object</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ch.flatland.cdo.model.test.TestObject
+	 * @generated
+	 */
+	public Adapter createTestObjectAdapter() {
 		return null;
 	}
 

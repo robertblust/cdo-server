@@ -40,6 +40,15 @@ public interface TestFactory extends EFactory {
 	SimpleDataTypesAsArray createSimpleDataTypesAsArray();
 
 	/**
+	 * Returns a new object of class '<em>Object</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Object</em>'.
+	 * @generated
+	 */
+	TestObject createTestObject();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
