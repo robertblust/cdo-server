@@ -101,10 +101,10 @@ class JsonConverter {
 
 	def dispatch String toJson(Throwable object) {
 		val jsonBaseObject = new JsonObject
-		jsonBaseObject.addProperty(JsonConverterConfig.TYPE, "ch.flatland.Exception")
+		jsonBaseObject.addProperty(JsonConverterConfig.TYPE, FlatlandException.TYPE)
 		jsonBaseObject.addProperty(JsonConverterConfig.LABEL, object.class.simpleName)
 		if (object.message != null) {
-			jsonBaseObject.addProperty("message", object.message)
+			jsonBaseObject.addProperty(JsonConverterConfig.MESSAGE, object.message)
 		}
 		jsonBaseObject.toString
 	}
@@ -124,7 +124,7 @@ class JsonConverter {
 		} else {
 			jsonBaseObject.addProperty(JsonConverterConfig.LABEL, ITEM_DELEGATOR.getText(object))
 		}
-		jsonBaseObject.addProperty(JsonConverterConfig.ID, object.oid)
+		jsonBaseObject.addProperty(Json.PARAM_ID, object.oid)
 		jsonBaseObject.addProperty(JsonConverterConfig.HREF, object.url)
 		if (object.eContainer != null) {
 			jsonBaseObject.addProperty(JsonConverterConfig.CONTAINER, object.eContainer.url)
@@ -247,7 +247,7 @@ class JsonConverter {
 				jsonReferences.add(jsonReference)
 			}
 		}
-		jsonBaseObject.add(JsonConverterConfig.META, jsonTypeMeta)
+		jsonBaseObject.add(Json.PARAM_META, jsonTypeMeta)
 	}
 
 	def private addType(JsonObject jsonBaseObject, EClassifier classifier) {
@@ -269,7 +269,7 @@ class JsonConverter {
 
 	def private dispatch getUrl(EObject object) {
 		val uri = EcoreUtil.getURI(object)
-		return jsonConverterConfig.serverUrl + uri.devicePath.replace("//", "/") + "?" + JsonConverterConfig.ID + "=" +
+		return jsonConverterConfig.serverUrl + uri.devicePath.replace("//", "/") + "?" + Json.PARAM_ID + "=" +
 			uri.fragment.replace("L", "")
 	}
 
