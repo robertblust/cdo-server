@@ -13,23 +13,29 @@ package ch.flatland.cdo.util
 import com.google.gson.JsonElement
 import org.eclipse.emf.ecore.EClassifier
 import org.eclipse.emf.ecore.EStructuralFeature
+import org.slf4j.LoggerFactory
 
 class EMF {
 
+	val logger = LoggerFactory.getLogger(this.class)
+	
 	def getType(EClassifier classifier) {
 		classifier.EPackage.nsURI + "." + classifier.name
 	}
 
 	def isSettable(JsonElement element, EStructuralFeature feature) {
 		if (feature.derived) {
+			logger.debug("Feature '{}' is derived", feature.name)
 			return false
 		}
 
 		if (element.jsonPrimitive && !feature.many) {
+			logger.debug("Feature '{}' is primitive", feature.name)
 			return true
 		}
 
 		if (element.jsonArray && feature.many) {
+			logger.debug("Feature '{}' is array", feature.name)
 			return true
 		}
 		return false
