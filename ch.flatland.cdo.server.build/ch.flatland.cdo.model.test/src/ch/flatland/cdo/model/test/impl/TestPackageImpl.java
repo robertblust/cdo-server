@@ -6,12 +6,14 @@ import ch.flatland.cdo.model.test.SimpleDataTypes;
 import ch.flatland.cdo.model.test.SimpleDataTypesAsArray;
 import ch.flatland.cdo.model.test.TestEnum;
 import ch.flatland.cdo.model.test.TestFactory;
+import ch.flatland.cdo.model.test.TestObject;
 import ch.flatland.cdo.model.test.TestPackage;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
@@ -36,6 +38,13 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * @generated
 	 */
 	private EClass simpleDataTypesAsArrayEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass testObjectEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -365,6 +374,69 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getTestObject() {
+		return testObjectEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getTestObject_Name() {
+		return (EAttribute)testObjectEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getTestObject_SingleReference() {
+		return (EReference)testObjectEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getTestObject_MultiReferences() {
+		return (EReference)testObjectEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getTestObject_FixUpperBoundReferences() {
+		return (EReference)testObjectEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getTestObject_FixBoundReferences() {
+		return (EReference)testObjectEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getTestObject_FixlowerBoundReferences() {
+		return (EReference)testObjectEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getTestEnum() {
 		return testEnumEEnum;
 	}
@@ -426,6 +498,14 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 		createEAttribute(simpleDataTypesAsArrayEClass, SIMPLE_DATA_TYPES_AS_ARRAY__TEST_BIG_DECIMAL);
 		createEAttribute(simpleDataTypesAsArrayEClass, SIMPLE_DATA_TYPES_AS_ARRAY__TEST_BIG_INTEGER);
 		createEAttribute(simpleDataTypesAsArrayEClass, SIMPLE_DATA_TYPES_AS_ARRAY__TEST_ENUM);
+
+		testObjectEClass = createEClass(TEST_OBJECT);
+		createEAttribute(testObjectEClass, TEST_OBJECT__NAME);
+		createEReference(testObjectEClass, TEST_OBJECT__SINGLE_REFERENCE);
+		createEReference(testObjectEClass, TEST_OBJECT__MULTI_REFERENCES);
+		createEReference(testObjectEClass, TEST_OBJECT__FIX_UPPER_BOUND_REFERENCES);
+		createEReference(testObjectEClass, TEST_OBJECT__FIX_BOUND_REFERENCES);
+		createEReference(testObjectEClass, TEST_OBJECT__FIXLOWER_BOUND_REFERENCES);
 
 		// Create enums
 		testEnumEEnum = createEEnum(TEST_ENUM);
@@ -493,6 +573,14 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 		initEAttribute(getSimpleDataTypesAsArray_TestBigDecimal(), theEcorePackage.getEBigDecimal(), "testBigDecimal", null, 0, -1, SimpleDataTypesAsArray.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSimpleDataTypesAsArray_TestBigInteger(), theEcorePackage.getEBigInteger(), "testBigInteger", null, 0, -1, SimpleDataTypesAsArray.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSimpleDataTypesAsArray_TestEnum(), this.getTestEnum(), "testEnum", null, 0, -1, SimpleDataTypesAsArray.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(testObjectEClass, TestObject.class, "TestObject", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getTestObject_Name(), theEcorePackage.getEString(), "name", null, 0, 1, TestObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTestObject_SingleReference(), this.getTestObject(), null, "singleReference", null, 0, 1, TestObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTestObject_MultiReferences(), this.getTestObject(), null, "multiReferences", null, 0, -1, TestObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTestObject_FixUpperBoundReferences(), this.getTestObject(), null, "fixUpperBoundReferences", null, 0, 2, TestObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTestObject_FixBoundReferences(), this.getTestObject(), null, "fixBoundReferences", null, 2, 2, TestObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTestObject_FixlowerBoundReferences(), this.getTestObject(), null, "fixlowerBoundReferences", null, 1, 2, TestObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(testEnumEEnum, TestEnum.class, "TestEnum");

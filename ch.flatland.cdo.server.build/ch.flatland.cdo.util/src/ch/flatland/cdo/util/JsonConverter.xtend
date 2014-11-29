@@ -20,6 +20,7 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.List
 import org.eclipse.emf.cdo.CDOObject
+import org.eclipse.emf.cdo.common.id.CDOIDUtil
 import org.eclipse.emf.cdo.eresource.CDOResourceNode
 import org.eclipse.emf.common.util.Enumerator
 import org.eclipse.emf.common.util.URI
@@ -76,6 +77,9 @@ class JsonConverter {
 			if (jsonName == JsonConverterConfig.ATTRIBUTES) {
 				jsonElement.attributes = eObject
 			}
+			if (jsonName == JsonConverterConfig.REFERENCES) {
+				jsonElement.references = eObject
+			}
 		]
 		eObject
 	}
@@ -103,6 +107,10 @@ class JsonConverter {
 			jsonBaseObject.addProperty("message", object.message)
 		}
 		jsonBaseObject.toString
+	}
+
+	def resolveId(JsonObject jsonObject) {
+		jsonObject.entrySet.filter[it.key == Json.PARAM_ID].head
 	}
 
 	def private toJsonBase(EObject object) {
@@ -185,7 +193,7 @@ class JsonConverter {
 						val jsonRefObject = value.toJsonObject as JsonObject
 						jsonRefObject.addAttributes(value as EObject)
 
-						jsonReferences.add(name, value.toJsonObject)
+						jsonReferences.add(name, jsonRefObject)
 					}
 				}
 			}
@@ -282,7 +290,7 @@ class JsonConverter {
 				val eAttribute = eObject.eClass.EAllAttributes.filter[it.name == jsonName].head
 				if (eAttribute != null) {
 					logger.debug("Found matching eAttribute with name '{}'", jsonName)
-					if (jsonElement.isSettable(eAttribute)) {
+					if (jsonElement.isAttributeSettable(eAttribute)) {
 						logger.debug("Match - json attribute is settable to eAttribute for '{}'", jsonName)
 						if (eAttribute.many) {
 							val eArray = newArrayList
@@ -313,6 +321,85 @@ class JsonConverter {
 					}
 				} else {
 					logger.debug("NOT found matching eAttribute with name '{}'", jsonName)
+				}
+			]
+		}
+	}
+
+	def private setReferences(JsonElement element, EObject eObject) {
+		if (element.jsonObject) {
+
+			// should always be the case if it is a valid json
+			val jsonObject = element.asJsonObject
+			jsonObject.entrySet.forEach [
+				val jsonName = it.key
+				val jsonElement = it.value
+				logger.debug("Found reference with name '{}'", jsonName)
+				val eReference = eObject.eClass.EAllReferences.filter[it.name == jsonName].head
+				if (eReference != null) {
+					logger.debug("Found matching eReference with name '{}'", jsonName)
+					if (jsonElement.isReferenceSettable(eReference)) {
+						logger.debug("Match - json reference is settable to eReference for '{}'", jsonName)
+						if (eReference.many) {
+							val eArray = newArrayList
+							if (jsonElement.jsonNull) {
+								logger.debug("JsonElement '{}' is null", jsonName)
+							} else {
+								jsonElement.asJsonArray.forEach [
+									val jsonRefObject = it.asJsonObject
+									val id = jsonRefObject.resolveId
+									if (id == null) {
+										throw new FlatlandException(
+											"Attribute '" + Json.PARAM_ID + "' not found in json object!")
+									}
+									if (id.value.jsonNull) {
+										logger.debug("JsonElement '{}' is null", id.key)
+									} else {
+										logger.debug("Object '{}' requested", id)
+										val referencedObject = eObject.requestCDOObject(id.value.asLong)
+
+										if (referencedObject == null) {
+											throw new FlatlandException("ReferencedObject '" + id + "' not found!")
+										}
+										logger.debug("ReferencedObject '{}'", referencedObject)
+										eArray.add(referencedObject)
+									}
+								]
+							}
+							eObject.eSet(eReference, eArray)
+						} else {
+							if (jsonElement.jsonNull) {
+								logger.debug("JsonElement '{}' is null", jsonName)
+								eObject.eUnset(eReference)
+							} else {
+								val jsonRefObject = jsonElement.asJsonObject
+								val id = jsonRefObject.resolveId
+
+								if (id == null) {
+									throw new FlatlandException(
+										"Attribute '" + Json.PARAM_ID + "' not found in json object!")
+								}
+
+								if (id.value.jsonNull) {
+									logger.debug("JsonElement '{}' is null", id.key)
+									eObject.eUnset(eReference)
+								} else {
+									logger.debug("Object '{}' requested", id)
+									val referencedObject = eObject.requestCDOObject(id.value.asLong)
+
+									if (referencedObject == null) {
+										throw new FlatlandException("ReferencedObject '" + id + "' not found!")
+									}
+									logger.debug("ReferencedObject '{}'", referencedObject)
+									eObject.eSet(eReference, referencedObject)
+								}
+							}
+						}
+					} else {
+						logger.debug("MISSmatch - json reference is NOT settable to eReference for '{}'", jsonName)
+					}
+				} else {
+					logger.debug("NOT found matching eReference with name '{}'", jsonName)
 				}
 			]
 		}
@@ -383,5 +470,10 @@ class JsonConverter {
 
 	def private dispatch toJsonPrimitive(Boolean object) {
 		new JsonPrimitive(object)
+	}
+
+	def private requestCDOObject(EObject eObject, long id) {
+		val view = (eObject as CDOObject).cdoView
+		return view.getObject(CDOIDUtil.createLong(id))
 	}
 }

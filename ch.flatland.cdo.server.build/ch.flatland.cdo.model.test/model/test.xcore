@@ -40,6 +40,15 @@ class SimpleDataTypesAsArray {
 	TestEnum[] testEnum
 }
 
+class TestObject {
+	String name
+	refers TestObject singleReference
+	refers TestObject[] multiReferences
+	refers TestObject[0..2] fixUpperBoundReferences
+	refers TestObject[2..2] fixBoundReferences
+	refers TestObject[1..2] fixlowerBoundReferences
+}
+
 enum TestEnum {
 	literal0 = 0
 	literal1 = 1

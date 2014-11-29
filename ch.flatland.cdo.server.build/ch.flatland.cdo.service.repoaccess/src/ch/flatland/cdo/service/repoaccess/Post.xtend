@@ -44,10 +44,10 @@ class Post {
 			}
 
 			val jsonObject = body.fromJson
-			val id = jsonObject.entrySet.filter[it.key == Json.PARAM_ID].head
+			val id = jsonObject.resolveId
 
 			if (id == null) {
-				throw new FlatlandException("Attribute '" + Json.PARAM_ID + "' not in json object!")
+				throw new FlatlandException("Attribute '" + Json.PARAM_ID + "' not found in json object!")
 			}
 
 			logger.debug("Object '{}' requested", id)

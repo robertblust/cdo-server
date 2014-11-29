@@ -118,6 +118,29 @@ public class TestItemProviderAdapterFactory extends TestAdapterFactory implement
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link ch.flatland.cdo.model.test.TestObject} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected TestObjectItemProvider testObjectItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link ch.flatland.cdo.model.test.TestObject}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createTestObjectAdapter() {
+		if (testObjectItemProvider == null) {
+			testObjectItemProvider = new TestObjectItemProvider(this);
+		}
+
+		return testObjectItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -218,6 +241,7 @@ public class TestItemProviderAdapterFactory extends TestAdapterFactory implement
 	public void dispose() {
 		if (simpleDataTypesItemProvider != null) simpleDataTypesItemProvider.dispose();
 		if (simpleDataTypesAsArrayItemProvider != null) simpleDataTypesAsArrayItemProvider.dispose();
+		if (testObjectItemProvider != null) testObjectItemProvider.dispose();
 	}
 
 }

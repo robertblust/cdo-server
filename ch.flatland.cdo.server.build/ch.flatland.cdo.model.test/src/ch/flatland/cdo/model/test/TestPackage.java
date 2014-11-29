@@ -6,6 +6,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
 
 /**
  * <!-- begin-user-doc -->
@@ -348,6 +349,88 @@ public interface TestPackage extends EPackage {
 	int SIMPLE_DATA_TYPES_AS_ARRAY_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link ch.flatland.cdo.model.test.impl.TestObjectImpl <em>Object</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see ch.flatland.cdo.model.test.impl.TestObjectImpl
+	 * @see ch.flatland.cdo.model.test.impl.TestPackageImpl#getTestObject()
+	 * @generated
+	 */
+	int TEST_OBJECT = 2;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEST_OBJECT__NAME = 0;
+
+	/**
+	 * The feature id for the '<em><b>Single Reference</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEST_OBJECT__SINGLE_REFERENCE = 1;
+
+	/**
+	 * The feature id for the '<em><b>Multi References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEST_OBJECT__MULTI_REFERENCES = 2;
+
+	/**
+	 * The feature id for the '<em><b>Fix Upper Bound References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEST_OBJECT__FIX_UPPER_BOUND_REFERENCES = 3;
+
+	/**
+	 * The feature id for the '<em><b>Fix Bound References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEST_OBJECT__FIX_BOUND_REFERENCES = 4;
+
+	/**
+	 * The feature id for the '<em><b>Fixlower Bound References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEST_OBJECT__FIXLOWER_BOUND_REFERENCES = 5;
+
+	/**
+	 * The number of structural features of the '<em>Object</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEST_OBJECT_FEATURE_COUNT = 6;
+
+	/**
+	 * The number of operations of the '<em>Object</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEST_OBJECT_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link ch.flatland.cdo.model.test.TestEnum <em>Enum</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -355,7 +438,7 @@ public interface TestPackage extends EPackage {
 	 * @see ch.flatland.cdo.model.test.impl.TestPackageImpl#getTestEnum()
 	 * @generated
 	 */
-	int TEST_ENUM = 2;
+	int TEST_ENUM = 3;
 
 
 	/**
@@ -665,6 +748,82 @@ public interface TestPackage extends EPackage {
 	EAttribute getSimpleDataTypesAsArray_TestEnum();
 
 	/**
+	 * Returns the meta object for class '{@link ch.flatland.cdo.model.test.TestObject <em>Object</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Object</em>'.
+	 * @see ch.flatland.cdo.model.test.TestObject
+	 * @generated
+	 */
+	EClass getTestObject();
+
+	/**
+	 * Returns the meta object for the attribute '{@link ch.flatland.cdo.model.test.TestObject#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see ch.flatland.cdo.model.test.TestObject#getName()
+	 * @see #getTestObject()
+	 * @generated
+	 */
+	EAttribute getTestObject_Name();
+
+	/**
+	 * Returns the meta object for the reference '{@link ch.flatland.cdo.model.test.TestObject#getSingleReference <em>Single Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Single Reference</em>'.
+	 * @see ch.flatland.cdo.model.test.TestObject#getSingleReference()
+	 * @see #getTestObject()
+	 * @generated
+	 */
+	EReference getTestObject_SingleReference();
+
+	/**
+	 * Returns the meta object for the reference list '{@link ch.flatland.cdo.model.test.TestObject#getMultiReferences <em>Multi References</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Multi References</em>'.
+	 * @see ch.flatland.cdo.model.test.TestObject#getMultiReferences()
+	 * @see #getTestObject()
+	 * @generated
+	 */
+	EReference getTestObject_MultiReferences();
+
+	/**
+	 * Returns the meta object for the reference list '{@link ch.flatland.cdo.model.test.TestObject#getFixUpperBoundReferences <em>Fix Upper Bound References</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Fix Upper Bound References</em>'.
+	 * @see ch.flatland.cdo.model.test.TestObject#getFixUpperBoundReferences()
+	 * @see #getTestObject()
+	 * @generated
+	 */
+	EReference getTestObject_FixUpperBoundReferences();
+
+	/**
+	 * Returns the meta object for the reference list '{@link ch.flatland.cdo.model.test.TestObject#getFixBoundReferences <em>Fix Bound References</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Fix Bound References</em>'.
+	 * @see ch.flatland.cdo.model.test.TestObject#getFixBoundReferences()
+	 * @see #getTestObject()
+	 * @generated
+	 */
+	EReference getTestObject_FixBoundReferences();
+
+	/**
+	 * Returns the meta object for the reference list '{@link ch.flatland.cdo.model.test.TestObject#getFixlowerBoundReferences <em>Fixlower Bound References</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Fixlower Bound References</em>'.
+	 * @see ch.flatland.cdo.model.test.TestObject#getFixlowerBoundReferences()
+	 * @see #getTestObject()
+	 * @generated
+	 */
+	EReference getTestObject_FixlowerBoundReferences();
+
+	/**
 	 * Returns the meta object for enum '{@link ch.flatland.cdo.model.test.TestEnum <em>Enum</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -924,6 +1083,64 @@ public interface TestPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute SIMPLE_DATA_TYPES_AS_ARRAY__TEST_ENUM = eINSTANCE.getSimpleDataTypesAsArray_TestEnum();
+
+		/**
+		 * The meta object literal for the '{@link ch.flatland.cdo.model.test.impl.TestObjectImpl <em>Object</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see ch.flatland.cdo.model.test.impl.TestObjectImpl
+		 * @see ch.flatland.cdo.model.test.impl.TestPackageImpl#getTestObject()
+		 * @generated
+		 */
+		EClass TEST_OBJECT = eINSTANCE.getTestObject();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TEST_OBJECT__NAME = eINSTANCE.getTestObject_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Single Reference</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TEST_OBJECT__SINGLE_REFERENCE = eINSTANCE.getTestObject_SingleReference();
+
+		/**
+		 * The meta object literal for the '<em><b>Multi References</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TEST_OBJECT__MULTI_REFERENCES = eINSTANCE.getTestObject_MultiReferences();
+
+		/**
+		 * The meta object literal for the '<em><b>Fix Upper Bound References</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TEST_OBJECT__FIX_UPPER_BOUND_REFERENCES = eINSTANCE.getTestObject_FixUpperBoundReferences();
+
+		/**
+		 * The meta object literal for the '<em><b>Fix Bound References</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TEST_OBJECT__FIX_BOUND_REFERENCES = eINSTANCE.getTestObject_FixBoundReferences();
+
+		/**
+		 * The meta object literal for the '<em><b>Fixlower Bound References</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TEST_OBJECT__FIXLOWER_BOUND_REFERENCES = eINSTANCE.getTestObject_FixlowerBoundReferences();
 
 		/**
 		 * The meta object literal for the '{@link ch.flatland.cdo.model.test.TestEnum <em>Enum</em>}' enum.

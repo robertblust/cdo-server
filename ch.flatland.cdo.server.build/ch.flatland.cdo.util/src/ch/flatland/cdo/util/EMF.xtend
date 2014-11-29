@@ -11,8 +11,9 @@
 package ch.flatland.cdo.util
 
 import com.google.gson.JsonElement
+import org.eclipse.emf.ecore.EAttribute
 import org.eclipse.emf.ecore.EClassifier
-import org.eclipse.emf.ecore.EStructuralFeature
+import org.eclipse.emf.ecore.EReference
 import org.slf4j.LoggerFactory
 
 class EMF {
@@ -23,19 +24,42 @@ class EMF {
 		classifier.EPackage.nsURI + "." + classifier.name
 	}
 
-	def isSettable(JsonElement element, EStructuralFeature feature) {
+	def isAttributeSettable(JsonElement element, EAttribute feature) {
 		if (feature.derived) {
-			logger.debug("Feature '{}' is derived", feature.name)
+			logger.debug("EAttribute '{}' is derived", feature.name)
 			return false
 		}
 
 		if ((element.jsonNull || element.jsonPrimitive) && !feature.many) {
-			logger.debug("Feature '{}' is primitive or null", feature.name)
+			logger.debug("EAttribute '{}' is primitive or null", feature.name)
 			return true
 		}
 
 		if ((element.jsonNull || element.jsonArray) && feature.many) {
-			logger.debug("Feature '{}' is array or null", feature.name)
+			logger.debug("EAttribute '{}' is array or null", feature.name)
+			return true
+		}
+		return false
+	}
+	
+	def isReferenceSettable(JsonElement element, EReference feature) {
+		if (feature.containment) {
+			logger.debug("EReference '{}' is containment", feature.name)
+			return false
+		}
+		
+		if (feature.derived) {
+			logger.debug("EReference '{}' is derived", feature.name)
+			return false
+		}
+
+		if ((element.jsonNull || element.jsonObject) && !feature.many) {
+			logger.debug("EReference '{}' is object or null", feature.name)
+			return true
+		}
+
+		if ((element.jsonNull || element.jsonArray) && feature.many) {
+			logger.debug("EReference '{}' is array or null", feature.name)
 			return true
 		}
 		return false
