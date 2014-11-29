@@ -1,12 +1,25 @@
-cdo-server
-==========
+##Flatland CDO Server
 
-CDO Server Product
+The goal of this project is to provide an [OSGI equinox] application server.
 
-About This Content
-June 5, 2007
+##Features
+* __[CDO Model Repository]__
+	* Storage of [EMF - Eclipse Modeling Framework] base model instances
+	* LDAP user authentication (basic auth)
+	* CDO internal user authorization
+* __Rest API__ for accessing and manipulating model instances
+	* Delegates security to CDO
+	* Operates on EMF refelctive API
+	* Mimetype __application/json; charset=utf-8__
 
-License
-The Eclipse Foundation makes available all content in this plug-in ("Content"). Unless otherwise indicated below, the Content is provided to you under the terms and conditions of the Eclipse Public License Version 1.0 ("EPL"). A copy of the EPL is available at http://www.eclipse.org/legal/epl-v10.html. For purposes of the EPL, "Program" will mean the Content.
 
-If you did not receive this Content directly from the Eclipse Foundation, the Content is being redistributed by another party ("Redistributor") and different terms and conditions may apply to your use of any object code in the Content. Check the Redistributor's license that was provided with the Content. If no such license exists, contact the Redistributor. Unless otherwise indicated below, the terms and conditions of the EPL still apply to any source code in the Content and such source code may be obtained at http://www.eclipse.org.
+##License
+[Eclipse Public License Version 1.0 ("EPL")]
+
+
+
+
+[OSGI equinox]:https://www.eclipse.org/equinox/
+[CDO Model Repository]:https://www.eclipse.org/cdo/
+[EMF - Eclipse Modeling Framework]:https://www.eclipse.org/modeling/emf/
+[Eclipse Public License Version 1.0 ("EPL")]:http://www.eclipse.org/legal/epl-v10.html
