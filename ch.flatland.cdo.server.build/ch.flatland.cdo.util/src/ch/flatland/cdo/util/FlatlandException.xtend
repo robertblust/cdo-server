@@ -13,8 +13,10 @@ package ch.flatland.cdo.util
 import java.lang.Exception
 
 class FlatlandException extends Exception {
-	
+
+	val public static TYPE = "ch.flatland.Exception"
+
 	new(String message) {
 		super(message)
-	}	
+	}
 }
