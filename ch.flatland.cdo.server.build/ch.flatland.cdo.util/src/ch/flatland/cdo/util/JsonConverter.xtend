@@ -209,12 +209,12 @@ class JsonConverter {
 				val jsonAttribute = new JsonObject
 				jsonAttribute.addProperty(JsonConverterConfig.NAME, attribute.name)
 
-				if (attribute.EAttributeType.eClass.name == "EEnum") {
+				if (attribute.EAttributeType instanceof EEnum) {
 					val enum = attribute.EAttributeType as EEnum
 					val jsonLiterals = new JsonArray
 					for (literal : enum.ELiterals) {
 						jsonLiterals.add(new JsonPrimitive(literal.name))
-						jsonAttribute.add(JsonConverterConfig.TYPE, jsonLiterals)
+						jsonAttribute.add(JsonConverterConfig.ENUM_LITERALS, jsonLiterals)
 					}
 				} else {
 					jsonAttribute.addProperty(JsonConverterConfig.TYPE, attribute.EAttributeType.name)
@@ -322,13 +322,14 @@ class JsonConverter {
 			case Literals.EBIG_INTEGER: return jsonPrimitive.asBigInteger
 		}
 		
-		// check if EAttribute type implements Enumerator
-		if (eAttribute.EAttributeType.eClass.name == "EEnum") {
-			logger.debug("'{}' is an Enumerator", eAttribute.EAttributeType.name)
-			
+		if (eAttribute.EAttributeType instanceof EEnum) {
+			logger.debug("'{}' is an EEnum", eAttribute.EAttributeType.name)
 			val enum = eAttribute.EAttributeType as EEnum
 			val literal = enum.getEEnumLiteral(jsonPrimitive.asString)
-			
+			if (literal != null) {
+				return literal.instance	
+			}
+			return null
 		}
 
 		logger.error("NO CONVERSION WAS POSSIBLE of eAttribute '{}' to data type {}", eAttribute.name,
