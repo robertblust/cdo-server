@@ -288,10 +288,23 @@ class JsonConverter {
 					if (jsonElement.isSettable(eAttribute)) {
 
 						logger.debug("Match - json attribute is settable to eAttribute for '{}'", jsonName)
-						val eType = (jsonElement as JsonPrimitive).toEType(eAttribute)
-						if (eType != null) {
-							eObject.eSet(eAttribute, eType)
+
+						if (eAttribute.many) {
+							val eArray = newArrayList
+							jsonElement.asJsonArray.forEach [
+								val eType = it.asJsonPrimitive.toEType(eAttribute)
+								if (eType != null) {
+									eArray.add(eType)
+								}
+							]
+							eObject.eSet(eAttribute, eArray)
+						} else {
+							val eType = jsonElement.asJsonPrimitive.toEType(eAttribute)
+							if (eType != null) {
+								eObject.eSet(eAttribute, eType)
+							}
 						}
+
 					} else {
 
 						logger.debug("MISSmatch - json attribute is NOT settable to eAttribute for '{}'", jsonName)
@@ -305,7 +318,7 @@ class JsonConverter {
 	}
 
 	def private toEType(JsonPrimitive jsonPrimitive, EAttribute eAttribute) {
-		logger.debug("eAttribute '{}' has data type '{}'", eAttribute.name, eAttribute.EAttributeType.name)
+		logger.debug("eAttribute '{}' has data type '{}', try to set json value '{}'", eAttribute.name, eAttribute.EAttributeType.name, jsonPrimitive)
 
 		switch eAttribute.EAttributeType {
 			case Literals.ESTRING: return jsonPrimitive.asString
