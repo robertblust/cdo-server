@@ -12,6 +12,7 @@ package ch.flatland.cdo.util
 
 class JsonConverterConfig {
 	val public static TYPE = "type"
+	val public static ENUM_LITERALS = "literals"
 	val public static LABEL = "label"
 	val public static LOWER_BOUND = "lowerBound"
 	val public static UPPER_BOUND = "upperBound"
