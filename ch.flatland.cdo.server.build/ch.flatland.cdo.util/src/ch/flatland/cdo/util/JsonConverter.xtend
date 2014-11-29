@@ -321,13 +321,13 @@ class JsonConverter {
 			case Literals.EBIG_DECIMAL: return jsonPrimitive.asBigDecimal
 			case Literals.EBIG_INTEGER: return jsonPrimitive.asBigInteger
 		}
-		
+
 		if (eAttribute.EAttributeType instanceof EEnum) {
 			logger.debug("'{}' is an EEnum", eAttribute.EAttributeType.name)
 			val enum = eAttribute.EAttributeType as EEnum
 			val literal = enum.getEEnumLiteral(jsonPrimitive.asString)
 			if (literal != null) {
-				return literal.instance	
+				return literal.instance
 			}
 			return null
 		}
