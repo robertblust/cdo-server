@@ -12,6 +12,10 @@ The goal of this project is to provide an [OSGI equinox] application server.
 	* Operates on EMF refelctive API
 	* Mimetype __application/json; charset=utf-8__
 
+## Component Model
+![Feature Model]
+(https://github.com/robertblust/cdo-server/blob/master/ch.flatland.cdo.doc/images/component.png)
+
 
 ##License
 [Eclipse Public License Version 1.0 ("EPL")]
