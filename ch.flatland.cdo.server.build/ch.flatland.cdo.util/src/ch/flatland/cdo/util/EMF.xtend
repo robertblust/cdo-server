@@ -29,13 +29,13 @@ class EMF {
 			return false
 		}
 
-		if (element.jsonPrimitive && !feature.many) {
-			logger.debug("Feature '{}' is primitive", feature.name)
+		if ((element.jsonNull || element.jsonPrimitive) && !feature.many) {
+			logger.debug("Feature '{}' is primitive or null", feature.name)
 			return true
 		}
 
-		if (element.jsonArray && feature.many) {
-			logger.debug("Feature '{}' is array", feature.name)
+		if ((element.jsonNull || element.jsonArray) && feature.many) {
+			logger.debug("Feature '{}' is array or null", feature.name)
 			return true
 		}
 		return false
