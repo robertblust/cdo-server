@@ -46,7 +46,11 @@ class Get {
 
 			// processes path
 			if (!processed) {
-				requestedObject = view.safeRequestPath(req.pathInfo)		
+				if (req.pathInfo != null) {
+					requestedObject = view.safeRequestPath(req.pathInfo)	
+				} else {
+					requestedObject = view.safeRequestPath("/home/" + req.userId)	
+				}		
 			}
 
 			jsonString = requestedObject.safeToJson
