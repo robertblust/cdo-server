@@ -27,4 +27,9 @@ class RepoAccessServlet extends AbstractServlet {
 		logRequest(req)
 		(new Post).run(req, resp)
 	}
+
+	override protected doDelete(HttpServletRequest req, HttpServletResponse resp) {
+		logRequest(req)
+		(new Delete).run(req, resp)
+	}
 }
