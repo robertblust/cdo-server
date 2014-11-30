@@ -16,7 +16,6 @@ import ch.flatland.cdo.util.Request
 import ch.flatland.cdo.util.Response
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
-import org.eclipse.emf.cdo.common.security.CDOPermission
 import org.slf4j.LoggerFactory
 
 class Post {
@@ -28,7 +27,7 @@ class Post {
 	val extension EMF = new EMF
 
 	def void run(HttpServletRequest req, HttpServletResponse resp) {
-		
+
 		val extension JsonConverter = req.createJsonConverter(RepoAccessServlet.SERVLET_CONTEXT)
 
 		val view = SessionFactory.getCDOSession(req).openTransaction
@@ -47,21 +46,19 @@ class Post {
 
 			logger.debug("Object '{}' loaded type of {}", id, requestedObject.eClass.type)
 
-			if (requestedObject.cdoPermission != CDOPermission.WRITE) {
-				throw new FlatlandException("No permission to edit object '" + id + "'")
-			}
+			requestedObject.safeCanWrite
 
 			jsonObject.toEObject = requestedObject
-			
+
 			view.commit
 
 			// now transform manipulated object to json for the reponse			
 			jsonString = requestedObject.toJson
 
-		} catch (Exception e) {
+		} catch (FlatlandException e) {
+			resp.status = e.httpStatus
 			jsonString = e.toJson
-			resp.status = HttpServletResponse.SC_BAD_REQUEST
-			logger.error("Could not processing request", e)
+			logger.error("Request failed", e)
 		} finally {
 			if (!view.closed) {
 				view.close

@@ -20,8 +20,10 @@ import java.text.SimpleDateFormat
 import java.util.ArrayList
 import java.util.Date
 import java.util.List
+import javax.servlet.http.HttpServletResponse
 import org.eclipse.emf.cdo.CDOObject
 import org.eclipse.emf.cdo.common.id.CDOIDUtil
+import org.eclipse.emf.cdo.common.security.CDOPermission
 import org.eclipse.emf.cdo.eresource.CDOResourceNode
 import org.eclipse.emf.cdo.view.CDOView
 import org.eclipse.emf.common.util.Enumerator
@@ -46,6 +48,7 @@ class JsonConverter {
 	val parser = new JsonParser
 	val dateFormat = new SimpleDateFormat(JsonConverterConfig.DATE_FORMAT);
 	val extension EMF = new EMF
+	val extension HttpStatus = new HttpStatus
 
 	val ITEM_DELEGATOR = new AdapterFactoryItemDelegator(
 		new ComposedAdapterFactory(EMFEditPlugin.getComposedAdapterFactoryDescriptorRegistry))
@@ -67,7 +70,7 @@ class JsonConverter {
 		try {
 			parser.parse(jsonString).asJsonObject
 		} catch (Exception e) {
-			throw new FlatlandException("Failed to parse json")
+			throw new FlatlandException("Failed to parse json", HttpServletResponse.SC_BAD_REQUEST)
 		}
 	}
 
@@ -101,13 +104,13 @@ class JsonConverter {
 		jsonBaseObject.toString
 	}
 
-	def dispatch String toJson(Throwable object) {
+	def dispatch String toJson(FlatlandException object) {
 		val jsonBaseObject = new JsonObject
 		jsonBaseObject.addProperty(JsonConverterConfig.STATUS, FlatlandException.STATUS_NOK)
+		jsonBaseObject.addProperty(JsonConverterConfig.HTTP_STATUS, object.httpStatus)
+		jsonBaseObject.addProperty(JsonConverterConfig.HTTP_STATUS_DESCRIPTION, object.httpStatus.description)
 		jsonBaseObject.addProperty(JsonConverterConfig.TYPE, object.class.simpleName)
-		if (object.message != null) {
-			jsonBaseObject.addProperty(JsonConverterConfig.MESSAGE, object.message)
-		}
+		jsonBaseObject.addProperty(JsonConverterConfig.MESSAGE, object.message)
 		jsonBaseObject.toString
 	}
 
@@ -417,7 +420,9 @@ class JsonConverter {
 				return null
 			}
 		} catch (Exception e) {
-			throw new FlatlandException('''Json primitive  '«jsonPrimitive.asString»' could not be converted to '«eAttribute.EAttributeType.name»' for attribute '«eAttribute.name»' ''')
+			throw new FlatlandException(
+				'''Json primitive  '«jsonPrimitive.asString»' could not be converted to '«eAttribute.EAttributeType.name»' for attribute '«eAttribute.
+					name»' ''', HttpServletResponse.SC_BAD_REQUEST)
 		}
 
 		logger.error("NO CONVERSION WAS POSSIBLE of eAttribute '{}' to data type {}", eAttribute.name,
@@ -466,7 +471,8 @@ class JsonConverter {
 	def safeResolveId(JsonObject jsonObject) {
 		val id = jsonObject.entrySet.filter[it.key == Json.PARAM_ID].head
 		if (id == null) {
-			throw new FlatlandException("Attribute '" + Json.PARAM_ID + "' must be part of json object")
+			throw new FlatlandException("Attribute '" + Json.PARAM_ID + "' must be part of json object",
+				HttpServletResponse.SC_BAD_REQUEST)
 		}
 		return id
 	}
@@ -475,7 +481,17 @@ class JsonConverter {
 		try {
 			return view.getObject(CDOIDUtil.createLong(id))
 		} catch (Exception e) {
-			throw new FlatlandException('''No object found with '«Json.PARAM_ID»=«id»' ''')
+			throw new FlatlandException('''No object found with '«Json.PARAM_ID»=«id»' ''',
+				HttpServletResponse.SC_BAD_REQUEST)
+		}
+	}
+
+	def safeRequestPath(CDOView view, String path) {
+		try {
+			return view.getResourceNode(path)
+		} catch (Exception e) {
+			throw new FlatlandException('''Resource with path '«path»' does not exits''',
+				HttpServletResponse.SC_NOT_FOUND)
 		}
 	}
 
@@ -483,7 +499,8 @@ class JsonConverter {
 		try {
 			return element.asLong
 		} catch (Exception e) {
-			throw new FlatlandException('''Attribute '«Json.PARAM_ID»=«element.asString»' must be a long''')
+			throw new FlatlandException('''Attribute '«Json.PARAM_ID»=«element.asString»' must be a long''',
+				HttpServletResponse.SC_BAD_REQUEST)
 		}
 
 	}
@@ -492,7 +509,8 @@ class JsonConverter {
 		try {
 			container.eSet(eReference, refObject)
 		} catch (Exception e) {
-			throw new FlatlandException('''Object '«refObject»' has worng type for reference '«eReference.name»' ''')
+			throw new FlatlandException('''Object '«refObject»' has wrong type for reference '«eReference.name»' ''',
+				HttpServletResponse.SC_BAD_REQUEST)
 		}
 
 	}
@@ -502,7 +520,15 @@ class JsonConverter {
 			container.eSet(eReference, refArray)
 		} catch (Exception e) {
 			throw new FlatlandException(
-				'''Reference list contains object with worng type for reference '«eReference.name»' ''')
+				'''Reference list contains object with wrong type for reference '«eReference.name»' ''',
+				HttpServletResponse.SC_BAD_REQUEST)
+		}
+	}
+
+	def safeCanWrite(CDOObject object) {
+		if (object.cdoPermission != CDOPermission.WRITE) {
+			throw new FlatlandException("No permission to edit object '" + object + "'",
+				HttpServletResponse.SC_BAD_REQUEST)
 		}
 	}
 

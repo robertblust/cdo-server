@@ -15,6 +15,7 @@ import ch.flatland.cdo.util.Response
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 import org.slf4j.LoggerFactory
+import ch.flatland.cdo.util.FlatlandException
 
 class Get {
 
@@ -45,15 +46,15 @@ class Get {
 
 			// processes path
 			if (!processed) {
-				requestedObject = view.getResourceNode(req.pathInfo)
+				view.safeRequestPath(req.pathInfo)		
 			}
 
 			jsonString = requestedObject.toJson
 
-		} catch (Exception e) {
+		} catch (FlatlandException e) {
+			resp.status = e.httpStatus
 			jsonString = e.toJson
-			resp.status = HttpServletResponse.SC_BAD_REQUEST
-			logger.error("Could not processing request", e)
+			logger.error("Request failed", e)
 		} finally {
 			if (!view.closed) {
 				view.close
