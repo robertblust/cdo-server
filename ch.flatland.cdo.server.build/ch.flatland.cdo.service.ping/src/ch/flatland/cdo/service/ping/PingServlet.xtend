@@ -26,7 +26,7 @@ class PingServlet extends AbstractServlet {
 	val extension Response = new Response
 
 	val static extension JsonConverter = new JsonConverter
-	val static PING = new PingBean("Flatland CDO Server", "1.0.0").toJson
+	val static PING = new PingBean("Flatland CDO Server", "1.0.0").safeToJson
 
 	override protected doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		logRequest(req)

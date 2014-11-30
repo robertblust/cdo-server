@@ -10,12 +10,12 @@
  */
 package ch.flatland.cdo.service.repoaccess
 
+import ch.flatland.cdo.util.FlatlandException
 import ch.flatland.cdo.util.Request
 import ch.flatland.cdo.util.Response
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 import org.slf4j.LoggerFactory
-import ch.flatland.cdo.util.FlatlandException
 
 class Get {
 
