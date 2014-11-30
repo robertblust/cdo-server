@@ -60,6 +60,7 @@ class Post {
 
 		} catch (Exception e) {
 			jsonString = e.toJson
+			resp.status = HttpServletResponse.SC_BAD_REQUEST
 			logger.error("Could not processing request", e)
 		} finally {
 			if (!view.closed) {
