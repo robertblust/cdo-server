@@ -12,12 +12,10 @@ package ch.flatland.cdo.service.repoaccess
 
 import ch.flatland.cdo.util.EMF
 import ch.flatland.cdo.util.FlatlandException
-import ch.flatland.cdo.util.Json
 import ch.flatland.cdo.util.Request
 import ch.flatland.cdo.util.Response
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
-import org.eclipse.emf.cdo.common.id.CDOIDUtil
 import org.eclipse.emf.cdo.common.security.CDOPermission
 import org.slf4j.LoggerFactory
 
@@ -30,29 +28,22 @@ class Post {
 	val extension EMF = new EMF
 
 	def void run(HttpServletRequest req, HttpServletResponse resp) {
-		val body = req.readBody
-		logger.debug("Run for '{}' with body '{}'", req.userId, body)
-
+		
 		val extension JsonConverter = req.createJsonConverter(RepoAccessServlet.SERVLET_CONTEXT)
 
 		val view = SessionFactory.getCDOSession(req).openTransaction
 		var String jsonString = null
 
 		try {
-			if (body.length == 0) {
-				throw new FlatlandException("Request body must not be empty")
-			}
+			val body = req.safeReadBody
+			logger.debug("Run for '{}' with body '{}'", req.userId, body)
 
 			val jsonObject = body.fromJson
-			val id = jsonObject.resolveId
-
-			if (id == null) {
-				throw new FlatlandException("Attribute '" + Json.PARAM_ID + "' not found in json object!")
-			}
+			val id = jsonObject.safeResolveId
 
 			logger.debug("Object '{}' requested", id)
 
-			val requestedObject = view.getObject(CDOIDUtil.createLong(id.value.asLong))
+			val requestedObject = view.safeRequestObject(id.value.safeAsLong)
 
 			logger.debug("Object '{}' loaded type of {}", id, requestedObject.eClass.type)
 

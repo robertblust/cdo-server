@@ -38,8 +38,8 @@ class Get {
 			var processed = false
 
 			// processes id
-			if (req.CDOID != null) {
-				requestedObject = view.getObject(req.CDOID)
+			if (req.safeIdCheck != null) {
+				requestedObject = view.safeRequestObject(req.safeIdCheck)
 				processed = true
 			}
 
