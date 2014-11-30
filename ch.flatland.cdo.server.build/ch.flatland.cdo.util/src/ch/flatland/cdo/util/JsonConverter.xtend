@@ -63,7 +63,7 @@ class JsonConverter {
 		this.jsonConverterConfig = new JsonConverterConfig
 	}
 
-	def JsonObject fromJson(String jsonString) {
+	def JsonObject safeFromJson(String jsonString) {
 		try {
 			parser.parse(jsonString).asJsonObject
 		} catch (Exception e) {
