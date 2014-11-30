@@ -90,6 +90,10 @@ class JsonConverter {
 		]
 		eObject
 	}
+	
+	def okToJson() {
+		newObjectWithStatusOK.toString
+	}
 
 	def dispatch String safeToJson(Object object) {
 		try {
@@ -108,7 +112,15 @@ class JsonConverter {
 			if (jsonConverterConfig.meta) {
 				jsonBaseObject.addMeta(object)
 			}
-			jsonBaseObject.toString
+
+			// finally add ok status
+			val objectWithStatusOK = newObjectWithStatusOK
+			objectWithStatusOK.addProperty(JsonConverterConfig.STATUS, "OK")
+			jsonBaseObject.entrySet.forEach [
+				objectWithStatusOK.add(it.key, it.value)
+			]
+
+			objectWithStatusOK.toString
 		} catch (NoPermissionException npe) {
 			throw new FlatlandException(npe.message, HttpServletResponse.SC_FORBIDDEN)
 		} catch (Exception e) {
@@ -477,6 +489,12 @@ class JsonConverter {
 
 	def getView(EObject eObject) {
 		(eObject as CDOObject).cdoView
+	}
+
+	def newObjectWithStatusOK() {
+		val objectWithStatusOK = new JsonObject
+		objectWithStatusOK.addProperty(JsonConverterConfig.STATUS, "OK")
+		return objectWithStatusOK
 	}
 
 	// methods which could throw an Exception
