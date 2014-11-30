@@ -46,18 +46,18 @@ class Post {
 
 			logger.debug("Object '{}' loaded type of {}", id, requestedObject.eClass.type)
 
-			requestedObject.safeCanWrite
+			requestedObject.safeCanWrite(id)
 
 			jsonObject.toEObject = requestedObject
 
 			view.commit
 
 			// now transform manipulated object to json for the reponse			
-			jsonString = requestedObject.toJson
+			jsonString = requestedObject.safeToJson
 
 		} catch (FlatlandException e) {
 			resp.status = e.httpStatus
-			jsonString = e.toJson
+			jsonString = e.safeToJson
 			logger.error("Request failed", e)
 		} finally {
 			if (!view.closed) {

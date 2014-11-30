@@ -66,6 +66,6 @@ class BasicAuthHttpContext implements HttpContext {
 	def private authExeption(HttpServletResponse resp, HttpServletRequest req, Exception exception) {
 		val extension Response = new Response
 		val extension JsonConverter = new JsonConverter
-		resp.writeResponse(req, exception.toJson)
+		resp.writeResponse(req, exception.safeToJson)
 	}
 }

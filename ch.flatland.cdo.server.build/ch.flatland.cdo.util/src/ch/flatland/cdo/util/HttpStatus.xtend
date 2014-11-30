@@ -20,6 +20,7 @@ class HttpStatus {
 			case HttpServletResponse.SC_FORBIDDEN: return '''Status code (403) indicating the server understood the request but refused to fulfill it'''
 			case HttpServletResponse.SC_METHOD_NOT_ALLOWED: return '''Status code (405) indicating that the method specified in the 'Request-Line' is not allowed for the resource identified by the 'Request-URI' '''
 			case HttpServletResponse.SC_NOT_FOUND: return '''Status code (404) indicating that the requested resource is not available'''
+			case HttpServletResponse.SC_INTERNAL_SERVER_ERROR: return '''Status code (500) indicating an error inside the HTTP server which prevented it from fulfilling the request'''
 			default: return '''No description'''
 		}
 	}

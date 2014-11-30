@@ -20,6 +20,7 @@ import java.text.SimpleDateFormat
 import java.util.ArrayList
 import java.util.Date
 import java.util.List
+import java.util.Map
 import javax.servlet.http.HttpServletResponse
 import org.eclipse.emf.cdo.CDOObject
 import org.eclipse.emf.cdo.common.id.CDOIDUtil
@@ -40,6 +41,7 @@ import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory
 import org.eclipse.emf.internal.cdo.object.CDOLegacyAdapter
 import org.slf4j.LoggerFactory
+import org.eclipse.emf.cdo.common.security.NoPermissionException
 
 class JsonConverter {
 	val logger = LoggerFactory.getLogger(this.class)
@@ -89,22 +91,32 @@ class JsonConverter {
 		eObject
 	}
 
-	def dispatch String toJson(Object object) {
-		gson.toJson(object)
-	}
-
-	def dispatch String toJson(EObject object) {
-		val jsonBaseObject = object.toJsonBase
-
-		jsonBaseObject.addAttributes(object)
-		jsonBaseObject.addReferences(object)
-		if (jsonConverterConfig.meta) {
-			jsonBaseObject.addMeta(object)
+	def dispatch String safeToJson(Object object) {
+		try {
+			gson.toJson(object)
+		} catch (Exception e) {
+			throw new FlatlandException(e.message, HttpServletResponse.SC_INTERNAL_SERVER_ERROR)
 		}
-		jsonBaseObject.toString
 	}
 
-	def dispatch String toJson(FlatlandException object) {
+	def dispatch String safeToJson(EObject object) {
+		try {
+			val jsonBaseObject = object.toJsonBase
+
+			jsonBaseObject.addAttributes(object)
+			jsonBaseObject.addReferences(object)
+			if (jsonConverterConfig.meta) {
+				jsonBaseObject.addMeta(object)
+			}
+			jsonBaseObject.toString
+		} catch (NoPermissionException np) {
+			throw new FlatlandException(np.message, HttpServletResponse.SC_FORBIDDEN)
+		} catch (Exception e) {
+			throw new FlatlandException(e.message, HttpServletResponse.SC_BAD_REQUEST)
+		}
+	}
+
+	def dispatch String safeToJson(FlatlandException object) {
 		val jsonBaseObject = new JsonObject
 		jsonBaseObject.addProperty(JsonConverterConfig.STATUS, FlatlandException.STATUS_NOK)
 		jsonBaseObject.addProperty(JsonConverterConfig.HTTP_STATUS, object.httpStatus)
@@ -525,10 +537,10 @@ class JsonConverter {
 		}
 	}
 
-	def safeCanWrite(CDOObject object) {
+	def safeCanWrite(CDOObject object, Map.Entry<String, JsonElement> id) {
 		if (object.cdoPermission != CDOPermission.WRITE) {
-			throw new FlatlandException("No permission to edit object '" + object + "'",
-				HttpServletResponse.SC_BAD_REQUEST)
+			throw new FlatlandException("No permission to edit object '" + id + "'",
+				HttpServletResponse.SC_FORBIDDEN)
 		}
 	}
 
