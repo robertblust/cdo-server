@@ -38,7 +38,7 @@ class Post {
 			val body = req.safeReadBody
 			logger.debug("Run for '{}' with body '{}'", req.userId, body)
 
-			val jsonObject = body.fromJson
+			val jsonObject = body.safeFromJson
 			val id = jsonObject.safeResolveId
 
 			logger.debug("Object '{}' requested", id)
