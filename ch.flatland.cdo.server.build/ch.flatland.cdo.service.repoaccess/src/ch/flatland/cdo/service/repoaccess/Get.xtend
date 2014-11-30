@@ -46,14 +46,14 @@ class Get {
 
 			// processes path
 			if (!processed) {
-				view.safeRequestPath(req.pathInfo)		
+				requestedObject = view.safeRequestPath(req.pathInfo)		
 			}
 
-			jsonString = requestedObject.toJson
+			jsonString = requestedObject.safeToJson
 
 		} catch (FlatlandException e) {
 			resp.status = e.httpStatus
-			jsonString = e.toJson
+			jsonString = e.safeToJson
 			logger.error("Request failed", e)
 		} finally {
 			if (!view.closed) {
