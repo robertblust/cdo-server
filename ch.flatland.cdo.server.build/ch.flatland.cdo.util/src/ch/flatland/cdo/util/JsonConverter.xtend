@@ -152,10 +152,12 @@ class JsonConverter {
 		jsonBaseObject.addProperty(Json.PARAM_ID, object.oid)
 		jsonBaseObject.addProperty(JsonConverterConfig.HREF, object.url)
 		if (object.eContainer != null) {
+			jsonBaseObject.addProperty(JsonConverterConfig.ID_CONTAINER, object.eContainer.oid)
 			jsonBaseObject.addProperty(JsonConverterConfig.CONTAINER, object.eContainer.url)
 		} else {
 
 			// it must be contained in a CDOResourceNode
+			jsonBaseObject.addProperty(JsonConverterConfig.ID_CONTAINER, (object.eResource as CDOResourceNode).oid)
 			jsonBaseObject.addProperty(JsonConverterConfig.CONTAINER, (object.eResource as CDOResourceNode).url)
 		}
 		if (object instanceof CDOObject) {
