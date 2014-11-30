@@ -15,8 +15,14 @@ import java.lang.Exception
 class FlatlandException extends Exception {
 
 	val public static STATUS_NOK = "NOK"
+	var int httpStatus
 
-	new(String message) {
+	new(String message, int httpStatus) {
 		super(message)
+		this.httpStatus = httpStatus
+	}
+	
+	def getHttpStatus() {
+		httpStatus
 	}
 }

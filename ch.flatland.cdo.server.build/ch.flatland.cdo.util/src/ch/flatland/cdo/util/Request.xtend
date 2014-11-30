@@ -10,8 +10,8 @@
  */
 package ch.flatland.cdo.util
 
-import java.io.IOException
 import javax.servlet.http.HttpServletRequest
+import javax.servlet.http.HttpServletResponse
 import org.apache.commons.codec.binary.Base64
 
 class Request {
@@ -61,13 +61,13 @@ class Request {
 			try {
 				return Long.parseLong(param)
 			} catch (Exception e) {
-				throw new FlatlandException('''Request parameter '«Json.PARAM_ID»=«param»' must be a long''')
+				throw new FlatlandException('''Request parameter '«Json.PARAM_ID»=«param»' must be a long''', HttpServletResponse.SC_BAD_REQUEST)
 			}		
 		}
 		return null
 	}
 	
-	def String safeReadBody(HttpServletRequest request) throws IOException {
+	def String safeReadBody(HttpServletRequest request) {
 		val buffer = new StringBuffer();
 		var String line = null;
 
@@ -76,7 +76,7 @@ class Request {
 			buffer.append(line)
 		}
 		if (buffer.length == 0) {
-			throw new FlatlandException("Request body must not be empty")
+			throw new FlatlandException("Request body must not be empty",HttpServletResponse.SC_BAD_REQUEST)
 		}
 		return buffer.toString
 	}
@@ -84,7 +84,7 @@ class Request {
 	def private safeUserNameAndPassword(HttpServletRequest request) {
 		val authHeader = request.getHeader(AUTH_HEADER)
 		if (authHeader == null) {
-			throw new FlatlandException("Request basic authentication must not be empty")
+			throw new FlatlandException("Request basic authentication must not be empty", HttpServletResponse.SC_BAD_REQUEST)
 		}
 		val usernameAndPassword = new String(Base64.decodeBase64(authHeader.substring(6).getBytes()))
 		return usernameAndPassword

@@ -32,16 +32,16 @@ class Response {
 	
 	def statusForbidden(HttpServletResponse resp) {
 		resp.status = HttpServletResponse.SC_FORBIDDEN
-		return new FlatlandException(resp.status + " - Forbidden")
+		return new FlatlandException("Forbidden", resp.status)
 	}
 	
 	def statusUnauthorized(HttpServletResponse resp) {
 		resp.status = HttpServletResponse.SC_UNAUTHORIZED
-		return new FlatlandException(resp.status + " - Unauthorized")
+		return new FlatlandException("Unauthorized", resp.status)
 	}
 	
 	def statusMethodNotAllowed(HttpServletResponse resp) {
 		resp.status = HttpServletResponse.SC_METHOD_NOT_ALLOWED
-		return new FlatlandException(resp.status + " - Method not allowed")
+		return new FlatlandException("Method not allowed", resp.status)
 	}
 }
