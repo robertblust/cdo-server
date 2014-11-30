@@ -109,8 +109,8 @@ class JsonConverter {
 				jsonBaseObject.addMeta(object)
 			}
 			jsonBaseObject.toString
-		} catch (NoPermissionException np) {
-			throw new FlatlandException(np.message, HttpServletResponse.SC_FORBIDDEN)
+		} catch (NoPermissionException npe) {
+			throw new FlatlandException(npe.message, HttpServletResponse.SC_FORBIDDEN)
 		} catch (Exception e) {
 			throw new FlatlandException(e.message, HttpServletResponse.SC_BAD_REQUEST)
 		}
