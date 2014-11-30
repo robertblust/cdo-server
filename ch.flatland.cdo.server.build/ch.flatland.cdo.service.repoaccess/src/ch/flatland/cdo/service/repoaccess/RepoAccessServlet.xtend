@@ -32,4 +32,9 @@ class RepoAccessServlet extends AbstractServlet {
 		logRequest(req)
 		(new Delete).run(req, resp)
 	}
+	
+	override protected doPut(HttpServletRequest req, HttpServletResponse resp) {
+		logRequest(req)
+		(new Put).run(req, resp)
+	}
 }

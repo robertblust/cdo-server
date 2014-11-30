@@ -66,5 +66,4 @@ class Post {
 		}
 		resp.writeResponse(req, jsonString)
 	}
-
 }

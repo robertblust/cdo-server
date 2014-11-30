@@ -152,12 +152,10 @@ class JsonConverter {
 		jsonBaseObject.addProperty(Json.PARAM_ID, object.oid)
 		jsonBaseObject.addProperty(JsonConverterConfig.HREF, object.url)
 		if (object.eContainer != null) {
-			jsonBaseObject.addProperty(JsonConverterConfig.ID_CONTAINER, object.eContainer.oid)
 			jsonBaseObject.addProperty(JsonConverterConfig.CONTAINER, object.eContainer.url)
 		} else {
 
 			// it must be contained in a CDOResourceNode
-			jsonBaseObject.addProperty(JsonConverterConfig.ID_CONTAINER, (object.eResource as CDOResourceNode).oid)
 			jsonBaseObject.addProperty(JsonConverterConfig.CONTAINER, (object.eResource as CDOResourceNode).url)
 		}
 		if (object instanceof CDOObject) {
@@ -507,6 +505,24 @@ class JsonConverter {
 				HttpServletResponse.SC_BAD_REQUEST)
 		}
 		return id
+	}
+	
+	def safeResolvePut(JsonObject jsonObject) {
+		val put = jsonObject.entrySet.filter[it.key == JsonConverterConfig.PUT].head
+		if (put == null) {
+			throw new FlatlandException("Attribute '" + JsonConverterConfig.PUT + "' must be part of json object",
+				HttpServletResponse.SC_BAD_REQUEST)
+		}
+		return put
+	}
+	
+	def safeResolveType(JsonObject jsonObject) {
+		val type = jsonObject.entrySet.filter[it.key == JsonConverterConfig.TYPE].head
+		if (type == null) {
+			throw new FlatlandException("Attribute '" + JsonConverterConfig.TYPE + "' must be part of json object",
+				HttpServletResponse.SC_BAD_REQUEST)
+		}
+		return type
 	}
 
 	def safeRequestObject(CDOView view, long id) {
