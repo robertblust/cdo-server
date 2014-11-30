@@ -17,11 +17,13 @@ import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import com.google.gson.JsonPrimitive
 import java.text.SimpleDateFormat
+import java.util.ArrayList
 import java.util.Date
 import java.util.List
 import org.eclipse.emf.cdo.CDOObject
 import org.eclipse.emf.cdo.common.id.CDOIDUtil
 import org.eclipse.emf.cdo.eresource.CDOResourceNode
+import org.eclipse.emf.cdo.view.CDOView
 import org.eclipse.emf.common.util.Enumerator
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.EAttribute
@@ -65,7 +67,7 @@ class JsonConverter {
 		try {
 			parser.parse(jsonString).asJsonObject
 		} catch (Exception e) {
-			throw new FlatlandException("Failed to parse json!")
+			throw new FlatlandException("Failed to parse json")
 		}
 	}
 
@@ -101,16 +103,12 @@ class JsonConverter {
 
 	def dispatch String toJson(Throwable object) {
 		val jsonBaseObject = new JsonObject
-		jsonBaseObject.addProperty(JsonConverterConfig.TYPE, FlatlandException.TYPE)
-		jsonBaseObject.addProperty(JsonConverterConfig.LABEL, object.class.simpleName)
+		jsonBaseObject.addProperty(JsonConverterConfig.STATUS, FlatlandException.STATUS_NOK)
+		jsonBaseObject.addProperty(JsonConverterConfig.TYPE, object.class.simpleName)
 		if (object.message != null) {
 			jsonBaseObject.addProperty(JsonConverterConfig.MESSAGE, object.message)
 		}
 		jsonBaseObject.toString
-	}
-
-	def resolveId(JsonObject jsonObject) {
-		jsonObject.entrySet.filter[it.key == Json.PARAM_ID].head
 	}
 
 	def private toJsonBase(EObject object) {
@@ -298,7 +296,7 @@ class JsonConverter {
 								logger.debug("JsonElement '{}' is null", jsonName)
 							} else {
 								jsonElement.asJsonArray.forEach [
-									val eType = it.asJsonPrimitive.toEType(eAttribute)
+									val eType = it.asJsonPrimitive.safeToEType(eAttribute)
 									if (eType != null) {
 										eArray.add(eType)
 									}
@@ -310,7 +308,7 @@ class JsonConverter {
 								logger.debug("JsonElement '{}' is null", jsonName)
 								eObject.eUnset(eAttribute)
 							} else {
-								val eType = jsonElement.asJsonPrimitive.toEType(eAttribute)
+								val eType = jsonElement.asJsonPrimitive.safeToEType(eAttribute)
 								if (eType != null) {
 									eObject.eSet(eAttribute, eType)
 								}
@@ -347,51 +345,36 @@ class JsonConverter {
 							} else {
 								jsonElement.asJsonArray.forEach [
 									val jsonRefObject = it.asJsonObject
-									val id = jsonRefObject.resolveId
-									if (id == null) {
-										throw new FlatlandException(
-											"Attribute '" + Json.PARAM_ID + "' not found in json object!")
-									}
+									val id = jsonRefObject.safeResolveId
 									if (id.value.jsonNull) {
 										logger.debug("JsonElement '{}' is null", id.key)
 									} else {
 										logger.debug("Object '{}' requested", id)
-										val referencedObject = eObject.requestCDOObject(id.value.asLong)
+										val referencedObject = eObject.view.safeRequestObject(id.value.safeAsLong)
 
-										if (referencedObject == null) {
-											throw new FlatlandException("ReferencedObject '" + id + "' not found!")
-										}
 										logger.debug("ReferencedObject '{}'", referencedObject)
 										eArray.add(referencedObject)
 									}
 								]
 							}
-							eObject.eSet(eReference, eArray)
+							eObject.safeSetReferenceArray(eReference, eArray)
 						} else {
 							if (jsonElement.jsonNull) {
 								logger.debug("JsonElement '{}' is null", jsonName)
 								eObject.eUnset(eReference)
 							} else {
 								val jsonRefObject = jsonElement.asJsonObject
-								val id = jsonRefObject.resolveId
-
-								if (id == null) {
-									throw new FlatlandException(
-										"Attribute '" + Json.PARAM_ID + "' not found in json object!")
-								}
+								val id = jsonRefObject.safeResolveId
 
 								if (id.value.jsonNull) {
 									logger.debug("JsonElement '{}' is null", id.key)
 									eObject.eUnset(eReference)
 								} else {
 									logger.debug("Object '{}' requested", id)
-									val referencedObject = eObject.requestCDOObject(id.value.asLong)
+									val referencedObject = eObject.view.safeRequestObject(id.value.safeAsLong)
 
-									if (referencedObject == null) {
-										throw new FlatlandException("ReferencedObject '" + id + "' not found!")
-									}
 									logger.debug("ReferencedObject '{}'", referencedObject)
-									eObject.eSet(eReference, referencedObject)
+									eObject.safeSetReference(eReference, referencedObject)
 								}
 							}
 						}
@@ -405,33 +388,36 @@ class JsonConverter {
 		}
 	}
 
-	def private toEType(JsonPrimitive jsonPrimitive, EAttribute eAttribute) {
+	def private safeToEType(JsonPrimitive jsonPrimitive, EAttribute eAttribute) {
 		logger.debug("eAttribute '{}' has data type '{}', try to set json value '{}'", eAttribute.name,
 			eAttribute.EAttributeType.name, jsonPrimitive)
-
-		switch eAttribute.EAttributeType {
-			case Literals.ESTRING: return jsonPrimitive.asString
-			case Literals.EBOOLEAN: return jsonPrimitive.asBoolean
-			case Literals.EINT: return jsonPrimitive.asInt
-			case Literals.ELONG: return jsonPrimitive.asLong
-			case Literals.ESHORT: return jsonPrimitive.asShort
-			case Literals.EDOUBLE: return jsonPrimitive.asDouble
-			case Literals.EFLOAT: return jsonPrimitive.asFloat
-			case Literals.EBYTE: return jsonPrimitive.asByte
-			case Literals.ECHAR: return jsonPrimitive.asCharacter
-			case Literals.EDATE: return dateFormat.parse(jsonPrimitive.asString)
-			case Literals.EBIG_DECIMAL: return jsonPrimitive.asBigDecimal
-			case Literals.EBIG_INTEGER: return jsonPrimitive.asBigInteger
-		}
-
-		if (eAttribute.EAttributeType instanceof EEnum) {
-			logger.debug("'{}' is an EEnum", eAttribute.EAttributeType.name)
-			val enum = eAttribute.EAttributeType as EEnum
-			val literal = enum.getEEnumLiteral(jsonPrimitive.asString)
-			if (literal != null) {
-				return literal.instance
+		try {
+			switch eAttribute.EAttributeType {
+				case Literals.ESTRING: return jsonPrimitive.asString
+				case Literals.EBOOLEAN: return jsonPrimitive.asBoolean
+				case Literals.EINT: return jsonPrimitive.asInt
+				case Literals.ELONG: return jsonPrimitive.asLong
+				case Literals.ESHORT: return jsonPrimitive.asShort
+				case Literals.EDOUBLE: return jsonPrimitive.asDouble
+				case Literals.EFLOAT: return jsonPrimitive.asFloat
+				case Literals.EBYTE: return jsonPrimitive.asByte
+				case Literals.ECHAR: return jsonPrimitive.asCharacter
+				case Literals.EDATE: return dateFormat.parse(jsonPrimitive.asString)
+				case Literals.EBIG_DECIMAL: return jsonPrimitive.asBigDecimal
+				case Literals.EBIG_INTEGER: return jsonPrimitive.asBigInteger
 			}
-			return null
+
+			if (eAttribute.EAttributeType instanceof EEnum) {
+				logger.debug("'{}' is an EEnum", eAttribute.EAttributeType.name)
+				val enum = eAttribute.EAttributeType as EEnum
+				val literal = enum.getEEnumLiteral(jsonPrimitive.asString)
+				if (literal != null) {
+					return literal.instance
+				}
+				return null
+			}
+		} catch (Exception e) {
+			throw new FlatlandException('''Json primitive  '«jsonPrimitive.asString»' could not be converted to '«eAttribute.EAttributeType.name»' for attribute '«eAttribute.name»' ''')
 		}
 
 		logger.error("NO CONVERSION WAS POSSIBLE of eAttribute '{}' to data type {}", eAttribute.name,
@@ -472,8 +458,52 @@ class JsonConverter {
 		new JsonPrimitive(object)
 	}
 
-	def private requestCDOObject(EObject eObject, long id) {
-		val view = (eObject as CDOObject).cdoView
-		return view.getObject(CDOIDUtil.createLong(id))
+	def getView(EObject eObject) {
+		(eObject as CDOObject).cdoView
 	}
+
+	// methods which could throw an Exception
+	def safeResolveId(JsonObject jsonObject) {
+		val id = jsonObject.entrySet.filter[it.key == Json.PARAM_ID].head
+		if (id == null) {
+			throw new FlatlandException("Attribute '" + Json.PARAM_ID + "' must be part of json object")
+		}
+		return id
+	}
+
+	def safeRequestObject(CDOView view, long id) {
+		try {
+			return view.getObject(CDOIDUtil.createLong(id))
+		} catch (Exception e) {
+			throw new FlatlandException('''No object found with '«Json.PARAM_ID»=«id»' ''')
+		}
+	}
+
+	def safeAsLong(JsonElement element) {
+		try {
+			return element.asLong
+		} catch (Exception e) {
+			throw new FlatlandException('''Attribute '«Json.PARAM_ID»=«element.asString»' must be a long''')
+		}
+
+	}
+
+	def safeSetReference(EObject container, EReference eReference, EObject refObject) {
+		try {
+			container.eSet(eReference, refObject)
+		} catch (Exception e) {
+			throw new FlatlandException('''Object '«refObject»' has worng type for reference '«eReference.name»' ''')
+		}
+
+	}
+
+	def safeSetReferenceArray(EObject container, EReference eReference, ArrayList<EObject> refArray) {
+		try {
+			container.eSet(eReference, refArray)
+		} catch (Exception e) {
+			throw new FlatlandException(
+				'''Reference list contains object with worng type for reference '«eReference.name»' ''')
+		}
+	}
+
 }

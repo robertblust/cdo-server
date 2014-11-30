@@ -25,6 +25,7 @@ class JsonConverterConfig {
 	val public static DERIVED = "derived"
 	val public static PERMISSION = "permission"
 	val public static MESSAGE = "message"
+	val public static STATUS = "status"
 	val public static DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
 
 	String servletUrl

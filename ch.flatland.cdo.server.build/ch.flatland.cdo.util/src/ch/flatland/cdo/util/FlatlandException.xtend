@@ -14,7 +14,7 @@ import java.lang.Exception
 
 class FlatlandException extends Exception {
 
-	val public static TYPE = "ch.flatland.Exception"
+	val public static STATUS_NOK = "NOK"
 
 	new(String message) {
 		super(message)

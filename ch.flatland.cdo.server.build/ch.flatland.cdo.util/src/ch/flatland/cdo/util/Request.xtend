@@ -13,15 +13,14 @@ package ch.flatland.cdo.util
 import java.io.IOException
 import javax.servlet.http.HttpServletRequest
 import org.apache.commons.codec.binary.Base64
-import org.eclipse.emf.cdo.common.id.CDOIDUtil
 
 class Request {
 
 	val static AUTH_HEADER = "Authorization"
 
 	def getUserId(HttpServletRequest request) {
-		val userNameIndex = request.userNameAndPassword.indexOf(":")
-		val userName = request.userNameAndPassword.substring(0, userNameIndex)
+		val userNameIndex = request.safeUserNameAndPassword.indexOf(":")
+		val userName = request.safeUserNameAndPassword.substring(0, userNameIndex)
 		return userName
 	}
 
@@ -34,8 +33,8 @@ class Request {
 	}
 
 	def getPassword(HttpServletRequest request) {
-		val userNameIndex = request.userNameAndPassword.indexOf(":")
-		val password = request.userNameAndPassword.substring(userNameIndex + 1)
+		val userNameIndex = request.safeUserNameAndPassword.indexOf(":")
+		val password = request.safeUserNameAndPassword.substring(userNameIndex + 1)
 		return password
 	}
 
@@ -43,17 +42,6 @@ class Request {
 		return request.getHeader(AUTH_HEADER) != null
 	}
 
-	def String readBody(HttpServletRequest request) throws IOException {
-		val buffer = new StringBuffer();
-		var String line = null;
-
-		val reader = request.getReader();
-		while ((line = reader.readLine) != null) {
-			buffer.append(line)
-		}
-		return buffer.toString
-	}
-	
 	def createJsonConverter(HttpServletRequest req, String servletContext) {
 		var meta = false
 		if (req.getParameter(Json.PARAM_META) != null) {
@@ -64,20 +52,39 @@ class Request {
 		jsonConverterConfig.meta = meta
 		return new JsonConverter(jsonConverterConfig)
 	}
+	
+	// methods which could throw an Exception
 
-	def getCDOID(HttpServletRequest req) {
-		if (req.getParameter(Json.PARAM_ID) != null &&
-			req.getParameter(Json.PARAM_ID).length > 0) {
-
-			return CDOIDUtil.createLong(Long.parseLong(req.getParameter(Json.PARAM_ID)))
+	def safeIdCheck(HttpServletRequest req) {
+		if (req.getParameter(Json.PARAM_ID) != null && req.getParameter(Json.PARAM_ID).length > 0) {
+			val param = req.getParameter(Json.PARAM_ID)
+			try {
+				return Long.parseLong(param)
+			} catch (Exception e) {
+				throw new FlatlandException('''Request parameter '«Json.PARAM_ID»=«param»' must be a long''')
+			}		
 		}
 		return null
 	}
+	
+	def String safeReadBody(HttpServletRequest request) throws IOException {
+		val buffer = new StringBuffer();
+		var String line = null;
 
-	def private getUserNameAndPassword(HttpServletRequest request) {
+		val reader = request.getReader();
+		while ((line = reader.readLine) != null) {
+			buffer.append(line)
+		}
+		if (buffer.length == 0) {
+			throw new FlatlandException("Request body must not be empty")
+		}
+		return buffer.toString
+	}
+	
+	def private safeUserNameAndPassword(HttpServletRequest request) {
 		val authHeader = request.getHeader(AUTH_HEADER)
 		if (authHeader == null) {
-			throw new FlatlandException("request.getHeader(\"Authorization\") == null, should not happen")
+			throw new FlatlandException("Request basic authentication must not be empty")
 		}
 		val usernameAndPassword = new String(Base64.decodeBase64(authHeader.substring(6).getBytes()))
 		return usernameAndPassword
