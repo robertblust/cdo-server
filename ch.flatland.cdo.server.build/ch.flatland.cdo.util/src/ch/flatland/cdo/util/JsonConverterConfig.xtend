@@ -19,6 +19,7 @@ class JsonConverterConfig {
 	val public static HREF = "href"
 	val public static NAME = "name"
 	val public static CONTAINER = "hrefContainer"
+	val public static ID_CONTAINER = "idContainer"
 	val public static ATTRIBUTES = "attributes"
 	val public static REFERENCES = "references"
 	val public static CONTAINMENT = "containment"
