@@ -64,4 +64,11 @@ class EMF {
 		}
 		return false
 	}
+	
+	def isContainmentSettable(EReference feature) {
+		if (feature.containment) {
+			logger.debug("EReference '{}' is containment", feature.name)
+			return true
+		}
+	}
 }
