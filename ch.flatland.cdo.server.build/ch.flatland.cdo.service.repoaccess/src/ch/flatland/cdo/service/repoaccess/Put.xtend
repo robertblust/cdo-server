@@ -16,6 +16,8 @@ import ch.flatland.cdo.util.Request
 import ch.flatland.cdo.util.Response
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
+import org.eclipse.emf.cdo.view.CDOView
+import org.eclipse.emf.ecore.EClass
 import org.slf4j.LoggerFactory
 
 class Put {
@@ -53,21 +55,24 @@ class Put {
 			val id = jsonObject.safeResolveId
 			val put = jsonObject.safeResolvePut
 			val type = jsonObject.safeResolveType
- 			
+ 			 			
 			logger.debug("Object '{}' requested to '{}({})'", id, put, type)
 
 			val requestedObject = view.safeRequestObject(id.value.safeAsLong)
 
 			logger.debug("Object '{}' loaded type of {}", id, requestedObject.eClass.type)
-
-			requestedObject.safeCanWrite(id)
 			
-			type.value.asString.nsUri
-			type.value.asString.eType
+			val newObject = view.safeCreateType(type.value.asString)
+			
+			val eReference = requestedObject.eClass.EAllReferences.filter[it.name == put.value.asString].head
+			
+			requestedObject.eSet(eReference, newArrayList(newObject))
+			
+			
+			
+			jsonObject.toEObject = newObject
 
-			//jsonObject.toEObject = requestedObject
-
-			//view.commit
+			view.commit
 
 			// now transform manipulated object to json for the reponse			
 			jsonString = requestedObject.safeToJson
@@ -84,17 +89,32 @@ class Put {
 		resp.writeResponse(req, jsonString)
 	}
 	
-	def private nsUri(String type) {
-		val segments = type.split("\\.")
-		val nsUri = type.replace("." + segments.get(segments.size -1), "")
-		println(nsUri)
-		return nsUri
+	def safeCreateType(CDOView view, String type) {
+		val ePackage = view.ePackage(type)
+		val eClass = view.eClass(type)
+		if (eClass == null) {
+			throw new FlatlandException('''Could not resolve eClass for '«type»' ''', HttpServletResponse.SC_BAD_REQUEST)
+		}
+		logger.debug("Resolved EClass '{}'", eClass)	
+		val newObject = ePackage.EFactoryInstance.create(eClass)
+		logger.debug("Created new object '{}'", newObject)
+		return newObject	
 	}
 	
-	def private eType(String type) {
+	def private ePackage(CDOView view, String type) {
+		val segments = type.split("\\.")
+		val nsUri = type.replace("." + segments.get(segments.size -1), "")
+		return view.session.packageRegistry.getEPackage(nsUri)
+	}
+	
+	def private eClass(CDOView view, String type) {
 		val segments = type.split("\\.")
 		val eType = segments.get(segments.size -1)
-		println(eType)
-		return eType
+		val ePackage = view.ePackage(type)
+		if (ePackage != null) {
+			logger.debug("Resolved EPackage '{}'", ePackage)	
+			return ePackage.EClassifiers.filter[it.name == eType].head as EClass
+		}
+		return null
 	}
 }

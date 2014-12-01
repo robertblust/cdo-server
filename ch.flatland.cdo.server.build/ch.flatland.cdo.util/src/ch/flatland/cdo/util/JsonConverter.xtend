@@ -500,8 +500,8 @@ class JsonConverter {
 	// methods which could throw an Exception
 	def safeResolveId(JsonObject jsonObject) {
 		val id = jsonObject.entrySet.filter[it.key == Json.PARAM_ID].head
-		if (id == null) {
-			throw new FlatlandException("Attribute '" + Json.PARAM_ID + "' must be part of json object",
+		if (id == null || id.value.isJsonNull) {
+			throw new FlatlandException("Attribute '" + Json.PARAM_ID + "' missing or null",
 				HttpServletResponse.SC_BAD_REQUEST)
 		}
 		return id
@@ -509,8 +509,8 @@ class JsonConverter {
 	
 	def safeResolvePut(JsonObject jsonObject) {
 		val put = jsonObject.entrySet.filter[it.key == JsonConverterConfig.PUT].head
-		if (put == null) {
-			throw new FlatlandException("Attribute '" + JsonConverterConfig.PUT + "' must be part of json object",
+		if (put == null || put.value.isJsonNull) {
+			throw new FlatlandException("Attribute '" + JsonConverterConfig.PUT + "' missing or null",
 				HttpServletResponse.SC_BAD_REQUEST)
 		}
 		return put
@@ -518,8 +518,8 @@ class JsonConverter {
 	
 	def safeResolveType(JsonObject jsonObject) {
 		val type = jsonObject.entrySet.filter[it.key == JsonConverterConfig.TYPE].head
-		if (type == null) {
-			throw new FlatlandException("Attribute '" + JsonConverterConfig.TYPE + "' must be part of json object",
+		if (type == null || type.value.isJsonNull) {
+			throw new FlatlandException("Attribute '" + JsonConverterConfig.TYPE + "' missing or null",
 				HttpServletResponse.SC_BAD_REQUEST)
 		}
 		return type
