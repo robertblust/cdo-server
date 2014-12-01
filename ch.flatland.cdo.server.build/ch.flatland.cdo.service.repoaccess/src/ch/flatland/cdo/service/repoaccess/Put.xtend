@@ -14,6 +14,7 @@ import ch.flatland.cdo.util.EMF
 import ch.flatland.cdo.util.FlatlandException
 import ch.flatland.cdo.util.Request
 import ch.flatland.cdo.util.Response
+import java.util.List
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 import org.eclipse.emf.cdo.view.CDOView
@@ -55,25 +56,36 @@ class Put {
 			val id = jsonObject.safeResolveId
 			val put = jsonObject.safeResolvePut
 			val type = jsonObject.safeResolveType
- 			 			
+
 			logger.debug("Object '{}' requested to '{}({})'", id, put, type)
 
 			val requestedObject = view.safeRequestObject(id.value.safeAsLong)
 
 			logger.debug("Object '{}' loaded type of {}", id, requestedObject.eClass.type)
-			
+
 			val newObject = view.safeCreateType(type.value.asString)
-			
+
 			val eReference = requestedObject.eClass.EAllReferences.filter[it.name == put.value.asString].head
-			
-			requestedObject.eSet(eReference, newArrayList(newObject))
-			
-			
-			
+
+			if (eReference == null) {
+				throw new FlatlandException('''Object '«id»' does not support '«put»' ''',
+					HttpServletResponse.SC_BAD_REQUEST)
+			}
+			if (!eReference.isContainmentSettable) {
+				throw new FlatlandException('''Feature '«put.value»' is not a containment''',
+					HttpServletResponse.SC_BAD_REQUEST)
+			}
+
 			jsonObject.toEObject = newObject
 
-			view.commit
+			if (eReference.many) {
+				val objects = requestedObject.eGet(eReference) as List<Object>
+				objects.add(newObject)
+			} else {
+				requestedObject.eSet(eReference, newObject)
+			}
 
+			view.commit
 			// now transform manipulated object to json for the reponse			
 			jsonString = requestedObject.safeToJson
 
@@ -88,31 +100,31 @@ class Put {
 		}
 		resp.writeResponse(req, jsonString)
 	}
-	
+
 	def safeCreateType(CDOView view, String type) {
 		val ePackage = view.ePackage(type)
 		val eClass = view.eClass(type)
 		if (eClass == null) {
 			throw new FlatlandException('''Could not resolve eClass for '«type»' ''', HttpServletResponse.SC_BAD_REQUEST)
 		}
-		logger.debug("Resolved EClass '{}'", eClass)	
+		logger.debug("Resolved EClass '{}'", eClass)
 		val newObject = ePackage.EFactoryInstance.create(eClass)
 		logger.debug("Created new object '{}'", newObject)
-		return newObject	
+		return newObject
 	}
-	
+
 	def private ePackage(CDOView view, String type) {
 		val segments = type.split("\\.")
-		val nsUri = type.replace("." + segments.get(segments.size -1), "")
+		val nsUri = type.replace("." + segments.get(segments.size - 1), "")
 		return view.session.packageRegistry.getEPackage(nsUri)
 	}
-	
+
 	def private eClass(CDOView view, String type) {
 		val segments = type.split("\\.")
-		val eType = segments.get(segments.size -1)
+		val eType = segments.get(segments.size - 1)
 		val ePackage = view.ePackage(type)
 		if (ePackage != null) {
-			logger.debug("Resolved EPackage '{}'", ePackage)	
+			logger.debug("Resolved EPackage '{}'", ePackage)
 			return ePackage.EClassifiers.filter[it.name == eType].head as EClass
 		}
 		return null
