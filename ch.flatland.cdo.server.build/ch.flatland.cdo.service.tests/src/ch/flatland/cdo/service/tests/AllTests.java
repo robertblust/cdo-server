@@ -6,11 +6,12 @@ import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
 @SuiteClasses({ 
-	PingUnsecure.class,
-	PingSecure.class
-	})
+	EndpointUnsecure.class,
+	EndpointSecure.class,
+	RepoAuthentication.class
+})
 
 public class AllTests {
-	public static String SECURE_ENDPOINT = "https://localhost:9080";
-	public static String UNSECURE_ENDPOINT = "http://localhost:8080";
+	public static String ENDPOINT_SECURE = "https://localhost:9080";
+	public static String ENDPOINT_UNSECURE = "http://localhost:8080";
 }
