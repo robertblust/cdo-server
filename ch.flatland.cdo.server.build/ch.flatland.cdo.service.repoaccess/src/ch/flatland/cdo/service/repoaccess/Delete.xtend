@@ -53,7 +53,7 @@ class Delete {
 
 			try {
 				if (requestedObject instanceof CDOResource) {
-					val resource = requestedObject as CDOResource
+					val resource = requestedObject
 					if (resource.eContents.size > 0) {
 						throw new FlatlandException('''Resource '«id»' cannot be deleted cause not empty''', HttpServletResponse.SC_CONFLICT)
 					}
