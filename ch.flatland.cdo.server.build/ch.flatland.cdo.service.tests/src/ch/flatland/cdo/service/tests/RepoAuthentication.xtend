@@ -9,23 +9,23 @@ import org.junit.Rule
 import org.junit.runner.RunWith
 import org.slf4j.LoggerFactory
 
-import static extension com.eclipsesource.restfuse.Assert.assertUnauthorized
+import static extension com.eclipsesource.restfuse.Assert.assertOk
 import static extension org.junit.Assert.assertTrue
 
 @RunWith(typeof(HttpJUnitRunner))
-class RepoAuthenticationFailes extends AbstractTestCase {
+class RepoAuthentication extends AbstractTestCase {
 
 	val logger = LoggerFactory.getLogger(this.class)
 
 	@Rule
-	val public destination = secureDestination
+	val public destination = secureDestinationWithAuthentication
 
 	@Context
 	private Response response
 
 	@HttpTest(method=Method.GET, path="/repo")
-	def checkUnauthenticated() {
-		response.assertUnauthorized
+	def checkAuthenticated() {
+		response.assertOk
 		response.hasBody.assertTrue
 		logger.debug("Body '{}'", response.body)
 	}
