@@ -1,5 +1,6 @@
 package ch.flatland.cdo.service.tests
 
+import ch.flatland.cdo.util.Request
 import com.eclipsesource.restfuse.Destination
 import org.apache.commons.codec.binary.Base64
 
@@ -10,7 +11,7 @@ abstract class AbstractTestCase {
 
 	def Destination getSecureDestinationWithAuthentication() {
 		val destination = new Destination(this, AllTests.ENDPOINT_SECURE)
-		destination.getRequestContext().addHeader("Authorization",
+		destination.getRequestContext().addHeader(Request.AUTH_HEADER,
 			"Basic " + Base64.encodeBase64String((USER + ':' + PASSWORD).bytes))
 		return destination
 	}
