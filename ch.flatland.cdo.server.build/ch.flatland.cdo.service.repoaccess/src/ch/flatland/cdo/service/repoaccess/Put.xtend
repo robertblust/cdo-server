@@ -100,33 +100,4 @@ class Put {
 		}
 		resp.writeResponse(req, jsonString)
 	}
-
-	def safeCreateType(CDOView view, String type) {
-		val ePackage = view.ePackage(type)
-		val eClass = view.eClass(type)
-		if (eClass == null) {
-			throw new FlatlandException('''Could not resolve eClass for '«type»' ''', HttpServletResponse.SC_BAD_REQUEST)
-		}
-		logger.debug("Resolved EClass '{}'", eClass)
-		val newObject = ePackage.EFactoryInstance.create(eClass)
-		logger.debug("Created new object '{}'", newObject)
-		return newObject
-	}
-
-	def private ePackage(CDOView view, String type) {
-		val segments = type.split("\\.")
-		val nsUri = type.replace("." + segments.get(segments.size - 1), "")
-		return view.session.packageRegistry.getEPackage(nsUri)
-	}
-
-	def private eClass(CDOView view, String type) {
-		val segments = type.split("\\.")
-		val eType = segments.get(segments.size - 1)
-		val ePackage = view.ePackage(type)
-		if (ePackage != null) {
-			logger.debug("Resolved EPackage '{}'", ePackage)
-			return ePackage.EClassifiers.filter[it.name == eType].head as EClass
-		}
-		return null
-	}
 }

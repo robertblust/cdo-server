@@ -25,11 +25,13 @@ import javax.servlet.http.HttpServletResponse
 import org.eclipse.emf.cdo.CDOObject
 import org.eclipse.emf.cdo.common.id.CDOIDUtil
 import org.eclipse.emf.cdo.common.security.CDOPermission
+import org.eclipse.emf.cdo.common.security.NoPermissionException
 import org.eclipse.emf.cdo.eresource.CDOResourceNode
 import org.eclipse.emf.cdo.view.CDOView
 import org.eclipse.emf.common.util.Enumerator
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.EAttribute
+import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EClassifier
 import org.eclipse.emf.ecore.EEnum
 import org.eclipse.emf.ecore.EObject
@@ -41,7 +43,6 @@ import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory
 import org.eclipse.emf.internal.cdo.object.CDOLegacyAdapter
 import org.slf4j.LoggerFactory
-import org.eclipse.emf.cdo.common.security.NoPermissionException
 
 class JsonConverter {
 	val logger = LoggerFactory.getLogger(this.class)
@@ -579,5 +580,33 @@ class JsonConverter {
 				HttpServletResponse.SC_FORBIDDEN)
 		}
 	}
+	
+	def safeCreateType(CDOView view, String type) {
+		val ePackage = view.ePackage(type)
+		val eClass = view.eClass(type)
+		if (eClass == null) {
+			throw new FlatlandException('''Could not resolve eClass for '«type»' ''', HttpServletResponse.SC_BAD_REQUEST)
+		}
+		logger.debug("Resolved EClass '{}'", eClass)
+		val newObject = ePackage.EFactoryInstance.create(eClass)
+		logger.debug("Created new object '{}'", newObject)
+		return newObject
+	}
 
+	def private ePackage(CDOView view, String type) {
+		val segments = type.split("\\.")
+		val nsUri = type.replace("." + segments.get(segments.size - 1), "")
+		return view.session.packageRegistry.getEPackage(nsUri)
+	}
+
+	def private eClass(CDOView view, String type) {
+		val segments = type.split("\\.")
+		val eType = segments.get(segments.size - 1)
+		val ePackage = view.ePackage(type)
+		if (ePackage != null) {
+			logger.debug("Resolved EPackage '{}'", ePackage)
+			return ePackage.EClassifiers.filter[it.name == eType].head as EClass
+		}
+		return null
+	}
 }
