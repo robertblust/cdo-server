@@ -76,7 +76,7 @@ class Request {
 			buffer.append(line)
 		}
 		if (buffer.length == 0) {
-			throw new FlatlandException("Request body must not be empty",HttpServletResponse.SC_BAD_REQUEST)
+			throw new FlatlandException("Request body must not be empty", HttpServletResponse.SC_BAD_REQUEST)
 		}
 		return buffer.toString
 	}
