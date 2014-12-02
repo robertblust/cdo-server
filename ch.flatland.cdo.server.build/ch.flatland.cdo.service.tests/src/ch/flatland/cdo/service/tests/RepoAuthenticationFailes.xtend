@@ -1,6 +1,5 @@
 package ch.flatland.cdo.service.tests
 
-import com.eclipsesource.restfuse.Destination
 import com.eclipsesource.restfuse.HttpJUnitRunner
 import com.eclipsesource.restfuse.Method
 import com.eclipsesource.restfuse.Response
@@ -14,12 +13,12 @@ import static extension com.eclipsesource.restfuse.Assert.assertUnauthorized
 import static extension org.junit.Assert.assertTrue
 
 @RunWith(typeof(HttpJUnitRunner))
-class RepoAuthentication {
+class RepoAuthenticationFailes extends AbstractTestCase {
 
 	val logger = LoggerFactory.getLogger(this.class)
 
 	@Rule
-	val public restfuse = new Destination(this, AllTests.ENDPOINT_SECURE);
+	val public destination = secureDestination
 
 	@Context
 	private Response response
