@@ -16,7 +16,7 @@ import org.apache.commons.codec.binary.Base64
 
 class Request {
 
-	val static AUTH_HEADER = "Authorization"
+	val public static AUTH_HEADER = "Authorization"
 
 	def getUserId(HttpServletRequest request) {
 		val userNameIndex = request.safeUserNameAndPassword.indexOf(":")
