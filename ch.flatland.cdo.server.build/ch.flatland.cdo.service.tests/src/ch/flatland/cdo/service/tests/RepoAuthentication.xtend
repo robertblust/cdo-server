@@ -18,7 +18,7 @@ class RepoAuthentication extends AbstractTestCase {
 	val logger = LoggerFactory.getLogger(this.class)
 
 	@Rule
-	val public destination = secureDestinationWithAuthentication
+	val public destination = secureDestinationAsReadOnly
 
 	@Context
 	private Response response
