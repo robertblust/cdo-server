@@ -17,8 +17,6 @@ import ch.flatland.cdo.util.Response
 import java.util.List
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
-import org.eclipse.emf.cdo.view.CDOView
-import org.eclipse.emf.ecore.EClass
 import org.slf4j.LoggerFactory
 
 class Put {
