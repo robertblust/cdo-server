@@ -58,7 +58,9 @@ class Delete {
 						throw new FlatlandException('''Resource '«id»' cannot be deleted cause not empty''', HttpServletResponse.SC_CONFLICT)
 					}
 				}
-				
+				// TODO this checks the whole resource set for xrefs
+				// which is ok. But using EcoreUtil does it on the client side.
+				// Should be replaced by repo side calculation!
 				EcoreUtil.delete(requestedObject, true)
 			} catch (NoPermissionException npe) {
 				throw new FlatlandException(npe.message, HttpServletResponse.SC_FORBIDDEN)
