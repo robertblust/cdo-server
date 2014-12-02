@@ -10,7 +10,9 @@ import org.junit.runner.RunWith
 import org.slf4j.LoggerFactory
 
 import static extension com.eclipsesource.restfuse.Assert.assertOk
+import static extension com.eclipsesource.restfuse.Assert.assertUnauthorized
 import static extension org.junit.Assert.assertTrue
+
 
 @RunWith(typeof(HttpJUnitRunner))
 class EndpointSecure extends AbstractTestCase {
@@ -26,6 +28,13 @@ class EndpointSecure extends AbstractTestCase {
 	@HttpTest(method=Method.GET, path="/ping")
 	def checkPing() {
 		response.assertOk
+		response.hasBody.assertTrue
+		logger.debug("Body '{}'", response.body)
+	}
+	
+	@HttpTest(method=Method.GET, path="/repo")
+	def checkUnauthenticated() {
+		response.assertUnauthorized
 		response.hasBody.assertTrue
 		logger.debug("Body '{}'", response.body)
 	}

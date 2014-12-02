@@ -8,7 +8,7 @@ import org.junit.runners.Suite.SuiteClasses;
 @SuiteClasses({ 
 	EndpointUnsecure.class,
 	EndpointSecure.class,
-	RepoAuthenticationFailes.class
+	RepoAuthentication.class
 })
 
 public class AllTests {
