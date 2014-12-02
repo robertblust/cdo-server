@@ -13,14 +13,16 @@ server ...> model : uses
 server ..> util : uses
 
 service ..> util : uses
+service ..> model : uses
+
 ldap ..> util : uses
 
-Rest - service : provides
+service -- Rest : provides
 Net4J - server : provides
 ldap ..> LDAP
 server .> DATASTORE
 
-note bottom of Rest
+note top of Rest
  Json Rest API supports GET, POST, PUT, DELETE 
 end note
 
