@@ -21,8 +21,6 @@ import javax.servlet.http.HttpServletResponse
 
 class PingServlet extends AbstractServlet {
 
-	public val static SERVLET_CONTEXT = "/ping"
-
 	val extension Response = new Response
 
 	val static extension JsonConverter = new JsonConverter

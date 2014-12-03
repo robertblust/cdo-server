@@ -32,7 +32,7 @@ class Get {
 		var Object requestedObject = null
 		var String jsonString = null
 
-		val extension JsonConverter = req.createJsonConverter(RepoAccessServlet.SERVLET_CONTEXT)
+		val extension JsonConverter = req.createJsonConverter
 
 		try {
 
@@ -47,10 +47,10 @@ class Get {
 			// processes path
 			if (!processed) {
 				if (req.pathInfo != null) {
-					requestedObject = view.safeRequestPath(req.pathInfo)	
+					requestedObject = view.safeRequestPath(req.pathInfo)
 				} else {
-					requestedObject = view.safeRequestPath("/home/" + req.userId)	
-				}		
+					requestedObject = view.safeRequestPath("/home/" + req.userId)
+				}
 			}
 
 			jsonString = requestedObject.safeToJson

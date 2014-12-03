@@ -28,7 +28,7 @@ class Post {
 
 	def void run(HttpServletRequest req, HttpServletResponse resp) {
 
-		val extension JsonConverter = req.createJsonConverter(RepoAccessServlet.SERVLET_CONTEXT)
+		val extension JsonConverter = req.createJsonConverter
 
 		val view = SessionFactory.getCDOSession(req).openTransaction
 		var String jsonString = null

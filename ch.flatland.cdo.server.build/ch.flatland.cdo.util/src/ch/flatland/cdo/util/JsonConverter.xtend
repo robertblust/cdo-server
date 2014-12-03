@@ -10,6 +10,7 @@
  */
 package ch.flatland.cdo.util
 
+import com.google.common.base.Splitter
 import com.google.gson.Gson
 import com.google.gson.JsonArray
 import com.google.gson.JsonElement
@@ -91,7 +92,7 @@ class JsonConverter {
 		]
 		eObject
 	}
-	
+
 	def okToJson() {
 		newObjectWithStatusOK.toString
 	}
@@ -502,25 +503,25 @@ class JsonConverter {
 	def safeResolveId(JsonObject jsonObject) {
 		val id = jsonObject.entrySet.filter[it.key == Json.PARAM_ID].head
 		if (id == null || id.value.isJsonNull) {
-			throw new FlatlandException("Attribute '" + Json.PARAM_ID + "' missing or null",
+			throw new FlatlandException('''Attribute '«Json.PARAM_ID» + "' missing or null''',
 				HttpServletResponse.SC_BAD_REQUEST)
 		}
 		return id
 	}
-	
+
 	def safeResolvePut(JsonObject jsonObject) {
 		val put = jsonObject.entrySet.filter[it.key == JsonConverterConfig.PUT].head
 		if (put == null || put.value.isJsonNull) {
-			throw new FlatlandException("Attribute '" + JsonConverterConfig.PUT + "' missing or null",
+			throw new FlatlandException('''Attribute '«JsonConverterConfig.PUT» + "' missing or null''',
 				HttpServletResponse.SC_BAD_REQUEST)
 		}
 		return put
 	}
-	
+
 	def safeResolveType(JsonObject jsonObject) {
 		val type = jsonObject.entrySet.filter[it.key == JsonConverterConfig.TYPE].head
 		if (type == null || type.value.isJsonNull) {
-			throw new FlatlandException("Attribute '" + JsonConverterConfig.TYPE + "' missing or null",
+			throw new FlatlandException('''Attribute '«JsonConverterConfig.TYPE» + "' missing or null''',
 				HttpServletResponse.SC_BAD_REQUEST)
 		}
 		return type
@@ -580,7 +581,7 @@ class JsonConverter {
 				HttpServletResponse.SC_FORBIDDEN)
 		}
 	}
-	
+
 	def safeCreateType(CDOView view, String type) {
 		val ePackage = view.ePackage(type)
 		val eClass = view.eClass(type)
@@ -594,13 +595,13 @@ class JsonConverter {
 	}
 
 	def private ePackage(CDOView view, String type) {
-		val segments = type.split("\\.")
+		val segments = Splitter.on(".").split(type)
 		val nsUri = type.replace("." + segments.get(segments.size - 1), "")
 		return view.session.packageRegistry.getEPackage(nsUri)
 	}
 
 	def private eClass(CDOView view, String type) {
-		val segments = type.split("\\.")
+		val segments = Splitter.on(".").split(type)
 		val eType = segments.get(segments.size - 1)
 		val ePackage = view.ePackage(type)
 		if (ePackage != null) {

@@ -31,7 +31,7 @@ class Delete {
 
 	def void run(HttpServletRequest req, HttpServletResponse resp) {
 
-		val extension JsonConverter = req.createJsonConverter(RepoAccessServlet.SERVLET_CONTEXT)
+		val extension JsonConverter = req.createJsonConverter
 
 		val view = SessionFactory.getCDOSession(req).openTransaction
 		var String jsonString = null
@@ -55,9 +55,11 @@ class Delete {
 				if (requestedObject instanceof CDOResource) {
 					val resource = requestedObject
 					if (resource.eContents.size > 0) {
-						throw new FlatlandException('''Resource '«id»' cannot be deleted cause not empty''', HttpServletResponse.SC_CONFLICT)
+						throw new FlatlandException('''Resource '«id»' cannot be deleted cause not empty''',
+							HttpServletResponse.SC_CONFLICT)
 					}
 				}
+
 				// TODO this checks the whole resource set for xrefs
 				// which is ok. But using EcoreUtil does it on the client side.
 				// Should be replaced by repo side calculation!

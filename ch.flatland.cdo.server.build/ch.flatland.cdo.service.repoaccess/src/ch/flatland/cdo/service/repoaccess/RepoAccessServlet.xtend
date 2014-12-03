@@ -16,8 +16,6 @@ import javax.servlet.http.HttpServletResponse
 
 class RepoAccessServlet extends AbstractServlet {
 
-	val public static SERVLET_CONTEXT = "/repo"
-
 	override protected doGet(HttpServletRequest req, HttpServletResponse resp) {
 		logRequest(req)
 		(new Get).run(req, resp)
