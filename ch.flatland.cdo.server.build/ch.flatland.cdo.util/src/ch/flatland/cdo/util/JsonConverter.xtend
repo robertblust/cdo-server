@@ -160,7 +160,7 @@ class JsonConverter {
 			jsonBaseObject.addProperty(JsonConverterConfig.CONTAINER, (object.eResource as CDOResourceNode).url)
 		}
 		if (object instanceof CDOObject) {
-			jsonBaseObject.addProperty(JsonConverterConfig.PERMISSION, (object as CDOObject).cdoPermission.name)
+			jsonBaseObject.addProperty(JsonConverterConfig.PERMISSION, object.cdoPermission.name)
 		}
 		return jsonBaseObject
 	}
