@@ -10,6 +10,7 @@
  */
 package ch.flatland.cdo.util
 
+import com.google.common.base.Splitter
 import com.google.gson.Gson
 import com.google.gson.JsonArray
 import com.google.gson.JsonElement
@@ -25,11 +26,13 @@ import javax.servlet.http.HttpServletResponse
 import org.eclipse.emf.cdo.CDOObject
 import org.eclipse.emf.cdo.common.id.CDOIDUtil
 import org.eclipse.emf.cdo.common.security.CDOPermission
+import org.eclipse.emf.cdo.common.security.NoPermissionException
 import org.eclipse.emf.cdo.eresource.CDOResourceNode
 import org.eclipse.emf.cdo.view.CDOView
 import org.eclipse.emf.common.util.Enumerator
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.EAttribute
+import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EClassifier
 import org.eclipse.emf.ecore.EEnum
 import org.eclipse.emf.ecore.EObject
@@ -41,7 +44,6 @@ import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory
 import org.eclipse.emf.internal.cdo.object.CDOLegacyAdapter
 import org.slf4j.LoggerFactory
-import org.eclipse.emf.cdo.common.security.NoPermissionException
 
 class JsonConverter {
 	val logger = LoggerFactory.getLogger(this.class)
@@ -90,7 +92,7 @@ class JsonConverter {
 		]
 		eObject
 	}
-	
+
 	def okToJson() {
 		newObjectWithStatusOK.toString
 	}
@@ -159,7 +161,7 @@ class JsonConverter {
 			jsonBaseObject.addProperty(JsonConverterConfig.CONTAINER, (object.eResource as CDOResourceNode).url)
 		}
 		if (object instanceof CDOObject) {
-			jsonBaseObject.addProperty(JsonConverterConfig.PERMISSION, (object as CDOObject).cdoPermission.name)
+			jsonBaseObject.addProperty(JsonConverterConfig.PERMISSION, object.cdoPermission.name)
 		}
 		return jsonBaseObject
 	}
@@ -501,25 +503,25 @@ class JsonConverter {
 	def safeResolveId(JsonObject jsonObject) {
 		val id = jsonObject.entrySet.filter[it.key == Json.PARAM_ID].head
 		if (id == null || id.value.isJsonNull) {
-			throw new FlatlandException("Attribute '" + Json.PARAM_ID + "' missing or null",
+			throw new FlatlandException('''Attribute '«Json.PARAM_ID» + "' missing or null''',
 				HttpServletResponse.SC_BAD_REQUEST)
 		}
 		return id
 	}
-	
+
 	def safeResolvePut(JsonObject jsonObject) {
 		val put = jsonObject.entrySet.filter[it.key == JsonConverterConfig.PUT].head
 		if (put == null || put.value.isJsonNull) {
-			throw new FlatlandException("Attribute '" + JsonConverterConfig.PUT + "' missing or null",
+			throw new FlatlandException('''Attribute '«JsonConverterConfig.PUT» + "' missing or null''',
 				HttpServletResponse.SC_BAD_REQUEST)
 		}
 		return put
 	}
-	
+
 	def safeResolveType(JsonObject jsonObject) {
 		val type = jsonObject.entrySet.filter[it.key == JsonConverterConfig.TYPE].head
 		if (type == null || type.value.isJsonNull) {
-			throw new FlatlandException("Attribute '" + JsonConverterConfig.TYPE + "' missing or null",
+			throw new FlatlandException('''Attribute '«JsonConverterConfig.TYPE» + "' missing or null''',
 				HttpServletResponse.SC_BAD_REQUEST)
 		}
 		return type
@@ -580,4 +582,32 @@ class JsonConverter {
 		}
 	}
 
+	def safeCreateType(CDOView view, String type) {
+		val ePackage = view.ePackage(type)
+		val eClass = view.eClass(type)
+		if (eClass == null) {
+			throw new FlatlandException('''Could not resolve eClass for '«type»' ''', HttpServletResponse.SC_BAD_REQUEST)
+		}
+		logger.debug("Resolved EClass '{}'", eClass)
+		val newObject = ePackage.EFactoryInstance.create(eClass)
+		logger.debug("Created new object '{}'", newObject)
+		return newObject
+	}
+
+	def private ePackage(CDOView view, String type) {
+		val segments = Splitter.on(".").split(type)
+		val nsUri = type.replace("." + segments.get(segments.size - 1), "")
+		return view.session.packageRegistry.getEPackage(nsUri)
+	}
+
+	def private eClass(CDOView view, String type) {
+		val segments = Splitter.on(".").split(type)
+		val eType = segments.get(segments.size - 1)
+		val ePackage = view.ePackage(type)
+		if (ePackage != null) {
+			logger.debug("Resolved EPackage '{}'", ePackage)
+			return ePackage.EClassifiers.filter[it.name == eType].head as EClass
+		}
+		return null
+	}
 }

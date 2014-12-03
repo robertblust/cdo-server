@@ -16,7 +16,8 @@ import org.apache.commons.codec.binary.Base64
 
 class Request {
 
-	val static AUTH_HEADER = "Authorization"
+	val public static AUTH_HEADER = "Authorization"
+	val public static ACCEPT_HEADER = "Accept"
 
 	def getUserId(HttpServletRequest request) {
 		val userNameIndex = request.safeUserNameAndPassword.indexOf(":")
@@ -42,31 +43,24 @@ class Request {
 		return request.getHeader(AUTH_HEADER) != null
 	}
 
-	def createJsonConverter(HttpServletRequest req, String servletContext) {
-		var meta = false
-		if (req.getParameter(Json.PARAM_META) != null) {
-			meta = true
-		}
-		val servletUrl = req.requestURL.substring(0, req.requestURL.indexOf(servletContext)) + servletContext
-		val jsonConverterConfig = new JsonConverterConfig(servletUrl, servletContext)
-		jsonConverterConfig.meta = meta
-		return new JsonConverter(jsonConverterConfig)
+	def createJsonConverter(HttpServletRequest req) {
+		return new JsonConverter(new JsonConverterConfig(req))
 	}
-	
-	// methods which could throw an Exception
 
+	// methods which could throw an Exception
 	def safeIdCheck(HttpServletRequest req) {
 		if (req.getParameter(Json.PARAM_ID) != null && req.getParameter(Json.PARAM_ID).length > 0) {
 			val param = req.getParameter(Json.PARAM_ID)
 			try {
 				return Long.parseLong(param)
 			} catch (Exception e) {
-				throw new FlatlandException('''Request parameter '«Json.PARAM_ID»=«param»' must be a long''', HttpServletResponse.SC_BAD_REQUEST)
-			}		
+				throw new FlatlandException('''Request parameter '«Json.PARAM_ID»=«param»' must be a long''',
+					HttpServletResponse.SC_BAD_REQUEST)
+			}
 		}
 		return null
 	}
-	
+
 	def String safeReadBody(HttpServletRequest request) {
 		val buffer = new StringBuffer();
 		var String line = null;
@@ -76,15 +70,16 @@ class Request {
 			buffer.append(line)
 		}
 		if (buffer.length == 0) {
-			throw new FlatlandException("Request body must not be empty",HttpServletResponse.SC_BAD_REQUEST)
+			throw new FlatlandException("Request body must not be empty", HttpServletResponse.SC_BAD_REQUEST)
 		}
 		return buffer.toString
 	}
-	
+
 	def private safeUserNameAndPassword(HttpServletRequest request) {
 		val authHeader = request.getHeader(AUTH_HEADER)
 		if (authHeader == null) {
-			throw new FlatlandException("Request basic authentication must not be empty", HttpServletResponse.SC_BAD_REQUEST)
+			throw new FlatlandException("Request basic authentication must not be empty",
+				HttpServletResponse.SC_BAD_REQUEST)
 		}
 		val usernameAndPassword = new String(Base64.decodeBase64(authHeader.substring(6).getBytes()))
 		return usernameAndPassword

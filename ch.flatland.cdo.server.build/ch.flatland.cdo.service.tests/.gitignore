@@ -1,0 +1,5 @@
+/target/
+/bin/
+/xtend-gen/
+/.settings/
+/.DS_Store

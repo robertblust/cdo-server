@@ -21,12 +21,10 @@ import javax.servlet.http.HttpServletResponse
 
 class PingServlet extends AbstractServlet {
 
-	public val static SERVLET_CONTEXT = "/ping"
-
 	val extension Response = new Response
 
 	val static extension JsonConverter = new JsonConverter
-	val static PING = new PingBean("Flatland CDO Server", "1.0.0").safeToJson
+	val static PING = new PingBean("OK", "Flatland CDO Server", "1.0.0").safeToJson
 
 	override protected doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		logRequest(req)

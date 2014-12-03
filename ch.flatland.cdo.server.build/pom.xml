@@ -22,22 +22,24 @@
 		<module>ch.flatland.cdo.model.test</module>
 		<module>ch.flatland.cdo.model.test.edit</module>
 		<module>ch.flatland.cdo.model.feature</module>
-		
+
 		<module>ch.flatland.cdo.server.ldap</module>
 		<module>ch.flatland.cdo.server.ldap.feature</module>
-		
+
 		<module>ch.flatland.cdo.server.product</module>
 		<module>ch.flatland.cdo.server.feature</module>
-		
+
 		<module>ch.flatland.cdo.service.ping</module>
 		<module>ch.flatland.cdo.service.repoaccess</module>
 		<module>ch.flatland.cdo.service.feature</module>
-		
+
 		<module>ch.flatland.cdo.util</module>
 		<module>ch.flatland.cdo.util.feature</module>
-		
+
 		<module>ch.flatland.cdo.server</module>
 		<module>ch.flatland.cdo.targetplatform</module>
+
+		<module>ch.flatland.cdo.service.tests</module>
 	</modules>
 
 	<build>
@@ -230,13 +232,6 @@
 		<connection>scm:git:git@github.com:robertblust/cdo-server.git</connection>
 		<developerConnection>scm:git:git@github.com:robertblust/cdo-server.git</developerConnection>
 	</scm>
-	<!--  
-	<dependencies>
-		<dependency>
-			<groupId>org.eclipse.xtend</groupId>
-			<artifactId>org.eclipse.xtend.core</artifactId>
-			<version>${xtend.version}</version>
-		</dependency>
-	</dependencies>
-	-->
+	<!-- <dependencies> <dependency> <groupId>org.eclipse.xtend</groupId> <artifactId>org.eclipse.xtend.core</artifactId> 
+		<version>${xtend.version}</version> </dependency> </dependencies> -->
 </project>
