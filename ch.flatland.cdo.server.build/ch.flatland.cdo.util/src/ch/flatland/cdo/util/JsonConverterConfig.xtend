@@ -10,6 +10,9 @@
  */
 package ch.flatland.cdo.util
 
+import com.google.common.base.Splitter
+import javax.servlet.http.HttpServletRequest
+
 class JsonConverterConfig {
 	val public static TYPE = "type"
 	val public static ENUM_LITERALS = "literals"
@@ -35,9 +38,17 @@ class JsonConverterConfig {
 	String servletContext
 	var meta = false
 
-	new(String servletUrl, String servletContext) {
-		this.servletUrl = servletUrl
-		this.servletContext = servletContext
+	new(HttpServletRequest req) {
+		init(req)
+	}
+
+	def private init(HttpServletRequest req) {
+		if (req.getParameter(Json.PARAM_META) != null) {
+			meta = true
+		}
+		val segments = Splitter.on("/").split(req.requestURL)
+		servletContext = "/" + segments.get(3)
+		servletUrl = req.requestURL.substring(0, req.requestURL.indexOf(servletContext)) + servletContext
 	}
 
 	new() {
@@ -51,10 +62,6 @@ class JsonConverterConfig {
 
 	def getServletUrl() {
 		servletUrl
-	}
-
-	def getServletContext() {
-		servletContext
 	}
 
 	def isMeta() {
