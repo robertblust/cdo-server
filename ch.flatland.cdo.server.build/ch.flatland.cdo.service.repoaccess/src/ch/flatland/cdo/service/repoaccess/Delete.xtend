@@ -39,8 +39,7 @@ class Delete {
 		var String jsonString = null
 
 		try {
-			val body = req.safeReadBody
-			logger.debug("Run for '{}' with body '{}'", req.userId, body)
+			logger.debug("Run for '{}'", req.userId)
 
 			val requestedObject = view.safeRequestResource(req)
 
