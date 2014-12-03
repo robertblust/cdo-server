@@ -9,6 +9,12 @@
             httpcontextId="ch.flatland.cdo.service.repoaccess.BasicAuthHttpContext"
             load-on-startup="true">
       </servlet>
+      <servlet
+            alias="/obj"
+            class="ch.flatland.cdo.service.repoaccess.ObjectAccessServlet"
+            httpcontextId="ch.flatland.cdo.service.repoaccess.BasicAuthHttpContext"
+            load-on-startup="true">
+      </servlet>
    </extension>
    <extension
          point="org.eclipse.equinox.http.registry.httpcontexts">

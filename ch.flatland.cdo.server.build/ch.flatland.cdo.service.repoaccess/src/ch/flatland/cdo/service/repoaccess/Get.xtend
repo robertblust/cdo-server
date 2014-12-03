@@ -13,6 +13,7 @@ package ch.flatland.cdo.service.repoaccess
 import ch.flatland.cdo.util.FlatlandException
 import ch.flatland.cdo.util.Request
 import ch.flatland.cdo.util.Response
+import ch.flatland.cdo.util.View
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 import org.slf4j.LoggerFactory
@@ -23,6 +24,7 @@ class Get {
 
 	val extension Request = new Request
 	val extension Response = new Response
+	val extension View = new View
 
 	def void run(HttpServletRequest req, HttpServletResponse resp) {
 		logger.debug("Run for '{}'", req.userId)
@@ -35,23 +37,7 @@ class Get {
 		val extension JsonConverter = req.createJsonConverter
 
 		try {
-
-			var processed = false
-
-			// processes id
-			if (req.safeIdCheck != null) {
-				requestedObject = view.safeRequestObject(req.safeIdCheck)
-				processed = true
-			}
-
-			// processes path
-			if (!processed) {
-				if (req.pathInfo != null) {
-					requestedObject = view.safeRequestPath(req.pathInfo)
-				} else {
-					requestedObject = view.safeRequestPath("/home/" + req.userId)
-				}
-			}
+			requestedObject = view.safeRequestResource(req)
 
 			jsonString = requestedObject.safeToJson
 

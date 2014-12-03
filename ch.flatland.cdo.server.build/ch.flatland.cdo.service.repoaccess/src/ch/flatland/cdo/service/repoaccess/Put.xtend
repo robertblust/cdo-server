@@ -14,6 +14,7 @@ import ch.flatland.cdo.util.EMF
 import ch.flatland.cdo.util.FlatlandException
 import ch.flatland.cdo.util.Request
 import ch.flatland.cdo.util.Response
+import ch.flatland.cdo.util.View
 import java.util.List
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
@@ -26,13 +27,13 @@ class Put {
 	val extension Request = new Request
 	val extension Response = new Response
 	val extension EMF = new EMF
+	val extension View = new View
 
 	/*
 	 * Sample json request body
 	 * {
-	 *		"id": 41,
 	 *		"put": "elements",
-	 *		"type": "ch.flatland.cdo.model.base.FLPackage",
+	 *		"type": "base.FLPackage",
 	 *			"attributes": {
 	 *				"name": "New Child"
 	 *			}
@@ -51,22 +52,21 @@ class Put {
 			logger.debug("Run for '{}' with body '{}'", req.userId, body)
 
 			val jsonObject = body.safeFromJson
-			val id = jsonObject.safeResolveId
 			val put = jsonObject.safeResolvePut
 			val type = jsonObject.safeResolveType
 
-			logger.debug("Object '{}' requested to '{}({})'", id, put, type)
+			val requestedObject = view.safeRequestResource(req)
 
-			val requestedObject = view.safeRequestObject(id.value.safeAsLong)
+			logger.debug("Object '{}' loaded type of {}", requestedObject.cdoID, requestedObject.eClass.type)
 
-			logger.debug("Object '{}' loaded type of {}", id, requestedObject.eClass.type)
+			requestedObject.safeCanWrite
 
 			val newObject = view.safeCreateType(type.value.asString)
 
 			val eReference = requestedObject.eClass.EAllReferences.filter[it.name == put.value.asString].head
 
 			if (eReference == null) {
-				throw new FlatlandException('''Object '«id»' does not support '«put»' ''',
+				throw new FlatlandException('''Object '«requestedObject.cdoID»' does not support '«put»' ''',
 					HttpServletResponse.SC_BAD_REQUEST)
 			}
 			if (!eReference.isContainmentSettable) {

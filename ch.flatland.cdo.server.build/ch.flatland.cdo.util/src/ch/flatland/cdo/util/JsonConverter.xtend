@@ -10,7 +10,6 @@
  */
 package ch.flatland.cdo.util
 
-import com.google.common.base.Splitter
 import com.google.gson.Gson
 import com.google.gson.JsonArray
 import com.google.gson.JsonElement
@@ -24,15 +23,12 @@ import java.util.List
 import java.util.Map
 import javax.servlet.http.HttpServletResponse
 import org.eclipse.emf.cdo.CDOObject
-import org.eclipse.emf.cdo.common.id.CDOIDUtil
 import org.eclipse.emf.cdo.common.security.CDOPermission
 import org.eclipse.emf.cdo.common.security.NoPermissionException
 import org.eclipse.emf.cdo.eresource.CDOResourceNode
-import org.eclipse.emf.cdo.view.CDOView
 import org.eclipse.emf.common.util.Enumerator
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.EAttribute
-import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EClassifier
 import org.eclipse.emf.ecore.EEnum
 import org.eclipse.emf.ecore.EObject
@@ -52,6 +48,7 @@ class JsonConverter {
 	val parser = new JsonParser
 	val dateFormat = new SimpleDateFormat(JsonConverterConfig.DATE_FORMAT);
 	val extension EMF = new EMF
+	val extension View = new View
 	val extension HttpStatus = new HttpStatus
 
 	val ITEM_DELEGATOR = new AdapterFactoryItemDelegator(
@@ -68,6 +65,10 @@ class JsonConverter {
 
 	new() {
 		this.jsonConverterConfig = new JsonConverterConfig
+	}
+
+	def getConfig() {
+		jsonConverterConfig
 	}
 
 	def JsonObject safeFromJson(String jsonString) {
@@ -291,13 +292,14 @@ class JsonConverter {
 	}
 
 	def private dispatch getUrl(CDOResourceNode object) {
-		jsonConverterConfig.servletUrl + object.path
+		"/repo" + object.path
 	}
 
 	def private dispatch getUrl(EObject object) {
-		val uri = EcoreUtil.getURI(object)
-		return jsonConverterConfig.serverUrl + uri.devicePath.replace("//", "/") + "?" + Json.PARAM_ID + "=" +
-			uri.fragment.replace("L", "")
+		val cdoObject = object as CDOObject
+		"/obj/" + cdoObject.eClass.EPackage.nsPrefix + "." + cdoObject.eClass.name + "/" +
+			cdoObject.cdoID.toURIFragment.replace("L", "")
+
 	}
 
 	def private getOid(EObject object) {
@@ -527,24 +529,6 @@ class JsonConverter {
 		return type
 	}
 
-	def safeRequestObject(CDOView view, long id) {
-		try {
-			return view.getObject(CDOIDUtil.createLong(id))
-		} catch (Exception e) {
-			throw new FlatlandException('''No object found with '«Json.PARAM_ID»=«id»' ''',
-				HttpServletResponse.SC_BAD_REQUEST)
-		}
-	}
-
-	def safeRequestPath(CDOView view, String path) {
-		try {
-			return view.getResourceNode(path)
-		} catch (Exception e) {
-			throw new FlatlandException('''Resource with path '«path»' does not exits''',
-				HttpServletResponse.SC_NOT_FOUND)
-		}
-	}
-
 	def safeAsLong(JsonElement element) {
 		try {
 			return element.asLong
@@ -573,41 +557,5 @@ class JsonConverter {
 				'''Reference list contains object with wrong type for reference '«eReference.name»' ''',
 				HttpServletResponse.SC_BAD_REQUEST)
 		}
-	}
-
-	def safeCanWrite(CDOObject object, Map.Entry<String, JsonElement> id) {
-		if (object.cdoPermission != CDOPermission.WRITE) {
-			throw new FlatlandException("No permission to edit object '" + id + "'",
-				HttpServletResponse.SC_FORBIDDEN)
-		}
-	}
-
-	def safeCreateType(CDOView view, String type) {
-		val ePackage = view.ePackage(type)
-		val eClass = view.eClass(type)
-		if (eClass == null) {
-			throw new FlatlandException('''Could not resolve eClass for '«type»' ''', HttpServletResponse.SC_BAD_REQUEST)
-		}
-		logger.debug("Resolved EClass '{}'", eClass)
-		val newObject = ePackage.EFactoryInstance.create(eClass)
-		logger.debug("Created new object '{}'", newObject)
-		return newObject
-	}
-
-	def private ePackage(CDOView view, String type) {
-		val segments = Splitter.on(".").split(type)
-		val nsUri = type.replace("." + segments.get(segments.size - 1), "")
-		return view.session.packageRegistry.getEPackage(nsUri)
-	}
-
-	def private eClass(CDOView view, String type) {
-		val segments = Splitter.on(".").split(type)
-		val eType = segments.get(segments.size - 1)
-		val ePackage = view.ePackage(type)
-		if (ePackage != null) {
-			logger.debug("Resolved EPackage '{}'", ePackage)
-			return ePackage.EClassifiers.filter[it.name == eType].head as EClass
-		}
-		return null
 	}
 }

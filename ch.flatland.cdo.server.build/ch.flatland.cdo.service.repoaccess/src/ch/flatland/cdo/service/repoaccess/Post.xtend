@@ -14,6 +14,7 @@ import ch.flatland.cdo.util.EMF
 import ch.flatland.cdo.util.FlatlandException
 import ch.flatland.cdo.util.Request
 import ch.flatland.cdo.util.Response
+import ch.flatland.cdo.util.View
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 import org.slf4j.LoggerFactory
@@ -25,6 +26,7 @@ class Post {
 	val extension Request = new Request
 	val extension Response = new Response
 	val extension EMF = new EMF
+	val extension View = new View
 
 	def void run(HttpServletRequest req, HttpServletResponse resp) {
 
@@ -38,15 +40,11 @@ class Post {
 			logger.debug("Run for '{}' with body '{}'", req.userId, body)
 
 			val jsonObject = body.safeFromJson
-			val id = jsonObject.safeResolveId
+			val requestedObject = view.safeRequestResource(req)
 
-			logger.debug("Object '{}' requested", id)
+			logger.debug("Object '{}' loaded type of {}", requestedObject.cdoID, requestedObject.eClass.type)
 
-			val requestedObject = view.safeRequestObject(id.value.safeAsLong)
-
-			logger.debug("Object '{}' loaded type of {}", id, requestedObject.eClass.type)
-
-			requestedObject.safeCanWrite(id)
+			requestedObject.safeCanWrite
 
 			jsonObject.toEObject = requestedObject
 

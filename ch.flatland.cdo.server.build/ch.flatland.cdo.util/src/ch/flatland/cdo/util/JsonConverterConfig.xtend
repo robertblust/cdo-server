@@ -10,7 +10,6 @@
  */
 package ch.flatland.cdo.util
 
-import com.google.common.base.Splitter
 import javax.servlet.http.HttpServletRequest
 
 class JsonConverterConfig {
@@ -34,8 +33,6 @@ class JsonConverterConfig {
 	val public static HTTP_STATUS_DESCRIPTION = "httpDescription"
 	val public static DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
 
-	String servletUrl
-	String servletContext
 	var meta = false
 
 	new(HttpServletRequest req) {
@@ -46,22 +43,9 @@ class JsonConverterConfig {
 		if (req.getParameter(Json.PARAM_META) != null) {
 			meta = true
 		}
-		val segments = Splitter.on("/").split(req.requestURL)
-		servletContext = "/" + segments.get(3)
-		servletUrl = req.requestURL.substring(0, req.requestURL.indexOf(servletContext)) + servletContext
 	}
 
 	new() {
-		servletUrl = ""
-		servletContext = ""
-	}
-
-	def getServerUrl() {
-		servletUrl.replace(servletContext, "")
-	}
-
-	def getServletUrl() {
-		servletUrl
 	}
 
 	def isMeta() {

@@ -48,18 +48,6 @@ class Request {
 	}
 
 	// methods which could throw an Exception
-	def safeIdCheck(HttpServletRequest req) {
-		if (req.getParameter(Json.PARAM_ID) != null && req.getParameter(Json.PARAM_ID).length > 0) {
-			val param = req.getParameter(Json.PARAM_ID)
-			try {
-				return Long.parseLong(param)
-			} catch (Exception e) {
-				throw new FlatlandException('''Request parameter '«Json.PARAM_ID»=«param»' must be a long''',
-					HttpServletResponse.SC_BAD_REQUEST)
-			}
-		}
-		return null
-	}
 
 	def String safeReadBody(HttpServletRequest request) {
 		val buffer = new StringBuffer();

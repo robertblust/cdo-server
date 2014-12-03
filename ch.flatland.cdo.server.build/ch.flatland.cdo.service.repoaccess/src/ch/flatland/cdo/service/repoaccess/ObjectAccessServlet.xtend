@@ -14,9 +14,9 @@ import ch.flatland.cdo.util.AbstractServlet
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
-class RepoAccessServlet extends AbstractServlet {
-
-	val public static ALIAS = "/repo"
+class ObjectAccessServlet extends AbstractServlet {
+	
+	val public static ALIAS = "/obj"
 
 	override protected doGet(HttpServletRequest req, HttpServletResponse resp) {
 		logRequest(req)
