@@ -122,6 +122,11 @@ class JsonConverter {
 			val objectWithStatusOK = newObjectWithStatusOK
 			objectWithStatusOK.add(OBJECTS, jsonArray)
 			
+			// meta requested?
+			if (jsonConverterConfig.meta) {
+				objectWithStatusOK.addMeta(objects.get(0))
+			}
+			
 			objectWithStatusOK.toString
 		} catch (NoPermissionException npe) {
 			throw new FlatlandException(npe.message, HttpServletResponse.SC_FORBIDDEN)
