@@ -67,16 +67,7 @@ class View {
 			throw new FlatlandException('''«req.pathInfo» not found''', HttpServletResponse.SC_NOT_FOUND)
 		}
 	}
-	
-	def safeRequestObject(CDOView view, long id) {
-		try {
-			return view.getObject(CDOIDUtil.createLong(id))
-		} catch (Exception e) {
-			throw new FlatlandException('''No object found with '«ID»=«id»' ''',
-				HttpServletResponse.SC_BAD_REQUEST)
-		}
-	}
-	
+
 	def requestObjectList(CDOView view, String type) {
 		val result = newArrayList
 		val query = view.createQuery("ocl", type.safeEType + ".allInstances()")
@@ -90,7 +81,15 @@ class View {
 		iterator.close
 		return result
 	}
-	
+
+	def safeRequestObject(CDOView view, long id) {
+		try {
+			return view.getObject(CDOIDUtil.createLong(id))
+		} catch (Exception e) {
+			throw new FlatlandException('''No object found with '«ID»=«id»' ''', HttpServletResponse.SC_BAD_REQUEST)
+		}
+	}
+
 	def safeCanWrite(CDOObject object) {
 		if (object.cdoPermission != CDOPermission.WRITE) {
 			throw new FlatlandException("No permission to edit object '" + object.cdoID + "'",
