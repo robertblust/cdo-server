@@ -11,7 +11,7 @@
       </servlet>
       <servlet
             alias="/obj"
-            class="ch.flatland.cdo.service.repoaccess.ObjectAccessServlet"
+            class="ch.flatland.cdo.service.repoaccess.RepoAccessServlet"
             httpcontextId="ch.flatland.cdo.service.repoaccess.BasicAuthHttpContext"
             load-on-startup="true">
       </servlet>

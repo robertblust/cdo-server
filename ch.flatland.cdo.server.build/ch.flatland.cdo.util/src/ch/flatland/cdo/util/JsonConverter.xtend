@@ -20,10 +20,8 @@ import java.text.SimpleDateFormat
 import java.util.ArrayList
 import java.util.Date
 import java.util.List
-import java.util.Map
 import javax.servlet.http.HttpServletResponse
 import org.eclipse.emf.cdo.CDOObject
-import org.eclipse.emf.cdo.common.security.CDOPermission
 import org.eclipse.emf.cdo.common.security.NoPermissionException
 import org.eclipse.emf.cdo.eresource.CDOResourceNode
 import org.eclipse.emf.common.util.Enumerator
@@ -41,12 +39,14 @@ import org.eclipse.emf.edit.provider.ComposedAdapterFactory
 import org.eclipse.emf.internal.cdo.object.CDOLegacyAdapter
 import org.slf4j.LoggerFactory
 
+import static ch.flatland.cdo.util.Constants.*
+
 class JsonConverter {
 	val logger = LoggerFactory.getLogger(this.class)
 
 	val gson = new Gson
 	val parser = new JsonParser
-	val dateFormat = new SimpleDateFormat(JsonConverterConfig.DATE_FORMAT);
+	val dateFormat = new SimpleDateFormat(DATE_FORMAT);
 	val extension EMF = new EMF
 	val extension View = new View
 	val extension HttpStatus = new HttpStatus
@@ -80,14 +80,14 @@ class JsonConverter {
 	}
 
 	def toEObject(JsonObject jsonObject, EObject eObject) {
-		jsonObject.entrySet.filter[it.key != Json.PARAM_ID].forEach [
+		jsonObject.entrySet.filter[it.key != ID].forEach [
 			val jsonName = it.key
 			val jsonElement = it.value
 			logger.debug("Found json element with name '{}'", jsonName)
-			if (jsonName == JsonConverterConfig.ATTRIBUTES) {
+			if (jsonName == ATTRIBUTES) {
 				jsonElement.attributes = eObject
 			}
-			if (jsonName == JsonConverterConfig.REFERENCES) {
+			if (jsonName == REFERENCES) {
 				jsonElement.references = eObject
 			}
 		]
@@ -118,7 +118,7 @@ class JsonConverter {
 
 			// finally add ok status
 			val objectWithStatusOK = newObjectWithStatusOK
-			objectWithStatusOK.addProperty(JsonConverterConfig.STATUS, "OK")
+			objectWithStatusOK.addProperty(STATUS, "OK")
 			jsonBaseObject.entrySet.forEach [
 				objectWithStatusOK.add(it.key, it.value)
 			]
@@ -133,11 +133,11 @@ class JsonConverter {
 
 	def dispatch String safeToJson(FlatlandException object) {
 		val jsonBaseObject = new JsonObject
-		jsonBaseObject.addProperty(JsonConverterConfig.STATUS, FlatlandException.STATUS_NOK)
-		jsonBaseObject.addProperty(JsonConverterConfig.HTTP_STATUS, object.httpStatus)
-		jsonBaseObject.addProperty(JsonConverterConfig.HTTP_STATUS_DESCRIPTION, object.httpStatus.description)
-		jsonBaseObject.addProperty(JsonConverterConfig.TYPE, object.class.simpleName)
-		jsonBaseObject.addProperty(JsonConverterConfig.MESSAGE, object.message)
+		jsonBaseObject.addProperty(STATUS, FlatlandException.STATUS_NOK)
+		jsonBaseObject.addProperty(HTTP_STATUS, object.httpStatus)
+		jsonBaseObject.addProperty(HTTP_STATUS_DESCRIPTION, object.httpStatus.description)
+		jsonBaseObject.addProperty(TYPE, object.class.simpleName)
+		jsonBaseObject.addProperty(MESSAGE, object.message)
 		jsonBaseObject.toString
 	}
 
@@ -148,21 +148,21 @@ class JsonConverter {
 		// CDO Legacy Adapter implements EObject but is not an EObject
 		// ITEM_DELEGATOR does a cast to EObject
 		if (object instanceof CDOLegacyAdapter) {
-			jsonBaseObject.addProperty(JsonConverterConfig.LABEL, object.toString)
+			jsonBaseObject.addProperty(LABEL, object.toString)
 		} else {
-			jsonBaseObject.addProperty(JsonConverterConfig.LABEL, ITEM_DELEGATOR.getText(object))
+			jsonBaseObject.addProperty(LABEL, ITEM_DELEGATOR.getText(object))
 		}
-		jsonBaseObject.addProperty(Json.PARAM_ID, object.oid)
-		jsonBaseObject.addProperty(JsonConverterConfig.HREF, object.url)
+		jsonBaseObject.addProperty(ID, object.oid)
+		jsonBaseObject.addProperty(HREF, object.url)
 		if (object.eContainer != null) {
-			jsonBaseObject.addProperty(JsonConverterConfig.CONTAINER, object.eContainer.url)
+			jsonBaseObject.addProperty(CONTAINER, object.eContainer.url)
 		} else {
 
 			// it must be contained in a CDOResourceNode
-			jsonBaseObject.addProperty(JsonConverterConfig.CONTAINER, (object.eResource as CDOResourceNode).url)
+			jsonBaseObject.addProperty(CONTAINER, (object.eResource as CDOResourceNode).url)
 		}
 		if (object instanceof CDOObject) {
-			jsonBaseObject.addProperty(JsonConverterConfig.PERMISSION, object.cdoPermission.name)
+			jsonBaseObject.addProperty(PERMISSION, object.cdoPermission.name)
 		}
 		return jsonBaseObject
 	}
@@ -191,7 +191,7 @@ class JsonConverter {
 				}
 			}
 			if (jsonAttributes.entrySet.size > 0) {
-				jsonBaseObject.add(JsonConverterConfig.ATTRIBUTES, jsonAttributes)
+				jsonBaseObject.add(ATTRIBUTES, jsonAttributes)
 			}
 		}
 	}
@@ -226,7 +226,7 @@ class JsonConverter {
 				}
 			}
 			if (jsonReferences.entrySet.size > 0) {
-				jsonBaseObject.add(JsonConverterConfig.REFERENCES, jsonReferences)
+				jsonBaseObject.add(REFERENCES, jsonReferences)
 			}
 		}
 	}
@@ -239,47 +239,47 @@ class JsonConverter {
 
 		if (attributes.size > 0) {
 			val jsonAttributes = new JsonArray
-			jsonTypeMeta.add(JsonConverterConfig.ATTRIBUTES, jsonAttributes)
+			jsonTypeMeta.add(ATTRIBUTES, jsonAttributes)
 			for (attribute : attributes) {
 				val jsonAttribute = new JsonObject
-				jsonAttribute.addProperty(JsonConverterConfig.NAME, attribute.name)
+				jsonAttribute.addProperty(NAME, attribute.name)
 
 				if (attribute.EAttributeType instanceof EEnum) {
 					val enum = attribute.EAttributeType as EEnum
 					val jsonLiterals = new JsonArray
 					for (literal : enum.ELiterals) {
 						jsonLiterals.add(new JsonPrimitive(literal.name))
-						jsonAttribute.add(JsonConverterConfig.ENUM_LITERALS, jsonLiterals)
+						jsonAttribute.add(ENUM_LITERALS, jsonLiterals)
 					}
 				} else {
-					jsonAttribute.addProperty(JsonConverterConfig.TYPE, attribute.EAttributeType.name)
+					jsonAttribute.addProperty(TYPE, attribute.EAttributeType.name)
 				}
-				jsonAttribute.addProperty(JsonConverterConfig.LOWER_BOUND, attribute.lowerBound)
-				jsonAttribute.addProperty(JsonConverterConfig.UPPER_BOUND, attribute.upperBound)
-				jsonAttribute.addProperty(JsonConverterConfig.DERIVED, attribute.derived)
+				jsonAttribute.addProperty(LOWER_BOUND, attribute.lowerBound)
+				jsonAttribute.addProperty(UPPER_BOUND, attribute.upperBound)
+				jsonAttribute.addProperty(DERIVED, attribute.derived)
 				jsonAttributes.add(jsonAttribute)
 			}
 		}
 
 		if (references.size > 0) {
 			val jsonReferences = new JsonArray
-			jsonTypeMeta.add(JsonConverterConfig.REFERENCES, jsonReferences)
+			jsonTypeMeta.add(REFERENCES, jsonReferences)
 			for (reference : references) {
 				val jsonReference = new JsonObject
-				jsonReference.addProperty(JsonConverterConfig.NAME, reference.name)
+				jsonReference.addProperty(NAME, reference.name)
 				jsonReference.addType(reference.EReferenceType)
-				jsonReference.addProperty(JsonConverterConfig.LOWER_BOUND, reference.lowerBound)
-				jsonReference.addProperty(JsonConverterConfig.UPPER_BOUND, reference.upperBound)
-				jsonReference.addProperty(JsonConverterConfig.CONTAINMENT, reference.containment)
-				jsonReference.addProperty(JsonConverterConfig.DERIVED, reference.derived)
+				jsonReference.addProperty(LOWER_BOUND, reference.lowerBound)
+				jsonReference.addProperty(UPPER_BOUND, reference.upperBound)
+				jsonReference.addProperty(CONTAINMENT, reference.containment)
+				jsonReference.addProperty(DERIVED, reference.derived)
 				jsonReferences.add(jsonReference)
 			}
 		}
-		jsonBaseObject.add(Json.PARAM_META, jsonTypeMeta)
+		jsonBaseObject.add(PARAM_META, jsonTypeMeta)
 	}
 
 	def private addType(JsonObject jsonBaseObject, EClassifier classifier) {
-		jsonBaseObject.addProperty(JsonConverterConfig.TYPE, classifier.type)
+		jsonBaseObject.addProperty(TYPE, classifier.type)
 	}
 
 	def private dispatch toJsonObject(Object object) {
@@ -497,33 +497,33 @@ class JsonConverter {
 
 	def newObjectWithStatusOK() {
 		val objectWithStatusOK = new JsonObject
-		objectWithStatusOK.addProperty(JsonConverterConfig.STATUS, "OK")
+		objectWithStatusOK.addProperty(STATUS, "OK")
 		return objectWithStatusOK
 	}
 
 	// methods which could throw an Exception
 	def safeResolveId(JsonObject jsonObject) {
-		val id = jsonObject.entrySet.filter[it.key == Json.PARAM_ID].head
+		val id = jsonObject.entrySet.filter[it.key == ID].head
 		if (id == null || id.value.isJsonNull) {
-			throw new FlatlandException('''Attribute '«Json.PARAM_ID» + "' missing or null''',
+			throw new FlatlandException('''Attribute '«ID» + "' missing or null''',
 				HttpServletResponse.SC_BAD_REQUEST)
 		}
 		return id
 	}
 
 	def safeResolvePut(JsonObject jsonObject) {
-		val put = jsonObject.entrySet.filter[it.key == JsonConverterConfig.PUT].head
+		val put = jsonObject.entrySet.filter[it.key == PUT].head
 		if (put == null || put.value.isJsonNull) {
-			throw new FlatlandException('''Attribute '«JsonConverterConfig.PUT» + "' missing or null''',
+			throw new FlatlandException('''Attribute '«PUT» + "' missing or null''',
 				HttpServletResponse.SC_BAD_REQUEST)
 		}
 		return put
 	}
 
 	def safeResolveType(JsonObject jsonObject) {
-		val type = jsonObject.entrySet.filter[it.key == JsonConverterConfig.TYPE].head
+		val type = jsonObject.entrySet.filter[it.key == TYPE].head
 		if (type == null || type.value.isJsonNull) {
-			throw new FlatlandException('''Attribute '«JsonConverterConfig.TYPE» + "' missing or null''',
+			throw new FlatlandException('''Attribute '«TYPE» + "' missing or null''',
 				HttpServletResponse.SC_BAD_REQUEST)
 		}
 		return type
@@ -533,7 +533,7 @@ class JsonConverter {
 		try {
 			return element.asLong
 		} catch (Exception e) {
-			throw new FlatlandException('''Attribute '«Json.PARAM_ID»=«element.asString»' must be a long''',
+			throw new FlatlandException('''Attribute '«ID»=«element.asString»' must be a long''',
 				HttpServletResponse.SC_BAD_REQUEST)
 		}
 
