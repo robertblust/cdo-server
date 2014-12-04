@@ -58,6 +58,8 @@ class Delete {
 							HttpServletResponse.SC_CONFLICT)
 					}
 				}
+				
+				view.xRrefs(requestedObject)
 
 				// TODO this checks the whole resource set for xrefs
 				// which is ok. But using EcoreUtil does it on the client side.
@@ -66,9 +68,8 @@ class Delete {
 			} catch (NoPermissionException npe) {
 				throw new FlatlandException(npe.message, HttpServletResponse.SC_FORBIDDEN)
 			}
-
+				
 			view.commit
-			view.xRrefs(requestedObject)
 
 			// now transform manipulated object to json for the reponse			
 			jsonString = JsonConverter.okToJson
