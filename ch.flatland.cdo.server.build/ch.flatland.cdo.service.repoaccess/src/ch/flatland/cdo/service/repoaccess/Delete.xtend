@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 import org.eclipse.emf.cdo.CDOObject
 import org.eclipse.emf.cdo.common.security.NoPermissionException
-import org.eclipse.emf.cdo.eresource.CDOResource
+import org.eclipse.emf.cdo.eresource.CDOResourceNode
 import org.eclipse.emf.cdo.view.CDOView
 import org.slf4j.LoggerFactory
 
@@ -50,7 +50,7 @@ class Delete {
 			requestedObject.safeCanWrite
 
 			try {
-				if (requestedObject instanceof CDOResource) {
+				if (requestedObject instanceof CDOResourceNode) {
 					val resource = requestedObject
 					if (resource.eContents.size > 0) {
 						throw new FlatlandException(
