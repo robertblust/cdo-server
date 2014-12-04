@@ -59,7 +59,7 @@ class Delete {
 					}
 				}
 
-				view.xRrefsDelete(requestedObject)
+				view.xRefsDelete(requestedObject)
 
 			} catch (NoPermissionException npe) {
 				throw new FlatlandException(npe.message, HttpServletResponse.SC_FORBIDDEN)
@@ -82,7 +82,7 @@ class Delete {
 		resp.writeResponse(req, jsonString)
 	}
 
-	def private xRrefsDelete(CDOView view, CDOObject cdoObject) {
+	def private xRefsDelete(CDOView view, CDOObject cdoObject) {
 		val suspects = newArrayList
 		suspects.add(cdoObject)
 		suspects.addAll(cdoObject.eAllContents.toList)
