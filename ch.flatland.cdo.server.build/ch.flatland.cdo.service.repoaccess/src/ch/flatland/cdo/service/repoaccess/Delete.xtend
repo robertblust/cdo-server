@@ -15,13 +15,13 @@ import ch.flatland.cdo.util.FlatlandException
 import ch.flatland.cdo.util.Request
 import ch.flatland.cdo.util.Response
 import ch.flatland.cdo.util.View
+import java.util.List
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 import org.eclipse.emf.cdo.CDOObject
 import org.eclipse.emf.cdo.common.security.NoPermissionException
 import org.eclipse.emf.cdo.eresource.CDOResource
 import org.eclipse.emf.cdo.view.CDOView
-import org.eclipse.emf.ecore.util.EcoreUtil
 import org.slf4j.LoggerFactory
 
 class Delete {
@@ -58,17 +58,13 @@ class Delete {
 							HttpServletResponse.SC_CONFLICT)
 					}
 				}
-				
-				view.xRrefs(requestedObject)
 
-				// TODO this checks the whole resource set for xrefs
-				// which is ok. But using EcoreUtil does it on the client side.
-				// Should be replaced by repo side calculation!
-				EcoreUtil.delete(requestedObject, true)
+				view.xRrefsDelete(requestedObject)
+
 			} catch (NoPermissionException npe) {
 				throw new FlatlandException(npe.message, HttpServletResponse.SC_FORBIDDEN)
 			}
-				
+
 			view.commit
 
 			// now transform manipulated object to json for the reponse			
@@ -86,7 +82,7 @@ class Delete {
 		resp.writeResponse(req, jsonString)
 	}
 
-	def private xRrefs(CDOView view, CDOObject cdoObject) {
+	def private xRrefsDelete(CDOView view, CDOObject cdoObject) {
 		val suspects = newArrayList
 		suspects.add(cdoObject)
 		suspects.addAll(cdoObject.eAllContents.toList)
@@ -96,8 +92,26 @@ class Delete {
 				val source = it.sourceObject
 				val sourceFeature = it.sourceFeature
 				val sourceIndex = it.sourceIndex
-				println(sourceFeature + " " + source + " " + sourceIndex)
+				logger.debug("Found xref feature '{}', source '{}', index '{}'", sourceFeature.name, source, sourceIndex)
+				if (sourceFeature.isMany) {
+					(source.eGet(sourceFeature) as List<Object>).remove(sourceIndex)
+				} else {
+					source.eUnset(sourceFeature)
+				}
 			]
 		]
+		val container = cdoObject.eContainer
+		if (container == null) {
+			// must be a CDOResource Node
+			val resource = cdoObject.cdoResource
+			resource.contents.remove(cdoObject)
+		} else {
+			val containingFeature = cdoObject.eContainingFeature
+			if (containingFeature.isMany) {
+				(container.eGet(containingFeature) as List<Object>).remove(cdoObject)
+			} else {
+				container.eUnset(containingFeature)
+			}
+		}
 	}
 }
