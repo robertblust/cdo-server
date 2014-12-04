@@ -29,8 +29,6 @@ class View {
 	def safeRequestResource(CDOView view, HttpServletRequest req) {
 		val alias = "/" + Splitter.on("/").split(req.requestURL).get(3)
 
-		val pathSegments = Splitter.on("/").split(req.pathInfo)
-
 		try {
 			switch (alias) {
 				case ALIAS_REPO: {
@@ -41,6 +39,7 @@ class View {
 					}
 				}
 				case ALIAS_OBJECT: {
+					val pathSegments = Splitter.on("/").split(req.pathInfo)
 					switch (pathSegments.size) {
 						case 1: {
 						}
@@ -70,7 +69,8 @@ class View {
 
 	def requestObjectList(CDOView view, String type) {
 		val result = newArrayList
-		val query = view.createQuery("ocl", type.safeEType + ".allInstances()")
+		//val query = view.createQuery("ocl", type.safeEType + ".allInstances()")
+		val query = view.createQuery("sql", "SELECT cdo_id FROM " + type.replace(".", "_") + " WHERE cdo_revised = 0 and cdo_version > 0")
 		logger.debug("Execute '{}' query '{}'", query.queryLanguage, query.queryString)
 		val iterator = query.getResultAsync(typeof(CDOObject))
 		while (iterator.hasNext) {

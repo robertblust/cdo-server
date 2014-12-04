@@ -31,6 +31,8 @@ class StoreFactory {
 		// db datasource
 		val dataSource = new JdbcDataSource()
 		dataSource.setURL("jdbc:h2:database/" + ServerUtil.REPOSITORY_NAME)
+		dataSource.user = "cdo"
+		dataSource.password = "cdo"
 
 		// dbAdapter
 		val dbAdapter = DBUtil.getDBAdapter("h2")
