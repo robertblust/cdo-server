@@ -25,6 +25,7 @@ class View {
 	val logger = LoggerFactory.getLogger(this.class)
 	val extension EMF = new EMF
 	val extension Request = new Request
+	val extension DataStore = new DataStore
 
 	def safeRequestResource(CDOView view, HttpServletRequest req) {
 		val alias = "/" + Splitter.on("/").split(req.requestURL).get(3)
@@ -44,7 +45,7 @@ class View {
 						case 1: {
 						}
 						case 2: {
-							return view.requestObjectList(pathSegments.get(1))
+							return view.findByType(pathSegments.get(1))
 						}
 						case 3: {
 							val ePackage = view.ePackage(pathSegments.get(1).safePackagePrefix)
@@ -65,21 +66,6 @@ class View {
 			logger.debug("Exception '{}'", e.message)
 			throw new FlatlandException('''«req.pathInfo» not found''', HttpServletResponse.SC_NOT_FOUND)
 		}
-	}
-
-	def requestObjectList(CDOView view, String type) {
-		val result = newArrayList
-		//val query = view.createQuery("ocl", type.safeEType + ".allInstances()")
-		val query = view.createQuery("sql", "SELECT cdo_id FROM " + type.replace(".", "_") + " WHERE cdo_revised = 0 and cdo_version > 0")
-		logger.debug("Execute '{}' query '{}'", query.queryLanguage, query.queryString)
-		val iterator = query.getResultAsync(typeof(CDOObject))
-		while (iterator.hasNext) {
-			val obj = iterator.next
-			logger.debug("Found '{}'", obj)
-			result.add(obj)
-		}
-		iterator.close
-		return result
 	}
 
 	def safeRequestObject(CDOView view, long id) {
