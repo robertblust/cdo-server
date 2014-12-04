@@ -18,6 +18,7 @@ import ch.flatland.cdo.util.View
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 import org.slf4j.LoggerFactory
+import org.eclipse.emf.cdo.CDOObject
 
 class Post {
 
@@ -40,7 +41,8 @@ class Post {
 			logger.debug("Run for '{}' with body '{}'", req.userId, body)
 
 			val jsonObject = body.safeFromJson
-			val requestedObject = view.safeRequestResource(req)
+			
+			val requestedObject = view.safeRequestResource(req) as CDOObject
 
 			logger.debug("Object '{}' loaded type of {}", requestedObject.cdoID, requestedObject.eClass.type)
 

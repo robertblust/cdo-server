@@ -19,6 +19,7 @@ import java.util.List
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 import org.slf4j.LoggerFactory
+import org.eclipse.emf.cdo.CDOObject
 
 class Put {
 
@@ -55,7 +56,7 @@ class Put {
 			val put = jsonObject.safeResolvePut
 			val type = jsonObject.safeResolveType
 
-			val requestedObject = view.safeRequestResource(req)
+			val requestedObject = view.safeRequestResource(req) as CDOObject
 
 			logger.debug("Object '{}' loaded type of {}", requestedObject.cdoID, requestedObject.eClass.type)
 

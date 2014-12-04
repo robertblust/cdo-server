@@ -21,6 +21,7 @@ import org.eclipse.emf.cdo.common.security.NoPermissionException
 import org.eclipse.emf.cdo.eresource.CDOResource
 import org.eclipse.emf.ecore.util.EcoreUtil
 import org.slf4j.LoggerFactory
+import org.eclipse.emf.cdo.CDOObject
 
 class Delete {
 
@@ -41,7 +42,7 @@ class Delete {
 		try {
 			logger.debug("Run for '{}'", req.userId)
 
-			val requestedObject = view.safeRequestResource(req)
+			val requestedObject = view.safeRequestResource(req) as CDOObject
 
 			logger.debug("Object '{}' loaded type of {}", requestedObject.cdoID, requestedObject.eClass.type)
 

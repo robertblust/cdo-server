@@ -17,11 +17,12 @@ import org.eclipse.emf.cdo.CDOObject
 import org.eclipse.emf.cdo.common.id.CDOIDUtil
 import org.eclipse.emf.cdo.common.security.CDOPermission
 import org.eclipse.emf.cdo.view.CDOView
+import org.slf4j.LoggerFactory
 
 import static ch.flatland.cdo.util.Constants.*
 
 class View {
-
+	val logger = LoggerFactory.getLogger(this.class)
 	val extension EMF = new EMF
 	val extension Request = new Request
 
@@ -44,7 +45,7 @@ class View {
 						case 1: {
 						}
 						case 2: {
-							throw new Exception
+							return view.requestObjectList(pathSegments.get(1))
 						}
 						case 3: {
 							val ePackage = view.ePackage(pathSegments.get(1).safePackagePrefix)
@@ -62,6 +63,7 @@ class View {
 					throw new Exception
 			}
 		} catch (Exception e) {
+			logger.debug("Exception '{}'", e.message)
 			throw new FlatlandException('''«req.pathInfo» not found''', HttpServletResponse.SC_NOT_FOUND)
 		}
 	}
@@ -73,6 +75,20 @@ class View {
 			throw new FlatlandException('''No object found with '«ID»=«id»' ''',
 				HttpServletResponse.SC_BAD_REQUEST)
 		}
+	}
+	
+	def requestObjectList(CDOView view, String type) {
+		val result = newArrayList
+		val query = view.createQuery("ocl", type.safeEType + ".allInstances()")
+		logger.debug("Execute '{}' query '{}'", query.queryLanguage, query.queryString)
+		val iterator = query.getResultAsync(typeof(CDOObject))
+		while (iterator.hasNext) {
+			val obj = iterator.next
+			logger.debug("Found '{}'", obj)
+			result.add(obj)
+		}
+		iterator.close
+		return result
 	}
 	
 	def safeCanWrite(CDOObject object) {

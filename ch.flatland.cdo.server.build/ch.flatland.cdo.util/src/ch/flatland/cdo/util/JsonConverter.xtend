@@ -106,6 +106,30 @@ class JsonConverter {
 		}
 	}
 
+	def dispatch String safeToJson(List<EObject> objects) {
+		try {
+			val jsonArray = new JsonArray
+			
+			for (object : objects) {
+				val jsonBaseObject = object.toJsonBase
+
+				jsonBaseObject.addAttributes(object)
+				jsonBaseObject.addReferences(object)
+				
+				jsonArray.add(jsonBaseObject)
+			}
+			// finally add ok status
+			val objectWithStatusOK = newObjectWithStatusOK
+			objectWithStatusOK.add(OBJECTS, jsonArray)
+			
+			objectWithStatusOK.toString
+		} catch (NoPermissionException npe) {
+			throw new FlatlandException(npe.message, HttpServletResponse.SC_FORBIDDEN)
+		} catch (Exception e) {
+			throw new FlatlandException(e.message, HttpServletResponse.SC_BAD_REQUEST)
+		}
+	}
+
 	def dispatch String safeToJson(EObject object) {
 		try {
 			val jsonBaseObject = object.toJsonBase
@@ -116,12 +140,12 @@ class JsonConverter {
 			// finally add ok status
 			val objectWithStatusOK = newObjectWithStatusOK
 			objectWithStatusOK.add(OBJECT, jsonBaseObject)
-			
+
 			// meta requested?
 			if (jsonConverterConfig.meta) {
 				objectWithStatusOK.addMeta(object)
 			}
-			
+
 			objectWithStatusOK.toString
 		} catch (NoPermissionException npe) {
 			throw new FlatlandException(npe.message, HttpServletResponse.SC_FORBIDDEN)
