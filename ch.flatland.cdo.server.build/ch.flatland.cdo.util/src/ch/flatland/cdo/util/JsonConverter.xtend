@@ -112,17 +112,16 @@ class JsonConverter {
 
 			jsonBaseObject.addAttributes(object)
 			jsonBaseObject.addReferences(object)
-			if (jsonConverterConfig.meta) {
-				jsonBaseObject.addMeta(object)
-			}
 
 			// finally add ok status
 			val objectWithStatusOK = newObjectWithStatusOK
-			objectWithStatusOK.addProperty(STATUS, "OK")
-			jsonBaseObject.entrySet.forEach [
-				objectWithStatusOK.add(it.key, it.value)
-			]
-
+			objectWithStatusOK.add(OBJECT, jsonBaseObject)
+			
+			// meta requested?
+			if (jsonConverterConfig.meta) {
+				objectWithStatusOK.addMeta(object)
+			}
+			
 			objectWithStatusOK.toString
 		} catch (NoPermissionException npe) {
 			throw new FlatlandException(npe.message, HttpServletResponse.SC_FORBIDDEN)
