@@ -17,11 +17,12 @@ import ch.flatland.cdo.util.Response
 import ch.flatland.cdo.util.View
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
+import org.eclipse.emf.cdo.CDOObject
 import org.eclipse.emf.cdo.common.security.NoPermissionException
 import org.eclipse.emf.cdo.eresource.CDOResource
+import org.eclipse.emf.cdo.view.CDOView
 import org.eclipse.emf.ecore.util.EcoreUtil
 import org.slf4j.LoggerFactory
-import org.eclipse.emf.cdo.CDOObject
 
 class Delete {
 
@@ -52,7 +53,8 @@ class Delete {
 				if (requestedObject instanceof CDOResource) {
 					val resource = requestedObject
 					if (resource.eContents.size > 0) {
-						throw new FlatlandException('''Resource '«requestedObject.cdoID»' cannot be deleted cause not empty''',
+						throw new FlatlandException(
+							'''Resource '«requestedObject.cdoID»' cannot be deleted cause not empty''',
 							HttpServletResponse.SC_CONFLICT)
 					}
 				}
@@ -64,7 +66,9 @@ class Delete {
 			} catch (NoPermissionException npe) {
 				throw new FlatlandException(npe.message, HttpServletResponse.SC_FORBIDDEN)
 			}
+
 			view.commit
+			view.xRrefs(requestedObject)
 
 			// now transform manipulated object to json for the reponse			
 			jsonString = JsonConverter.okToJson
@@ -79,5 +83,20 @@ class Delete {
 			}
 		}
 		resp.writeResponse(req, jsonString)
+	}
+
+	def private xRrefs(CDOView view, CDOObject cdoObject) {
+		val suspects = newArrayList
+		suspects.add(cdoObject)
+		suspects.addAll(cdoObject.eAllContents.toList)
+
+		suspects.forEach [
+			view.queryXRefs(it as CDOObject, emptyList).forEach [
+				val source = it.sourceObject
+				val sourceFeature = it.sourceFeature
+				val sourceIndex = it.sourceIndex
+				println(sourceFeature + " " + source + " " + sourceIndex)
+			]
+		]
 	}
 }
