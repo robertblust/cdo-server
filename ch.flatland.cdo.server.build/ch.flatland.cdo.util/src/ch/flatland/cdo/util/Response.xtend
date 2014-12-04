@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 import org.slf4j.LoggerFactory
 
+import static ch.flatland.cdo.util.Constants.*
+
 class Response {
 	val logger = LoggerFactory.getLogger(this.class)
 	
@@ -21,11 +23,11 @@ class Response {
 		logger.debug("Json '{}'", jsonString)
 
 		// write response
-		if (req.getParameter(Json.PARAM_JSONP_CALLBACK) != null && req.getParameter(Json.PARAM_JSONP_CALLBACK).length > 0) {
-			resp.contentType = Json.JSONP_CONTENTTYPE_UTF8
-			resp.writer.append('''«req.getParameter(Json.PARAM_JSONP_CALLBACK)»(«jsonString»)''')
+		if (req.getParameter(PARAM_JSONP_CALLBACK) != null && req.getParameter(PARAM_JSONP_CALLBACK).length > 0) {
+			resp.contentType = JSONP_CONTENTTYPE_UTF8
+			resp.writer.append('''«req.getParameter(PARAM_JSONP_CALLBACK)»(«jsonString»)''')
 		} else {
-			resp.contentType = Json.JSON_CONTENTTYPE_UTF8
+			resp.contentType = JSON_CONTENTTYPE_UTF8
 			resp.writer.append(jsonString)
 		}
 	}

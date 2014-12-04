@@ -18,6 +18,8 @@ import org.eclipse.emf.cdo.common.id.CDOIDUtil
 import org.eclipse.emf.cdo.common.security.CDOPermission
 import org.eclipse.emf.cdo.view.CDOView
 
+import static ch.flatland.cdo.util.Constants.*
+
 class View {
 
 	val extension EMF = new EMF
@@ -30,14 +32,14 @@ class View {
 
 		try {
 			switch (alias) {
-				case "/repo": {
+				case ALIAS_REPO: {
 					if (req.pathInfo != null) {
 						return view.getResourceNode(req.pathInfo)
 					} else {
 						return view.getResourceNode("/home/" + req.userId)
 					}
 				}
-				case "/obj": {
+				case ALIAS_OBJECT: {
 					switch (pathSegments.size) {
 						case 1: {
 						}
@@ -68,7 +70,7 @@ class View {
 		try {
 			return view.getObject(CDOIDUtil.createLong(id))
 		} catch (Exception e) {
-			throw new FlatlandException('''No object found with '«Json.PARAM_ID»=«id»' ''',
+			throw new FlatlandException('''No object found with '«ID»=«id»' ''',
 				HttpServletResponse.SC_BAD_REQUEST)
 		}
 	}

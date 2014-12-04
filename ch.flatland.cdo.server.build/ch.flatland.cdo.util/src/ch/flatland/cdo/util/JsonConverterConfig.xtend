@@ -12,26 +12,9 @@ package ch.flatland.cdo.util
 
 import javax.servlet.http.HttpServletRequest
 
+import static ch.flatland.cdo.util.Constants.*
+
 class JsonConverterConfig {
-	val public static TYPE = "type"
-	val public static ENUM_LITERALS = "literals"
-	val public static LABEL = "label"
-	val public static LOWER_BOUND = "lowerBound"
-	val public static UPPER_BOUND = "upperBound"
-	val public static HREF = "href"
-	val public static NAME = "name"
-	val public static CONTAINER = "hrefContainer"
-	val public static PUT = "put"
-	val public static ATTRIBUTES = "attributes"
-	val public static REFERENCES = "references"
-	val public static CONTAINMENT = "containment"
-	val public static DERIVED = "derived"
-	val public static PERMISSION = "permission"
-	val public static MESSAGE = "message"
-	val public static STATUS = "status"
-	val public static HTTP_STATUS = "httpStatus"
-	val public static HTTP_STATUS_DESCRIPTION = "httpDescription"
-	val public static DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
 
 	var meta = false
 
@@ -40,7 +23,7 @@ class JsonConverterConfig {
 	}
 
 	def private init(HttpServletRequest req) {
-		if (req.getParameter(Json.PARAM_META) != null) {
+		if (req.getParameter(PARAM_META) != null) {
 			meta = true
 		}
 	}
