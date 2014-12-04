@@ -49,6 +49,15 @@ public interface TestFactory extends EFactory {
 	TestObject createTestObject();
 
 	/**
+	 * Returns a new object of class '<em>Blob</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Blob</em>'.
+	 * @generated
+	 */
+	TestBlob createTestBlob();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

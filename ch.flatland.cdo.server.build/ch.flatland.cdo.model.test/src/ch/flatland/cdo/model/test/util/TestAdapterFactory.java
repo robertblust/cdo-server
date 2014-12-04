@@ -80,6 +80,10 @@ public class TestAdapterFactory extends AdapterFactoryImpl {
 				return createTestObjectAdapter();
 			}
 			@Override
+			public Adapter caseTestBlob(TestBlob object) {
+				return createTestBlobAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -138,6 +142,20 @@ public class TestAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createTestObjectAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ch.flatland.cdo.model.test.TestBlob <em>Blob</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ch.flatland.cdo.model.test.TestBlob
+	 * @generated
+	 */
+	public Adapter createTestBlobAdapter() {
 		return null;
 	}
 

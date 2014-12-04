@@ -8,6 +8,8 @@
 	creationIcons="false")
 package ch.flatland.cdo.model.test
 
+import org.eclipse.emf.ecore.xml.^type.Base64Binary
+
 class SimpleDataTypes {
 	String testString
 	boolean testBoolean
@@ -47,6 +49,10 @@ class TestObject {
 	refers TestObject[0..2] fixUpperBoundReferences
 	refers TestObject[2..2] fixBoundReferences
 	refers TestObject[1..2] fixlowerBoundReferences
+}
+
+class TestBlob {
+	Base64Binary blob
 }
 
 enum TestEnum {

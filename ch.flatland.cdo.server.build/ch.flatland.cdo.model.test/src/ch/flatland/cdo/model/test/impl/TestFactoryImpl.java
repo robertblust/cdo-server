@@ -60,6 +60,7 @@ public class TestFactoryImpl extends EFactoryImpl implements TestFactory {
 			case TestPackage.SIMPLE_DATA_TYPES: return (EObject)createSimpleDataTypes();
 			case TestPackage.SIMPLE_DATA_TYPES_AS_ARRAY: return (EObject)createSimpleDataTypesAsArray();
 			case TestPackage.TEST_OBJECT: return (EObject)createTestObject();
+			case TestPackage.TEST_BLOB: return (EObject)createTestBlob();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -123,6 +124,16 @@ public class TestFactoryImpl extends EFactoryImpl implements TestFactory {
 	public TestObject createTestObject() {
 		TestObjectImpl testObject = new TestObjectImpl();
 		return testObject;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TestBlob createTestBlob() {
+		TestBlobImpl testBlob = new TestBlobImpl();
+		return testBlob;
 	}
 
 	/**

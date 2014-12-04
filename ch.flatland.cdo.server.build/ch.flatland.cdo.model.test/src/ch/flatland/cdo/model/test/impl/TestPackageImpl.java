@@ -4,6 +4,7 @@ package ch.flatland.cdo.model.test.impl;
 
 import ch.flatland.cdo.model.test.SimpleDataTypes;
 import ch.flatland.cdo.model.test.SimpleDataTypesAsArray;
+import ch.flatland.cdo.model.test.TestBlob;
 import ch.flatland.cdo.model.test.TestEnum;
 import ch.flatland.cdo.model.test.TestFactory;
 import ch.flatland.cdo.model.test.TestObject;
@@ -17,6 +18,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -45,6 +47,13 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * @generated
 	 */
 	private EClass testObjectEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass testBlobEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -101,6 +110,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 
 		// Initialize simple dependencies
 		EcorePackage.eINSTANCE.eClass();
+		XMLTypePackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theTestPackage.createPackageContents();
@@ -437,6 +447,24 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getTestBlob() {
+		return testBlobEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getTestBlob_Blob() {
+		return (EAttribute)testBlobEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getTestEnum() {
 		return testEnumEEnum;
 	}
@@ -507,6 +535,9 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 		createEReference(testObjectEClass, TEST_OBJECT__FIX_BOUND_REFERENCES);
 		createEReference(testObjectEClass, TEST_OBJECT__FIXLOWER_BOUND_REFERENCES);
 
+		testBlobEClass = createEClass(TEST_BLOB);
+		createEAttribute(testBlobEClass, TEST_BLOB__BLOB);
+
 		// Create enums
 		testEnumEEnum = createEEnum(TEST_ENUM);
 	}
@@ -536,6 +567,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 
 		// Obtain other dependent packages
 		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
+		XMLTypePackage theXMLTypePackage = (XMLTypePackage)EPackage.Registry.INSTANCE.getEPackage(XMLTypePackage.eNS_URI);
 
 		// Create type parameters
 
@@ -581,6 +613,9 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 		initEReference(getTestObject_FixUpperBoundReferences(), this.getTestObject(), null, "fixUpperBoundReferences", null, 0, 2, TestObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTestObject_FixBoundReferences(), this.getTestObject(), null, "fixBoundReferences", null, 2, 2, TestObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTestObject_FixlowerBoundReferences(), this.getTestObject(), null, "fixlowerBoundReferences", null, 1, 2, TestObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(testBlobEClass, TestBlob.class, "TestBlob", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getTestBlob_Blob(), theXMLTypePackage.getBase64Binary(), "blob", null, 0, 1, TestBlob.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(testEnumEEnum, TestEnum.class, "TestEnum");

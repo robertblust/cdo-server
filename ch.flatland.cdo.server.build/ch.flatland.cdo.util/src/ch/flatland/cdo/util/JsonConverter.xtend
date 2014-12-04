@@ -38,6 +38,7 @@ import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory
 import org.eclipse.emf.internal.cdo.object.CDOLegacyAdapter
 import org.slf4j.LoggerFactory
+import org.apache.commons.codec.binary.Base64
 
 import static ch.flatland.cdo.util.Constants.*
 
@@ -109,24 +110,25 @@ class JsonConverter {
 	def dispatch String safeToJson(List<EObject> objects) {
 		try {
 			val jsonArray = new JsonArray
-			
+
 			for (object : objects) {
 				val jsonBaseObject = object.toJsonBase
 
 				jsonBaseObject.addAttributes(object)
 				jsonBaseObject.addReferences(object)
-				
+
 				jsonArray.add(jsonBaseObject)
 			}
+
 			// finally add ok status
 			val objectWithStatusOK = newObjectWithStatusOK
 			objectWithStatusOK.add(OBJECTS, jsonArray)
-			
+
 			// meta requested?
 			if (jsonConverterConfig.meta) {
 				objectWithStatusOK.addMeta(objects.get(0))
 			}
-			
+
 			objectWithStatusOK.toString
 		} catch (NoPermissionException npe) {
 			throw new FlatlandException(npe.message, HttpServletResponse.SC_FORBIDDEN)
@@ -475,6 +477,11 @@ class JsonConverter {
 				}
 				return null
 			}
+			if (eAttribute.EAttributeType.name == "Base64Binary" &&
+				eAttribute.EAttributeType.instanceTypeName == "byte[]") {
+				logger.debug("'{}' is an Base64Binary", eAttribute.name)
+				return Base64.decodeBase64(jsonPrimitive.asString)
+			}
 		} catch (Exception e) {
 			throw new FlatlandException(
 				'''Json primitive  '«jsonPrimitive.asString»' could not be converted to '«eAttribute.EAttributeType.name»' for attribute '«eAttribute.
@@ -489,6 +496,10 @@ class JsonConverter {
 	def private dispatch toJsonPrimitive(Object object) {
 		logger.error("NO DISPATCH MEHTOD for getJsonPrimitive({}) ", object.class.name)
 		new JsonPrimitive(object.toString)
+	}
+
+	def private dispatch toJsonPrimitive(byte[] bytes) {
+		new JsonPrimitive(Base64.encodeBase64String(bytes))
 	}
 
 	def private dispatch toJsonPrimitive(Number object) {
