@@ -14,10 +14,13 @@ class Constants {
 	// http
 	val public static PARAM_META = "meta"
 	val public static PARAM_JSONP_CALLBACK = "callback"
+	val public static ACCEPT_ALL_CONTENTTYPE = "*/*"
 	val public static JSON_CONTENTTYPE = "application/json"
 	val public static JSON_CONTENTTYPE_UTF8 = "application/json; charset=utf-8"
 	val public static JSONP_CONTENTTYPE = "application/javascript"
 	val public static JSONP_CONTENTTYPE_UTF8 = "application/javascript; charset=utf-8"
+	
+	val public static ACCEPTED_CONTENTTYPES = newArrayList(ACCEPT_ALL_CONTENTTYPE, JSON_CONTENTTYPE, JSON_CONTENTTYPE_UTF8)
 	
 	// json
 	val public static ID = "id"

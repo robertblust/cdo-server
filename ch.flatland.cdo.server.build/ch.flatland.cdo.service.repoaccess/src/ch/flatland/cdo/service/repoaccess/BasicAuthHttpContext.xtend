@@ -30,14 +30,21 @@ class BasicAuthHttpContext implements HttpContext {
 		// only allow https
 		if (!req.secure) {
 			logger.debug("Forbidden")
-			resp.authExeption(req, resp.statusForbidden)
+			resp.sendError(req, resp.statusForbidden)
+			return false
+		}
+		
+		// check accepted contentypes
+		if (!req.acceptable) {
+			logger.debug("Forbidden")
+			resp.sendError(req, resp.statusNotAcceptable)
 			return false
 		}
 
 		// check if authorization header is available
 		if (!req.basicAuth) {
 			logger.debug("No basic auth in request")
-			resp.authExeption(req, resp.statusUnauthorized)
+			resp.sendError(req, resp.statusUnauthorized)
 			return false
 		}
 
@@ -47,7 +54,7 @@ class BasicAuthHttpContext implements HttpContext {
 			SessionFactory.getOrCreateCDOSession(req)
 		} catch (Exception e) {
 			logger.debug("Authentication failed - '{}' > stacktrace '{}'", req.userId, e)
-			resp.authExeption(req, resp.statusUnauthorized)
+			resp.sendError(req, resp.statusUnauthorized)
 			return false
 		}
 		logger.debug("Authentication OK for '{}'", req.userId)
@@ -63,7 +70,7 @@ class BasicAuthHttpContext implements HttpContext {
 		return null
 	}
 
-	def private authExeption(HttpServletResponse resp, HttpServletRequest req, Exception exception) {
+	def private sendError(HttpServletResponse resp, HttpServletRequest req, Exception exception) {
 		val extension Response = new Response
 		val extension JsonConverter = new JsonConverter
 		resp.writeResponse(req, exception.safeToJson)

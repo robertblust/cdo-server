@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 import org.apache.commons.codec.binary.Base64
 
+import static ch.flatland.cdo.util.Constants.*
+
 class Request {
 
 	val public static AUTH_HEADER = "Authorization"
@@ -41,6 +43,11 @@ class Request {
 
 	def isBasicAuth(HttpServletRequest request) {
 		return request.getHeader(AUTH_HEADER) != null
+	}
+	
+	def isAcceptable(HttpServletRequest request) {
+		val acceptHeader = request.getHeader(ACCEPT_HEADER)
+		return ACCEPTED_CONTENTTYPES.contains(acceptHeader)
 	}
 
 	def createJsonConverter(HttpServletRequest req) {

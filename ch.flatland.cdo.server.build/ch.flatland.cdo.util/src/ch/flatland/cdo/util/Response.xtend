@@ -46,4 +46,9 @@ class Response {
 		resp.status = HttpServletResponse.SC_METHOD_NOT_ALLOWED
 		return new FlatlandException("Method not allowed", resp.status)
 	}
+	
+	def statusNotAcceptable(HttpServletResponse resp) {
+		resp.status = HttpServletResponse.SC_NOT_ACCEPTABLE
+		return new FlatlandException("Not acceptable", resp.status)
+	}
 }
