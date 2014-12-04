@@ -22,6 +22,8 @@ class HttpStatus {
 			case HttpServletResponse.SC_NOT_FOUND: return '''Status code (404) indicating that the requested resource is not available'''
 			case HttpServletResponse.SC_INTERNAL_SERVER_ERROR: return '''Status code (500) indicating an error inside the HTTP server which prevented it from fulfilling the request'''
 			case HttpServletResponse.SC_CONFLICT: return '''Status code (409) indicating that the request could not be completed due to a conflict with the current state of the resource'''
+			case HttpServletResponse.SC_NO_CONTENT: return '''Status code (204) indicating that the request succeeded but that there was no new information to return'''
+			case HttpServletResponse.SC_CREATED: return '''Status code (201) indicating the request succeeded and created a new resource on the server'''
 			default: return '''No description'''
 		}
 	}

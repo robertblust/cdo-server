@@ -69,7 +69,6 @@ class Delete {
 
 			// now transform manipulated object to json for the reponse			
 			jsonString = JsonConverter.okToJson
-
 		} catch (FlatlandException e) {
 			resp.status = e.httpStatus
 			jsonString = e.safeToJson
@@ -79,6 +78,7 @@ class Delete {
 				view.close
 			}
 		}
+		resp.status = HttpServletResponse.SC_NO_CONTENT
 		resp.writeResponse(req, jsonString)
 	}
 

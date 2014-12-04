@@ -88,7 +88,6 @@ class Put {
 
 			// now transform manipulated object to json for the reponse			
 			jsonString = requestedObject.safeToJson
-
 		} catch (FlatlandException e) {
 			resp.status = e.httpStatus
 			jsonString = e.safeToJson
@@ -98,6 +97,7 @@ class Put {
 				view.close
 			}
 		}
+		resp.status = HttpServletResponse.SC_CREATED
 		resp.writeResponse(req, jsonString)
 	}
 }
