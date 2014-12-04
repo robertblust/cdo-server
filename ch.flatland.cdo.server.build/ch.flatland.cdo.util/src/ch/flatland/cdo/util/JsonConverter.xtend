@@ -479,8 +479,12 @@ class JsonConverter {
 			}
 			if (eAttribute.EAttributeType.name == "Base64Binary" &&
 				eAttribute.EAttributeType.instanceTypeName == "byte[]") {
-				logger.debug("'{}' is an Base64Binary", eAttribute.name)
-				return Base64.decodeBase64(jsonPrimitive.asString)
+				logger.debug("'{}' is a Base64Binary", eAttribute.name)
+				if (Base64.isBase64(jsonPrimitive.asString)) {
+					return Base64.decodeBase64(jsonPrimitive.asString)
+				} else {
+					throw new Exception
+				}	
 			}
 		} catch (Exception e) {
 			throw new FlatlandException(
