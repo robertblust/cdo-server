@@ -91,7 +91,7 @@ class DataStore {
 							val objectValue = object.eGet(attribute).toString.toLowerCase
 							val paramValue = req.getParameter(paramName).toLowerCase
 							if(!objectValue.contains(paramValue)) {
-								logger.debug("Match '{}'", object)
+								logger.debug("Reduce '{}'", object)
 								matches.remove(object)		
 							}
 						}

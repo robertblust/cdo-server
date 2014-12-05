@@ -45,8 +45,7 @@ class Constants {
 	val public static HTTP_STATUS = "httpStatus"
 	val public static HTTP_STATUS_DESCRIPTION = "httpDescription"
 	val public static DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
-	val public static OBJECT = "object"
-	val public static OBJECTS = "objects"
+	val public static DATA = "data"
 
 	// servlets
 	val public static ALIAS_REPO = "/repo"

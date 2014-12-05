@@ -120,7 +120,7 @@ class JsonConverter {
 
 			// finally add ok status
 			val objectWithStatusOK = newObjectWithStatusOK
-			objectWithStatusOK.add(OBJECTS, jsonArray)
+			objectWithStatusOK.add(DATA, jsonArray)
 
 			// meta requested?
 			if(jsonConverterConfig.meta) {
@@ -144,7 +144,7 @@ class JsonConverter {
 
 			// finally add ok status
 			val objectWithStatusOK = newObjectWithStatusOK
-			objectWithStatusOK.add(OBJECT, jsonBaseObject)
+			objectWithStatusOK.add(DATA, jsonBaseObject)
 
 			// meta requested?
 			if(jsonConverterConfig.meta) {
