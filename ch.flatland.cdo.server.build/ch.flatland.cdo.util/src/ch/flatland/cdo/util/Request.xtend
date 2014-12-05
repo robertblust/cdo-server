@@ -21,6 +21,21 @@ class Request {
 	val public static AUTH_HEADER = "Authorization"
 	val public static ACCEPT_HEADER = "Accept"
 
+	def getJsonCallback(HttpServletRequest req) {
+		if(req.getParameter(PARAM_JSONP_CALLBACK) != null && req.getParameter(PARAM_JSONP_CALLBACK).length > 0) {
+			return req.getParameter(PARAM_JSONP_CALLBACK)
+		}
+		return null
+	}
+	
+	def isMetaDataRequested(HttpServletRequest req) {
+		return req.getParameter(PARAM_META) != null
+	}
+	
+	def isForceRequested(HttpServletRequest req) {
+		return req.getParameter(PARAM_FORCE) != null
+	}
+
 	def getUserId(HttpServletRequest request) {
 		val userNameIndex = request.safeUserNameAndPassword.indexOf(":")
 		val userName = request.safeUserNameAndPassword.substring(0, userNameIndex)
@@ -60,10 +75,10 @@ class Request {
 		var String line = null;
 
 		val reader = request.getReader();
-		while ((line = reader.readLine) != null) {
+		while((line = reader.readLine) != null) {
 			buffer.append(line)
 		}
-		if (buffer.length == 0) {
+		if(buffer.length == 0) {
 			throw new FlatlandException(SC_BAD_REQUEST, "Request body must not be empty")
 		}
 		return buffer.toString
@@ -71,7 +86,7 @@ class Request {
 
 	def private safeUserNameAndPassword(HttpServletRequest request) {
 		val authHeader = request.getHeader(AUTH_HEADER)
-		if (authHeader == null) {
+		if(authHeader == null) {
 			throw new FlatlandException(SC_BAD_REQUEST, "Request basic authentication must not be empty")
 		}
 		val usernameAndPassword = new String(Base64.decodeBase64(authHeader.substring(6).getBytes()))

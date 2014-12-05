@@ -12,20 +12,18 @@ package ch.flatland.cdo.util
 
 import javax.servlet.http.HttpServletRequest
 
-import static ch.flatland.cdo.util.Constants.*
-
 class JsonConverterConfig {
 
 	var meta = false
+	
+	val extension Request = new Request
 
 	new(HttpServletRequest req) {
 		init(req)
 	}
 
 	def private init(HttpServletRequest req) {
-		if(req.getParameter(PARAM_META) != null) {
-			meta = true
-		}
+		meta = req.metaDataRequested
 	}
 
 	new() {

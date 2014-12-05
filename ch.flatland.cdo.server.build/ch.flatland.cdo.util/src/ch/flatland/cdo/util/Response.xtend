@@ -19,13 +19,15 @@ import static ch.flatland.cdo.util.Constants.*
 class Response {
 	val logger = LoggerFactory.getLogger(this.class)
 	
+	val extension Request = new Request
+	
 	def writeResponse(HttpServletResponse resp, HttpServletRequest req, String jsonString) {
 		logger.debug("Json '{}'", jsonString)
 
 		// write response
-		if (req.getParameter(PARAM_JSONP_CALLBACK) != null && req.getParameter(PARAM_JSONP_CALLBACK).length > 0) {
+		if (req.jsonCallback != null) {
 			resp.contentType = JSONP_CONTENTTYPE_UTF8
-			resp.writer.append('''«req.getParameter(PARAM_JSONP_CALLBACK)»(«jsonString»)''')
+			resp.writer.append('''«req.jsonCallback»(«jsonString»)''')
 		} else {
 			resp.contentType = JSON_CONTENTTYPE_UTF8
 			resp.writer.append(jsonString)
