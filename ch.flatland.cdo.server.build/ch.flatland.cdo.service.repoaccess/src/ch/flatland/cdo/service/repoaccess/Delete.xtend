@@ -24,6 +24,8 @@ import org.eclipse.emf.cdo.eresource.CDOResourceNode
 import org.eclipse.emf.cdo.view.CDOView
 import org.slf4j.LoggerFactory
 
+import static javax.servlet.http.HttpServletResponse.*
+
 class Delete {
 
 	val logger = LoggerFactory.getLogger(this.class)
@@ -50,35 +52,32 @@ class Delete {
 			requestedObject.safeCanWrite
 
 			try {
-				if (requestedObject instanceof CDOResourceNode) {
+				if(requestedObject instanceof CDOResourceNode) {
 					val resource = requestedObject
-					if (resource.eContents.size > 0) {
-						throw new FlatlandException(
-							'''Resource '«requestedObject.cdoID»' cannot be deleted cause not empty''',
-							HttpServletResponse.SC_CONFLICT)
+					if(resource.eContents.size > 0) {
+						throw new FlatlandException(SC_CONFLICT, "Resource '{}' cannot be deleted cause not empty", requestedObject.cdoID)
 					}
 				}
 
 				view.xRefsDelete(requestedObject)
 
-			} catch (NoPermissionException npe) {
-				throw new FlatlandException(npe.message, HttpServletResponse.SC_FORBIDDEN)
+			} catch(NoPermissionException npe) {
+				throw new FlatlandException(SC_FORBIDDEN, npe.message)
 			}
 
 			view.commit
 
 			// now transform manipulated object to json for the reponse			
 			jsonString = JsonConverter.okToJson
-		} catch (FlatlandException e) {
+		} catch(FlatlandException e) {
 			resp.status = e.httpStatus
 			jsonString = e.safeToJson
 			logger.error("Request failed", e)
 		} finally {
-			if (!view.closed) {
+			if(!view.closed) {
 				view.close
 			}
 		}
-		resp.status = HttpServletResponse.SC_NO_CONTENT
 		resp.writeResponse(req, jsonString)
 	}
 
@@ -93,7 +92,7 @@ class Delete {
 				val sourceFeature = it.sourceFeature
 				val sourceIndex = it.sourceIndex
 				logger.debug("Found xref feature '{}', source '{}', index '{}'", sourceFeature.name, source, sourceIndex)
-				if (sourceFeature.isMany) {
+				if(sourceFeature.isMany) {
 					(source.eGet(sourceFeature) as List<Object>).remove(sourceIndex)
 				} else {
 					source.eUnset(sourceFeature)
@@ -101,13 +100,14 @@ class Delete {
 			]
 		]
 		val container = cdoObject.eContainer
-		if (container == null) {
+		if(container == null) {
+
 			// must be a CDOResource Node
 			val resource = cdoObject.cdoResource
 			resource.contents.remove(cdoObject)
 		} else {
 			val containingFeature = cdoObject.eContainingFeature
-			if (containingFeature.isMany) {
+			if(containingFeature.isMany) {
 				(container.eGet(containingFeature) as List<Object>).remove(cdoObject)
 			} else {
 				container.eUnset(containingFeature)

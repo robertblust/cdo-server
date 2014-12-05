@@ -15,30 +15,30 @@ import org.eclipse.emf.cdo.session.CDOSession
 class SessionEntry {
 	var CDOSession cdoSession
 	var long lastHttpSessionActivity
-	
+
 	new(CDOSession cdoSession) {
 		this.cdoSession = cdoSession
 		lastHttpSessionActivity = System.currentTimeMillis
 	}
-	
+
 	def updateHttpSessionActivity() {
 		lastHttpSessionActivity = System.currentTimeMillis
 	}
-	
+
 	def getLastHttpSessionActivity() {
 		lastHttpSessionActivity
 	}
-	
+
 	def getCDOSession() {
 		cdoSession
 	}
-	
+
 	def setCDOSession(CDOSession cdoSession) {
 		this.cdoSession = cdoSession
 	}
-	
+
 	def invalidateCDOsession() {
-		if (!cdoSession.isClosed) {
+		if(!cdoSession.isClosed) {
 			cdoSession.close
 		}
 		cdoSession == null

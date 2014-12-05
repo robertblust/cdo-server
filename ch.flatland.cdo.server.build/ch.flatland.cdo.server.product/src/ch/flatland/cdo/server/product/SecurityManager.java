@@ -563,13 +563,13 @@ public class SecurityManager extends Lifecycle implements InternalSecurityManage
 
 		// Create users
 
-		//User adminUser = realm.addUser(User.ADMINISTRATOR, "0000");
+		// User adminUser = realm.addUser(User.ADMINISTRATOR, "0000");
 		User adminUser = realm.addUser(AuthenticationUtil.ADMIN_USER, AuthenticationUtil.ADMIN_PWD);
 		adminUser.getGroups().add(adminsGroup);
-		
+
 		User readUser = realm.addUser(AuthenticationUtil.READONLY_USER, AuthenticationUtil.READONLY_USER);
 		readUser.getGroups().add(usersGroup);
-		
+
 		return realm;
 	}
 

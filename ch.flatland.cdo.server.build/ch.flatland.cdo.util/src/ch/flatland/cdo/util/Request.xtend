@@ -11,10 +11,10 @@
 package ch.flatland.cdo.util
 
 import javax.servlet.http.HttpServletRequest
-import javax.servlet.http.HttpServletResponse
 import org.apache.commons.codec.binary.Base64
 
 import static ch.flatland.cdo.util.Constants.*
+import static javax.servlet.http.HttpServletResponse.*
 
 class Request {
 
@@ -44,7 +44,7 @@ class Request {
 	def isBasicAuth(HttpServletRequest request) {
 		return request.getHeader(AUTH_HEADER) != null
 	}
-	
+
 	def isAcceptable(HttpServletRequest request) {
 		val acceptHeader = request.getHeader(ACCEPT_HEADER)
 		return ACCEPTED_CONTENTTYPES.contains(acceptHeader)
@@ -55,7 +55,6 @@ class Request {
 	}
 
 	// methods which could throw an Exception
-
 	def String safeReadBody(HttpServletRequest request) {
 		val buffer = new StringBuffer();
 		var String line = null;
@@ -65,7 +64,7 @@ class Request {
 			buffer.append(line)
 		}
 		if (buffer.length == 0) {
-			throw new FlatlandException("Request body must not be empty", HttpServletResponse.SC_BAD_REQUEST)
+			throw new FlatlandException(SC_BAD_REQUEST, "Request body must not be empty")
 		}
 		return buffer.toString
 	}
@@ -73,8 +72,7 @@ class Request {
 	def private safeUserNameAndPassword(HttpServletRequest request) {
 		val authHeader = request.getHeader(AUTH_HEADER)
 		if (authHeader == null) {
-			throw new FlatlandException("Request basic authentication must not be empty",
-				HttpServletResponse.SC_BAD_REQUEST)
+			throw new FlatlandException(SC_BAD_REQUEST, "Request basic authentication must not be empty")
 		}
 		val usernameAndPassword = new String(Base64.decodeBase64(authHeader.substring(6).getBytes()))
 		return usernameAndPassword

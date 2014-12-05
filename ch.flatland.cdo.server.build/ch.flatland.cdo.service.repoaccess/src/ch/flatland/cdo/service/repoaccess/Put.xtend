@@ -21,6 +21,8 @@ import javax.servlet.http.HttpServletResponse
 import org.slf4j.LoggerFactory
 import org.eclipse.emf.cdo.CDOObject
 
+import static javax.servlet.http.HttpServletResponse.*
+
 class Put {
 
 	val logger = LoggerFactory.getLogger(this.class)
@@ -32,13 +34,13 @@ class Put {
 
 	/*
 	 * Sample json request body
-	 * {
-	 *		"put": "elements",
-	 *		"type": "base.FLPackage",
-	 *			"attributes": {
-	 *				"name": "New Child"
-	 *			}
-	 * }
+	   {
+	 		"put": "elements",
+	 		"type": "base.FLPackage",
+	 			"attributes": {
+	 				"name": "New Child"
+	  			}
+	   }
 	 * 
 	 */
 	def void run(HttpServletRequest req, HttpServletResponse resp) {
@@ -67,12 +69,11 @@ class Put {
 			val eReference = requestedObject.eClass.EAllReferences.filter[it.name == put.value.asString].head
 
 			if (eReference == null) {
-				throw new FlatlandException('''Object '«requestedObject.cdoID»' does not support '«put»' ''',
-					HttpServletResponse.SC_BAD_REQUEST)
+				throw new FlatlandException(SC_BAD_REQUEST, "Object '{}' does not support '{}'", requestedObject.cdoID,
+					put)
 			}
 			if (!eReference.isContainmentSettable) {
-				throw new FlatlandException('''Feature '«put.value»' is not a containment''',
-					HttpServletResponse.SC_BAD_REQUEST)
+				throw new FlatlandException(SC_BAD_REQUEST, "Feature '{}' is not a containment", put)
 			}
 
 			jsonObject.toEObject = newObject
@@ -97,7 +98,7 @@ class Put {
 				view.close
 			}
 		}
-		resp.status = HttpServletResponse.SC_CREATED
+		resp.status = SC_CREATED
 		resp.writeResponse(req, jsonString)
 	}
 }

@@ -12,7 +12,6 @@ package ch.flatland.cdo.util
 
 import com.google.common.base.Splitter
 import javax.servlet.http.HttpServletRequest
-import javax.servlet.http.HttpServletResponse
 import org.eclipse.emf.cdo.CDOObject
 import org.eclipse.emf.cdo.common.id.CDOIDUtil
 import org.eclipse.emf.cdo.common.security.CDOPermission
@@ -20,6 +19,7 @@ import org.eclipse.emf.cdo.view.CDOView
 import org.slf4j.LoggerFactory
 
 import static ch.flatland.cdo.util.Constants.*
+import static javax.servlet.http.HttpServletResponse.*
 
 class View {
 	val logger = LoggerFactory.getLogger(this.class)
@@ -33,7 +33,7 @@ class View {
 		try {
 			switch (alias) {
 				case ALIAS_REPO: {
-					if (req.pathInfo != null) {
+					if(req.pathInfo != null) {
 						return view.getResourceNode(req.pathInfo)
 					} else {
 						return view.getResourceNode("/home/" + req.userId)
@@ -50,10 +50,14 @@ class View {
 						case 3: {
 							val ePackage = view.ePackage(pathSegments.get(1).safePackagePrefix)
 							val eClass = ePackage.getEClassifier(pathSegments.get(1).safeEType)
-							if (eClass == null) {
+							if(eClass == null) {
 								throw new Exception
 							}
-							return view.getObject(CDOIDUtil.createLong(Long.parseLong(pathSegments.get(2))))
+							val object = view.getObject(CDOIDUtil.createLong(Long.parseLong(pathSegments.get(2))))
+							if (object.eClass.type != pathSegments.get(1)) {
+								throw new Exception
+							}
+							return object
 						}
 						default:
 							throw new Exception
@@ -62,24 +66,23 @@ class View {
 				default:
 					throw new Exception
 			}
-		} catch (Exception e) {
+		} catch(Exception e) {
 			logger.debug("Exception '{}'", e.message)
-			throw new FlatlandException('''«req.pathInfo» not found''', HttpServletResponse.SC_NOT_FOUND)
+			throw new FlatlandException(SC_NOT_FOUND, "{} not found", req.pathInfo)
 		}
 	}
 
 	def safeRequestObject(CDOView view, long id) {
 		try {
 			return view.getObject(CDOIDUtil.createLong(id))
-		} catch (Exception e) {
-			throw new FlatlandException('''No object found with '«ID»=«id»' ''', HttpServletResponse.SC_BAD_REQUEST)
+		} catch(Exception e) {
+			throw new FlatlandException(SC_BAD_REQUEST, "No object found with '{}={}", ID, id)
 		}
 	}
 
 	def safeCanWrite(CDOObject object) {
-		if (object.cdoPermission != CDOPermission.WRITE) {
-			throw new FlatlandException("No permission to edit object '" + object.cdoID + "'",
-				HttpServletResponse.SC_FORBIDDEN)
+		if(object.cdoPermission != CDOPermission.WRITE) {
+			throw new FlatlandException(SC_FORBIDDEN, "No permission to edit object '{}'", object.cdoID)
 		}
 	}
 }

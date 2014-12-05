@@ -11,6 +11,7 @@
 package ch.flatland.cdo.util
 
 class Constants {
+
 	// http
 	val public static PARAM_META = "meta"
 	val public static PARAM_JSONP_CALLBACK = "callback"
@@ -19,9 +20,9 @@ class Constants {
 	val public static JSON_CONTENTTYPE_UTF8 = "application/json; charset=utf-8"
 	val public static JSONP_CONTENTTYPE = "application/javascript"
 	val public static JSONP_CONTENTTYPE_UTF8 = "application/javascript; charset=utf-8"
-	
+
 	val public static ACCEPTED_CONTENTTYPES = newArrayList(ACCEPT_ALL_CONTENTTYPE, JSON_CONTENTTYPE, JSON_CONTENTTYPE_UTF8)
-	
+
 	// json
 	val public static ID = "id"
 	val public static TYPE = "type"
@@ -45,7 +46,7 @@ class Constants {
 	val public static DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
 	val public static OBJECT = "object"
 	val public static OBJECTS = "objects"
-	
+
 	// servlets
 	val public static ALIAS_REPO = "/repo"
 	val public static ALIAS_OBJECT = "/obj"

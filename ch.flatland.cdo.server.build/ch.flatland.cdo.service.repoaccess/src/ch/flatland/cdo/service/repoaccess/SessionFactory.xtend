@@ -23,9 +23,9 @@ class SessionFactory {
 
 	def static synchronized getOrCreateCDOSession(HttpServletRequest request) {
 		val extension Request = new Request
-		if (sessionMap.containsKey(request.sessionKey)) {
+		if(sessionMap.containsKey(request.sessionKey)) {
 			val sessionEntry = sessionMap.get(request.sessionKey)
-			if (sessionEntry.CDOSession.closed) {
+			if(sessionEntry.CDOSession.closed) {
 				sessionEntry.invalidateCDOsession
 				sessionEntry.CDOSession = ServerUtil.openSession(request.userId, request.password)
 			}
@@ -33,14 +33,12 @@ class SessionFactory {
 
 			logger.debug("Reuse CDO Session")
 		} else {
-			sessionMap.put(request.sessionKey,
-				new SessionEntry(ServerUtil.openSession(request.userId, request.password)))
+			sessionMap.put(request.sessionKey, new SessionEntry(ServerUtil.openSession(request.userId, request.password)))
 
 			logger.debug("Create CDO Session")
 		}
 
-		logger.debug("CDO Session '{}' for http Session '{}' and user '{}'", getCDOSession(request).sessionID,
-			request.sessionId, request.userId)
+		logger.debug("CDO Session '{}' for http Session '{}' and user '{}'", getCDOSession(request).sessionID, request.sessionId, request.userId)
 
 		return getCDOSession(request)
 	}

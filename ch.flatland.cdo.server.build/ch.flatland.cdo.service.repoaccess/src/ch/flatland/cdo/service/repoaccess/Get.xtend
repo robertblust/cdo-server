@@ -41,12 +41,12 @@ class Get {
 
 			jsonString = requestedObject.safeToJson
 
-		} catch (FlatlandException e) {
+		} catch(FlatlandException e) {
 			resp.status = e.httpStatus
 			jsonString = e.safeToJson
 			logger.error("Request failed", e)
 		} finally {
-			if (!view.closed) {
+			if(!view.closed) {
 				view.close
 			}
 		}

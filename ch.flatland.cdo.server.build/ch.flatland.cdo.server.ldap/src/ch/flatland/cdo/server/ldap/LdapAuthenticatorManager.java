@@ -73,9 +73,9 @@ public class LdapAuthenticatorManager implements IAuthenticator {
 	}
 
 	public void authenticate(String userId, char[] password) throws SecurityException {
-		
+
 		logger.debug("authenticate '{}'", userId);
-		
+
 		if (faked) {
 			// NO AUTHENTICATION PERFORMED
 			logger.error("!!!! NO AUTHENTICATION PERFORMED for {} !!!!", userId);

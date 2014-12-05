@@ -41,7 +41,7 @@ class Post {
 			logger.debug("Run for '{}' with body '{}'", req.userId, body)
 
 			val jsonObject = body.safeFromJson
-			
+
 			val requestedObject = view.safeRequestResource(req) as CDOObject
 
 			logger.debug("Object '{}' loaded type of {}", requestedObject.cdoID, requestedObject.eClass.type)
@@ -55,12 +55,12 @@ class Post {
 			// now transform manipulated object to json for the reponse			
 			jsonString = requestedObject.safeToJson
 
-		} catch (FlatlandException e) {
+		} catch(FlatlandException e) {
 			resp.status = e.httpStatus
 			jsonString = e.safeToJson
 			logger.error("Request failed", e)
 		} finally {
-			if (!view.closed) {
+			if(!view.closed) {
 				view.close
 			}
 		}

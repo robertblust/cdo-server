@@ -23,11 +23,10 @@ class DataStore {
 		val result = newArrayList
 
 		//val query = view.createQuery("ocl", type.safeEType + ".allInstances()")
-		val query = view.createQuery("sql",
-			"SELECT cdo_id FROM " + type.replace(".", "_") + " WHERE cdo_revised = 0 and cdo_version > 0")
+		val query = view.createQuery("sql", "SELECT cdo_id FROM " + type.replace(".", "_") + " WHERE cdo_revised = 0 and cdo_version > 0")
 		logger.debug("Execute '{}' query '{}'", query.queryLanguage, query.queryString)
 		val iterator = query.getResultAsync(typeof(CDOObject))
-		while (iterator.hasNext) {
+		while(iterator.hasNext) {
 			val obj = iterator.next
 			logger.debug("Found '{}'", obj)
 			result.add(obj)

@@ -27,22 +27,23 @@ class BasicAuthHttpContext implements HttpContext {
 
 		val extension Request = new Request
 		val extension Response = new Response
+
 		// only allow https
-		if (!req.secure) {
+		if(!req.secure) {
 			logger.debug("Forbidden")
 			resp.sendError(req, resp.statusForbidden)
 			return false
 		}
-		
+
 		// check accepted contentypes
-		if (!req.acceptable) {
+		if(!req.acceptable) {
 			logger.debug("Forbidden")
 			resp.sendError(req, resp.statusNotAcceptable)
 			return false
 		}
 
 		// check if authorization header is available
-		if (!req.basicAuth) {
+		if(!req.basicAuth) {
 			logger.debug("No basic auth in request")
 			resp.sendError(req, resp.statusUnauthorized)
 			return false
@@ -52,7 +53,7 @@ class BasicAuthHttpContext implements HttpContext {
 
 			// try to create or reuse the CDOSession
 			SessionFactory.getOrCreateCDOSession(req)
-		} catch (Exception e) {
+		} catch(Exception e) {
 			logger.debug("Authentication failed - '{}' > stacktrace '{}'", req.userId, e)
 			resp.sendError(req, resp.statusUnauthorized)
 			return false

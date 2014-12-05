@@ -12,13 +12,14 @@ package ch.flatland.cdo.util
 
 import com.google.common.base.Splitter
 import com.google.gson.JsonElement
-import javax.servlet.http.HttpServletResponse
 import org.eclipse.emf.cdo.view.CDOView
 import org.eclipse.emf.ecore.EAttribute
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EClassifier
 import org.eclipse.emf.ecore.EReference
 import org.slf4j.LoggerFactory
+
+import static javax.servlet.http.HttpServletResponse.*
 
 class EMF {
 
@@ -75,30 +76,26 @@ class EMF {
 			return true
 		}
 	}
-	
+
 	def safePackagePrefix(String type) {
 		val segments = Splitter.on(".").split(type)
 		if (segments.size != 2) {
-			throw new FlatlandException('''Not a valid type '«type»' ''', HttpServletResponse.SC_BAD_REQUEST)
+			throw new FlatlandException(SC_BAD_REQUEST, "Not a valid type '{}'", type)
 		}
 		segments.get(0)
 	}
-	
+
 	def safeEType(String type) {
 		val segments = Splitter.on(".").split(type)
 		if (segments.size != 2) {
-			throw new FlatlandException('''Not a valid type '«type»' ''', HttpServletResponse.SC_BAD_REQUEST)
+			throw new FlatlandException(SC_BAD_REQUEST, "Not a valid type '{}'", type)
 		}
 		segments.get(1)
 	}
 
 	def safeCreateType(CDOView view, String type) {
 		val ePackage = view.ePackage(type.safePackagePrefix)
-		val eClass = view.eClass(type)
-		if (eClass == null) {
-			throw new FlatlandException('''Could not resolve eClass for '«type»' ''', HttpServletResponse.SC_BAD_REQUEST)
-		}
-		logger.debug("Resolved EClass '{}'", eClass)
+		val eClass = view.safeEClass(type)		
 		val newObject = ePackage.EFactoryInstance.create(eClass)
 		logger.debug("Created new object '{}'", newObject)
 		return newObject
@@ -108,18 +105,21 @@ class EMF {
 		val packageRegistry = view.session.packageRegistry
 		val packageInfo = packageRegistry.packageInfos.filter[it.EPackage.nsPrefix == nsPrefix].head
 		if (packageInfo == null) {
-			throw new FlatlandException('''Invalid package prefix '«nsPrefix»' ''', HttpServletResponse.SC_BAD_REQUEST)
+			throw new FlatlandException(SC_BAD_REQUEST, "Invalid package prefix '{}'", nsPrefix)
 		}
-		return packageInfo.EPackage
+		val ePackage = packageInfo.EPackage
+		logger.debug("Resolved EPackage '{}'", ePackage)
+		return ePackage
 	}
 
-	def private eClass(CDOView view, String type) {
+	def private safeEClass(CDOView view, String type) {
 		val eType = type.safeEType
 		val ePackage = view.ePackage(type.safePackagePrefix)
-		if (ePackage != null) {
-			logger.debug("Resolved EPackage '{}'", ePackage)
-			return ePackage.EClassifiers.filter[it.name == eType].head as EClass
+		val eClass = ePackage.EClassifiers.filter[it.name == eType].head as EClass
+		if (eClass == null) {
+			 throw new FlatlandException(SC_BAD_REQUEST, "Could not resolve eClass for '{}'", type)
 		}
-		return null
+		logger.debug("Resolved EClass '{}'", eClass)
+		return eClass
 	}
 }

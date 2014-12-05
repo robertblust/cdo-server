@@ -72,18 +72,18 @@ class AbstractServlet extends HttpServlet {
 	}
 
 	def logRequest(HttpServletRequest req) {
-		if (logger.isDebugEnabled) {
+		if(logger.isDebugEnabled) {
 			var userId = "anonymous"
-			if (req.basicAuth) {
+			if(req.basicAuth) {
 				userId = req.userId
 			}
 			logger.debug("Request '{}' with params '{}' from '{}'", req.requestURL, req.parameterMap, userId)
 			val headerNames = req.headerNames
-			while (headerNames.hasMoreElements) {
+			while(headerNames.hasMoreElements) {
 				val key = headerNames.nextElement
 				logger.debug("Http header field '{}'", key)
 				val fieldValues = req.getHeaders(key)
-				while (fieldValues.hasMoreElements) {
+				while(fieldValues.hasMoreElements) {
 					val value = fieldValues.nextElement
 					logger.debug("  '{}'", value)
 				}

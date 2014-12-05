@@ -23,7 +23,7 @@ class JsonConverterConfig {
 	}
 
 	def private init(HttpServletRequest req) {
-		if (req.getParameter(PARAM_META) != null) {
+		if(req.getParameter(PARAM_META) != null) {
 			meta = true
 		}
 	}

@@ -23,11 +23,11 @@ class App implements IApplication {
 
 	override start(IApplicationContext context) throws Exception {
 		this.context = context
-		
+
 		Acceptor.start
 		Repository.start
 
-		if (context != null) {
+		if(context != null) {
 			context.applicationRunning()
 		}
 
@@ -42,7 +42,7 @@ class App implements IApplication {
 		Repository.stop
 
 		context = null
-		if (stopLatch != null) {
+		if(stopLatch != null) {
 			stopLatch.countDown()
 		}
 	}

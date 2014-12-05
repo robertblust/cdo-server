@@ -18,13 +18,13 @@ import org.eclipse.net4j.util.container.IPluginContainer
 import org.slf4j.LoggerFactory
 
 class ServerUtil {
-	
+
 	public val static SUPPORTING_AUDITS = false
 	public val static SUPPORTING_BRANCHES = false
 	public val static ENSURE_REFERENTIAL_INTEGRITY = true
 	public val static REPOSITORY_NAME = "repo"
 	public val static ACCEPTOR_PORT = "2036"
-	
+
 	val static logger = LoggerFactory.getLogger(ServerUtil)
 
 	private new() {
@@ -50,7 +50,7 @@ class ServerUtil {
 		config.credentialsProvider = new CredentialsProvider(userID, password)
 
 		val session = config.openNet4jSession() as CDOSession
-		
+
 		logger.debug("open session '{}' for user '{}'", session.sessionID, session.userID)
 
 		return session
