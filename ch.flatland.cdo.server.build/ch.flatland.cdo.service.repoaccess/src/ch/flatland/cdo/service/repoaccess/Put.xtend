@@ -18,8 +18,8 @@ import ch.flatland.cdo.util.View
 import java.util.List
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
-import org.slf4j.LoggerFactory
 import org.eclipse.emf.cdo.CDOObject
+import org.slf4j.LoggerFactory
 
 import static javax.servlet.http.HttpServletResponse.*
 
@@ -83,7 +83,12 @@ class Put {
 
 			if(eReference.many) {
 				val objects = requestedObject.eGet(eReference) as List<Object>
-				objects.add(newObject)
+				try {
+					objects.add(newObject)
+				} catch (ArrayStoreException e) {
+					throw new FlatlandException(SC_BAD_REQUEST, "'{}' does not support type '{}'", put, type)
+				}
+				
 			} else {
 				requestedObject.eSet(eReference, newObject)
 			}
