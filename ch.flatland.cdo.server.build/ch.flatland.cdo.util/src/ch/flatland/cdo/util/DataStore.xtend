@@ -10,8 +10,11 @@
  */
 package ch.flatland.cdo.util
 
+import java.util.List
+import javax.servlet.http.HttpServletRequest
 import org.eclipse.emf.cdo.CDOObject
 import org.eclipse.emf.cdo.view.CDOView
+import org.eclipse.emf.ecore.EObject
 import org.slf4j.LoggerFactory
 
 class DataStore {
@@ -20,7 +23,7 @@ class DataStore {
 	def findByType(CDOView view, String type) {
 
 		// TODO sql depends on mapping strategy
-		val result = newArrayList
+		val List<EObject> result = newArrayList
 
 		//val query = view.createQuery("ocl", type.safeEType + ".allInstances()")
 		val query = view.createQuery("sql", "SELECT cdo_id FROM " + type.replace(".", "_") + " WHERE cdo_revised = 0 and cdo_version > 0")
@@ -33,5 +36,70 @@ class DataStore {
 		}
 		iterator.close
 		return result
+	}
+
+	def filterByAttributeXOR(List<EObject> objects, HttpServletRequest req) {
+		if(objects.size == 0 || req.parameterMap.size == 0) {
+			return objects
+		}
+		val matches = newArrayList
+		val eClass = objects.get(0).eClass
+
+		val enum = req.parameterNames
+		while(enum.hasMoreElements) {
+			val paramName = enum.nextElement
+			logger.debug("Parameter name for filter '{}'", paramName)
+			for (attribute : eClass.EAllAttributes) {
+				if(attribute.name == paramName) {
+					logger.debug("Found eAttribute '{}'", attribute.name)
+					for (object : objects) {
+						if(object.eGet(attribute) != null) {
+							val objectValue = object.eGet(attribute).toString.toLowerCase
+							val paramValue = req.getParameter(paramName).toLowerCase
+							if(objectValue.contains(paramValue)) {
+								logger.debug("Match '{}'", object)
+								if (!matches.contains(object)) {
+									matches.add(object)
+								}	
+							}
+						}
+
+					}
+				}
+			}
+		}
+		return matches
+	}
+	
+	def filterByAttributeAND(List<EObject> objects, HttpServletRequest req) {
+		if(objects.size == 0 || req.parameterMap.size == 0) {
+			return objects
+		}
+		val matches = newArrayList
+		matches.addAll(objects)
+		val eClass = objects.get(0).eClass
+		
+		val enum = req.parameterNames
+		while(enum.hasMoreElements) {
+			val paramName = enum.nextElement
+			logger.debug("Parameter name for filter '{}'", paramName)
+			for (attribute : eClass.EAllAttributes) {
+				if(attribute.name == paramName) {
+					logger.debug("Found eAttribute '{}'", attribute.name)
+					for (object : objects) {
+						if(object.eGet(attribute) != null) {
+							val objectValue = object.eGet(attribute).toString.toLowerCase
+							val paramValue = req.getParameter(paramName).toLowerCase
+							if(!objectValue.contains(paramValue)) {
+								logger.debug("Match '{}'", object)
+								matches.remove(object)		
+							}
+						}
+
+					}
+				}
+			}
+		}
+		return matches
 	}
 }

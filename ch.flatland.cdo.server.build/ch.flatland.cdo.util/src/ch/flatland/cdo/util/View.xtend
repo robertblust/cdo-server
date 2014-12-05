@@ -45,7 +45,9 @@ class View {
 						case 1: {
 						}
 						case 2: {
-							return view.findByType(pathSegments.get(1))
+							val objects = view.findByType(pathSegments.get(1))
+							
+							return objects.filterByAttributeAND(req)
 						}
 						case 3: {
 							val ePackage = view.ePackage(pathSegments.get(1).safePackagePrefix)
