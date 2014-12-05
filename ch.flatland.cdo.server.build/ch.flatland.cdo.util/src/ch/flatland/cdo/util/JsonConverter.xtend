@@ -160,12 +160,15 @@ class JsonConverter {
 	}
 
 	def dispatch String safeToJson(FlatlandException object) {
+		val jsonStatusObject = new JsonObject
+		jsonStatusObject.addProperty(STATUS, FlatlandException.STATUS_NOK)
+		jsonStatusObject.addProperty(HTTP_STATUS, object.httpStatus)
+		jsonStatusObject.addProperty(HTTP_STATUS_DESCRIPTION, object.httpStatus.description)
+		jsonStatusObject.addProperty(TYPE, object.class.simpleName)
+		jsonStatusObject.addProperty(MESSAGE, object.message)
+		
 		val jsonBaseObject = new JsonObject
-		jsonBaseObject.addProperty(STATUS, FlatlandException.STATUS_NOK)
-		jsonBaseObject.addProperty(HTTP_STATUS, object.httpStatus)
-		jsonBaseObject.addProperty(HTTP_STATUS_DESCRIPTION, object.httpStatus.description)
-		jsonBaseObject.addProperty(TYPE, object.class.simpleName)
-		jsonBaseObject.addProperty(MESSAGE, object.message)
+		jsonBaseObject.add(STATUS, jsonStatusObject) 
 		jsonBaseObject.toString
 	}
 
@@ -533,7 +536,10 @@ class JsonConverter {
 	def newObjectWithStatusOK() {
 		val objectWithStatusOK = new JsonObject
 		objectWithStatusOK.addProperty(STATUS, "OK")
-		return objectWithStatusOK
+		
+		val jsonBaseObject = new JsonObject
+		jsonBaseObject.add(STATUS, objectWithStatusOK) 
+		return jsonBaseObject
 	}
 
 	// methods which could throw an Exception

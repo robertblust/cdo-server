@@ -58,9 +58,9 @@ class DataStore {
 							val paramValue = req.getParameter(paramName).toLowerCase
 							if(objectValue.contains(paramValue)) {
 								logger.debug("Match '{}'", object)
-								if (!matches.contains(object)) {
+								if(!matches.contains(object)) {
 									matches.add(object)
-								}	
+								}
 							}
 						}
 
@@ -70,7 +70,7 @@ class DataStore {
 		}
 		return matches
 	}
-	
+
 	def filterByAttributeAND(List<EObject> objects, HttpServletRequest req) {
 		if(objects.size == 0 || req.parameterMap.size == 0) {
 			return objects
@@ -78,7 +78,7 @@ class DataStore {
 		val matches = newArrayList
 		matches.addAll(objects)
 		val eClass = objects.get(0).eClass
-		
+
 		val enum = req.parameterNames
 		while(enum.hasMoreElements) {
 			val paramName = enum.nextElement
@@ -92,10 +92,12 @@ class DataStore {
 							val paramValue = req.getParameter(paramName).toLowerCase
 							if(!objectValue.contains(paramValue)) {
 								logger.debug("Reduce '{}'", object)
-								matches.remove(object)		
+								matches.remove(object)
 							}
+						} else {
+							logger.debug("Reduce '{}'", object)
+							matches.remove(object)
 						}
-
 					}
 				}
 			}
