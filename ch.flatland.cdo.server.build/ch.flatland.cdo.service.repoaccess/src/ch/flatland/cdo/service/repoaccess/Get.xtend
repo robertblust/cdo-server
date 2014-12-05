@@ -37,7 +37,7 @@ class Get {
 		val extension JsonConverter = req.createJsonConverter
 
 		try {
-			requestedObject = view.safeRequestResource(req)
+			requestedObject = view.safeRequestResource(req, resp)
 
 			jsonString = requestedObject.safeToJson
 

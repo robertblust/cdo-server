@@ -37,7 +37,7 @@ class Post {
 		var String jsonString = null
 
 		try {
-			val object = view.safeRequestResource(req)
+			val object = view.safeRequestResource(req, resp)
 			if(!(object instanceof CDOObject)) {
 				throw resp.statusMethodNotAllowed
 			}

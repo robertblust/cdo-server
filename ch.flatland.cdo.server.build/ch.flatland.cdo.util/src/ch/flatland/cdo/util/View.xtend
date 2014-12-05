@@ -12,6 +12,7 @@ package ch.flatland.cdo.util
 
 import com.google.common.base.Splitter
 import javax.servlet.http.HttpServletRequest
+import javax.servlet.http.HttpServletResponse
 import org.eclipse.emf.cdo.CDOObject
 import org.eclipse.emf.cdo.common.id.CDOIDUtil
 import org.eclipse.emf.cdo.common.security.CDOPermission
@@ -24,10 +25,9 @@ import static javax.servlet.http.HttpServletResponse.*
 class View {
 	val logger = LoggerFactory.getLogger(this.class)
 	val extension EMF = new EMF
-	val extension Request = new Request
 	val extension DataStore = new DataStore
 
-	def safeRequestResource(CDOView view, HttpServletRequest req) {
+	def safeRequestResource(CDOView view, HttpServletRequest req, HttpServletResponse resp) {
 		val alias = "/" + Splitter.on("/").split(req.requestURL).get(3)
 
 		try {
@@ -36,7 +36,7 @@ class View {
 					if(req.pathInfo != null) {
 						return view.getResourceNode(req.pathInfo)
 					} else {
-						return view.getResourceNode("/home/" + req.userId)
+						return view.getResourceNode("/")
 					}
 				}
 				case ALIAS_OBJECT: {
@@ -54,7 +54,7 @@ class View {
 								throw new Exception
 							}
 							val object = view.getObject(CDOIDUtil.createLong(Long.parseLong(pathSegments.get(2))))
-							if (object.eClass.type != pathSegments.get(1)) {
+							if(object.eClass.type != pathSegments.get(1)) {
 								throw new Exception
 							}
 							return object
