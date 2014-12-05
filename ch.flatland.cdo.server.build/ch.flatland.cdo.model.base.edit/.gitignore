@@ -2,3 +2,5 @@
 /xtend-gen/
 /bin/
 /.settings/
+/.classpath
+/.project
