@@ -108,7 +108,7 @@ class EMF {
 			throw new FlatlandException(SC_BAD_REQUEST, "Invalid package prefix '{}'", nsPrefix)
 		}
 		val ePackage = packageInfo.EPackage
-		logger.debug("Resolved EPackage '{}'", ePackage)
+		logger.debug("Resolved EPackage '{}'", ePackage.nsURI)
 		return ePackage
 	}
 
