@@ -9,14 +9,12 @@ import ch.flatland.cdo.model.test.TestEnum;
 import ch.flatland.cdo.model.test.TestFactory;
 import ch.flatland.cdo.model.test.TestObject;
 import ch.flatland.cdo.model.test.TestPackage;
-
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
 
