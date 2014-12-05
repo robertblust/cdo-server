@@ -31,13 +31,12 @@ class Get {
 
 		val view = SessionFactory.getCDOSession(req).openView
 
-		var Object requestedObject = null
 		var String jsonString = null
 
 		val extension JsonConverter = req.createJsonConverter
 
 		try {
-			requestedObject = view.safeRequestResource(req, resp)
+			val requestedObject = view.safeRequestResource(req, resp)
 
 			jsonString = requestedObject.safeToJson
 
