@@ -37,12 +37,16 @@ class Post {
 		var String jsonString = null
 
 		try {
+			val object = view.safeRequestResource(req)
+			if(!(object instanceof CDOObject)) {
+				throw resp.statusMethodNotAllowed
+			}
+			val requestedObject = object as CDOObject
+
 			val body = req.safeReadBody
 			logger.debug("Run for '{}' with body '{}'", req.userId, body)
 
 			val jsonObject = body.safeFromJson
-
-			val requestedObject = view.safeRequestResource(req) as CDOObject
 
 			logger.debug("Object '{}' loaded type of {}", requestedObject.cdoID, requestedObject.eClass.type)
 

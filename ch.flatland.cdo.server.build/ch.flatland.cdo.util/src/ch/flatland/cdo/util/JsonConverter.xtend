@@ -540,7 +540,7 @@ class JsonConverter {
 	def safeResolveId(JsonObject jsonObject) {
 		val id = jsonObject.entrySet.filter[it.key == ID].head
 		if(id == null || id.value.isJsonNull) {
-			throw new FlatlandException(SC_BAD_REQUEST, "Attribute '{}' missing or null", id)
+			throw new FlatlandException(SC_BAD_REQUEST, "Attribute '{}' missing or null", ID)
 		}
 		return id
 	}
@@ -548,7 +548,7 @@ class JsonConverter {
 	def safeResolvePut(JsonObject jsonObject) {
 		val put = jsonObject.entrySet.filter[it.key == PUT].head
 		if(put == null || put.value.isJsonNull) {
-			throw new FlatlandException(SC_BAD_REQUEST, "Attribute '{}' missing or null", put)
+			throw new FlatlandException(SC_BAD_REQUEST, "Attribute '{}' missing or null", PUT)
 		}
 		return put
 	}
@@ -556,7 +556,7 @@ class JsonConverter {
 	def safeResolveType(JsonObject jsonObject) {
 		val type = jsonObject.entrySet.filter[it.key == TYPE].head
 		if(type == null || type.value.isJsonNull) {
-			throw new FlatlandException(SC_BAD_REQUEST, "Attribute '{}' missing or null", type)
+			throw new FlatlandException(SC_BAD_REQUEST, "Attribute '{}' missing or null", TYPE)
 		}
 		return type
 	}

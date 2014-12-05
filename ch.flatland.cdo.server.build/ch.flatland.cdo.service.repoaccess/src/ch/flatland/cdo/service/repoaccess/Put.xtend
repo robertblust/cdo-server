@@ -51,14 +51,18 @@ class Put {
 		var String jsonString = null
 
 		try {
+			val object = view.safeRequestResource(req)
+			if(!(object instanceof CDOObject)) {
+				throw resp.statusMethodNotAllowed
+			}
+			val requestedObject = object as CDOObject
+
 			val body = req.safeReadBody
 			logger.debug("Run for '{}' with body '{}'", req.userId, body)
 
 			val jsonObject = body.safeFromJson
 			val put = jsonObject.safeResolvePut
 			val type = jsonObject.safeResolveType
-
-			val requestedObject = view.safeRequestResource(req) as CDOObject
 
 			logger.debug("Object '{}' loaded type of {}", requestedObject.cdoID, requestedObject.eClass.type)
 
@@ -68,17 +72,16 @@ class Put {
 
 			val eReference = requestedObject.eClass.EAllReferences.filter[it.name == put.value.asString].head
 
-			if (eReference == null) {
-				throw new FlatlandException(SC_BAD_REQUEST, "Object '{}' does not support '{}'", requestedObject.cdoID,
-					put)
+			if(eReference == null) {
+				throw new FlatlandException(SC_BAD_REQUEST, "Object '{}' does not support '{}'", requestedObject.cdoID, put)
 			}
-			if (!eReference.isContainmentSettable) {
+			if(!eReference.isContainmentSettable) {
 				throw new FlatlandException(SC_BAD_REQUEST, "Feature '{}' is not a containment", put)
 			}
 
 			jsonObject.toEObject = newObject
 
-			if (eReference.many) {
+			if(eReference.many) {
 				val objects = requestedObject.eGet(eReference) as List<Object>
 				objects.add(newObject)
 			} else {
@@ -89,12 +92,12 @@ class Put {
 
 			// now transform manipulated object to json for the reponse			
 			jsonString = requestedObject.safeToJson
-		} catch (FlatlandException e) {
+		} catch(FlatlandException e) {
 			resp.status = e.httpStatus
 			jsonString = e.safeToJson
 			logger.error("Request failed", e)
 		} finally {
-			if (!view.closed) {
+			if(!view.closed) {
 				view.close
 			}
 		}
