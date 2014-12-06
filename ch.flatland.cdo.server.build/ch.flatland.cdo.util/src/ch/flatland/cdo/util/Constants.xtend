@@ -17,6 +17,7 @@ class Constants {
 	val public static PARAM_JSONP_CALLBACK = "callback"
 	val public static PARAM_FORCE = "force"
 	val public static PARAM_XOR_FILTER = "xor"
+	val public static PARAM_NO_REFS = "norefs"
 	val public static ACCEPT_ALL_CONTENTTYPE = "*/*"
 	val public static JSON_CONTENTTYPE = "application/json"
 	val public static JSON_CONTENTTYPE_UTF8 = "application/json; charset=utf-8"

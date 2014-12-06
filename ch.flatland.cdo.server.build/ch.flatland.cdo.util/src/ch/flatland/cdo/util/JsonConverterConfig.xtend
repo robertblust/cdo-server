@@ -15,7 +15,8 @@ import javax.servlet.http.HttpServletRequest
 class JsonConverterConfig {
 
 	var meta = false
-	
+	var showReferences = true
+
 	val extension Request = new Request
 
 	new(HttpServletRequest req) {
@@ -24,6 +25,7 @@ class JsonConverterConfig {
 
 	def private init(HttpServletRequest req) {
 		meta = req.metaDataRequested
+		showReferences = !req.noRefs
 	}
 
 	new() {
@@ -33,7 +35,7 @@ class JsonConverterConfig {
 		meta
 	}
 
-	def setMeta(boolean meta) {
-		this.meta = meta
+	def isShowReferences() {
+		showReferences
 	}
 }

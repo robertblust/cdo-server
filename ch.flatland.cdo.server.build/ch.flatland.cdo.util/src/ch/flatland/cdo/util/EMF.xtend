@@ -30,17 +30,17 @@ class EMF {
 	}
 
 	def isAttributeSettable(JsonElement element, EAttribute feature) {
-		if (feature.derived) {
+		if(feature.derived) {
 			logger.debug("EAttribute '{}' is derived", feature.name)
 			return false
 		}
 
-		if ((element.jsonNull || element.jsonPrimitive) && !feature.many) {
+		if((element.jsonNull || element.jsonPrimitive) && !feature.many) {
 			logger.debug("EAttribute '{}' is primitive or null", feature.name)
 			return true
 		}
 
-		if ((element.jsonNull || element.jsonArray) && feature.many) {
+		if((element.jsonNull || element.jsonArray) && feature.many) {
 			logger.debug("EAttribute '{}' is array or null", feature.name)
 			return true
 		}
@@ -48,22 +48,22 @@ class EMF {
 	}
 
 	def isReferenceSettable(JsonElement element, EReference feature) {
-		if (feature.containment) {
+		if(feature.containment) {
 			logger.debug("EReference '{}' is containment", feature.name)
 			return false
 		}
 
-		if (feature.derived) {
+		if(feature.derived) {
 			logger.debug("EReference '{}' is derived", feature.name)
 			return false
 		}
 
-		if ((element.jsonNull || element.jsonObject) && !feature.many) {
+		if((element.jsonNull || element.jsonObject) && !feature.many) {
 			logger.debug("EReference '{}' is object or null", feature.name)
 			return true
 		}
 
-		if ((element.jsonNull || element.jsonArray) && feature.many) {
+		if((element.jsonNull || element.jsonArray) && feature.many) {
 			logger.debug("EReference '{}' is array or null", feature.name)
 			return true
 		}
@@ -71,15 +71,23 @@ class EMF {
 	}
 
 	def isContainmentSettable(EReference feature) {
-		if (feature.containment) {
+		if(feature.containment) {
 			logger.debug("EReference '{}' is containment", feature.name)
 			return true
 		}
 	}
 
+	def getNameAttribute(EClass eClass) {
+		return eClass.getAttribute("name")
+	}
+	
+	def getAttribute(EClass eClass, String name) {
+		return eClass.EAllAttributes.filter[it.name == name && !it.derived].head
+	}
+
 	def safePackagePrefix(String type) {
 		val segments = Splitter.on(".").split(type)
-		if (segments.size != 2) {
+		if(segments.size != 2) {
 			throw new FlatlandException(SC_BAD_REQUEST, "Not a valid type '{}'", type)
 		}
 		segments.get(0)
@@ -87,7 +95,7 @@ class EMF {
 
 	def safeEType(String type) {
 		val segments = Splitter.on(".").split(type)
-		if (segments.size != 2) {
+		if(segments.size != 2) {
 			throw new FlatlandException(SC_BAD_REQUEST, "Not a valid type '{}'", type)
 		}
 		segments.get(1)
@@ -95,7 +103,7 @@ class EMF {
 
 	def safeCreateType(CDOView view, String type) {
 		val ePackage = view.ePackage(type.safePackagePrefix)
-		val eClass = view.safeEClass(type)		
+		val eClass = view.safeEClass(type)
 		val newObject = ePackage.EFactoryInstance.create(eClass)
 		logger.debug("Created new object '{}'", newObject)
 		return newObject
@@ -104,7 +112,7 @@ class EMF {
 	def ePackage(CDOView view, String nsPrefix) {
 		val packageRegistry = view.session.packageRegistry
 		val packageInfo = packageRegistry.packageInfos.filter[it.EPackage.nsPrefix == nsPrefix].head
-		if (packageInfo == null) {
+		if(packageInfo == null) {
 			throw new FlatlandException(SC_BAD_REQUEST, "Invalid package prefix '{}'", nsPrefix)
 		}
 		val ePackage = packageInfo.EPackage
@@ -112,12 +120,12 @@ class EMF {
 		return ePackage
 	}
 
-	def private safeEClass(CDOView view, String type) {
+	def safeEClass(CDOView view, String type) {
 		val eType = type.safeEType
 		val ePackage = view.ePackage(type.safePackagePrefix)
 		val eClass = ePackage.EClassifiers.filter[it.name == eType].head as EClass
-		if (eClass == null) {
-			 throw new FlatlandException(SC_BAD_REQUEST, "Could not resolve eClass for '{}'", type)
+		if(eClass == null) {
+			throw new FlatlandException(SC_BAD_REQUEST, "Could not resolve eClass for '{}'", type)
 		}
 		logger.debug("Resolved EClass '{}'", eClass)
 		return eClass

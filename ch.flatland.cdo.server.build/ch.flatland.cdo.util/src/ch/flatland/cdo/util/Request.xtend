@@ -45,6 +45,10 @@ class Request {
 		return req.getParameter(PARAM_XOR_FILTER) != null
 	}
 	
+	def isNoRefs(HttpServletRequest req) {
+		return req.getParameter(PARAM_NO_REFS) != null
+	}
+	
 	def isMetaDataRequested(HttpServletRequest req) {
 		return req.getParameter(PARAM_META) != null
 	}

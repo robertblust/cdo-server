@@ -113,7 +113,9 @@ class JsonConverter {
 				val jsonBaseObject = object.toJsonBase
 
 				jsonBaseObject.addAttributes(object)
-				jsonBaseObject.addReferences(object)
+				if(jsonConverterConfig.showReferences) {
+					jsonBaseObject.addReferences(object)
+				}
 
 				jsonArray.add(jsonBaseObject)
 			}
@@ -140,7 +142,9 @@ class JsonConverter {
 			val jsonBaseObject = object.toJsonBase
 
 			jsonBaseObject.addAttributes(object)
-			jsonBaseObject.addReferences(object)
+			if(jsonConverterConfig.showReferences) {
+				jsonBaseObject.addReferences(object)
+			}
 
 			// finally add ok status
 			val objectWithStatusOK = newObjectWithStatusOK
@@ -166,9 +170,9 @@ class JsonConverter {
 		jsonStatusObject.addProperty(HTTP_STATUS_DESCRIPTION, object.httpStatus.description)
 		jsonStatusObject.addProperty(TYPE, object.class.simpleName)
 		jsonStatusObject.addProperty(MESSAGE, object.message)
-		
+
 		val jsonBaseObject = new JsonObject
-		jsonBaseObject.add(STATUS, jsonStatusObject) 
+		jsonBaseObject.add(STATUS, jsonStatusObject)
 		jsonBaseObject.toString
 	}
 
@@ -536,9 +540,9 @@ class JsonConverter {
 	def newObjectWithStatusOK() {
 		val objectWithStatusOK = new JsonObject
 		objectWithStatusOK.addProperty(STATUS, "OK")
-		
+
 		val jsonBaseObject = new JsonObject
-		jsonBaseObject.add(STATUS, objectWithStatusOK) 
+		jsonBaseObject.add(STATUS, objectWithStatusOK)
 		return jsonBaseObject
 	}
 

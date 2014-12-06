@@ -21,14 +21,20 @@ class DataStore {
 	val logger = LoggerFactory.getLogger(this.class)
 
 	val extension Request = new Request
+	val extension EMF = new EMF
 
 	def findByType(CDOView view, String type) {
 
 		// TODO sql depends on mapping strategy
 		val List<EObject> result = newArrayList
+		
+		var orderBy = ""
+		if (view.safeEClass(type).nameAttribute != null) {
+			orderBy = " ORDER BY name"
+		}
 
 		//val query = view.createQuery("ocl", type.safeEType + ".allInstances()")
-		val query = view.createQuery("sql", "SELECT cdo_id FROM " + type.replace(".", "_") + " WHERE cdo_revised = 0 and cdo_version > 0")
+		val query = view.createQuery("sql", "SELECT cdo_id FROM " + type.replace(".", "_") + " WHERE cdo_revised = 0 and cdo_version > 0" + orderBy)
 		logger.debug("Execute '{}' query '{}'", query.queryLanguage, query.queryString)
 		val iterator = query.getResultAsync(typeof(CDOObject))
 		while(iterator.hasNext) {
@@ -57,21 +63,19 @@ class DataStore {
 		val params = req.parameterMapValueNotNull
 		for (paramName : params.keySet) {
 			logger.debug("Parameter name for filter '{}'", paramName)
-			for (attribute : eClass.EAllAttributes) {
-				if(attribute.name == paramName) {
-					logger.debug("Found eAttribute '{}'", attribute.name)
-					for (object : objects) {
-						if(object.eGet(attribute) != null) {
-							val objectValue = object.eGet(attribute).toString.toLowerCase
-							val paramValue = params.get(paramName).toLowerCase
-							if(objectValue.contains(paramValue)) {
-								logger.debug("Match '{}'", object)
-								if(!matches.contains(object)) {
-									matches.add(object)
-								}
+			val attribute = eClass.getAttribute(paramName)
+			if(attribute != null) {
+				for (object : objects) {
+					if(object.eGet(attribute) != null) {
+						val objectValue = object.eGet(attribute).toString.toLowerCase
+						val paramValue = params.get(paramName).toLowerCase
+						logger.debug("Compare values '{}' contains '{}'", objectValue, paramValue)
+						if(objectValue.contains(paramValue)) {
+							logger.debug("Match '{}'", object)
+							if(!matches.contains(object)) {
+								matches.add(object)
 							}
 						}
-
 					}
 				}
 			}
@@ -91,23 +95,21 @@ class DataStore {
 		val params = req.parameterMapValueNotNull
 		for (paramName : params.keySet) {
 			logger.debug("Parameter name for filter '{}'", paramName)
-			for (attribute : eClass.EAllAttributes) {
-				if(attribute.name == paramName) {
-					logger.debug("Found eAttribute '{}'", attribute.name)
-					for (object : objects) {
-						if(object.eGet(attribute) != null) {
-							val objectValue = object.eGet(attribute).toString.toLowerCase
-							val paramValue = params.get(paramName).toLowerCase
-							if(!objectValue.contains(paramValue)) {
-								logger.debug("Reduce '{}'", object)
-								matches.remove(object)
-								processed = true
-							}
-						} else {
+			val attribute = eClass.getAttribute(paramName)
+			if(attribute != null) {
+				for (object : objects) {
+					if(object.eGet(attribute) != null) {
+						val objectValue = object.eGet(attribute).toString.toLowerCase
+						val paramValue = params.get(paramName).toLowerCase
+						if(!objectValue.contains(paramValue)) {
 							logger.debug("Reduce '{}'", object)
 							matches.remove(object)
 							processed = true
 						}
+					} else {
+						logger.debug("Reduce '{}'", object)
+						matches.remove(object)
+						processed = true
 					}
 				}
 			}
