@@ -20,12 +20,29 @@ class Request {
 
 	val public static AUTH_HEADER = "Authorization"
 	val public static ACCEPT_HEADER = "Accept"
+	
+	def getParameterMapValueNotNull(HttpServletRequest req) {
+		val params = newHashMap()
+		val enum = req.parameterNames
+		while(enum.hasMoreElements) {
+			val paramName = enum.nextElement
+			if (req.getParameter(paramName) != null && req.getParameter(paramName).length > 0) {
+				val paramValue = req.getParameter(paramName)
+				params.put(paramName, paramValue)
+			}	
+		}
+		return params
+	}
 
 	def getJsonCallback(HttpServletRequest req) {
 		if(req.getParameter(PARAM_JSONP_CALLBACK) != null && req.getParameter(PARAM_JSONP_CALLBACK).length > 0) {
 			return req.getParameter(PARAM_JSONP_CALLBACK)
 		}
 		return null
+	}
+	
+	def isXor(HttpServletRequest req) {
+		return req.getParameter(PARAM_XOR_FILTER) != null
 	}
 	
 	def isMetaDataRequested(HttpServletRequest req) {

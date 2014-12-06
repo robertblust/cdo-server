@@ -20,6 +20,8 @@ import org.slf4j.LoggerFactory
 class DataStore {
 	val logger = LoggerFactory.getLogger(this.class)
 
+	val extension Request = new Request
+
 	def findByType(CDOView view, String type) {
 
 		// TODO sql depends on mapping strategy
@@ -38,16 +40,22 @@ class DataStore {
 		return result
 	}
 
-	def filterByAttributeXOR(List<EObject> objects, HttpServletRequest req) {
+	def filterByAttribute(List<EObject> objects, HttpServletRequest req) {
+		if(req.xor) {
+			return objects.filterByAttributeXOR(req)
+		}
+		return objects.filterByAttributeAND(req)
+	}
+
+	def private filterByAttributeXOR(List<EObject> objects, HttpServletRequest req) {
 		if(objects.size == 0 || req.parameterMap.size == 0) {
 			return objects
 		}
 		val matches = newArrayList
 		val eClass = objects.get(0).eClass
 
-		val enum = req.parameterNames
-		while(enum.hasMoreElements) {
-			val paramName = enum.nextElement
+		val params = req.parameterMapValueNotNull
+		for (paramName : params.keySet) {
 			logger.debug("Parameter name for filter '{}'", paramName)
 			for (attribute : eClass.EAllAttributes) {
 				if(attribute.name == paramName) {
@@ -55,7 +63,7 @@ class DataStore {
 					for (object : objects) {
 						if(object.eGet(attribute) != null) {
 							val objectValue = object.eGet(attribute).toString.toLowerCase
-							val paramValue = req.getParameter(paramName).toLowerCase
+							val paramValue = params.get(paramName).toLowerCase
 							if(objectValue.contains(paramValue)) {
 								logger.debug("Match '{}'", object)
 								if(!matches.contains(object)) {
@@ -71,17 +79,17 @@ class DataStore {
 		return matches
 	}
 
-	def filterByAttributeAND(List<EObject> objects, HttpServletRequest req) {
+	def private filterByAttributeAND(List<EObject> objects, HttpServletRequest req) {
 		if(objects.size == 0 || req.parameterMap.size == 0) {
 			return objects
 		}
 		val matches = newArrayList
 		matches.addAll(objects)
 		val eClass = objects.get(0).eClass
+		var processed = false
 
-		val enum = req.parameterNames
-		while(enum.hasMoreElements) {
-			val paramName = enum.nextElement
+		val params = req.parameterMapValueNotNull
+		for (paramName : params.keySet) {
 			logger.debug("Parameter name for filter '{}'", paramName)
 			for (attribute : eClass.EAllAttributes) {
 				if(attribute.name == paramName) {
@@ -89,19 +97,26 @@ class DataStore {
 					for (object : objects) {
 						if(object.eGet(attribute) != null) {
 							val objectValue = object.eGet(attribute).toString.toLowerCase
-							val paramValue = req.getParameter(paramName).toLowerCase
+							val paramValue = params.get(paramName).toLowerCase
 							if(!objectValue.contains(paramValue)) {
 								logger.debug("Reduce '{}'", object)
 								matches.remove(object)
+								processed = true
 							}
 						} else {
 							logger.debug("Reduce '{}'", object)
 							matches.remove(object)
+							processed = true
 						}
 					}
 				}
 			}
 		}
-		return matches
+
+		if(processed) {
+			return matches
+		} else {
+			return emptyList
+		}
 	}
 }
