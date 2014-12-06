@@ -10,8 +10,6 @@
  */
 package ch.flatland.cdo.util
 
-import com.google.gson.JsonArray
-import com.google.gson.JsonPrimitive
 import java.util.List
 import javax.servlet.http.HttpServletRequest
 import org.eclipse.emf.cdo.CDOObject
