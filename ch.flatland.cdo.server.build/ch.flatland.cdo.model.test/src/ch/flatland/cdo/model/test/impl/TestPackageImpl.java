@@ -107,8 +107,8 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 		isInited = true;
 
 		// Initialize simple dependencies
-		EcorePackage.eINSTANCE.eClass();
 		XMLTypePackage.eINSTANCE.eClass();
+		EcorePackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theTestPackage.createPackageContents();
