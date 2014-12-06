@@ -10,11 +10,15 @@
  */
 package ch.flatland.cdo.util
 
+import com.google.gson.JsonArray
+import com.google.gson.JsonPrimitive
 import java.util.List
 import javax.servlet.http.HttpServletRequest
 import org.eclipse.emf.cdo.CDOObject
 import org.eclipse.emf.cdo.view.CDOView
+import org.eclipse.emf.ecore.EAttribute
 import org.eclipse.emf.ecore.EClass
+import org.eclipse.emf.ecore.EEnum
 import org.eclipse.emf.ecore.EObject
 import org.slf4j.LoggerFactory
 
@@ -40,7 +44,7 @@ class DataStore {
 			result.add(obj)
 		}
 		iterator.close
-		
+
 		// TODO should an empty list be returned or Status 404?
 		return result
 	}
@@ -57,7 +61,7 @@ class DataStore {
 			if(attribute != null) {
 				logger.debug("Parameter name for filter '{}'", paramName)
 				for (value : req.parameterMap.get(paramName)) {
-					builder.append(" " + kind + " LOWER(" + paramName.checkReservedWords + ") LIKE '%" + value.toLowerCase + "%'")
+					builder.append(" " + kind + " LOWER(" + paramName.checkReservedWords + ") LIKE '%" + attribute.getValue(value).toLowerCase + "%'")
 				}
 			}
 		}
@@ -75,19 +79,33 @@ class DataStore {
 	}
 
 	def private checkReservedWords(String name) {
-		if (SQL92_RESERVED_WORDS.contains(name.toUpperCase)) {
+		if(SQL92_RESERVED_WORDS.contains(name.toUpperCase)) {
 			return (name + "0").toUpperCase
 		}
 		return name.toUpperCase
+	}
+
+	def private getValue(EAttribute attribute, String value) {
+		println(value)
+		if(attribute.EAttributeType instanceof EEnum) {
+			val enum = attribute.EAttributeType as EEnum
+			for (literal : enum.ELiterals) {
+				if (literal.name == value) {
+					return literal.value.toString
+				}
+			}
+		} else {
+			return value
+		}
 	}
 
 	/*
 	 * Copied from org.eclipse.net4j.spi.db.DBAdpater
 	 * @author Eike Stepper
 	 */
-	val static SQL92_RESERVED_WORDS = newArrayList("ABSOLUTE", "ACTION", "ADD", "AFTER", "ALL", "ALLOCATE", "ALTER", "AND", "ANY", "ARE", "ARRAY", "AS", "ASC", "ASENSITIVE", "ASSERTION", "ASYMMETRIC", "AT", "ATOMIC", "AUTHORIZATION", "AVG", "BEFORE", "BEGIN", "BETWEEN", "BIGINT", "BINARY", "BIT",
-		"BIT_LENGTH", "BLOB", "BOOLEAN", "BOTH", "BREADTH", "BY", "CALL", "CALLED", "CASCADE", "CASCADED", "CASE", "CAST", "CATALOG", "CHAR", "CHARACTER", "CHARACTER_LENGTH", "CHAR_LENGTH", "CHECK", "CLOB", "CLOSE", "COALESCE", "COLLATE", "COLLATION", "COLUMN", "COMMIT", "CONDITION", "CONNECT",
-		"CONNECTION", "CONSTRAINT", "CONSTRAINTS", "CONSTRUCTOR", "CONTAINS", "CONTINUE", "CONVERT", "CORRESPONDING", "COUNT", "CREATE", "CROSS", "CUBE", "CURRENT", "CURRENT_DATE", "CURRENT_DEFAULT_TRANSFORM_GROUP", "CURRENT_PATH", "CURRENT_ROLE", "CURRENT_TIME", "CURRENT_TIMESTAMP",
+	val private static SQL92_RESERVED_WORDS = newArrayList("ABSOLUTE", "ACTION", "ADD", "AFTER", "ALL", "ALLOCATE", "ALTER", "AND", "ANY", "ARE", "ARRAY", "AS", "ASC", "ASENSITIVE", "ASSERTION", "ASYMMETRIC", "AT", "ATOMIC", "AUTHORIZATION", "AVG", "BEFORE", "BEGIN", "BETWEEN", "BIGINT", "BINARY",
+		"BIT", "BIT_LENGTH", "BLOB", "BOOLEAN", "BOTH", "BREADTH", "BY", "CALL", "CALLED", "CASCADE", "CASCADED", "CASE", "CAST", "CATALOG", "CHAR", "CHARACTER", "CHARACTER_LENGTH", "CHAR_LENGTH", "CHECK", "CLOB", "CLOSE", "COALESCE", "COLLATE", "COLLATION", "COLUMN", "COMMIT", "CONDITION",
+		"CONNECT", "CONNECTION", "CONSTRAINT", "CONSTRAINTS", "CONSTRUCTOR", "CONTAINS", "CONTINUE", "CONVERT", "CORRESPONDING", "COUNT", "CREATE", "CROSS", "CUBE", "CURRENT", "CURRENT_DATE", "CURRENT_DEFAULT_TRANSFORM_GROUP", "CURRENT_PATH", "CURRENT_ROLE", "CURRENT_TIME", "CURRENT_TIMESTAMP",
 		"CURRENT_TRANSFORM_GROUP_FOR_TYPE", "CURRENT_USER", "CURSOR", "CYCLE", "DATA", "DATE", "DAY", "DEALLOCATE", "DEC", "DECIMAL", "DECLARE", "DEFAULT", "DEFERRABLE", "DEFERRED", "DELETE", "DEPTH", "DEREF", "DESC", "DESCRIBE", "DESCRIPTOR", "DETERMINISTIC", "DIAGNOSTICS", "DISCONNECT", "DISTINCT",
 		"DO", "DOMAIN", "DOUBLE", "DROP", "DYNAMIC", "EACH", "ELEMENT", "ELSE", "ELSEIF", "END", "EQUALS", "ESCAPE", "EXCEPT", "EXCEPTION", "EXEC", "EXECUTE", "EXISTS", "EXIT", "EXTERNAL", "EXTRACT", "FALSE", "FETCH", "FILTER", "FIRST", "FLOAT", "FOR", "FOREIGN", "FOUND", "FREE", "FROM", "FULL",
 		"FUNCTION", "GENERAL", "GET", "GLOBAL", "GO", "GOTO", "GRANT", "GROUP", "GROUPING", "HANDLER", "HAVING", "HOLD", "HOUR", "IDENTITY", "IF", "IMMEDIATE", "IN", "INDICATOR", "INITIALLY", "INNER", "INOUT", "INPUT", "INSENSITIVE", "INSERT", "INT", "INTEGER", "INTERSECT", "INTERVAL", "INTO", "IS",
