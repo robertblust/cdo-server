@@ -127,7 +127,7 @@ class EMF {
 		if(eClass == null) {
 			throw new FlatlandException(SC_BAD_REQUEST, "Could not resolve eClass for '{}'", type)
 		}
-		logger.debug("Resolved EClass '{}'", eClass)
+		logger.debug("Resolved EClass '{}'", eClass.name)
 		return eClass
 	}
 }
