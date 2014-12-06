@@ -125,7 +125,7 @@ class JsonConverter {
 			objectWithStatusOK.add(DATA, jsonArray)
 
 			// meta requested?
-			if(jsonConverterConfig.meta) {
+			if(jsonConverterConfig.meta && objects.size > 0) {
 				objectWithStatusOK.addMeta(objects.get(0))
 			}
 
@@ -283,7 +283,7 @@ class JsonConverter {
 					val enum = attribute.EAttributeType as EEnum
 					val jsonLiterals = new JsonArray
 					for (literal : enum.ELiterals) {
-						jsonLiterals.add(new JsonPrimitive(literal.name))
+						jsonLiterals.add(new JsonPrimitive(literal.value + "=" + literal.name))
 						jsonAttribute.add(ENUM_LITERALS, jsonLiterals)
 					}
 				} else {

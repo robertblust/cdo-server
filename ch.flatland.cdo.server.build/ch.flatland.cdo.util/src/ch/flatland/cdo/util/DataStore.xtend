@@ -40,6 +40,8 @@ class DataStore {
 			result.add(obj)
 		}
 		iterator.close
+		
+		// TODO should an empty list be returned or Status 404?
 		return result
 	}
 
