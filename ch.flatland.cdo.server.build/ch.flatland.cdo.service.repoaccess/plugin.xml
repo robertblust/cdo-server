@@ -6,21 +6,21 @@
       <servlet
             alias="/repo"
             class="ch.flatland.cdo.service.repoaccess.RepoAccessServlet"
-            httpcontextId="ch.flatland.cdo.service.repoaccess.BasicAuthHttpContext"
+            httpcontextId="ch.flatland.cdo.service.repoaccess.AuthHttpContext"
             load-on-startup="true">
       </servlet>
       <servlet
             alias="/obj"
             class="ch.flatland.cdo.service.repoaccess.RepoAccessServlet"
-            httpcontextId="ch.flatland.cdo.service.repoaccess.BasicAuthHttpContext"
+            httpcontextId="ch.flatland.cdo.service.repoaccess.AuthHttpContext"
             load-on-startup="true">
       </servlet>
    </extension>
    <extension
          point="org.eclipse.equinox.http.registry.httpcontexts">
       <httpcontext
-            class="ch.flatland.cdo.service.repoaccess.BasicAuthHttpContext"
-            id="ch.flatland.cdo.service.repoaccess.BasicAuthHttpContext">
+            class="ch.flatland.cdo.service.repoaccess.AuthHttpContext"
+            id="ch.flatland.cdo.service.repoaccess.AuthHttpContext">
       </httpcontext>
    </extension>
 

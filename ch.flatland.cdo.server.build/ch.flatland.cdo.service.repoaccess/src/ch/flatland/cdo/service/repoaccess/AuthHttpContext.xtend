@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse
 import org.osgi.service.http.HttpContext
 import org.slf4j.LoggerFactory
 
-class BasicAuthHttpContext implements HttpContext {
+class AuthHttpContext implements HttpContext {
 
 	val logger = LoggerFactory.getLogger(this.class)
 
