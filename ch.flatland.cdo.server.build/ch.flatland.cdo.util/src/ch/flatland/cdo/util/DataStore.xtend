@@ -86,7 +86,6 @@ class DataStore {
 	}
 
 	def private getValue(EAttribute attribute, String value) {
-		println(value)
 		if(attribute.EAttributeType instanceof EEnum) {
 			val enum = attribute.EAttributeType as EEnum
 			for (literal : enum.ELiterals) {
