@@ -19,16 +19,17 @@ import static javax.servlet.http.HttpServletResponse.*
 class Request {
 
 	val public static AUTH_HEADER = "Authorization"
+	val public static AUTH_BASIC = "Basic"
 	val public static ACCEPT_HEADER = "Accept"
-	
+
 	def getParameterNameAsListValueNotNull(HttpServletRequest req) {
 		val params = newArrayList
 		val enum = req.parameterNames
 		while(enum.hasMoreElements) {
 			val paramName = enum.nextElement
-			if (req.getParameter(paramName) != null && req.getParameter(paramName).length > 0) {
+			if(req.getParameter(paramName) != null && req.getParameter(paramName).length > 0) {
 				params.add(paramName)
-			}	
+			}
 		}
 		return params
 	}
@@ -39,19 +40,19 @@ class Request {
 		}
 		return null
 	}
-	
+
 	def isXor(HttpServletRequest req) {
 		return req.getParameter(PARAM_XOR_FILTER) != null
 	}
-	
+
 	def isNoRefs(HttpServletRequest req) {
 		return req.getParameter(PARAM_NO_REFS) != null
 	}
-	
+
 	def isMetaDataRequested(HttpServletRequest req) {
 		return req.getParameter(PARAM_META) != null
 	}
-	
+
 	def isForceRequested(HttpServletRequest req) {
 		return req.getParameter(PARAM_FORCE) != null
 	}
@@ -77,7 +78,7 @@ class Request {
 	}
 
 	def isBasicAuth(HttpServletRequest request) {
-		return request.getHeader(AUTH_HEADER) != null
+		return request.getHeader(AUTH_HEADER) != null && request.getHeader(AUTH_HEADER).toLowerCase.startsWith(AUTH_BASIC.toLowerCase)
 	}
 
 	def isAcceptable(HttpServletRequest request) {
