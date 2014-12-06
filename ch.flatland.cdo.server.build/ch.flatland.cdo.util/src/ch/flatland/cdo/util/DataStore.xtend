@@ -91,6 +91,7 @@ class DataStore {
 					return literal.value.toString
 				}
 			}
+			return "-1"
 		} else {
 			return value
 		}
