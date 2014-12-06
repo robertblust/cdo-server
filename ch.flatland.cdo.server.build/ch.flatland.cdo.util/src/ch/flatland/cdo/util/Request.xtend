@@ -21,14 +21,13 @@ class Request {
 	val public static AUTH_HEADER = "Authorization"
 	val public static ACCEPT_HEADER = "Accept"
 	
-	def getParameterMapValueNotNull(HttpServletRequest req) {
-		val params = newHashMap()
+	def getParameterNameAsListValueNotNull(HttpServletRequest req) {
+		val params = newArrayList
 		val enum = req.parameterNames
 		while(enum.hasMoreElements) {
 			val paramName = enum.nextElement
 			if (req.getParameter(paramName) != null && req.getParameter(paramName).length > 0) {
-				val paramValue = req.getParameter(paramName)
-				params.put(paramName, paramValue)
+				params.add(paramName)
 			}	
 		}
 		return params
