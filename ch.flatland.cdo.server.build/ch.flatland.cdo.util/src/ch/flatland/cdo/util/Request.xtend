@@ -40,6 +40,13 @@ class Request {
 		}
 		return null
 	}
+	
+	def getOrderBy(HttpServletRequest req) {
+		if(req.getParameter(PARAM_ORDER_BY) != null && req.getParameter(PARAM_ORDER_BY).length > 0) {
+			return req.getParameter(PARAM_ORDER_BY)
+		}
+		return null
+	}
 
 	def isXor(HttpServletRequest req) {
 		return req.getParameter(PARAM_XOR_FILTER) != null

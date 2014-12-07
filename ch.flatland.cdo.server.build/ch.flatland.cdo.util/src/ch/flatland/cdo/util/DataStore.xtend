@@ -38,7 +38,7 @@ class DataStore {
 		val eClass = view.safeEClass(type)
 		val mappingStrategy = view.mappingStrategy
 
-		val query = view.createQuery("sql", "SELECT CDO_ID FROM " + mappingStrategy.getTableName(eClass) + " WHERE (CDO_REVISED = 0 AND CDO_VERSION > 0)" + eClass.filterQuery(req, mappingStrategy) + eClass.orderBy)
+		val query = view.createQuery("sql", "SELECT CDO_ID FROM " + mappingStrategy.getTableName(eClass) + " WHERE (CDO_REVISED = 0 AND CDO_VERSION > 0)" + eClass.filterQuery(req, mappingStrategy) + eClass.orderBy(req, mappingStrategy))
 		logger.debug("Execute '{}' query '{}'", query.queryLanguage, query.queryString)
 		val iterator = query.getResultAsync(typeof(CDOObject))
 		while(iterator.hasNext) {
@@ -74,7 +74,10 @@ class DataStore {
 		return builder.toString
 	}
 
-	def private orderBy(EClass eClass) {
+	def private orderBy(EClass eClass, HttpServletRequest req, IMappingStrategy mappingStrategy) {
+		if (req.orderBy != null && eClass.getAttribute(req.orderBy) != null) {
+			return " ORDER BY " + mappingStrategy.getFieldName(eClass.getAttribute(req.orderBy))
+		}
 		if(eClass.nameAttribute != null) {
 			return " ORDER BY NAME"
 		}

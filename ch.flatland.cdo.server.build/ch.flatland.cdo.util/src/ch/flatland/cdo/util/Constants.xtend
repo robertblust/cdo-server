@@ -15,6 +15,7 @@ class Constants {
 	// http
 	val public static PARAM_META = "meta"
 	val public static PARAM_JSONP_CALLBACK = "callback"
+	val public static PARAM_ORDER_BY = "orderby"
 	val public static PARAM_FORCE = "force"
 	val public static PARAM_XOR_FILTER = "xor"
 	val public static PARAM_NO_REFS = "norefs"
