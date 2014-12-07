@@ -31,12 +31,35 @@ class DataStore {
 	val extension EMF = new EMF
 
 	def findByType(CDOView view, String type, HttpServletRequest req) {
-		
-		// TODO sql depends on mapping strategy
+
+		// TODO find better solution 'Depends on Relation DB Store' 
+		//sql depends on mapping strategy
 		val List<EObject> result = newArrayList
 
 		val eClass = view.safeEClass(type)
 		val mappingStrategy = view.mappingStrategy
+		var tableName = type.replace(".", "_")
+		try {
+			tableName = mappingStrategy.getTableName(eClass)
+		} catch(Exception e) {
+			// TODO find better solution 'Depends on MappingStrategy'
+			// mappingStrategy.getTableName(eClass) causes an Exception
+			// 'StoreThreadLocal.getSession == null'
+			// when the requested class is never requested via standard cdo mechanism
+			// Solution to initialize session is a hack!!! 
+			// The exception should appears max once per eClass
+			// The tableName is known instead of asking the mappingStrategy
+			logger.debug("Hack NoSessionRegisteredException '{}'", e.message)
+			val query = view.createQuery("sql", "SELECT CDO_ID FROM " + tableName + " WHERE (CDO_REVISED = 0 AND CDO_VERSION > 0)")
+			query.maxResults = 1
+			logger.debug("Hack NoSessionRegisteredException Execute '{}' query '{}'", query.queryLanguage, query.queryString)
+			val iterator = query.getResultAsync(typeof(CDOObject))
+			while(iterator.hasNext) {
+				val obj = iterator.next
+				logger.debug("Hack NoSessionRegisteredException Found '{}'", obj)
+			}
+			iterator.close
+		}
 
 		val query = view.createQuery("sql", "SELECT CDO_ID FROM " + mappingStrategy.getTableName(eClass) + " WHERE (CDO_REVISED = 0 AND CDO_VERSION > 0)" + eClass.filterQuery(req, mappingStrategy) + eClass.orderBy(req, mappingStrategy))
 		logger.debug("Execute '{}' query '{}'", query.queryLanguage, query.queryString)
@@ -48,7 +71,8 @@ class DataStore {
 		}
 		iterator.close
 
-		// TODO should an empty list be returned or Status 404?
+		// TODO check other opinion 'Rest Standards'
+		// Should an empty list be returned or Status 404?
 		return result
 	}
 
@@ -60,7 +84,7 @@ class DataStore {
 		}
 		val params = req.parameterNameAsListValueNotNull
 		for (paramName : params) {
-			val attribute = eClass.getAttribute(paramName)		
+			val attribute = eClass.getAttribute(paramName)
 			if(attribute != null) {
 				logger.debug("Parameter name for filter '{}'", paramName)
 				for (value : req.parameterMap.get(paramName)) {
@@ -75,7 +99,7 @@ class DataStore {
 	}
 
 	def private orderBy(EClass eClass, HttpServletRequest req, IMappingStrategy mappingStrategy) {
-		if (req.orderBy != null && eClass.getAttribute(req.orderBy) != null) {
+		if(req.orderBy != null && eClass.getAttribute(req.orderBy) != null) {
 			return " ORDER BY " + mappingStrategy.getFieldName(eClass.getAttribute(req.orderBy))
 		}
 		if(eClass.nameAttribute != null) {
@@ -83,19 +107,23 @@ class DataStore {
 		}
 		return ""
 	}
-	
+
 	def private getMappingStrategy(CDOView view) {
 		val repoName = view.session.repositoryInfo.name
 		val repo = IPluginContainer.INSTANCE.elements.filter[it instanceof IRepository && (it as IRepository).name == repoName].head
+		logger.debug("Resolved repo '{}'", repo)
 		val store = (repo as IRepository).store as IDBStore
-		return store.mappingStrategy
+		logger.debug("Resolved store '{}'", store)
+		val mappingStrategy = store.mappingStrategy
+		logger.debug("Resolved mapping strategy '{}'", mappingStrategy)
+		return mappingStrategy
 	}
-	
+
 	def private getValue(EAttribute attribute, String value) {
 		if(attribute.EAttributeType instanceof EEnum) {
 			val enum = attribute.EAttributeType as EEnum
 			for (literal : enum.ELiterals) {
-				if (literal.name == value) {
+				if(literal.name == value) {
 					return literal.value.toString
 				}
 			}
