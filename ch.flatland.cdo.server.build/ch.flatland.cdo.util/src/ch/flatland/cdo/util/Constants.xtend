@@ -50,6 +50,6 @@ class Constants {
 	val public static DATA = "data"
 
 	// servlets
-	val public static ALIAS_REPO = "/repo"
+	val public static ALIAS_NODE = "/node"
 	val public static ALIAS_OBJECT = "/obj"
 }

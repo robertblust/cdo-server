@@ -32,7 +32,7 @@ class View {
 
 		try {
 			switch (alias) {
-				case ALIAS_REPO: {
+				case ALIAS_NODE: {
 					if(req.pathInfo != null) {
 						return view.getResourceNode(req.pathInfo)
 					} else {

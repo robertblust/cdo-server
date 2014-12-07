@@ -4,7 +4,7 @@
    <extension
          point="org.eclipse.equinox.http.registry.servlets">
       <servlet
-            alias="/repo"
+            alias="/node"
             class="ch.flatland.cdo.service.repoaccess.RepoAccessServlet"
             httpcontextId="ch.flatland.cdo.service.repoaccess.AuthHttpContext"
             load-on-startup="true">

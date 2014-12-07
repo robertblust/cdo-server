@@ -327,7 +327,7 @@ class JsonConverter {
 	}
 
 	def private dispatch getUrl(CDOResourceNode object) {
-		ALIAS_REPO + object.path
+		ALIAS_NODE + object.path
 	}
 
 	def private dispatch getUrl(EObject object) {
