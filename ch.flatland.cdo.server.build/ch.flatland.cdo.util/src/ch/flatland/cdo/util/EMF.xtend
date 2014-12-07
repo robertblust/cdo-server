@@ -12,11 +12,16 @@ package ch.flatland.cdo.util
 
 import com.google.common.base.Splitter
 import com.google.gson.JsonElement
+import org.eclipse.emf.cdo.CDOObject
 import org.eclipse.emf.cdo.view.CDOView
 import org.eclipse.emf.ecore.EAttribute
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EClassifier
+import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
+import org.eclipse.emf.edit.EMFEditPlugin
+import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory
 import org.slf4j.LoggerFactory
 
 import static javax.servlet.http.HttpServletResponse.*
@@ -24,6 +29,8 @@ import static javax.servlet.http.HttpServletResponse.*
 class EMF {
 
 	val logger = LoggerFactory.getLogger(this.class)
+	
+	val ITEM_DELEGATOR = new AdapterFactoryItemDelegator(new ComposedAdapterFactory(EMFEditPlugin.getComposedAdapterFactoryDescriptorRegistry))
 
 	def getType(EClassifier classifier) {
 		classifier.EPackage.nsPrefix + "." + classifier.name
@@ -80,9 +87,24 @@ class EMF {
 	def getNameAttribute(EClass eClass) {
 		return eClass.getAttribute("name")
 	}
-	
+
 	def getAttribute(EClass eClass, String name) {
 		return eClass.EAllAttributes.filter[it.name == name && !it.derived].head
+	}
+
+	def validate(EObject object) {
+		val messages = newArrayList
+		val diagnostics = new FLDiagnostician(ITEM_DELEGATOR.getText(object) + " - " + (object as CDOObject).cdoID).validate(object)
+		//val diagnostics = Diagnostician.INSTANCE.validate(object)
+		if(diagnostics.severity > 0) {
+			for (child : diagnostics.children) {
+				if(child.severity > 0 && child.data.contains(object)) {
+					logger.debug("Diagnostics '{}'", child.message)
+					messages.add(child.message)
+				}
+			}
+		}
+		return messages
 	}
 
 	def safePackagePrefix(String type) {

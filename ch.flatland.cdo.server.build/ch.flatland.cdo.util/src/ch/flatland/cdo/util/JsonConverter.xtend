@@ -94,7 +94,7 @@ class JsonConverter {
 	}
 
 	def okToJson() {
-		newObjectWithStatusOK.toString
+		newObjectWithStatusOK(emptyList).toString
 	}
 
 	def dispatch String safeToJson(Object object) {
@@ -121,7 +121,7 @@ class JsonConverter {
 			}
 
 			// finally add ok status
-			val objectWithStatusOK = newObjectWithStatusOK
+			val objectWithStatusOK = newObjectWithStatusOK(emptyList)
 			objectWithStatusOK.add(DATA, jsonArray)
 
 			// meta requested?
@@ -145,9 +145,11 @@ class JsonConverter {
 			if(jsonConverterConfig.showReferences) {
 				jsonBaseObject.addReferences(object)
 			}
+	
+			val validationMessages = object.validate
+			// finally add ok status with messages
+			val objectWithStatusOK = newObjectWithStatusOK(validationMessages)
 
-			// finally add ok status
-			val objectWithStatusOK = newObjectWithStatusOK
 			objectWithStatusOK.add(DATA, jsonBaseObject)
 
 			// meta requested?
@@ -166,11 +168,12 @@ class JsonConverter {
 	def dispatch String safeToJson(FlatlandException object) {
 		val jsonStatusObject = new JsonObject
 		jsonStatusObject.addProperty(STATUS, FlatlandException.STATUS_NOK)
-		jsonStatusObject.addProperty(HTTP_STATUS, object.httpStatus)
-		jsonStatusObject.addProperty(HTTP_STATUS_DESCRIPTION, object.httpStatus.description)
-		jsonStatusObject.addProperty(TYPE, object.class.simpleName)
-		jsonStatusObject.addProperty(MESSAGE, object.message)
+		val messageArray = new JsonArray
+		messageArray.add(new JsonPrimitive(object.message))
+		messageArray.add(new JsonPrimitive(object.httpStatus))
+		messageArray.add(new JsonPrimitive(object.httpStatus.description))
 
+		jsonStatusObject.add(MESSAGES, messageArray)
 		val jsonBaseObject = new JsonObject
 		jsonBaseObject.add(STATUS, jsonStatusObject)
 		jsonBaseObject.toString
@@ -537,12 +540,19 @@ class JsonConverter {
 		(eObject as CDOObject).cdoView
 	}
 
-	def newObjectWithStatusOK() {
+	def newObjectWithStatusOK(List<String> messages) {
 		val objectWithStatusOK = new JsonObject
 		objectWithStatusOK.addProperty(STATUS, "OK")
 
 		val jsonBaseObject = new JsonObject
 		jsonBaseObject.add(STATUS, objectWithStatusOK)
+		if(messages.size > 0) {
+			val messageArray = new JsonArray
+			for (message : messages) {
+				messageArray.add(new JsonPrimitive(message))
+			}
+			objectWithStatusOK.add(MESSAGES, messageArray)
+		}
 		return jsonBaseObject
 	}
 

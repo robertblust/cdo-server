@@ -43,7 +43,7 @@ class Constants {
 	val public static CONTAINMENT = "containment"
 	val public static DERIVED = "derived"
 	val public static PERMISSION = "permission"
-	val public static MESSAGE = "message"
+	val public static MESSAGES = "messages"
 	val public static STATUS = "status"
 	val public static HTTP_STATUS = "httpStatus"
 	val public static HTTP_STATUS_DESCRIPTION = "httpDescription"
