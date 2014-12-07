@@ -120,8 +120,11 @@ class JsonConverter {
 				jsonArray.add(jsonBaseObject)
 			}
 
-			// finally add ok status
-			val objectWithStatusOK = newObjectWithStatusOK(emptyList)
+			val validationMessages = objects.validate
+
+			// finally add ok status with messages
+			val objectWithStatusOK = newObjectWithStatusOK(validationMessages)
+
 			objectWithStatusOK.add(DATA, jsonArray)
 
 			// meta requested?
@@ -145,8 +148,9 @@ class JsonConverter {
 			if(jsonConverterConfig.showReferences) {
 				jsonBaseObject.addReferences(object)
 			}
-	
+
 			val validationMessages = object.validate
+
 			// finally add ok status with messages
 			val objectWithStatusOK = newObjectWithStatusOK(validationMessages)
 
