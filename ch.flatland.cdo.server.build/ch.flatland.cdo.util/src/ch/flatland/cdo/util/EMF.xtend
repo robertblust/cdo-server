@@ -95,7 +95,7 @@ class EMF {
 	def validate(EObject object) {
 		val messages = newArrayList
 		val diagnostics = new FLDiagnostician(ITEM_DELEGATOR.getText(object) + " - " + (object as CDOObject).cdoID).validate(object)
-		//val diagnostics = Diagnostician.INSTANCE.validate(object)
+
 		if(diagnostics.severity > 0) {
 			for (child : diagnostics.children) {
 				if(child.severity > 0 && child.data.contains(object)) {
