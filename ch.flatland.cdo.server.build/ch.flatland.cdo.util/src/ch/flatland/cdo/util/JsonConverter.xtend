@@ -20,10 +20,12 @@ import java.text.SimpleDateFormat
 import java.util.ArrayList
 import java.util.Date
 import java.util.List
+import java.util.Map
 import org.apache.commons.codec.binary.Base64
 import org.eclipse.emf.cdo.CDOObject
 import org.eclipse.emf.cdo.common.security.NoPermissionException
 import org.eclipse.emf.cdo.eresource.CDOResourceNode
+import org.eclipse.emf.common.util.Diagnostic
 import org.eclipse.emf.common.util.Enumerator
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.EAttribute
@@ -31,6 +33,7 @@ import org.eclipse.emf.ecore.EClassifier
 import org.eclipse.emf.ecore.EEnum
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
+import org.eclipse.emf.ecore.EStructuralFeature
 import org.eclipse.emf.ecore.EcorePackage.Literals
 import org.eclipse.emf.ecore.util.EcoreUtil
 import org.eclipse.emf.edit.EMFEditPlugin
@@ -94,7 +97,7 @@ class JsonConverter {
 	}
 
 	def okToJson() {
-		newObjectWithStatusOK(emptyList).toString
+		newObjectWithStatusOK(newHashMap).toString
 	}
 
 	def dispatch String safeToJson(Object object) {
@@ -108,29 +111,23 @@ class JsonConverter {
 	def dispatch String safeToJson(List<EObject> objects) {
 		try {
 			val jsonArray = new JsonArray
+			val validationMessages = newHashMap
 
 			for (object : objects) {
 				val jsonBaseObject = object.toJsonBase
 
 				jsonBaseObject.addAttributes(object)
 				if(jsonConverterConfig.showReferences) {
-					jsonBaseObject.addReferences(object)
+					jsonBaseObject.addReferences(object, validationMessages)
 				}
-
+				jsonBaseObject.addMessagesAndMeta(object, validationMessages)
 				jsonArray.add(jsonBaseObject)
 			}
-
-			val validationMessages = objects.validate
 
 			// finally add ok status with messages
 			val objectWithStatusOK = newObjectWithStatusOK(validationMessages)
 
 			objectWithStatusOK.add(DATA, jsonArray)
-
-			// meta requested?
-			if(jsonConverterConfig.meta && objects.size > 0) {
-				objectWithStatusOK.addMeta(objects.get(0))
-			}
 
 			objectWithStatusOK.toString
 		} catch(NoPermissionException npe) {
@@ -143,23 +140,18 @@ class JsonConverter {
 	def dispatch String safeToJson(EObject object) {
 		try {
 			val jsonBaseObject = object.toJsonBase
-
+			val validationMessages = newHashMap
 			jsonBaseObject.addAttributes(object)
 			if(jsonConverterConfig.showReferences) {
-				jsonBaseObject.addReferences(object)
+				jsonBaseObject.addReferences(object, validationMessages)
 			}
 
-			val validationMessages = object.validate
+			jsonBaseObject.addMessagesAndMeta(object, validationMessages)
 
 			// finally add ok status with messages
 			val objectWithStatusOK = newObjectWithStatusOK(validationMessages)
 
 			objectWithStatusOK.add(DATA, jsonBaseObject)
-
-			// meta requested?
-			if(jsonConverterConfig.meta) {
-				objectWithStatusOK.addMeta(object)
-			}
 
 			objectWithStatusOK.toString
 		} catch(NoPermissionException npe) {
@@ -173,9 +165,20 @@ class JsonConverter {
 		val jsonStatusObject = new JsonObject
 		jsonStatusObject.addProperty(STATUS, FlatlandException.STATUS_NOK)
 		val messageArray = new JsonArray
-		messageArray.add(new JsonPrimitive(object.message))
-		messageArray.add(new JsonPrimitive(object.httpStatus))
-		messageArray.add(new JsonPrimitive(object.httpStatus.description))
+		val message = new JsonObject
+		message.addProperty(MESSAGE, object.message)
+		message.addProperty(ORIGIN, object.class.simpleName)
+		messageArray.add(message)
+
+		val httpStatus = new JsonObject
+		httpStatus.addProperty(MESSAGE, object.httpStatus)
+		httpStatus.addProperty(ORIGIN, object.class.simpleName)
+		messageArray.add(httpStatus)
+
+		val description = new JsonObject
+		description.addProperty(MESSAGE, object.httpStatus.description)
+		description.addProperty(ORIGIN, object.class.simpleName)
+		messageArray.add(description)
 
 		jsonStatusObject.add(MESSAGES, messageArray)
 		val jsonBaseObject = new JsonObject
@@ -238,7 +241,7 @@ class JsonConverter {
 		}
 	}
 
-	def private addReferences(JsonObject jsonBaseObject, EObject eObject) {
+	def private addReferences(JsonObject jsonBaseObject, EObject eObject, Map<EObject, List<Diagnostic>> validationMessages) {
 		val references = eObject.eClass.EAllReferences
 		val jsonReferences = new JsonObject
 		if(references.size > 0) {
@@ -253,6 +256,7 @@ class JsonConverter {
 
 							// should we add attributes or not?
 							jsonRefObject.addAttributes(value as EObject)
+							jsonRefObject.addMessagesAndMeta(value as EObject, validationMessages)
 							jsonReferencesArray.add(jsonRefObject)
 						}
 						jsonReferences.add(name, jsonReferencesArray)
@@ -262,7 +266,7 @@ class JsonConverter {
 					if(value != null) {
 						val jsonRefObject = value.toJsonObject as JsonObject
 						jsonRefObject.addAttributes(value as EObject)
-
+						jsonRefObject.addMessagesAndMeta(value as EObject, validationMessages)
 						jsonReferences.add(name, jsonRefObject)
 					}
 				}
@@ -318,6 +322,42 @@ class JsonConverter {
 			}
 		}
 		jsonBaseObject.add(PARAM_META, jsonTypeMeta)
+	}
+
+	def private addMessagesAndMeta(JsonObject jsonBaseObject, EObject object, Map<EObject, List<Diagnostic>> messages) {
+
+		// validation requested?
+		if(jsonConverterConfig.validate) {
+			val diags = object.validate
+			if(diags.size > 0) {
+				messages.put(object, diags)
+				val diagnosticArray = new JsonArray
+				diags.forEach [
+					val jsonDiag = new JsonObject
+					jsonDiag.add(MESSAGE, new JsonPrimitive(it.message))
+					val feature = it.data.get(1)
+					if(feature instanceof EAttribute) {
+						jsonDiag.add(FEATURE, new JsonPrimitive(ATTRIBUTES + "." + feature.name))
+					}
+					if(feature instanceof EReference) {
+						jsonDiag.add(FEATURE, new JsonPrimitive(REFERENCES + "." + feature.name))
+						jsonDiag.add(FEATURE, new JsonPrimitive(CONTAINMENT + "." + feature.isContainment))
+					}
+					if(feature instanceof EStructuralFeature) {
+						jsonDiag.addProperty(DERIVED, feature.isDerived)
+						jsonDiag.addProperty(LOWER_BOUND, feature.lowerBound)
+						jsonDiag.addProperty(UPPER_BOUND, feature.upperBound)
+					}
+					diagnosticArray.add(jsonDiag)
+				]
+				jsonBaseObject.add(MESSAGES, diagnosticArray)
+			}
+		}
+
+		// meta requested?
+		if(jsonConverterConfig.meta) {
+			jsonBaseObject.addMeta(object)
+		}
 	}
 
 	def private addType(JsonObject jsonBaseObject, EClassifier classifier) {
@@ -544,17 +584,24 @@ class JsonConverter {
 		(eObject as CDOObject).cdoView
 	}
 
-	def newObjectWithStatusOK(List<String> messages) {
+	def newObjectWithStatusOK(Map<EObject, List<Diagnostic>> messages) {
+
 		val objectWithStatusOK = new JsonObject
 		objectWithStatusOK.addProperty(STATUS, "OK")
 
 		val jsonBaseObject = new JsonObject
 		jsonBaseObject.add(STATUS, objectWithStatusOK)
+
 		if(messages.size > 0) {
 			val messageArray = new JsonArray
-			for (message : messages) {
-				messageArray.add(new JsonPrimitive(message))
-			}
+			messages.forEach [ source, diag |
+				diag.forEach [
+					val message = new JsonObject
+					message.addProperty(MESSAGE, it.message)
+					message.addProperty(ORIGIN, source.url)
+					messageArray.add(message)
+				]
+			]
 			objectWithStatusOK.add(MESSAGES, messageArray)
 		}
 		return jsonBaseObject

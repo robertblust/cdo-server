@@ -12,7 +12,6 @@ package ch.flatland.cdo.util
 
 import com.google.common.base.Splitter
 import com.google.gson.JsonElement
-import java.util.List
 import org.eclipse.emf.cdo.CDOObject
 import org.eclipse.emf.cdo.view.CDOView
 import org.eclipse.emf.ecore.EAttribute
@@ -20,9 +19,6 @@ import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EClassifier
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
-import org.eclipse.emf.edit.EMFEditPlugin
-import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator
-import org.eclipse.emf.edit.provider.ComposedAdapterFactory
 import org.slf4j.LoggerFactory
 
 import static javax.servlet.http.HttpServletResponse.*
@@ -30,8 +26,6 @@ import static javax.servlet.http.HttpServletResponse.*
 class EMF {
 
 	val logger = LoggerFactory.getLogger(this.class)
-
-	val ITEM_DELEGATOR = new AdapterFactoryItemDelegator(new ComposedAdapterFactory(EMFEditPlugin.getComposedAdapterFactoryDescriptorRegistry))
 
 	def getType(EClassifier classifier) {
 		classifier.EPackage.nsPrefix + "." + classifier.name
@@ -94,35 +88,18 @@ class EMF {
 	}
 
 	def validate(EObject object) {
-		val messages = newArrayList
-		val diagnostics = new FLDiagnostician(ITEM_DELEGATOR.getText(object)).validate(object)
+		val filterdDiagnostics = newArrayList
+		val diagnostics = new FLDiagnostician().validate(object)
 
 		if(diagnostics.severity > 0) {
 			for (child : diagnostics.children) {
 				if(child.severity > 0 && child.data.contains(object)) {
 					logger.debug("Diagnostics '{}'", (object as CDOObject).cdoID + ": " + child.message)
-					messages.add((object as CDOObject).cdoID + ": " + child.message)
+					filterdDiagnostics.add(child)
 				}
 			}
 		}
-		return messages
-	}
-
-	def validate(List<EObject> objects) {
-		val messages = newArrayList
-		for (object : objects) {
-			val diagnostics = new FLDiagnostician(ITEM_DELEGATOR.getText(object)).validate(object)
-
-			if(diagnostics.severity > 0) {
-				for (child : diagnostics.children) {
-					if(child.severity > 0 && child.data.contains(object)) {
-						logger.debug("Diagnostics '{}'", (object as CDOObject).cdoID + ": " + child.message)
-						messages.add((object as CDOObject).cdoID + ": " + child.message)
-					}
-				}
-			}
-		}
-		return messages
+		return filterdDiagnostics
 	}
 
 	def safePackagePrefix(String type) {
