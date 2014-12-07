@@ -171,7 +171,7 @@ class JsonConverter {
 		messageArray.add(message)
 
 		val httpStatus = new JsonObject
-		httpStatus.addProperty(MESSAGE, object.httpStatus)
+		httpStatus.addProperty(MESSAGE, "Status code (" + object.httpStatus + ")")
 		httpStatus.addProperty(ORIGIN, object.class.simpleName)
 		messageArray.add(httpStatus)
 
