@@ -139,16 +139,16 @@ class JsonConverter {
 	def dispatch String safeToJson(EObject object) {
 		try {
 			val jsonBaseObject = object.toJsonBase
-			val validationMessages = newHashMap
+			val fLDiagnostics = newHashMap
 			jsonBaseObject.addAttributes(object)
 			if(jsonConverterConfig.showReferences) {
-				jsonBaseObject.addReferences(object, validationMessages)
+				jsonBaseObject.addReferences(object, fLDiagnostics)
 			}
 
-			jsonBaseObject.addMessagesAndMeta(object, validationMessages)
+			jsonBaseObject.addMessagesAndMeta(object, fLDiagnostics)
 
 			// finally add ok status with messages
-			val objectWithStatusOK = newObjectWithStatusOK(validationMessages)
+			val objectWithStatusOK = newObjectWithStatusOK(fLDiagnostics)
 
 			objectWithStatusOK.add(DATA, jsonBaseObject)
 
