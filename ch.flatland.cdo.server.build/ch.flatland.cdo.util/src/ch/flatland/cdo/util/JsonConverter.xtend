@@ -141,7 +141,7 @@ class JsonConverter {
 		try {
 			val jsonBaseObject = object.toJsonBase
 			val fLDiagnostics = new LinkedHashMap<EObject, List<FLDiagnostic>>
-			
+
 			jsonBaseObject.addAttributes(object)
 			if(jsonConverterConfig.showReferences) {
 				jsonBaseObject.addReferences(object, fLDiagnostics)
@@ -331,7 +331,7 @@ class JsonConverter {
 		if(jsonConverterConfig.validate) {
 			val diags = object.validate
 			if(diags.size > 0) {
-				if (!fLDiagnostics.containsKey(object)) {
+				if(!fLDiagnostics.containsKey(object)) {
 					fLDiagnostics.put(object, diags)
 				}
 				val diagnosticArray = new JsonArray
@@ -381,8 +381,15 @@ class JsonConverter {
 	}
 
 	def private dispatch getUrl(EObject object) {
-		val cdoObject = object as CDOObject
-		ALIAS_OBJECT + "/" + cdoObject.eClass.EPackage.nsPrefix + "." + cdoObject.eClass.name + "/" + cdoObject.cdoID.toURIFragment.replace("L", "")
+		var id = ""
+		if(object instanceof CDOObject) {
+			id = object.cdoID.toURIFragment.replace("L", "")
+		} else {
+
+			// Legacy models do not inherit from CDOObject
+			id = EcoreUtil.getURI(object).fragment.replace("L", "")
+		}
+		ALIAS_OBJECT + "/" + object.eClass.EPackage.nsPrefix + "." + object.eClass.name + "/" + id
 
 	}
 

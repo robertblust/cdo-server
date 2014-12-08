@@ -12,7 +12,6 @@ package ch.flatland.cdo.util
 
 import com.google.common.base.Splitter
 import com.google.gson.JsonElement
-import org.eclipse.emf.cdo.CDOObject
 import org.eclipse.emf.cdo.view.CDOView
 import org.eclipse.emf.ecore.EAttribute
 import org.eclipse.emf.ecore.EClass
@@ -95,7 +94,7 @@ class EMF {
 		if(diagnostics.severity > 0) {
 			for (child : diagnostics.children) {
 				if(child.severity > 0 && child.data.contains(object)) {
-					logger.debug("Diagnostics '{}'", (object as CDOObject).cdoID + ": " + child.message)
+					logger.debug("Diagnostics '{}'", child.message)
 					fLDiagnostics.add(new FLDiagnostic(child.data.get(1) as EStructuralFeature, child.message))
 				}
 			}

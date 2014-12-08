@@ -12,7 +12,6 @@ package ch.flatland.cdo.util
 
 import java.util.List
 import javax.servlet.http.HttpServletRequest
-import org.eclipse.emf.cdo.CDOObject
 import org.eclipse.emf.cdo.server.IRepository
 import org.eclipse.emf.cdo.server.db.IDBStore
 import org.eclipse.emf.cdo.server.db.mapping.IMappingStrategy
@@ -53,7 +52,7 @@ class DataStore {
 			val query = view.createQuery("sql", "SELECT CDO_ID FROM " + tableName + " WHERE (CDO_REVISED = 0 AND CDO_VERSION > 0)")
 			query.maxResults = 1
 			logger.debug("Hack NoSessionRegisteredException Execute '{}' query '{}'", query.queryLanguage, query.queryString)
-			val iterator = query.getResultAsync(typeof(CDOObject))
+			val iterator = query.getResultAsync(typeof(EObject))
 			while(iterator.hasNext) {
 				val obj = iterator.next
 				logger.debug("Hack NoSessionRegisteredException Found '{}'", obj)
@@ -63,7 +62,7 @@ class DataStore {
 
 		val query = view.createQuery("sql", "SELECT CDO_ID FROM " + mappingStrategy.getTableName(eClass) + " WHERE (CDO_REVISED = 0 AND CDO_VERSION > 0)" + eClass.filterQuery(req, mappingStrategy) + eClass.orderBy(req, mappingStrategy))
 		logger.debug("Execute '{}' query '{}'", query.queryLanguage, query.queryString)
-		val iterator = query.getResultAsync(typeof(CDOObject))
+		val iterator = query.getResultAsync(typeof(EObject))
 		while(iterator.hasNext) {
 			val obj = iterator.next
 			logger.debug("Found '{}'", obj)
