@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EClassifier
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
+import org.eclipse.emf.ecore.EStructuralFeature
 import org.slf4j.LoggerFactory
 
 import static javax.servlet.http.HttpServletResponse.*
@@ -88,18 +89,18 @@ class EMF {
 	}
 
 	def validate(EObject object) {
-		val filterdDiagnostics = newArrayList
+		val fLDiagnostics = newArrayList
 		val diagnostics = new FLDiagnostician().validate(object)
 
 		if(diagnostics.severity > 0) {
 			for (child : diagnostics.children) {
 				if(child.severity > 0 && child.data.contains(object)) {
 					logger.debug("Diagnostics '{}'", (object as CDOObject).cdoID + ": " + child.message)
-					filterdDiagnostics.add(child)
+					fLDiagnostics.add(new FLDiagnostic(object, child.data.get(1) as EStructuralFeature, child.message))
 				}
 			}
 		}
-		return filterdDiagnostics
+		return fLDiagnostics
 	}
 
 	def safePackagePrefix(String type) {

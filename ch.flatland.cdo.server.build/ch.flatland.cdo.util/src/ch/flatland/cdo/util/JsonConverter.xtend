@@ -25,7 +25,6 @@ import org.apache.commons.codec.binary.Base64
 import org.eclipse.emf.cdo.CDOObject
 import org.eclipse.emf.cdo.common.security.NoPermissionException
 import org.eclipse.emf.cdo.eresource.CDOResourceNode
-import org.eclipse.emf.common.util.Diagnostic
 import org.eclipse.emf.common.util.Enumerator
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.EAttribute
@@ -111,21 +110,21 @@ class JsonConverter {
 	def dispatch String safeToJson(List<EObject> objects) {
 		try {
 			val jsonArray = new JsonArray
-			val validationMessages = newHashMap
+			val fLDiagnostics = newHashMap
 
 			for (object : objects) {
 				val jsonBaseObject = object.toJsonBase
 
 				jsonBaseObject.addAttributes(object)
 				if(jsonConverterConfig.showReferences) {
-					jsonBaseObject.addReferences(object, validationMessages)
+					jsonBaseObject.addReferences(object, fLDiagnostics)
 				}
-				jsonBaseObject.addMessagesAndMeta(object, validationMessages)
+				jsonBaseObject.addMessagesAndMeta(object, fLDiagnostics)
 				jsonArray.add(jsonBaseObject)
 			}
 
 			// finally add ok status with messages
-			val objectWithStatusOK = newObjectWithStatusOK(validationMessages)
+			val objectWithStatusOK = newObjectWithStatusOK(fLDiagnostics)
 
 			objectWithStatusOK.add(DATA, jsonArray)
 
@@ -241,7 +240,7 @@ class JsonConverter {
 		}
 	}
 
-	def private addReferences(JsonObject jsonBaseObject, EObject eObject, Map<EObject, List<Diagnostic>> validationMessages) {
+	def private addReferences(JsonObject jsonBaseObject, EObject eObject, Map<EObject, List<FLDiagnostic>> fLDiagnostics) {
 		val references = eObject.eClass.EAllReferences
 		val jsonReferences = new JsonObject
 		if(references.size > 0) {
@@ -256,7 +255,7 @@ class JsonConverter {
 
 							// should we add attributes or not?
 							jsonRefObject.addAttributes(value as EObject)
-							jsonRefObject.addMessagesAndMeta(value as EObject, validationMessages)
+							jsonRefObject.addMessagesAndMeta(value as EObject, fLDiagnostics)
 							jsonReferencesArray.add(jsonRefObject)
 						}
 						jsonReferences.add(name, jsonReferencesArray)
@@ -266,7 +265,7 @@ class JsonConverter {
 					if(value != null) {
 						val jsonRefObject = value.toJsonObject as JsonObject
 						jsonRefObject.addAttributes(value as EObject)
-						jsonRefObject.addMessagesAndMeta(value as EObject, validationMessages)
+						jsonRefObject.addMessagesAndMeta(value as EObject, fLDiagnostics)
 						jsonReferences.add(name, jsonRefObject)
 					}
 				}
@@ -324,18 +323,18 @@ class JsonConverter {
 		jsonBaseObject.add(PARAM_META, jsonTypeMeta)
 	}
 
-	def private addMessagesAndMeta(JsonObject jsonBaseObject, EObject object, Map<EObject, List<Diagnostic>> messages) {
+	def private addMessagesAndMeta(JsonObject jsonBaseObject, EObject object, Map<EObject, List<FLDiagnostic>> fLDiagnostics) {
 
 		// validation requested?
 		if(jsonConverterConfig.validate) {
 			val diags = object.validate
 			if(diags.size > 0) {
-				messages.put(object, diags)
+				fLDiagnostics.put(object, diags)
 				val diagnosticArray = new JsonArray
 				diags.forEach [
 					val jsonDiag = new JsonObject
 					jsonDiag.add(MESSAGE, new JsonPrimitive(it.message))
-					val feature = it.data.get(1)
+					val feature = it.feature
 					if(feature instanceof EAttribute) {
 						jsonDiag.add(FEATURE, new JsonPrimitive(ATTRIBUTES + "." + feature.name))
 					}
@@ -584,7 +583,7 @@ class JsonConverter {
 		(eObject as CDOObject).cdoView
 	}
 
-	def newObjectWithStatusOK(Map<EObject, List<Diagnostic>> messages) {
+	def newObjectWithStatusOK(Map<EObject, List<FLDiagnostic>> fLDiagnostics) {
 
 		val objectWithStatusOK = new JsonObject
 		objectWithStatusOK.addProperty(STATUS, "OK")
@@ -592,13 +591,13 @@ class JsonConverter {
 		val jsonBaseObject = new JsonObject
 		jsonBaseObject.add(STATUS, objectWithStatusOK)
 
-		if(messages.size > 0) {
+		if(fLDiagnostics.size > 0) {
 			val messageArray = new JsonArray
-			messages.forEach [ source, diag |
-				diag.forEach [
+			fLDiagnostics.forEach [ source, fLDiagnostic |
+				fLDiagnostic.forEach [
 					val message = new JsonObject
 					message.addProperty(MESSAGE, it.message)
-					message.addProperty(ORIGIN, source.url)
+					message.addProperty(ORIGIN, it.source.url)
 					messageArray.add(message)
 				]
 			]
