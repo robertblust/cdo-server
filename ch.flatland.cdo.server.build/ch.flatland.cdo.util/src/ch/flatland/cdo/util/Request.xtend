@@ -94,7 +94,12 @@ class Request {
 
 	def isAcceptable(HttpServletRequest request) {
 		val acceptHeader = request.getHeader(ACCEPT_HEADER)
-		return ACCEPTED_CONTENTTYPES.contains(acceptHeader)
+		for (contentType : ACCEPTED_CONTENTTYPES) {
+			if (acceptHeader.contains(contentType)) {
+				return true;
+			}
+		}
+		return false
 	}
 
 	def createJsonConverter(HttpServletRequest req) {
