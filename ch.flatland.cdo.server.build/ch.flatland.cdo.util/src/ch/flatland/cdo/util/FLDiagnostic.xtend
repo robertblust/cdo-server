@@ -10,12 +10,10 @@
  */
 package ch.flatland.cdo.util
 
-import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EStructuralFeature
 import org.eclipse.xtend.lib.annotations.Data
 
 @Data class FLDiagnostic {
-	EObject source
 	EStructuralFeature feature
 	String message
 }

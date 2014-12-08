@@ -96,7 +96,7 @@ class EMF {
 			for (child : diagnostics.children) {
 				if(child.severity > 0 && child.data.contains(object)) {
 					logger.debug("Diagnostics '{}'", (object as CDOObject).cdoID + ": " + child.message)
-					fLDiagnostics.add(new FLDiagnostic(object, child.data.get(1) as EStructuralFeature, child.message))
+					fLDiagnostics.add(new FLDiagnostic(child.data.get(1) as EStructuralFeature, child.message))
 				}
 			}
 		}

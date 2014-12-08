@@ -19,6 +19,7 @@ import com.google.gson.JsonPrimitive
 import java.text.SimpleDateFormat
 import java.util.ArrayList
 import java.util.Date
+import java.util.LinkedHashMap
 import java.util.List
 import java.util.Map
 import org.apache.commons.codec.binary.Base64
@@ -110,7 +111,7 @@ class JsonConverter {
 	def dispatch String safeToJson(List<EObject> objects) {
 		try {
 			val jsonArray = new JsonArray
-			val fLDiagnostics = newHashMap
+			val fLDiagnostics = new LinkedHashMap<EObject, List<FLDiagnostic>>
 
 			for (object : objects) {
 				val jsonBaseObject = object.toJsonBase
@@ -139,7 +140,8 @@ class JsonConverter {
 	def dispatch String safeToJson(EObject object) {
 		try {
 			val jsonBaseObject = object.toJsonBase
-			val fLDiagnostics = newHashMap
+			val fLDiagnostics = new LinkedHashMap<EObject, List<FLDiagnostic>>
+			
 			jsonBaseObject.addAttributes(object)
 			if(jsonConverterConfig.showReferences) {
 				jsonBaseObject.addReferences(object, fLDiagnostics)
@@ -329,7 +331,9 @@ class JsonConverter {
 		if(jsonConverterConfig.validate) {
 			val diags = object.validate
 			if(diags.size > 0) {
-				fLDiagnostics.put(object, diags)
+				if (!fLDiagnostics.containsKey(object)) {
+					fLDiagnostics.put(object, diags)
+				}
 				val diagnosticArray = new JsonArray
 				diags.forEach [
 					val jsonDiag = new JsonObject
@@ -597,7 +601,7 @@ class JsonConverter {
 				fLDiagnostic.forEach [
 					val message = new JsonObject
 					message.addProperty(MESSAGE, it.message)
-					message.addProperty(ORIGIN, it.source.url)
+					message.addProperty(ORIGIN, source.url)
 					messageArray.add(message)
 				]
 			]
