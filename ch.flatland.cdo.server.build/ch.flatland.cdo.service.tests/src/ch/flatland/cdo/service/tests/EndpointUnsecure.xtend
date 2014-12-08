@@ -31,7 +31,7 @@ class EndpointUnsecure extends AbstractTestCase {
 		logger.debug("Body '{}'", response.body)
 	}
 
-	@HttpTest(method=Method.GET, path="/repo")
+	@HttpTest(method=Method.GET, path="/node")
 	def checkForbidden() {
 		response.assertForbidden
 		response.hasBody.assertTrue

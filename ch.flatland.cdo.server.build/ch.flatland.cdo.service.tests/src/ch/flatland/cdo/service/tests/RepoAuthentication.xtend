@@ -23,7 +23,7 @@ class RepoAuthentication extends AbstractTestCase {
 	@Context
 	private Response response
 
-	@HttpTest(method=Method.GET, path="/repo")
+	@HttpTest(method=Method.GET, path="/node")
 	def checkAuthenticated() {
 		response.assertOk
 		response.hasBody.assertTrue

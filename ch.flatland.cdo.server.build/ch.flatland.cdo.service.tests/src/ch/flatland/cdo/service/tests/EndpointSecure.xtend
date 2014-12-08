@@ -32,7 +32,7 @@ class EndpointSecure extends AbstractTestCase {
 		logger.debug("Body '{}'", response.body)
 	}
 	
-	@HttpTest(method=Method.GET, path="/repo")
+	@HttpTest(method=Method.GET, path="/node")
 	def checkUnauthenticated() {
 		response.assertUnauthorized
 		response.hasBody.assertTrue
