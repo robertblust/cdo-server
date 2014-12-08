@@ -33,7 +33,6 @@ import org.eclipse.emf.ecore.EClassifier
 import org.eclipse.emf.ecore.EEnum
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
-import org.eclipse.emf.ecore.EStructuralFeature
 import org.eclipse.emf.ecore.EcorePackage.Literals
 import org.eclipse.emf.ecore.util.EcoreUtil
 import org.eclipse.emf.edit.EMFEditPlugin
@@ -346,11 +345,9 @@ class JsonConverter {
 						jsonDiag.add(FEATURE, new JsonPrimitive(REFERENCES + "." + feature.name))
 						jsonDiag.add(FEATURE, new JsonPrimitive(CONTAINMENT + "." + feature.isContainment))
 					}
-					if(feature instanceof EStructuralFeature) {
-						jsonDiag.addProperty(DERIVED, feature.isDerived)
-						jsonDiag.addProperty(LOWER_BOUND, feature.lowerBound)
-						jsonDiag.addProperty(UPPER_BOUND, feature.upperBound)
-					}
+					jsonDiag.addProperty(DERIVED, feature.isDerived)
+					jsonDiag.addProperty(LOWER_BOUND, feature.lowerBound)
+					jsonDiag.addProperty(UPPER_BOUND, feature.upperBound)
 					diagnosticArray.add(jsonDiag)
 				]
 				jsonBaseObject.add(MESSAGES, diagnosticArray)
