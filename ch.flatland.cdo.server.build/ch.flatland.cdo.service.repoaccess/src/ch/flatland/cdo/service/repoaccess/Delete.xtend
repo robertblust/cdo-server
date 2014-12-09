@@ -63,11 +63,14 @@ class Delete {
 					}
 				}
 
-				view.xRefsDelete(requestedObject)
+				var container = view.xRefsDelete(requestedObject)
+				view.addRevisionDelta(container as CDOObject, JsonConverter.FLDiagnostics)
 
 			} catch(NoPermissionException npe) {
 				throw new FlatlandException(SC_FORBIDDEN, npe.message)
 			}
+			
+			
 
 			view.commit
 
@@ -109,6 +112,7 @@ class Delete {
 			// must be a CDOResource Node
 			val resource = cdoObject.cdoResource
 			resource.contents.remove(cdoObject)
+			return resource
 		} else {
 			val containingFeature = cdoObject.eContainingFeature
 			if(containingFeature.isMany) {
@@ -117,5 +121,6 @@ class Delete {
 				container.eUnset(containingFeature)
 			}
 		}
+		return container
 	}
 }

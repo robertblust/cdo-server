@@ -10,17 +10,32 @@
  */
 package ch.flatland.cdo.util
 
-import java.lang.Exception
 import com.google.common.base.Splitter
+import java.util.List
+import java.util.Map
+import org.eclipse.emf.ecore.EObject
 
 class FlatlandException extends Exception {
 
 	val public static STATUS_NOK = "NOK"
 	var int httpStatus
 	var String message
+	var Map<EObject, List<FLDiagnostic>> fLDiagnostics
+
+	new(int httpStatus, Map<EObject, List<FLDiagnostic>> fLDiagnostics, String format, Object... arguments) {
+		this.fLDiagnostics = fLDiagnostics
+		this.message = init(format, arguments)
+		this.httpStatus = httpStatus	
+	}
 
 	new(int httpStatus, String format, Object... arguments) {
 		this.message = init(format, arguments)
+		this.httpStatus = httpStatus	
+	}
+	
+	new(int httpStatus, Map<EObject, List<FLDiagnostic>> fLDiagnostics, String message) {
+		this.fLDiagnostics = fLDiagnostics
+		this.message = message
 		this.httpStatus = httpStatus	
 	}
 	

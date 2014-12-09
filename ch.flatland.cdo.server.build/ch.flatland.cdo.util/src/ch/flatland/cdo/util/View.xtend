@@ -11,12 +11,19 @@
 package ch.flatland.cdo.util
 
 import com.google.common.base.Splitter
+import java.util.LinkedHashMap
+import java.util.List
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 import org.eclipse.emf.cdo.CDOObject
 import org.eclipse.emf.cdo.common.id.CDOIDUtil
 import org.eclipse.emf.cdo.common.security.CDOPermission
+import org.eclipse.emf.cdo.transaction.CDOTransaction
 import org.eclipse.emf.cdo.view.CDOView
+import org.eclipse.emf.ecore.EObject
+import org.eclipse.emf.edit.EMFEditPlugin
+import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory
 import org.slf4j.LoggerFactory
 
 import static ch.flatland.cdo.util.Constants.*
@@ -24,6 +31,8 @@ import static javax.servlet.http.HttpServletResponse.*
 
 class View {
 	val logger = LoggerFactory.getLogger(this.class)
+
+	val ITEM_DELEGATOR = new AdapterFactoryItemDelegator(new ComposedAdapterFactory(EMFEditPlugin.getComposedAdapterFactoryDescriptorRegistry))
 	val extension EMF = new EMF
 	val extension DataStore = new DataStore
 
@@ -46,6 +55,7 @@ class View {
 						}
 						case 2: {
 							val objects = view.findByType(pathSegments.get(1), req)
+
 							//return objects.filterByAttribute(req)
 							return objects
 						}
@@ -86,5 +96,17 @@ class View {
 		if(object.cdoPermission != CDOPermission.WRITE) {
 			throw new FlatlandException(SC_FORBIDDEN, "No permission to edit object '{}'", object.cdoID)
 		}
+	}
+
+	def addRevisionDelta(CDOTransaction view, EObject object, LinkedHashMap<EObject, List<FLDiagnostic>> fLDiagnostics) {
+		view.revisionDeltas.forEach [ id, revisionDelta |
+			val deltas = newArrayList
+			revisionDelta.featureDeltas.forEach [
+				val message = "Changed feature '" + it.feature.name + "' of '" + ITEM_DELEGATOR.getText(object) + "' to '" + object.eGet(it.feature) + "'"
+				deltas.add(new FLDiagnostic(it.feature, message))
+				logger.debug("Revision Delta '{}'", message)
+			]
+			fLDiagnostics.put(object, deltas)
+		]
 	}
 }

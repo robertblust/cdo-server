@@ -93,6 +93,8 @@ class Put {
 				requestedObject.eSet(eReference, newObject)
 			}
 
+			view.addRevisionDelta(requestedObject, JsonConverter.FLDiagnostics)
+			
 			view.commit
 
 			// now transform manipulated object to json for the reponse			

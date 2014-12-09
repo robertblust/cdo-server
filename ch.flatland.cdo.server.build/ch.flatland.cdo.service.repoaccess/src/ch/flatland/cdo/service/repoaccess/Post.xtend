@@ -53,6 +53,8 @@ class Post {
 			requestedObject.safeCanWrite
 
 			jsonObject.toEObject = requestedObject
+			
+			view.addRevisionDelta(requestedObject, JsonConverter.FLDiagnostics)
 
 			view.commit
 
