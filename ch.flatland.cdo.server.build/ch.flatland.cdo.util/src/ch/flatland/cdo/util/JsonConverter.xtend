@@ -54,6 +54,8 @@ class JsonConverter {
 	val extension EMF = new EMF
 	val extension View = new View
 	val extension HttpStatus = new HttpStatus
+	
+	val fLDiagnostics = new LinkedHashMap<EObject, List<FLDiagnostic>>
 
 	val ITEM_DELEGATOR = new AdapterFactoryItemDelegator(new ComposedAdapterFactory(EMFEditPlugin.getComposedAdapterFactoryDescriptorRegistry))
 
@@ -71,6 +73,10 @@ class JsonConverter {
 
 	def getConfig() {
 		jsonConverterConfig
+	}
+	
+	def getFLDiagnostics() {
+		fLDiagnostics
 	}
 
 	def JsonObject safeFromJson(String jsonString) {
@@ -97,7 +103,7 @@ class JsonConverter {
 	}
 
 	def okToJson() {
-		newObjectWithStatusOK(newHashMap).toString
+		newObjectWithStatusOK().toString
 	}
 
 	def dispatch String safeToJson(Object object) {
@@ -111,21 +117,20 @@ class JsonConverter {
 	def dispatch String safeToJson(List<EObject> objects) {
 		try {
 			val jsonArray = new JsonArray
-			val fLDiagnostics = new LinkedHashMap<EObject, List<FLDiagnostic>>
 
 			for (object : objects) {
 				val jsonBaseObject = object.toJsonBase
 
 				jsonBaseObject.addAttributes(object)
 				if(jsonConverterConfig.showReferences) {
-					jsonBaseObject.addReferences(object, fLDiagnostics)
+					jsonBaseObject.addReferences(object)
 				}
-				jsonBaseObject.addMessagesAndMeta(object, fLDiagnostics)
+				jsonBaseObject.addMessagesAndMeta(object)
 				jsonArray.add(jsonBaseObject)
 			}
 
 			// finally add ok status with messages
-			val objectWithStatusOK = newObjectWithStatusOK(fLDiagnostics)
+			val objectWithStatusOK = newObjectWithStatusOK
 
 			objectWithStatusOK.add(DATA, jsonArray)
 
@@ -140,17 +145,16 @@ class JsonConverter {
 	def dispatch String safeToJson(EObject object) {
 		try {
 			val jsonBaseObject = object.toJsonBase
-			val fLDiagnostics = new LinkedHashMap<EObject, List<FLDiagnostic>>
 
 			jsonBaseObject.addAttributes(object)
 			if(jsonConverterConfig.showReferences) {
-				jsonBaseObject.addReferences(object, fLDiagnostics)
+				jsonBaseObject.addReferences(object)
 			}
 
-			jsonBaseObject.addMessagesAndMeta(object, fLDiagnostics)
+			jsonBaseObject.addMessagesAndMeta(object)
 
 			// finally add ok status with messages
-			val objectWithStatusOK = newObjectWithStatusOK(fLDiagnostics)
+			val objectWithStatusOK = newObjectWithStatusOK
 
 			objectWithStatusOK.add(DATA, jsonBaseObject)
 
@@ -242,7 +246,7 @@ class JsonConverter {
 		}
 	}
 
-	def private addReferences(JsonObject jsonBaseObject, EObject eObject, Map<EObject, List<FLDiagnostic>> fLDiagnostics) {
+	def private addReferences(JsonObject jsonBaseObject, EObject eObject) {
 		val references = eObject.eClass.EAllReferences
 		val jsonReferences = new JsonObject
 		if(references.size > 0) {
@@ -257,7 +261,7 @@ class JsonConverter {
 
 							// should we add attributes or not?
 							jsonRefObject.addAttributes(value as EObject)
-							jsonRefObject.addMessagesAndMeta(value as EObject, fLDiagnostics)
+							jsonRefObject.addMessagesAndMeta(value as EObject)
 							jsonReferencesArray.add(jsonRefObject)
 						}
 						jsonReferences.add(name, jsonReferencesArray)
@@ -267,7 +271,7 @@ class JsonConverter {
 					if(value != null) {
 						val jsonRefObject = value.toJsonObject as JsonObject
 						jsonRefObject.addAttributes(value as EObject)
-						jsonRefObject.addMessagesAndMeta(value as EObject, fLDiagnostics)
+						jsonRefObject.addMessagesAndMeta(value as EObject)
 						jsonReferences.add(name, jsonRefObject)
 					}
 				}
@@ -325,7 +329,7 @@ class JsonConverter {
 		jsonBaseObject.add(PARAM_META, jsonTypeMeta)
 	}
 
-	def private addMessagesAndMeta(JsonObject jsonBaseObject, EObject object, Map<EObject, List<FLDiagnostic>> fLDiagnostics) {
+	def private addMessagesAndMeta(JsonObject jsonBaseObject, EObject object) {
 
 		// validation requested?
 		if(jsonConverterConfig.validate) {
@@ -594,7 +598,7 @@ class JsonConverter {
 		(eObject as CDOObject).cdoView
 	}
 
-	def newObjectWithStatusOK(Map<EObject, List<FLDiagnostic>> fLDiagnostics) {
+	def newObjectWithStatusOK() {
 
 		val objectWithStatusOK = new JsonObject
 		objectWithStatusOK.addProperty(STATUS, "OK")
