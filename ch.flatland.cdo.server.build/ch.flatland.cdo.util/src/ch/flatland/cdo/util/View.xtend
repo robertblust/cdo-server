@@ -102,7 +102,7 @@ class View {
 		view.revisionDeltas.forEach [ id, revisionDelta |
 			val deltas = newArrayList
 			revisionDelta.featureDeltas.forEach [
-				val message = it.type.name + " feature '" + it.feature.name + "' of '" + ITEM_DELEGATOR.getText(object) + "' to '" + object.eGet(it.feature) + "'"
+				val message = "Changed feature '" + it.feature.name + "' of '" + ITEM_DELEGATOR.getText(object) + "' to '" + object.eGet(it.feature) + "'"
 				deltas.add(new FLDiagnostic(it.feature, message))
 				logger.debug("Revision Delta '{}'", message)
 			]
