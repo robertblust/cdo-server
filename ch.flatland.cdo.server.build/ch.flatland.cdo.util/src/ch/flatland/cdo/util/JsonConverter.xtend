@@ -21,7 +21,6 @@ import java.util.ArrayList
 import java.util.Date
 import java.util.LinkedHashMap
 import java.util.List
-import java.util.Map
 import org.apache.commons.codec.binary.Base64
 import org.eclipse.emf.cdo.CDOObject
 import org.eclipse.emf.cdo.common.security.NoPermissionException
