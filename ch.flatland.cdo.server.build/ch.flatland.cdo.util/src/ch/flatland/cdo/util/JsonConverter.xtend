@@ -21,6 +21,7 @@ import java.util.ArrayList
 import java.util.Date
 import java.util.LinkedHashMap
 import java.util.List
+import java.util.Map
 import org.apache.commons.codec.binary.Base64
 import org.eclipse.emf.cdo.CDOObject
 import org.eclipse.emf.cdo.common.security.NoPermissionException
@@ -52,7 +53,7 @@ class JsonConverter {
 	val extension EMF = new EMF
 	val extension View = new View
 	val extension HttpStatus = new HttpStatus
-	
+
 	val fLDiagnostics = new LinkedHashMap<EObject, List<FLDiagnostic>>
 
 	val ITEM_DELEGATOR = new AdapterFactoryItemDelegator(new ComposedAdapterFactory(EMFEditPlugin.getComposedAdapterFactoryDescriptorRegistry))
@@ -72,7 +73,7 @@ class JsonConverter {
 	def getConfig() {
 		jsonConverterConfig
 	}
-	
+
 	def getFLDiagnostics() {
 		fLDiagnostics
 	}
@@ -170,7 +171,11 @@ class JsonConverter {
 		val messageArray = new JsonArray
 		val message = new JsonObject
 		message.addProperty(MESSAGE, object.message)
-		message.addProperty(ORIGIN, object.class.simpleName)
+		if (object.origin != null) {
+			message.addProperty(ORIGIN, object.origin.url)
+		} else {
+			message.addProperty(ORIGIN, object.class.simpleName)
+		}
 		messageArray.add(message)
 
 		val httpStatus = new JsonObject
@@ -338,7 +343,7 @@ class JsonConverter {
 				} else {
 					val existingDiags = fLDiagnostics.get(object)
 					for (d : diags) {
-						if (!existingDiags.contains(d)) {
+						if(!existingDiags.contains(d)) {
 							existingDiags.add(d)
 						}
 					}
@@ -597,6 +602,22 @@ class JsonConverter {
 		new JsonPrimitive(object)
 	}
 
+	def private getDiagnosticsAsJsonArray(Map<EObject, List<FLDiagnostic>> localFLDiagnostics) {
+		if(localFLDiagnostics.size > 0) {
+			val messageArray = new JsonArray
+			localFLDiagnostics.forEach [ source, fLDiagnostic |
+				fLDiagnostic.forEach [
+					val message = new JsonObject
+					message.addProperty(MESSAGE, it.message)
+					message.addProperty(ORIGIN, source.url)
+					messageArray.add(message)
+				]
+			]
+			return messageArray
+		}
+		return null
+	}
+
 	def getView(EObject eObject) {
 		(eObject as CDOObject).cdoView
 	}
@@ -608,18 +629,8 @@ class JsonConverter {
 
 		val jsonBaseObject = new JsonObject
 		jsonBaseObject.add(STATUS, objectWithStatusOK)
-
-		if(fLDiagnostics.size > 0) {
-			val messageArray = new JsonArray
-			fLDiagnostics.forEach [ source, fLDiagnostic |
-				fLDiagnostic.forEach [
-					val message = new JsonObject
-					message.addProperty(MESSAGE, it.message)
-					message.addProperty(ORIGIN, source.url)
-					messageArray.add(message)
-				]
-			]
-			objectWithStatusOK.add(MESSAGES, messageArray)
+		if(fLDiagnostics.diagnosticsAsJsonArray != null) {
+			objectWithStatusOK.add(MESSAGES, fLDiagnostics.diagnosticsAsJsonArray)
 		}
 		return jsonBaseObject
 	}
@@ -662,7 +673,7 @@ class JsonConverter {
 		try {
 			container.eSet(eReference, refObject)
 		} catch(Exception e) {
-			throw new FlatlandException(SC_BAD_REQUEST, "Object '{}' has wrong type for reference '{}'", refObject, eReference.name)
+			throw new FlatlandException(SC_BAD_REQUEST, container, "Object '{}' has wrong type for reference '{}'", refObject, eReference.name)
 		}
 
 	}
@@ -671,7 +682,7 @@ class JsonConverter {
 		try {
 			container.eSet(eReference, refArray)
 		} catch(Exception e) {
-			throw new FlatlandException(SC_BAD_REQUEST, "Reference list contains object with wrong type for reference '{}'", eReference.name)
+			throw new FlatlandException(SC_BAD_REQUEST, container, "Reference list contains object with wrong type for reference '{}'", eReference.name)
 		}
 	}
 }

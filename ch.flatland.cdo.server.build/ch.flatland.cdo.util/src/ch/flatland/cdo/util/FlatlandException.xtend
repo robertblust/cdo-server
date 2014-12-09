@@ -11,8 +11,6 @@
 package ch.flatland.cdo.util
 
 import com.google.common.base.Splitter
-import java.util.List
-import java.util.Map
 import org.eclipse.emf.ecore.EObject
 
 class FlatlandException extends Exception {
@@ -20,10 +18,10 @@ class FlatlandException extends Exception {
 	val public static STATUS_NOK = "NOK"
 	var int httpStatus
 	var String message
-	var Map<EObject, List<FLDiagnostic>> fLDiagnostics
+	var EObject origin = null
 
-	new(int httpStatus, Map<EObject, List<FLDiagnostic>> fLDiagnostics, String format, Object... arguments) {
-		this.fLDiagnostics = fLDiagnostics
+	new(int httpStatus, EObject origin, String format, Object... arguments) {
+		this.origin = origin
 		this.message = init(format, arguments)
 		this.httpStatus = httpStatus	
 	}
@@ -33,8 +31,8 @@ class FlatlandException extends Exception {
 		this.httpStatus = httpStatus	
 	}
 	
-	new(int httpStatus, Map<EObject, List<FLDiagnostic>> fLDiagnostics, String message) {
-		this.fLDiagnostics = fLDiagnostics
+	new(int httpStatus, EObject origin, String message) {
+		this.origin = origin
 		this.message = message
 		this.httpStatus = httpStatus	
 	}
@@ -46,6 +44,10 @@ class FlatlandException extends Exception {
 	
 	new(String message) {
 		this.message = message
+	}
+	
+	def getOrigin() {
+		origin
 	}
 	
 	def getHttpStatus() {

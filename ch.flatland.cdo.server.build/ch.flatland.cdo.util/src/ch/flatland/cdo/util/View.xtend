@@ -94,7 +94,7 @@ class View {
 
 	def safeCanWrite(CDOObject object) {
 		if(object.cdoPermission != CDOPermission.WRITE) {
-			throw new FlatlandException(SC_FORBIDDEN, "No permission to edit object '{}'", object.cdoID)
+			throw new FlatlandException(SC_FORBIDDEN, object, "No permission to edit object '{}'", object.cdoID)
 		}
 	}
 

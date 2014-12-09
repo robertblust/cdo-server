@@ -73,10 +73,10 @@ class Put {
 			val eReference = requestedObject.eClass.EAllReferences.filter[it.name == put.value.asString].head
 
 			if(eReference == null) {
-				throw new FlatlandException(SC_BAD_REQUEST, "Object '{}' does not support '{}'", requestedObject.cdoID, put)
+				throw new FlatlandException(SC_BAD_REQUEST, requestedObject, "Object '{}' does not support '{}'", requestedObject.cdoID, put)
 			}
 			if(!eReference.isContainmentSettable) {
-				throw new FlatlandException(SC_BAD_REQUEST, "Feature '{}' is not a containment", put)
+				throw new FlatlandException(SC_BAD_REQUEST, requestedObject, "Feature '{}' is not a containment", put)
 			}
 
 			jsonObject.toEObject = newObject
@@ -86,7 +86,7 @@ class Put {
 				try {
 					objects.add(newObject)
 				} catch (ArrayStoreException e) {
-					throw new FlatlandException(SC_BAD_REQUEST, "'{}' does not support type '{}'", put, type)
+					throw new FlatlandException(SC_BAD_REQUEST, requestedObject, "'{}' does not support type '{}'", put, type)
 				}
 				
 			} else {

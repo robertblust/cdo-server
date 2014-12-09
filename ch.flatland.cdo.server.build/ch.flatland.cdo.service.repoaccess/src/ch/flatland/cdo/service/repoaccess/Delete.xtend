@@ -59,7 +59,7 @@ class Delete {
 				if(requestedObject instanceof CDOResourceNode) {
 					val resource = requestedObject
 					if(resource.eContents.size > 0) {
-						throw new FlatlandException(SC_CONFLICT, "Resource '{}' cannot be deleted cause not empty", requestedObject.cdoID)
+						throw new FlatlandException(SC_CONFLICT, resource, "Resource '{}' cannot be deleted cause not empty", requestedObject.cdoID)
 					}
 				}
 
@@ -67,7 +67,7 @@ class Delete {
 				view.addRevisionDelta(container as CDOObject, JsonConverter.FLDiagnostics)
 
 			} catch(NoPermissionException npe) {
-				throw new FlatlandException(SC_FORBIDDEN, npe.message)
+				throw new FlatlandException(SC_FORBIDDEN, requestedObject, npe.message)
 			}
 			
 			
