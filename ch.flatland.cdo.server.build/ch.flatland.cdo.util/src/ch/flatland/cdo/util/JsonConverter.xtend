@@ -337,6 +337,13 @@ class JsonConverter {
 			if(diags.size > 0) {
 				if(!fLDiagnostics.containsKey(object)) {
 					fLDiagnostics.put(object, diags)
+				} else {
+					val existingDiags = fLDiagnostics.get(object)
+					for (d : diags) {
+						if (!existingDiags.contains(d)) {
+							existingDiags.add(d)
+						}
+					}
 				}
 				val diagnosticArray = new JsonArray
 				diags.forEach [
