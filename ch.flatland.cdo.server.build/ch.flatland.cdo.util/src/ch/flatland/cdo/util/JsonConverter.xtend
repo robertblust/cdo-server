@@ -334,9 +334,10 @@ class JsonConverter {
 			jsonBaseObject.add(CONTAINMENT, new JsonPrimitive(feature.isContainment))
 		}
 		jsonBaseObject.addProperty(DERIVED, feature.isDerived)
+		jsonBaseObject.addProperty(MANY, feature.isMany)
+		jsonBaseObject.addProperty(REQUIRED, feature.required)
 		jsonBaseObject.addProperty(LOWER_BOUND, feature.lowerBound)
 		jsonBaseObject.addProperty(UPPER_BOUND, feature.upperBound)
-
 	}
 
 	def private addMessagesAndMeta(JsonObject jsonBaseObject, EObject object) {
