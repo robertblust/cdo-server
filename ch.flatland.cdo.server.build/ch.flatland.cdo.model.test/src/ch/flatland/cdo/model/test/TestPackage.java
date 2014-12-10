@@ -4,6 +4,7 @@ package ch.flatland.cdo.model.test;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -368,13 +369,22 @@ public interface TestPackage extends EPackage {
 	int TEST_OBJECT__NAME = 0;
 
 	/**
+	 * The feature id for the '<em><b>Password</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEST_OBJECT__PASSWORD = 1;
+
+	/**
 	 * The feature id for the '<em><b>Single Reference</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_OBJECT__SINGLE_REFERENCE = 1;
+	int TEST_OBJECT__SINGLE_REFERENCE = 2;
 
 	/**
 	 * The feature id for the '<em><b>Multi References</b></em>' reference list.
@@ -383,7 +393,7 @@ public interface TestPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_OBJECT__MULTI_REFERENCES = 2;
+	int TEST_OBJECT__MULTI_REFERENCES = 3;
 
 	/**
 	 * The feature id for the '<em><b>Fix Upper Bound References</b></em>' reference list.
@@ -392,7 +402,7 @@ public interface TestPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_OBJECT__FIX_UPPER_BOUND_REFERENCES = 3;
+	int TEST_OBJECT__FIX_UPPER_BOUND_REFERENCES = 4;
 
 	/**
 	 * The feature id for the '<em><b>Fix Bound References</b></em>' reference list.
@@ -401,7 +411,7 @@ public interface TestPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_OBJECT__FIX_BOUND_REFERENCES = 4;
+	int TEST_OBJECT__FIX_BOUND_REFERENCES = 5;
 
 	/**
 	 * The feature id for the '<em><b>Fixlower Bound References</b></em>' reference list.
@@ -410,7 +420,7 @@ public interface TestPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_OBJECT__FIXLOWER_BOUND_REFERENCES = 5;
+	int TEST_OBJECT__FIXLOWER_BOUND_REFERENCES = 6;
 
 	/**
 	 * The number of structural features of the '<em>Object</em>' class.
@@ -419,7 +429,7 @@ public interface TestPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_OBJECT_FEATURE_COUNT = 6;
+	int TEST_OBJECT_FEATURE_COUNT = 7;
 
 	/**
 	 * The number of operations of the '<em>Object</em>' class.
@@ -476,6 +486,17 @@ public interface TestPackage extends EPackage {
 	 * @generated
 	 */
 	int TEST_ENUM = 4;
+
+
+	/**
+	 * The meta object id for the '<em>Password</em>' data type.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see java.lang.String
+	 * @see ch.flatland.cdo.model.test.impl.TestPackageImpl#getPassword()
+	 * @generated
+	 */
+	int PASSWORD = 5;
 
 
 	/**
@@ -806,6 +827,17 @@ public interface TestPackage extends EPackage {
 	EAttribute getTestObject_Name();
 
 	/**
+	 * Returns the meta object for the attribute '{@link ch.flatland.cdo.model.test.TestObject#getPassword <em>Password</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Password</em>'.
+	 * @see ch.flatland.cdo.model.test.TestObject#getPassword()
+	 * @see #getTestObject()
+	 * @generated
+	 */
+	EAttribute getTestObject_Password();
+
+	/**
 	 * Returns the meta object for the reference '{@link ch.flatland.cdo.model.test.TestObject#getSingleReference <em>Single Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -890,6 +922,17 @@ public interface TestPackage extends EPackage {
 	 * @generated
 	 */
 	EEnum getTestEnum();
+
+	/**
+	 * Returns the meta object for data type '{@link java.lang.String <em>Password</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for data type '<em>Password</em>'.
+	 * @see java.lang.String
+	 * @model instanceClass="java.lang.String"
+	 * @generated
+	 */
+	EDataType getPassword();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -1161,6 +1204,14 @@ public interface TestPackage extends EPackage {
 		EAttribute TEST_OBJECT__NAME = eINSTANCE.getTestObject_Name();
 
 		/**
+		 * The meta object literal for the '<em><b>Password</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TEST_OBJECT__PASSWORD = eINSTANCE.getTestObject_Password();
+
+		/**
 		 * The meta object literal for the '<em><b>Single Reference</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1227,6 +1278,16 @@ public interface TestPackage extends EPackage {
 		 * @generated
 		 */
 		EEnum TEST_ENUM = eINSTANCE.getTestEnum();
+
+		/**
+		 * The meta object literal for the '<em>Password</em>' data type.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see java.lang.String
+		 * @see ch.flatland.cdo.model.test.impl.TestPackageImpl#getPassword()
+		 * @generated
+		 */
+		EDataType PASSWORD = eINSTANCE.getPassword();
 
 	}
 

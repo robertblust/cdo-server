@@ -44,6 +44,8 @@ import org.slf4j.LoggerFactory
 
 import static ch.flatland.cdo.util.Constants.*
 import static javax.servlet.http.HttpServletResponse.*
+import java.math.BigDecimal
+import java.math.BigInteger
 
 class JsonConverter {
 	val logger = LoggerFactory.getLogger(this.class)
@@ -227,7 +229,6 @@ class JsonConverter {
 		if(attributes.size > 0) {
 			for (attribute : attributes.filter[!ignoredAttributes.contains(name)]) {
 				val name = attribute.name
-
 				if(attribute.many) {
 					val values = object.eGet(attribute, true) as List<Object>
 					if(values.size > 0) {
@@ -523,19 +524,20 @@ class JsonConverter {
 	def private safeToEType(JsonPrimitive jsonPrimitive, EAttribute eAttribute) {
 		logger.debug("eAttribute '{}' has data type '{}', try to set json value '{}'", eAttribute.name, eAttribute.EAttributeType.name, jsonPrimitive)
 		try {
-			switch eAttribute.EAttributeType {
-				case Literals.ESTRING: return jsonPrimitive.asString
-				case Literals.EBOOLEAN: return jsonPrimitive.asBoolean
-				case Literals.EINT: return jsonPrimitive.asInt
-				case Literals.ELONG: return jsonPrimitive.asLong
-				case Literals.ESHORT: return jsonPrimitive.asShort
-				case Literals.EDOUBLE: return jsonPrimitive.asDouble
-				case Literals.EFLOAT: return jsonPrimitive.asFloat
-				case Literals.EBYTE: return jsonPrimitive.asByte
-				case Literals.ECHAR: return jsonPrimitive.asCharacter
-				case Literals.EDATE: return dateFormat.parse(jsonPrimitive.asString)
-				case Literals.EBIG_DECIMAL: return jsonPrimitive.asBigDecimal
-				case Literals.EBIG_INTEGER: return jsonPrimitive.asBigInteger
+			switch eAttribute.EAttributeType.instanceClass {
+				case typeof(String): return jsonPrimitive.asString
+				case typeof(boolean): return jsonPrimitive.asBoolean
+				case typeof(int): return jsonPrimitive.asInt
+				case typeof(long): return jsonPrimitive.asLong
+				case typeof(short): return jsonPrimitive.asShort
+				case typeof(double): return jsonPrimitive.asDouble
+				case typeof(float): return jsonPrimitive.asFloat
+				case typeof(byte): return jsonPrimitive.asByte
+				case typeof(char): return jsonPrimitive.asCharacter
+				case typeof(Date): return dateFormat.parse(jsonPrimitive.asString)
+				case typeof(BigDecimal): return jsonPrimitive.asBigDecimal
+				case typeof(BigInteger): return jsonPrimitive.asBigInteger
+				case typeof(byte[]): return Base64.decodeBase64(jsonPrimitive.asString)
 			}
 
 			if(eAttribute.EAttributeType instanceof EEnum) {
@@ -546,14 +548,6 @@ class JsonConverter {
 					return literal.instance
 				}
 				return null
-			}
-			if(eAttribute.EAttributeType.name == "Base64Binary" && eAttribute.EAttributeType.instanceTypeName == "byte[]") {
-				logger.debug("'{}' is a Base64Binary", eAttribute.name)
-				if(Base64.isBase64(jsonPrimitive.asString)) {
-					return Base64.decodeBase64(jsonPrimitive.asString)
-				} else {
-					throw new Exception
-				}
 			}
 		} catch(Exception e) {
 			throw new FlatlandException(SC_BAD_REQUEST, "Json primitive '{}' could not be converted to '{}' for attribute '{}", jsonPrimitive.asString, eAttribute.EAttributeType.name, eAttribute.name)

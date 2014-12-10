@@ -61,6 +61,7 @@ public class TestObjectItemProvider
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
+			addPasswordPropertyDescriptor(object);
 			addSingleReferencePropertyDescriptor(object);
 			addMultiReferencesPropertyDescriptor(object);
 			addFixUpperBoundReferencesPropertyDescriptor(object);
@@ -84,6 +85,28 @@ public class TestObjectItemProvider
 				 getString("_UI_TestObject_name_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_TestObject_name_feature", "_UI_TestObject_type"),
 				 TestPackage.Literals.TEST_OBJECT__NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Password feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addPasswordPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_TestObject_password_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TestObject_password_feature", "_UI_TestObject_type"),
+				 TestPackage.Literals.TEST_OBJECT__PASSWORD,
 				 true,
 				 false,
 				 false,
@@ -251,6 +274,7 @@ public class TestObjectItemProvider
 
 		switch (notification.getFeatureID(TestObject.class)) {
 			case TestPackage.TEST_OBJECT__NAME:
+			case TestPackage.TEST_OBJECT__PASSWORD:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

@@ -44,6 +44,7 @@ class SimpleDataTypesAsArray {
 
 class TestObject {
 	String name
+	Password password
 	refers TestObject singleReference
 	refers TestObject[] multiReferences
 	refers TestObject[0..2] fixUpperBoundReferences
@@ -60,3 +61,5 @@ enum TestEnum {
 	literal1 = 1
 	literal2 = 2
 }
+
+type Password wraps String

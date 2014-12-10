@@ -15,6 +15,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * <ul>
  *   <li>{@link ch.flatland.cdo.model.test.TestObject#getName <em>Name</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.test.TestObject#getPassword <em>Password</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.test.TestObject#getSingleReference <em>Single Reference</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.test.TestObject#getMultiReferences <em>Multi References</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.test.TestObject#getFixUpperBoundReferences <em>Fix Upper Bound References</em>}</li>
@@ -54,6 +55,32 @@ public interface TestObject extends CDOObject {
 	 * @generated
 	 */
 	void setName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Password</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Password</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Password</em>' attribute.
+	 * @see #setPassword(String)
+	 * @see ch.flatland.cdo.model.test.TestPackage#getTestObject_Password()
+	 * @model unique="false" dataType="ch.flatland.cdo.model.test.Password"
+	 * @generated
+	 */
+	String getPassword();
+
+	/**
+	 * Sets the value of the '{@link ch.flatland.cdo.model.test.TestObject#getPassword <em>Password</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Password</em>' attribute.
+	 * @see #getPassword()
+	 * @generated
+	 */
+	void setPassword(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Single Reference</b></em>' reference.

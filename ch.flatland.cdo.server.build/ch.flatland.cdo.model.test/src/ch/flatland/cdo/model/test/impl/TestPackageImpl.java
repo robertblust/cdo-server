@@ -11,6 +11,7 @@ import ch.flatland.cdo.model.test.TestObject;
 import ch.flatland.cdo.model.test.TestPackage;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -61,6 +62,13 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	private EEnum testEnumEEnum = null;
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EDataType passwordEDataType = null;
+
+	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
 	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
@@ -107,8 +115,8 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 		isInited = true;
 
 		// Initialize simple dependencies
-		XMLTypePackage.eINSTANCE.eClass();
 		EcorePackage.eINSTANCE.eClass();
+		XMLTypePackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theTestPackage.createPackageContents();
@@ -400,8 +408,8 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTestObject_SingleReference() {
-		return (EReference)testObjectEClass.getEStructuralFeatures().get(1);
+	public EAttribute getTestObject_Password() {
+		return (EAttribute)testObjectEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -409,7 +417,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTestObject_MultiReferences() {
+	public EReference getTestObject_SingleReference() {
 		return (EReference)testObjectEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -418,7 +426,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTestObject_FixUpperBoundReferences() {
+	public EReference getTestObject_MultiReferences() {
 		return (EReference)testObjectEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -427,7 +435,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTestObject_FixBoundReferences() {
+	public EReference getTestObject_FixUpperBoundReferences() {
 		return (EReference)testObjectEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -436,8 +444,17 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTestObject_FixlowerBoundReferences() {
+	public EReference getTestObject_FixBoundReferences() {
 		return (EReference)testObjectEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getTestObject_FixlowerBoundReferences() {
+		return (EReference)testObjectEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -465,6 +482,15 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 */
 	public EEnum getTestEnum() {
 		return testEnumEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EDataType getPassword() {
+		return passwordEDataType;
 	}
 
 	/**
@@ -527,6 +553,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 
 		testObjectEClass = createEClass(TEST_OBJECT);
 		createEAttribute(testObjectEClass, TEST_OBJECT__NAME);
+		createEAttribute(testObjectEClass, TEST_OBJECT__PASSWORD);
 		createEReference(testObjectEClass, TEST_OBJECT__SINGLE_REFERENCE);
 		createEReference(testObjectEClass, TEST_OBJECT__MULTI_REFERENCES);
 		createEReference(testObjectEClass, TEST_OBJECT__FIX_UPPER_BOUND_REFERENCES);
@@ -538,6 +565,9 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 
 		// Create enums
 		testEnumEEnum = createEEnum(TEST_ENUM);
+
+		// Create data types
+		passwordEDataType = createEDataType(PASSWORD);
 	}
 
 	/**
@@ -606,6 +636,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 
 		initEClass(testObjectEClass, TestObject.class, "TestObject", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getTestObject_Name(), theEcorePackage.getEString(), "name", null, 0, 1, TestObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTestObject_Password(), this.getPassword(), "password", null, 0, 1, TestObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTestObject_SingleReference(), this.getTestObject(), null, "singleReference", null, 0, 1, TestObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTestObject_MultiReferences(), this.getTestObject(), null, "multiReferences", null, 0, -1, TestObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTestObject_FixUpperBoundReferences(), this.getTestObject(), null, "fixUpperBoundReferences", null, 0, 2, TestObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -620,6 +651,9 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 		addEEnumLiteral(testEnumEEnum, TestEnum.LITERAL0);
 		addEEnumLiteral(testEnumEEnum, TestEnum.LITERAL1);
 		addEEnumLiteral(testEnumEEnum, TestEnum.LITERAL2);
+
+		// Initialize data types
+		initEDataType(passwordEDataType, String.class, "Password", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

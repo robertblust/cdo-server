@@ -76,6 +76,8 @@ public class TestFactoryImpl extends EFactoryImpl implements TestFactory {
 		switch (eDataType.getClassifierID()) {
 			case TestPackage.TEST_ENUM:
 				return createTestEnumFromString(eDataType, initialValue);
+			case TestPackage.PASSWORD:
+				return createPasswordFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -91,6 +93,8 @@ public class TestFactoryImpl extends EFactoryImpl implements TestFactory {
 		switch (eDataType.getClassifierID()) {
 			case TestPackage.TEST_ENUM:
 				return convertTestEnumToString(eDataType, instanceValue);
+			case TestPackage.PASSWORD:
+				return convertPasswordToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -154,6 +158,24 @@ public class TestFactoryImpl extends EFactoryImpl implements TestFactory {
 	 */
 	public String convertTestEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String createPasswordFromString(EDataType eDataType, String initialValue) {
+		return (String)super.createFromString(eDataType, initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertPasswordToString(EDataType eDataType, Object instanceValue) {
+		return super.convertToString(eDataType, instanceValue);
 	}
 
 	/**

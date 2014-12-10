@@ -21,6 +21,7 @@ import org.eclipse.emf.internal.cdo.CDOObjectImpl;
  * The following features are implemented:
  * <ul>
  *   <li>{@link ch.flatland.cdo.model.test.impl.TestObjectImpl#getName <em>Name</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.test.impl.TestObjectImpl#getPassword <em>Password</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.test.impl.TestObjectImpl#getSingleReference <em>Single Reference</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.test.impl.TestObjectImpl#getMultiReferences <em>Multi References</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.test.impl.TestObjectImpl#getFixUpperBoundReferences <em>Fix Upper Bound References</em>}</li>
@@ -41,6 +42,16 @@ public class TestObjectImpl extends CDOObjectImpl implements TestObject {
 	 * @ordered
 	 */
 	protected static final String NAME_EDEFAULT = null;
+
+	/**
+	 * The default value of the '{@link #getPassword() <em>Password</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPassword()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String PASSWORD_EDEFAULT = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -87,6 +98,24 @@ public class TestObjectImpl extends CDOObjectImpl implements TestObject {
 	 */
 	public void setName(String newName) {
 		eDynamicSet(TestPackage.TEST_OBJECT__NAME, TestPackage.Literals.TEST_OBJECT__NAME, newName);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getPassword() {
+		return (String)eDynamicGet(TestPackage.TEST_OBJECT__PASSWORD, TestPackage.Literals.TEST_OBJECT__PASSWORD, true, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setPassword(String newPassword) {
+		eDynamicSet(TestPackage.TEST_OBJECT__PASSWORD, TestPackage.Literals.TEST_OBJECT__PASSWORD, newPassword);
 	}
 
 	/**
@@ -166,6 +195,8 @@ public class TestObjectImpl extends CDOObjectImpl implements TestObject {
 		switch (featureID) {
 			case TestPackage.TEST_OBJECT__NAME:
 				return getName();
+			case TestPackage.TEST_OBJECT__PASSWORD:
+				return getPassword();
 			case TestPackage.TEST_OBJECT__SINGLE_REFERENCE:
 				if (resolve) return getSingleReference();
 				return basicGetSingleReference();
@@ -192,6 +223,9 @@ public class TestObjectImpl extends CDOObjectImpl implements TestObject {
 		switch (featureID) {
 			case TestPackage.TEST_OBJECT__NAME:
 				setName((String)newValue);
+				return;
+			case TestPackage.TEST_OBJECT__PASSWORD:
+				setPassword((String)newValue);
 				return;
 			case TestPackage.TEST_OBJECT__SINGLE_REFERENCE:
 				setSingleReference((TestObject)newValue);
@@ -227,6 +261,9 @@ public class TestObjectImpl extends CDOObjectImpl implements TestObject {
 			case TestPackage.TEST_OBJECT__NAME:
 				setName(NAME_EDEFAULT);
 				return;
+			case TestPackage.TEST_OBJECT__PASSWORD:
+				setPassword(PASSWORD_EDEFAULT);
+				return;
 			case TestPackage.TEST_OBJECT__SINGLE_REFERENCE:
 				setSingleReference((TestObject)null);
 				return;
@@ -256,6 +293,8 @@ public class TestObjectImpl extends CDOObjectImpl implements TestObject {
 		switch (featureID) {
 			case TestPackage.TEST_OBJECT__NAME:
 				return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT.equals(getName());
+			case TestPackage.TEST_OBJECT__PASSWORD:
+				return PASSWORD_EDEFAULT == null ? getPassword() != null : !PASSWORD_EDEFAULT.equals(getPassword());
 			case TestPackage.TEST_OBJECT__SINGLE_REFERENCE:
 				return basicGetSingleReference() != null;
 			case TestPackage.TEST_OBJECT__MULTI_REFERENCES:
