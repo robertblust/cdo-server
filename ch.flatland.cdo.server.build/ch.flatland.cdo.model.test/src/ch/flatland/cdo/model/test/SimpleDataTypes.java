@@ -19,13 +19,21 @@ import org.eclipse.emf.cdo.CDOObject;
  * <ul>
  *   <li>{@link ch.flatland.cdo.model.test.SimpleDataTypes#getTestString <em>Test String</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.test.SimpleDataTypes#isTestBoolean <em>Test Boolean</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.test.SimpleDataTypes#getTestBooleanObject <em>Test Boolean Object</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.test.SimpleDataTypes#getTestInt <em>Test Int</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.test.SimpleDataTypes#getTestIntObject <em>Test Int Object</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.test.SimpleDataTypes#getTestLong <em>Test Long</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.test.SimpleDataTypes#getTestLongObject <em>Test Long Object</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.test.SimpleDataTypes#getTestShort <em>Test Short</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.test.SimpleDataTypes#getTestShortObject <em>Test Short Object</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.test.SimpleDataTypes#getTestDouble <em>Test Double</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.test.SimpleDataTypes#getTestDoubleObject <em>Test Double Object</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.test.SimpleDataTypes#getTestFloat <em>Test Float</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.test.SimpleDataTypes#getTestFloatObject <em>Test Float Object</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.test.SimpleDataTypes#getTestByte <em>Test Byte</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.test.SimpleDataTypes#getTestByteObject <em>Test Byte Object</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.test.SimpleDataTypes#getTestChar <em>Test Char</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.test.SimpleDataTypes#getTestCharObject <em>Test Char Object</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.test.SimpleDataTypes#getTestDate <em>Test Date</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.test.SimpleDataTypes#getTestBigDecimal <em>Test Big Decimal</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.test.SimpleDataTypes#getTestBigInteger <em>Test Big Integer</em>}</li>
@@ -92,6 +100,32 @@ public interface SimpleDataTypes extends CDOObject {
 	void setTestBoolean(boolean value);
 
 	/**
+	 * Returns the value of the '<em><b>Test Boolean Object</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Test Boolean Object</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Test Boolean Object</em>' attribute.
+	 * @see #setTestBooleanObject(Boolean)
+	 * @see ch.flatland.cdo.model.test.TestPackage#getSimpleDataTypes_TestBooleanObject()
+	 * @model unique="false"
+	 * @generated
+	 */
+	Boolean getTestBooleanObject();
+
+	/**
+	 * Sets the value of the '{@link ch.flatland.cdo.model.test.SimpleDataTypes#getTestBooleanObject <em>Test Boolean Object</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Test Boolean Object</em>' attribute.
+	 * @see #getTestBooleanObject()
+	 * @generated
+	 */
+	void setTestBooleanObject(Boolean value);
+
+	/**
 	 * Returns the value of the '<em><b>Test Int</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -116,6 +150,32 @@ public interface SimpleDataTypes extends CDOObject {
 	 * @generated
 	 */
 	void setTestInt(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Test Int Object</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Test Int Object</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Test Int Object</em>' attribute.
+	 * @see #setTestIntObject(Integer)
+	 * @see ch.flatland.cdo.model.test.TestPackage#getSimpleDataTypes_TestIntObject()
+	 * @model unique="false"
+	 * @generated
+	 */
+	Integer getTestIntObject();
+
+	/**
+	 * Sets the value of the '{@link ch.flatland.cdo.model.test.SimpleDataTypes#getTestIntObject <em>Test Int Object</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Test Int Object</em>' attribute.
+	 * @see #getTestIntObject()
+	 * @generated
+	 */
+	void setTestIntObject(Integer value);
 
 	/**
 	 * Returns the value of the '<em><b>Test Long</b></em>' attribute.
@@ -144,6 +204,32 @@ public interface SimpleDataTypes extends CDOObject {
 	void setTestLong(long value);
 
 	/**
+	 * Returns the value of the '<em><b>Test Long Object</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Test Long Object</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Test Long Object</em>' attribute.
+	 * @see #setTestLongObject(Long)
+	 * @see ch.flatland.cdo.model.test.TestPackage#getSimpleDataTypes_TestLongObject()
+	 * @model unique="false"
+	 * @generated
+	 */
+	Long getTestLongObject();
+
+	/**
+	 * Sets the value of the '{@link ch.flatland.cdo.model.test.SimpleDataTypes#getTestLongObject <em>Test Long Object</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Test Long Object</em>' attribute.
+	 * @see #getTestLongObject()
+	 * @generated
+	 */
+	void setTestLongObject(Long value);
+
+	/**
 	 * Returns the value of the '<em><b>Test Short</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -168,6 +254,32 @@ public interface SimpleDataTypes extends CDOObject {
 	 * @generated
 	 */
 	void setTestShort(short value);
+
+	/**
+	 * Returns the value of the '<em><b>Test Short Object</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Test Short Object</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Test Short Object</em>' attribute.
+	 * @see #setTestShortObject(Short)
+	 * @see ch.flatland.cdo.model.test.TestPackage#getSimpleDataTypes_TestShortObject()
+	 * @model unique="false"
+	 * @generated
+	 */
+	Short getTestShortObject();
+
+	/**
+	 * Sets the value of the '{@link ch.flatland.cdo.model.test.SimpleDataTypes#getTestShortObject <em>Test Short Object</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Test Short Object</em>' attribute.
+	 * @see #getTestShortObject()
+	 * @generated
+	 */
+	void setTestShortObject(Short value);
 
 	/**
 	 * Returns the value of the '<em><b>Test Double</b></em>' attribute.
@@ -196,6 +308,32 @@ public interface SimpleDataTypes extends CDOObject {
 	void setTestDouble(double value);
 
 	/**
+	 * Returns the value of the '<em><b>Test Double Object</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Test Double Object</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Test Double Object</em>' attribute.
+	 * @see #setTestDoubleObject(Double)
+	 * @see ch.flatland.cdo.model.test.TestPackage#getSimpleDataTypes_TestDoubleObject()
+	 * @model unique="false"
+	 * @generated
+	 */
+	Double getTestDoubleObject();
+
+	/**
+	 * Sets the value of the '{@link ch.flatland.cdo.model.test.SimpleDataTypes#getTestDoubleObject <em>Test Double Object</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Test Double Object</em>' attribute.
+	 * @see #getTestDoubleObject()
+	 * @generated
+	 */
+	void setTestDoubleObject(Double value);
+
+	/**
 	 * Returns the value of the '<em><b>Test Float</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -220,6 +358,32 @@ public interface SimpleDataTypes extends CDOObject {
 	 * @generated
 	 */
 	void setTestFloat(float value);
+
+	/**
+	 * Returns the value of the '<em><b>Test Float Object</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Test Float Object</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Test Float Object</em>' attribute.
+	 * @see #setTestFloatObject(Float)
+	 * @see ch.flatland.cdo.model.test.TestPackage#getSimpleDataTypes_TestFloatObject()
+	 * @model unique="false"
+	 * @generated
+	 */
+	Float getTestFloatObject();
+
+	/**
+	 * Sets the value of the '{@link ch.flatland.cdo.model.test.SimpleDataTypes#getTestFloatObject <em>Test Float Object</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Test Float Object</em>' attribute.
+	 * @see #getTestFloatObject()
+	 * @generated
+	 */
+	void setTestFloatObject(Float value);
 
 	/**
 	 * Returns the value of the '<em><b>Test Byte</b></em>' attribute.
@@ -248,6 +412,32 @@ public interface SimpleDataTypes extends CDOObject {
 	void setTestByte(byte value);
 
 	/**
+	 * Returns the value of the '<em><b>Test Byte Object</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Test Byte Object</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Test Byte Object</em>' attribute.
+	 * @see #setTestByteObject(Byte)
+	 * @see ch.flatland.cdo.model.test.TestPackage#getSimpleDataTypes_TestByteObject()
+	 * @model unique="false"
+	 * @generated
+	 */
+	Byte getTestByteObject();
+
+	/**
+	 * Sets the value of the '{@link ch.flatland.cdo.model.test.SimpleDataTypes#getTestByteObject <em>Test Byte Object</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Test Byte Object</em>' attribute.
+	 * @see #getTestByteObject()
+	 * @generated
+	 */
+	void setTestByteObject(Byte value);
+
+	/**
 	 * Returns the value of the '<em><b>Test Char</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -272,6 +462,32 @@ public interface SimpleDataTypes extends CDOObject {
 	 * @generated
 	 */
 	void setTestChar(char value);
+
+	/**
+	 * Returns the value of the '<em><b>Test Char Object</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Test Char Object</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Test Char Object</em>' attribute.
+	 * @see #setTestCharObject(Character)
+	 * @see ch.flatland.cdo.model.test.TestPackage#getSimpleDataTypes_TestCharObject()
+	 * @model unique="false"
+	 * @generated
+	 */
+	Character getTestCharObject();
+
+	/**
+	 * Sets the value of the '{@link ch.flatland.cdo.model.test.SimpleDataTypes#getTestCharObject <em>Test Char Object</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Test Char Object</em>' attribute.
+	 * @see #getTestCharObject()
+	 * @generated
+	 */
+	void setTestCharObject(Character value);
 
 	/**
 	 * Returns the value of the '<em><b>Test Date</b></em>' attribute.

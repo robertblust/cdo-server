@@ -527,13 +527,21 @@ class JsonConverter {
 			switch eAttribute.EAttributeType.instanceClass {
 				case typeof(String): return jsonPrimitive.asString
 				case typeof(boolean): return jsonPrimitive.asBoolean
+				case typeof(Boolean): return jsonPrimitive.asBoolean
 				case typeof(int): return jsonPrimitive.asInt
+				case typeof(Integer): return jsonPrimitive.asInt
 				case typeof(long): return jsonPrimitive.asLong
+				case typeof(Long): return jsonPrimitive.asLong
 				case typeof(short): return jsonPrimitive.asShort
+				case typeof(Short): return jsonPrimitive.asShort
 				case typeof(double): return jsonPrimitive.asDouble
+				case typeof(Double): return jsonPrimitive.asDouble
 				case typeof(float): return jsonPrimitive.asFloat
+				case typeof(Float): return jsonPrimitive.asFloat
 				case typeof(byte): return jsonPrimitive.asByte
+				case typeof(Byte): return jsonPrimitive.asByte
 				case typeof(char): return jsonPrimitive.asCharacter
+				case typeof(Character): return jsonPrimitive.asCharacter
 				case typeof(Date): return dateFormat.parse(jsonPrimitive.asString)
 				case typeof(BigDecimal): return jsonPrimitive.asBigDecimal
 				case typeof(BigInteger): return jsonPrimitive.asBigInteger

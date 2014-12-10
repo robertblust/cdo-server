@@ -88,13 +88,31 @@ public interface TestPackage extends EPackage {
 	int SIMPLE_DATA_TYPES__TEST_BOOLEAN = 1;
 
 	/**
+	 * The feature id for the '<em><b>Test Boolean Object</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMPLE_DATA_TYPES__TEST_BOOLEAN_OBJECT = 2;
+
+	/**
 	 * The feature id for the '<em><b>Test Int</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SIMPLE_DATA_TYPES__TEST_INT = 2;
+	int SIMPLE_DATA_TYPES__TEST_INT = 3;
+
+	/**
+	 * The feature id for the '<em><b>Test Int Object</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMPLE_DATA_TYPES__TEST_INT_OBJECT = 4;
 
 	/**
 	 * The feature id for the '<em><b>Test Long</b></em>' attribute.
@@ -103,7 +121,16 @@ public interface TestPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SIMPLE_DATA_TYPES__TEST_LONG = 3;
+	int SIMPLE_DATA_TYPES__TEST_LONG = 5;
+
+	/**
+	 * The feature id for the '<em><b>Test Long Object</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMPLE_DATA_TYPES__TEST_LONG_OBJECT = 6;
 
 	/**
 	 * The feature id for the '<em><b>Test Short</b></em>' attribute.
@@ -112,7 +139,16 @@ public interface TestPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SIMPLE_DATA_TYPES__TEST_SHORT = 4;
+	int SIMPLE_DATA_TYPES__TEST_SHORT = 7;
+
+	/**
+	 * The feature id for the '<em><b>Test Short Object</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMPLE_DATA_TYPES__TEST_SHORT_OBJECT = 8;
 
 	/**
 	 * The feature id for the '<em><b>Test Double</b></em>' attribute.
@@ -121,7 +157,16 @@ public interface TestPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SIMPLE_DATA_TYPES__TEST_DOUBLE = 5;
+	int SIMPLE_DATA_TYPES__TEST_DOUBLE = 9;
+
+	/**
+	 * The feature id for the '<em><b>Test Double Object</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMPLE_DATA_TYPES__TEST_DOUBLE_OBJECT = 10;
 
 	/**
 	 * The feature id for the '<em><b>Test Float</b></em>' attribute.
@@ -130,7 +175,16 @@ public interface TestPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SIMPLE_DATA_TYPES__TEST_FLOAT = 6;
+	int SIMPLE_DATA_TYPES__TEST_FLOAT = 11;
+
+	/**
+	 * The feature id for the '<em><b>Test Float Object</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMPLE_DATA_TYPES__TEST_FLOAT_OBJECT = 12;
 
 	/**
 	 * The feature id for the '<em><b>Test Byte</b></em>' attribute.
@@ -139,7 +193,16 @@ public interface TestPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SIMPLE_DATA_TYPES__TEST_BYTE = 7;
+	int SIMPLE_DATA_TYPES__TEST_BYTE = 13;
+
+	/**
+	 * The feature id for the '<em><b>Test Byte Object</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMPLE_DATA_TYPES__TEST_BYTE_OBJECT = 14;
 
 	/**
 	 * The feature id for the '<em><b>Test Char</b></em>' attribute.
@@ -148,7 +211,16 @@ public interface TestPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SIMPLE_DATA_TYPES__TEST_CHAR = 8;
+	int SIMPLE_DATA_TYPES__TEST_CHAR = 15;
+
+	/**
+	 * The feature id for the '<em><b>Test Char Object</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMPLE_DATA_TYPES__TEST_CHAR_OBJECT = 16;
 
 	/**
 	 * The feature id for the '<em><b>Test Date</b></em>' attribute.
@@ -157,7 +229,7 @@ public interface TestPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SIMPLE_DATA_TYPES__TEST_DATE = 9;
+	int SIMPLE_DATA_TYPES__TEST_DATE = 17;
 
 	/**
 	 * The feature id for the '<em><b>Test Big Decimal</b></em>' attribute.
@@ -166,7 +238,7 @@ public interface TestPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SIMPLE_DATA_TYPES__TEST_BIG_DECIMAL = 10;
+	int SIMPLE_DATA_TYPES__TEST_BIG_DECIMAL = 18;
 
 	/**
 	 * The feature id for the '<em><b>Test Big Integer</b></em>' attribute.
@@ -175,7 +247,7 @@ public interface TestPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SIMPLE_DATA_TYPES__TEST_BIG_INTEGER = 11;
+	int SIMPLE_DATA_TYPES__TEST_BIG_INTEGER = 19;
 
 	/**
 	 * The feature id for the '<em><b>Test Enum</b></em>' attribute.
@@ -184,7 +256,7 @@ public interface TestPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SIMPLE_DATA_TYPES__TEST_ENUM = 12;
+	int SIMPLE_DATA_TYPES__TEST_ENUM = 20;
 
 	/**
 	 * The number of structural features of the '<em>Simple Data Types</em>' class.
@@ -193,7 +265,7 @@ public interface TestPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SIMPLE_DATA_TYPES_FEATURE_COUNT = 13;
+	int SIMPLE_DATA_TYPES_FEATURE_COUNT = 21;
 
 	/**
 	 * The number of operations of the '<em>Simple Data Types</em>' class.
@@ -532,6 +604,17 @@ public interface TestPackage extends EPackage {
 	EAttribute getSimpleDataTypes_TestBoolean();
 
 	/**
+	 * Returns the meta object for the attribute '{@link ch.flatland.cdo.model.test.SimpleDataTypes#getTestBooleanObject <em>Test Boolean Object</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Test Boolean Object</em>'.
+	 * @see ch.flatland.cdo.model.test.SimpleDataTypes#getTestBooleanObject()
+	 * @see #getSimpleDataTypes()
+	 * @generated
+	 */
+	EAttribute getSimpleDataTypes_TestBooleanObject();
+
+	/**
 	 * Returns the meta object for the attribute '{@link ch.flatland.cdo.model.test.SimpleDataTypes#getTestInt <em>Test Int</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -541,6 +624,17 @@ public interface TestPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getSimpleDataTypes_TestInt();
+
+	/**
+	 * Returns the meta object for the attribute '{@link ch.flatland.cdo.model.test.SimpleDataTypes#getTestIntObject <em>Test Int Object</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Test Int Object</em>'.
+	 * @see ch.flatland.cdo.model.test.SimpleDataTypes#getTestIntObject()
+	 * @see #getSimpleDataTypes()
+	 * @generated
+	 */
+	EAttribute getSimpleDataTypes_TestIntObject();
 
 	/**
 	 * Returns the meta object for the attribute '{@link ch.flatland.cdo.model.test.SimpleDataTypes#getTestLong <em>Test Long</em>}'.
@@ -554,6 +648,17 @@ public interface TestPackage extends EPackage {
 	EAttribute getSimpleDataTypes_TestLong();
 
 	/**
+	 * Returns the meta object for the attribute '{@link ch.flatland.cdo.model.test.SimpleDataTypes#getTestLongObject <em>Test Long Object</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Test Long Object</em>'.
+	 * @see ch.flatland.cdo.model.test.SimpleDataTypes#getTestLongObject()
+	 * @see #getSimpleDataTypes()
+	 * @generated
+	 */
+	EAttribute getSimpleDataTypes_TestLongObject();
+
+	/**
 	 * Returns the meta object for the attribute '{@link ch.flatland.cdo.model.test.SimpleDataTypes#getTestShort <em>Test Short</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -563,6 +668,17 @@ public interface TestPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getSimpleDataTypes_TestShort();
+
+	/**
+	 * Returns the meta object for the attribute '{@link ch.flatland.cdo.model.test.SimpleDataTypes#getTestShortObject <em>Test Short Object</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Test Short Object</em>'.
+	 * @see ch.flatland.cdo.model.test.SimpleDataTypes#getTestShortObject()
+	 * @see #getSimpleDataTypes()
+	 * @generated
+	 */
+	EAttribute getSimpleDataTypes_TestShortObject();
 
 	/**
 	 * Returns the meta object for the attribute '{@link ch.flatland.cdo.model.test.SimpleDataTypes#getTestDouble <em>Test Double</em>}'.
@@ -576,6 +692,17 @@ public interface TestPackage extends EPackage {
 	EAttribute getSimpleDataTypes_TestDouble();
 
 	/**
+	 * Returns the meta object for the attribute '{@link ch.flatland.cdo.model.test.SimpleDataTypes#getTestDoubleObject <em>Test Double Object</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Test Double Object</em>'.
+	 * @see ch.flatland.cdo.model.test.SimpleDataTypes#getTestDoubleObject()
+	 * @see #getSimpleDataTypes()
+	 * @generated
+	 */
+	EAttribute getSimpleDataTypes_TestDoubleObject();
+
+	/**
 	 * Returns the meta object for the attribute '{@link ch.flatland.cdo.model.test.SimpleDataTypes#getTestFloat <em>Test Float</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -585,6 +712,17 @@ public interface TestPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getSimpleDataTypes_TestFloat();
+
+	/**
+	 * Returns the meta object for the attribute '{@link ch.flatland.cdo.model.test.SimpleDataTypes#getTestFloatObject <em>Test Float Object</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Test Float Object</em>'.
+	 * @see ch.flatland.cdo.model.test.SimpleDataTypes#getTestFloatObject()
+	 * @see #getSimpleDataTypes()
+	 * @generated
+	 */
+	EAttribute getSimpleDataTypes_TestFloatObject();
 
 	/**
 	 * Returns the meta object for the attribute '{@link ch.flatland.cdo.model.test.SimpleDataTypes#getTestByte <em>Test Byte</em>}'.
@@ -598,6 +736,17 @@ public interface TestPackage extends EPackage {
 	EAttribute getSimpleDataTypes_TestByte();
 
 	/**
+	 * Returns the meta object for the attribute '{@link ch.flatland.cdo.model.test.SimpleDataTypes#getTestByteObject <em>Test Byte Object</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Test Byte Object</em>'.
+	 * @see ch.flatland.cdo.model.test.SimpleDataTypes#getTestByteObject()
+	 * @see #getSimpleDataTypes()
+	 * @generated
+	 */
+	EAttribute getSimpleDataTypes_TestByteObject();
+
+	/**
 	 * Returns the meta object for the attribute '{@link ch.flatland.cdo.model.test.SimpleDataTypes#getTestChar <em>Test Char</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -607,6 +756,17 @@ public interface TestPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getSimpleDataTypes_TestChar();
+
+	/**
+	 * Returns the meta object for the attribute '{@link ch.flatland.cdo.model.test.SimpleDataTypes#getTestCharObject <em>Test Char Object</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Test Char Object</em>'.
+	 * @see ch.flatland.cdo.model.test.SimpleDataTypes#getTestCharObject()
+	 * @see #getSimpleDataTypes()
+	 * @generated
+	 */
+	EAttribute getSimpleDataTypes_TestCharObject();
 
 	/**
 	 * Returns the meta object for the attribute '{@link ch.flatland.cdo.model.test.SimpleDataTypes#getTestDate <em>Test Date</em>}'.
@@ -984,12 +1144,28 @@ public interface TestPackage extends EPackage {
 		EAttribute SIMPLE_DATA_TYPES__TEST_BOOLEAN = eINSTANCE.getSimpleDataTypes_TestBoolean();
 
 		/**
+		 * The meta object literal for the '<em><b>Test Boolean Object</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SIMPLE_DATA_TYPES__TEST_BOOLEAN_OBJECT = eINSTANCE.getSimpleDataTypes_TestBooleanObject();
+
+		/**
 		 * The meta object literal for the '<em><b>Test Int</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EAttribute SIMPLE_DATA_TYPES__TEST_INT = eINSTANCE.getSimpleDataTypes_TestInt();
+
+		/**
+		 * The meta object literal for the '<em><b>Test Int Object</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SIMPLE_DATA_TYPES__TEST_INT_OBJECT = eINSTANCE.getSimpleDataTypes_TestIntObject();
 
 		/**
 		 * The meta object literal for the '<em><b>Test Long</b></em>' attribute feature.
@@ -1000,12 +1176,28 @@ public interface TestPackage extends EPackage {
 		EAttribute SIMPLE_DATA_TYPES__TEST_LONG = eINSTANCE.getSimpleDataTypes_TestLong();
 
 		/**
+		 * The meta object literal for the '<em><b>Test Long Object</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SIMPLE_DATA_TYPES__TEST_LONG_OBJECT = eINSTANCE.getSimpleDataTypes_TestLongObject();
+
+		/**
 		 * The meta object literal for the '<em><b>Test Short</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EAttribute SIMPLE_DATA_TYPES__TEST_SHORT = eINSTANCE.getSimpleDataTypes_TestShort();
+
+		/**
+		 * The meta object literal for the '<em><b>Test Short Object</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SIMPLE_DATA_TYPES__TEST_SHORT_OBJECT = eINSTANCE.getSimpleDataTypes_TestShortObject();
 
 		/**
 		 * The meta object literal for the '<em><b>Test Double</b></em>' attribute feature.
@@ -1016,12 +1208,28 @@ public interface TestPackage extends EPackage {
 		EAttribute SIMPLE_DATA_TYPES__TEST_DOUBLE = eINSTANCE.getSimpleDataTypes_TestDouble();
 
 		/**
+		 * The meta object literal for the '<em><b>Test Double Object</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SIMPLE_DATA_TYPES__TEST_DOUBLE_OBJECT = eINSTANCE.getSimpleDataTypes_TestDoubleObject();
+
+		/**
 		 * The meta object literal for the '<em><b>Test Float</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EAttribute SIMPLE_DATA_TYPES__TEST_FLOAT = eINSTANCE.getSimpleDataTypes_TestFloat();
+
+		/**
+		 * The meta object literal for the '<em><b>Test Float Object</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SIMPLE_DATA_TYPES__TEST_FLOAT_OBJECT = eINSTANCE.getSimpleDataTypes_TestFloatObject();
 
 		/**
 		 * The meta object literal for the '<em><b>Test Byte</b></em>' attribute feature.
@@ -1032,12 +1240,28 @@ public interface TestPackage extends EPackage {
 		EAttribute SIMPLE_DATA_TYPES__TEST_BYTE = eINSTANCE.getSimpleDataTypes_TestByte();
 
 		/**
+		 * The meta object literal for the '<em><b>Test Byte Object</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SIMPLE_DATA_TYPES__TEST_BYTE_OBJECT = eINSTANCE.getSimpleDataTypes_TestByteObject();
+
+		/**
 		 * The meta object literal for the '<em><b>Test Char</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EAttribute SIMPLE_DATA_TYPES__TEST_CHAR = eINSTANCE.getSimpleDataTypes_TestChar();
+
+		/**
+		 * The meta object literal for the '<em><b>Test Char Object</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SIMPLE_DATA_TYPES__TEST_CHAR_OBJECT = eINSTANCE.getSimpleDataTypes_TestCharObject();
 
 		/**
 		 * The meta object literal for the '<em><b>Test Date</b></em>' attribute feature.

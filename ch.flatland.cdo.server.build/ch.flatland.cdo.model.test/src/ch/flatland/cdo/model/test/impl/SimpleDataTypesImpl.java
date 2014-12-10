@@ -24,13 +24,21 @@ import org.eclipse.emf.internal.cdo.CDOObjectImpl;
  * <ul>
  *   <li>{@link ch.flatland.cdo.model.test.impl.SimpleDataTypesImpl#getTestString <em>Test String</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.test.impl.SimpleDataTypesImpl#isTestBoolean <em>Test Boolean</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.test.impl.SimpleDataTypesImpl#getTestBooleanObject <em>Test Boolean Object</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.test.impl.SimpleDataTypesImpl#getTestInt <em>Test Int</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.test.impl.SimpleDataTypesImpl#getTestIntObject <em>Test Int Object</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.test.impl.SimpleDataTypesImpl#getTestLong <em>Test Long</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.test.impl.SimpleDataTypesImpl#getTestLongObject <em>Test Long Object</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.test.impl.SimpleDataTypesImpl#getTestShort <em>Test Short</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.test.impl.SimpleDataTypesImpl#getTestShortObject <em>Test Short Object</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.test.impl.SimpleDataTypesImpl#getTestDouble <em>Test Double</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.test.impl.SimpleDataTypesImpl#getTestDoubleObject <em>Test Double Object</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.test.impl.SimpleDataTypesImpl#getTestFloat <em>Test Float</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.test.impl.SimpleDataTypesImpl#getTestFloatObject <em>Test Float Object</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.test.impl.SimpleDataTypesImpl#getTestByte <em>Test Byte</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.test.impl.SimpleDataTypesImpl#getTestByteObject <em>Test Byte Object</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.test.impl.SimpleDataTypesImpl#getTestChar <em>Test Char</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.test.impl.SimpleDataTypesImpl#getTestCharObject <em>Test Char Object</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.test.impl.SimpleDataTypesImpl#getTestDate <em>Test Date</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.test.impl.SimpleDataTypesImpl#getTestBigDecimal <em>Test Big Decimal</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.test.impl.SimpleDataTypesImpl#getTestBigInteger <em>Test Big Integer</em>}</li>
@@ -62,6 +70,16 @@ public class SimpleDataTypesImpl extends CDOObjectImpl implements SimpleDataType
 	protected static final boolean TEST_BOOLEAN_EDEFAULT = false;
 
 	/**
+	 * The default value of the '{@link #getTestBooleanObject() <em>Test Boolean Object</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTestBooleanObject()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final Boolean TEST_BOOLEAN_OBJECT_EDEFAULT = null;
+
+	/**
 	 * The default value of the '{@link #getTestInt() <em>Test Int</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,6 +88,16 @@ public class SimpleDataTypesImpl extends CDOObjectImpl implements SimpleDataType
 	 * @ordered
 	 */
 	protected static final int TEST_INT_EDEFAULT = 0;
+
+	/**
+	 * The default value of the '{@link #getTestIntObject() <em>Test Int Object</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTestIntObject()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final Integer TEST_INT_OBJECT_EDEFAULT = null;
 
 	/**
 	 * The default value of the '{@link #getTestLong() <em>Test Long</em>}' attribute.
@@ -82,6 +110,16 @@ public class SimpleDataTypesImpl extends CDOObjectImpl implements SimpleDataType
 	protected static final long TEST_LONG_EDEFAULT = 0L;
 
 	/**
+	 * The default value of the '{@link #getTestLongObject() <em>Test Long Object</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTestLongObject()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final Long TEST_LONG_OBJECT_EDEFAULT = null;
+
+	/**
 	 * The default value of the '{@link #getTestShort() <em>Test Short</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -90,6 +128,16 @@ public class SimpleDataTypesImpl extends CDOObjectImpl implements SimpleDataType
 	 * @ordered
 	 */
 	protected static final short TEST_SHORT_EDEFAULT = 0;
+
+	/**
+	 * The default value of the '{@link #getTestShortObject() <em>Test Short Object</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTestShortObject()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final Short TEST_SHORT_OBJECT_EDEFAULT = null;
 
 	/**
 	 * The default value of the '{@link #getTestDouble() <em>Test Double</em>}' attribute.
@@ -102,6 +150,16 @@ public class SimpleDataTypesImpl extends CDOObjectImpl implements SimpleDataType
 	protected static final double TEST_DOUBLE_EDEFAULT = 0.0;
 
 	/**
+	 * The default value of the '{@link #getTestDoubleObject() <em>Test Double Object</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTestDoubleObject()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final Double TEST_DOUBLE_OBJECT_EDEFAULT = null;
+
+	/**
 	 * The default value of the '{@link #getTestFloat() <em>Test Float</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -110,6 +168,16 @@ public class SimpleDataTypesImpl extends CDOObjectImpl implements SimpleDataType
 	 * @ordered
 	 */
 	protected static final float TEST_FLOAT_EDEFAULT = 0.0F;
+
+	/**
+	 * The default value of the '{@link #getTestFloatObject() <em>Test Float Object</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTestFloatObject()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final Float TEST_FLOAT_OBJECT_EDEFAULT = null;
 
 	/**
 	 * The default value of the '{@link #getTestByte() <em>Test Byte</em>}' attribute.
@@ -122,6 +190,16 @@ public class SimpleDataTypesImpl extends CDOObjectImpl implements SimpleDataType
 	protected static final byte TEST_BYTE_EDEFAULT = 0x00;
 
 	/**
+	 * The default value of the '{@link #getTestByteObject() <em>Test Byte Object</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTestByteObject()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final Byte TEST_BYTE_OBJECT_EDEFAULT = null;
+
+	/**
 	 * The default value of the '{@link #getTestChar() <em>Test Char</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -130,6 +208,16 @@ public class SimpleDataTypesImpl extends CDOObjectImpl implements SimpleDataType
 	 * @ordered
 	 */
 	protected static final char TEST_CHAR_EDEFAULT = '\u0000';
+
+	/**
+	 * The default value of the '{@link #getTestCharObject() <em>Test Char Object</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTestCharObject()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final Character TEST_CHAR_OBJECT_EDEFAULT = null;
 
 	/**
 	 * The default value of the '{@link #getTestDate() <em>Test Date</em>}' attribute.
@@ -241,6 +329,24 @@ public class SimpleDataTypesImpl extends CDOObjectImpl implements SimpleDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Boolean getTestBooleanObject() {
+		return (Boolean)eDynamicGet(TestPackage.SIMPLE_DATA_TYPES__TEST_BOOLEAN_OBJECT, TestPackage.Literals.SIMPLE_DATA_TYPES__TEST_BOOLEAN_OBJECT, true, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTestBooleanObject(Boolean newTestBooleanObject) {
+		eDynamicSet(TestPackage.SIMPLE_DATA_TYPES__TEST_BOOLEAN_OBJECT, TestPackage.Literals.SIMPLE_DATA_TYPES__TEST_BOOLEAN_OBJECT, newTestBooleanObject);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public int getTestInt() {
 		return (Integer)eDynamicGet(TestPackage.SIMPLE_DATA_TYPES__TEST_INT, TestPackage.Literals.SIMPLE_DATA_TYPES__TEST_INT, true, true);
 	}
@@ -252,6 +358,24 @@ public class SimpleDataTypesImpl extends CDOObjectImpl implements SimpleDataType
 	 */
 	public void setTestInt(int newTestInt) {
 		eDynamicSet(TestPackage.SIMPLE_DATA_TYPES__TEST_INT, TestPackage.Literals.SIMPLE_DATA_TYPES__TEST_INT, newTestInt);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Integer getTestIntObject() {
+		return (Integer)eDynamicGet(TestPackage.SIMPLE_DATA_TYPES__TEST_INT_OBJECT, TestPackage.Literals.SIMPLE_DATA_TYPES__TEST_INT_OBJECT, true, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTestIntObject(Integer newTestIntObject) {
+		eDynamicSet(TestPackage.SIMPLE_DATA_TYPES__TEST_INT_OBJECT, TestPackage.Literals.SIMPLE_DATA_TYPES__TEST_INT_OBJECT, newTestIntObject);
 	}
 
 	/**
@@ -277,6 +401,24 @@ public class SimpleDataTypesImpl extends CDOObjectImpl implements SimpleDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Long getTestLongObject() {
+		return (Long)eDynamicGet(TestPackage.SIMPLE_DATA_TYPES__TEST_LONG_OBJECT, TestPackage.Literals.SIMPLE_DATA_TYPES__TEST_LONG_OBJECT, true, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTestLongObject(Long newTestLongObject) {
+		eDynamicSet(TestPackage.SIMPLE_DATA_TYPES__TEST_LONG_OBJECT, TestPackage.Literals.SIMPLE_DATA_TYPES__TEST_LONG_OBJECT, newTestLongObject);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public short getTestShort() {
 		return (Short)eDynamicGet(TestPackage.SIMPLE_DATA_TYPES__TEST_SHORT, TestPackage.Literals.SIMPLE_DATA_TYPES__TEST_SHORT, true, true);
 	}
@@ -288,6 +430,24 @@ public class SimpleDataTypesImpl extends CDOObjectImpl implements SimpleDataType
 	 */
 	public void setTestShort(short newTestShort) {
 		eDynamicSet(TestPackage.SIMPLE_DATA_TYPES__TEST_SHORT, TestPackage.Literals.SIMPLE_DATA_TYPES__TEST_SHORT, newTestShort);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Short getTestShortObject() {
+		return (Short)eDynamicGet(TestPackage.SIMPLE_DATA_TYPES__TEST_SHORT_OBJECT, TestPackage.Literals.SIMPLE_DATA_TYPES__TEST_SHORT_OBJECT, true, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTestShortObject(Short newTestShortObject) {
+		eDynamicSet(TestPackage.SIMPLE_DATA_TYPES__TEST_SHORT_OBJECT, TestPackage.Literals.SIMPLE_DATA_TYPES__TEST_SHORT_OBJECT, newTestShortObject);
 	}
 
 	/**
@@ -313,6 +473,24 @@ public class SimpleDataTypesImpl extends CDOObjectImpl implements SimpleDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Double getTestDoubleObject() {
+		return (Double)eDynamicGet(TestPackage.SIMPLE_DATA_TYPES__TEST_DOUBLE_OBJECT, TestPackage.Literals.SIMPLE_DATA_TYPES__TEST_DOUBLE_OBJECT, true, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTestDoubleObject(Double newTestDoubleObject) {
+		eDynamicSet(TestPackage.SIMPLE_DATA_TYPES__TEST_DOUBLE_OBJECT, TestPackage.Literals.SIMPLE_DATA_TYPES__TEST_DOUBLE_OBJECT, newTestDoubleObject);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public float getTestFloat() {
 		return (Float)eDynamicGet(TestPackage.SIMPLE_DATA_TYPES__TEST_FLOAT, TestPackage.Literals.SIMPLE_DATA_TYPES__TEST_FLOAT, true, true);
 	}
@@ -324,6 +502,24 @@ public class SimpleDataTypesImpl extends CDOObjectImpl implements SimpleDataType
 	 */
 	public void setTestFloat(float newTestFloat) {
 		eDynamicSet(TestPackage.SIMPLE_DATA_TYPES__TEST_FLOAT, TestPackage.Literals.SIMPLE_DATA_TYPES__TEST_FLOAT, newTestFloat);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Float getTestFloatObject() {
+		return (Float)eDynamicGet(TestPackage.SIMPLE_DATA_TYPES__TEST_FLOAT_OBJECT, TestPackage.Literals.SIMPLE_DATA_TYPES__TEST_FLOAT_OBJECT, true, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTestFloatObject(Float newTestFloatObject) {
+		eDynamicSet(TestPackage.SIMPLE_DATA_TYPES__TEST_FLOAT_OBJECT, TestPackage.Literals.SIMPLE_DATA_TYPES__TEST_FLOAT_OBJECT, newTestFloatObject);
 	}
 
 	/**
@@ -349,6 +545,24 @@ public class SimpleDataTypesImpl extends CDOObjectImpl implements SimpleDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Byte getTestByteObject() {
+		return (Byte)eDynamicGet(TestPackage.SIMPLE_DATA_TYPES__TEST_BYTE_OBJECT, TestPackage.Literals.SIMPLE_DATA_TYPES__TEST_BYTE_OBJECT, true, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTestByteObject(Byte newTestByteObject) {
+		eDynamicSet(TestPackage.SIMPLE_DATA_TYPES__TEST_BYTE_OBJECT, TestPackage.Literals.SIMPLE_DATA_TYPES__TEST_BYTE_OBJECT, newTestByteObject);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public char getTestChar() {
 		return (Character)eDynamicGet(TestPackage.SIMPLE_DATA_TYPES__TEST_CHAR, TestPackage.Literals.SIMPLE_DATA_TYPES__TEST_CHAR, true, true);
 	}
@@ -360,6 +574,24 @@ public class SimpleDataTypesImpl extends CDOObjectImpl implements SimpleDataType
 	 */
 	public void setTestChar(char newTestChar) {
 		eDynamicSet(TestPackage.SIMPLE_DATA_TYPES__TEST_CHAR, TestPackage.Literals.SIMPLE_DATA_TYPES__TEST_CHAR, newTestChar);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Character getTestCharObject() {
+		return (Character)eDynamicGet(TestPackage.SIMPLE_DATA_TYPES__TEST_CHAR_OBJECT, TestPackage.Literals.SIMPLE_DATA_TYPES__TEST_CHAR_OBJECT, true, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTestCharObject(Character newTestCharObject) {
+		eDynamicSet(TestPackage.SIMPLE_DATA_TYPES__TEST_CHAR_OBJECT, TestPackage.Literals.SIMPLE_DATA_TYPES__TEST_CHAR_OBJECT, newTestCharObject);
 	}
 
 	/**
@@ -446,20 +678,36 @@ public class SimpleDataTypesImpl extends CDOObjectImpl implements SimpleDataType
 				return getTestString();
 			case TestPackage.SIMPLE_DATA_TYPES__TEST_BOOLEAN:
 				return isTestBoolean();
+			case TestPackage.SIMPLE_DATA_TYPES__TEST_BOOLEAN_OBJECT:
+				return getTestBooleanObject();
 			case TestPackage.SIMPLE_DATA_TYPES__TEST_INT:
 				return getTestInt();
+			case TestPackage.SIMPLE_DATA_TYPES__TEST_INT_OBJECT:
+				return getTestIntObject();
 			case TestPackage.SIMPLE_DATA_TYPES__TEST_LONG:
 				return getTestLong();
+			case TestPackage.SIMPLE_DATA_TYPES__TEST_LONG_OBJECT:
+				return getTestLongObject();
 			case TestPackage.SIMPLE_DATA_TYPES__TEST_SHORT:
 				return getTestShort();
+			case TestPackage.SIMPLE_DATA_TYPES__TEST_SHORT_OBJECT:
+				return getTestShortObject();
 			case TestPackage.SIMPLE_DATA_TYPES__TEST_DOUBLE:
 				return getTestDouble();
+			case TestPackage.SIMPLE_DATA_TYPES__TEST_DOUBLE_OBJECT:
+				return getTestDoubleObject();
 			case TestPackage.SIMPLE_DATA_TYPES__TEST_FLOAT:
 				return getTestFloat();
+			case TestPackage.SIMPLE_DATA_TYPES__TEST_FLOAT_OBJECT:
+				return getTestFloatObject();
 			case TestPackage.SIMPLE_DATA_TYPES__TEST_BYTE:
 				return getTestByte();
+			case TestPackage.SIMPLE_DATA_TYPES__TEST_BYTE_OBJECT:
+				return getTestByteObject();
 			case TestPackage.SIMPLE_DATA_TYPES__TEST_CHAR:
 				return getTestChar();
+			case TestPackage.SIMPLE_DATA_TYPES__TEST_CHAR_OBJECT:
+				return getTestCharObject();
 			case TestPackage.SIMPLE_DATA_TYPES__TEST_DATE:
 				return getTestDate();
 			case TestPackage.SIMPLE_DATA_TYPES__TEST_BIG_DECIMAL:
@@ -486,26 +734,50 @@ public class SimpleDataTypesImpl extends CDOObjectImpl implements SimpleDataType
 			case TestPackage.SIMPLE_DATA_TYPES__TEST_BOOLEAN:
 				setTestBoolean((Boolean)newValue);
 				return;
+			case TestPackage.SIMPLE_DATA_TYPES__TEST_BOOLEAN_OBJECT:
+				setTestBooleanObject((Boolean)newValue);
+				return;
 			case TestPackage.SIMPLE_DATA_TYPES__TEST_INT:
 				setTestInt((Integer)newValue);
+				return;
+			case TestPackage.SIMPLE_DATA_TYPES__TEST_INT_OBJECT:
+				setTestIntObject((Integer)newValue);
 				return;
 			case TestPackage.SIMPLE_DATA_TYPES__TEST_LONG:
 				setTestLong((Long)newValue);
 				return;
+			case TestPackage.SIMPLE_DATA_TYPES__TEST_LONG_OBJECT:
+				setTestLongObject((Long)newValue);
+				return;
 			case TestPackage.SIMPLE_DATA_TYPES__TEST_SHORT:
 				setTestShort((Short)newValue);
+				return;
+			case TestPackage.SIMPLE_DATA_TYPES__TEST_SHORT_OBJECT:
+				setTestShortObject((Short)newValue);
 				return;
 			case TestPackage.SIMPLE_DATA_TYPES__TEST_DOUBLE:
 				setTestDouble((Double)newValue);
 				return;
+			case TestPackage.SIMPLE_DATA_TYPES__TEST_DOUBLE_OBJECT:
+				setTestDoubleObject((Double)newValue);
+				return;
 			case TestPackage.SIMPLE_DATA_TYPES__TEST_FLOAT:
 				setTestFloat((Float)newValue);
+				return;
+			case TestPackage.SIMPLE_DATA_TYPES__TEST_FLOAT_OBJECT:
+				setTestFloatObject((Float)newValue);
 				return;
 			case TestPackage.SIMPLE_DATA_TYPES__TEST_BYTE:
 				setTestByte((Byte)newValue);
 				return;
+			case TestPackage.SIMPLE_DATA_TYPES__TEST_BYTE_OBJECT:
+				setTestByteObject((Byte)newValue);
+				return;
 			case TestPackage.SIMPLE_DATA_TYPES__TEST_CHAR:
 				setTestChar((Character)newValue);
+				return;
+			case TestPackage.SIMPLE_DATA_TYPES__TEST_CHAR_OBJECT:
+				setTestCharObject((Character)newValue);
 				return;
 			case TestPackage.SIMPLE_DATA_TYPES__TEST_DATE:
 				setTestDate((Date)newValue);
@@ -537,26 +809,50 @@ public class SimpleDataTypesImpl extends CDOObjectImpl implements SimpleDataType
 			case TestPackage.SIMPLE_DATA_TYPES__TEST_BOOLEAN:
 				setTestBoolean(TEST_BOOLEAN_EDEFAULT);
 				return;
+			case TestPackage.SIMPLE_DATA_TYPES__TEST_BOOLEAN_OBJECT:
+				setTestBooleanObject(TEST_BOOLEAN_OBJECT_EDEFAULT);
+				return;
 			case TestPackage.SIMPLE_DATA_TYPES__TEST_INT:
 				setTestInt(TEST_INT_EDEFAULT);
+				return;
+			case TestPackage.SIMPLE_DATA_TYPES__TEST_INT_OBJECT:
+				setTestIntObject(TEST_INT_OBJECT_EDEFAULT);
 				return;
 			case TestPackage.SIMPLE_DATA_TYPES__TEST_LONG:
 				setTestLong(TEST_LONG_EDEFAULT);
 				return;
+			case TestPackage.SIMPLE_DATA_TYPES__TEST_LONG_OBJECT:
+				setTestLongObject(TEST_LONG_OBJECT_EDEFAULT);
+				return;
 			case TestPackage.SIMPLE_DATA_TYPES__TEST_SHORT:
 				setTestShort(TEST_SHORT_EDEFAULT);
+				return;
+			case TestPackage.SIMPLE_DATA_TYPES__TEST_SHORT_OBJECT:
+				setTestShortObject(TEST_SHORT_OBJECT_EDEFAULT);
 				return;
 			case TestPackage.SIMPLE_DATA_TYPES__TEST_DOUBLE:
 				setTestDouble(TEST_DOUBLE_EDEFAULT);
 				return;
+			case TestPackage.SIMPLE_DATA_TYPES__TEST_DOUBLE_OBJECT:
+				setTestDoubleObject(TEST_DOUBLE_OBJECT_EDEFAULT);
+				return;
 			case TestPackage.SIMPLE_DATA_TYPES__TEST_FLOAT:
 				setTestFloat(TEST_FLOAT_EDEFAULT);
+				return;
+			case TestPackage.SIMPLE_DATA_TYPES__TEST_FLOAT_OBJECT:
+				setTestFloatObject(TEST_FLOAT_OBJECT_EDEFAULT);
 				return;
 			case TestPackage.SIMPLE_DATA_TYPES__TEST_BYTE:
 				setTestByte(TEST_BYTE_EDEFAULT);
 				return;
+			case TestPackage.SIMPLE_DATA_TYPES__TEST_BYTE_OBJECT:
+				setTestByteObject(TEST_BYTE_OBJECT_EDEFAULT);
+				return;
 			case TestPackage.SIMPLE_DATA_TYPES__TEST_CHAR:
 				setTestChar(TEST_CHAR_EDEFAULT);
+				return;
+			case TestPackage.SIMPLE_DATA_TYPES__TEST_CHAR_OBJECT:
+				setTestCharObject(TEST_CHAR_OBJECT_EDEFAULT);
 				return;
 			case TestPackage.SIMPLE_DATA_TYPES__TEST_DATE:
 				setTestDate(TEST_DATE_EDEFAULT);
@@ -586,20 +882,36 @@ public class SimpleDataTypesImpl extends CDOObjectImpl implements SimpleDataType
 				return TEST_STRING_EDEFAULT == null ? getTestString() != null : !TEST_STRING_EDEFAULT.equals(getTestString());
 			case TestPackage.SIMPLE_DATA_TYPES__TEST_BOOLEAN:
 				return isTestBoolean() != TEST_BOOLEAN_EDEFAULT;
+			case TestPackage.SIMPLE_DATA_TYPES__TEST_BOOLEAN_OBJECT:
+				return TEST_BOOLEAN_OBJECT_EDEFAULT == null ? getTestBooleanObject() != null : !TEST_BOOLEAN_OBJECT_EDEFAULT.equals(getTestBooleanObject());
 			case TestPackage.SIMPLE_DATA_TYPES__TEST_INT:
 				return getTestInt() != TEST_INT_EDEFAULT;
+			case TestPackage.SIMPLE_DATA_TYPES__TEST_INT_OBJECT:
+				return TEST_INT_OBJECT_EDEFAULT == null ? getTestIntObject() != null : !TEST_INT_OBJECT_EDEFAULT.equals(getTestIntObject());
 			case TestPackage.SIMPLE_DATA_TYPES__TEST_LONG:
 				return getTestLong() != TEST_LONG_EDEFAULT;
+			case TestPackage.SIMPLE_DATA_TYPES__TEST_LONG_OBJECT:
+				return TEST_LONG_OBJECT_EDEFAULT == null ? getTestLongObject() != null : !TEST_LONG_OBJECT_EDEFAULT.equals(getTestLongObject());
 			case TestPackage.SIMPLE_DATA_TYPES__TEST_SHORT:
 				return getTestShort() != TEST_SHORT_EDEFAULT;
+			case TestPackage.SIMPLE_DATA_TYPES__TEST_SHORT_OBJECT:
+				return TEST_SHORT_OBJECT_EDEFAULT == null ? getTestShortObject() != null : !TEST_SHORT_OBJECT_EDEFAULT.equals(getTestShortObject());
 			case TestPackage.SIMPLE_DATA_TYPES__TEST_DOUBLE:
 				return getTestDouble() != TEST_DOUBLE_EDEFAULT;
+			case TestPackage.SIMPLE_DATA_TYPES__TEST_DOUBLE_OBJECT:
+				return TEST_DOUBLE_OBJECT_EDEFAULT == null ? getTestDoubleObject() != null : !TEST_DOUBLE_OBJECT_EDEFAULT.equals(getTestDoubleObject());
 			case TestPackage.SIMPLE_DATA_TYPES__TEST_FLOAT:
 				return getTestFloat() != TEST_FLOAT_EDEFAULT;
+			case TestPackage.SIMPLE_DATA_TYPES__TEST_FLOAT_OBJECT:
+				return TEST_FLOAT_OBJECT_EDEFAULT == null ? getTestFloatObject() != null : !TEST_FLOAT_OBJECT_EDEFAULT.equals(getTestFloatObject());
 			case TestPackage.SIMPLE_DATA_TYPES__TEST_BYTE:
 				return getTestByte() != TEST_BYTE_EDEFAULT;
+			case TestPackage.SIMPLE_DATA_TYPES__TEST_BYTE_OBJECT:
+				return TEST_BYTE_OBJECT_EDEFAULT == null ? getTestByteObject() != null : !TEST_BYTE_OBJECT_EDEFAULT.equals(getTestByteObject());
 			case TestPackage.SIMPLE_DATA_TYPES__TEST_CHAR:
 				return getTestChar() != TEST_CHAR_EDEFAULT;
+			case TestPackage.SIMPLE_DATA_TYPES__TEST_CHAR_OBJECT:
+				return TEST_CHAR_OBJECT_EDEFAULT == null ? getTestCharObject() != null : !TEST_CHAR_OBJECT_EDEFAULT.equals(getTestCharObject());
 			case TestPackage.SIMPLE_DATA_TYPES__TEST_DATE:
 				return TEST_DATE_EDEFAULT == null ? getTestDate() != null : !TEST_DATE_EDEFAULT.equals(getTestDate());
 			case TestPackage.SIMPLE_DATA_TYPES__TEST_BIG_DECIMAL:

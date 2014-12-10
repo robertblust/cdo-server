@@ -13,13 +13,21 @@ import org.eclipse.emf.ecore.xml.^type.Base64Binary
 class SimpleDataTypes {
 	String testString
 	boolean testBoolean
+	Boolean testBooleanObject
 	int testInt
+	Integer testIntObject
 	long testLong
+	Long testLongObject
 	short testShort
+	Short testShortObject
 	double testDouble
+	Double testDoubleObject
 	float testFloat
+	Float testFloatObject
 	byte testByte
+	Byte testByteObject
 	char testChar
+	Character testCharObject
 	Date testDate
 	BigDecimal testBigDecimal
 	BigInteger testBigInteger

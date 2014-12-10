@@ -115,8 +115,8 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 		isInited = true;
 
 		// Initialize simple dependencies
-		EcorePackage.eINSTANCE.eClass();
 		XMLTypePackage.eINSTANCE.eClass();
+		EcorePackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theTestPackage.createPackageContents();
@@ -165,7 +165,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSimpleDataTypes_TestInt() {
+	public EAttribute getSimpleDataTypes_TestBooleanObject() {
 		return (EAttribute)simpleDataTypesEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -174,7 +174,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSimpleDataTypes_TestLong() {
+	public EAttribute getSimpleDataTypes_TestInt() {
 		return (EAttribute)simpleDataTypesEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -183,7 +183,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSimpleDataTypes_TestShort() {
+	public EAttribute getSimpleDataTypes_TestIntObject() {
 		return (EAttribute)simpleDataTypesEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -192,7 +192,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSimpleDataTypes_TestDouble() {
+	public EAttribute getSimpleDataTypes_TestLong() {
 		return (EAttribute)simpleDataTypesEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -201,7 +201,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSimpleDataTypes_TestFloat() {
+	public EAttribute getSimpleDataTypes_TestLongObject() {
 		return (EAttribute)simpleDataTypesEClass.getEStructuralFeatures().get(6);
 	}
 
@@ -210,7 +210,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSimpleDataTypes_TestByte() {
+	public EAttribute getSimpleDataTypes_TestShort() {
 		return (EAttribute)simpleDataTypesEClass.getEStructuralFeatures().get(7);
 	}
 
@@ -219,7 +219,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSimpleDataTypes_TestChar() {
+	public EAttribute getSimpleDataTypes_TestShortObject() {
 		return (EAttribute)simpleDataTypesEClass.getEStructuralFeatures().get(8);
 	}
 
@@ -228,7 +228,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSimpleDataTypes_TestDate() {
+	public EAttribute getSimpleDataTypes_TestDouble() {
 		return (EAttribute)simpleDataTypesEClass.getEStructuralFeatures().get(9);
 	}
 
@@ -237,7 +237,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSimpleDataTypes_TestBigDecimal() {
+	public EAttribute getSimpleDataTypes_TestDoubleObject() {
 		return (EAttribute)simpleDataTypesEClass.getEStructuralFeatures().get(10);
 	}
 
@@ -246,7 +246,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSimpleDataTypes_TestBigInteger() {
+	public EAttribute getSimpleDataTypes_TestFloat() {
 		return (EAttribute)simpleDataTypesEClass.getEStructuralFeatures().get(11);
 	}
 
@@ -255,8 +255,80 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSimpleDataTypes_TestEnum() {
+	public EAttribute getSimpleDataTypes_TestFloatObject() {
 		return (EAttribute)simpleDataTypesEClass.getEStructuralFeatures().get(12);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSimpleDataTypes_TestByte() {
+		return (EAttribute)simpleDataTypesEClass.getEStructuralFeatures().get(13);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSimpleDataTypes_TestByteObject() {
+		return (EAttribute)simpleDataTypesEClass.getEStructuralFeatures().get(14);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSimpleDataTypes_TestChar() {
+		return (EAttribute)simpleDataTypesEClass.getEStructuralFeatures().get(15);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSimpleDataTypes_TestCharObject() {
+		return (EAttribute)simpleDataTypesEClass.getEStructuralFeatures().get(16);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSimpleDataTypes_TestDate() {
+		return (EAttribute)simpleDataTypesEClass.getEStructuralFeatures().get(17);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSimpleDataTypes_TestBigDecimal() {
+		return (EAttribute)simpleDataTypesEClass.getEStructuralFeatures().get(18);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSimpleDataTypes_TestBigInteger() {
+		return (EAttribute)simpleDataTypesEClass.getEStructuralFeatures().get(19);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSimpleDataTypes_TestEnum() {
+		return (EAttribute)simpleDataTypesEClass.getEStructuralFeatures().get(20);
 	}
 
 	/**
@@ -524,13 +596,21 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 		simpleDataTypesEClass = createEClass(SIMPLE_DATA_TYPES);
 		createEAttribute(simpleDataTypesEClass, SIMPLE_DATA_TYPES__TEST_STRING);
 		createEAttribute(simpleDataTypesEClass, SIMPLE_DATA_TYPES__TEST_BOOLEAN);
+		createEAttribute(simpleDataTypesEClass, SIMPLE_DATA_TYPES__TEST_BOOLEAN_OBJECT);
 		createEAttribute(simpleDataTypesEClass, SIMPLE_DATA_TYPES__TEST_INT);
+		createEAttribute(simpleDataTypesEClass, SIMPLE_DATA_TYPES__TEST_INT_OBJECT);
 		createEAttribute(simpleDataTypesEClass, SIMPLE_DATA_TYPES__TEST_LONG);
+		createEAttribute(simpleDataTypesEClass, SIMPLE_DATA_TYPES__TEST_LONG_OBJECT);
 		createEAttribute(simpleDataTypesEClass, SIMPLE_DATA_TYPES__TEST_SHORT);
+		createEAttribute(simpleDataTypesEClass, SIMPLE_DATA_TYPES__TEST_SHORT_OBJECT);
 		createEAttribute(simpleDataTypesEClass, SIMPLE_DATA_TYPES__TEST_DOUBLE);
+		createEAttribute(simpleDataTypesEClass, SIMPLE_DATA_TYPES__TEST_DOUBLE_OBJECT);
 		createEAttribute(simpleDataTypesEClass, SIMPLE_DATA_TYPES__TEST_FLOAT);
+		createEAttribute(simpleDataTypesEClass, SIMPLE_DATA_TYPES__TEST_FLOAT_OBJECT);
 		createEAttribute(simpleDataTypesEClass, SIMPLE_DATA_TYPES__TEST_BYTE);
+		createEAttribute(simpleDataTypesEClass, SIMPLE_DATA_TYPES__TEST_BYTE_OBJECT);
 		createEAttribute(simpleDataTypesEClass, SIMPLE_DATA_TYPES__TEST_CHAR);
+		createEAttribute(simpleDataTypesEClass, SIMPLE_DATA_TYPES__TEST_CHAR_OBJECT);
 		createEAttribute(simpleDataTypesEClass, SIMPLE_DATA_TYPES__TEST_DATE);
 		createEAttribute(simpleDataTypesEClass, SIMPLE_DATA_TYPES__TEST_BIG_DECIMAL);
 		createEAttribute(simpleDataTypesEClass, SIMPLE_DATA_TYPES__TEST_BIG_INTEGER);
@@ -607,13 +687,21 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 		initEClass(simpleDataTypesEClass, SimpleDataTypes.class, "SimpleDataTypes", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getSimpleDataTypes_TestString(), theEcorePackage.getEString(), "testString", null, 0, 1, SimpleDataTypes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSimpleDataTypes_TestBoolean(), theEcorePackage.getEBoolean(), "testBoolean", null, 0, 1, SimpleDataTypes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSimpleDataTypes_TestBooleanObject(), theEcorePackage.getEBooleanObject(), "testBooleanObject", null, 0, 1, SimpleDataTypes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSimpleDataTypes_TestInt(), theEcorePackage.getEInt(), "testInt", null, 0, 1, SimpleDataTypes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSimpleDataTypes_TestIntObject(), theEcorePackage.getEIntegerObject(), "testIntObject", null, 0, 1, SimpleDataTypes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSimpleDataTypes_TestLong(), theEcorePackage.getELong(), "testLong", null, 0, 1, SimpleDataTypes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSimpleDataTypes_TestLongObject(), theEcorePackage.getELongObject(), "testLongObject", null, 0, 1, SimpleDataTypes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSimpleDataTypes_TestShort(), theEcorePackage.getEShort(), "testShort", null, 0, 1, SimpleDataTypes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSimpleDataTypes_TestShortObject(), theEcorePackage.getEShortObject(), "testShortObject", null, 0, 1, SimpleDataTypes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSimpleDataTypes_TestDouble(), theEcorePackage.getEDouble(), "testDouble", null, 0, 1, SimpleDataTypes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSimpleDataTypes_TestDoubleObject(), theEcorePackage.getEDoubleObject(), "testDoubleObject", null, 0, 1, SimpleDataTypes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSimpleDataTypes_TestFloat(), theEcorePackage.getEFloat(), "testFloat", null, 0, 1, SimpleDataTypes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSimpleDataTypes_TestFloatObject(), theEcorePackage.getEFloatObject(), "testFloatObject", null, 0, 1, SimpleDataTypes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSimpleDataTypes_TestByte(), theEcorePackage.getEByte(), "testByte", null, 0, 1, SimpleDataTypes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSimpleDataTypes_TestByteObject(), theEcorePackage.getEByteObject(), "testByteObject", null, 0, 1, SimpleDataTypes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSimpleDataTypes_TestChar(), theEcorePackage.getEChar(), "testChar", null, 0, 1, SimpleDataTypes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSimpleDataTypes_TestCharObject(), theEcorePackage.getECharacterObject(), "testCharObject", null, 0, 1, SimpleDataTypes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSimpleDataTypes_TestDate(), theEcorePackage.getEDate(), "testDate", null, 0, 1, SimpleDataTypes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSimpleDataTypes_TestBigDecimal(), theEcorePackage.getEBigDecimal(), "testBigDecimal", null, 0, 1, SimpleDataTypes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSimpleDataTypes_TestBigInteger(), theEcorePackage.getEBigInteger(), "testBigInteger", null, 0, 1, SimpleDataTypes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -62,13 +62,21 @@ public class SimpleDataTypesItemProvider
 
 			addTestStringPropertyDescriptor(object);
 			addTestBooleanPropertyDescriptor(object);
+			addTestBooleanObjectPropertyDescriptor(object);
 			addTestIntPropertyDescriptor(object);
+			addTestIntObjectPropertyDescriptor(object);
 			addTestLongPropertyDescriptor(object);
+			addTestLongObjectPropertyDescriptor(object);
 			addTestShortPropertyDescriptor(object);
+			addTestShortObjectPropertyDescriptor(object);
 			addTestDoublePropertyDescriptor(object);
+			addTestDoubleObjectPropertyDescriptor(object);
 			addTestFloatPropertyDescriptor(object);
+			addTestFloatObjectPropertyDescriptor(object);
 			addTestBytePropertyDescriptor(object);
+			addTestByteObjectPropertyDescriptor(object);
 			addTestCharPropertyDescriptor(object);
+			addTestCharObjectPropertyDescriptor(object);
 			addTestDatePropertyDescriptor(object);
 			addTestBigDecimalPropertyDescriptor(object);
 			addTestBigIntegerPropertyDescriptor(object);
@@ -122,6 +130,28 @@ public class SimpleDataTypesItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Test Boolean Object feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTestBooleanObjectPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SimpleDataTypes_testBooleanObject_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SimpleDataTypes_testBooleanObject_feature", "_UI_SimpleDataTypes_type"),
+				 TestPackage.Literals.SIMPLE_DATA_TYPES__TEST_BOOLEAN_OBJECT,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This adds a property descriptor for the Test Int feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -139,6 +169,28 @@ public class SimpleDataTypesItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Test Int Object feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTestIntObjectPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SimpleDataTypes_testIntObject_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SimpleDataTypes_testIntObject_feature", "_UI_SimpleDataTypes_type"),
+				 TestPackage.Literals.SIMPLE_DATA_TYPES__TEST_INT_OBJECT,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -166,6 +218,28 @@ public class SimpleDataTypesItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Test Long Object feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTestLongObjectPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SimpleDataTypes_testLongObject_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SimpleDataTypes_testLongObject_feature", "_UI_SimpleDataTypes_type"),
+				 TestPackage.Literals.SIMPLE_DATA_TYPES__TEST_LONG_OBJECT,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This adds a property descriptor for the Test Short feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -183,6 +257,28 @@ public class SimpleDataTypesItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Test Short Object feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTestShortObjectPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SimpleDataTypes_testShortObject_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SimpleDataTypes_testShortObject_feature", "_UI_SimpleDataTypes_type"),
+				 TestPackage.Literals.SIMPLE_DATA_TYPES__TEST_SHORT_OBJECT,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -210,6 +306,28 @@ public class SimpleDataTypesItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Test Double Object feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTestDoubleObjectPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SimpleDataTypes_testDoubleObject_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SimpleDataTypes_testDoubleObject_feature", "_UI_SimpleDataTypes_type"),
+				 TestPackage.Literals.SIMPLE_DATA_TYPES__TEST_DOUBLE_OBJECT,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This adds a property descriptor for the Test Float feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -227,6 +345,28 @@ public class SimpleDataTypesItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.REAL_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Test Float Object feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTestFloatObjectPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SimpleDataTypes_testFloatObject_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SimpleDataTypes_testFloatObject_feature", "_UI_SimpleDataTypes_type"),
+				 TestPackage.Literals.SIMPLE_DATA_TYPES__TEST_FLOAT_OBJECT,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -254,6 +394,28 @@ public class SimpleDataTypesItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Test Byte Object feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTestByteObjectPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SimpleDataTypes_testByteObject_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SimpleDataTypes_testByteObject_feature", "_UI_SimpleDataTypes_type"),
+				 TestPackage.Literals.SIMPLE_DATA_TYPES__TEST_BYTE_OBJECT,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This adds a property descriptor for the Test Char feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -271,6 +433,28 @@ public class SimpleDataTypesItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.TEXT_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Test Char Object feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTestCharObjectPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SimpleDataTypes_testCharObject_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SimpleDataTypes_testCharObject_feature", "_UI_SimpleDataTypes_type"),
+				 TestPackage.Literals.SIMPLE_DATA_TYPES__TEST_CHAR_OBJECT,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -413,13 +597,21 @@ public class SimpleDataTypesItemProvider
 		switch (notification.getFeatureID(SimpleDataTypes.class)) {
 			case TestPackage.SIMPLE_DATA_TYPES__TEST_STRING:
 			case TestPackage.SIMPLE_DATA_TYPES__TEST_BOOLEAN:
+			case TestPackage.SIMPLE_DATA_TYPES__TEST_BOOLEAN_OBJECT:
 			case TestPackage.SIMPLE_DATA_TYPES__TEST_INT:
+			case TestPackage.SIMPLE_DATA_TYPES__TEST_INT_OBJECT:
 			case TestPackage.SIMPLE_DATA_TYPES__TEST_LONG:
+			case TestPackage.SIMPLE_DATA_TYPES__TEST_LONG_OBJECT:
 			case TestPackage.SIMPLE_DATA_TYPES__TEST_SHORT:
+			case TestPackage.SIMPLE_DATA_TYPES__TEST_SHORT_OBJECT:
 			case TestPackage.SIMPLE_DATA_TYPES__TEST_DOUBLE:
+			case TestPackage.SIMPLE_DATA_TYPES__TEST_DOUBLE_OBJECT:
 			case TestPackage.SIMPLE_DATA_TYPES__TEST_FLOAT:
+			case TestPackage.SIMPLE_DATA_TYPES__TEST_FLOAT_OBJECT:
 			case TestPackage.SIMPLE_DATA_TYPES__TEST_BYTE:
+			case TestPackage.SIMPLE_DATA_TYPES__TEST_BYTE_OBJECT:
 			case TestPackage.SIMPLE_DATA_TYPES__TEST_CHAR:
+			case TestPackage.SIMPLE_DATA_TYPES__TEST_CHAR_OBJECT:
 			case TestPackage.SIMPLE_DATA_TYPES__TEST_DATE:
 			case TestPackage.SIMPLE_DATA_TYPES__TEST_BIG_DECIMAL:
 			case TestPackage.SIMPLE_DATA_TYPES__TEST_BIG_INTEGER:
