@@ -76,8 +76,8 @@ public class TestFactoryImpl extends EFactoryImpl implements TestFactory {
 		switch (eDataType.getClassifierID()) {
 			case TestPackage.TEST_ENUM:
 				return createTestEnumFromString(eDataType, initialValue);
-			case TestPackage.PASSWORD:
-				return createPasswordFromString(eDataType, initialValue);
+			case TestPackage.MAXLENGTH8:
+				return createMaxlength8FromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -93,8 +93,8 @@ public class TestFactoryImpl extends EFactoryImpl implements TestFactory {
 		switch (eDataType.getClassifierID()) {
 			case TestPackage.TEST_ENUM:
 				return convertTestEnumToString(eDataType, instanceValue);
-			case TestPackage.PASSWORD:
-				return convertPasswordToString(eDataType, instanceValue);
+			case TestPackage.MAXLENGTH8:
+				return convertMaxlength8ToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -165,7 +165,7 @@ public class TestFactoryImpl extends EFactoryImpl implements TestFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String createPasswordFromString(EDataType eDataType, String initialValue) {
+	public String createMaxlength8FromString(EDataType eDataType, String initialValue) {
 		return (String)super.createFromString(eDataType, initialValue);
 	}
 
@@ -174,7 +174,7 @@ public class TestFactoryImpl extends EFactoryImpl implements TestFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertPasswordToString(EDataType eDataType, Object instanceValue) {
+	public String convertMaxlength8ToString(EDataType eDataType, Object instanceValue) {
 		return super.convertToString(eDataType, instanceValue);
 	}
 

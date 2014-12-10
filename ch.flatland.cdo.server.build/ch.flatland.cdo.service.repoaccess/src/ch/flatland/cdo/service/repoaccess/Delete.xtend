@@ -64,7 +64,7 @@ class Delete {
 				}
 
 				var container = view.xRefsDelete(requestedObject)
-				view.addRevisionDelta(container as CDOObject, JsonConverter.FLDiagnostics)
+				view.addRevisionDelta(container as CDOObject, JsonConverter.revisionDeltas)
 
 			} catch(NoPermissionException npe) {
 				throw new FlatlandException(SC_FORBIDDEN, requestedObject, npe.message)

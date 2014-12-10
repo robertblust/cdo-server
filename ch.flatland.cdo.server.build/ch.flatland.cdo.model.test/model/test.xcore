@@ -52,7 +52,7 @@ class SimpleDataTypesAsArray {
 
 class TestObject {
 	String name
-	Password password
+	Maxlength8 maxlength8
 	refers TestObject singleReference
 	refers TestObject[] multiReferences
 	refers TestObject[0..2] fixUpperBoundReferences
@@ -70,4 +70,5 @@ enum TestEnum {
 	literal2 = 2
 }
 
-type Password wraps String
+@ExtendedMetaData(name="Maxlength8", maxLength="8")
+type Maxlength8 wraps String

@@ -9,12 +9,14 @@ import ch.flatland.cdo.model.test.TestEnum;
 import ch.flatland.cdo.model.test.TestFactory;
 import ch.flatland.cdo.model.test.TestObject;
 import ch.flatland.cdo.model.test.TestPackage;
+import ch.flatland.cdo.model.test.util.TestValidator;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
@@ -66,7 +68,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EDataType passwordEDataType = null;
+	private EDataType maxlength8EDataType = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -123,6 +125,15 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 
 		// Initialize created meta-data
 		theTestPackage.initializePackageContents();
+
+		// Register package validator
+		EValidator.Registry.INSTANCE.put
+			(theTestPackage, 
+			 new EValidator.Descriptor() {
+				 public EValidator getEValidator() {
+					 return TestValidator.INSTANCE;
+				 }
+			 });
 
 		// Mark meta-data to indicate it can't be changed
 		theTestPackage.freeze();
@@ -480,7 +491,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getTestObject_Password() {
+	public EAttribute getTestObject_Maxlength8() {
 		return (EAttribute)testObjectEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -561,8 +572,8 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EDataType getPassword() {
-		return passwordEDataType;
+	public EDataType getMaxlength8() {
+		return maxlength8EDataType;
 	}
 
 	/**
@@ -633,7 +644,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 
 		testObjectEClass = createEClass(TEST_OBJECT);
 		createEAttribute(testObjectEClass, TEST_OBJECT__NAME);
-		createEAttribute(testObjectEClass, TEST_OBJECT__PASSWORD);
+		createEAttribute(testObjectEClass, TEST_OBJECT__MAXLENGTH8);
 		createEReference(testObjectEClass, TEST_OBJECT__SINGLE_REFERENCE);
 		createEReference(testObjectEClass, TEST_OBJECT__MULTI_REFERENCES);
 		createEReference(testObjectEClass, TEST_OBJECT__FIX_UPPER_BOUND_REFERENCES);
@@ -647,7 +658,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 		testEnumEEnum = createEEnum(TEST_ENUM);
 
 		// Create data types
-		passwordEDataType = createEDataType(PASSWORD);
+		maxlength8EDataType = createEDataType(MAXLENGTH8);
 	}
 
 	/**
@@ -724,7 +735,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 
 		initEClass(testObjectEClass, TestObject.class, "TestObject", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getTestObject_Name(), theEcorePackage.getEString(), "name", null, 0, 1, TestObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getTestObject_Password(), this.getPassword(), "password", null, 0, 1, TestObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTestObject_Maxlength8(), this.getMaxlength8(), "maxlength8", null, 0, 1, TestObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTestObject_SingleReference(), this.getTestObject(), null, "singleReference", null, 0, 1, TestObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTestObject_MultiReferences(), this.getTestObject(), null, "multiReferences", null, 0, -1, TestObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTestObject_FixUpperBoundReferences(), this.getTestObject(), null, "fixUpperBoundReferences", null, 0, 2, TestObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -741,10 +752,31 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 		addEEnumLiteral(testEnumEEnum, TestEnum.LITERAL2);
 
 		// Initialize data types
-		initEDataType(passwordEDataType, String.class, "Password", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+		initEDataType(maxlength8EDataType, String.class, "Maxlength8", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);
+
+		// Create annotations
+		// http:///org/eclipse/emf/ecore/util/ExtendedMetaData
+		createExtendedMetaDataAnnotations();
+	}
+
+	/**
+	 * Initializes the annotations for <b>http:///org/eclipse/emf/ecore/util/ExtendedMetaData</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createExtendedMetaDataAnnotations() {
+		String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData";	
+		addAnnotation
+		  (maxlength8EDataType, 
+		   source, 
+		   new String[] {
+			 "name", "Maxlength8",
+			 "maxLength", "8"
+		   });
 	}
 
 } //TestPackageImpl

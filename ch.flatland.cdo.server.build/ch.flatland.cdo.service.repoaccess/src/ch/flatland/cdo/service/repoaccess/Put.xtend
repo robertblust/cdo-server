@@ -93,7 +93,7 @@ class Put {
 				requestedObject.eSet(eReference, newObject)
 			}
 
-			view.addRevisionDelta(requestedObject, JsonConverter.FLDiagnostics)
+			view.addRevisionDelta(requestedObject, JsonConverter.revisionDeltas)
 			
 			view.commit
 

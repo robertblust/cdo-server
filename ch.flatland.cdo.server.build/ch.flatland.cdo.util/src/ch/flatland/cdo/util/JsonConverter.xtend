@@ -26,8 +26,10 @@ import java.util.List
 import java.util.Map
 import org.apache.commons.codec.binary.Base64
 import org.eclipse.emf.cdo.CDOObject
+import org.eclipse.emf.cdo.common.revision.delta.CDOFeatureDelta
 import org.eclipse.emf.cdo.common.security.NoPermissionException
 import org.eclipse.emf.cdo.eresource.CDOResourceNode
+import org.eclipse.emf.common.util.Diagnostic
 import org.eclipse.emf.common.util.Enumerator
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.EAttribute
@@ -56,7 +58,8 @@ class JsonConverter {
 	val extension View = new View
 	val extension HttpStatus = new HttpStatus
 
-	val fLDiagnostics = new LinkedHashMap<EObject, List<FLDiagnostic>>
+	val diagnostics = new LinkedHashMap<EObject, List<Diagnostic>>
+	val revisionDeltas = new LinkedHashMap<EObject, List<CDOFeatureDelta>>
 
 	val ITEM_DELEGATOR = new AdapterFactoryItemDelegator(new ComposedAdapterFactory(EMFEditPlugin.getComposedAdapterFactoryDescriptorRegistry))
 
@@ -76,8 +79,12 @@ class JsonConverter {
 		jsonConverterConfig
 	}
 
-	def getFLDiagnostics() {
-		fLDiagnostics
+	def getDiagnostics() {
+		diagnostics
+	}
+	
+	def getRevisionDeltas() {
+		revisionDeltas
 	}
 
 	def JsonObject safeFromJson(String jsonString) {
@@ -104,7 +111,7 @@ class JsonConverter {
 	}
 
 	def okToJson() {
-		newObjectWithStatusOK().toString
+		newObjectWithStatus().toString
 	}
 
 	def dispatch String safeToJson(Object object) {
@@ -131,11 +138,11 @@ class JsonConverter {
 			}
 
 			// finally add ok status with messages
-			val objectWithStatusOK = newObjectWithStatusOK
+			val objectWithStatus = newObjectWithStatus
 
-			objectWithStatusOK.add(DATA, jsonArray)
+			objectWithStatus.add(DATA, jsonArray)
 
-			objectWithStatusOK.toString
+			objectWithStatus.toString
 		} catch(NoPermissionException npe) {
 			throw new FlatlandException(SC_FORBIDDEN, npe.message)
 		} catch(Exception e) {
@@ -155,11 +162,11 @@ class JsonConverter {
 			jsonBaseObject.addMessagesAndMeta(object)
 
 			// finally add ok status with messages
-			val objectWithStatusOK = newObjectWithStatusOK
+			val objectWithStatus = newObjectWithStatus
 
-			objectWithStatusOK.add(DATA, jsonBaseObject)
+			objectWithStatus.add(DATA, jsonBaseObject)
 
-			objectWithStatusOK.toString
+			objectWithStatus.toString
 		} catch(NoPermissionException npe) {
 			throw new FlatlandException(SC_FORBIDDEN, npe.message)
 		} catch(Exception e) {
@@ -346,27 +353,11 @@ class JsonConverter {
 		if(jsonConverterConfig.validate) {
 			val diags = object.validate
 			if(diags.size > 0) {
-				if(!fLDiagnostics.containsKey(object)) {
-					fLDiagnostics.put(object, diags)
-				} else {
-					val existingDiags = fLDiagnostics.get(object)
-					for (d : diags) {
-						if(!existingDiags.contains(d)) {
-							existingDiags.add(d)
-						}
-					}
+				if(!diagnostics.containsKey(object)) {
+					diagnostics.put(object, diags)
 				}
-				val diagnosticArray = new JsonArray
-				diags.forEach [
-					val jsonDiag = new JsonObject
-					jsonDiag.add(MESSAGE, new JsonPrimitive(it.message))
-					jsonDiag.addFeatureMeta(it.feature)
-					diagnosticArray.add(jsonDiag)
-				]
-				jsonBaseObject.add(MESSAGES, diagnosticArray)
 			}
 		}
-
 		// meta requested?
 		if(jsonConverterConfig.meta) {
 			jsonBaseObject.addMeta(object)
@@ -601,35 +592,83 @@ class JsonConverter {
 		new JsonPrimitive(object)
 	}
 
-	def private getDiagnosticsAsJsonArray(Map<EObject, List<FLDiagnostic>> localFLDiagnostics) {
-		if(localFLDiagnostics.size > 0) {
+	def private getDiagnosticsAsJsonArray(Map<EObject, List<Diagnostic>> localDiagnostics) {
+		if(localDiagnostics.size > 0) {
 			val messageArray = new JsonArray
-			localFLDiagnostics.forEach [ source, fLDiagnostic |
-				fLDiagnostic.forEach [
-					val message = new JsonObject
-					message.addProperty(MESSAGE, it.message)
-					message.addProperty(ORIGIN, source.url)
-					messageArray.add(message)
+			localDiagnostics.keySet.forEach[
+				val origin = new JsonObject
+				origin.add(ORIGIN, new JsonPrimitive(it.url))
+				val diagsArray = new JsonArray
+				origin.add(DIAGNOSTIC, diagsArray)
+				localDiagnostics.get(it).forEach[
+					val diag = new JsonObject
+					diag.addProperty(MESSAGE, it.message)
+					val feature = it.data.get(1) as EStructuralFeature
+					if (feature instanceof EAttribute) {
+						diag.addProperty(FEATURE, (ATTRIBUTES + "." + feature.name))
+					} else {
+						diag.addProperty(FEATURE, (REFERENCES + "." + feature.name))
+					}
+					diagsArray.add(diag)
+					if (it.children.size > 0) {
+						val detailsArray = new JsonArray
+						it.children.forEach[
+							detailsArray.add(new JsonPrimitive(it.message))
+						]
+						diag.add(DETAILS, detailsArray)
+					}
 				]
+				messageArray.add(origin)
 			]
 			return messageArray
 		}
 		return null
+	}
+	
+	def private getRevisionDeltasAsJsonArray(Map<EObject, List<CDOFeatureDelta>> localRevisionDelta) {
+		if(localRevisionDelta.size > 0) {
+			val messageArray = new JsonArray
+			localRevisionDelta.keySet.forEach[
+				val origin = new JsonObject
+				origin.add(ORIGIN, new JsonPrimitive(it.url))
+				val deltasArray = new JsonArray
+				origin.add(REVISION_DELTA, deltasArray)
+				val object = it
+				localRevisionDelta.get(object).forEach[
+					val delta = new JsonObject
+					delta.addProperty(MESSAGE, "Changed feature '" + it.feature.name + "' of '" + ITEM_DELEGATOR.getText(object) + "' to '" + object.eGet(it.feature) + "'")
+					if (it.feature instanceof EAttribute) {
+						delta.addProperty(FEATURE, (ATTRIBUTES + "." + feature.name))
+					} else {
+						delta.addProperty(FEATURE, (REFERENCES + "." + feature.name))
+					}
+					deltasArray.add(delta)				]
+				messageArray.add(origin)
+			]
+			return messageArray
+		}
 	}
 
 	def getView(EObject eObject) {
 		(eObject as CDOObject).cdoView
 	}
 
-	def newObjectWithStatusOK() {
+	def newObjectWithStatus() {
 
-		val objectWithStatusOK = new JsonObject
-		objectWithStatusOK.addProperty(STATUS, "OK")
-
+		val objectWithStatus = new JsonObject
+		if (diagnostics.size == 0) {
+			objectWithStatus.addProperty(STATUS, "OK")
+		} else {
+			objectWithStatus.addProperty(STATUS, "INVALID")
+		}
+		
 		val jsonBaseObject = new JsonObject
-		jsonBaseObject.add(STATUS, objectWithStatusOK)
-		if(fLDiagnostics.diagnosticsAsJsonArray != null) {
-			objectWithStatusOK.add(MESSAGES, fLDiagnostics.diagnosticsAsJsonArray)
+		jsonBaseObject.add(STATUS, objectWithStatus)
+		if(diagnostics.size > 0) {
+			objectWithStatus.add(DIAGNOSTICS, diagnostics.diagnosticsAsJsonArray)
+		}
+		if (revisionDeltas.size > 0) {
+			objectWithStatus.add(REVISION_DELTAS, revisionDeltas.revisionDeltasAsJsonArray)
 		}
 		return jsonBaseObject
 	}

@@ -441,13 +441,13 @@ public interface TestPackage extends EPackage {
 	int TEST_OBJECT__NAME = 0;
 
 	/**
-	 * The feature id for the '<em><b>Password</b></em>' attribute.
+	 * The feature id for the '<em><b>Maxlength8</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_OBJECT__PASSWORD = 1;
+	int TEST_OBJECT__MAXLENGTH8 = 1;
 
 	/**
 	 * The feature id for the '<em><b>Single Reference</b></em>' reference.
@@ -561,15 +561,14 @@ public interface TestPackage extends EPackage {
 
 
 	/**
-	 * The meta object id for the '<em>Password</em>' data type.
+	 * The meta object id for the '<em>Maxlength8</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see java.lang.String
-	 * @see ch.flatland.cdo.model.test.impl.TestPackageImpl#getPassword()
+	 * @see ch.flatland.cdo.model.test.impl.TestPackageImpl#getMaxlength8()
 	 * @generated
 	 */
-	int PASSWORD = 5;
-
+	int MAXLENGTH8 = 5;
 
 	/**
 	 * Returns the meta object for class '{@link ch.flatland.cdo.model.test.SimpleDataTypes <em>Simple Data Types</em>}'.
@@ -987,15 +986,15 @@ public interface TestPackage extends EPackage {
 	EAttribute getTestObject_Name();
 
 	/**
-	 * Returns the meta object for the attribute '{@link ch.flatland.cdo.model.test.TestObject#getPassword <em>Password</em>}'.
+	 * Returns the meta object for the attribute '{@link ch.flatland.cdo.model.test.TestObject#getMaxlength8 <em>Maxlength8</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Password</em>'.
-	 * @see ch.flatland.cdo.model.test.TestObject#getPassword()
+	 * @return the meta object for the attribute '<em>Maxlength8</em>'.
+	 * @see ch.flatland.cdo.model.test.TestObject#getMaxlength8()
 	 * @see #getTestObject()
 	 * @generated
 	 */
-	EAttribute getTestObject_Password();
+	EAttribute getTestObject_Maxlength8();
 
 	/**
 	 * Returns the meta object for the reference '{@link ch.flatland.cdo.model.test.TestObject#getSingleReference <em>Single Reference</em>}'.
@@ -1084,15 +1083,16 @@ public interface TestPackage extends EPackage {
 	EEnum getTestEnum();
 
 	/**
-	 * Returns the meta object for data type '{@link java.lang.String <em>Password</em>}'.
+	 * Returns the meta object for data type '{@link java.lang.String <em>Maxlength8</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for data type '<em>Password</em>'.
+	 * @return the meta object for data type '<em>Maxlength8</em>'.
 	 * @see java.lang.String
 	 * @model instanceClass="java.lang.String"
+	 *        extendedMetaData="name='Maxlength8' maxLength='8'"
 	 * @generated
 	 */
-	EDataType getPassword();
+	EDataType getMaxlength8();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -1428,12 +1428,12 @@ public interface TestPackage extends EPackage {
 		EAttribute TEST_OBJECT__NAME = eINSTANCE.getTestObject_Name();
 
 		/**
-		 * The meta object literal for the '<em><b>Password</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Maxlength8</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute TEST_OBJECT__PASSWORD = eINSTANCE.getTestObject_Password();
+		EAttribute TEST_OBJECT__MAXLENGTH8 = eINSTANCE.getTestObject_Maxlength8();
 
 		/**
 		 * The meta object literal for the '<em><b>Single Reference</b></em>' reference feature.
@@ -1504,14 +1504,14 @@ public interface TestPackage extends EPackage {
 		EEnum TEST_ENUM = eINSTANCE.getTestEnum();
 
 		/**
-		 * The meta object literal for the '<em>Password</em>' data type.
+		 * The meta object literal for the '<em>Maxlength8</em>' data type.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see java.lang.String
-		 * @see ch.flatland.cdo.model.test.impl.TestPackageImpl#getPassword()
+		 * @see ch.flatland.cdo.model.test.impl.TestPackageImpl#getMaxlength8()
 		 * @generated
 		 */
-		EDataType PASSWORD = eINSTANCE.getPassword();
+		EDataType MAXLENGTH8 = eINSTANCE.getMaxlength8();
 
 	}
 

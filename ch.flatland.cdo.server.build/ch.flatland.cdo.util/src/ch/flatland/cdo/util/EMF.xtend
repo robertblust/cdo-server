@@ -18,7 +18,6 @@ import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EClassifier
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
-import org.eclipse.emf.ecore.EStructuralFeature
 import org.slf4j.LoggerFactory
 
 import static javax.servlet.http.HttpServletResponse.*
@@ -95,7 +94,7 @@ class EMF {
 			for (child : diagnostics.children) {
 				if(child.severity > 0 && child.data.contains(object)) {
 					logger.debug("Diagnostics '{}'", child.message)
-					fLDiagnostics.add(new FLDiagnostic(child.data.get(1) as EStructuralFeature, child.message))
+					fLDiagnostics.add(child)
 				}
 			}
 		}

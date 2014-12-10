@@ -54,7 +54,7 @@ class Post {
 
 			jsonObject.toEObject = requestedObject
 			
-			view.addRevisionDelta(requestedObject, JsonConverter.FLDiagnostics)
+			view.addRevisionDelta(requestedObject, JsonConverter.revisionDeltas)
 
 			view.commit
 

@@ -15,7 +15,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * <ul>
  *   <li>{@link ch.flatland.cdo.model.test.TestObject#getName <em>Name</em>}</li>
- *   <li>{@link ch.flatland.cdo.model.test.TestObject#getPassword <em>Password</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.test.TestObject#getMaxlength8 <em>Maxlength8</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.test.TestObject#getSingleReference <em>Single Reference</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.test.TestObject#getMultiReferences <em>Multi References</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.test.TestObject#getFixUpperBoundReferences <em>Fix Upper Bound References</em>}</li>
@@ -57,30 +57,30 @@ public interface TestObject extends CDOObject {
 	void setName(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Password</b></em>' attribute.
+	 * Returns the value of the '<em><b>Maxlength8</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Password</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Maxlength8</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Password</em>' attribute.
-	 * @see #setPassword(String)
-	 * @see ch.flatland.cdo.model.test.TestPackage#getTestObject_Password()
-	 * @model unique="false" dataType="ch.flatland.cdo.model.test.Password"
+	 * @return the value of the '<em>Maxlength8</em>' attribute.
+	 * @see #setMaxlength8(String)
+	 * @see ch.flatland.cdo.model.test.TestPackage#getTestObject_Maxlength8()
+	 * @model unique="false" dataType="ch.flatland.cdo.model.test.Maxlength8"
 	 * @generated
 	 */
-	String getPassword();
+	String getMaxlength8();
 
 	/**
-	 * Sets the value of the '{@link ch.flatland.cdo.model.test.TestObject#getPassword <em>Password</em>}' attribute.
+	 * Sets the value of the '{@link ch.flatland.cdo.model.test.TestObject#getMaxlength8 <em>Maxlength8</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Password</em>' attribute.
-	 * @see #getPassword()
+	 * @param value the new value of the '<em>Maxlength8</em>' attribute.
+	 * @see #getMaxlength8()
 	 * @generated
 	 */
-	void setPassword(String value);
+	void setMaxlength8(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Single Reference</b></em>' reference.

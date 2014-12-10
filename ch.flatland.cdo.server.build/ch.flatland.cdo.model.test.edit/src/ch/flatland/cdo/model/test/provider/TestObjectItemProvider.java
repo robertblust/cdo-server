@@ -61,7 +61,7 @@ public class TestObjectItemProvider
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
-			addPasswordPropertyDescriptor(object);
+			addMaxlength8PropertyDescriptor(object);
 			addSingleReferencePropertyDescriptor(object);
 			addMultiReferencesPropertyDescriptor(object);
 			addFixUpperBoundReferencesPropertyDescriptor(object);
@@ -94,19 +94,19 @@ public class TestObjectItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Password feature.
+	 * This adds a property descriptor for the Maxlength8 feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addPasswordPropertyDescriptor(Object object) {
+	protected void addMaxlength8PropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_TestObject_password_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_TestObject_password_feature", "_UI_TestObject_type"),
-				 TestPackage.Literals.TEST_OBJECT__PASSWORD,
+				 getString("_UI_TestObject_maxlength8_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TestObject_maxlength8_feature", "_UI_TestObject_type"),
+				 TestPackage.Literals.TEST_OBJECT__MAXLENGTH8,
 				 true,
 				 false,
 				 false,
@@ -274,7 +274,7 @@ public class TestObjectItemProvider
 
 		switch (notification.getFeatureID(TestObject.class)) {
 			case TestPackage.TEST_OBJECT__NAME:
-			case TestPackage.TEST_OBJECT__PASSWORD:
+			case TestPackage.TEST_OBJECT__MAXLENGTH8:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
