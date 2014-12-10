@@ -33,6 +33,7 @@ import org.eclipse.emf.ecore.EClassifier
 import org.eclipse.emf.ecore.EEnum
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
+import org.eclipse.emf.ecore.EStructuralFeature
 import org.eclipse.emf.ecore.EcorePackage.Literals
 import org.eclipse.emf.ecore.util.EcoreUtil
 import org.eclipse.emf.edit.EMFEditPlugin
@@ -171,7 +172,7 @@ class JsonConverter {
 		val messageArray = new JsonArray
 		val message = new JsonObject
 		message.addProperty(MESSAGE, object.message)
-		if (object.origin != null) {
+		if(object.origin != null) {
 			message.addProperty(ORIGIN, object.origin.url)
 		} else {
 			message.addProperty(ORIGIN, object.class.simpleName)
@@ -296,21 +297,7 @@ class JsonConverter {
 			jsonTypeMeta.add(ATTRIBUTES, jsonAttributes)
 			for (attribute : attributes) {
 				val jsonAttribute = new JsonObject
-				jsonAttribute.addProperty(NAME, attribute.name)
-
-				if(attribute.EAttributeType instanceof EEnum) {
-					val enum = attribute.EAttributeType as EEnum
-					val jsonLiterals = new JsonArray
-					for (literal : enum.ELiterals) {
-						jsonLiterals.add(new JsonPrimitive(literal.name))
-						jsonAttribute.add(ENUM_LITERALS, jsonLiterals)
-					}
-				} else {
-					jsonAttribute.addProperty(TYPE, attribute.EAttributeType.name)
-				}
-				jsonAttribute.addProperty(LOWER_BOUND, attribute.lowerBound)
-				jsonAttribute.addProperty(UPPER_BOUND, attribute.upperBound)
-				jsonAttribute.addProperty(DERIVED, attribute.derived)
+				jsonAttribute.addFeatureMeta(attribute)
 				jsonAttributes.add(jsonAttribute)
 			}
 		}
@@ -320,16 +307,36 @@ class JsonConverter {
 			jsonTypeMeta.add(REFERENCES, jsonReferences)
 			for (reference : references) {
 				val jsonReference = new JsonObject
-				jsonReference.addProperty(NAME, reference.name)
-				jsonReference.addType(reference.EReferenceType)
-				jsonReference.addProperty(LOWER_BOUND, reference.lowerBound)
-				jsonReference.addProperty(UPPER_BOUND, reference.upperBound)
-				jsonReference.addProperty(CONTAINMENT, reference.containment)
-				jsonReference.addProperty(DERIVED, reference.derived)
+				jsonReference.addFeatureMeta(reference)
 				jsonReferences.add(jsonReference)
 			}
 		}
 		jsonBaseObject.add(PARAM_META, jsonTypeMeta)
+	}
+
+	def private addFeatureMeta(JsonObject jsonBaseObject, EStructuralFeature feature) {
+
+		if(feature instanceof EAttribute) {
+			jsonBaseObject.add(FEATURE, new JsonPrimitive(ATTRIBUTES + "." + feature.name))
+			if(feature.EAttributeType instanceof EEnum) {
+				val enum = feature.EAttributeType as EEnum
+				val jsonLiterals = new JsonArray
+				for (literal : enum.ELiterals) {
+					jsonLiterals.add(new JsonPrimitive(literal.name))
+					jsonBaseObject.add(ENUM_LITERALS, jsonLiterals)
+				}
+			} else {
+				jsonBaseObject.addProperty(TYPE, feature.EAttributeType.name)
+			}
+		}
+		if(feature instanceof EReference) {
+			jsonBaseObject.add(FEATURE, new JsonPrimitive(REFERENCES + "." + feature.name))
+			jsonBaseObject.add(CONTAINMENT, new JsonPrimitive(feature.isContainment))
+		}
+		jsonBaseObject.addProperty(DERIVED, feature.isDerived)
+		jsonBaseObject.addProperty(LOWER_BOUND, feature.lowerBound)
+		jsonBaseObject.addProperty(UPPER_BOUND, feature.upperBound)
+
 	}
 
 	def private addMessagesAndMeta(JsonObject jsonBaseObject, EObject object) {
@@ -352,17 +359,7 @@ class JsonConverter {
 				diags.forEach [
 					val jsonDiag = new JsonObject
 					jsonDiag.add(MESSAGE, new JsonPrimitive(it.message))
-					val feature = it.feature
-					if(feature instanceof EAttribute) {
-						jsonDiag.add(FEATURE, new JsonPrimitive(ATTRIBUTES + "." + feature.name))
-					}
-					if(feature instanceof EReference) {
-						jsonDiag.add(FEATURE, new JsonPrimitive(REFERENCES + "." + feature.name))
-						jsonDiag.add(FEATURE, new JsonPrimitive(CONTAINMENT + "." + feature.isContainment))
-					}
-					jsonDiag.addProperty(DERIVED, feature.isDerived)
-					jsonDiag.addProperty(LOWER_BOUND, feature.lowerBound)
-					jsonDiag.addProperty(UPPER_BOUND, feature.upperBound)
+					jsonDiag.addFeatureMeta(it.feature)
 					diagnosticArray.add(jsonDiag)
 				]
 				jsonBaseObject.add(MESSAGES, diagnosticArray)
