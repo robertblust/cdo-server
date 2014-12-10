@@ -16,6 +16,8 @@ import com.google.gson.JsonElement
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import com.google.gson.JsonPrimitive
+import java.math.BigDecimal
+import java.math.BigInteger
 import java.text.SimpleDateFormat
 import java.util.ArrayList
 import java.util.Date
@@ -34,7 +36,6 @@ import org.eclipse.emf.ecore.EEnum
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
 import org.eclipse.emf.ecore.EStructuralFeature
-import org.eclipse.emf.ecore.EcorePackage.Literals
 import org.eclipse.emf.ecore.util.EcoreUtil
 import org.eclipse.emf.edit.EMFEditPlugin
 import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator
@@ -44,8 +45,6 @@ import org.slf4j.LoggerFactory
 
 import static ch.flatland.cdo.util.Constants.*
 import static javax.servlet.http.HttpServletResponse.*
-import java.math.BigDecimal
-import java.math.BigInteger
 
 class JsonConverter {
 	val logger = LoggerFactory.getLogger(this.class)
