@@ -318,6 +318,7 @@ class JsonConverter {
 
 		if(feature instanceof EAttribute) {
 			jsonBaseObject.add(FEATURE, new JsonPrimitive(ATTRIBUTES + "." + feature.name))
+			jsonBaseObject.addType(feature.EAttributeType)
 			if(feature.EAttributeType instanceof EEnum) {
 				val enum = feature.EAttributeType as EEnum
 				val jsonLiterals = new JsonArray
@@ -325,12 +326,11 @@ class JsonConverter {
 					jsonLiterals.add(new JsonPrimitive(literal.name))
 					jsonBaseObject.add(ENUM_LITERALS, jsonLiterals)
 				}
-			} else {
-				jsonBaseObject.addProperty(TYPE, feature.EAttributeType.name)
 			}
 		}
 		if(feature instanceof EReference) {
 			jsonBaseObject.add(FEATURE, new JsonPrimitive(REFERENCES + "." + feature.name))
+			jsonBaseObject.addType(feature.EReferenceType)
 			jsonBaseObject.add(CONTAINMENT, new JsonPrimitive(feature.isContainment))
 		}
 		jsonBaseObject.addProperty(DERIVED, feature.isDerived)
