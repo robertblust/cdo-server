@@ -137,7 +137,7 @@ class JsonConverter {
 				jsonArray.add(jsonBaseObject)
 			}
 
-			// finally add ok status with messages
+			// finally add status with messages
 			val objectWithStatus = newObjectWithStatus
 
 			objectWithStatus.add(DATA, jsonArray)
@@ -161,7 +161,7 @@ class JsonConverter {
 
 			jsonBaseObject.addMessagesAndMeta(object)
 
-			// finally add ok status with messages
+			// finally add status with messages
 			val objectWithStatus = newObjectWithStatus
 
 			objectWithStatus.add(DATA, jsonBaseObject)
@@ -176,31 +176,20 @@ class JsonConverter {
 
 	def dispatch String safeToJson(FlatlandException object) {
 		val jsonStatusObject = new JsonObject
-		jsonStatusObject.addProperty(STATUS, FlatlandException.STATUS_NOK)
-		val messageArray = new JsonArray
-		val message = new JsonObject
-		message.addProperty(MESSAGE, object.message)
-		if(object.origin != null) {
-			message.addProperty(ORIGIN, object.origin.url)
+		jsonStatusObject.addProperty(STATUS, FlatlandException.STATUS.name)
+		val error = new JsonObject
+		jsonStatusObject.add(ERROR, error)
+		
+		if (object.origin == null) {
+			error.addProperty(ORIGIN, object.class.simpleName)
 		} else {
-			message.addProperty(ORIGIN, object.class.simpleName)
+			error.addProperty(ORIGIN, object.origin.url)
 		}
-		messageArray.add(message)
+		error.addProperty(MESSAGE, object.message)
+		error.addProperty(HTTP_STATUS, object.httpStatus)
+		error.addProperty(HTTP_STATUS_DESCRIPTION, object.httpStatus.description)
 
-		val httpStatus = new JsonObject
-		httpStatus.addProperty(MESSAGE, "Status code (" + object.httpStatus + ")")
-		httpStatus.addProperty(ORIGIN, object.class.simpleName)
-		messageArray.add(httpStatus)
-
-		val description = new JsonObject
-		description.addProperty(MESSAGE, object.httpStatus.description)
-		description.addProperty(ORIGIN, object.class.simpleName)
-		messageArray.add(description)
-
-		jsonStatusObject.add(MESSAGES, messageArray)
-		val jsonBaseObject = new JsonObject
-		jsonBaseObject.add(STATUS, jsonStatusObject)
-		jsonBaseObject.toString
+		jsonStatusObject.toString
 	}
 
 	def private toJsonBase(EObject object) {
@@ -657,9 +646,9 @@ class JsonConverter {
 
 		val objectWithStatus = new JsonObject
 		if (diagnostics.size == 0) {
-			objectWithStatus.addProperty(STATUS, "OK")
+			objectWithStatus.addProperty(STATUS, MessageStatus.OK.name)
 		} else {
-			objectWithStatus.addProperty(STATUS, "INVALID")
+			objectWithStatus.addProperty(STATUS, MessageStatus.INVALID.name)
 		}
 		
 		val jsonBaseObject = new JsonObject

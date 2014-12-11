@@ -15,7 +15,7 @@ import org.eclipse.emf.ecore.EObject
 
 class FlatlandException extends Exception {
 
-	val public static STATUS_NOK = "NOK"
+	val public static STATUS = MessageStatus.ERROR
 	var int httpStatus
 	var String message
 	var EObject origin = null

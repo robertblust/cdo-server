@@ -57,6 +57,7 @@ class Constants {
 	val public static REVISION_DELTA = "revisionDelta"
 	val public static DETAILS = "details"
 	val public static HTTP_STATUS = "httpStatus"
+	val public static ERROR = "error"
 	val public static HTTP_STATUS_DESCRIPTION = "httpDescription"
 	val public static DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
 	val public static DATA = "data"
