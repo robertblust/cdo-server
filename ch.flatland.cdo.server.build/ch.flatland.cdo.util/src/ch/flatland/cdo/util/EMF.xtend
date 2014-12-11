@@ -139,10 +139,14 @@ class EMF {
 	def safeEClass(CDOView view, String type) {
 		val eType = type.safeEType
 		val ePackage = view.ePackage(type.safePackagePrefix)
-		val eClass = ePackage.EClassifiers.filter[it.name == eType].head as EClass
-		if(eClass == null) {
+		val eClassifier = ePackage.EClassifiers.filter[it.name == eType].head
+		if(eClassifier == null) {
 			throw new FlatlandException(SC_BAD_REQUEST, "Could not resolve eClass for '{}'", type)
 		}
+		if (!(eClassifier instanceof EClass)) {
+			throw new FlatlandException(SC_BAD_REQUEST, "Not an eClass '{}', i'm a '{}'", type, eClassifier.eClass.name)
+		}
+		val eClass = eClassifier as EClass
 		logger.debug("Resolved EClass '{}'", eClass.name)
 		return eClass
 	}

@@ -324,6 +324,16 @@ class JsonConverter {
 				}
 			}
 			jsonBaseObject.addProperty(INSTANCE_CLASS_NAME, feature.EAttributeType.instanceClassName)
+			feature.EAttributeType.EAnnotations.forEach[
+				it.details.filter[it.key.toString != "name" && it.key.toString != "baseType"].forEach[
+					try {
+						jsonBaseObject.addProperty(it.key, Integer.parseInt(it.value))
+					} catch (Exception e) {
+						jsonBaseObject.addProperty(it.key, it.value)
+						logger.debug("'{}' Not an int '{}'", e.message, it.value)
+					}	
+				]
+			]
 		}
 		if(feature instanceof EReference) {
 			jsonBaseObject.add(FEATURE, new JsonPrimitive(REFERENCES + "." + feature.name))
