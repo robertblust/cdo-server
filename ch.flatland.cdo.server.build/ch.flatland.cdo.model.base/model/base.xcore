@@ -29,11 +29,7 @@ abstract class FLElement {
  * Can be further detailed by nesting.
  */
 class FLComponent extends FLElement {
-	/* 
-	 * Technical, machine readable identifier should only contain
-	 * characters matching <em><b>^[a-zA-Z0-9_\-\.]*$</em></b>
-	 */
-	String componentId
+	FLIdentifier componentId
 	/* 
 	 * Recursive structure to define hierarchies of components.
 	 * Relationship not defined as containment allows restructuring of components.
@@ -68,11 +64,15 @@ enum FLTraceType {
  * Generic Holder for name value pairs
  */
 class FLProperty {
-	/* 
-	 * Technical, machine readable identifier should only contain
-	 * characters matching <em><b>^[a-zA-Z0-9_\-\.]*$</em></b>
-	 */
-	String[1] name
+	FLIdentifier[1] name
 	String[1] value
 }
+
+
+/* 
+ * Technical, machine readable identifier should only contain
+ * characters matching <em><b>[a-zA-Z0-9_\-\.]*</em></b>
+ */
+@ExtendedMetaData(name="FLIdentifier", pattern="[a-zA-Z0-9_\\-\\.]*")
+type FLIdentifier wraps String
 

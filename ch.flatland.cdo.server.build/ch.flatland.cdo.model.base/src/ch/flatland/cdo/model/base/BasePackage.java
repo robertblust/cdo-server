@@ -4,6 +4,7 @@ package ch.flatland.cdo.model.base;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -399,6 +400,16 @@ public interface BasePackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '<em>FL Identifier</em>' data type.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see java.lang.String
+	 * @see ch.flatland.cdo.model.base.impl.BasePackageImpl#getFLIdentifier()
+	 * @generated
+	 */
+	int FL_IDENTIFIER = 6;
+
+	/**
 	 * Returns the meta object for class '{@link ch.flatland.cdo.model.base.FLElement <em>FL Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -602,6 +613,18 @@ public interface BasePackage extends EPackage {
 	EEnum getFLTraceType();
 
 	/**
+	 * Returns the meta object for data type '{@link java.lang.String <em>FL Identifier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for data type '<em>FL Identifier</em>'.
+	 * @see java.lang.String
+	 * @model instanceClass="java.lang.String"
+	 *        extendedMetaData="name='FLIdentifier' pattern='[a-zA-Z0-9_\\-\\.]*'"
+	 * @generated
+	 */
+	EDataType getFLIdentifier();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -787,6 +810,16 @@ public interface BasePackage extends EPackage {
 		 * @generated
 		 */
 		EEnum FL_TRACE_TYPE = eINSTANCE.getFLTraceType();
+
+		/**
+		 * The meta object literal for the '<em>FL Identifier</em>' data type.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see java.lang.String
+		 * @see ch.flatland.cdo.model.base.impl.BasePackageImpl#getFLIdentifier()
+		 * @generated
+		 */
+		EDataType FL_IDENTIFIER = eINSTANCE.getFLIdentifier();
 
 	}
 

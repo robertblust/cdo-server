@@ -31,14 +31,10 @@ public interface FLComponent extends FLElement {
 	 * Returns the value of the '<em><b>Component Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * Technical, machine readable identifier should only contain
-	 * characters matching <em><b>^[a-zA-Z0-9_\-\.]*$</em></b>
-	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Component Id</em>' attribute.
 	 * @see #setComponentId(String)
 	 * @see ch.flatland.cdo.model.base.BasePackage#getFLComponent_ComponentId()
-	 * @model unique="false"
+	 * @model unique="false" dataType="ch.flatland.cdo.model.base.FLIdentifier"
 	 * @generated
 	 */
 	String getComponentId();

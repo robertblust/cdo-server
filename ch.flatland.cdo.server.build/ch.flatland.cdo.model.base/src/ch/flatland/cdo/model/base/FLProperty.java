@@ -31,14 +31,10 @@ public interface FLProperty extends CDOObject {
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * Technical, machine readable identifier should only contain
-	 * characters matching <em><b>^[a-zA-Z0-9_\-\.]*$</em></b>
-	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see ch.flatland.cdo.model.base.BasePackage#getFLProperty_Name()
-	 * @model unique="false" required="true"
+	 * @model unique="false" dataType="ch.flatland.cdo.model.base.FLIdentifier" required="true"
 	 * @generated
 	 */
 	String getName();
