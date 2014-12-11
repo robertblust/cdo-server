@@ -323,6 +323,7 @@ class JsonConverter {
 					jsonBaseObject.add(ENUM_LITERALS, jsonLiterals)
 				}
 			}
+			jsonBaseObject.addProperty(INSTANCE_CLASS_NAME, feature.EAttributeType.instanceClassName)
 		}
 		if(feature instanceof EReference) {
 			jsonBaseObject.add(FEATURE, new JsonPrimitive(REFERENCES + "." + feature.name))
