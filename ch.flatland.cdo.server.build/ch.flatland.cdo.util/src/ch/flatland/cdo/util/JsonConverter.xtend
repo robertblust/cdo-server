@@ -330,7 +330,7 @@ class JsonConverter {
 						jsonBaseObject.addProperty(it.key, Integer.parseInt(it.value))
 					} catch (Exception e) {
 						jsonBaseObject.addProperty(it.key, it.value)
-						logger.debug("'{}' Not an int '{}'", e.message, it.value)
+						logger.debug("Not an int '{}'", it.value)
 					}	
 				]
 			]
