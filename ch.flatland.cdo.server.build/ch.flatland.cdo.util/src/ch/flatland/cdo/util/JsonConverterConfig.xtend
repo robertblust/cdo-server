@@ -17,6 +17,7 @@ class JsonConverterConfig {
 	var meta = false
 	var showReferences = true
 	var validate = false
+	var revisions = false
 
 	val extension Request = new Request
 
@@ -28,6 +29,7 @@ class JsonConverterConfig {
 		meta = req.metaDataRequested
 		showReferences = !req.noRefs
 		validate = req.validate
+		revisions = req.revisions
 	}
 
 	new() {
@@ -43,5 +45,9 @@ class JsonConverterConfig {
 	
 	def isValidate() {
 		validate
+	}
+	
+	def isRevisions() {
+		revisions
 	}
 }

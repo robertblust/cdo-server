@@ -225,22 +225,25 @@ class JsonConverter {
 	}
 
 	def private addRevisions(JsonObject jsonBaseObject, CDOObject object) {
-		object.cdoHistory.triggerLoad
-		while(object.cdoHistory.loading) {
-			//TODO could be long running!
-		}
-		val historySize = object.cdoHistory.size
-		if(historySize > 1) {
-			val jsonRevisionsArray = new JsonArray
-			jsonBaseObject.add(REVISIONS, jsonRevisionsArray)
-			for (var i = historySize - 1; i > 0; i--) {
-				val commitInfo = object.cdoHistory.getElement(i)
-				val jsonRevsionObject = new JsonObject
-				jsonRevsionObject.addProperty(REVISION_PREFIX + (historySize - i), object.url + "?" + PARAM_TIMESTAMP + "=" + commitInfo.timeStamp)
-				logger.debug("'{}' resolved revsion '{}'", object, REVISION_PREFIX + (historySize - i))
-				jsonRevisionsArray.add(jsonRevsionObject)
+		if(jsonConverterConfig.revisions) {
+			object.cdoHistory.triggerLoad
+			while(object.cdoHistory.loading) {
+				//TODO could be long running!
+			}
+			val historySize = object.cdoHistory.size
+			if(historySize > 1) {
+				val jsonRevisionsArray = new JsonArray
+				jsonBaseObject.add(REVISIONS, jsonRevisionsArray)
+				for (var i = historySize - 1; i > 0; i--) {
+					val commitInfo = object.cdoHistory.getElement(i)
+					val jsonRevsionObject = new JsonObject
+					jsonRevsionObject.addProperty(REVISION_PREFIX + (historySize - i), object.url + "?" + PARAM_TIMESTAMP + "=" + commitInfo.timeStamp)
+					logger.debug("'{}' resolved revsion '{}'", object, REVISION_PREFIX + (historySize - i))
+					jsonRevisionsArray.add(jsonRevsionObject)
+				}
 			}
 		}
+
 	}
 
 	def private addAttributes(JsonObject jsonBaseObject, EObject object) {

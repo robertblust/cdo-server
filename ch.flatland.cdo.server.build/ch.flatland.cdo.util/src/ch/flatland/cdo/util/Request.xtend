@@ -58,6 +58,10 @@ class Request {
 	def isValidate(HttpServletRequest req) {
 		return req.getParameter(PARAM_NO_VALIDATION) == null
 	}
+	
+	def isRevisions(HttpServletRequest req) {
+		return req.getParameter(PARAM_REVISIONS) != null
+	}
 
 	def isXor(HttpServletRequest req) {
 		return req.getParameter(PARAM_XOR_FILTER) != null

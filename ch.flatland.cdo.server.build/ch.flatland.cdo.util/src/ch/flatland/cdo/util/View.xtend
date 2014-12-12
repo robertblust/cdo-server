@@ -22,15 +22,14 @@ import org.eclipse.emf.cdo.common.security.CDOPermission
 import org.eclipse.emf.cdo.transaction.CDOTransaction
 import org.eclipse.emf.cdo.view.CDOView
 import org.eclipse.emf.ecore.EObject
-import org.slf4j.LoggerFactory
 
 import static ch.flatland.cdo.util.Constants.*
 import static javax.servlet.http.HttpServletResponse.*
 
 class View {
-	val logger = LoggerFactory.getLogger(this.class)
 
 	val extension EMF = new EMF
+	val extension Request = new Request
 	val extension DataStore = new DataStore
 
 	def safeRequestResource(CDOView view, HttpServletRequest req, HttpServletResponse resp) {
@@ -51,9 +50,10 @@ class View {
 						case 1: {
 						}
 						case 2: {
+							if (req.timestamp != null) {
+								throw new Exception
+							}
 							val objects = view.findByType(pathSegments.get(1), req)
-
-							//return objects.filterByAttribute(req)
 							return objects
 						}
 						case 3: {
@@ -76,7 +76,6 @@ class View {
 					throw new Exception
 			}
 		} catch(Exception e) {
-			logger.debug("Exception '{}'", e.message)
 			throw new FlatlandException(SC_NOT_FOUND, "{} not found", req.pathInfo)
 		}
 	}
@@ -99,13 +98,5 @@ class View {
 		view.revisionDeltas.forEach [ id, revisionDelta |
 			revisionDeltas.put(object, revisionDelta.featureDeltas)
 		]
-//			val deltas = newArrayList
-//			revisionDelta.featureDeltas.forEach [
-//				val message = "Changed feature '" + it.feature.name + "' of '" + ITEM_DELEGATOR.getText(object) + "' to '" + object.eGet(it.feature) + "'"
-//				deltas.add(new FLDiagnostic(it.feature, message))
-//				logger.debug("Revision Delta '{}'", message)
-//			]
-			
-//		]
 	}
 }
