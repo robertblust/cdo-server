@@ -19,7 +19,6 @@ import com.google.gson.JsonPrimitive
 import java.math.BigDecimal
 import java.math.BigInteger
 import java.text.SimpleDateFormat
-import java.util.ArrayList
 import java.util.Date
 import java.util.LinkedHashMap
 import java.util.List
@@ -429,7 +428,7 @@ class JsonConverter {
 									}
 								]
 							}
-							eObject.eSet(eAttribute, eArray)
+							eObject.safeSetAttributeArray(eAttribute, eArray)
 						} else {
 							if(jsonElement.jsonNull) {
 								logger.debug("JsonElement '{}' is null", jsonName)
@@ -720,11 +719,21 @@ class JsonConverter {
 
 	}
 
-	def safeSetReferenceArray(EObject container, EReference eReference, ArrayList<EObject> refArray) {
+	def safeSetReferenceArray(EObject container, EReference eReference, List<EObject> refArray) {
+		if (eReference.upperBound > 0 && refArray.size > eReference.upperBound) {
+			throw new FlatlandException(SC_BAD_REQUEST, container, "Try to add '{}' elements to array '{}' having upper limit of '{}'", refArray.size, eReference.name, eReference.upperBound)
+		}
 		try {
 			container.eSet(eReference, refArray)
 		} catch(Exception e) {
 			throw new FlatlandException(SC_BAD_REQUEST, container, "Reference list contains object with wrong type for reference '{}'", eReference.name)
 		}
+	}
+	
+	def safeSetAttributeArray(EObject container, EAttribute eAttribute, List<Object> attArray) {
+		if (eAttribute.upperBound > 0 && attArray.size > eAttribute.upperBound) {
+			throw new FlatlandException(SC_BAD_REQUEST, container, "Try to add '{}' elements to array '{}' having upper limit of '{}'", attArray.size, eAttribute.name, eAttribute.upperBound)
+		}
+		container.eSet(eAttribute, attArray)
 	}
 }
