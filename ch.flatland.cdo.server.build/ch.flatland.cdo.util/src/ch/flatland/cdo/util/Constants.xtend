@@ -66,7 +66,7 @@ class Constants {
 	val public static DATA = "data"
 	val public static REVISIONS = "revisions"
 	val public static REVISION = "revision"
-	val public static REVISION_PREFIX = "r-"
+	val public static REVISION_PREFIX = "R"
 
 	// servlets
 	val public static ALIAS_NODE = "/node"
