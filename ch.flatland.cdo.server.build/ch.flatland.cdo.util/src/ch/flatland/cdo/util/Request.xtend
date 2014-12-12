@@ -33,6 +33,13 @@ class Request {
 		}
 		return params
 	}
+	
+	def getTimestamp(HttpServletRequest req) {
+		if(req.getParameter(PARAM_TIMESTAMP) != null && req.getParameter(PARAM_TIMESTAMP).length > 0) {
+			return req.getParameter(PARAM_TIMESTAMP)
+		}
+		return null
+	}
 
 	def getJsonCallback(HttpServletRequest req) {
 		if(req.getParameter(PARAM_JSONP_CALLBACK) != null && req.getParameter(PARAM_JSONP_CALLBACK).length > 0) {

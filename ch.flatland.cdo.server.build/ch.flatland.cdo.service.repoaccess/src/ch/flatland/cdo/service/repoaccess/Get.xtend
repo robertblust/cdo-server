@@ -16,7 +16,10 @@ import ch.flatland.cdo.util.Response
 import ch.flatland.cdo.util.View
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
+import org.eclipse.emf.cdo.view.CDOView
 import org.slf4j.LoggerFactory
+
+import static javax.servlet.http.HttpServletResponse.*
 
 class Get {
 
@@ -29,13 +32,21 @@ class Get {
 	def void run(HttpServletRequest req, HttpServletResponse resp) {
 		logger.debug("Run for '{}'", req.userId)
 
-		val view = SessionFactory.getCDOSession(req).openView
-
 		var String jsonString = null
-
+		var CDOView view = null
 		val extension JsonConverter = req.createJsonConverter
 
 		try {
+			if(req.timestamp != null) {
+				try {
+					view = SessionFactory.getCDOSession(req).openView(Long.parseLong(req.timestamp))
+				} catch(Exception e) {
+					throw new FlatlandException(SC_NOT_FOUND, "{} not found", req.pathInfo)
+				}
+			} else {
+				view = SessionFactory.getCDOSession(req).openView
+			}
+
 			val requestedObject = view.safeRequestResource(req, resp)
 
 			jsonString = requestedObject.safeToJson
@@ -45,7 +56,7 @@ class Get {
 			jsonString = e.safeToJson
 			logger.error("Request failed", e)
 		} finally {
-			if(!view.closed) {
+			if(view != null && !view.closed) {
 				view.close
 			}
 		}

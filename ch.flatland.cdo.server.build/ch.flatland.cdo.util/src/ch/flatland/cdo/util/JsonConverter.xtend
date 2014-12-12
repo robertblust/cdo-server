@@ -81,11 +81,11 @@ class JsonConverter {
 	def getDiagnostics() {
 		diagnostics
 	}
-	
+
 	def isValid() {
 		diagnostics.size == 0
 	}
-	
+
 	def getRevisionDeltas() {
 		revisionDeltas
 	}
@@ -182,8 +182,8 @@ class JsonConverter {
 		jsonStatusObject.addProperty(STATUS, FlatlandException.STATUS.name)
 		val error = new JsonObject
 		jsonStatusObject.add(ERROR, error)
-		
-		if (object.origin == null) {
+
+		if(object.origin == null) {
 			error.addProperty(ORIGIN, object.class.simpleName)
 		} else {
 			error.addProperty(ORIGIN, object.origin.url)
@@ -217,8 +217,30 @@ class JsonConverter {
 		}
 		if(object instanceof CDOObject) {
 			jsonBaseObject.addProperty(PERMISSION, object.cdoPermission.name)
+			jsonBaseObject.addProperty(REVISION, REVISION_PREFIX + object.cdoRevision.version)
+			jsonBaseObject.addRevisions(object)
+
 		}
 		return jsonBaseObject
+	}
+
+	def private addRevisions(JsonObject jsonBaseObject, CDOObject object) {
+		object.cdoHistory.triggerLoad
+		while(object.cdoHistory.loading) {
+			//TODO could be long running!
+		}
+		val historySize = object.cdoHistory.size
+		if(historySize > 1) {
+			val jsonRevisionsArray = new JsonArray
+			jsonBaseObject.add(REVISIONS, jsonRevisionsArray)
+			for (var i = historySize - 1; i > 0; i--) {
+				val commitInfo = object.cdoHistory.getElement(i)
+				val jsonRevsionObject = new JsonObject
+				jsonRevsionObject.addProperty(REVISION_PREFIX + (historySize - i), object.url + "?" + PARAM_TIMESTAMP + "=" + commitInfo.timeStamp)
+				logger.debug("'{}' resolved revsion '{}'", object, REVISION_PREFIX + (historySize - i))
+				jsonRevisionsArray.add(jsonRevsionObject)
+			}
+		}
 	}
 
 	def private addAttributes(JsonObject jsonBaseObject, EObject object) {
@@ -327,14 +349,14 @@ class JsonConverter {
 				}
 			}
 			jsonBaseObject.addProperty(INSTANCE_CLASS_NAME, feature.EAttributeType.instanceClassName)
-			feature.EAttributeType.EAnnotations.forEach[
-				it.details.filter[it.key.toString != "name" && it.key.toString != "baseType"].forEach[
+			feature.EAttributeType.EAnnotations.forEach [
+				it.details.filter[it.key.toString != "name" && it.key.toString != "baseType"].forEach [
 					try {
 						jsonBaseObject.addProperty(it.key, Integer.parseInt(it.value))
-					} catch (Exception e) {
+					} catch(Exception e) {
 						jsonBaseObject.addProperty(it.key, it.value)
 						logger.debug("Not an int '{}'", it.value)
-					}	
+					}
 				]
 			]
 		}
@@ -361,6 +383,7 @@ class JsonConverter {
 				}
 			}
 		}
+
 		// meta requested?
 		if(jsonConverterConfig.meta) {
 			jsonBaseObject.addMeta(object)
@@ -598,24 +621,24 @@ class JsonConverter {
 	def private getDiagnosticsAsJsonArray(Map<EObject, List<Diagnostic>> localDiagnostics) {
 		if(localDiagnostics.size > 0) {
 			val messageArray = new JsonArray
-			localDiagnostics.keySet.forEach[
+			localDiagnostics.keySet.forEach [
 				val origin = new JsonObject
 				origin.add(ORIGIN, new JsonPrimitive(it.url))
 				val diagsArray = new JsonArray
 				origin.add(DIAGNOSTIC, diagsArray)
-				localDiagnostics.get(it).forEach[
+				localDiagnostics.get(it).forEach [
 					val diag = new JsonObject
 					diag.addProperty(MESSAGE, it.message)
 					val feature = it.data.get(1) as EStructuralFeature
-					if (feature instanceof EAttribute) {
+					if(feature instanceof EAttribute) {
 						diag.addProperty(FEATURE, (ATTRIBUTES + "." + feature.name))
 					} else {
 						diag.addProperty(FEATURE, (REFERENCES + "." + feature.name))
 					}
 					diagsArray.add(diag)
-					if (it.children.size > 0) {
+					if(it.children.size > 0) {
 						val detailsArray = new JsonArray
-						it.children.forEach[
+						it.children.forEach [
 							detailsArray.add(new JsonPrimitive(it.message))
 						]
 						diag.add(DETAILS, detailsArray)
@@ -627,25 +650,22 @@ class JsonConverter {
 		}
 		return null
 	}
-	
+
 	def private getRevisionDeltasAsJsonArray(Map<EObject, List<CDOFeatureDelta>> localRevisionDelta) {
 		if(localRevisionDelta.size > 0) {
 			val messageArray = new JsonArray
-			localRevisionDelta.keySet.forEach[
+			localRevisionDelta.keySet.forEach [
 				val origin = new JsonObject
 				origin.add(ORIGIN, new JsonPrimitive(it.url))
 				val deltasArray = new JsonArray
 				origin.add(REVISION_DELTA, deltasArray)
 				val object = it
-				localRevisionDelta.get(object).forEach[
-					val delta = new JsonObject
-					delta.addProperty(MESSAGE, "Changed feature '" + it.feature.name + "' of '" + ITEM_DELEGATOR.getText(object) + "' to '" + object.eGet(it.feature) + "'")
-					if (it.feature instanceof EAttribute) {
+				localRevisionDelta.get(object).forEach[val delta = new JsonObject delta.addProperty(MESSAGE, "Changed feature '" + it.feature.name + "' of '" + ITEM_DELEGATOR.getText(object) + "' to '" + object.eGet(it.feature) + "'")
+					if(it.feature instanceof EAttribute) {
 						delta.addProperty(FEATURE, (ATTRIBUTES + "." + feature.name))
 					} else {
 						delta.addProperty(FEATURE, (REFERENCES + "." + feature.name))
-					}
-					deltasArray.add(delta)				]
+					} deltasArray.add(delta)]
 				messageArray.add(origin)
 			]
 			return messageArray
@@ -659,18 +679,18 @@ class JsonConverter {
 	def newObjectWithStatus() {
 
 		val objectWithStatus = new JsonObject
-		if (diagnostics.size == 0) {
+		if(diagnostics.size == 0) {
 			objectWithStatus.addProperty(STATUS, MessageStatus.OK.name)
 		} else {
 			objectWithStatus.addProperty(STATUS, MessageStatus.INVALID.name)
 		}
-		
+
 		val jsonBaseObject = new JsonObject
 		jsonBaseObject.add(STATUS, objectWithStatus)
 		if(diagnostics.size > 0) {
 			objectWithStatus.add(DIAGNOSTICS, diagnostics.diagnosticsAsJsonArray)
 		}
-		if (revisionDeltas.size > 0) {
+		if(revisionDeltas.size > 0) {
 			objectWithStatus.add(REVISION_DELTAS, revisionDeltas.revisionDeltasAsJsonArray)
 		}
 		return jsonBaseObject
@@ -720,7 +740,7 @@ class JsonConverter {
 	}
 
 	def safeSetReferenceArray(EObject container, EReference eReference, List<EObject> refArray) {
-		if (eReference.upperBound > 0 && refArray.size > eReference.upperBound) {
+		if(eReference.upperBound > 0 && refArray.size > eReference.upperBound) {
 			throw new FlatlandException(SC_BAD_REQUEST, container, "Try to add '{}' elements to array '{}' having upper limit of '{}'", refArray.size, eReference.name, eReference.upperBound)
 		}
 		try {
@@ -729,9 +749,9 @@ class JsonConverter {
 			throw new FlatlandException(SC_BAD_REQUEST, container, "Reference list contains object with wrong type for reference '{}'", eReference.name)
 		}
 	}
-	
+
 	def safeSetAttributeArray(EObject container, EAttribute eAttribute, List<Object> attArray) {
-		if (eAttribute.upperBound > 0 && attArray.size > eAttribute.upperBound) {
+		if(eAttribute.upperBound > 0 && attArray.size > eAttribute.upperBound) {
 			throw new FlatlandException(SC_BAD_REQUEST, container, "Try to add '{}' elements to array '{}' having upper limit of '{}'", attArray.size, eAttribute.name, eAttribute.upperBound)
 		}
 		container.eSet(eAttribute, attArray)

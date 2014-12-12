@@ -20,6 +20,7 @@ class Constants {
 	val public static PARAM_XOR_FILTER = "or"
 	val public static PARAM_NO_REFS = "noRefs"
 	val public static PARAM_NO_VALIDATION = "noVal"
+	val public static PARAM_TIMESTAMP = "timestamp"
 	val public static ACCEPT_ALL_CONTENTTYPE = "*/*"
 	val public static JSON_CONTENTTYPE = "application/json"
 	val public static JSON_CONTENTTYPE_UTF8 = "application/json; charset=utf-8"
@@ -62,6 +63,9 @@ class Constants {
 	val public static HTTP_STATUS_DESCRIPTION = "httpDescription"
 	val public static DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
 	val public static DATA = "data"
+	val public static REVISIONS = "revisions"
+	val public static REVISION = "revision"
+	val public static REVISION_PREFIX = "r-"
 
 	// servlets
 	val public static ALIAS_NODE = "/node"
