@@ -19,7 +19,7 @@ class Constants {
 	val public static PARAM_FORCE = "force"
 	val public static PARAM_XOR_FILTER = "or"
 	val public static PARAM_NO_REFS = "noRefs"
-	val public static PARAM_VALIDATE = "validate"
+	val public static PARAM_NO_VALIDATION = "noVal"
 	val public static ACCEPT_ALL_CONTENTTYPE = "*/*"
 	val public static JSON_CONTENTTYPE = "application/json"
 	val public static JSON_CONTENTTYPE_UTF8 = "application/json; charset=utf-8"

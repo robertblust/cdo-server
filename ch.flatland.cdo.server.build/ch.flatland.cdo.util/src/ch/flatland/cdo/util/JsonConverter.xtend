@@ -83,6 +83,10 @@ class JsonConverter {
 		diagnostics
 	}
 	
+	def isValid() {
+		diagnostics.size == 0
+	}
+	
 	def getRevisionDeltas() {
 		revisionDeltas
 	}

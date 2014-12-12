@@ -44,9 +44,9 @@ class Delete {
 
 		try {
 			logger.debug("Run for '{}'", req.userId)
-			
+
 			val object = view.safeRequestResource(req, resp)
-			if (!(object instanceof CDOObject)) {
+			if(!(object instanceof CDOObject)) {
 				throw resp.statusMethodNotAllowed
 			}
 			val requestedObject = object as CDOObject
@@ -69,13 +69,12 @@ class Delete {
 			} catch(NoPermissionException npe) {
 				throw new FlatlandException(SC_FORBIDDEN, requestedObject, npe.message)
 			}
-			
-			
 
 			view.commit
 
 			// now transform manipulated object to json for the reponse			
 			jsonString = JsonConverter.okToJson
+
 		} catch(FlatlandException e) {
 			resp.status = e.httpStatus
 			jsonString = e.safeToJson

@@ -85,20 +85,21 @@ class Put {
 				val objects = requestedObject.eGet(eReference) as List<Object>
 				try {
 					objects.add(newObject)
-				} catch (ArrayStoreException e) {
+				} catch(ArrayStoreException e) {
 					throw new FlatlandException(SC_BAD_REQUEST, requestedObject, "'{}' does not support type '{}'", put, type)
 				}
-				
+
 			} else {
 				requestedObject.eSet(eReference, newObject)
 			}
 
 			view.addRevisionDelta(requestedObject, JsonConverter.revisionDeltas)
-			
+
 			view.commit
 
 			// now transform manipulated object to json for the reponse			
 			jsonString = requestedObject.safeToJson
+
 		} catch(FlatlandException e) {
 			resp.status = e.httpStatus
 			jsonString = e.safeToJson

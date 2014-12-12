@@ -49,7 +49,7 @@ class Request {
 	}
 	
 	def isValidate(HttpServletRequest req) {
-		return req.getParameter(PARAM_VALIDATE) != null
+		return req.getParameter(PARAM_NO_VALIDATION) == null
 	}
 
 	def isXor(HttpServletRequest req) {
