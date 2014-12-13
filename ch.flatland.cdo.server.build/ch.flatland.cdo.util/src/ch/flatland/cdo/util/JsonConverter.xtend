@@ -237,7 +237,7 @@ class JsonConverter {
 				for (var i = historySize - 1; i > 0; i--) {
 					val commitInfo = object.cdoHistory.getElement(i)
 					val jsonRevsionObject = new JsonObject
-					jsonRevsionObject.addProperty(REVISION_PREFIX + (historySize - i), object.url + "?" + PARAM_TIMESTAMP + "=" + commitInfo.timeStamp)
+					jsonRevsionObject.addProperty(REVISION_PREFIX + (historySize - i), object.getUrl(false) + "?" + PARAM_TIMESTAMP + "=" + commitInfo.timeStamp)
 					logger.debug("'{}' resolved revsion '{}'", object, REVISION_PREFIX + (historySize - i))
 					jsonRevisionsArray.add(jsonRevsionObject)
 				}
@@ -405,12 +405,20 @@ class JsonConverter {
 	def private dispatch toJsonObject(EObject object) {
 		object.toJsonBase
 	}
-
+	
 	def private dispatch getUrl(CDOResourceNode object) {
-		ALIAS_NODE + object.path + object.timestampParam
+		return object.getUrl(true)
 	}
 
 	def private dispatch getUrl(EObject object) {
+		return object.getUrl(true)
+	}
+
+	def private dispatch getUrl(CDOResourceNode object, boolean withTimestamp) {
+		ALIAS_NODE + object.path + object.getTimestampParam(withTimestamp)
+	}
+
+	def private dispatch getUrl(EObject object, boolean withTimestamp) {
 		var id = ""
 		if(object instanceof CDOObject) {
 			id = object.cdoID.toURIFragment.replace("L", "")
@@ -419,11 +427,14 @@ class JsonConverter {
 			// Legacy models do not inherit from CDOObject
 			id = EcoreUtil.getURI(object).fragment.replace("L", "")
 		}
-		ALIAS_OBJECT + "/" + object.eClass.EPackage.nsPrefix + "." + object.eClass.name + "/" + id + object.timestampParam
+		ALIAS_OBJECT + "/" + object.eClass.EPackage.nsPrefix + "." + object.eClass.name + "/" + id + object.getTimestampParam(withTimestamp)
 
 	}
 	
-	def private getTimestampParam(EObject object) {
+	def private getTimestampParam(EObject object, boolean withTimestamp) {
+		if (!withTimestamp) {
+			return ""
+		}
 		if (object instanceof CDOObject) {
 			if (object.view.timeStamp > 0) {
 				return "?" + PARAM_TIMESTAMP + "=" + object.view.timeStamp
