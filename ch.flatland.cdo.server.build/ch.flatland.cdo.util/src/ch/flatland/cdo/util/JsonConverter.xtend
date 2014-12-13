@@ -407,7 +407,7 @@ class JsonConverter {
 	}
 
 	def private dispatch getUrl(CDOResourceNode object) {
-		ALIAS_NODE + object.path
+		ALIAS_NODE + object.path + object.timestampParam
 	}
 
 	def private dispatch getUrl(EObject object) {
@@ -419,8 +419,17 @@ class JsonConverter {
 			// Legacy models do not inherit from CDOObject
 			id = EcoreUtil.getURI(object).fragment.replace("L", "")
 		}
-		ALIAS_OBJECT + "/" + object.eClass.EPackage.nsPrefix + "." + object.eClass.name + "/" + id
+		ALIAS_OBJECT + "/" + object.eClass.EPackage.nsPrefix + "." + object.eClass.name + "/" + id + object.timestampParam
 
+	}
+	
+	def private getTimestampParam(EObject object) {
+		if (object instanceof CDOObject) {
+			if (object.view.timeStamp > 0) {
+				return "?" + PARAM_TIMESTAMP + "=" + object.view.timeStamp
+			}
+		}
+		return ""
 	}
 
 	def private getOid(EObject object) {
