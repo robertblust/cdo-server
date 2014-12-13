@@ -130,13 +130,8 @@ class JsonConverter {
 			val jsonArray = new JsonArray
 
 			for (object : objects) {
-				val jsonBaseObject = object.toJsonBase
+				val jsonBaseObject = object.toJsonBase(false)
 
-				jsonBaseObject.addAttributes(object)
-				if(jsonConverterConfig.showReferences) {
-					jsonBaseObject.addReferences(object)
-				}
-				jsonBaseObject.addDiagnosticsAndMeta(object)
 				jsonArray.add(jsonBaseObject)
 			}
 
@@ -155,14 +150,7 @@ class JsonConverter {
 
 	def dispatch String safeToJson(EObject object) {
 		try {
-			val jsonBaseObject = object.toJsonBase
-
-			jsonBaseObject.addAttributes(object)
-			if(jsonConverterConfig.showReferences) {
-				jsonBaseObject.addReferences(object)
-			}
-
-			jsonBaseObject.addDiagnosticsAndMeta(object)
+			val jsonBaseObject = object.toJsonBase(false)
 
 			// finally add status with messages
 			val objectWithStatus = newObjectWithStatus
@@ -195,39 +183,62 @@ class JsonConverter {
 		jsonStatusObject.toString
 	}
 
-	def private toJsonBase(EObject object) {
+	def private JsonObject toJsonBase(EObject object, boolean stop) {
 		val jsonBaseObject = new JsonObject
-		jsonBaseObject.addType(object.eClass)
+
+		// this
+		val jsonThisObject = new JsonObject
+		jsonBaseObject.add(THIS, jsonThisObject)
+
+		jsonThisObject.addProperty(ID, object.oid)
 
 		// CDO Legacy Adapter implements EObject but is not an EObject
 		// ITEM_DELEGATOR does a cast to EObject
 		if(object instanceof CDOLegacyAdapter) {
-			jsonBaseObject.addProperty(LABEL, object.toString)
+			jsonThisObject.addProperty(LABEL, object.toString)
 		} else {
-			jsonBaseObject.addProperty(LABEL, ITEM_DELEGATOR.getText(object))
+			jsonThisObject.addProperty(LABEL, ITEM_DELEGATOR.getText(object))
 		}
-		jsonBaseObject.addProperty(ID, object.oid)
-		//jsonBaseObject.addProperty(HREF, object.url)
+
+		jsonThisObject.addType(object.eClass)
+
+		if(object instanceof CDOObject) {
+			jsonThisObject.addProperty(PERMISSION, object.cdoPermission.name)
+		}
+
+		jsonThisObject.addProperty(SELF, object.url)
+
+		if(object instanceof CDOObject) {
+			jsonThisObject.addProperty(REVISION, object.cdoRevision.version)
+			jsonThisObject.addProperty(DATE, dateFormat.format(new Date(object.cdoRevision.timeStamp)))
+			jsonThisObject.addProperty(AUTHOR, object.view.session.commitInfoManager.getCommitInfo(object.cdoRevision.timeStamp).userID)
+
+		}
+
+		jsonBaseObject.addAttributes(object)
+		if(jsonConverterConfig.showReferences && !stop) {
+			jsonBaseObject.addReferences(object)
+		}
+		
+		val jsonLinksObject = new JsonObject
+		jsonBaseObject.add("links", jsonLinksObject)
+
+		jsonLinksObject.addProperty(ALL_INSTANCES, ALIAS_OBJECT + "/" + object.eClass.type + object.getTimestampParam(true))
+
 		if(object.eContainer != null) {
-			jsonBaseObject.addProperty(CONTAINER, object.eContainer.url)
+			jsonLinksObject.addProperty(CONTAINER, object.eContainer.url)
 		} else {
 
 			// it must be contained in a CDOResourceNode
-			jsonBaseObject.addProperty(CONTAINER, (object.eResource as CDOResourceNode).url)
+			jsonLinksObject.addProperty(CONTAINER, (object.eResource as CDOResourceNode).url)
 		}
+
 		if(object instanceof CDOObject) {
-			jsonBaseObject.addProperty(PERMISSION, object.cdoPermission.name)
-
-			val jsonRevsionObject = new JsonObject
-			jsonRevsionObject.addProperty(REVISION, object.cdoRevision.version)
-			jsonRevsionObject.addProperty(HREF, object.url)
-			jsonRevsionObject.addProperty(DATE, dateFormat.format(new Date(object.cdoRevision.timeStamp)))
-			jsonRevsionObject.addProperty(AUTHOR, object.view.session.commitInfoManager.getCommitInfo(object.cdoRevision.timeStamp).userID)
-
-			jsonBaseObject.add(CURRENT, jsonRevsionObject)
 			jsonBaseObject.addRevisions(object)
-
 		}
+
+		jsonBaseObject.addDiagnosticsAndMeta(object)
+
 		return jsonBaseObject
 	}
 
@@ -245,7 +256,7 @@ class JsonConverter {
 					val commitInfo = object.cdoHistory.getElement(i)
 					val jsonRevsionObject = new JsonObject
 					jsonRevsionObject.addProperty(REVISION, (historySize - i))
-					jsonRevsionObject.addProperty(HREF, object.getUrl(false) + "?" + PARAM_POINT_IN_TIME + "=" + commitInfo.timeStamp)
+					jsonRevsionObject.addProperty(SELF, object.getUrl(false) + "?" + PARAM_POINT_IN_TIME + "=" + commitInfo.timeStamp)
 					jsonRevsionObject.addProperty(DATE, dateFormat.format(new Date(commitInfo.timeStamp)))
 					jsonRevsionObject.addProperty(AUTHOR, commitInfo.userID)
 					logger.debug("'{}' resolved revsion '{}'", object, (historySize - i))
@@ -295,10 +306,10 @@ class JsonConverter {
 					if(values.size > 0) {
 						val jsonReferencesArray = new JsonArray
 						for (value : values) {
-							val jsonRefObject = value.toJsonObject as JsonObject
+							val jsonRefObject = value.toJsonObject(true) as JsonObject
 
 							// should we add attributes or not?
-							jsonRefObject.addAttributes(value as EObject)
+							//jsonRefObject.addAttributes(value as EObject)
 							jsonRefObject.addDiagnosticsAndMeta(value as EObject)
 							jsonReferencesArray.add(jsonRefObject)
 						}
@@ -307,8 +318,9 @@ class JsonConverter {
 				} else {
 					val value = eObject.eGet(reference, true)
 					if(value != null) {
-						val jsonRefObject = value.toJsonObject as JsonObject
+						val jsonRefObject = value.toJsonObject(true) as JsonObject
 						jsonRefObject.addAttributes(value as EObject)
+
 						jsonRefObject.addDiagnosticsAndMeta(value as EObject)
 						jsonReferences.add(name, jsonRefObject)
 					}
@@ -407,13 +419,13 @@ class JsonConverter {
 		jsonBaseObject.addProperty(TYPE, classifier.type)
 	}
 
-	def private dispatch toJsonObject(Object object) {
+	def private dispatch toJsonObject(Object object, boolean stop) {
 		logger.error("NO DISPATCH MEHTOD for toJsonObject({}) ", object.class.name)
 		new JsonPrimitive(object.toString)
 	}
 
-	def private dispatch toJsonObject(EObject object) {
-		object.toJsonBase
+	def private dispatch toJsonObject(EObject object, boolean stop) {
+		object.toJsonBase(stop)
 	}
 
 	def private dispatch getUrl(CDOResourceNode object) {
@@ -437,7 +449,7 @@ class JsonConverter {
 			// Legacy models do not inherit from CDOObject
 			id = EcoreUtil.getURI(object).fragment.replace("L", "")
 		}
-		ALIAS_OBJECT + "/" + object.eClass.EPackage.nsPrefix + "." + object.eClass.name + "/" + id + object.getTimestampParam(withTimestamp)
+		ALIAS_OBJECT + "/" + object.eClass.type + "/" + id + object.getTimestampParam(withTimestamp)
 
 	}
 
