@@ -66,7 +66,6 @@ class Constants {
 	val public static DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
 	val public static DATA = "data"
 	val public static HISTORY = "history"
-	val public static THIS = "this"
 	val public static REVISION = "revision"
 	val public static DATE = "date"
 	val public static AUTHOR = "author"

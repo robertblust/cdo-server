@@ -186,32 +186,27 @@ class JsonConverter {
 	def private JsonObject toJsonBase(EObject object, boolean stop) {
 		val jsonBaseObject = new JsonObject
 
-		// this
-		val jsonThisObject = new JsonObject
-		jsonBaseObject.add(THIS, jsonThisObject)
-
-		jsonThisObject.addProperty(ID, object.oid)
+		jsonBaseObject.addProperty(ID, object.oid)
 
 		// CDO Legacy Adapter implements EObject but is not an EObject
 		// ITEM_DELEGATOR does a cast to EObject
 		if(object instanceof CDOLegacyAdapter) {
-			jsonThisObject.addProperty(LABEL, object.toString)
+			jsonBaseObject.addProperty(LABEL, object.toString)
 		} else {
-			jsonThisObject.addProperty(LABEL, ITEM_DELEGATOR.getText(object))
+			jsonBaseObject.addProperty(LABEL, ITEM_DELEGATOR.getText(object))
 		}
 
-		jsonThisObject.addType(object.eClass)
+		jsonBaseObject.addType(object.eClass)
 
 		if(object instanceof CDOObject) {
-			jsonThisObject.addProperty(PERMISSION, object.cdoPermission.name)
+			jsonBaseObject.addProperty(PERMISSION, object.cdoPermission.name)
 		}
 
-		jsonThisObject.addProperty(SELF, object.url)
 
 		if(object instanceof CDOObject) {
-			jsonThisObject.addProperty(REVISION, object.cdoRevision.version)
-			jsonThisObject.addProperty(DATE, dateFormat.format(new Date(object.cdoRevision.timeStamp)))
-			jsonThisObject.addProperty(AUTHOR, object.view.session.commitInfoManager.getCommitInfo(object.cdoRevision.timeStamp).userID)
+			jsonBaseObject.addProperty(REVISION, object.cdoRevision.version)
+			jsonBaseObject.addProperty(DATE, dateFormat.format(new Date(object.cdoRevision.timeStamp)))
+			jsonBaseObject.addProperty(AUTHOR, object.view.session.commitInfoManager.getCommitInfo(object.cdoRevision.timeStamp).userID)
 
 		}
 
@@ -223,6 +218,7 @@ class JsonConverter {
 		val jsonLinksObject = new JsonObject
 		jsonBaseObject.add("links", jsonLinksObject)
 
+		jsonLinksObject.addProperty(SELF, object.url)
 		jsonLinksObject.addProperty(ALL_INSTANCES, ALIAS_OBJECT + "/" + object.eClass.type + object.getTimestampParam(true))
 
 		if(object.eContainer != null) {
