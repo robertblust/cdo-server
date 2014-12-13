@@ -34,7 +34,7 @@ class DataStore {
 		// TODO find better solution 'Depends on Relation DB Store' 
 		//sql depends on mapping strategy
 		val List<EObject> result = newArrayList
-
+		
 		val eClass = view.safeEClass(type)
 		val mappingStrategy = view.mappingStrategy
 		var tableName = type.replace(".", "_")
@@ -49,7 +49,7 @@ class DataStore {
 			// The exception should appears max once per eClass
 			// The tableName is known instead of asking the mappingStrategy
 			logger.debug("Hack NoSessionRegisteredException '{}'", e.message)
-			val query = view.createQuery("sql", "SELECT CDO_ID FROM " + tableName + " WHERE (CDO_REVISED = 0 AND CDO_VERSION > 0)")
+			val query = view.createQuery("sql", "SELECT " + view.distinct + " CDO_ID FROM " + tableName + " WHERE " + view.temporality)
 			query.maxResults = 1
 			logger.debug("Hack NoSessionRegisteredException Execute '{}' query '{}'", query.queryLanguage, query.queryString)
 			val iterator = query.getResultAsync(typeof(EObject))
@@ -59,8 +59,14 @@ class DataStore {
 			}
 			iterator.close
 		}
+		
+		val query = view.createQuery("sql", "SELECT " + view.distinct + " CDO_ID FROM "
+				+ mappingStrategy.getTableName(eClass) 
+				+ " WHERE"
+				+ view.temporality
+				+ eClass.filterQuery(req, mappingStrategy) + eClass.orderBy(req, mappingStrategy, view))
+			
 
-		val query = view.createQuery("sql", "SELECT CDO_ID FROM " + mappingStrategy.getTableName(eClass) + " WHERE (CDO_REVISED = 0 AND CDO_VERSION > 0)" + eClass.filterQuery(req, mappingStrategy) + eClass.orderBy(req, mappingStrategy))
 		logger.debug("Execute '{}' query '{}'", query.queryLanguage, query.queryString)
 		val iterator = query.getResultAsync(typeof(EObject))
 		while(iterator.hasNext) {
@@ -73,6 +79,21 @@ class DataStore {
 		// TODO check other opinion 'Rest Standards'
 		// Should an empty list be returned or Status 404?
 		return result
+	}
+	
+	def private distinct(CDOView view) {
+		if (view.timeStamp > 0) {
+			return " DISTINCT "
+		}
+		return ""
+	}
+	
+	def	private temporality(CDOView view) {
+		if (view.timeStamp > 0) {
+			return " (CDO_CREATED <= " + view.timeStamp + " AND CDO_VERSION > 0 AND CDO_REVISED >= " + view.timeStamp + ") "
+		} else {
+			return " (CDO_REVISED = 0 AND CDO_VERSION > 0) "
+		}
 	}
 
 	def private filterQuery(EClass eClass, HttpServletRequest req, IMappingStrategy mappingStrategy) {
@@ -97,7 +118,10 @@ class DataStore {
 		return builder.toString
 	}
 
-	def private orderBy(EClass eClass, HttpServletRequest req, IMappingStrategy mappingStrategy) {
+	def private orderBy(EClass eClass, HttpServletRequest req, IMappingStrategy mappingStrategy, CDOView view) {
+		if (view.timeStamp > 0) {
+			return ""
+		}
 		if(req.orderBy != null && eClass.getAttribute(req.orderBy) != null) {
 			return " ORDER BY " + mappingStrategy.getFieldName(eClass.getAttribute(req.orderBy))
 		}

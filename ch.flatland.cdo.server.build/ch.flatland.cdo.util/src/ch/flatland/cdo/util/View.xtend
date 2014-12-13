@@ -29,7 +29,6 @@ import static javax.servlet.http.HttpServletResponse.*
 class View {
 
 	val extension EMF = new EMF
-	val extension Request = new Request
 	val extension DataStore = new DataStore
 
 	def safeRequestResource(CDOView view, HttpServletRequest req, HttpServletResponse resp) {
@@ -50,9 +49,6 @@ class View {
 						case 1: {
 						}
 						case 2: {
-							if (req.timestamp != null) {
-								throw new Exception
-							}
 							val objects = view.findByType(pathSegments.get(1), req)
 							return objects
 						}
