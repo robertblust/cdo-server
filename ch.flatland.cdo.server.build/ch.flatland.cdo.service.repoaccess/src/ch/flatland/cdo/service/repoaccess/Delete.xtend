@@ -46,7 +46,7 @@ class Delete {
 			logger.debug("Run for '{}'", req.userId)
 
 			val object = view.safeRequestResource(req, resp)
-			if(!(object instanceof CDOObject) || req.timestamp != null) {
+			if(!(object instanceof CDOObject) || req.pointInTime != null) {
 				throw resp.statusMethodNotAllowed
 			}
 			val requestedObject = object as CDOObject

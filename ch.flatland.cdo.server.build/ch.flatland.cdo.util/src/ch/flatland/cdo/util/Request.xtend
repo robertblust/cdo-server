@@ -34,9 +34,9 @@ class Request {
 		return params
 	}
 	
-	def getTimestamp(HttpServletRequest req) {
-		if(req.getParameter(PARAM_TIMESTAMP) != null && req.getParameter(PARAM_TIMESTAMP).length > 0) {
-			return req.getParameter(PARAM_TIMESTAMP)
+	def getPointInTime(HttpServletRequest req) {
+		if(req.getParameter(PARAM_POINT_IN_TIME) != null && req.getParameter(PARAM_POINT_IN_TIME).length > 0) {
+			return req.getParameter(PARAM_POINT_IN_TIME)
 		}
 		return null
 	}

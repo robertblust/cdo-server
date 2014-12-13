@@ -20,7 +20,7 @@ class Constants {
 	val public static PARAM_XOR_FILTER = "or"
 	val public static PARAM_NO_REFS = "noRefs"
 	val public static PARAM_NO_VALIDATION = "noVal"
-	val public static PARAM_TIMESTAMP = "timestamp"
+	val public static PARAM_POINT_IN_TIME = "pit"
 	val public static PARAM_HISTORY = "history"
 	val public static ACCEPT_ALL_CONTENTTYPE = "*/*"
 	val public static JSON_CONTENTTYPE = "application/json"

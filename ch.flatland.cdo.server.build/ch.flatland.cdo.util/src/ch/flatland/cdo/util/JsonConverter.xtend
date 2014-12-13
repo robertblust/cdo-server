@@ -245,7 +245,7 @@ class JsonConverter {
 					val commitInfo = object.cdoHistory.getElement(i)
 					val jsonRevsionObject = new JsonObject
 					jsonRevsionObject.addProperty(REVISION, (historySize - i))
-					jsonRevsionObject.addProperty(HREF, object.getUrl(false) + "?" + PARAM_TIMESTAMP + "=" + commitInfo.timeStamp)
+					jsonRevsionObject.addProperty(HREF, object.getUrl(false) + "?" + PARAM_POINT_IN_TIME + "=" + commitInfo.timeStamp)
 					jsonRevsionObject.addProperty(DATE, dateFormat.format(new Date(commitInfo.timeStamp)))
 					jsonRevsionObject.addProperty(AUTHOR, commitInfo.userID)
 					logger.debug("'{}' resolved revsion '{}'", object, (historySize - i))
@@ -447,7 +447,7 @@ class JsonConverter {
 		}
 		if(object instanceof CDOObject) {
 			if(object.view.timeStamp > 0) {
-				return "?" + PARAM_TIMESTAMP + "=" + object.view.timeStamp
+				return "?" + PARAM_POINT_IN_TIME + "=" + object.view.timeStamp
 			}
 		}
 		return ""

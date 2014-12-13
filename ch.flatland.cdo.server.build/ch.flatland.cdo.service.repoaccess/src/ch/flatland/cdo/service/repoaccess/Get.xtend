@@ -37,9 +37,9 @@ class Get {
 		val extension JsonConverter = req.createJsonConverter
 
 		try {
-			if(req.timestamp != null) {
+			if(req.pointInTime != null) {
 				try {
-					view = SessionFactory.getCDOSession(req).openView(Long.parseLong(req.timestamp))
+					view = SessionFactory.getCDOSession(req).openView(Long.parseLong(req.pointInTime))
 				} catch(Exception e) {
 					throw new FlatlandException(SC_NOT_FOUND, "{} not found", req.pathInfo)
 				}
