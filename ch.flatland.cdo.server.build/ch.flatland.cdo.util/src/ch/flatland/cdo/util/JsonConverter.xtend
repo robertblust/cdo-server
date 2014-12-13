@@ -207,7 +207,7 @@ class JsonConverter {
 			jsonBaseObject.addProperty(LABEL, ITEM_DELEGATOR.getText(object))
 		}
 		jsonBaseObject.addProperty(ID, object.oid)
-		jsonBaseObject.addProperty(HREF, object.url)
+		//jsonBaseObject.addProperty(HREF, object.url)
 		if(object.eContainer != null) {
 			jsonBaseObject.addProperty(CONTAINER, object.eContainer.url)
 		} else {
@@ -217,7 +217,14 @@ class JsonConverter {
 		}
 		if(object instanceof CDOObject) {
 			jsonBaseObject.addProperty(PERMISSION, object.cdoPermission.name)
-			jsonBaseObject.addProperty(REVISION, REVISION_PREFIX + object.cdoRevision.version)
+
+			val jsonRevsionObject = new JsonObject
+			jsonRevsionObject.addProperty(REVISION, object.cdoRevision.version)
+			jsonRevsionObject.addProperty(HREF, object.url)
+			jsonRevsionObject.addProperty(DATE, dateFormat.format(new Date(object.cdoRevision.timeStamp)))
+			jsonRevsionObject.addProperty(AUTHOR, object.view.session.commitInfoManager.getCommitInfo(object.cdoRevision.timeStamp).userID)
+
+			jsonBaseObject.add(CURRENT, jsonRevsionObject)
 			jsonBaseObject.addRevisions(object)
 
 		}
@@ -225,7 +232,7 @@ class JsonConverter {
 	}
 
 	def private addRevisions(JsonObject jsonBaseObject, CDOObject object) {
-		if(jsonConverterConfig.revisions) {
+		if(jsonConverterConfig.history) {
 			object.cdoHistory.triggerLoad
 			while(object.cdoHistory.loading) {
 				//TODO could be long running!
@@ -233,12 +240,15 @@ class JsonConverter {
 			val historySize = object.cdoHistory.size
 			if(historySize > 1) {
 				val jsonRevisionsArray = new JsonArray
-				jsonBaseObject.add(REVISIONS, jsonRevisionsArray)
+				jsonBaseObject.add(HISTORY, jsonRevisionsArray)
 				for (var i = historySize - 1; i > 0; i--) {
 					val commitInfo = object.cdoHistory.getElement(i)
 					val jsonRevsionObject = new JsonObject
-					jsonRevsionObject.addProperty(REVISION_PREFIX + (historySize - i), object.getUrl(false) + "?" + PARAM_TIMESTAMP + "=" + commitInfo.timeStamp)
-					logger.debug("'{}' resolved revsion '{}'", object, REVISION_PREFIX + (historySize - i))
+					jsonRevsionObject.addProperty(REVISION, (historySize - i))
+					jsonRevsionObject.addProperty(HREF, object.getUrl(false) + "?" + PARAM_TIMESTAMP + "=" + commitInfo.timeStamp)
+					jsonRevsionObject.addProperty(DATE, dateFormat.format(new Date(commitInfo.timeStamp)))
+					jsonRevsionObject.addProperty(AUTHOR, commitInfo.userID)
+					logger.debug("'{}' resolved revsion '{}'", object, (historySize - i))
 					jsonRevisionsArray.add(jsonRevsionObject)
 				}
 			}
@@ -405,7 +415,7 @@ class JsonConverter {
 	def private dispatch toJsonObject(EObject object) {
 		object.toJsonBase
 	}
-	
+
 	def private dispatch getUrl(CDOResourceNode object) {
 		return object.getUrl(true)
 	}
@@ -430,13 +440,13 @@ class JsonConverter {
 		ALIAS_OBJECT + "/" + object.eClass.EPackage.nsPrefix + "." + object.eClass.name + "/" + id + object.getTimestampParam(withTimestamp)
 
 	}
-	
+
 	def private getTimestampParam(EObject object, boolean withTimestamp) {
-		if (!withTimestamp) {
+		if(!withTimestamp) {
 			return ""
 		}
-		if (object instanceof CDOObject) {
-			if (object.view.timeStamp > 0) {
+		if(object instanceof CDOObject) {
+			if(object.view.timeStamp > 0) {
 				return "?" + PARAM_TIMESTAMP + "=" + object.view.timeStamp
 			}
 		}
