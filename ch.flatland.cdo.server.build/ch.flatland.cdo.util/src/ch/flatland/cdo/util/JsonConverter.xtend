@@ -219,7 +219,6 @@ class JsonConverter {
 		jsonBaseObject.add("links", jsonLinksObject)
 
 		jsonLinksObject.addProperty(SELF, object.url)
-		jsonLinksObject.addProperty(ALL_INSTANCES, ALIAS_OBJECT + "/" + object.eClass.type + object.getTimestampParam(true))
 
 		if(object.eContainer != null) {
 			jsonLinksObject.addProperty(CONTAINER, object.eContainer.url)
@@ -228,6 +227,7 @@ class JsonConverter {
 			// it must be contained in a CDOResourceNode
 			jsonLinksObject.addProperty(CONTAINER, (object.eResource as CDOResourceNode).url)
 		}
+		jsonLinksObject.addProperty(ALL_INSTANCES, ALIAS_OBJECT + "/" + object.eClass.type + object.getTimestampParam(true))
 
 		if(object instanceof CDOObject) {
 			jsonBaseObject.addRevisions(object)

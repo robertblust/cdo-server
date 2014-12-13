@@ -17,8 +17,11 @@ import ch.flatland.cdo.util.Response
 import ch.flatland.cdo.util.View
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
-import org.slf4j.LoggerFactory
 import org.eclipse.emf.cdo.CDOObject
+import org.eclipse.emf.cdo.util.CommitException
+import org.slf4j.LoggerFactory
+
+import static javax.servlet.http.HttpServletResponse.*
 
 class Post {
 
@@ -56,7 +59,11 @@ class Post {
 
 			view.addRevisionDelta(requestedObject, JsonConverter.revisionDeltas)
 
-			view.commit
+			try {
+				view.commit
+			} catch(CommitException e) {
+				throw new FlatlandException(SC_BAD_REQUEST, requestedObject, e.message)
+			}
 
 			// now transform manipulated object to json for the reponse			
 			jsonString = requestedObject.safeToJson

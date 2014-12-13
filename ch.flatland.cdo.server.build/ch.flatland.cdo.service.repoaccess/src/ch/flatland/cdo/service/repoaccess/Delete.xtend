@@ -21,6 +21,7 @@ import javax.servlet.http.HttpServletResponse
 import org.eclipse.emf.cdo.CDOObject
 import org.eclipse.emf.cdo.common.security.NoPermissionException
 import org.eclipse.emf.cdo.eresource.CDOResourceNode
+import org.eclipse.emf.cdo.util.CommitException
 import org.eclipse.emf.cdo.view.CDOView
 import org.slf4j.LoggerFactory
 
@@ -70,7 +71,11 @@ class Delete {
 				throw new FlatlandException(SC_FORBIDDEN, requestedObject, npe.message)
 			}
 
-			view.commit
+			try {
+				view.commit
+			} catch(CommitException e) {
+				throw new FlatlandException(SC_BAD_REQUEST, requestedObject, e.message)
+			}
 
 			// now transform manipulated object to json for the reponse			
 			jsonString = JsonConverter.okToJson

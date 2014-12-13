@@ -19,6 +19,7 @@ import java.util.List
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 import org.eclipse.emf.cdo.CDOObject
+import org.eclipse.emf.cdo.util.CommitException
 import org.slf4j.LoggerFactory
 
 import static javax.servlet.http.HttpServletResponse.*
@@ -94,11 +95,16 @@ class Put {
 			}
 
 			view.addRevisionDelta(requestedObject, JsonConverter.revisionDeltas)
-
-			view.commit
-
+			
+			try {
+				view.commit
+			} catch (CommitException e) {
+				throw new FlatlandException(SC_BAD_REQUEST, requestedObject, e.message)
+			}
+			
 			// now transform manipulated object to json for the reponse			
 			jsonString = requestedObject.safeToJson
+			resp.status = SC_CREATED
 
 		} catch(FlatlandException e) {
 			resp.status = e.httpStatus
@@ -109,7 +115,6 @@ class Put {
 				view.close
 			}
 		}
-		resp.status = SC_CREATED
 		resp.writeResponse(req, jsonString)
 	}
 }
