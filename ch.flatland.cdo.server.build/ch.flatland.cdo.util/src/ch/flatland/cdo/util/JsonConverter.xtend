@@ -136,7 +136,7 @@ class JsonConverter {
 				if(jsonConverterConfig.showReferences) {
 					jsonBaseObject.addReferences(object)
 				}
-				jsonBaseObject.addMessagesAndMeta(object)
+				jsonBaseObject.addDiagnosticsAndMeta(object)
 				jsonArray.add(jsonBaseObject)
 			}
 
@@ -162,7 +162,7 @@ class JsonConverter {
 				jsonBaseObject.addReferences(object)
 			}
 
-			jsonBaseObject.addMessagesAndMeta(object)
+			jsonBaseObject.addDiagnosticsAndMeta(object)
 
 			// finally add status with messages
 			val objectWithStatus = newObjectWithStatus
@@ -299,7 +299,7 @@ class JsonConverter {
 
 							// should we add attributes or not?
 							jsonRefObject.addAttributes(value as EObject)
-							jsonRefObject.addMessagesAndMeta(value as EObject)
+							jsonRefObject.addDiagnosticsAndMeta(value as EObject)
 							jsonReferencesArray.add(jsonRefObject)
 						}
 						jsonReferences.add(name, jsonReferencesArray)
@@ -309,7 +309,7 @@ class JsonConverter {
 					if(value != null) {
 						val jsonRefObject = value.toJsonObject as JsonObject
 						jsonRefObject.addAttributes(value as EObject)
-						jsonRefObject.addMessagesAndMeta(value as EObject)
+						jsonRefObject.addDiagnosticsAndMeta(value as EObject)
 						jsonReferences.add(name, jsonRefObject)
 					}
 				}
@@ -385,7 +385,7 @@ class JsonConverter {
 		jsonBaseObject.addProperty(UPPER_BOUND, feature.upperBound)
 	}
 
-	def private addMessagesAndMeta(JsonObject jsonBaseObject, EObject object) {
+	def private addDiagnosticsAndMeta(JsonObject jsonBaseObject, EObject object) {
 
 		// validation requested?
 		if(jsonConverterConfig.validate) {
