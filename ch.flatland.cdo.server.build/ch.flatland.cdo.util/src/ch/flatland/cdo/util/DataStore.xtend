@@ -49,7 +49,7 @@ class DataStore {
 			// The exception should appears max once per eClass
 			// The tableName is known instead of asking the mappingStrategy
 			logger.debug("Hack NoSessionRegisteredException '{}'", e.message)
-			val query = view.createQuery("sql", "SELECT " + view.distinct + " CDO_ID FROM " + tableName + " WHERE " + view.temporality)
+			val query = view.createQuery("sql", "SELECT DISTINCT ID FROM (SELECT CDO_ID AS ID FROM " + tableName + " WHERE " + view.temporality + ")")
 			query.maxResults = 1
 			logger.debug("Hack NoSessionRegisteredException Execute '{}' query '{}'", query.queryLanguage, query.queryString)
 			val iterator = query.getResultAsync(typeof(EObject))
@@ -60,11 +60,11 @@ class DataStore {
 			iterator.close
 		}
 		
-		val query = view.createQuery("sql", "SELECT " + view.distinct + " CDO_ID FROM "
+		val query = view.createQuery("sql", "SELECT DISTINCT ID FROM (SELECT CDO_ID AS ID FROM "
 				+ mappingStrategy.getTableName(eClass) 
-				+ " WHERE"
+				+ " WHERE "
 				+ view.temporality
-				+ eClass.filterQuery(req, mappingStrategy) + eClass.orderBy(req, mappingStrategy, view))
+				+ eClass.filterQuery(req, mappingStrategy) + eClass.orderBy(req, mappingStrategy) + ")")
 			
 
 		logger.debug("Execute '{}' query '{}'", query.queryLanguage, query.queryString)
@@ -80,19 +80,12 @@ class DataStore {
 		// Should an empty list be returned or Status 404?
 		return result
 	}
-	
-	def private distinct(CDOView view) {
-		if (view.timeStamp > 0) {
-			return " DISTINCT "
-		}
-		return ""
-	}
-	
+		
 	def	private temporality(CDOView view) {
 		if (view.timeStamp > 0) {
-			return " (CDO_CREATED <= " + view.timeStamp + " AND CDO_VERSION > 0 AND CDO_REVISED >= " + view.timeStamp + ") "
+			return "(CDO_CREATED <= " + view.timeStamp + " AND CDO_VERSION > 0 AND CDO_REVISED >= " + view.timeStamp + ")"
 		} else {
-			return " (CDO_REVISED = 0 AND CDO_VERSION > 0) "
+			return "(CDO_REVISED = 0 AND CDO_VERSION > 0)"
 		}
 	}
 
@@ -118,10 +111,7 @@ class DataStore {
 		return builder.toString
 	}
 
-	def private orderBy(EClass eClass, HttpServletRequest req, IMappingStrategy mappingStrategy, CDOView view) {
-		if (view.timeStamp > 0) {
-			return ""
-		}
+	def private orderBy(EClass eClass, HttpServletRequest req, IMappingStrategy mappingStrategy) {
 		if(req.orderBy != null && eClass.getAttribute(req.orderBy) != null) {
 			return " ORDER BY " + mappingStrategy.getFieldName(eClass.getAttribute(req.orderBy))
 		}
