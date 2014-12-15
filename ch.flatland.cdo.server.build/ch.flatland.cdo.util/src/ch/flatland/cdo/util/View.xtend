@@ -33,12 +33,23 @@ class View {
 
 	def safeRequestResource(CDOView view, HttpServletRequest req, HttpServletResponse resp) {
 		val alias = "/" + Splitter.on("/").split(req.requestURL).get(3)
+		var referenceDetail = ""
 
 		try {
 			switch (alias) {
 				case ALIAS_NODE: {
 					if(req.pathInfo != null) {
-						return view.getResourceNode(req.pathInfo)
+						var pathInfo = req.pathInfo
+						val pathSegments = Splitter.on("/").split(req.pathInfo)
+						if(pathSegments.get(pathSegments.size - 1) == REFERENCES) {
+							pathInfo = pathInfo.replace("/" + REFERENCES, "")
+							println("TODO resolve all references")
+						}
+						if(pathSegments.get(pathSegments.size - 2) == REFERENCES) {
+							pathInfo = pathInfo.replace("/" + REFERENCES + "/" + pathSegments.get(pathSegments.size - 1), "" )
+							println("TODO resolve detail reference " + pathSegments.get(pathSegments.size - 1))
+						}
+						return view.getResourceNode(pathInfo)
 					} else {
 						return view.getResourceNode("/")
 					}
