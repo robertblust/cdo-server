@@ -49,7 +49,7 @@ class DataStore {
 			// The exception should appears max once per eClass
 			// The tableName is known instead of asking the mappingStrategy
 			logger.debug("Hack NoSessionRegisteredException '{}'", e.message)
-			val query = view.createQuery("sql", "SELECT DISTINCT ID FROM (SELECT CDO_ID AS ID FROM " + tableName + " WHERE " + view.temporality + ")")
+			val query = view.createQuery("sql", "SELECT DISTINCT CDO_ID FROM " + tableName + " WHERE " + view.temporality)
 			query.maxResults = 1
 			logger.debug("Hack NoSessionRegisteredException Execute '{}' query '{}'", query.queryLanguage, query.queryString)
 			val iterator = query.getResultAsync(typeof(EObject))
@@ -60,11 +60,13 @@ class DataStore {
 			iterator.close
 		}
 		
-		val query = view.createQuery("sql", "SELECT DISTINCT ID FROM (SELECT CDO_ID AS ID FROM "
+		val query = view.createQuery("sql", "SELECT DISTINCT CDO_ID, " + eClass.max(req, mappingStrategy) + " FROM "
 				+ mappingStrategy.getTableName(eClass) 
 				+ " WHERE "
 				+ view.temporality
-				+ eClass.filterQuery(req, mappingStrategy) + eClass.orderBy(req, mappingStrategy) + ")")
+				+ eClass.filterQuery(req, mappingStrategy) 
+				+ " GROUP BY CDO_ID "
+				+ eClass.orderBy(req, mappingStrategy))
 			
 
 		logger.debug("Execute '{}' query '{}'", query.queryLanguage, query.queryString)
@@ -110,15 +112,31 @@ class DataStore {
 		}
 		return builder.toString
 	}
-
-	def private orderBy(EClass eClass, HttpServletRequest req, IMappingStrategy mappingStrategy) {
-		if(req.orderBy != null && eClass.getAttribute(req.orderBy) != null) {
-			return " ORDER BY " + mappingStrategy.getFieldName(eClass.getAttribute(req.orderBy))
-		}
-		if(eClass.nameAttribute != null) {
-			return " ORDER BY NAME"
+	
+	def private max(EClass eClass, HttpServletRequest req, IMappingStrategy mappingStrategy) {
+		val max = eClass.orderByName(req, mappingStrategy)
+		if (max != null) {
+			return " MAX(" + max + ")"
 		}
 		return ""
+	}
+	
+	def private orderBy(EClass eClass, HttpServletRequest req, IMappingStrategy mappingStrategy) {
+		val name = eClass.orderByName(req, mappingStrategy)
+		if (name != null) {
+			return " ORDER BY MAX(" + name + ")"
+		}
+		return ""
+	}
+
+	def private orderByName(EClass eClass, HttpServletRequest req, IMappingStrategy mappingStrategy) {
+		if(req.orderBy != null && eClass.getAttribute(req.orderBy) != null) {
+			return mappingStrategy.getFieldName(eClass.getAttribute(req.orderBy))
+		}
+		if(eClass.nameAttribute != null) {
+			return "NAME"
+		}
+		return null
 	}
 
 	def private getMappingStrategy(CDOView view) {
