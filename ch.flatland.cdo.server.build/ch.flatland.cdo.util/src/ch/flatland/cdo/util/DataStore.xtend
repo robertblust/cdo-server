@@ -83,7 +83,7 @@ class DataStore {
 		
 	def	private temporality(CDOView view) {
 		if (view.timeStamp > 0) {
-			return "(CDO_CREATED <= " + view.timeStamp + " AND CDO_VERSION > 0 AND CDO_REVISED >= " + view.timeStamp + ")"
+			return "((CDO_CREATED <= " + view.timeStamp + " AND CDO_VERSION > 0) AND (CDO_REVISED >= " + view.timeStamp + " OR CDO_REVISED = 0 AND CDO_VERSION > 0))"
 		} else {
 			return "(CDO_REVISED = 0 AND CDO_VERSION > 0)"
 		}
