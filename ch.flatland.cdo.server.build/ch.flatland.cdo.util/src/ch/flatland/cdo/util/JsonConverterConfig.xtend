@@ -27,7 +27,7 @@ class JsonConverterConfig {
 
 	def private init(HttpServletRequest req) {
 		meta = req.metaDataRequested
-		showReferences = !req.noRefs
+		showReferences = req.refs
 		validate = req.validate
 		history = req.history
 	}

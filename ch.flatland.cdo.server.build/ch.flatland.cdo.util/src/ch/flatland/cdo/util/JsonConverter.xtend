@@ -56,6 +56,7 @@ class JsonConverter {
 	val extension EMF = new EMF
 	val extension View = new View
 	val extension HttpStatus = new HttpStatus
+	val extension References = new References
 
 	val diagnostics = new LinkedHashMap<EObject, List<Diagnostic>>
 	val revisionDeltas = new LinkedHashMap<EObject, List<CDOFeatureDelta>>
@@ -144,6 +145,7 @@ class JsonConverter {
 		} catch(NoPermissionException npe) {
 			throw new FlatlandException(SC_FORBIDDEN, npe.message)
 		} catch(Exception e) {
+			e.printStackTrace
 			throw new FlatlandException(SC_BAD_REQUEST, e.message)
 		}
 	}
@@ -161,6 +163,7 @@ class JsonConverter {
 		} catch(NoPermissionException npe) {
 			throw new FlatlandException(SC_FORBIDDEN, npe.message)
 		} catch(Exception e) {
+			e.printStackTrace
 			throw new FlatlandException(SC_BAD_REQUEST, e.message)
 		}
 	}
@@ -202,7 +205,6 @@ class JsonConverter {
 			jsonBaseObject.addProperty(PERMISSION, object.cdoPermission.name)
 		}
 
-
 		if(object instanceof CDOObject) {
 			jsonBaseObject.addProperty(REVISION, object.cdoRevision.version)
 			jsonBaseObject.addProperty(DATE, dateFormat.format(new Date(object.cdoRevision.timeStamp)))
@@ -214,20 +216,49 @@ class JsonConverter {
 		if(jsonConverterConfig.showReferences && !stop) {
 			jsonBaseObject.addReferences(object)
 		}
-		
-		val jsonLinksObject = new JsonObject
-		jsonBaseObject.add("links", jsonLinksObject)
 
-		jsonLinksObject.addProperty(SELF, object.url)
+		val jsonLinksArray = new JsonArray
+		jsonBaseObject.add("links", jsonLinksArray)
 
+		val jsonSelfLink = new JsonObject
+		jsonSelfLink.addProperty(REL, SELF)
+		jsonSelfLink.addProperty(HREF, object.url)
+		jsonLinksArray.add(jsonSelfLink)
+
+		// add reference link here
+		if(object.hasReferences(null)) {
+			val jsonReferencesLink = new JsonObject
+			jsonReferencesLink.addProperty(REL, REFERENCES)
+			jsonReferencesLink.addProperty(HREF, object.getUrl(false) + "/" + REFERENCES + object.getTimestampParam(true))
+			jsonLinksArray.add(jsonReferencesLink)
+		}
+
+		// add detailed reference 
+		object.eClass.EAllReferences.forEach [
+			if(object.hasReferences(it.name)) {
+				val jsonReferenceLink = new JsonObject
+				jsonReferenceLink.addProperty(REL, REFERENCES + "/" + it.name)
+				jsonReferenceLink.addProperty(HREF, object.getUrl(false) + "/" + REFERENCES + "/" + it.name + object.getTimestampParam(true))
+				jsonLinksArray.add(jsonReferenceLink)
+			}
+		]
+
+		val jsonContainerLink = new JsonObject
+		jsonContainerLink.addProperty(REL, CONTAINER)
+		jsonContainerLink.addProperty(HREF, object.url)
 		if(object.eContainer != null) {
-			jsonLinksObject.addProperty(CONTAINER, object.eContainer.url)
+			jsonContainerLink.addProperty(HREF, object.eContainer.url)
 		} else {
 
 			// it must be contained in a CDOResourceNode
-			jsonLinksObject.addProperty(CONTAINER, (object.eResource as CDOResourceNode).url)
+			jsonContainerLink.addProperty(HREF, (object.eResource as CDOResourceNode).url)
 		}
-		jsonLinksObject.addProperty(ALL_INSTANCES, ALIAS_OBJECT + "/" + object.eClass.type + object.getTimestampParam(true))
+		jsonLinksArray.add(jsonContainerLink)
+
+		val jsonAllInstancesLink = new JsonObject
+		jsonAllInstancesLink.addProperty(REL, ALL_INSTANCES)
+		jsonAllInstancesLink.addProperty(HREF, ALIAS_OBJECT + "/" + object.eClass.type + object.getTimestampParam(true))
+		jsonLinksArray.add(jsonAllInstancesLink)
 
 		if(object instanceof CDOObject) {
 			jsonBaseObject.addRevisions(object)

@@ -18,7 +18,7 @@ class Constants {
 	val public static PARAM_ORDER_BY = "orderBy"
 	val public static PARAM_FORCE = "force"
 	val public static PARAM_XOR_FILTER = "or"
-	val public static PARAM_NO_REFS = "noRefs"
+	val public static PARAM_REFS = "refs"
 	val public static PARAM_NO_VALIDATION = "noVal"
 	val public static PARAM_POINT_IN_TIME = "pit"
 	val public static PARAM_HISTORY = "history"
@@ -69,6 +69,8 @@ class Constants {
 	val public static REVISION = "revision"
 	val public static DATE = "date"
 	val public static AUTHOR = "author"
+	val public static REL = "rel"
+	val public static HREF = "href"
 
 	// servlets
 	val public static ALIAS_NODE = "/node"
