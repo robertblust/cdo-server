@@ -30,10 +30,12 @@ class View {
 
 	val extension EMF = new EMF
 	val extension DataStore = new DataStore
+	val extension References = new References
 
 	def safeRequestResource(CDOView view, HttpServletRequest req, HttpServletResponse resp) {
 		val alias = "/" + Splitter.on("/").split(req.requestURL).get(3)
-		var referenceDetail = ""
+
+		var String referenceName = null
 
 		try {
 			switch (alias) {
@@ -41,15 +43,28 @@ class View {
 					if(req.pathInfo != null) {
 						var pathInfo = req.pathInfo
 						val pathSegments = Splitter.on("/").split(req.pathInfo)
+						var references = false
+
+						// all references requested?
 						if(pathSegments.get(pathSegments.size - 1) == REFERENCES) {
 							pathInfo = pathInfo.replace("/" + REFERENCES, "")
-							println("TODO resolve all references")
+							references = true
 						}
+
+						// detail references requested?
 						if(pathSegments.get(pathSegments.size - 2) == REFERENCES) {
-							pathInfo = pathInfo.replace("/" + REFERENCES + "/" + pathSegments.get(pathSegments.size - 1), "" )
-							println("TODO resolve detail reference " + pathSegments.get(pathSegments.size - 1))
+							pathInfo = pathInfo.replace("/" + REFERENCES + "/" + pathSegments.get(pathSegments.size - 1), "")
+							referenceName = pathSegments.get(pathSegments.size - 1)
+							references = true
 						}
-						return view.getResourceNode(pathInfo)
+						val CDOObject object = view.getResourceNode(pathInfo)
+						if(!references) {
+							return object
+						} else {
+
+							// resolve references
+							return object.safeResolveReferences(referenceName)
+						}
 					} else {
 						return view.getResourceNode("/")
 					}
@@ -64,16 +79,25 @@ class View {
 							return objects
 						}
 						case 3: {
-							val ePackage = view.ePackage(pathSegments.get(1).safePackagePrefix)
-							val eClass = ePackage.getEClassifier(pathSegments.get(1).safeEType)
-							if(eClass == null) {
+							return view.safeResolveSegment3(pathSegments)
+						}
+						// all references requested?
+						case 4: {
+							if(pathSegments.get(3) == REFERENCES) {
+								val object = view.safeResolveSegment3(pathSegments)
+								return object.safeResolveReferences(referenceName)
+							} else {
 								throw new Exception
 							}
-							val object = view.getObject(CDOIDUtil.createLong(Long.parseLong(pathSegments.get(2))))
-							if(object.eClass.type != pathSegments.get(1)) {
+						}
+						// detail references requested?
+						case 5: {
+							if(pathSegments.get(3) == REFERENCES) {
+								val object = view.safeResolveSegment3(pathSegments)
+								return object.safeResolveReferences(pathSegments.get(4))
+							} else {
 								throw new Exception
 							}
-							return object
 						}
 						default:
 							throw new Exception
@@ -105,5 +129,18 @@ class View {
 		view.revisionDeltas.forEach [ id, revisionDelta |
 			revisionDeltas.put(object, revisionDelta.featureDeltas)
 		]
+	}
+
+	def private safeResolveSegment3(CDOView view, Iterable<String> pathSegments) {
+		val ePackage = view.ePackage(pathSegments.get(1).safePackagePrefix)
+		val eClass = ePackage.getEClassifier(pathSegments.get(1).safeEType)
+		if(eClass == null) {
+			throw new Exception
+		}
+		val object = view.getObject(CDOIDUtil.createLong(Long.parseLong(pathSegments.get(2))))
+		if(object.eClass.type != pathSegments.get(1)) {
+			throw new Exception
+		}
+		return object
 	}
 }
