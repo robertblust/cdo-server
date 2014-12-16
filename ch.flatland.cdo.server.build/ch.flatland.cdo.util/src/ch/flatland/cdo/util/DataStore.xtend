@@ -60,12 +60,11 @@ class DataStore {
 			iterator.close
 		}
 		
-		val query = view.createQuery("sql", "SELECT DISTINCT CDO_ID, " + eClass.max(req, mappingStrategy) + " FROM "
+		val query = view.createQuery("sql", "SELECT DISTINCT CDO_ID " + eClass.max(req, mappingStrategy) + " FROM "
 				+ mappingStrategy.getTableName(eClass) 
 				+ " WHERE "
 				+ view.temporality
 				+ eClass.filterQuery(req, mappingStrategy) 
-				+ " GROUP BY CDO_ID "
 				+ eClass.orderBy(req, mappingStrategy))
 			
 
@@ -116,7 +115,7 @@ class DataStore {
 	def private max(EClass eClass, HttpServletRequest req, IMappingStrategy mappingStrategy) {
 		val max = eClass.orderByName(req, mappingStrategy)
 		if (max != null) {
-			return " MAX(" + max + ")"
+			return " ,MAX(" + max + ")"
 		}
 		return ""
 	}
@@ -124,7 +123,7 @@ class DataStore {
 	def private orderBy(EClass eClass, HttpServletRequest req, IMappingStrategy mappingStrategy) {
 		val name = eClass.orderByName(req, mappingStrategy)
 		if (name != null) {
-			return " ORDER BY MAX(" + name + ")"
+			return " GROUP BY CDO_ID ORDER BY MAX(" + name + ")"
 		}
 		return ""
 	}
