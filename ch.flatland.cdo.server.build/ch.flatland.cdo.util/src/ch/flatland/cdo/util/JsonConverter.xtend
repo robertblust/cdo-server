@@ -237,7 +237,7 @@ class JsonConverter {
 		object.eClass.EAllReferences.forEach [
 			if(object.hasReferences(it.name)) {
 				val jsonReferenceLink = new JsonObject
-				jsonReferenceLink.addProperty(REL, REFERENCES + "/" + it.name)
+				jsonReferenceLink.addProperty(REL, REFERENCES + "." + it.name)
 				jsonReferenceLink.addProperty(HREF, object.getUrl(false) + "/" + REFERENCES + "/" + it.name + object.getTimestampParam(true))
 				jsonLinksArray.add(jsonReferenceLink)
 			}
