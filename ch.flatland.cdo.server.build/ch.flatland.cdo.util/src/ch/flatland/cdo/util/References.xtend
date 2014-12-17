@@ -17,68 +17,58 @@ class References {
 
 	def safeResolveReferences(EObject object, String referenceName) {
 		if(referenceName == null) {
-			val allReferences = newArrayList
-			object.eClass.EAllReferences.forEach [
-				if(it.many) {
-					val List<EObject> refs = object.eGet(it) as List<EObject>
-					for (r : refs) {
-						allReferences.addIfNotExits(r)
-					}
-				} else {
-					allReferences.addIfNotExits(object.eGet(it) as EObject)
-				}
-			]
+			val allReferences = object.allReferences
 			return allReferences.checkNullOrEmpty
 		} else {
-			val eReference = object.eClass.EAllReferences.filter[it.name == referenceName].head
-			if(eReference != null) {
-				if(eReference.many) {
-					val references = newArrayList
-					val List<EObject> refs = object.eGet(eReference) as List<EObject>
-					for (r : refs) {
-						references.addIfNotExits(r)
-					}
-					return references.checkNullOrEmpty
-				} else {
-					val reference = object.eGet(eReference) as EObject
-					return reference.checkNullOrEmpty
-				}
-			}
-			throw new Exception
+			val references = object.getReferences(referenceName)
+			return references.checkNullOrEmpty
 		}
 	}
 
 	def hasReferences(EObject object, String referenceName) {
 		if(referenceName == null) {
-			val allReferences = newArrayList
-			object.eClass.EAllReferences.forEach [
-				if(it.many) {
-					val List<EObject> refs = object.eGet(it) as List<EObject>
-					for (r : refs) {
-						allReferences.addIfNotExits(r)
-					}
-				} else {
-					allReferences.addIfNotExits(object.eGet(it) as EObject)
-				}
-			]
+			val allReferences = object.allReferences
 			return allReferences.size > 0
 		} else {
-			val eReference = object.eClass.EAllReferences.filter[it.name == referenceName].head
-			if(eReference != null) {
-				if(eReference.many) {
-					val references = newArrayList
-					val List<EObject> refs = object.eGet(eReference) as List<EObject>
-					for (r : refs) {
-						references.addIfNotExits(r)
-					}
-					return references.size > 0
-				} else {
-					val reference = object.eGet(eReference) as EObject
-					return reference != null
-				}
+			val references = object.getReferences(referenceName)
+			if (references != null && references instanceof List<?> && (references as List<?>).size > 0) {
+				return true
 			}
 			return false
 		}
+	}
+
+	def private getAllReferences(EObject object) {
+		val allReferences = newArrayList
+		object.eClass.EAllReferences.forEach [
+			if(it.many) {
+				val List<EObject> refs = object.eGet(it) as List<EObject>
+				for (r : refs) {
+					allReferences.addIfNotExits(r)
+				}
+			} else {
+				allReferences.addIfNotExits(object.eGet(it) as EObject)
+			}
+		]
+		return allReferences
+	}
+
+	def private getReferences(EObject object, String referenceName) {
+		val eReference = object.eClass.EAllReferences.filter[it.name == referenceName].head
+		if(eReference != null) {
+			if(eReference.many) {
+				val references = newArrayList
+				val List<EObject> refs = object.eGet(eReference) as List<EObject>
+				for (r : refs) {
+					references.addIfNotExits(r)
+				}
+				return references
+			} else {
+				val reference = object.eGet(eReference) as EObject
+				return reference
+			}
+		}
+		return null
 	}
 
 	def private checkNullOrEmpty(Object object) {
