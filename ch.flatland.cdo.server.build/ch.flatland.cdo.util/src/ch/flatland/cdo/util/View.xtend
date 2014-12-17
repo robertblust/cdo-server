@@ -22,15 +22,18 @@ import org.eclipse.emf.cdo.common.security.CDOPermission
 import org.eclipse.emf.cdo.transaction.CDOTransaction
 import org.eclipse.emf.cdo.view.CDOView
 import org.eclipse.emf.ecore.EObject
+import org.slf4j.LoggerFactory
 
 import static ch.flatland.cdo.util.Constants.*
 import static javax.servlet.http.HttpServletResponse.*
 
 class View {
-
+	val logger = LoggerFactory.getLogger(this.class)
+	
 	val extension EMF = new EMF
 	val extension DataStore = new DataStore
 	val extension References = new References
+	val extension Request = new Request
 
 	def safeRequestResource(CDOView view, HttpServletRequest req, HttpServletResponse resp) {
 		val alias = "/" + Splitter.on("/").split(req.requestURL).get(3)
@@ -63,7 +66,7 @@ class View {
 						} else {
 
 							// resolve references
-							return object.safeResolveReferences(referenceName)
+							return req.filterBy(object.safeResolveReferences(referenceName))
 						}
 					} else {
 						return view.getResourceNode("/")
@@ -85,7 +88,7 @@ class View {
 						case 4: {
 							if(pathSegments.get(3) == REFERENCES) {
 								val object = view.safeResolveSegment3(pathSegments)
-								return object.safeResolveReferences(referenceName)
+								return req.filterBy(object.safeResolveReferences(referenceName))
 							} else {
 								throw new Exception
 							}
@@ -94,7 +97,7 @@ class View {
 						case 5: {
 							if(pathSegments.get(3) == REFERENCES) {
 								val object = view.safeResolveSegment3(pathSegments)
-								return object.safeResolveReferences(pathSegments.get(4))
+								return req.filterBy(object.safeResolveReferences(pathSegments.get(4)))
 							} else {
 								throw new Exception
 							}
@@ -142,5 +145,63 @@ class View {
 			throw new Exception
 		}
 		return object
+	}
+
+	def private dispatch filterBy(HttpServletRequest req, Object object) {
+		return object
+	}
+
+	def private dispatch filterBy(HttpServletRequest req, EObject object) {
+		return object
+	}
+
+	def private dispatch filterBy(HttpServletRequest req, List<EObject> list) {
+		val filteredList = newArrayList
+		list.forEach [
+			if (req.matches(it)) {
+				filteredList.add(it)
+			}
+		]
+		return filteredList
+	}
+
+	def private matches(HttpServletRequest req, EObject object) {
+		var matches = 0
+		var criterias = 0
+		val or = req.xor
+		val params = req.parameterNameAsListValueNotNull
+		val supportedFeatures = newArrayList
+		params.forEach [
+			val param = it
+			object.eClass.EAllAttributes.forEach [
+				if(param == it.name) {
+					supportedFeatures.add(param)
+				}
+			]
+		]
+		logger.debug("'{}' supports features '{}' and query is or = '{}'", object, supportedFeatures, or)
+		for (paramName : supportedFeatures) {
+			val eAttribute = object.eClass.EAllAttributes.filter[it.name == paramName].head
+			val toCheck = object.eGet(eAttribute)
+			
+			if (toCheck != null) {
+				for (value : req.parameterMap.get(paramName)) {
+					logger.debug("Check attribute '{}' with value '{}' matches '{}'", paramName, toCheck, value)
+					criterias++
+					if (toCheck.toString.toLowerCase.contains(value.toLowerCase)) {
+						logger.debug("MATCHES")
+						matches++
+					}
+				}
+			}
+		}
+		logger.debug("Matches '{}' - Criterias '{}'", matches, criterias)
+		if (or && matches > 0) {
+			return true
+		}
+		if (!or && matches == criterias) {
+			return true
+		}
+		return false
 	}
 }
