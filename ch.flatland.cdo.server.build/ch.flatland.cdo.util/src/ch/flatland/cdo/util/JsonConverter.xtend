@@ -217,34 +217,30 @@ class JsonConverter {
 			jsonBaseObject.addReferences(object)
 		}
 
-		val jsonLinksArray = new JsonArray
-		jsonBaseObject.add("links", jsonLinksArray)
+		val jsonLinksObject = new JsonObject
+		jsonBaseObject.add(LINKS, jsonLinksObject)
 
 		val jsonSelfLink = new JsonObject
-		jsonSelfLink.addProperty(REL, SELF)
 		jsonSelfLink.addProperty(HREF, object.url)
-		jsonLinksArray.add(jsonSelfLink)
+		jsonLinksObject.add(SELF, jsonSelfLink)
 
 		// add reference link here
 		if(object.hasReferences(null)) {
 			val jsonReferencesLink = new JsonObject
-			jsonReferencesLink.addProperty(REL, REFERENCES)
 			jsonReferencesLink.addProperty(HREF, object.getUrl(false) + "/" + REFERENCES + object.getTimestampParam(true))
-			jsonLinksArray.add(jsonReferencesLink)
+			jsonLinksObject.add(REFERENCES, jsonReferencesLink)
+
+			// add detailed reference 
+			object.eClass.EAllReferences.forEach [
+				if(object.hasReferences(it.name)) {
+					val jsonReferenceLink = new JsonObject
+					jsonReferenceLink.addProperty(HREF, object.getUrl(false) + "/" + REFERENCES + "/" + it.name + object.getTimestampParam(true))
+					jsonReferencesLink.add(it.name, jsonReferenceLink)
+				}
+			]
 		}
 
-		// add detailed reference 
-		object.eClass.EAllReferences.forEach [
-			if(object.hasReferences(it.name)) {
-				val jsonReferenceLink = new JsonObject
-				jsonReferenceLink.addProperty(REL, REFERENCES + "." + it.name)
-				jsonReferenceLink.addProperty(HREF, object.getUrl(false) + "/" + REFERENCES + "/" + it.name + object.getTimestampParam(true))
-				jsonLinksArray.add(jsonReferenceLink)
-			}
-		]
-
 		val jsonContainerLink = new JsonObject
-		jsonContainerLink.addProperty(REL, CONTAINER)
 		jsonContainerLink.addProperty(HREF, object.url)
 		if(object.eContainer != null) {
 			jsonContainerLink.addProperty(HREF, object.eContainer.url)
@@ -253,12 +249,11 @@ class JsonConverter {
 			// it must be contained in a CDOResourceNode
 			jsonContainerLink.addProperty(HREF, (object.eResource as CDOResourceNode).url)
 		}
-		jsonLinksArray.add(jsonContainerLink)
+		jsonLinksObject.add(CONTAINER, jsonContainerLink)
 
 		val jsonAllInstancesLink = new JsonObject
-		jsonAllInstancesLink.addProperty(REL, ALL_INSTANCES)
 		jsonAllInstancesLink.addProperty(HREF, ALIAS_OBJECT + "/" + object.eClass.type + object.getTimestampParam(true))
-		jsonLinksArray.add(jsonAllInstancesLink)
+		jsonLinksObject.add(ALL_INSTANCES, jsonAllInstancesLink)
 
 		if(object instanceof CDOObject) {
 			jsonBaseObject.addRevisions(object)

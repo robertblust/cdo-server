@@ -69,7 +69,7 @@ class Constants {
 	val public static REVISION = "revision"
 	val public static DATE = "date"
 	val public static AUTHOR = "author"
-	val public static REL = "rel"
+	val public static LINKS = "_links"
 	val public static HREF = "href"
 
 	// servlets
