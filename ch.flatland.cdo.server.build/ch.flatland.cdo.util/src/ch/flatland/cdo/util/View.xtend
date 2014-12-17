@@ -220,6 +220,7 @@ class View {
 			logger.debug("OrderBy '{}'", orderBy)
 			Collections.sort(list, new AttributeComparator(orderBy))
 		} else {
+			logger.debug("OrderBy '{}'", "name")
 			Collections.sort(list, new AttributeComparator("name"))
 		}
 		return list
