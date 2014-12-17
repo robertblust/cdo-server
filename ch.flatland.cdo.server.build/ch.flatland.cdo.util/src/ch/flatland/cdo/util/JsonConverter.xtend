@@ -209,7 +209,6 @@ class JsonConverter {
 			jsonBaseObject.addProperty(REVISION, object.cdoRevision.version)
 			jsonBaseObject.addProperty(DATE, dateFormat.format(new Date(object.cdoRevision.timeStamp)))
 			jsonBaseObject.addProperty(AUTHOR, object.view.session.commitInfoManager.getCommitInfo(object.cdoRevision.timeStamp).userID)
-
 		}
 
 		jsonBaseObject.addAttributes(object)
@@ -286,7 +285,6 @@ class JsonConverter {
 				}
 			}
 		}
-
 	}
 
 	def private addAttributes(JsonObject jsonBaseObject, EObject object) {

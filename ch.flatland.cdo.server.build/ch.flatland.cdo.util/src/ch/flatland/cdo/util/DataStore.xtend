@@ -115,7 +115,7 @@ class DataStore {
 	def private max(EClass eClass, HttpServletRequest req, IMappingStrategy mappingStrategy) {
 		val max = eClass.orderByName(req, mappingStrategy)
 		if (max != null) {
-			return " ,MAX(" + max + ")"
+			return ", MAX(" + max + ")"
 		}
 		return ""
 	}
