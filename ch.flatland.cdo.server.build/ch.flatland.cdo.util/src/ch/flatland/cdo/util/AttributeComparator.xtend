@@ -29,7 +29,7 @@ class AttributeComparator implements Comparator<EObject> {
 	}
 
 	def private getValue(EObject object) {
-		var String value = "undefined"
+		var String value = ""
 		val eAttribute = object.eClass.EAllAttributes.filter[it.name == eAttributeName].head
 		if(eAttribute != null && object.eGet(eAttribute) != null) {
 			value = object.eGet(eAttribute).toString
