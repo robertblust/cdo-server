@@ -11,6 +11,7 @@
 package ch.flatland.cdo.util
 
 import com.google.common.base.Splitter
+import java.util.Collections
 import java.util.List
 import java.util.Map
 import javax.servlet.http.HttpServletRequest
@@ -66,7 +67,7 @@ class View {
 						} else {
 
 							// resolve references
-							return req.filterBy(object.safeResolveReferences(referenceName))
+							return req.orderBy(req.filterBy(object.safeResolveReferences(referenceName)))
 						}
 					} else {
 						return view.getResourceNode("/")
@@ -88,7 +89,7 @@ class View {
 						case 4: {
 							if(pathSegments.get(3) == REFERENCES) {
 								val object = view.safeResolveSegment3(pathSegments)
-								return req.filterBy(object.safeResolveReferences(referenceName))
+								return req.orderBy(req.filterBy(object.safeResolveReferences(referenceName)))
 							} else {
 								throw new Exception
 							}
@@ -97,7 +98,7 @@ class View {
 						case 5: {
 							if(pathSegments.get(3) == REFERENCES) {
 								val object = view.safeResolveSegment3(pathSegments)
-								return req.filterBy(object.safeResolveReferences(pathSegments.get(4)))
+								return req.orderBy(req.filterBy(object.safeResolveReferences(pathSegments.get(4))))
 							} else {
 								throw new Exception
 							}
@@ -203,5 +204,24 @@ class View {
 			return true
 		}
 		return false
+	}
+	
+	def private dispatch orderBy(HttpServletRequest req, Object object) {
+		return object
+	}
+
+	def private dispatch orderBy(HttpServletRequest req, EObject object) {
+		return object
+	}
+
+	def private dispatch orderBy(HttpServletRequest req, List<EObject> list) {
+		val orderBy = req.orderBy
+		if (orderBy != null) {
+			logger.debug("OrderBy '{}'", orderBy)
+			Collections.sort(list, new AttributeComparator(orderBy))
+		} else {
+			Collections.sort(list, new AttributeComparator("name"))
+		}
+		return list
 	}
 }
