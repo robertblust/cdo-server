@@ -54,7 +54,7 @@ class IconServlet extends AbstractServlet {
 					val object = view.safeCreateType(pathSegments.get(1))
 					val imageUrl = ITEM_DELEGATOR.getImage(object) as URL
 					if (imageUrl == null) {
-						throw new FlatlandException(SC_NOT_FOUND, "{} not found", pathInfo)
+						throw new FlatlandException(SC_NOT_FOUND, "Icon for '{}' not found", pathInfo)
 					}
 					val image = ImageIO.read(imageUrl)
 
@@ -64,7 +64,7 @@ class IconServlet extends AbstractServlet {
 					out.close();
 				}
 				default:
-					throw new FlatlandException(SC_NOT_FOUND, "{} not found", pathInfo)
+					throw new FlatlandException(SC_NOT_FOUND, "Icon '{}' not found", pathInfo)
 			}
 
 		} catch(FlatlandException e) {
