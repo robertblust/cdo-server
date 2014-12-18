@@ -10,17 +10,18 @@
       <programArgs>-debug -console
       </programArgs>
       <vmArgs>-Xms40m
--Xmx1g
--Ddebug=true
+-Xmx1024m
 -Dorg.eclipse.equinox.http.jetty.http.port=80
 -Dorg.eclipse.equinox.http.jetty.http.enabled=true
 -Dorg.eclipse.equinox.http.jetty.https.port=443
 -Dorg.eclipse.equinox.http.jetty.https.enabled=true
+-Dorg.eclipse.equinox.http.jetty.context.sessioninactiveinterval=60
 -Dorg.eclipse.equinox.http.jetty.ssl.keystore=./keystore
 -Djavax.net.ssl.trustStore=./keystore
+-Dlogback.configurationFile=./logback.xml
+
 -Dorg.eclipse.equinox.http.jetty.ssl.password=password
 -Dch.flatland.cdo.server.admin.pwd=password
-
 -Dch.flatland.cdo.server.readonly.pwd=password
       </vmArgs>
       <vmArgsMac>-XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts
@@ -40,20 +41,31 @@
    </vm>
 
    <plugins>
+      <plugin id="ch.flatland.cdo.model.base"/>
+      <plugin id="ch.flatland.cdo.model.base.edit"/>
+      <plugin id="ch.flatland.cdo.model.test"/>
+      <plugin id="ch.flatland.cdo.model.test.edit"/>
       <plugin id="ch.flatland.cdo.server.ldap"/>
       <plugin id="ch.flatland.cdo.server.product"/>
       <plugin id="ch.flatland.cdo.service.ping"/>
       <plugin id="ch.flatland.cdo.service.repoaccess"/>
       <plugin id="ch.flatland.cdo.util"/>
+      <plugin id="ch.qos.logback.classic"/>
+      <plugin id="ch.qos.logback.core"/>
+      <plugin id="ch.qos.logback.slf4j" fragment="true"/>
       <plugin id="com.google.gson"/>
       <plugin id="com.google.guava"/>
       <plugin id="com.ibm.icu"/>
       <plugin id="javax.servlet"/>
       <plugin id="javax.xml"/>
       <plugin id="lpg.runtime.java"/>
+      <plugin id="org.apache.commons.codec"/>
+      <plugin id="org.apache.commons.fileupload"/>
+      <plugin id="org.apache.commons.io"/>
       <plugin id="org.apache.felix.gogo.command"/>
       <plugin id="org.apache.felix.gogo.runtime"/>
       <plugin id="org.apache.felix.gogo.shell"/>
+      <plugin id="org.apache.felix.webconsole"/>
       <plugin id="org.eclipse.ant.core"/>
       <plugin id="org.eclipse.compare.core"/>
       <plugin id="org.eclipse.core.contenttype"/>
@@ -68,8 +80,10 @@
       <plugin id="org.eclipse.emf.cdo.ecore.retrofit" fragment="true"/>
       <plugin id="org.eclipse.emf.cdo.edit"/>
       <plugin id="org.eclipse.emf.cdo.expressions"/>
+      <plugin id="org.eclipse.emf.cdo.expressions.edit"/>
       <plugin id="org.eclipse.emf.cdo.net4j"/>
       <plugin id="org.eclipse.emf.cdo.security"/>
+      <plugin id="org.eclipse.emf.cdo.security.edit"/>
       <plugin id="org.eclipse.emf.cdo.server"/>
       <plugin id="org.eclipse.emf.cdo.server.admin"/>
       <plugin id="org.eclipse.emf.cdo.server.db"/>
@@ -80,6 +94,7 @@
       <plugin id="org.eclipse.emf.ecore"/>
       <plugin id="org.eclipse.emf.ecore.change"/>
       <plugin id="org.eclipse.emf.ecore.edit"/>
+      <plugin id="org.eclipse.emf.ecore.xcore.lib"/>
       <plugin id="org.eclipse.emf.ecore.xmi"/>
       <plugin id="org.eclipse.emf.edit"/>
       <plugin id="org.eclipse.equinox.app"/>
@@ -118,6 +133,8 @@
       <plugin id="org.eclipse.xtend.lib.macro"/>
       <plugin id="org.eclipse.xtext.xbase.lib"/>
       <plugin id="org.h2"/>
+      <plugin id="org.json"/>
+      <plugin id="org.slf4j.api"/>
    </plugins>
 
    <features>
@@ -126,11 +143,13 @@
       <feature id="ch.flatland.cdo.server.ldap.feature" version="1.0.0.qualifier"/>
       <feature id="ch.flatland.cdo.service.feature" version="1.0.0.qualifier"/>
       <feature id="ch.flatland.cdo.util.feature" version="1.0.0.qualifier"/>
+      <feature id="ch.flatland.cdo.webconsole.feature" version="1.0.0.qualifier"/>
    </features>
 
    <configurations>
       <plugin id="ch.flatland.cdo.service.ping" autoStart="true" startLevel="0" />
       <plugin id="ch.flatland.cdo.service.repoaccess" autoStart="true" startLevel="0" />
+      <plugin id="org.apache.felix.webconsole" autoStart="true" startLevel="0" />
       <plugin id="org.eclipse.core.runtime" autoStart="true" startLevel="0" />
       <plugin id="org.eclipse.equinox.common" autoStart="true" startLevel="2" />
       <plugin id="org.eclipse.equinox.http.jetty" autoStart="true" startLevel="0" />
