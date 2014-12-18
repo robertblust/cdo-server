@@ -15,6 +15,12 @@
             httpcontextId="ch.flatland.cdo.service.repoaccess.AuthHttpContext"
             load-on-startup="true">
       </servlet>
+      <servlet
+            alias="/icon"
+            class="ch.flatland.cdo.service.repoaccess.IconServlet"
+            httpcontextId="ch.flatland.cdo.service.repoaccess.AuthHttpContext"
+            load-on-startup="true">
+      </servlet>
    </extension>
    <extension
          point="org.eclipse.equinox.http.registry.httpcontexts">

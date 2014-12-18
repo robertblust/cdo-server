@@ -200,6 +200,7 @@ class JsonConverter {
 		}
 
 		jsonBaseObject.addType(object.eClass)
+		jsonBaseObject.addProperty(ICON, ALIAS_ICON + "/" + object.eClass.type)
 
 		if(object instanceof CDOObject) {
 			jsonBaseObject.addProperty(PERMISSION, object.cdoPermission.name)

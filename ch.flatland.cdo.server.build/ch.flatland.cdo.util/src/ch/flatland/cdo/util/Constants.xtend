@@ -27,6 +27,8 @@ class Constants {
 	val public static JSON_CONTENTTYPE_UTF8 = "application/json; charset=utf-8"
 	val public static JSONP_CONTENTTYPE = "application/javascript"
 	val public static JSONP_CONTENTTYPE_UTF8 = "application/javascript; charset=utf-8"
+	val public static GIF_CONTENTTYPE = "image/gif"
+	val public static GIF_FORMAT = "gif"
 
 	val public static ACCEPTED_CONTENTTYPES = newArrayList(ACCEPT_ALL_CONTENTTYPE, JSON_CONTENTTYPE, JSON_CONTENTTYPE_UTF8)
 
@@ -71,8 +73,10 @@ class Constants {
 	val public static AUTHOR = "author"
 	val public static LINKS = "_links"
 	val public static HREF = "href"
+	val public static ICON = "icon"
 
 	// servlets
 	val public static ALIAS_NODE = "/node"
 	val public static ALIAS_OBJECT = "/obj"
+	val public static ALIAS_ICON = "/icon"
 }

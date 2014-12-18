@@ -99,6 +99,7 @@ class Put {
 			try {
 				view.commit
 			} catch (CommitException e) {
+				view.rollback
 				throw new FlatlandException(SC_BAD_REQUEST, requestedObject, e.message)
 			}
 			
