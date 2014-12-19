@@ -41,3 +41,4 @@ DynamicImport-Package: org.apache.felix.bundlerepository;version="[2.0,3)",org.o
 Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
 Tool: Bnd-1.50.0
 Built-By: pavlin
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7

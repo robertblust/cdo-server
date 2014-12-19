@@ -43,6 +43,10 @@
 		
 		<module>ch.flatland.cdo.webconsole.feature</module>
 		<module>org.apache.felix.webconsole</module>
+		<module>org.apache.felix.webconsole.plugins.event</module>
+		<module>org.apache.felix.metatype</module>
+		<module>org.apache.felix.eventadmin</module>
+		<module>org.apache.felix.configadmin</module>
 	</modules>
 
 	<build>

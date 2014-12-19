@@ -22,4 +22,28 @@
          install-size="0"
          version="0.0.0"/>
 
+   <plugin
+         id="org.apache.felix.configadmin"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.apache.felix.eventadmin"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.apache.felix.metatype"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.apache.felix.webconsole.plugins.event"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
+
 </feature>
