@@ -51,24 +51,28 @@ class IconServlet extends AbstractServlet {
 			val pathSegments = Splitter.on("/").split(pathInfo)
 			switch (pathSegments.size) {
 				case 2: {
-					val object = view.safeCreateType(pathSegments.get(1))
-					val imageUrl = ITEM_DELEGATOR.getImage(object) as URL
-					if(imageUrl == null) {
+					try {
+						val object = view.safeCreateType(pathSegments.get(1))
+						val imageUrl = ITEM_DELEGATOR.getImage(object) as URL
+						if(imageUrl == null) {
+							throw new FlatlandException(SC_NOT_FOUND, "Icon for '{}' not found", pathInfo)
+						}
+
+						val image = new BufferedInputStream(imageUrl.openStream)
+						val out = resp.getOutputStream()
+						val buffer = newByteArrayOfSize(8192)
+
+						for (var int length; (length = image.read(buffer)) > 0;) {
+							out.write(buffer, 0, length)
+						}
+
+						resp.setContentType(GIF_CONTENTTYPE)
+
+						image.close
+						out.close
+					} catch(Exception e) {
 						throw new FlatlandException(SC_NOT_FOUND, "Icon for '{}' not found", pathInfo)
 					}
-
-					val image = new BufferedInputStream(imageUrl.openStream)
-					val out = resp.getOutputStream()
-					val buffer = newByteArrayOfSize(8192)
-
-					for (var int length; (length = image.read(buffer)) > 0;) {
-						out.write(buffer, 0, length)
-					}
-
-					resp.setContentType(GIF_CONTENTTYPE)
-					
-					image.close
-					out.close
 				}
 				default:
 					throw new FlatlandException(SC_NOT_FOUND, "Icon '{}' not found", pathInfo)
