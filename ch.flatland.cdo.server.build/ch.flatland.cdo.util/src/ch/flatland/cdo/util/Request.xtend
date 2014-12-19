@@ -21,6 +21,8 @@ class Request {
 	val public static AUTH_HEADER = "Authorization"
 	val public static AUTH_BASIC = "Basic"
 	val public static ACCEPT_HEADER = "Accept"
+	val public static OPENSHIFT_FORWARD_HEADER = "X-Forwarded-Proto"
+	val public static HTTPS = "https"
 
 	def getParameterNameAsListValueNotNull(HttpServletRequest req) {
 		val params = newArrayList
@@ -101,6 +103,16 @@ class Request {
 
 	def isBasicAuth(HttpServletRequest request) {
 		return request.getHeader(AUTH_HEADER) != null && request.getHeader(AUTH_HEADER).toLowerCase.startsWith(AUTH_BASIC.toLowerCase)
+	}
+	
+	def isSecureConnection(HttpServletRequest request) {
+		if (request.secure) {
+			return true
+		}
+		if (request.getHeader(OPENSHIFT_FORWARD_HEADER) != null && request.getHeader(OPENSHIFT_FORWARD_HEADER) == HTTPS) {
+			return true
+		}
+		return false
 	}
 
 	def isAcceptable(HttpServletRequest request) {
