@@ -16,8 +16,8 @@ import ch.flatland.cdo.util.FlatlandException
 import ch.flatland.cdo.util.Request
 import ch.flatland.cdo.util.Response
 import com.google.common.base.Splitter
+import java.io.BufferedInputStream
 import java.net.URL
-import javax.imageio.ImageIO
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 import org.eclipse.emf.cdo.view.CDOView
@@ -26,8 +26,8 @@ import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory
 import org.slf4j.LoggerFactory
 
-import static ch.flatland.cdo.util.Constants.*
 import static javax.servlet.http.HttpServletResponse.*
+import static ch.flatland.cdo.util.Constants.*
 
 class IconServlet extends AbstractServlet {
 	override protected doGet(HttpServletRequest req, HttpServletResponse resp) {
@@ -53,15 +53,22 @@ class IconServlet extends AbstractServlet {
 				case 2: {
 					val object = view.safeCreateType(pathSegments.get(1))
 					val imageUrl = ITEM_DELEGATOR.getImage(object) as URL
-					if (imageUrl == null) {
+					if(imageUrl == null) {
 						throw new FlatlandException(SC_NOT_FOUND, "Icon for '{}' not found", pathInfo)
 					}
-					val image = ImageIO.read(imageUrl)
+
+					val image = new BufferedInputStream(imageUrl.openStream)
+					val out = resp.getOutputStream()
+					val buffer = newByteArrayOfSize(8192)
+
+					for (var int length; (length = image.read(buffer)) > 0;) {
+						out.write(buffer, 0, length)
+					}
 
 					resp.setContentType(GIF_CONTENTTYPE)
-					val out = resp.getOutputStream()
-					ImageIO.write(image, GIF_FORMAT, out)
-					out.close();
+					
+					image.close
+					out.close
 				}
 				default:
 					throw new FlatlandException(SC_NOT_FOUND, "Icon '{}' not found", pathInfo)
