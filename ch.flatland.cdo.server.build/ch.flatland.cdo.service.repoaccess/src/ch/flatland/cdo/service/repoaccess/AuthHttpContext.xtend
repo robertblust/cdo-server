@@ -29,7 +29,7 @@ class AuthHttpContext implements HttpContext {
 		val extension Response = new Response
 
 		// only allow https
-		if(!req.isHttps) {
+		if(!req.secure) {
 			logger.debug("Forbidden")
 			resp.sendError(req, resp.statusForbidden)
 			return false

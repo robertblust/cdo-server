@@ -103,10 +103,6 @@ class Request {
 		return request.getHeader(AUTH_HEADER) != null && request.getHeader(AUTH_HEADER).toLowerCase.startsWith(AUTH_BASIC.toLowerCase)
 	}
 
-	def isHttps(HttpServletRequest request) {
-		return request.requestURL.toString.startsWith("https")
-	}
-
 	def isAcceptable(HttpServletRequest request) {
 		val acceptHeader = request.getHeader(ACCEPT_HEADER)
 		for (contentType : ACCEPTED_CONTENTTYPES) {
