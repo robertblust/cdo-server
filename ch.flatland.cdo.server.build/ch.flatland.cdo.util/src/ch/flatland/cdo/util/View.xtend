@@ -136,7 +136,7 @@ class View {
 	}
 
 	def private safeResolveSegment3(CDOView view, Iterable<String> pathSegments) {
-		val ePackage = view.ePackage(pathSegments.get(1).safePackagePrefix)
+		val ePackage = view.safeEPackage(pathSegments.get(1).safePackagePrefix)
 		val eClass = ePackage.getEClassifier(pathSegments.get(1).safeEType)
 		if(eClass == null) {
 			throw new Exception

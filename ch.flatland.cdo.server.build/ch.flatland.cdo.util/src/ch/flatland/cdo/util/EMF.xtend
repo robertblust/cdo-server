@@ -21,10 +21,12 @@ import org.eclipse.emf.ecore.EReference
 import org.slf4j.LoggerFactory
 
 import static javax.servlet.http.HttpServletResponse.*
+import org.eclipse.emf.ecore.EPackage
 
 class EMF {
 
 	val logger = LoggerFactory.getLogger(this.class)
+	val static IGNORED_EPACKAGES = newArrayList("xcore.lang")
 
 	def getType(EClassifier classifier) {
 		classifier.EPackage.nsPrefix + "." + classifier.name
@@ -118,17 +120,21 @@ class EMF {
 	}
 
 	def safeCreateType(CDOView view, String type) {
-		val ePackage = view.ePackage(type.safePackagePrefix)
+		val ePackage = view.safeEPackage(type.safePackagePrefix)
 		val eClass = view.safeEClass(type)
 		val newObject = ePackage.EFactoryInstance.create(eClass)
 		logger.debug("Created new object '{}'", newObject)
 		return newObject
 	}
 
-	def ePackage(CDOView view, String nsPrefix) {
+	def safeEPackage(CDOView view, String nsPrefix) {
 		val packageRegistry = view.session.packageRegistry
 		val packageInfo = packageRegistry.packageInfos.filter[it.EPackage.nsPrefix == nsPrefix].head
 		if(packageInfo == null) {
+			val newPackage = view.registerNewPackage(nsPrefix)
+			if(newPackage != null) {
+				return newPackage
+			}
 			throw new FlatlandException(SC_BAD_REQUEST, "Invalid package prefix '{}'", nsPrefix)
 		}
 		val ePackage = packageInfo.EPackage
@@ -138,16 +144,31 @@ class EMF {
 
 	def safeEClass(CDOView view, String type) {
 		val eType = type.safeEType
-		val ePackage = view.ePackage(type.safePackagePrefix)
+		val ePackage = view.safeEPackage(type.safePackagePrefix)
 		val eClassifier = ePackage.EClassifiers.filter[it.name == eType].head
 		if(eClassifier == null) {
 			throw new FlatlandException(SC_BAD_REQUEST, "Could not resolve eClass for '{}'", type)
 		}
-		if (!(eClassifier instanceof EClass)) {
+		if(!(eClassifier instanceof EClass)) {
 			throw new FlatlandException(SC_BAD_REQUEST, "Not an eClass '{}', i'm a '{}'", type, eClassifier.eClass.name)
 		}
 		val eClass = eClassifier as EClass
 		logger.debug("Resolved EClass '{}'", eClass.name)
 		return eClass
+	}
+
+	def private registerNewPackage(CDOView view, String nsPrefix) {
+		val keySet = EPackage.Registry.INSTANCE.keySet.filter[!IGNORED_EPACKAGES.contains(it)].clone
+		for (key : keySet) {
+			val ePackage = EPackage.Registry.INSTANCE.getEPackage(key)
+			if(ePackage != null) {
+				if(ePackage.nsPrefix == nsPrefix) {
+					view.session.packageRegistry.putEPackage(ePackage)
+					logger.debug("New EPackage registered '{}'", ePackage.nsURI)
+					return ePackage
+				}
+			}
+		}
+		return null
 	}
 }
