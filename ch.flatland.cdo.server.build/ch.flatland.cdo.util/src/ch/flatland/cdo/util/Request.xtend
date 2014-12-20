@@ -21,8 +21,10 @@ class Request {
 	val public static AUTH_HEADER = "Authorization"
 	val public static AUTH_BASIC = "Basic"
 	val public static ACCEPT_HEADER = "Accept"
-	val public static OPENSHIFT_FORWARD_HEADER = "X-Forwarded-Proto"
-	val public static HTTPS = "https"
+	val public static OPENSHIFT_FORWARD_PROTO_HEADER = "X-Forwarded-Proto"
+	val public static OPENSHIFT_FORWARD_PORT_HEADER = "X-Forwarded-Port"
+	val public static HTTPS_PROTO = "https"
+	val public static HTTPS_PORT = "443"
 
 	def getParameterNameAsListValueNotNull(HttpServletRequest req) {
 		val params = newArrayList
@@ -35,7 +37,7 @@ class Request {
 		}
 		return params
 	}
-	
+
 	def getPointInTime(HttpServletRequest req) {
 		if(req.getParameter(PARAM_POINT_IN_TIME) != null && req.getParameter(PARAM_POINT_IN_TIME).length > 0) {
 			return req.getParameter(PARAM_POINT_IN_TIME)
@@ -49,18 +51,18 @@ class Request {
 		}
 		return null
 	}
-	
+
 	def getOrderBy(HttpServletRequest req) {
 		if(req.getParameter(PARAM_ORDER_BY) != null && req.getParameter(PARAM_ORDER_BY).length > 0) {
 			return req.getParameter(PARAM_ORDER_BY)
 		}
 		return null
 	}
-	
+
 	def isValidate(HttpServletRequest req) {
 		return req.getParameter(PARAM_NO_VALIDATION) == null
 	}
-	
+
 	def isHistory(HttpServletRequest req) {
 		return req.getParameter(PARAM_HISTORY) != null
 	}
@@ -104,12 +106,12 @@ class Request {
 	def isBasicAuth(HttpServletRequest request) {
 		return request.getHeader(AUTH_HEADER) != null && request.getHeader(AUTH_HEADER).toLowerCase.startsWith(AUTH_BASIC.toLowerCase)
 	}
-	
+
 	def isSecureConnection(HttpServletRequest request) {
-		if (request.secure) {
+		if(request.secure) {
 			return true
 		}
-		if (request.getHeader(OPENSHIFT_FORWARD_HEADER) != null && request.getHeader(OPENSHIFT_FORWARD_HEADER) == HTTPS) {
+		if(request.getHeader(OPENSHIFT_FORWARD_PROTO_HEADER) != null && request.getHeader(OPENSHIFT_FORWARD_PROTO_HEADER) == HTTPS_PROTO && request.getHeader(OPENSHIFT_FORWARD_PORT_HEADER) != null && request.getHeader(OPENSHIFT_FORWARD_PORT_HEADER) == HTTPS_PORT) {
 			return true
 		}
 		return false
@@ -118,7 +120,7 @@ class Request {
 	def isAcceptable(HttpServletRequest request) {
 		val acceptHeader = request.getHeader(ACCEPT_HEADER)
 		for (contentType : ACCEPTED_CONTENTTYPES) {
-			if (acceptHeader.contains(contentType)) {
+			if(acceptHeader.contains(contentType)) {
 				return true;
 			}
 		}
