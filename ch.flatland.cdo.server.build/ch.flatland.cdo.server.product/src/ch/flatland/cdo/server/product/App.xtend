@@ -24,7 +24,8 @@ class App implements IApplication {
 	override start(IApplicationContext context) throws Exception {
 		this.context = context
 
-		Acceptor.start
+		TCPAcceptor.start
+		HTTPAcceptor.start
 		Repository.start
 
 		if(context != null) {
@@ -38,7 +39,8 @@ class App implements IApplication {
 	}
 
 	override stop() {
-		Acceptor.stop
+		HTTPAcceptor.stop
+		TCPAcceptor.stop
 		Repository.stop
 
 		context = null

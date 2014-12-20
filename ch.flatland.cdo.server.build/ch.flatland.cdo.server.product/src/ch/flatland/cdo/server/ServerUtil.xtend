@@ -23,7 +23,8 @@ class ServerUtil {
 	public val static SUPPORTING_BRANCHES = false
 	public val static ENSURE_REFERENTIAL_INTEGRITY = true
 	public val static REPOSITORY_NAME = "repo"
-	public val static ACCEPTOR_PORT = "2036"
+	public val static TCP_ACCEPTOR_PORT = "2036"
+	public val static HTTP_ACCEPTOR_PORT = "8080"
 
 	val static logger = LoggerFactory.getLogger(ServerUtil)
 
