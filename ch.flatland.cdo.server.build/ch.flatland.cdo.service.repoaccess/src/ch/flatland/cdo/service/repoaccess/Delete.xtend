@@ -84,7 +84,7 @@ class Delete {
 		} catch(FlatlandException e) {
 			resp.status = e.httpStatus
 			jsonString = e.safeToJson
-			logger.error("Request failed", e)
+			logger.debug("Request failed", e)
 		} finally {
 			if(!view.closed) {
 				view.close
