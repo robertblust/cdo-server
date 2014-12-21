@@ -31,8 +31,13 @@ class References {
 			return allReferences.size > 0
 		} else {
 			val references = object.getReferences(referenceName)
-			if (references != null && references instanceof List<?> && (references as List<?>).size > 0) {
-				return true
+			if (references != null) {
+				if (references instanceof EObject) {
+					return true
+				}
+				if (references instanceof List<?> && (references as List<?>).size > 0) {
+					return true
+				}
 			}
 			return false
 		}
