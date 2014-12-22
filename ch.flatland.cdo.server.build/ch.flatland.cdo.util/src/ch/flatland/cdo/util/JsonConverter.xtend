@@ -444,7 +444,7 @@ class JsonConverter {
 				classifier.EAllSuperTypes.forEach [
 					jsonSuperTypesArray.add(new JsonPrimitive(it.type))
 				]
-				jsonBaseObject.add(SUPER_TYPES, jsonSuperTypesArray)
+				jsonBaseObject.add(EXTENDS, jsonSuperTypesArray)
 			}
 		}
 	}
