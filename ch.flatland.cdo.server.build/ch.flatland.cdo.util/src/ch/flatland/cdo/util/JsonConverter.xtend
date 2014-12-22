@@ -32,6 +32,7 @@ import org.eclipse.emf.common.util.Diagnostic
 import org.eclipse.emf.common.util.Enumerator
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.EAttribute
+import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EClassifier
 import org.eclipse.emf.ecore.EEnum
 import org.eclipse.emf.ecore.EObject
@@ -409,13 +410,6 @@ class JsonConverter {
 		if(feature instanceof EReference) {
 			jsonBaseObject.add(FEATURE, new JsonPrimitive(REFERENCES + "." + feature.name))
 			jsonBaseObject.addType(feature.EReferenceType)
-			if(feature.EReferenceType.EAllSuperTypes.size > 0) {
-				val jsonSuperTypesArray = new JsonArray
-				feature.EReferenceType.EAllSuperTypes.forEach [
-					jsonSuperTypesArray.add(new JsonPrimitive(it.name))
-				]
-				jsonBaseObject.add(SUPER_TYPES, jsonSuperTypesArray)
-			}
 		}
 		jsonBaseObject.addProperty(DERIVED, feature.isDerived)
 		jsonBaseObject.addProperty(MANY, feature.isMany)
@@ -444,6 +438,15 @@ class JsonConverter {
 
 	def private addType(JsonObject jsonBaseObject, EClassifier classifier) {
 		jsonBaseObject.addProperty(TYPE, classifier.type)
+		if(classifier instanceof EClass) {
+			if(classifier.EAllSuperTypes.size > 0) {
+				val jsonSuperTypesArray = new JsonArray
+				classifier.EAllSuperTypes.forEach [
+					jsonSuperTypesArray.add(new JsonPrimitive(it.type))
+				]
+				jsonBaseObject.add(SUPER_TYPES, jsonSuperTypesArray)
+			}
+		}
 	}
 
 	def private dispatch toJsonObject(Object object, boolean stop) {
