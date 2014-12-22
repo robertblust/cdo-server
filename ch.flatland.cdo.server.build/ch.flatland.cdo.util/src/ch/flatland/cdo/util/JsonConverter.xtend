@@ -409,7 +409,13 @@ class JsonConverter {
 		if(feature instanceof EReference) {
 			jsonBaseObject.add(FEATURE, new JsonPrimitive(REFERENCES + "." + feature.name))
 			jsonBaseObject.addType(feature.EReferenceType)
-			jsonBaseObject.add(CONTAINMENT, new JsonPrimitive(feature.isContainment))
+			if(feature.EReferenceType.EAllSuperTypes.size > 0) {
+				val jsonSuperTypesArray = new JsonArray
+				feature.EReferenceType.EAllSuperTypes.forEach [
+					jsonSuperTypesArray.add(new JsonPrimitive(it.name))
+				]
+				jsonBaseObject.add(SUPER_TYPES, jsonSuperTypesArray)
+			}
 		}
 		jsonBaseObject.addProperty(DERIVED, feature.isDerived)
 		jsonBaseObject.addProperty(MANY, feature.isMany)

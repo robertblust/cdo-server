@@ -46,6 +46,7 @@ class Constants {
 	val public static ATTRIBUTES = "attributes"
 	val public static REFERENCES = "references"
 	val public static CONTAINMENT = "containment"
+	val public static SUPER_TYPES = "superTypes"
 	val public static DERIVED = "derived"
 	val public static MANY = "many"
 	val public static REQUIRED = "required"
