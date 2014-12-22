@@ -119,9 +119,11 @@ class Request {
 
 	def isAcceptable(HttpServletRequest request) {
 		val acceptHeader = request.getHeader(ACCEPT_HEADER)
-		for (contentType : ACCEPTED_CONTENTTYPES) {
-			if(acceptHeader.contains(contentType)) {
-				return true;
+		if(acceptHeader != null) {
+			for (contentType : ACCEPTED_CONTENTTYPES) {
+				if(acceptHeader.contains(contentType)) {
+					return true;
+				}
 			}
 		}
 		return false
