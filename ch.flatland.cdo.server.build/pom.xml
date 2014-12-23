@@ -41,7 +41,7 @@
 
 		<module>ch.flatland.cdo.service.tests</module>
 		
-		<module>ch.flatland.cdo.cdo.client.http</module>
+		<module>ch.flatland.cdo.client.http</module>
 		
 		<module>ch.flatland.cdo.webconsole.feature</module>
 		<module>org.apache.felix.webconsole</module>
