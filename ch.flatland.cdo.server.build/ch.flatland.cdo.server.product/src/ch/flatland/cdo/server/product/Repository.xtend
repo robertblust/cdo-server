@@ -44,12 +44,13 @@ class Repository {
 			IRepository.Props.OVERRIDE_UUID -> REPOSITORY_NAME
 		)
 
-		REPOSITORY = CDOServerUtil.createRepository(REPOSITORY_NAME, StoreFactory.createStore, repositoryProps) as InternalRepository
+		//REPOSITORY = CDOServerUtil.createRepository(REPOSITORY_NAME, StoreFactory.createMySQLStore, repositoryProps) as InternalRepository
+		REPOSITORY = CDOServerUtil.createRepository(REPOSITORY_NAME, StoreFactory.createH2Store, repositoryProps) as InternalRepository
 
 		CDOServerUtil.addRepository(IPluginContainer.INSTANCE, REPOSITORY);
 
-		SECURITY_MANAGER = SecurityManagerFactory.createLDAPSecurityManager
-		//SECURITY_MANAGER = SecurityManagerFactory.createCDOSecurityManager
+		//SECURITY_MANAGER = SecurityManagerFactory.createLDAPSecurityManager
+		SECURITY_MANAGER = SecurityManagerFactory.createCDOSecurityManager
 		SECURITY_MANAGER.addCommitHandler(CommitHandlerFactory.createAnnotationCommitHandler)
 
 		SECURITY_MANAGER.addCommitHandler(CommitHandlerFactory.createHomeCommitHandler)
