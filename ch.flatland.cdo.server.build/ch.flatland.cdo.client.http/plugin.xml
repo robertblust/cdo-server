@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.net4j.util.factories">
+      <factory
+            class="ch.flatland.cdo.client.internal.http.HTTPSConnectorFactory"
+            productGroup="org.eclipse.net4j.connectors"
+            type="https">
+      </factory>
+   </extension>
+
+</plugin>
