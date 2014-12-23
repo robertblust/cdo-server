@@ -39,9 +39,9 @@
 		<module>ch.flatland.cdo.server</module>
 		<module>ch.flatland.cdo.targetplatform</module>
 
-		<module>ch.flatland.cdo.service.tests</module>
-		
 		<module>ch.flatland.cdo.client.http</module>
+		
+		<module>ch.flatland.cdo.service.tests</module>
 		
 		<module>ch.flatland.cdo.webconsole.feature</module>
 		<module>org.apache.felix.webconsole</module>
