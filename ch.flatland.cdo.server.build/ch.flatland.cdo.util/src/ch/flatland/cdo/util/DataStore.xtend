@@ -159,7 +159,8 @@ class DataStore {
 			}
 			return "-1"
 		} else {
-			return value
+			// escape single quotes!
+			return value.replace("'", "''")
 		}
 	}
 }
