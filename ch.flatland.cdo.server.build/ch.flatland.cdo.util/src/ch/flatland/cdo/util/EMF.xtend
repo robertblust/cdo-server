@@ -166,7 +166,11 @@ class EMF {
 	}
 
 	def hasPermission(EObject object) {
-		if((object as CDOObject).cdoPermission != CDOPermission.NONE) {
+		if(object instanceof CDOObject) {
+			if(object.cdoPermission != CDOPermission.NONE) {
+				return true
+			}
+		} else {
 			return true
 		}
 		return false

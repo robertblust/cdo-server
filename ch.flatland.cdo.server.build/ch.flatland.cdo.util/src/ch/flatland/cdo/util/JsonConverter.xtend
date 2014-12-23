@@ -189,7 +189,9 @@ class JsonConverter {
 	def private JsonObject toJsonBase(EObject object, boolean stop) {
 		val jsonBaseObject = new JsonObject
 
-		jsonBaseObject.addProperty(ID, object.oid)
+		if(object.oid != null) {
+			jsonBaseObject.addProperty(ID, object.oid)
+		}
 
 		// CDO Legacy Adapter implements EObject but is not an EObject
 		// ITEM_DELEGATOR does a cast to EObject
@@ -217,44 +219,48 @@ class JsonConverter {
 			jsonBaseObject.addReferences(object)
 		}
 
-		val jsonLinksObject = new JsonObject
-		jsonBaseObject.add(LINKS, jsonLinksObject)
+		if(object.oid != null) {
 
-		val jsonSelfLink = new JsonObject
-		jsonSelfLink.addProperty(HREF, object.url)
-		jsonLinksObject.add(SELF, jsonSelfLink)
+			// no meta model, a real object
+			val jsonLinksObject = new JsonObject
+			jsonBaseObject.add(LINKS, jsonLinksObject)
 
-		// add reference link here
-		if(object.hasReferences(null)) {
-			val jsonReferencesLink = new JsonObject
-			jsonReferencesLink.addProperty(HREF, object.getUrl(false) + "/" + REFERENCES + object.getTimestampParam(true))
-			jsonLinksObject.add(REFERENCES, jsonReferencesLink)
+			val jsonSelfLink = new JsonObject
+			jsonSelfLink.addProperty(HREF, object.url)
+			jsonLinksObject.add(SELF, jsonSelfLink)
 
-			// add detailed reference 
-			object.eClass.EAllReferences.forEach [
-				if(object.hasReferences(it.name)) {
-					val jsonReferenceLink = new JsonObject
-					jsonReferenceLink.addProperty(HREF, object.getUrl(false) + "/" + REFERENCES + "/" + it.name + object.getTimestampParam(true))
-					jsonReferencesLink.add(it.name, jsonReferenceLink)
-				}
-			]
+			// add reference link here
+			if(object.hasReferences(null)) {
+				val jsonReferencesLink = new JsonObject
+				jsonReferencesLink.addProperty(HREF, object.getUrl(false) + "/" + REFERENCES + object.getTimestampParam(true))
+				jsonLinksObject.add(REFERENCES, jsonReferencesLink)
+
+				// add detailed reference 
+				object.eClass.EAllReferences.forEach [
+					if(object.hasReferences(it.name)) {
+						val jsonReferenceLink = new JsonObject
+						jsonReferenceLink.addProperty(HREF, object.getUrl(false) + "/" + REFERENCES + "/" + it.name + object.getTimestampParam(true))
+						jsonReferencesLink.add(it.name, jsonReferenceLink)
+					}
+				]
+			}
+
+			val jsonContainerLink = new JsonObject
+			jsonContainerLink.addProperty(HREF, object.url)
+			if(object.eContainer != null) {
+				jsonContainerLink.addProperty(HREF, object.eContainer.url)
+			} else if(object instanceof CDOResourceNode) {
+
+				// it must be contained in a CDOResourceNode			
+				jsonContainerLink.addProperty(HREF, (object.eResource as CDOResourceNode).url)
+			}
+			jsonLinksObject.add(CONTAINER, jsonContainerLink)
+
+			val jsonAllInstancesLink = new JsonObject
+			jsonAllInstancesLink.addProperty(HREF, ALIAS_OBJECT + "/" + object.eClass.type + object.getTimestampParam(true))
+			jsonLinksObject.add(ALL_INSTANCES, jsonAllInstancesLink)
 		}
-
-		val jsonContainerLink = new JsonObject
-		jsonContainerLink.addProperty(HREF, object.url)
-		if(object.eContainer != null) {
-			jsonContainerLink.addProperty(HREF, object.eContainer.url)
-		} else {
-
-			// it must be contained in a CDOResourceNode
-			jsonContainerLink.addProperty(HREF, (object.eResource as CDOResourceNode).url)
-		}
-		jsonLinksObject.add(CONTAINER, jsonContainerLink)
-
-		val jsonAllInstancesLink = new JsonObject
-		jsonAllInstancesLink.addProperty(HREF, ALIAS_OBJECT + "/" + object.eClass.type + object.getTimestampParam(true))
-		jsonLinksObject.add(ALL_INSTANCES, jsonAllInstancesLink)
-
+		
 		if(object instanceof CDOObject) {
 			jsonBaseObject.addRevisions(object)
 		}
@@ -499,7 +505,12 @@ class JsonConverter {
 
 	def private getOid(EObject object) {
 		val uri = EcoreUtil.getURI(object)
-		return Long.parseLong(uri.fragment.replace("L", ""))
+		try {
+			return Long.parseLong(uri.fragment.replace("L", ""))
+		} catch(Exception e) {
+			logger.debug("Could not resolve CDOID from '{}'", object)
+			return null
+		}
 	}
 
 	def private setAttributes(JsonElement element, EObject eObject) {
