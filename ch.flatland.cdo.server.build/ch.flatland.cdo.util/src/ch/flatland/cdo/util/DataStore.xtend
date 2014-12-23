@@ -37,9 +37,9 @@ class DataStore {
 		
 		val eClass = view.safeEClass(type)
 		val mappingStrategy = view.mappingStrategy
-		var tableName = type.replace(".", "_")
+		var tableName = type.replace(".", "_").toUpperCase
 		try {
-			tableName = mappingStrategy.getTableName(eClass)
+			tableName = mappingStrategy.getTableName(eClass).toUpperCase
 		} catch(Exception e) {
 			// TODO find better solution 'Depends on MappingStrategy'
 			// mappingStrategy.getTableName(eClass) causes an Exception
@@ -61,7 +61,7 @@ class DataStore {
 		}
 		
 		val query = view.createQuery("sql", "SELECT DISTINCT CDO_ID " + eClass.max(req, mappingStrategy) + " FROM "
-				+ mappingStrategy.getTableName(eClass) 
+				+ mappingStrategy.getTableName(eClass).toUpperCase 
 				+ " WHERE "
 				+ view.temporality
 				+ eClass.filterQuery(req, mappingStrategy) 
@@ -102,7 +102,7 @@ class DataStore {
 			if(attribute != null) {
 				logger.debug("Parameter name for filter '{}'", paramName)
 				for (value : req.parameterMap.get(paramName)) {
-					builder.append(" " + kind + " LOWER(" + mappingStrategy.getFieldName(attribute) + ") LIKE '%" + attribute.getValue(value).toLowerCase + "%'")
+					builder.append(" " + kind + " LOWER(" + mappingStrategy.getFieldName(attribute).toUpperCase + ") LIKE '%" + attribute.getValue(value).toLowerCase + "%'")
 				}
 			}
 		}
@@ -130,7 +130,7 @@ class DataStore {
 
 	def private orderByName(EClass eClass, HttpServletRequest req, IMappingStrategy mappingStrategy) {
 		if(req.orderBy != null && eClass.getAttribute(req.orderBy) != null) {
-			return mappingStrategy.getFieldName(eClass.getAttribute(req.orderBy))
+			return mappingStrategy.getFieldName(eClass.getAttribute(req.orderBy)).toUpperCase
 		}
 		if(eClass.nameAttribute != null) {
 			return "NAME"
