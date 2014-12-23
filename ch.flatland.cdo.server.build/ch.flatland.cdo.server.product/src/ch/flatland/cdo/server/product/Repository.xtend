@@ -12,8 +12,10 @@ package ch.flatland.cdo.server.product
 
 import org.eclipse.emf.cdo.server.CDOServerUtil
 import org.eclipse.emf.cdo.server.IRepository
+import org.eclipse.emf.cdo.server.spi.security.InternalSecurityManager
 import org.eclipse.emf.cdo.spi.server.InternalRepository
 import org.eclipse.net4j.util.container.IPluginContainer
+import org.eclipse.net4j.util.lifecycle.Lifecycle
 import org.eclipse.net4j.util.lifecycle.LifecycleUtil
 
 import static ch.flatland.cdo.server.ServerUtil.*
@@ -25,7 +27,7 @@ class Repository {
 	}
 
 	var static transient InternalRepository REPOSITORY
-	var static transient SecurityManager SECURITY_MANAGER
+	var static transient InternalSecurityManager SECURITY_MANAGER
 
 	def static void start() {
 		App.info("Start repository")
@@ -46,17 +48,20 @@ class Repository {
 
 		CDOServerUtil.addRepository(IPluginContainer.INSTANCE, REPOSITORY);
 
-		SECURITY_MANAGER = SecurityManagerFactory.createSecurityManager
+		SECURITY_MANAGER = SecurityManagerFactory.createLDAPSecurityManager
+		//SECURITY_MANAGER = SecurityManagerFactory.createCDOSecurityManager
 		SECURITY_MANAGER.addCommitHandler(CommitHandlerFactory.createAnnotationCommitHandler)
 
 		SECURITY_MANAGER.addCommitHandler(CommitHandlerFactory.createHomeCommitHandler)
 		SECURITY_MANAGER.repository = REPOSITORY
-		SECURITY_MANAGER.activate
+		val lifecycle = SECURITY_MANAGER as Lifecycle
+		lifecycle.activate
 	}
 
 	def static stop() {
 		App.info("Stop repository")
-		SECURITY_MANAGER.deactivate
+		val lifecycle = SECURITY_MANAGER as Lifecycle
+		lifecycle.deactivate
 		if(REPOSITORY != null) {
 			LifecycleUtil.deactivate(REPOSITORY)
 		}
