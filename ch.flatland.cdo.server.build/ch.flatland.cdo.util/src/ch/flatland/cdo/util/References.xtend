@@ -15,6 +15,8 @@ import org.eclipse.emf.ecore.EObject
 
 class References {
 
+	val extension EMF = new EMF
+
 	def safeResolveReferences(EObject object, String referenceName) {
 		if(referenceName == null) {
 			val allReferences = object.allReferences
@@ -31,11 +33,11 @@ class References {
 			return allReferences.size > 0
 		} else {
 			val references = object.getReferences(referenceName)
-			if (references != null) {
-				if (references instanceof EObject) {
+			if(references != null) {
+				if(references instanceof EObject) {
 					return true
 				}
-				if (references instanceof List<?> && (references as List<?>).size > 0) {
+				if(references instanceof List<?> && (references as List<?>).size > 0) {
 					return true
 				}
 			}
@@ -49,10 +51,15 @@ class References {
 			if(it.many) {
 				val List<EObject> refs = object.eGet(it) as List<EObject>
 				for (r : refs) {
-					allReferences.addIfNotExits(r)
+					if(r.hasPermission) {
+						allReferences.addIfNotExits(r)
+					}
 				}
 			} else {
-				allReferences.addIfNotExits(object.eGet(it) as EObject)
+				val r = object.eGet(it) as EObject
+				if(r != null && r.hasPermission) {
+					allReferences.addIfNotExits(r)
+				}
 			}
 		]
 		return allReferences
@@ -65,12 +72,18 @@ class References {
 				val references = newArrayList
 				val List<EObject> refs = object.eGet(eReference) as List<EObject>
 				for (r : refs) {
-					references.addIfNotExits(r)
+					if(r.hasPermission) {
+						references.addIfNotExits(r)
+					}
 				}
 				return references
 			} else {
 				val reference = object.eGet(eReference) as EObject
-				return reference
+				if(reference != null && reference.hasPermission) {
+					return reference
+				} else {
+					return null
+				}
 			}
 		}
 		return null

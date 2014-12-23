@@ -12,16 +12,19 @@ package ch.flatland.cdo.util
 
 import com.google.common.base.Splitter
 import com.google.gson.JsonElement
+import org.eclipse.emf.cdo.CDOObject
+import org.eclipse.emf.cdo.common.security.CDOPermission
+import org.eclipse.emf.cdo.common.security.NoPermissionException
 import org.eclipse.emf.cdo.view.CDOView
 import org.eclipse.emf.ecore.EAttribute
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EClassifier
 import org.eclipse.emf.ecore.EObject
+import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.EReference
 import org.slf4j.LoggerFactory
 
 import static javax.servlet.http.HttpServletResponse.*
-import org.eclipse.emf.ecore.EPackage
 
 class EMF {
 
@@ -90,15 +93,20 @@ class EMF {
 
 	def validate(EObject object) {
 		val fLDiagnostics = newArrayList
-		val diagnostics = new FLDiagnostician().validate(object)
 
-		if(diagnostics.severity > 0) {
-			for (child : diagnostics.children) {
-				if(child.severity > 0 && child.data.contains(object)) {
-					logger.debug("Diagnostics '{}'", child.message)
-					fLDiagnostics.add(child)
+		try {
+			val diagnostic = new FLDiagnostician().validate(object)
+
+			if(diagnostic.severity > 0) {
+				for (child : diagnostic.children) {
+					if(child.severity > 0 && child.data.contains(object)) {
+						logger.debug("Diagnostics '{}'", child.message)
+						fLDiagnostics.add(child)
+					}
 				}
 			}
+		} catch(NoPermissionException npe) {
+			logger.debug("No permission exception, can not validate '{}'", object)
 		}
 		return fLDiagnostics
 	}
@@ -155,6 +163,13 @@ class EMF {
 		val eClass = eClassifier as EClass
 		logger.debug("Resolved EClass '{}'", eClass.name)
 		return eClass
+	}
+
+	def hasPermission(EObject object) {
+		if((object as CDOObject).cdoPermission != CDOPermission.NONE) {
+			return true
+		}
+		return false
 	}
 
 	def private registerNewPackage(CDOView view, String nsPrefix) {

@@ -132,9 +132,10 @@ class JsonConverter {
 			val jsonArray = new JsonArray
 
 			for (object : objects) {
-				val jsonBaseObject = object.toJsonBase(false)
-
-				jsonArray.add(jsonBaseObject)
+				if(object.hasPermission) {
+					val jsonBaseObject = object.toJsonBase(false)
+					jsonArray.add(jsonBaseObject)
+				}
 			}
 
 			// finally add status with messages
@@ -146,7 +147,6 @@ class JsonConverter {
 		} catch(NoPermissionException npe) {
 			throw new FlatlandException(SC_FORBIDDEN, npe.message)
 		} catch(Exception e) {
-			e.printStackTrace
 			throw new FlatlandException(SC_BAD_REQUEST, e.message)
 		}
 	}
@@ -164,7 +164,6 @@ class JsonConverter {
 		} catch(NoPermissionException npe) {
 			throw new FlatlandException(SC_FORBIDDEN, npe.message)
 		} catch(Exception e) {
-			e.printStackTrace
 			throw new FlatlandException(SC_BAD_REQUEST, e.message)
 		}
 	}
@@ -328,23 +327,26 @@ class JsonConverter {
 					if(values.size > 0) {
 						val jsonReferencesArray = new JsonArray
 						for (value : values) {
-							val jsonRefObject = value.toJsonObject(true) as JsonObject
-
-							// should we add attributes or not?
-							//jsonRefObject.addAttributes(value as EObject)
-							jsonRefObject.addDiagnosticsAndMeta(value as EObject)
-							jsonReferencesArray.add(jsonRefObject)
+							val valueAsEobject = value as EObject
+							if(valueAsEobject.hasPermission) {
+								val jsonRefObject = valueAsEobject.toJsonObject(true) as JsonObject
+								jsonRefObject.addAttributes(valueAsEobject)
+								jsonRefObject.addDiagnosticsAndMeta(valueAsEobject)
+								jsonReferencesArray.add(jsonRefObject)
+							}
 						}
 						jsonReferences.add(name, jsonReferencesArray)
 					}
 				} else {
 					val value = eObject.eGet(reference, true)
 					if(value != null) {
-						val jsonRefObject = value.toJsonObject(true) as JsonObject
-						jsonRefObject.addAttributes(value as EObject)
-
-						jsonRefObject.addDiagnosticsAndMeta(value as EObject)
-						jsonReferences.add(name, jsonRefObject)
+						val valueAsEobject = value as EObject
+						if(valueAsEobject.hasPermission) {
+							val jsonRefObject = valueAsEobject.toJsonObject(true) as JsonObject
+							jsonRefObject.addAttributes(valueAsEobject)
+							jsonRefObject.addDiagnosticsAndMeta(valueAsEobject)
+							jsonReferences.add(name, jsonRefObject)
+						}
 					}
 				}
 			}
