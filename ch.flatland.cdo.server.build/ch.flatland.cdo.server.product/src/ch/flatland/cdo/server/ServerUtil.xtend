@@ -20,8 +20,8 @@ import ch.flatland.cdo.server.config.ServerConfig
 
 class ServerUtil {
 
-	public val static SUPPORTING_AUDITS = false
-	public val static SUPPORTING_BRANCHES = false
+	public val static SUPPORTING_AUDITS = true
+	public val static SUPPORTING_BRANCHES = true
 	public val static ENSURE_REFERENTIAL_INTEGRITY = true
 
 	val static logger = LoggerFactory.getLogger(ServerUtil)
