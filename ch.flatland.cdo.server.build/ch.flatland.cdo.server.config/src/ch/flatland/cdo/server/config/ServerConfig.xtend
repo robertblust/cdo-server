@@ -37,34 +37,26 @@ class ServerConfig {
 					logger.debug("Read config object '{}'", it.name)
 					if(jsonDetailObject != null) {
 						eObject.eClass.EAllAttributes.forEach [
-							switch it.EAttributeType.instanceClass {
-								case typeof(String): {
-									if(jsonDetailObject.get(it.name) != null) {
+							if(jsonDetailObject.get(it.name) != null) {
+								switch it.EAttributeType.instanceClass {
+									case typeof(String): {
 										eObject.eSet(it, jsonDetailObject.get(it.name).asString)
-									} else {
-										logger.debug("Json primitive '{}' not found", it.name)
 									}
-								}
-								case typeof(boolean): {
-									if(jsonDetailObject.get(it.name) != null) {
+									case typeof(boolean): {
 										eObject.eSet(it, jsonDetailObject.get(it.name).asBoolean)
-									} else {
-										logger.debug("Json primitive '{}' not found", it.name)
 									}
 								}
-							}
-							if(it.EAttributeType instanceof EEnum) {
-								val enum = it.EAttributeType as EEnum
-								if(jsonDetailObject.get(it.name) != null) {
+								if(it.EAttributeType instanceof EEnum) {
+									val enum = it.EAttributeType as EEnum
 									val literal = enum.getEEnumLiteral(jsonDetailObject.get(it.name).asString)
 									if(literal != null) {
 										eObject.eSet(it, literal.instance)
 									} else {
 										logger.debug("Json primitive '{}' not found", it.name)
 									}
-								} else {
-									logger.debug("Json primitive '{}' not found", it.name)
 								}
+							} else {
+								logger.debug("Json primitive '{}' not found", it.name)
 							}
 							logger.debug("Value '{}' = '{}'", it.name, eObject.eGet(it))
 						]
