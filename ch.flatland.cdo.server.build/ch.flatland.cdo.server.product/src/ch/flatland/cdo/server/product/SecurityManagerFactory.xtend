@@ -10,22 +10,37 @@
  */
 package ch.flatland.cdo.server.product
 
+import ch.flatland.cdo.model.config.AuthenticatorType
+import ch.flatland.cdo.server.config.ServerConfig
 import ch.flatland.cdo.server.ldap.LdapAuthenticatorManager
+import org.eclipse.emf.cdo.server.spi.security.InternalSecurityManager
 import org.eclipse.net4j.util.container.IPluginContainer
-
-import static ch.flatland.cdo.server.AuthenticationUtil.*
+import org.slf4j.LoggerFactory
 
 class SecurityManagerFactory {
+	
+	val static logger = LoggerFactory.getLogger(SecurityManagerFactory)
+	
 	private new() {
 		// hide constructor
 	}
+	
+	def static InternalSecurityManager createSecurityManager() {
+		if (ServerConfig.getConfig.authenticator.authenticatorType == AuthenticatorType.LDAP) {
+			logger.info("Create LDAP security manager")
+			return createLDAPSecurityManager
+		} else {
+			logger.info("Create CDO security manager")
+			return createCDOSecurityManager
+		}
+	}
 
-	def static createLDAPSecurityManager() {
-		val authenticator = new LdapAuthenticatorManager(LDAP_SERVER, LDAP_DOMAIN_BASE, LDAP_USER_ID_FIELD)
+	def private static createLDAPSecurityManager() {
+		val authenticator = new LdapAuthenticatorManager(ServerConfig.getConfig.authenticator.connectionUrl, ServerConfig.getConfig.authenticator.domainBase, ServerConfig.getConfig.authenticator.userIdField)
 		return new SecurityManager("/security", IPluginContainer.INSTANCE, authenticator)
 	}
-	
-	def static createCDOSecurityManager() {
+
+	def private static createCDOSecurityManager() {
 		return new org.eclipse.emf.cdo.server.internal.security.SecurityManager("/security", IPluginContainer.INSTANCE)
 	}
 

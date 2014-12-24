@@ -10,19 +10,34 @@
  */
 package ch.flatland.cdo.server.product
 
-import ch.flatland.cdo.server.ServerUtil
+import ch.flatland.cdo.model.config.StoreType
+import ch.flatland.cdo.server.config.ServerConfig
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource
 import org.eclipse.emf.cdo.server.db.CDODBUtil
 import org.eclipse.emf.cdo.server.db.mapping.IMappingStrategy
 import org.eclipse.net4j.db.DBUtil
 import org.h2.jdbcx.JdbcDataSource
+import org.slf4j.LoggerFactory
 
 class StoreFactory {
+	
+	val static logger = LoggerFactory.getLogger(StoreFactory)
+	
 	private new() {
 		// hide constructor
 	}
+	
+	def static createStore() {
+		if (ServerConfig.getConfig.dataStore.storeType == StoreType.H2) {
+			logger.info("Create H2 data store")
+			return createH2Store
+		} else {
+			logger.info("Create MYSQL data store")
+			return createMySQLStore
+		}
+	}
 
-	def static createH2Store() {
+	def private static createH2Store() {
 
 		// db mapping strategy 
 		val mappingStrategy = CDODBUtil.createHorizontalMappingStrategy(true, true)
@@ -31,9 +46,9 @@ class StoreFactory {
 
 		// db datasource
 		val dataSource = new JdbcDataSource
-		dataSource.setURL("jdbc:h2:database/" + ServerUtil.REPOSITORY_NAME)
-		dataSource.user = "cdo"
-		dataSource.password = "cdo"
+		dataSource.setURL(ServerConfig.getConfig.dataStore.connectionUrl + ServerConfig.getConfig.dataStore.repositoryName)
+		dataSource.user = ServerConfig.getConfig.dataStore.userName
+		dataSource.password = ServerConfig.getConfig.dataStore.password
 
 		// dbAdapter
 		val dbAdapter = DBUtil.getDBAdapter("h2")
@@ -45,7 +60,7 @@ class StoreFactory {
 		return store
 	}
 
-	def static createMySQLStore() {
+	def private static createMySQLStore() {
 
 		// db mapping strategy 
 		val mappingStrategy = CDODBUtil.createHorizontalMappingStrategy(true, true)
@@ -54,9 +69,9 @@ class StoreFactory {
 
 		// db datasource
 		val dataSource = new MysqlDataSource
-		dataSource.setURL("jdbc:mysql://localhost/cdo")
-		dataSource.user = "cdo"
-		dataSource.password = "cdo"
+		dataSource.setURL(ServerConfig.getConfig.dataStore.connectionUrl)
+		dataSource.user = ServerConfig.getConfig.dataStore.userName
+		dataSource.password = ServerConfig.getConfig.dataStore.password
 
 		// dbAdapter
 		val dbAdapter = DBUtil.getDBAdapter("mysql")

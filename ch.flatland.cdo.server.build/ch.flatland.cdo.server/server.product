@@ -19,10 +19,9 @@
 -Dorg.eclipse.equinox.http.jetty.ssl.keystore=./keystore
 -Djavax.net.ssl.trustStore=./keystore
 -Dlogback.configurationFile=./logback.xml
+-Dch.flatland.cdo.server.config=./config.json
 
 -Dorg.eclipse.equinox.http.jetty.ssl.password=password
--Dch.flatland.cdo.server.admin.pwd=password
--Dch.flatland.cdo.server.readonly.pwd=password
       </vmArgs>
       <vmArgsMac>-XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts
       </vmArgsMac>
@@ -39,6 +38,9 @@
 
    <vm>
    </vm>
+
+   <plugins>
+   </plugins>
 
    <features>
       <feature id="ch.flatland.cdo.server.feature" version="1.0.0.qualifier"/>

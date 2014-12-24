@@ -1,0 +1,20 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Flatland CDO Server Config
+Bundle-SymbolicName: ch.flatland.cdo.server.config;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: flatland.ch
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Require-Bundle: org.eclipse.core.runtime;bundle-version="3.10.0";resolution:=optional,
+ org.eclipse.xtend.lib,
+ org.eclipse.xtend.lib.macro,
+ com.google.guava,
+ org.eclipse.xtext.xbase.lib,
+ ch.flatland.cdo.util;bundle-version="1.0.0",
+ com.google.gson;bundle-version="2.2.4",
+ ch.flatland.cdo.model.config;bundle-version="1.0.0";visibility:=reexport,
+ org.slf4j.api;bundle-version="1.7.2"
+Bundle-ActivationPolicy: lazy
+Bundle-Activator: ch.flatland.cdo.server.config.ConfigPlugin
+Export-Package: ch.flatland.cdo.server.config
+

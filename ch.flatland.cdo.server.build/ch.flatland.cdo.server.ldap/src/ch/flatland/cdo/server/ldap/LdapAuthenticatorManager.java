@@ -28,6 +28,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import ch.flatland.cdo.server.AuthenticationUtil;
+import ch.flatland.cdo.server.config.ServerConfig;
 
 public class LdapAuthenticatorManager implements IAuthenticator {
 
@@ -84,11 +85,11 @@ public class LdapAuthenticatorManager implements IAuthenticator {
 
 		String p = new String(password);
 
-		if (userId.equals(AuthenticationUtil.ADMIN_USER) && p.equals(AuthenticationUtil.ADMIN_PWD)) {
+		if (userId.equals(AuthenticationUtil.ADMIN_USER) && p.equals(ServerConfig.getConfig().getAuthenticator().getAdminPassword())) {
 			return;
 		}
 
-		if (userId.equals(AuthenticationUtil.READONLY_USER) && p.equals(AuthenticationUtil.READONLY_PWD)) {
+		if (userId.equals(AuthenticationUtil.READONLY_USER) && p.equals(ServerConfig.getConfig().getAuthenticator().getReadOnlyPassword())) {
 			return;
 		}
 

@@ -95,6 +95,7 @@ import org.eclipse.net4j.util.security.IAuthenticator;
 import org.eclipse.net4j.util.security.IPasswordCredentials;
 
 import ch.flatland.cdo.server.AuthenticationUtil;
+import ch.flatland.cdo.server.config.ServerConfig;
 
 /**
  * @author Eike Stepper
@@ -564,10 +565,10 @@ public class SecurityManager extends Lifecycle implements InternalSecurityManage
 		// Create users
 
 		// User adminUser = realm.addUser(User.ADMINISTRATOR, "0000");
-		User adminUser = realm.addUser(AuthenticationUtil.ADMIN_USER, AuthenticationUtil.ADMIN_PWD);
+		User adminUser = realm.addUser(AuthenticationUtil.ADMIN_USER, ServerConfig.getConfig().getAuthenticator().getAdminPassword());
 		adminUser.getGroups().add(adminsGroup);
 
-		User readUser = realm.addUser(AuthenticationUtil.READONLY_USER, AuthenticationUtil.READONLY_USER);
+		User readUser = realm.addUser(AuthenticationUtil.READONLY_USER, ServerConfig.getConfig().getAuthenticator().getReadOnlyPassword());
 		readUser.getGroups().add(usersGroup);
 
 		return realm;

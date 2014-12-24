@@ -10,6 +10,7 @@
  */
 package ch.flatland.cdo.server.product
 
+import ch.flatland.cdo.server.config.ServerConfig
 import org.eclipse.emf.cdo.server.CDOServerUtil
 import org.eclipse.emf.cdo.server.IRepository
 import org.eclipse.emf.cdo.server.spi.security.InternalSecurityManager
@@ -41,15 +42,14 @@ class Repository {
 			IRepository.Props.ID_GENERATION_LOCATION -> "STORE",
 			IRepository.Props.SERIALIZE_COMMITS -> "false",
 			IRepository.Props.OPTIMISTIC_LOCKING_TIMEOUT -> "10000",
-			IRepository.Props.OVERRIDE_UUID -> REPOSITORY_NAME
+			IRepository.Props.OVERRIDE_UUID -> ServerConfig.getConfig.dataStore.repositoryName
 		)
 
-		REPOSITORY = CDOServerUtil.createRepository(REPOSITORY_NAME, StoreFactory.createH2Store, repositoryProps) as InternalRepository
-		//REPOSITORY = CDOServerUtil.createRepository(REPOSITORY_NAME, StoreFactory.createMySQLStore, repositoryProps) as InternalRepository
+		REPOSITORY = CDOServerUtil.createRepository(ServerConfig.getConfig.dataStore.repositoryName, StoreFactory.createStore, repositoryProps) as InternalRepository
 
 		CDOServerUtil.addRepository(IPluginContainer.INSTANCE, REPOSITORY);
 
-		SECURITY_MANAGER = SecurityManagerFactory.createLDAPSecurityManager
+		SECURITY_MANAGER = SecurityManagerFactory.createSecurityManager
 		//SECURITY_MANAGER = SecurityManagerFactory.createCDOSecurityManager
 		SECURITY_MANAGER.addCommitHandler(CommitHandlerFactory.createAnnotationCommitHandler)
 

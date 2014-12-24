@@ -10,10 +10,10 @@
  */
 package ch.flatland.cdo.server.product
 
+import ch.flatland.cdo.server.config.ServerConfig
 import org.eclipse.net4j.acceptor.IAcceptor
 import org.eclipse.net4j.util.container.IPluginContainer
 import org.eclipse.net4j.util.lifecycle.LifecycleUtil
-import ch.flatland.cdo.server.ServerUtil
 
 class TCPAcceptor {
 
@@ -26,13 +26,10 @@ class TCPAcceptor {
 
 	// network config
 	val static ACCEPTORS_KEY = "org.eclipse.net4j.acceptors"
-	val static PROTOCOL = "tcp"
-	val static ALL_NETWORKS = "0.0.0.0"
-	val static PORT = ServerUtil.TCP_ACCEPTOR_PORT
 
 	def static void start() {
 		App.info("Start TCP acceptor")
-		INSTANCE = IPluginContainer.INSTANCE.getElement(ACCEPTORS_KEY, PROTOCOL, ALL_NETWORKS + ":" + PORT) as IAcceptor
+		INSTANCE = IPluginContainer.INSTANCE.getElement(ACCEPTORS_KEY, "tcp", ServerConfig.getConfig.binding.ip + ":" + ServerConfig.getConfig.binding.tcpPort) as IAcceptor
 	}
 
 	def static stop() {

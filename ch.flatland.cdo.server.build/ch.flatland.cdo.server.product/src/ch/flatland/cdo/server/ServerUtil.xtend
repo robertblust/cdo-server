@@ -16,15 +16,13 @@ import org.eclipse.emf.cdo.session.CDOSession
 import org.eclipse.net4j.Net4jUtil
 import org.eclipse.net4j.util.container.IPluginContainer
 import org.slf4j.LoggerFactory
+import ch.flatland.cdo.server.config.ServerConfig
 
 class ServerUtil {
 
 	public val static SUPPORTING_AUDITS = false
 	public val static SUPPORTING_BRANCHES = false
 	public val static ENSURE_REFERENTIAL_INTEGRITY = true
-	public val static REPOSITORY_NAME = "repo"
-	public val static TCP_ACCEPTOR_PORT = "2036"
-	public val static HTTP_ACCEPTOR_PORT = "8080"
 
 	val static logger = LoggerFactory.getLogger(ServerUtil)
 
@@ -32,21 +30,21 @@ class ServerUtil {
 		// hide constructor
 	}
 
-	val static acceptorName = REPOSITORY_NAME + "_jvm"
+	val static acceptorName = ServerConfig.getConfig.dataStore.repositoryName + "_jvm"
 	val static connector = {
 		Net4jUtil.getAcceptor(IPluginContainer.INSTANCE, "jvm", acceptorName)
 		Net4jUtil.getConnector(IPluginContainer.INSTANCE, "jvm", acceptorName)
 	}
 
 	def static openReadOnlySession() {
-		ServerUtil.openSession(AuthenticationUtil.READONLY_USER, AuthenticationUtil.READONLY_PWD)
+		ServerUtil.openSession(AuthenticationUtil.READONLY_USER, ServerConfig.getConfig.authenticator.readOnlyPassword)
 	}
 
 	def static openSession(String userID, String password) {
 
 		val config = CDONet4jUtil.createNet4jSessionConfiguration()
 		config.setConnector(connector)
-		config.setRepositoryName(REPOSITORY_NAME)
+		config.setRepositoryName(ServerConfig.getConfig.dataStore.repositoryName)
 
 		config.credentialsProvider = new CredentialsProvider(userID, password)
 
