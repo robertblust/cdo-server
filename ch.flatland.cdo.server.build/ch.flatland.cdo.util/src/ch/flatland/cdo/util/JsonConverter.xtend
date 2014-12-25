@@ -246,10 +246,9 @@ class JsonConverter {
 			}
 
 			val jsonContainerLink = new JsonObject
-			jsonContainerLink.addProperty(HREF, object.url)
 			if(object.eContainer != null) {
 				jsonContainerLink.addProperty(HREF, object.eContainer.url)
-			} else if(object instanceof CDOResourceNode) {
+			} else if(object.eResource instanceof CDOResourceNode) {
 
 				// it must be contained in a CDOResourceNode			
 				jsonContainerLink.addProperty(HREF, (object.eResource as CDOResourceNode).url)
