@@ -11,22 +11,23 @@
 package ch.flatland.cdo.server.product
 
 import ch.flatland.cdo.model.config.AuthenticatorType
-import ch.flatland.cdo.server.config.ServerConfig
 import ch.flatland.cdo.server.ldap.LdapAuthenticatorManager
 import org.eclipse.emf.cdo.server.spi.security.InternalSecurityManager
 import org.eclipse.net4j.util.container.IPluginContainer
 import org.slf4j.LoggerFactory
 
+import static ch.flatland.cdo.server.config.ServerConfig.*
+
 class SecurityManagerFactory {
-	
+
 	val static logger = LoggerFactory.getLogger(SecurityManagerFactory)
-	
+
 	private new() {
 		// hide constructor
 	}
-	
+
 	def static InternalSecurityManager createSecurityManager() {
-		if (ServerConfig.getConfig.authenticator.authenticatorType == AuthenticatorType.LDAP) {
+		if(CONFIG.authenticator.authenticatorType == AuthenticatorType.LDAP) {
 			logger.info("Create LDAP security manager")
 			return createLDAPSecurityManager
 		} else {
@@ -36,7 +37,7 @@ class SecurityManagerFactory {
 	}
 
 	def private static createLDAPSecurityManager() {
-		val authenticator = new LdapAuthenticatorManager(ServerConfig.getConfig.authenticator.connectionUrl, ServerConfig.getConfig.authenticator.domainBase, ServerConfig.getConfig.authenticator.userIdField)
+		val authenticator = new LdapAuthenticatorManager(CONFIG.authenticator.connectionUrl, CONFIG.authenticator.domainBase, CONFIG.authenticator.userIdField)
 		return new SecurityManager("/security", IPluginContainer.INSTANCE, authenticator)
 	}
 

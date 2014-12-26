@@ -16,7 +16,8 @@ import org.eclipse.emf.cdo.session.CDOSession
 import org.eclipse.net4j.Net4jUtil
 import org.eclipse.net4j.util.container.IPluginContainer
 import org.slf4j.LoggerFactory
-import ch.flatland.cdo.server.config.ServerConfig
+
+import static ch.flatland.cdo.server.config.ServerConfig.*
 
 class ServerUtil {
 
@@ -30,21 +31,21 @@ class ServerUtil {
 		// hide constructor
 	}
 
-	val static acceptorName = ServerConfig.getConfig.dataStore.repositoryName + "_jvm"
+	val static acceptorName = CONFIG.dataStore.repositoryName + "_jvm"
 	val static connector = {
 		Net4jUtil.getAcceptor(IPluginContainer.INSTANCE, "jvm", acceptorName)
 		Net4jUtil.getConnector(IPluginContainer.INSTANCE, "jvm", acceptorName)
 	}
 
 	def static openReadOnlySession() {
-		ServerUtil.openSession(AuthenticationUtil.READONLY_USER, ServerConfig.getConfig.authenticator.readOnlyPassword)
+		ServerUtil.openSession(AuthenticationUtil.READONLY_USER, CONFIG.authenticator.readOnlyPassword)
 	}
 
 	def static openSession(String userID, String password) {
 
 		val config = CDONet4jUtil.createNet4jSessionConfiguration()
 		config.setConnector(connector)
-		config.setRepositoryName(ServerConfig.getConfig.dataStore.repositoryName)
+		config.setRepositoryName(CONFIG.dataStore.repositoryName)
 
 		config.credentialsProvider = new CredentialsProvider(userID, password)
 

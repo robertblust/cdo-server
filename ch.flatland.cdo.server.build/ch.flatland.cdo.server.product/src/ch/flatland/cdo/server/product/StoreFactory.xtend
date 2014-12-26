@@ -11,13 +11,14 @@
 package ch.flatland.cdo.server.product
 
 import ch.flatland.cdo.model.config.StoreType
-import ch.flatland.cdo.server.config.ServerConfig
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource
 import org.eclipse.emf.cdo.server.db.CDODBUtil
 import org.eclipse.emf.cdo.server.db.mapping.IMappingStrategy
 import org.eclipse.net4j.db.DBUtil
 import org.h2.jdbcx.JdbcDataSource
 import org.slf4j.LoggerFactory
+
+import static ch.flatland.cdo.server.config.ServerConfig.*
 
 class StoreFactory {
 	
@@ -28,7 +29,7 @@ class StoreFactory {
 	}
 	
 	def static createStore() {
-		if (ServerConfig.getConfig.dataStore.storeType == StoreType.H2) {
+		if (CONFIG.dataStore.storeType == StoreType.H2) {
 			logger.info("Create H2 data store")
 			return createH2Store
 		} else {
@@ -46,9 +47,9 @@ class StoreFactory {
 
 		// db datasource
 		val dataSource = new JdbcDataSource
-		dataSource.setURL(ServerConfig.getConfig.dataStore.connectionUrl + ServerConfig.getConfig.dataStore.repositoryName)
-		dataSource.user = ServerConfig.getConfig.dataStore.userName
-		dataSource.password = ServerConfig.getConfig.dataStore.password
+		dataSource.setURL(CONFIG.dataStore.connectionUrl + CONFIG.dataStore.repositoryName)
+		dataSource.user = CONFIG.dataStore.userName
+		dataSource.password = CONFIG.dataStore.password
 
 		// dbAdapter
 		val dbAdapter = DBUtil.getDBAdapter("h2")
@@ -69,9 +70,9 @@ class StoreFactory {
 
 		// db datasource
 		val dataSource = new MysqlDataSource
-		dataSource.setURL(ServerConfig.getConfig.dataStore.connectionUrl)
-		dataSource.user = ServerConfig.getConfig.dataStore.userName
-		dataSource.password = ServerConfig.getConfig.dataStore.password
+		dataSource.setURL(CONFIG.dataStore.connectionUrl)
+		dataSource.user = CONFIG.dataStore.userName
+		dataSource.password = CONFIG.dataStore.password
 
 		// dbAdapter
 		val dbAdapter = DBUtil.getDBAdapter("mysql")

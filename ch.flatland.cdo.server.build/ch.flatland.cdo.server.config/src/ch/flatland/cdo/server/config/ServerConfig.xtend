@@ -32,14 +32,12 @@ class ServerConfig {
 	val static SYSTEM_PARAM_CONFIG = "ch.flatland.cdo.server.config"
 	val static FILE_PATH = System.getProperty(SYSTEM_PARAM_CONFIG)
 	var static Config CONFIG = null
-	
-	
 
 	private new() {
 		// hide constructor
 	}
 
-	def static synchronized getConfig() {
+	def static synchronized CONFIG() {
 		if(CONFIG == null) {
 			try {
 				val configFile = readFile(FILE_PATH)
@@ -80,11 +78,11 @@ class ServerConfig {
 						logger.debug("Config object '{}' not found", it.name)
 					}
 				]
-				if (HOST != null) {
+				if(HOST != null) {
 					template.binding.ip = HOST
 					logger.info("Bind host ip '{}' specified by '{}'", HOST, SYSTEM_PARAM_HOST)
 				}
-				if (DB_HOST != null) {
+				if(DB_HOST != null) {
 					template.dataStore.connectionUrl = template.dataStore.connectionUrl.replace("$HOST", DB_HOST)
 					logger.info("Use connection url with host replacement '{}' specified by '{}'", template.dataStore.connectionUrl, SYSTEM_PARAM_DB_HOST)
 				}

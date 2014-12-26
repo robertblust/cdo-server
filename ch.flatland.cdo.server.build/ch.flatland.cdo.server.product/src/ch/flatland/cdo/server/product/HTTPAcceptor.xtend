@@ -10,10 +10,11 @@
  */
 package ch.flatland.cdo.server.product
 
-import ch.flatland.cdo.server.config.ServerConfig
 import org.eclipse.net4j.acceptor.IAcceptor
 import org.eclipse.net4j.util.container.IPluginContainer
 import org.eclipse.net4j.util.lifecycle.LifecycleUtil
+
+import static ch.flatland.cdo.server.config.ServerConfig.*
 
 class HTTPAcceptor {
 
@@ -29,7 +30,7 @@ class HTTPAcceptor {
 
 	def static void start() {
 		App.info("Start HTTP acceptor")
-		INSTANCE = IPluginContainer.INSTANCE.getElement(ACCEPTORS_KEY, "http", ServerConfig.getConfig.binding.ip + ":" + ServerConfig.getConfig.binding.httpPort) as IAcceptor
+		INSTANCE = IPluginContainer.INSTANCE.getElement(ACCEPTORS_KEY, "http", CONFIG.binding.ip + ":" + CONFIG.binding.httpPort) as IAcceptor
 	}
 
 	def static stop() {

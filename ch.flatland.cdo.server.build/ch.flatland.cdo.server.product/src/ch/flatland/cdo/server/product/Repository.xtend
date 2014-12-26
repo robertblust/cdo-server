@@ -10,7 +10,6 @@
  */
 package ch.flatland.cdo.server.product
 
-import ch.flatland.cdo.server.config.ServerConfig
 import org.eclipse.emf.cdo.server.CDOServerUtil
 import org.eclipse.emf.cdo.server.IRepository
 import org.eclipse.emf.cdo.server.spi.security.InternalSecurityManager
@@ -20,6 +19,7 @@ import org.eclipse.net4j.util.lifecycle.Lifecycle
 import org.eclipse.net4j.util.lifecycle.LifecycleUtil
 
 import static ch.flatland.cdo.server.ServerUtil.*
+import static ch.flatland.cdo.server.config.ServerConfig.*
 
 class Repository {
 
@@ -42,10 +42,10 @@ class Repository {
 			IRepository.Props.ID_GENERATION_LOCATION -> "STORE",
 			IRepository.Props.SERIALIZE_COMMITS -> "false",
 			IRepository.Props.OPTIMISTIC_LOCKING_TIMEOUT -> "10000",
-			IRepository.Props.OVERRIDE_UUID -> ServerConfig.getConfig.dataStore.repositoryName
+			IRepository.Props.OVERRIDE_UUID -> CONFIG.dataStore.repositoryName
 		)
 
-		REPOSITORY = CDOServerUtil.createRepository(ServerConfig.getConfig.dataStore.repositoryName, StoreFactory.createStore, repositoryProps) as InternalRepository
+		REPOSITORY = CDOServerUtil.createRepository(CONFIG.dataStore.repositoryName, StoreFactory.createStore, repositoryProps) as InternalRepository
 
 		CDOServerUtil.addRepository(IPluginContainer.INSTANCE, REPOSITORY);
 
