@@ -206,9 +206,6 @@ class JsonConverter {
 
 		if(object instanceof CDOObject) {
 			jsonBaseObject.addProperty(PERMISSION, object.cdoPermission.name)
-		}
-
-		if(object instanceof CDOObject) {
 			jsonBaseObject.addProperty(REVISION, object.cdoRevision.version)
 			jsonBaseObject.addProperty(DATE, dateFormat.format(new Date(object.cdoRevision.timeStamp)))
 			jsonBaseObject.addProperty(AUTHOR, object.view.session.commitInfoManager.getCommitInfo(object.cdoRevision.timeStamp).userID)
