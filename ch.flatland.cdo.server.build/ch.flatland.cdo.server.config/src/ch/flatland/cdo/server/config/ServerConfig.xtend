@@ -15,8 +15,10 @@ import org.slf4j.LoggerFactory
 class ServerConfig {
 	val static logger = LoggerFactory.getLogger(ServerConfig)
 
-	val static SYSTEM_PARAM = "ch.flatland.cdo.server.config"
-	val static FILE_PATH = System.getProperty(SYSTEM_PARAM)
+	val static SYSTEM_PARAM_HOST = "org.eclipse.equinox.http.jetty.http.host"
+	val static HOST = System.getProperty(SYSTEM_PARAM_HOST)
+	val static SYSTEM_PARAM_CONFIG = "ch.flatland.cdo.server.config"
+	val static FILE_PATH = System.getProperty(SYSTEM_PARAM_CONFIG)
 	var static Config CONFIG = null
 
 	private new() {
@@ -64,6 +66,10 @@ class ServerConfig {
 						logger.debug("Config object '{}' not found", it.name)
 					}
 				]
+				if (HOST != null) {
+					template.binding.ip = HOST
+					logger.info("Bind host ip '{}' specified by '{}'", HOST, SYSTEM_PARAM_HOST)
+				}
 				CONFIG = template
 			} catch(Exception e) {
 				logger.debug("Could not read config file!", e)

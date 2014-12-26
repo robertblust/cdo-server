@@ -11,6 +11,7 @@
       </programArgs>
       <vmArgs>-Xms40m
 -Xmx1024m
+-Dorg.eclipse.equinox.http.jetty.http.host=0.0.0.0
 -Dorg.eclipse.equinox.http.jetty.http.port=80
 -Dorg.eclipse.equinox.http.jetty.http.enabled=true
 -Dorg.eclipse.equinox.http.jetty.https.port=443
