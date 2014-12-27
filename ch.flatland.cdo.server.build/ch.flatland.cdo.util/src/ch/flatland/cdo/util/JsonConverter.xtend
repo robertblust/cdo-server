@@ -255,8 +255,27 @@ class JsonConverter {
 			val jsonAllInstancesLink = new JsonObject
 			jsonAllInstancesLink.addProperty(HREF, ALIAS_OBJECT + "/" + object.eClass.type + object.getTimestampParam(true))
 			jsonLinksObject.add(ALL_INSTANCES, jsonAllInstancesLink)
+
+			// xrefs
+			logger.debug("xRef for '{}'", object)
+			if(object instanceof CDOObject) {
+				val xrefs = object.view.queryXRefs(object, emptyList)
+				if(xrefs.size > 0) {
+					val jsonXlinksObject = new JsonArray
+					jsonBaseObject.add(XLINKS, jsonXlinksObject)
+					xrefs.forEach [
+						val source = it.sourceObject
+						val sourceFeature = it.sourceFeature
+						val target = it.targetObject
+						val jsonXlinkObject = new JsonObject
+						jsonXlinkObject.add(HREF, new JsonPrimitive(source.url))
+						jsonXlinksObject.add(jsonXlinkObject)
+						logger.debug("Found xref feature '{}', source '{}', target '{}'", sourceFeature.name, source, target)
+					]
+				}
+			}
 		}
-		
+
 		if(object instanceof CDOObject) {
 			jsonBaseObject.addRevisions(object)
 		}
