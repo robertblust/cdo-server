@@ -20,6 +20,7 @@ import java.math.BigDecimal
 import java.math.BigInteger
 import java.text.SimpleDateFormat
 import java.util.Date
+import java.util.HashMap
 import java.util.LinkedHashMap
 import java.util.List
 import java.util.Map
@@ -261,16 +262,33 @@ class JsonConverter {
 			if(object instanceof CDOObject) {
 				val xrefs = object.view.queryXRefs(object, emptyList)
 				if(xrefs.size > 0) {
-					val jsonXlinksObject = new JsonArray
-					jsonBaseObject.add(XLINKS, jsonXlinksObject)
-					xrefs.forEach [
-						val source = it.sourceObject
-						val sourceFeature = it.sourceFeature
-						val target = it.targetObject
-						val jsonXlinkObject = new JsonObject
-						jsonXlinkObject.add(HREF, new JsonPrimitive(source.url))
-						jsonXlinksObject.add(jsonXlinkObject)
+					val jsonXlinksArray = new JsonArray
+					jsonBaseObject.add(XLINKS, jsonXlinksArray)
+					val map = new HashMap<EStructuralFeature, List<EObject>>()
+					for (x : xrefs) {
+						val source = x.sourceObject
+						val sourceFeature = x.sourceFeature
+						val target = x.targetObject
 						logger.debug("Found xref feature '{}', source '{}', target '{}'", sourceFeature.name, source, target)
+				
+						if (map.keySet.contains(sourceFeature)) {
+							map.get(sourceFeature).add(source)
+						} else {
+							val list = newArrayList
+							list.add(source)
+							map.put(sourceFeature, list)
+						}
+					}
+					map.forEach[p1, p2|
+						val jsonXlinkObject = new JsonObject
+						jsonXlinksArray.add(jsonXlinkObject)
+						jsonXlinkObject.add("feature", new JsonPrimitive(REFERENCES + "." + p1.name))
+						
+						val jsonXfeatureArray = new JsonArray
+						jsonXlinkObject.add(HREFS, jsonXfeatureArray)
+						p2.forEach[
+							jsonXfeatureArray.add(new JsonPrimitive(it.url))
+						]
 					]
 				}
 			}

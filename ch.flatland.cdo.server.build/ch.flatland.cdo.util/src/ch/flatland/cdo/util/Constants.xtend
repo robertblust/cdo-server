@@ -75,6 +75,7 @@ class Constants {
 	val public static LINKS = "_links"
 	val public static XLINKS = "_xLinks"
 	val public static HREF = "href"
+	val public static HREFS = "hrefs"
 	val public static ICON = "icon"
 
 	// servlets
