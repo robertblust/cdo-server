@@ -451,6 +451,7 @@ class JsonConverter {
 		if(feature instanceof EReference) {
 			jsonBaseObject.add(FEATURE, new JsonPrimitive(REFERENCES + "." + feature.name))
 			jsonBaseObject.addType(feature.EReferenceType)
+			jsonBaseObject.addProperty(CONTAINMENT, feature.containment)
 		}
 		jsonBaseObject.addProperty(DERIVED, feature.isDerived)
 		jsonBaseObject.addProperty(MANY, feature.isMany)
