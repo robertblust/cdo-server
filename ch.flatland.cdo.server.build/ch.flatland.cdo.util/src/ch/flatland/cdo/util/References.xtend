@@ -27,6 +27,25 @@ class References {
 		}
 	}
 
+	def referencesSize(EObject object, String referenceName) {
+		if(referenceName == null) {
+			val allReferences = object.allReferences
+			return allReferences.size
+		} else {
+			val references = object.getReferences(referenceName)
+			if(references == null) {
+				return 0
+			}
+			if(references instanceof List<?>) {
+				return references.size
+			}
+			if (references instanceof EObject) {
+				return 1
+			}
+			return 0
+		}
+	}
+
 	def hasReferences(EObject object, String referenceName) {
 		if(referenceName == null) {
 			val allReferences = object.allReferences

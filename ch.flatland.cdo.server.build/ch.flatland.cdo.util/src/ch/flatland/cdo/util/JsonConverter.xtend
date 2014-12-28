@@ -228,20 +228,20 @@ class JsonConverter {
 			jsonLinksObject.add(SELF, jsonSelfLink)
 
 			// add reference link here
-			if(object.hasReferences(null)) {
-				val jsonReferencesLink = new JsonObject
-				jsonReferencesLink.addProperty(HREF, object.getUrl(false) + "/" + REFERENCES + object.getTimestampParam(true))
-				jsonLinksObject.add(REFERENCES, jsonReferencesLink)
+			val jsonReferencesLink = new JsonObject
+			jsonReferencesLink.addProperty(HREF, object.getUrl(false) + "/" + REFERENCES + object.getTimestampParam(true))
+			jsonReferencesLink.addProperty(SIZE, object.referencesSize(null))
+			jsonReferencesLink.addProperty(CONTAINMENT, false)
+			jsonLinksObject.add(REFERENCES, jsonReferencesLink)
 
-				// add detailed reference 
-				object.eClass.EAllReferences.forEach [
-					if(object.hasReferences(it.name)) {
-						val jsonReferenceLink = new JsonObject
-						jsonReferenceLink.addProperty(HREF, object.getUrl(false) + "/" + REFERENCES + "/" + it.name + object.getTimestampParam(true))
-						jsonReferencesLink.add(it.name, jsonReferenceLink)
-					}
-				]
-			}
+			// add detailed reference 
+			object.eClass.EAllReferences.forEach [
+				val jsonReferenceLink = new JsonObject
+				jsonReferenceLink.addProperty(HREF, object.getUrl(false) + "/" + REFERENCES + "/" + it.name + object.getTimestampParam(true))
+				jsonReferenceLink.addProperty(SIZE, object.referencesSize(it.name))
+				jsonReferenceLink.addProperty(CONTAINMENT, it.containment)
+				jsonReferencesLink.add(it.name, jsonReferenceLink)
+			]
 
 			val jsonContainerLink = new JsonObject
 			if(object.eContainer != null) {
@@ -270,8 +270,8 @@ class JsonConverter {
 						val sourceFeature = x.sourceFeature
 						val target = x.targetObject
 						logger.debug("Found xref feature '{}', source '{}', target '{}'", sourceFeature.name, source, target)
-				
-						if (map.keySet.contains(sourceFeature)) {
+
+						if(map.keySet.contains(sourceFeature)) {
 							map.get(sourceFeature).add(source)
 						} else {
 							val list = newArrayList
@@ -279,14 +279,13 @@ class JsonConverter {
 							map.put(sourceFeature, list)
 						}
 					}
-					map.forEach[p1, p2|
+					map.forEach [ p1, p2 |
 						val jsonXlinkObject = new JsonObject
 						jsonXlinksArray.add(jsonXlinkObject)
 						jsonXlinkObject.add("feature", new JsonPrimitive(REFERENCES + "." + p1.name))
-						
 						val jsonXfeatureArray = new JsonArray
 						jsonXlinkObject.add(HREFS, jsonXfeatureArray)
-						p2.forEach[
+						p2.forEach [
 							jsonXfeatureArray.add(new JsonPrimitive(it.url))
 						]
 					]
