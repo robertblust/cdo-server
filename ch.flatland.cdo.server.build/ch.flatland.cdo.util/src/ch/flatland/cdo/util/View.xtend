@@ -37,10 +37,9 @@ class View {
 	val extension Request = new Request
 
 	def safeRequestResource(CDOView view, HttpServletRequest req, HttpServletResponse resp) {
-		val alias = "/" + Splitter.on("/").split(req.requestURL).get(3)
 
 		try {
-			switch (alias) {
+			switch (req.servletAlias) {
 				case ALIAS_NODE: {
 					if(req.pathInfo != null) {
 						var String referenceName = null

@@ -18,6 +18,7 @@ class JsonConverterConfig {
 	var showReferences = true
 	var validate = false
 	var history = false
+	var serverAddress = ""
 
 	val extension Request = new Request
 
@@ -30,6 +31,7 @@ class JsonConverterConfig {
 		showReferences = req.refs
 		validate = req.validate
 		history = req.history
+		serverAddress = req.serverAddress
 	}
 
 	new() {
@@ -49,5 +51,9 @@ class JsonConverterConfig {
 	
 	def isHistory() {
 		history
+	}
+	
+	def getServerAddress() {
+		serverAddress
 	}
 }

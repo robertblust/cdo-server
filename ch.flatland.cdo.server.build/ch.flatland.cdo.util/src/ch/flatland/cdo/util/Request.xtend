@@ -45,7 +45,15 @@ class Request {
 		}
 		return null
 	}
-
+	
+	def getServerAddress(HttpServletRequest req) {
+		return req.requestURL.substring(0, req.requestURL.indexOf(req.servletAlias))
+	}
+	
+	def getServletAlias(HttpServletRequest req) {
+		return "/" + Splitter.on("/").split(req.requestURL).get(3)
+	}
+	
 	def getPathSegments(HttpServletRequest req) {
 		if(req.pathInfo == null) {
 			return null

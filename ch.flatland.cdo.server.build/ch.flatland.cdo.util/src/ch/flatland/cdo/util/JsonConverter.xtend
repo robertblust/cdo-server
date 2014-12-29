@@ -205,7 +205,7 @@ class JsonConverter {
 		}
 
 		jsonBaseObject.addType(object.eClass)
-		jsonBaseObject.addProperty(ICON, ALIAS_ICON + "/" + object.eClass.type)
+		jsonBaseObject.addProperty(ICON, jsonConverterConfig.serverAddress + ALIAS_ICON + "/" + object.eClass.type)
 
 		if(object instanceof CDOObject) {
 			jsonBaseObject.addProperty(PERMISSION, object.cdoPermission.name)
@@ -254,7 +254,7 @@ class JsonConverter {
 			jsonLinksObject.add(CONTAINER, jsonContainerLink)
 
 			val jsonAllInstancesLink = new JsonObject
-			jsonAllInstancesLink.addProperty(HREF, ALIAS_OBJECT + "/" + object.eClass.type + object.getTimestampParam(true))
+			jsonAllInstancesLink.addProperty(HREF, jsonConverterConfig.serverAddress + ALIAS_OBJECT + "/" + object.eClass.type + object.getTimestampParam(true))
 			jsonLinksObject.add(ALL_INSTANCES, jsonAllInstancesLink)
 
 			// xrefs
@@ -508,7 +508,7 @@ class JsonConverter {
 	}
 
 	def private dispatch getUrl(CDOResourceNode object, boolean withTimestamp) {
-		ALIAS_NODE + object.path + object.getTimestampParam(withTimestamp)
+		jsonConverterConfig.serverAddress + ALIAS_NODE + object.path + object.getTimestampParam(withTimestamp)
 	}
 
 	def private dispatch getUrl(EObject object, boolean withTimestamp) {
@@ -520,7 +520,7 @@ class JsonConverter {
 			// Legacy models do not inherit from CDOObject
 			id = EcoreUtil.getURI(object).fragment.replace("L", "")
 		}
-		ALIAS_OBJECT + "/" + object.eClass.type + "/" + id + object.getTimestampParam(withTimestamp)
+		jsonConverterConfig.serverAddress + ALIAS_OBJECT + "/" + object.eClass.type + "/" + id + object.getTimestampParam(withTimestamp)
 
 	}
 
