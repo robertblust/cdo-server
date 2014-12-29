@@ -100,13 +100,13 @@ class Delete {
 
 		suspects.forEach [
 			view.queryXRefs(it as CDOObject, emptyList).forEach [
+				val target = it.targetObject
 				val source = it.sourceObject
 				val sourceFeature = it.sourceFeature
-				val sourceIndex = it.sourceIndex
 				if(!sourceFeature.isDerived) {
-					logger.debug("Found xref feature '{}', source '{}', index '{}'", sourceFeature.name, source, sourceIndex)
+					logger.debug("Found xref feature '{}', source '{}', target '{}'", sourceFeature.name, source, target)
 					if(sourceFeature.isMany) {
-						(source.eGet(sourceFeature) as List<Object>).remove(sourceIndex)
+						(source.eGet(sourceFeature) as List<Object>).remove(target)
 					} else {
 						source.eUnset(sourceFeature)
 					}
