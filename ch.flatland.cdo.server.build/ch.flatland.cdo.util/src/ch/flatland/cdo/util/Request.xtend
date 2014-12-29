@@ -15,12 +15,12 @@ import javax.servlet.http.HttpServletRequest
 import org.apache.commons.codec.binary.Base64
 
 import static ch.flatland.cdo.util.Constants.*
+import static javax.servlet.http.HttpServletRequest.*
 import static javax.servlet.http.HttpServletResponse.*
 
 class Request {
 
 	val public static AUTH_HEADER = "Authorization"
-	val public static AUTH_BASIC = "Basic"
 	val public static ACCEPT_HEADER = "Accept"
 	val public static OPENSHIFT_FORWARD_PROTO_HEADER = "X-Forwarded-Proto"
 	val public static OPENSHIFT_FORWARD_PORT_HEADER = "X-Forwarded-Port"
@@ -45,12 +45,12 @@ class Request {
 		}
 		return null
 	}
-	
+
 	def getPathSegments(HttpServletRequest req) {
-		if (req.pathInfo == null) {
+		if(req.pathInfo == null) {
 			return null
 		}
-		return  Splitter.on("/").split(req.pathInfo)
+		return Splitter.on("/").split(req.pathInfo)
 	}
 
 	def getJsonCallback(HttpServletRequest req) {
@@ -112,7 +112,7 @@ class Request {
 	}
 
 	def isBasicAuth(HttpServletRequest request) {
-		return request.getHeader(AUTH_HEADER) != null && request.getHeader(AUTH_HEADER).toLowerCase.startsWith(AUTH_BASIC.toLowerCase)
+		return request.getHeader(AUTH_HEADER) != null && request.getHeader(AUTH_HEADER).toLowerCase.startsWith(BASIC_AUTH.toLowerCase)
 	}
 
 	def isSecureConnection(HttpServletRequest request) {

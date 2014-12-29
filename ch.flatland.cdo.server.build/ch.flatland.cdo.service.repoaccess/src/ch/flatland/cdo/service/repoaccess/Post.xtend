@@ -15,10 +15,13 @@ import ch.flatland.cdo.util.FlatlandException
 import ch.flatland.cdo.util.Request
 import ch.flatland.cdo.util.Response
 import ch.flatland.cdo.util.View
+import com.google.gson.JsonObject
+import java.util.List
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 import org.eclipse.emf.cdo.CDOObject
 import org.eclipse.emf.cdo.util.CommitException
+import org.eclipse.emf.ecore.EReference
 import org.slf4j.LoggerFactory
 
 import static javax.servlet.http.HttpServletResponse.*
@@ -32,6 +35,16 @@ class Post {
 	val extension EMF = new EMF
 	val extension View = new View
 
+	/*
+	 * Sample json request body
+	   {
+	 		"type": "base.FLPackage",
+	 			"attributes": {
+	 				"name": "New Child"
+	  			}
+	   }
+	 * 
+	 */
 	def void run(HttpServletRequest req, HttpServletResponse resp) {
 
 		val extension JsonConverter = req.createJsonConverter
@@ -41,33 +54,53 @@ class Post {
 
 		try {
 			val object = view.safeRequestResource(req, resp)
+
 			if(!(object instanceof CDOObject) || req.pointInTime != null) {
 				throw resp.statusMethodNotAllowed
 			}
-			val requestedObject = object as CDOObject
+			val container = object as CDOObject
+
+			logger.debug("Object '{}' loaded with type {}", container.cdoID, container.eClass.type)
+
+			container.safeCanWrite
 
 			val body = req.safeReadBody
+
 			logger.debug("Run for '{}' with body '{}'", req.userId, body)
 
-			val jsonObject = body.safeFromJson.asJsonObject
+			val referenceName = req.pathSegments.get(req.pathSegments.size - 1)
 
-			logger.debug("Object '{}' loaded type of {}", requestedObject.cdoID, requestedObject.eClass.type)
+			val eReference = container.eClass.EAllReferences.filter[it.name == referenceName].head
 
-			requestedObject.safeCanWrite
+			if(eReference == null) {
+				throw new FlatlandException(SC_BAD_REQUEST, container, "Object '{}' does not support the feature '{}'", container.cdoID, referenceName)
+			}
+			if(!eReference.isContainmentSettable) {
+				throw new FlatlandException(SC_BAD_REQUEST, container, "Feature '{}' is not a containment", referenceName)
+			}
 
-			jsonObject.toEObject = requestedObject
+			val jsonElement = body.safeFromJson
 
-			view.addRevisionDelta(requestedObject, JsonConverter.revisionDeltas)
+			if(jsonElement.isJsonArray) {
+				jsonElement.asJsonArray.forEach [
+					createObject(it.asJsonObject, container, eReference, req)
+				]
+			} else {
+				createObject(jsonElement.asJsonObject, container, eReference, req)
+			}
+
+			view.addRevisionDelta(container, JsonConverter.revisionDeltas)
 
 			try {
 				view.commit
 			} catch(CommitException e) {
 				view.rollback
-				throw new FlatlandException(SC_BAD_REQUEST, requestedObject, e.message)
+				throw new FlatlandException(SC_BAD_REQUEST, container, e.message)
 			}
 
 			// now transform manipulated object to json for the reponse			
-			jsonString = requestedObject.safeToJson
+			jsonString = container.safeToJson
+			resp.status = SC_CREATED
 
 		} catch(FlatlandException e) {
 			resp.status = e.httpStatus
@@ -79,5 +112,26 @@ class Post {
 			}
 		}
 		resp.writeResponse(req, jsonString)
+	}
+
+	def private createObject(JsonObject jsonObject, CDOObject container, EReference eReference, HttpServletRequest req) {
+		val extension JsonConverter = req.createJsonConverter
+
+		val type = jsonObject.safeResolveType
+
+		val newObject = container.view.safeCreateType(type.value.asString)
+
+		jsonObject.toEObject = newObject
+
+		if(eReference.many) {
+			val objects = container.eGet(eReference) as List<Object>
+			try {
+				objects.add(newObject)
+			} catch(ArrayStoreException e) {
+				throw new FlatlandException(SC_BAD_REQUEST, container, "'{}' does not support type '{}'", eReference.name, type)
+			}
+		} else {
+			container.eSet(eReference, newObject)
+		}
 	}
 }

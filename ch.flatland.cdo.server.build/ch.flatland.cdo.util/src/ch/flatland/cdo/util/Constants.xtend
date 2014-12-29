@@ -29,6 +29,7 @@ class Constants {
 	val public static JSONP_CONTENTTYPE_UTF8 = "application/javascript; charset=utf-8"
 	val public static GIF_CONTENTTYPE = "image/gif"
 	val public static GIF_FORMAT = "gif"
+	val public static METHOD_POST = "POST"
 
 	val public static ACCEPTED_CONTENTTYPES = newArrayList(ACCEPT_ALL_CONTENTTYPE, JSON_CONTENTTYPE, JSON_CONTENTTYPE_UTF8)
 

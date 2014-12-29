@@ -60,7 +60,7 @@ class View {
 						if(pathSegments.get(pathSegments.size - 2) == REFERENCES) {
 							pathInfo = pathInfo.replace("/" + REFERENCES + "/" + pathSegments.get(pathSegments.size - 1), "")
 							referenceName = pathSegments.get(pathSegments.size - 1)
-							if (req.method != "PUT") {
+							if (req.method != METHOD_POST) {
 								references = true
 							}
 						}
@@ -101,7 +101,7 @@ class View {
 						case 5: {
 							if(pathSegments.get(3) == REFERENCES) {
 								val object = view.safeResolveObject(pathSegments)
-								if (req.method == "PUT") {
+								if (req.method == METHOD_POST) {
 									return view.safeResolveObject(pathSegments)
 								}
 								return req.orderBy(req.filterBy(object.safeResolveReferences(pathSegments.get(4))))
