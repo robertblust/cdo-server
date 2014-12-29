@@ -96,9 +96,9 @@ class JsonConverter {
 	def JsonElement safeFromJson(String jsonString) {
 		val jsonElement = parser.parse(jsonString)
 		switch jsonElement.class {
-			case typeof(JsonObject) : return jsonElement.asJsonObject
-			case typeof(JsonArray) : return jsonElement.asJsonArray
-			default : throw new FlatlandException(SC_BAD_REQUEST, "Failed to parse json")
+			case typeof(JsonObject): return jsonElement.asJsonObject
+			case typeof(JsonArray): return jsonElement.asJsonArray
+			default: throw new FlatlandException(SC_BAD_REQUEST, "Failed to parse json")
 		}
 	}
 
@@ -228,19 +228,22 @@ class JsonConverter {
 			jsonSelfLink.addProperty(HREF, object.url)
 			jsonLinksObject.add(SELF, jsonSelfLink)
 
-			// add reference link here
-			val jsonReferencesLink = new JsonObject
-			jsonReferencesLink.addProperty(HREF, object.getUrl(false) + "/" + REFERENCES + object.getTimestampParam(true))
-			jsonReferencesLink.addProperty(SIZE, object.referencesSize(null))
-			jsonLinksObject.add(REFERENCES, jsonReferencesLink)
+			if(object.eClass.EAllReferences.size > 0) {
 
-			// add detailed reference 
-			object.eClass.EAllReferences.forEach [
-				val jsonReferenceLink = new JsonObject
-				jsonReferenceLink.addProperty(HREF, object.getUrl(false) + "/" + REFERENCES + "/" + it.name + object.getTimestampParam(true))
-				jsonReferenceLink.addProperty(SIZE, object.referencesSize(it.name))
-				jsonReferencesLink.add(it.name, jsonReferenceLink)
-			]
+				// add reference link
+				val jsonReferencesLink = new JsonObject
+				jsonReferencesLink.addProperty(HREF, object.getUrl(false) + "/" + REFERENCES + object.getTimestampParam(true))
+				jsonReferencesLink.addProperty(SIZE, object.referencesSize(null))
+				jsonLinksObject.add(REFERENCES, jsonReferencesLink)
+
+				// add detailed reference link
+				object.eClass.EAllReferences.forEach [
+					val jsonReferenceLink = new JsonObject
+					jsonReferenceLink.addProperty(HREF, object.getUrl(false) + "/" + REFERENCES + "/" + it.name + object.getTimestampParam(true))
+					jsonReferenceLink.addProperty(SIZE, object.referencesSize(it.name))
+					jsonReferencesLink.add(it.name, jsonReferenceLink)
+				]
+			}
 
 			val jsonContainerLink = new JsonObject
 			if(object.eContainer != null) {
@@ -554,7 +557,7 @@ class JsonConverter {
 				val jsonName = it.key
 				val jsonElement = it.value
 				logger.debug("Found attribute with name '{}'", jsonName)
-				eObject.eClass.EAllAttributes.forEach[
+				eObject.eClass.EAllAttributes.forEach [
 					logger.debug("eObject '{}' has eAttribute '{}'", eObject, it.name)
 				]
 				val eAttribute = eObject.eClass.EAllAttributes.filter[it.name == jsonName].head
