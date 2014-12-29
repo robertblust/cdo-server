@@ -94,7 +94,6 @@ class JsonConverter {
 	}
 
 	def JsonElement safeFromJson(String jsonString) {
-		println(jsonString) 
 		val jsonElement = parser.parse(jsonString)
 		switch jsonElement.class {
 			case typeof(JsonObject) : return jsonElement.asJsonObject
