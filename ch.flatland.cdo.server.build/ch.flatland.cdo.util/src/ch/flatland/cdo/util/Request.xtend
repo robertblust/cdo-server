@@ -25,6 +25,7 @@ class Request {
 	val public static OPENSHIFT_FORWARD_PROTO_HEADER = "X-Forwarded-Proto"
 	val public static OPENSHIFT_FORWARD_PORT_HEADER = "X-Forwarded-Port"
 	val public static HTTPS_PROTO = "https"
+	val public static HTTP_PROTO = "http"
 	val public static HTTPS_PORT = "443"
 
 	def getParameterNameAsListValueNotNull(HttpServletRequest req) {
@@ -47,7 +48,11 @@ class Request {
 	}
 	
 	def getServerAddress(HttpServletRequest req) {
-		return req.requestURL.substring(0, req.requestURL.indexOf(req.servletAlias))
+		var serverAddress = req.requestURL.substring(0, req.requestURL.indexOf(req.servletAlias))
+		if (req.getHeader(OPENSHIFT_FORWARD_PROTO_HEADER) != null && req.getHeader(OPENSHIFT_FORWARD_PROTO_HEADER) == HTTPS_PROTO) {
+			serverAddress.replaceFirst(HTTP_PROTO, HTTPS_PROTO)
+		}
+		return serverAddress
 	}
 	
 	def getServletAlias(HttpServletRequest req) {
@@ -123,11 +128,11 @@ class Request {
 		return request.getHeader(AUTH_HEADER) != null && request.getHeader(AUTH_HEADER).toLowerCase.startsWith(BASIC_AUTH.toLowerCase)
 	}
 
-	def isSecureConnection(HttpServletRequest request) {
-		if(request.secure) {
+	def isSecureConnection(HttpServletRequest req) {
+		if(req.secure) {
 			return true
 		}
-		if(request.getHeader(OPENSHIFT_FORWARD_PROTO_HEADER) != null && request.getHeader(OPENSHIFT_FORWARD_PROTO_HEADER) == HTTPS_PROTO && request.getHeader(OPENSHIFT_FORWARD_PORT_HEADER) != null && request.getHeader(OPENSHIFT_FORWARD_PORT_HEADER) == HTTPS_PORT) {
+		if(req.getHeader(OPENSHIFT_FORWARD_PROTO_HEADER) != null && req.getHeader(OPENSHIFT_FORWARD_PROTO_HEADER) == HTTPS_PROTO && req.getHeader(OPENSHIFT_FORWARD_PORT_HEADER) != null && req.getHeader(OPENSHIFT_FORWARD_PORT_HEADER) == HTTPS_PORT) {
 			return true
 		}
 		return false
