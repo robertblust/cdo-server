@@ -50,7 +50,7 @@ class Request {
 	def getServerAddress(HttpServletRequest req) {
 		var serverAddress = req.requestURL.substring(0, req.requestURL.indexOf(req.servletAlias))
 		if (req.getHeader(OPENSHIFT_FORWARD_PROTO_HEADER) != null && req.getHeader(OPENSHIFT_FORWARD_PROTO_HEADER) == HTTPS_PROTO) {
-			serverAddress.replaceFirst(HTTP_PROTO, HTTPS_PROTO)
+			serverAddress = serverAddress.replaceFirst(HTTP_PROTO, HTTPS_PROTO)
 		}
 		return serverAddress
 	}
