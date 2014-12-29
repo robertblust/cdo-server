@@ -56,7 +56,7 @@ class Post {
 		try {
 			val object = view.safeRequestResource(req, resp)
 
-			if(!(object instanceof CDOObject) || req.pointInTime != null || req.pathSegments == null || req.pathSegments.get(req.pathSegments.size - 2) != REFERENCES) {
+			if(!req.methodAllowed(object)) {
 				throw resp.statusMethodNotAllowed
 			}
 			val container = object as CDOObject
@@ -134,5 +134,12 @@ class Post {
 		} else {
 			container.eSet(eReference, newObject)
 		}
+	}
+
+	def private methodAllowed(HttpServletRequest req, Object object) {
+		if(!(object instanceof CDOObject) || req.pointInTime != null || req.pathSegments == null || req.pathSegments.get(req.pathSegments.size - 2) != REFERENCES) {
+			return false
+		}
+		return true
 	}
 }
