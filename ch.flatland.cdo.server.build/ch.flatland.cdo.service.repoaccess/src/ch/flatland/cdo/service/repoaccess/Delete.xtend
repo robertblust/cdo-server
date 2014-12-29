@@ -103,11 +103,13 @@ class Delete {
 				val source = it.sourceObject
 				val sourceFeature = it.sourceFeature
 				val sourceIndex = it.sourceIndex
-				logger.debug("Found xref feature '{}', source '{}', index '{}'", sourceFeature.name, source, sourceIndex)
-				if(sourceFeature.isMany) {
-					(source.eGet(sourceFeature) as List<Object>).remove(sourceIndex)
-				} else {
-					source.eUnset(sourceFeature)
+				if(!sourceFeature.isDerived) {
+					logger.debug("Found xref feature '{}', source '{}', index '{}'", sourceFeature.name, source, sourceIndex)
+					if(sourceFeature.isMany) {
+						(source.eGet(sourceFeature) as List<Object>).remove(sourceIndex)
+					} else {
+						source.eUnset(sourceFeature)
+					}
 				}
 			]
 		]

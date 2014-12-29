@@ -94,11 +94,12 @@ class JsonConverter {
 	}
 
 	def JsonElement safeFromJson(String jsonString) {
-		try {
-			parser.parse(jsonString)
-		} catch(Exception e) {
-			e.printStackTrace
-			throw new FlatlandException(SC_BAD_REQUEST, "Failed to parse json")
+		println(jsonString) 
+		val jsonElement = parser.parse(jsonString)
+		switch jsonElement.class {
+			case typeof(JsonObject) : return jsonElement.asJsonObject
+			case typeof(JsonArray) : return jsonElement.asJsonArray
+			default : throw new FlatlandException(SC_BAD_REQUEST, "Failed to parse json")
 		}
 	}
 

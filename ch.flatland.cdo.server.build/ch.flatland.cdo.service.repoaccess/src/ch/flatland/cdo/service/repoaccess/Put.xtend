@@ -48,8 +48,14 @@ class Put {
 
 			val body = req.safeReadBody
 			logger.debug("Run for '{}' with body '{}'", req.userId, body)
+			
+			
+			val jsonElement = body.safeFromJson
+			if(!jsonElement.isJsonObject) {
+				throw new FlatlandException(SC_BAD_REQUEST, requestedObject, "Request body is not a json object!")
+			}
 
-			val jsonObject = body.safeFromJson.asJsonObject
+			val jsonObject = jsonElement.asJsonObject
 
 			logger.debug("Object '{}' loaded type of {}", requestedObject.cdoID, requestedObject.eClass.type)
 

@@ -30,7 +30,7 @@ import static javax.servlet.http.HttpServletResponse.*
 
 class View {
 	val logger = LoggerFactory.getLogger(this.class)
-	
+
 	val extension EMF = new EMF
 	val extension DataStore = new DataStore
 	val extension References = new References
@@ -38,8 +38,6 @@ class View {
 
 	def safeRequestResource(CDOView view, HttpServletRequest req, HttpServletResponse resp) {
 		val alias = "/" + Splitter.on("/").split(req.requestURL).get(3)
-
-		
 
 		try {
 			switch (alias) {
@@ -60,7 +58,7 @@ class View {
 						if(pathSegments.get(pathSegments.size - 2) == REFERENCES) {
 							pathInfo = pathInfo.replace("/" + REFERENCES + "/" + pathSegments.get(pathSegments.size - 1), "")
 							referenceName = pathSegments.get(pathSegments.size - 1)
-							if (req.method != METHOD_POST) {
+							if(req.method != METHOD_POST) {
 								references = true
 							}
 						}
@@ -101,7 +99,7 @@ class View {
 						case 5: {
 							if(pathSegments.get(3) == REFERENCES) {
 								val object = view.safeResolveObject(pathSegments)
-								if (req.method == METHOD_POST) {
+								if(req.method == METHOD_POST) {
 									return view.safeResolveObject(pathSegments)
 								}
 								return req.orderBy(req.filterBy(object.safeResolveReferences(pathSegments.get(4))))
@@ -165,7 +163,7 @@ class View {
 	def private dispatch filterBy(HttpServletRequest req, List<EObject> list) {
 		val filteredList = newArrayList
 		list.forEach [
-			if (req.matches(it)) {
+			if(req.matches(it)) {
 				filteredList.add(it)
 			}
 		]
@@ -190,12 +188,12 @@ class View {
 		for (paramName : supportedFeatures) {
 			val eAttribute = object.eClass.EAllAttributes.filter[it.name == paramName].head
 			val toCheck = object.eGet(eAttribute)
-			
-			if (toCheck != null) {
+
+			if(toCheck != null) {
 				for (value : req.parameterMap.get(paramName)) {
 					logger.debug("Check attribute '{}' with value '{}' matches '{}'", paramName, toCheck, value)
 					criterias++
-					if (toCheck.toString.toLowerCase.contains(value.toLowerCase)) {
+					if(toCheck.toString.toLowerCase.contains(value.toLowerCase)) {
 						logger.debug("MATCHES")
 						matches++
 					}
@@ -203,15 +201,15 @@ class View {
 			}
 		}
 		logger.debug("Matches '{}' - Criterias '{}'", matches, criterias)
-		if (or && matches > 0) {
+		if(or && matches > 0) {
 			return true
 		}
-		if (!or && matches == criterias) {
+		if(!or && matches == criterias) {
 			return true
 		}
 		return false
 	}
-	
+
 	def private dispatch orderBy(HttpServletRequest req, Object object) {
 		return object
 	}
@@ -222,7 +220,7 @@ class View {
 
 	def private dispatch orderBy(HttpServletRequest req, List<EObject> list) {
 		val orderBy = req.orderBy
-		if (orderBy != null) {
+		if(orderBy != null) {
 			logger.debug("OrderBy '{}'", orderBy)
 			Collections.sort(list, new AttributeComparator(orderBy))
 		} else {

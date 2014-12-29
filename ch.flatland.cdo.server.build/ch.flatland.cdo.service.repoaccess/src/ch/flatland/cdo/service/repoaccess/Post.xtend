@@ -24,6 +24,7 @@ import org.eclipse.emf.cdo.util.CommitException
 import org.eclipse.emf.ecore.EReference
 import org.slf4j.LoggerFactory
 
+import static ch.flatland.cdo.util.Constants.*
 import static javax.servlet.http.HttpServletResponse.*
 
 class Post {
@@ -55,7 +56,7 @@ class Post {
 		try {
 			val object = view.safeRequestResource(req, resp)
 
-			if(!(object instanceof CDOObject) || req.pointInTime != null) {
+			if(!(object instanceof CDOObject) || req.pointInTime != null || req.pathSegments == null || req.pathSegments.get(req.pathSegments.size - 2) != REFERENCES) {
 				throw resp.statusMethodNotAllowed
 			}
 			val container = object as CDOObject
