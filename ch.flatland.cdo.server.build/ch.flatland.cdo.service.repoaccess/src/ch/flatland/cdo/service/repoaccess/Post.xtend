@@ -49,7 +49,7 @@ class Post {
 			val body = req.safeReadBody
 			logger.debug("Run for '{}' with body '{}'", req.userId, body)
 
-			val jsonObject = body.safeFromJson
+			val jsonObject = body.safeFromJson.asJsonObject
 
 			logger.debug("Object '{}' loaded type of {}", requestedObject.cdoID, requestedObject.eClass.type)
 

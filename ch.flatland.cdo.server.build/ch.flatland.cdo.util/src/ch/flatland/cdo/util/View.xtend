@@ -39,14 +39,15 @@ class View {
 	def safeRequestResource(CDOView view, HttpServletRequest req, HttpServletResponse resp) {
 		val alias = "/" + Splitter.on("/").split(req.requestURL).get(3)
 
-		var String referenceName = null
+		
 
 		try {
 			switch (alias) {
 				case ALIAS_NODE: {
 					if(req.pathInfo != null) {
+						var String referenceName = null
 						var pathInfo = req.pathInfo
-						val pathSegments = Splitter.on("/").split(req.pathInfo)
+						val pathSegments = req.pathSegments
 						var references = false
 
 						// all references requested?
@@ -59,7 +60,9 @@ class View {
 						if(pathSegments.get(pathSegments.size - 2) == REFERENCES) {
 							pathInfo = pathInfo.replace("/" + REFERENCES + "/" + pathSegments.get(pathSegments.size - 1), "")
 							referenceName = pathSegments.get(pathSegments.size - 1)
-							references = true
+							if (req.method != "PUT") {
+								references = true
+							}
 						}
 						val CDOObject object = view.getResourceNode(pathInfo)
 						if(!references) {
@@ -83,13 +86,13 @@ class View {
 							return objects
 						}
 						case 3: {
-							return view.safeResolveSegment3(pathSegments)
+							return view.safeResolveObject(pathSegments)
 						}
 						// all references requested?
 						case 4: {
 							if(pathSegments.get(3) == REFERENCES) {
-								val object = view.safeResolveSegment3(pathSegments)
-								return req.orderBy(req.filterBy(object.safeResolveReferences(referenceName)))
+								val object = view.safeResolveObject(pathSegments)
+								return req.orderBy(req.filterBy(object.safeResolveReferences(null)))
 							} else {
 								throw new Exception
 							}
@@ -97,7 +100,10 @@ class View {
 						// detail references requested?
 						case 5: {
 							if(pathSegments.get(3) == REFERENCES) {
-								val object = view.safeResolveSegment3(pathSegments)
+								val object = view.safeResolveObject(pathSegments)
+								if (req.method == "PUT") {
+									return view.safeResolveObject(pathSegments)
+								}
 								return req.orderBy(req.filterBy(object.safeResolveReferences(pathSegments.get(4))))
 							} else {
 								throw new Exception
@@ -135,7 +141,7 @@ class View {
 		]
 	}
 
-	def private safeResolveSegment3(CDOView view, Iterable<String> pathSegments) {
+	def private safeResolveObject(CDOView view, Iterable<String> pathSegments) {
 		val ePackage = view.safeEPackage(pathSegments.get(1).safePackagePrefix)
 		val eClass = ePackage.getEClassifier(pathSegments.get(1).safeEType)
 		if(eClass == null) {

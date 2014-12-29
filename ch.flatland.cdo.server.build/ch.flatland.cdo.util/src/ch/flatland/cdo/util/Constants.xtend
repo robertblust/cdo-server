@@ -42,7 +42,6 @@ class Constants {
 	val public static SELF = "self"
 	val public static NAME = "name"
 	val public static CONTAINER = "container"
-	val public static PUT = "put"
 	val public static ATTRIBUTES = "attributes"
 	val public static REFERENCES = "references"
 	val public static CONTAINMENT = "containment"

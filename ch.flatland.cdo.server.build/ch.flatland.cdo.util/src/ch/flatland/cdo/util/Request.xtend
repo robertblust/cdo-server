@@ -10,6 +10,7 @@
  */
 package ch.flatland.cdo.util
 
+import com.google.common.base.Splitter
 import javax.servlet.http.HttpServletRequest
 import org.apache.commons.codec.binary.Base64
 
@@ -43,6 +44,13 @@ class Request {
 			return req.getParameter(PARAM_POINT_IN_TIME)
 		}
 		return null
+	}
+	
+	def getPathSegments(HttpServletRequest req) {
+		if (req.pathInfo == null) {
+			return null
+		}
+		return  Splitter.on("/").split(req.pathInfo)
 	}
 
 	def getJsonCallback(HttpServletRequest req) {

@@ -93,10 +93,11 @@ class JsonConverter {
 		revisionDeltas
 	}
 
-	def JsonObject safeFromJson(String jsonString) {
+	def JsonElement safeFromJson(String jsonString) {
 		try {
-			parser.parse(jsonString).asJsonObject
+			parser.parse(jsonString)
 		} catch(Exception e) {
+			e.printStackTrace
 			throw new FlatlandException(SC_BAD_REQUEST, "Failed to parse json")
 		}
 	}
@@ -555,6 +556,9 @@ class JsonConverter {
 				val jsonName = it.key
 				val jsonElement = it.value
 				logger.debug("Found attribute with name '{}'", jsonName)
+				eObject.eClass.EAllAttributes.forEach[
+					logger.debug("eObject '{}' has eAttribute '{}'", eObject, it.name)
+				]
 				val eAttribute = eObject.eClass.EAllAttributes.filter[it.name == jsonName].head
 				if(eAttribute != null) {
 					logger.debug("Found matching eAttribute with name '{}'", jsonName)
@@ -824,14 +828,6 @@ class JsonConverter {
 			throw new FlatlandException(SC_BAD_REQUEST, "Attribute '{}' missing or null", ID)
 		}
 		return id
-	}
-
-	def safeResolvePut(JsonObject jsonObject) {
-		val put = jsonObject.entrySet.filter[it.key == PUT].head
-		if(put == null || put.value.isJsonNull) {
-			throw new FlatlandException(SC_BAD_REQUEST, "Attribute '{}' missing or null", PUT)
-		}
-		return put
 	}
 
 	def safeResolveType(JsonObject jsonObject) {
