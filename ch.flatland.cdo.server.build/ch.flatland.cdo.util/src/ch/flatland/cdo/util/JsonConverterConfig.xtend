@@ -11,6 +11,7 @@
 package ch.flatland.cdo.util
 
 import javax.servlet.http.HttpServletRequest
+import static ch.flatland.cdo.server.config.ServerConfig.*
 
 class JsonConverterConfig {
 
@@ -38,22 +39,37 @@ class JsonConverterConfig {
 	}
 
 	def isMeta() {
-		meta
+		if(CONFIG.json.meta) {
+			return true
+		}
+		return meta
 	}
 
 	def isShowReferences() {
-		showReferences
+		if(CONFIG.json.references) {
+			return true
+		}
+		return showReferences
 	}
-	
+
 	def isValidate() {
-		validate
+		if(CONFIG.json.validate) {
+			return true
+		}
+		return validate
 	}
-	
+
 	def isHistory() {
-		history
+		if(CONFIG.json.history) {
+			return true
+		}
+		return history
 	}
-	
+
 	def getServerAddress() {
-		serverAddress
+		if(CONFIG.json.fullUrl) {
+			return serverAddress
+		}
+		return ""
 	}
 }

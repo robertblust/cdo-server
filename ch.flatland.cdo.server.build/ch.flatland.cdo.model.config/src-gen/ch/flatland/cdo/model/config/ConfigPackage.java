@@ -96,13 +96,22 @@ public interface ConfigPackage extends EPackage {
 	int CONFIG__BINDING = 2;
 
 	/**
+	 * The feature id for the '<em><b>Json</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONFIG__JSON = 3;
+
+	/**
 	 * The number of structural features of the '<em>Config</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONFIG_FEATURE_COUNT = 3;
+	int CONFIG_FEATURE_COUNT = 4;
 
 	/**
 	 * The number of operations of the '<em>Config</em>' class.
@@ -342,6 +351,79 @@ public interface ConfigPackage extends EPackage {
 	int BINDING_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link ch.flatland.cdo.model.config.impl.JsonImpl <em>Json</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see ch.flatland.cdo.model.config.impl.JsonImpl
+	 * @see ch.flatland.cdo.model.config.impl.ConfigPackageImpl#getJson()
+	 * @generated
+	 */
+	int JSON = 4;
+
+	/**
+	 * The feature id for the '<em><b>Validate</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JSON__VALIDATE = 0;
+
+	/**
+	 * The feature id for the '<em><b>References</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JSON__REFERENCES = 1;
+
+	/**
+	 * The feature id for the '<em><b>History</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JSON__HISTORY = 2;
+
+	/**
+	 * The feature id for the '<em><b>Full Url</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JSON__FULL_URL = 3;
+
+	/**
+	 * The feature id for the '<em><b>Meta</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JSON__META = 4;
+
+	/**
+	 * The number of structural features of the '<em>Json</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JSON_FEATURE_COUNT = 5;
+
+	/**
+	 * The number of operations of the '<em>Json</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JSON_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link ch.flatland.cdo.model.config.StoreType <em>Store Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -349,7 +431,7 @@ public interface ConfigPackage extends EPackage {
 	 * @see ch.flatland.cdo.model.config.impl.ConfigPackageImpl#getStoreType()
 	 * @generated
 	 */
-	int STORE_TYPE = 4;
+	int STORE_TYPE = 5;
 
 	/**
 	 * The meta object id for the '{@link ch.flatland.cdo.model.config.AuthenticatorType <em>Authenticator Type</em>}' enum.
@@ -359,7 +441,7 @@ public interface ConfigPackage extends EPackage {
 	 * @see ch.flatland.cdo.model.config.impl.ConfigPackageImpl#getAuthenticatorType()
 	 * @generated
 	 */
-	int AUTHENTICATOR_TYPE = 5;
+	int AUTHENTICATOR_TYPE = 6;
 
 
 	/**
@@ -404,6 +486,17 @@ public interface ConfigPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getConfig_Binding();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link ch.flatland.cdo.model.config.Config#getJson <em>Json</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Json</em>'.
+	 * @see ch.flatland.cdo.model.config.Config#getJson()
+	 * @see #getConfig()
+	 * @generated
+	 */
+	EReference getConfig_Json();
 
 	/**
 	 * Returns the meta object for class '{@link ch.flatland.cdo.model.config.DataStore <em>Data Store</em>}'.
@@ -612,6 +705,71 @@ public interface ConfigPackage extends EPackage {
 	EAttribute getBinding_HttpPort();
 
 	/**
+	 * Returns the meta object for class '{@link ch.flatland.cdo.model.config.Json <em>Json</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Json</em>'.
+	 * @see ch.flatland.cdo.model.config.Json
+	 * @generated
+	 */
+	EClass getJson();
+
+	/**
+	 * Returns the meta object for the attribute '{@link ch.flatland.cdo.model.config.Json#isValidate <em>Validate</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Validate</em>'.
+	 * @see ch.flatland.cdo.model.config.Json#isValidate()
+	 * @see #getJson()
+	 * @generated
+	 */
+	EAttribute getJson_Validate();
+
+	/**
+	 * Returns the meta object for the attribute '{@link ch.flatland.cdo.model.config.Json#isReferences <em>References</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>References</em>'.
+	 * @see ch.flatland.cdo.model.config.Json#isReferences()
+	 * @see #getJson()
+	 * @generated
+	 */
+	EAttribute getJson_References();
+
+	/**
+	 * Returns the meta object for the attribute '{@link ch.flatland.cdo.model.config.Json#isHistory <em>History</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>History</em>'.
+	 * @see ch.flatland.cdo.model.config.Json#isHistory()
+	 * @see #getJson()
+	 * @generated
+	 */
+	EAttribute getJson_History();
+
+	/**
+	 * Returns the meta object for the attribute '{@link ch.flatland.cdo.model.config.Json#isFullUrl <em>Full Url</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Full Url</em>'.
+	 * @see ch.flatland.cdo.model.config.Json#isFullUrl()
+	 * @see #getJson()
+	 * @generated
+	 */
+	EAttribute getJson_FullUrl();
+
+	/**
+	 * Returns the meta object for the attribute '{@link ch.flatland.cdo.model.config.Json#isMeta <em>Meta</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Meta</em>'.
+	 * @see ch.flatland.cdo.model.config.Json#isMeta()
+	 * @see #getJson()
+	 * @generated
+	 */
+	EAttribute getJson_Meta();
+
+	/**
 	 * Returns the meta object for enum '{@link ch.flatland.cdo.model.config.StoreType <em>Store Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -687,6 +845,14 @@ public interface ConfigPackage extends EPackage {
 		 * @generated
 		 */
 		EReference CONFIG__BINDING = eINSTANCE.getConfig_Binding();
+
+		/**
+		 * The meta object literal for the '<em><b>Json</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONFIG__JSON = eINSTANCE.getConfig_Json();
 
 		/**
 		 * The meta object literal for the '{@link ch.flatland.cdo.model.config.impl.DataStoreImpl <em>Data Store</em>}' class.
@@ -845,6 +1011,56 @@ public interface ConfigPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute BINDING__HTTP_PORT = eINSTANCE.getBinding_HttpPort();
+
+		/**
+		 * The meta object literal for the '{@link ch.flatland.cdo.model.config.impl.JsonImpl <em>Json</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see ch.flatland.cdo.model.config.impl.JsonImpl
+		 * @see ch.flatland.cdo.model.config.impl.ConfigPackageImpl#getJson()
+		 * @generated
+		 */
+		EClass JSON = eINSTANCE.getJson();
+
+		/**
+		 * The meta object literal for the '<em><b>Validate</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute JSON__VALIDATE = eINSTANCE.getJson_Validate();
+
+		/**
+		 * The meta object literal for the '<em><b>References</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute JSON__REFERENCES = eINSTANCE.getJson_References();
+
+		/**
+		 * The meta object literal for the '<em><b>History</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute JSON__HISTORY = eINSTANCE.getJson_History();
+
+		/**
+		 * The meta object literal for the '<em><b>Full Url</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute JSON__FULL_URL = eINSTANCE.getJson_FullUrl();
+
+		/**
+		 * The meta object literal for the '<em><b>Meta</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute JSON__META = eINSTANCE.getJson_Meta();
 
 		/**
 		 * The meta object literal for the '{@link ch.flatland.cdo.model.config.StoreType <em>Store Type</em>}' enum.

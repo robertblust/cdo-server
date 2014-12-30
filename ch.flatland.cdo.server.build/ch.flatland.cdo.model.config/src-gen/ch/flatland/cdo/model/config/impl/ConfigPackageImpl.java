@@ -9,6 +9,7 @@ import ch.flatland.cdo.model.config.Config;
 import ch.flatland.cdo.model.config.ConfigFactory;
 import ch.flatland.cdo.model.config.ConfigPackage;
 import ch.flatland.cdo.model.config.DataStore;
+import ch.flatland.cdo.model.config.Json;
 import ch.flatland.cdo.model.config.StoreType;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -54,6 +55,13 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * @generated
 	 */
 	private EClass bindingEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass jsonEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -167,6 +175,15 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 */
 	public EReference getConfig_Binding() {
 		return (EReference)configEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getConfig_Json() {
+		return (EReference)configEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -345,6 +362,60 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getJson() {
+		return jsonEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getJson_Validate() {
+		return (EAttribute)jsonEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getJson_References() {
+		return (EAttribute)jsonEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getJson_History() {
+		return (EAttribute)jsonEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getJson_FullUrl() {
+		return (EAttribute)jsonEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getJson_Meta() {
+		return (EAttribute)jsonEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getStoreType() {
 		return storeTypeEEnum;
 	}
@@ -390,6 +461,7 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 		createEReference(configEClass, CONFIG__DATA_STORE);
 		createEReference(configEClass, CONFIG__AUTHENTICATOR);
 		createEReference(configEClass, CONFIG__BINDING);
+		createEReference(configEClass, CONFIG__JSON);
 
 		dataStoreEClass = createEClass(DATA_STORE);
 		createEAttribute(dataStoreEClass, DATA_STORE__STORE_TYPE);
@@ -412,6 +484,13 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 		createEAttribute(bindingEClass, BINDING__TCP_PORT);
 		createEAttribute(bindingEClass, BINDING__HTTP);
 		createEAttribute(bindingEClass, BINDING__HTTP_PORT);
+
+		jsonEClass = createEClass(JSON);
+		createEAttribute(jsonEClass, JSON__VALIDATE);
+		createEAttribute(jsonEClass, JSON__REFERENCES);
+		createEAttribute(jsonEClass, JSON__HISTORY);
+		createEAttribute(jsonEClass, JSON__FULL_URL);
+		createEAttribute(jsonEClass, JSON__META);
 
 		// Create enums
 		storeTypeEEnum = createEEnum(STORE_TYPE);
@@ -455,6 +534,7 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 		initEReference(getConfig_DataStore(), this.getDataStore(), null, "dataStore", null, 1, 1, Config.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getConfig_Authenticator(), this.getAuthenticator(), null, "authenticator", null, 1, 1, Config.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getConfig_Binding(), this.getBinding(), null, "binding", null, 1, 1, Config.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getConfig_Json(), this.getJson(), null, "json", null, 1, 1, Config.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(dataStoreEClass, DataStore.class, "DataStore", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getDataStore_StoreType(), this.getStoreType(), "storeType", null, 1, 1, DataStore.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -477,6 +557,13 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 		initEAttribute(getBinding_TcpPort(), theEcorePackage.getEString(), "tcpPort", null, 0, 1, Binding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBinding_Http(), theEcorePackage.getEBoolean(), "http", null, 1, 1, Binding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBinding_HttpPort(), theEcorePackage.getEString(), "httpPort", null, 0, 1, Binding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(jsonEClass, Json.class, "Json", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getJson_Validate(), theEcorePackage.getEBoolean(), "validate", null, 1, 1, Json.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getJson_References(), theEcorePackage.getEBoolean(), "references", null, 1, 1, Json.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getJson_History(), theEcorePackage.getEBoolean(), "history", null, 1, 1, Json.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getJson_FullUrl(), theEcorePackage.getEBoolean(), "fullUrl", null, 1, 1, Json.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getJson_Meta(), theEcorePackage.getEBoolean(), "meta", null, 1, 1, Json.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(storeTypeEEnum, StoreType.class, "StoreType");

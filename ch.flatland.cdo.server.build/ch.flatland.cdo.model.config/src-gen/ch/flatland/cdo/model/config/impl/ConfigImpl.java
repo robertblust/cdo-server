@@ -7,6 +7,7 @@ import ch.flatland.cdo.model.config.Binding;
 import ch.flatland.cdo.model.config.Config;
 import ch.flatland.cdo.model.config.ConfigPackage;
 import ch.flatland.cdo.model.config.DataStore;
+import ch.flatland.cdo.model.config.Json;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -27,6 +28,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link ch.flatland.cdo.model.config.impl.ConfigImpl#getDataStore <em>Data Store</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.config.impl.ConfigImpl#getAuthenticator <em>Authenticator</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.config.impl.ConfigImpl#getBinding <em>Binding</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.config.impl.ConfigImpl#getJson <em>Json</em>}</li>
  * </ul>
  * </p>
  *
@@ -62,6 +64,16 @@ public class ConfigImpl extends MinimalEObjectImpl.Container implements Config {
 	 * @ordered
 	 */
 	protected Binding binding;
+
+	/**
+	 * The cached value of the '{@link #getJson() <em>Json</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getJson()
+	 * @generated
+	 * @ordered
+	 */
+	protected Json json;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -216,6 +228,49 @@ public class ConfigImpl extends MinimalEObjectImpl.Container implements Config {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Json getJson() {
+		return json;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetJson(Json newJson, NotificationChain msgs) {
+		Json oldJson = json;
+		json = newJson;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ConfigPackage.CONFIG__JSON, oldJson, newJson);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setJson(Json newJson) {
+		if (newJson != json) {
+			NotificationChain msgs = null;
+			if (json != null)
+				msgs = ((InternalEObject)json).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ConfigPackage.CONFIG__JSON, null, msgs);
+			if (newJson != null)
+				msgs = ((InternalEObject)newJson).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ConfigPackage.CONFIG__JSON, null, msgs);
+			msgs = basicSetJson(newJson, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ConfigPackage.CONFIG__JSON, newJson, newJson));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -225,6 +280,8 @@ public class ConfigImpl extends MinimalEObjectImpl.Container implements Config {
 				return basicSetAuthenticator(null, msgs);
 			case ConfigPackage.CONFIG__BINDING:
 				return basicSetBinding(null, msgs);
+			case ConfigPackage.CONFIG__JSON:
+				return basicSetJson(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -243,6 +300,8 @@ public class ConfigImpl extends MinimalEObjectImpl.Container implements Config {
 				return getAuthenticator();
 			case ConfigPackage.CONFIG__BINDING:
 				return getBinding();
+			case ConfigPackage.CONFIG__JSON:
+				return getJson();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -263,6 +322,9 @@ public class ConfigImpl extends MinimalEObjectImpl.Container implements Config {
 				return;
 			case ConfigPackage.CONFIG__BINDING:
 				setBinding((Binding)newValue);
+				return;
+			case ConfigPackage.CONFIG__JSON:
+				setJson((Json)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -285,6 +347,9 @@ public class ConfigImpl extends MinimalEObjectImpl.Container implements Config {
 			case ConfigPackage.CONFIG__BINDING:
 				setBinding((Binding)null);
 				return;
+			case ConfigPackage.CONFIG__JSON:
+				setJson((Json)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -303,6 +368,8 @@ public class ConfigImpl extends MinimalEObjectImpl.Container implements Config {
 				return authenticator != null;
 			case ConfigPackage.CONFIG__BINDING:
 				return binding != null;
+			case ConfigPackage.CONFIG__JSON:
+				return json != null;
 		}
 		return super.eIsSet(featureID);
 	}

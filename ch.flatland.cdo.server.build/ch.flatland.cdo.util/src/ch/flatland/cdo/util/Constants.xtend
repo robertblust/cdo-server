@@ -19,7 +19,7 @@ class Constants {
 	val public static PARAM_FORCE = "force"
 	val public static PARAM_XOR_FILTER = "or"
 	val public static PARAM_REFS = "refs"
-	val public static PARAM_NO_VALIDATION = "noVal"
+	val public static PARAM_VALIDATION = "val"
 	val public static PARAM_POINT_IN_TIME = "pit"
 	val public static PARAM_HISTORY = "history"
 	val public static ACCEPT_ALL_CONTENTTYPE = "*/*"

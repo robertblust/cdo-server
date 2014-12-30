@@ -138,9 +138,19 @@ class ServerConfig {
 			http = true
 			httpPort = "8080"
 		]
+
+		val json = ConfigFactory.eINSTANCE.createJson => [
+			validate = true
+			references = false
+			history = false
+			fullUrl = false
+			meta = false
+		]
+		
 		config.dataStore = dataStore
 		config.authenticator = authenticator
 		config.binding = binding
+		config.json = json
 
 		return config
 	}

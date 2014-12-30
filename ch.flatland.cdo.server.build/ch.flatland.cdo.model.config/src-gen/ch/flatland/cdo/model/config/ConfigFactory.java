@@ -58,6 +58,15 @@ public interface ConfigFactory extends EFactory {
 	Binding createBinding();
 
 	/**
+	 * Returns a new object of class '<em>Json</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Json</em>'.
+	 * @generated
+	 */
+	Json createJson();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

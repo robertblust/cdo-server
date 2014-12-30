@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link ch.flatland.cdo.model.config.Config#getDataStore <em>Data Store</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.config.Config#getAuthenticator <em>Authenticator</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.config.Config#getBinding <em>Binding</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.config.Config#getJson <em>Json</em>}</li>
  * </ul>
  * </p>
  *
@@ -100,5 +101,31 @@ public interface Config extends EObject {
 	 * @generated
 	 */
 	void setBinding(Binding value);
+
+	/**
+	 * Returns the value of the '<em><b>Json</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Json</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Json</em>' containment reference.
+	 * @see #setJson(Json)
+	 * @see ch.flatland.cdo.model.config.ConfigPackage#getConfig_Json()
+	 * @model containment="true" required="true"
+	 * @generated
+	 */
+	Json getJson();
+
+	/**
+	 * Sets the value of the '{@link ch.flatland.cdo.model.config.Config#getJson <em>Json</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Json</em>' containment reference.
+	 * @see #getJson()
+	 * @generated
+	 */
+	void setJson(Json value);
 
 } // Config

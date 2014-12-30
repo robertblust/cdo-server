@@ -138,7 +138,6 @@ class View {
 						default:
 							throw new Exception
 					}
-
 				}
 				default:
 					throw new Exception

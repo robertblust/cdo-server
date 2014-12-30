@@ -81,7 +81,7 @@ class Request {
 	}
 
 	def isValidate(HttpServletRequest req) {
-		return req.getParameter(PARAM_NO_VALIDATION) == null
+		return req.getParameter(PARAM_VALIDATION) != null
 	}
 
 	def isHistory(HttpServletRequest req) {

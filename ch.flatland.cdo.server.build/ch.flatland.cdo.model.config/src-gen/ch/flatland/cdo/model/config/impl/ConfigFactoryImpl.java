@@ -61,6 +61,7 @@ public class ConfigFactoryImpl extends EFactoryImpl implements ConfigFactory {
 			case ConfigPackage.DATA_STORE: return createDataStore();
 			case ConfigPackage.AUTHENTICATOR: return createAuthenticator();
 			case ConfigPackage.BINDING: return createBinding();
+			case ConfigPackage.JSON: return createJson();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -138,6 +139,16 @@ public class ConfigFactoryImpl extends EFactoryImpl implements ConfigFactory {
 	public Binding createBinding() {
 		BindingImpl binding = new BindingImpl();
 		return binding;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Json createJson() {
+		JsonImpl json = new JsonImpl();
+		return json;
 	}
 
 	/**

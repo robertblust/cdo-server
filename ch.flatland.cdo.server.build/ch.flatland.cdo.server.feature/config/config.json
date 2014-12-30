@@ -20,5 +20,12 @@
         "tcpPort": "2036",
         "http": true,
         "httpPort": "8080"
+    },
+    "json": {
+    	"validate": true,
+		"references": false,
+		"history": false,
+		"fullUrl": false,
+		"meta": false
     }
 }
