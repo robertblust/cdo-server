@@ -71,7 +71,7 @@ class Put {
 				throw new FlatlandException(SC_BAD_REQUEST, requestedObject, e.message)
 			}
 
-			// now transform manipulated object to json for the reponse			
+			// now transform manipulated object to json for the response			
 			jsonString = requestedObject.safeToJson
 
 		} catch(FlatlandException e) {

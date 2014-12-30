@@ -99,7 +99,7 @@ class Post {
 				throw new FlatlandException(SC_BAD_REQUEST, container, e.message)
 			}
 
-			// now transform manipulated object to json for the reponse			
+			// now transform manipulated object to json for the response			
 			jsonString = container.eGet(eReference).safeToJson
 			resp.status = SC_CREATED
 
