@@ -26,7 +26,13 @@ import java.util.List
 import java.util.Map
 import org.apache.commons.codec.binary.Base64
 import org.eclipse.emf.cdo.CDOObject
+import org.eclipse.emf.cdo.common.revision.delta.CDOAddFeatureDelta
+import org.eclipse.emf.cdo.common.revision.delta.CDOContainerFeatureDelta
 import org.eclipse.emf.cdo.common.revision.delta.CDOFeatureDelta
+import org.eclipse.emf.cdo.common.revision.delta.CDOListFeatureDelta
+import org.eclipse.emf.cdo.common.revision.delta.CDOMoveFeatureDelta
+import org.eclipse.emf.cdo.common.revision.delta.CDORemoveFeatureDelta
+import org.eclipse.emf.cdo.common.revision.delta.CDOSetFeatureDelta
 import org.eclipse.emf.cdo.common.security.NoPermissionException
 import org.eclipse.emf.cdo.eresource.CDOResourceNode
 import org.eclipse.emf.common.util.Diagnostic
@@ -94,11 +100,15 @@ class JsonConverter {
 	}
 
 	def JsonElement safeFromJson(String jsonString) {
-		val jsonElement = parser.parse(jsonString)
-		switch jsonElement.class {
-			case typeof(JsonObject): return jsonElement.asJsonObject
-			case typeof(JsonArray): return jsonElement.asJsonArray
-			default: throw new FlatlandException(SC_BAD_REQUEST, "Failed to parse json")
+		try {
+			val jsonElement = parser.parse(jsonString)
+			switch jsonElement.class {
+				case typeof(JsonObject): return jsonElement.asJsonObject
+				case typeof(JsonArray): return jsonElement.asJsonArray
+				default: throw new FlatlandException(SC_BAD_REQUEST, "Failed to parse json")
+			}
+		} catch(Exception e) {
+			throw new FlatlandException(SC_BAD_REQUEST, "Failed to parse json")
 		}
 	}
 
@@ -786,20 +796,75 @@ class JsonConverter {
 				val deltasArray = new JsonArray
 				origin.add(REVISION_DELTA, deltasArray)
 				val object = it
-				for (revisionDelta : localRevisionDelta.get(object)) {
-					val delta = new JsonObject
-					delta.addProperty(MESSAGE, "Changed feature '" + revisionDelta.feature.name + "' of '" + ITEM_DELEGATOR.getText(object) + "' to '" + object.eGet(revisionDelta.feature) + "'")
-					if(revisionDelta.feature instanceof EAttribute) {
-						delta.addProperty(FEATURE, (ATTRIBUTES + "." + revisionDelta.feature.name))
+				for (featureDelta : localRevisionDelta.get(object)) {
+					val jsonObject = featureDelta.getFeatureDeltaAsJsonObject(object) as JsonObject
+					if(featureDelta.feature instanceof EAttribute) {
+						jsonObject.addProperty(FEATURE, (ATTRIBUTES + "." + featureDelta.feature.name))
 					} else {
-						delta.addProperty(FEATURE, (REFERENCES + "." + revisionDelta.feature.name))
+						jsonObject.addProperty(FEATURE, (REFERENCES + "." + featureDelta.feature.name))
 					}
-					deltasArray.add(delta)
+					deltasArray.add(jsonObject)
 				}
 				messageArray.add(origin)
 			]
 			return messageArray
 		}
+	}
+
+	def private dispatch JsonElement getFeatureDeltaAsJsonObject(CDOFeatureDelta delta, EObject object) {
+		logger.debug("getFeatureDeltaAsJsonObject with CDOFeatureDelta '{}'", delta)
+		val jsonObject = new JsonObject
+		jsonObject.addProperty(MESSAGE, delta.type + " feature '" + delta.feature.name + "' of 'OID" + object.oid + "' to '" + object.eGet(delta.feature) + "'")
+		return jsonObject
+	}
+
+	def private dispatch JsonElement getFeatureDeltaAsJsonObject(CDOListFeatureDelta delta, EObject object) {
+		logger.debug("getFeatureDeltaAsJsonObject with CDOListFeatureDelta '{}'", delta)
+		val jsonObject = new JsonObject
+		jsonObject.addProperty(MESSAGE, delta.type + " feature '" + delta.feature.name + "' of 'OID" + object.oid + "' changed")
+		if (delta.listChanges.size > 0) {
+			val jsonArray = new JsonArray
+			delta.listChanges.forEach[
+				jsonArray.add(it.getFeatureDeltaAsJsonObject(object))	
+			]
+			jsonObject.add(DETAILS, jsonArray)
+		}
+		return jsonObject
+	}
+
+	def private dispatch JsonElement getFeatureDeltaAsJsonObject(CDOSetFeatureDelta delta, EObject object) {
+		logger.debug("getFeatureDeltaAsJsonObject with CDOSetFeatureDelta '{}'", delta)
+		val jsonObject = new JsonObject
+		jsonObject.addProperty(MESSAGE, delta.type + " feature '" + delta.feature.name + "' of 'OID" + object.oid + "' from '" + delta.oldValue + "' to '" + delta.value + "'")
+		return jsonObject
+	}
+
+	def private dispatch JsonElement getFeatureDeltaAsJsonObject(CDOAddFeatureDelta delta, EObject object) {
+		logger.debug("getFeatureDeltaAsJsonObject with CDOAddFeatureDelta '{}'", delta)
+		val message = delta.type + " '" + delta.value + "' to feature '" + delta.feature.name + "[" + delta.index + "]'"
+		return new JsonPrimitive(message)
+	}
+
+	def private dispatch JsonElement getFeatureDeltaAsJsonObject(CDOContainerFeatureDelta delta, EObject object) {
+		// TODO can be more detailed
+		logger.debug("getFeatureDeltaAsJsonObject with CDOContainerFeatureDelta '{}'", delta)
+		val jsonObject = new JsonObject
+		jsonObject.addProperty(MESSAGE, delta.type + " feature '" + delta.feature.name + "' of 'OID" + object.oid + "' to '" + object.eGet(delta.feature) + "'")
+		return jsonObject
+	}
+
+	def private dispatch JsonElement getFeatureDeltaAsJsonObject(CDOMoveFeatureDelta delta, EObject object) {
+		// TODO can be more detailed
+		logger.debug("getFeatureDeltaAsJsonObject with CDOMoveFeatureDelta '{}'", delta)
+		val jsonObject = new JsonObject
+		jsonObject.addProperty(MESSAGE, delta.type + " feature '" + delta.feature.name + "' of 'OID" + object.oid + "' to '" + object.eGet(delta.feature) + "'")
+		return jsonObject
+	}
+
+	def private dispatch JsonElement getFeatureDeltaAsJsonObject(CDORemoveFeatureDelta delta, EObject object) {
+		logger.debug("getFeatureDeltaAsJsonObject with CDORemoveFeatureDelta '{}'", delta)
+		val message = delta.type + " '" + delta.value + "' form feature '" + delta.feature.name + "[" + delta.index + "]'"
+		return new JsonPrimitive(message)
 	}
 
 	def getView(EObject eObject) {

@@ -143,7 +143,7 @@ class View {
 					revisionDeltas.put(scope, list)
 				}
 				for (delta : revisionDelta.featureDeltas) {
-					logger.debug("Add revision delta '{}'", delta)
+					logger.debug("Add revision delta '{}' with class '{}'", delta, delta.class.name)
 					list.add(delta)
 				}
 			}
