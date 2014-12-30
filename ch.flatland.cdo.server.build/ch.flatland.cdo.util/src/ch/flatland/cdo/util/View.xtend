@@ -10,7 +10,6 @@
  */
 package ch.flatland.cdo.util
 
-import com.google.common.base.Splitter
 import java.util.Collections
 import java.util.List
 import java.util.Map
@@ -34,6 +33,7 @@ class View {
 	val extension EMF = new EMF
 	val extension DataStore = new DataStore
 	val extension References = new References
+	val extension XReferences = new XReferences
 	val extension Request = new Request
 
 	def safeRequestResource(CDOView view, HttpServletRequest req, HttpServletResponse resp) {
@@ -74,10 +74,11 @@ class View {
 					}
 				}
 				case ALIAS_OBJECT: {
-					val pathSegments = Splitter.on("/").split(req.pathInfo)
+					val pathSegments = req.pathSegments
+					if(pathSegments == null) {
+						throw new Exception
+					}
 					switch (pathSegments.size) {
-						case 1: {
-						}
 						case 2: {
 							val objects = view.findByType(pathSegments.get(1), req)
 							return objects
@@ -110,11 +111,44 @@ class View {
 							throw new Exception
 					}
 				}
+				case ALIAS_XREFS: {
+					val pathSegments = req.pathSegments
+					if(pathSegments == null) {
+						throw new Exception
+					}
+					switch (pathSegments.size) {
+						// all x references requested?
+						case 3: {
+							if(pathSegments.get(2) == REFERENCES) {
+								val object = view.safeResolveObject(pathSegments.get(1))
+								return req.orderBy(req.filterBy(object.safeResolveXReferences))
+							} else {
+								throw new Exception
+							}
+						}
+						// detail x references requested?
+						case 4: {
+							if(pathSegments.get(2) == REFERENCES) {
+								val object = view.safeResolveObject(pathSegments.get(1))
+								return req.orderBy(req.filterBy(object.safeResolveGroupXReferences(pathSegments.get(3))))
+							} else {
+								throw new Exception
+							}
+						}
+						default:
+							throw new Exception
+					}
+
+				}
 				default:
 					throw new Exception
 			}
 		} catch(Exception e) {
-			throw new FlatlandException(SC_NOT_FOUND, "{} not found", req.pathInfo)
+			var path = req.servletAlias
+			if(req.pathInfo != null) {
+				path = path + req.pathInfo
+			}
+			throw new FlatlandException(SC_NOT_FOUND, "{} not found", path)
 		}
 	}
 
@@ -156,11 +190,15 @@ class View {
 		if(eClass == null) {
 			throw new Exception
 		}
-		val object = view.getObject(CDOIDUtil.createLong(Long.parseLong(pathSegments.get(2))))
+		val object = view.safeResolveObject(pathSegments.get(2))
 		if(object.eClass.type != pathSegments.get(1)) {
 			throw new Exception
 		}
 		return object
+	}
+	
+	def private safeResolveObject(CDOView view, String id) {
+		return view.getObject(CDOIDUtil.createLong(Long.parseLong(id)))	
 	}
 
 	def private dispatch filterBy(HttpServletRequest req, Object object) {

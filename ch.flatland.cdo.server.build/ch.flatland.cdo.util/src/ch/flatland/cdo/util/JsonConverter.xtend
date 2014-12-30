@@ -20,7 +20,6 @@ import java.math.BigDecimal
 import java.math.BigInteger
 import java.text.SimpleDateFormat
 import java.util.Date
-import java.util.HashMap
 import java.util.LinkedHashMap
 import java.util.List
 import java.util.Map
@@ -65,6 +64,7 @@ class JsonConverter {
 	val extension View = new View
 	val extension HttpStatus = new HttpStatus
 	val extension References = new References
+	val extension XReferences = new XReferences
 
 	val diagnostics = new LinkedHashMap<EObject, List<Diagnostic>>
 	val revisionDeltas = new LinkedHashMap<EObject, List<CDOFeatureDelta>>
@@ -270,38 +270,23 @@ class JsonConverter {
 			jsonLinksObject.add(ALL_INSTANCES, jsonAllInstancesLink)
 
 			// xrefs
-			logger.debug("xRef for '{}'", object)
-			if(object instanceof CDOObject) {
-				val xrefs = object.view.queryXRefs(object, emptyList)
-				if(xrefs.size > 0) {
-					val jsonXlinksArray = new JsonArray
-					jsonBaseObject.add(XLINKS, jsonXlinksArray)
-					val map = new HashMap<EStructuralFeature, List<EObject>>()
-					for (x : xrefs) {
-						val source = x.sourceObject
-						val sourceFeature = x.sourceFeature
-						val target = x.targetObject
-						logger.debug("Found xref feature '{}', source '{}', target '{}'", sourceFeature.name, source, target)
+			if (object.hasXReferences) {
+				val jsonXLinksObject = new JsonObject
+				jsonBaseObject.add(XLINKS, jsonXLinksObject)
+				
+				// add x reference link
+				val jsonXReferencesLink = new JsonObject
+				jsonXReferencesLink.addProperty(HREF, jsonConverterConfig.serverAddress + ALIAS_XREFS + "/" + object.oid + "/" + REFERENCES + object.getTimestampParam(true))
+				jsonXReferencesLink.addProperty(SIZE, object.allXReferences.size)
+				jsonXLinksObject.add(REFERENCES, jsonXReferencesLink)
 
-						if(map.keySet.contains(sourceFeature)) {
-							map.get(sourceFeature).add(source)
-						} else {
-							val list = newArrayList
-							list.add(source)
-							map.put(sourceFeature, list)
-						}
-					}
-					map.forEach [ p1, p2 |
-						val jsonXlinkObject = new JsonObject
-						jsonXlinksArray.add(jsonXlinkObject)
-						jsonXlinkObject.add("feature", new JsonPrimitive(REFERENCES + "." + p1.name))
-						val jsonXfeatureArray = new JsonArray
-						jsonXlinkObject.add(HREFS, jsonXfeatureArray)
-						p2.forEach [
-							jsonXfeatureArray.add(new JsonPrimitive(it.url))
-						]
-					]
-				}
+				// add detailed x reference link
+				object.resolveGroupXReferences.forEach[p1, p2|
+					val jsonXReferenceLink = new JsonObject
+					jsonXReferenceLink.addProperty(HREF, jsonConverterConfig.serverAddress + ALIAS_XREFS + "/" + object.oid + "/" + REFERENCES + "/" + p1.name + object.getTimestampParam(true))
+					jsonXReferenceLink.addProperty(SIZE, p2.size)
+					jsonXReferencesLink.add(p1.name, jsonXReferenceLink)
+				]
 			}
 		}
 

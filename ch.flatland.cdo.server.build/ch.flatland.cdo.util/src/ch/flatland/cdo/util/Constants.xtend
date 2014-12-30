@@ -83,4 +83,5 @@ class Constants {
 	val public static ALIAS_NODE = "/node"
 	val public static ALIAS_OBJECT = "/obj"
 	val public static ALIAS_ICON = "/icon"
+	val public static ALIAS_XREFS = "/xrefs"
 }
