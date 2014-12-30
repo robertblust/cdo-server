@@ -62,7 +62,7 @@ class Put {
 
 			jsonObject.toEObject = requestedObject
 
-			view.addRevisionDelta(requestedObject, JsonConverter.revisionDeltas)
+			view.addRevisionDelta(JsonConverter.revisionDeltas)
 
 			try {
 				view.commit

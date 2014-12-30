@@ -90,7 +90,7 @@ class Post {
 				createObject(jsonElement.asJsonObject, container, eReference, req)
 			}
 
-			view.addRevisionDelta(container, JsonConverter.revisionDeltas)
+			view.addRevisionDelta(JsonConverter.revisionDeltas)
 
 			try {
 				view.commit
@@ -100,7 +100,7 @@ class Post {
 			}
 
 			// now transform manipulated object to json for the reponse			
-			jsonString = container.safeToJson
+			jsonString = container.eGet(eReference).safeToJson
 			resp.status = SC_CREATED
 
 		} catch(FlatlandException e) {

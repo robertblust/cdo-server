@@ -132,9 +132,21 @@ class View {
 		}
 	}
 
-	def addRevisionDelta(CDOTransaction view, EObject object, Map<EObject, List<CDOFeatureDelta>> revisionDeltas) {
+	def addRevisionDelta(CDOTransaction view, Map<EObject, List<CDOFeatureDelta>> revisionDeltas) {
 		view.revisionDeltas.forEach [ id, revisionDelta |
-			revisionDeltas.put(object, revisionDelta.featureDeltas)
+			val scope = view.getObject(id)
+			if(scope != null) {
+				var List<CDOFeatureDelta> list = newArrayList
+				if(revisionDeltas.containsKey(scope)) {
+					list = revisionDeltas.get(scope)
+				} else {
+					revisionDeltas.put(scope, list)
+				}
+				for (delta : revisionDelta.featureDeltas) {
+					logger.debug("Add revision delta '{}'", delta)
+					list.add(delta)
+				}
+			}
 		]
 	}
 

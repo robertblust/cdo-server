@@ -786,12 +786,16 @@ class JsonConverter {
 				val deltasArray = new JsonArray
 				origin.add(REVISION_DELTA, deltasArray)
 				val object = it
-				localRevisionDelta.get(object).forEach[val delta = new JsonObject delta.addProperty(MESSAGE, "Changed feature '" + it.feature.name + "' of '" + ITEM_DELEGATOR.getText(object) + "' to '" + object.eGet(it.feature) + "'")
-					if(it.feature instanceof EAttribute) {
-						delta.addProperty(FEATURE, (ATTRIBUTES + "." + feature.name))
+				for (revisionDelta : localRevisionDelta.get(object)) {
+					val delta = new JsonObject
+					delta.addProperty(MESSAGE, "Changed feature '" + revisionDelta.feature.name + "' of '" + ITEM_DELEGATOR.getText(object) + "' to '" + object.eGet(revisionDelta.feature) + "'")
+					if(revisionDelta.feature instanceof EAttribute) {
+						delta.addProperty(FEATURE, (ATTRIBUTES + "." + revisionDelta.feature.name))
 					} else {
-						delta.addProperty(FEATURE, (REFERENCES + "." + feature.name))
-					} deltasArray.add(delta)]
+						delta.addProperty(FEATURE, (REFERENCES + "." + revisionDelta.feature.name))
+					}
+					deltasArray.add(delta)
+				}
 				messageArray.add(origin)
 			]
 			return messageArray
