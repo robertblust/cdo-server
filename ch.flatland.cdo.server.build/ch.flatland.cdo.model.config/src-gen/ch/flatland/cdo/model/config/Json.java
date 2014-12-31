@@ -14,9 +14,12 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link ch.flatland.cdo.model.config.Json#isValidate <em>Validate</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.config.Json#isReferences <em>References</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.config.Json#isXreferences <em>Xreferences</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.config.Json#isHistory <em>History</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.config.Json#isFullUrl <em>Full Url</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.config.Json#isMeta <em>Meta</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.config.Json#isLinks <em>Links</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.config.Json#isXlinks <em>Xlinks</em>}</li>
  * </ul>
  * </p>
  *
@@ -76,6 +79,32 @@ public interface Json extends EObject {
 	 * @generated
 	 */
 	void setReferences(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Xreferences</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Xreferences</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Xreferences</em>' attribute.
+	 * @see #setXreferences(boolean)
+	 * @see ch.flatland.cdo.model.config.ConfigPackage#getJson_Xreferences()
+	 * @model unique="false" required="true"
+	 * @generated
+	 */
+	boolean isXreferences();
+
+	/**
+	 * Sets the value of the '{@link ch.flatland.cdo.model.config.Json#isXreferences <em>Xreferences</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Xreferences</em>' attribute.
+	 * @see #isXreferences()
+	 * @generated
+	 */
+	void setXreferences(boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>History</b></em>' attribute.
@@ -154,5 +183,57 @@ public interface Json extends EObject {
 	 * @generated
 	 */
 	void setMeta(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Links</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Links</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Links</em>' attribute.
+	 * @see #setLinks(boolean)
+	 * @see ch.flatland.cdo.model.config.ConfigPackage#getJson_Links()
+	 * @model unique="false" required="true"
+	 * @generated
+	 */
+	boolean isLinks();
+
+	/**
+	 * Sets the value of the '{@link ch.flatland.cdo.model.config.Json#isLinks <em>Links</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Links</em>' attribute.
+	 * @see #isLinks()
+	 * @generated
+	 */
+	void setLinks(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Xlinks</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Xlinks</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Xlinks</em>' attribute.
+	 * @see #setXlinks(boolean)
+	 * @see ch.flatland.cdo.model.config.ConfigPackage#getJson_Xlinks()
+	 * @model unique="false" required="true"
+	 * @generated
+	 */
+	boolean isXlinks();
+
+	/**
+	 * Sets the value of the '{@link ch.flatland.cdo.model.config.Json#isXlinks <em>Xlinks</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Xlinks</em>' attribute.
+	 * @see #isXlinks()
+	 * @generated
+	 */
+	void setXlinks(boolean value);
 
 } // Json

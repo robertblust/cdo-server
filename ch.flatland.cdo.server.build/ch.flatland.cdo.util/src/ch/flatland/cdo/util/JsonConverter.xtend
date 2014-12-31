@@ -224,74 +224,83 @@ class JsonConverter {
 		}
 
 		jsonBaseObject.addAttributes(object)
-		if(jsonConverterConfig.showReferences && !stop) {
+		if(jsonConverterConfig.references && !stop) {
 			jsonBaseObject.addReferences(object)
 		}
 
 		if(object.oid != null) {
+			if(jsonConverterConfig.links) {
 
-			// no meta model, a real object
-			val jsonLinksObject = new JsonObject
-			jsonBaseObject.add(LINKS, jsonLinksObject)
+				// no meta model, a real object
+				val jsonLinksObject = new JsonObject
+				jsonBaseObject.add(LINKS, jsonLinksObject)
 
-			val jsonSelfLink = new JsonObject
-			jsonSelfLink.addProperty(HREF, object.url)
-			jsonLinksObject.add(SELF, jsonSelfLink)
+				val jsonSelfLink = new JsonObject
+				jsonSelfLink.addProperty(HREF, object.url)
+				jsonLinksObject.add(SELF, jsonSelfLink)
 
-			if(object.eClass.EAllReferences.size > 0) {
+				if(object.eClass.EAllReferences.size > 0) {
 
-				// add reference link
-				val jsonReferencesLink = new JsonObject
-				jsonReferencesLink.addProperty(HREF, object.getUrl(false) + "/" + REFERENCES + object.getTimestampParam(true))
-				jsonReferencesLink.addProperty(SIZE, object.referencesSize(null))
-				jsonLinksObject.add(REFERENCES, jsonReferencesLink)
+					// add reference link
+					val jsonReferencesLink = new JsonObject
+					jsonReferencesLink.addProperty(HREF, object.getUrl(false) + "/" + REFERENCES + object.getTimestampParam(true))
+					jsonReferencesLink.addProperty(SIZE, object.referencesSize(null))
+					jsonLinksObject.add(REFERENCES, jsonReferencesLink)
 
-				// add detailed reference link
-				object.eClass.EAllReferences.forEach [
-					val jsonReferenceLink = new JsonObject
-					jsonReferenceLink.addProperty(HREF, object.getUrl(false) + "/" + REFERENCES + "/" + it.name + object.getTimestampParam(true))
-					jsonReferenceLink.addProperty(SIZE, object.referencesSize(it.name))
-					jsonReferencesLink.add(it.name, jsonReferenceLink)
-				]
+					// add detailed reference link
+					object.eClass.EAllReferences.forEach [
+						val jsonReferenceLink = new JsonObject
+						jsonReferenceLink.addProperty(HREF, object.getUrl(false) + "/" + REFERENCES + "/" + it.name + object.getTimestampParam(true))
+						jsonReferenceLink.addProperty(SIZE, object.referencesSize(it.name))
+						jsonReferencesLink.add(it.name, jsonReferenceLink)
+					]
+				}
+
+				val jsonContainerLink = new JsonObject
+				if(object.eContainer != null) {
+					jsonContainerLink.addProperty(HREF, object.eContainer.url)
+				} else if(object.eResource instanceof CDOResourceNode) {
+
+					// it must be contained in a CDOResourceNode			
+					jsonContainerLink.addProperty(HREF, (object.eResource as CDOResourceNode).url)
+				}
+				jsonLinksObject.add(CONTAINER, jsonContainerLink)
+
+				val jsonAllInstancesLink = new JsonObject
+				jsonAllInstancesLink.addProperty(HREF, jsonConverterConfig.serverAddress + ALIAS_OBJECT + "/" + object.eClass.type + object.getTimestampParam(true))
+				jsonLinksObject.add(ALL_INSTANCES, jsonAllInstancesLink)
+
 			}
 
-			val jsonContainerLink = new JsonObject
-			if(object.eContainer != null) {
-				jsonContainerLink.addProperty(HREF, object.eContainer.url)
-			} else if(object.eResource instanceof CDOResourceNode) {
+			if(jsonConverterConfig.xlinks) {
 
-				// it must be contained in a CDOResourceNode			
-				jsonContainerLink.addProperty(HREF, (object.eResource as CDOResourceNode).url)
+				// xrefs
+				if(object.hasXReferences) {
+					val jsonXLinksObject = new JsonObject
+					jsonBaseObject.add(XLINKS, jsonXLinksObject)
+
+					// add x reference link
+					val jsonXReferencesLink = new JsonObject
+					jsonXReferencesLink.addProperty(HREF, jsonConverterConfig.serverAddress + ALIAS_XREFS + "/" + object.oid + "/" + REFERENCES + object.getTimestampParam(true))
+					jsonXReferencesLink.addProperty(SIZE, object.allXReferences.size)
+					jsonXLinksObject.add(REFERENCES, jsonXReferencesLink)
+
+					// add detailed x reference link
+					object.resolveGroupXReferences.forEach [ p1, p2 |
+						val jsonXReferenceLink = new JsonObject
+						jsonXReferenceLink.addProperty(HREF, jsonConverterConfig.serverAddress + ALIAS_XREFS + "/" + object.oid + "/" + REFERENCES + "/" + p1.name + object.getTimestampParam(true))
+						jsonXReferenceLink.addProperty(SIZE, p2.size)
+						jsonXReferencesLink.add(p1.name, jsonXReferenceLink)
+					]
+				}
 			}
-			jsonLinksObject.add(CONTAINER, jsonContainerLink)
 
-			val jsonAllInstancesLink = new JsonObject
-			jsonAllInstancesLink.addProperty(HREF, jsonConverterConfig.serverAddress + ALIAS_OBJECT + "/" + object.eClass.type + object.getTimestampParam(true))
-			jsonLinksObject.add(ALL_INSTANCES, jsonAllInstancesLink)
-
-			// xrefs
-			if (object.hasXReferences) {
-				val jsonXLinksObject = new JsonObject
-				jsonBaseObject.add(XLINKS, jsonXLinksObject)
-				
-				// add x reference link
-				val jsonXReferencesLink = new JsonObject
-				jsonXReferencesLink.addProperty(HREF, jsonConverterConfig.serverAddress + ALIAS_XREFS + "/" + object.oid + "/" + REFERENCES + object.getTimestampParam(true))
-				jsonXReferencesLink.addProperty(SIZE, object.allXReferences.size)
-				jsonXLinksObject.add(REFERENCES, jsonXReferencesLink)
-
-				// add detailed x reference link
-				object.resolveGroupXReferences.forEach[p1, p2|
-					val jsonXReferenceLink = new JsonObject
-					jsonXReferenceLink.addProperty(HREF, jsonConverterConfig.serverAddress + ALIAS_XREFS + "/" + object.oid + "/" + REFERENCES + "/" + p1.name + object.getTimestampParam(true))
-					jsonXReferenceLink.addProperty(SIZE, p2.size)
-					jsonXReferencesLink.add(p1.name, jsonXReferenceLink)
-				]
-			}
 		}
 
 		if(object instanceof CDOObject) {
-			jsonBaseObject.addRevisions(object)
+			if(jsonConverterConfig.history) {
+				jsonBaseObject.addRevisions(object)
+			}
 		}
 
 		jsonBaseObject.addDiagnosticsAndMeta(object)
@@ -300,27 +309,27 @@ class JsonConverter {
 	}
 
 	def private addRevisions(JsonObject jsonBaseObject, CDOObject object) {
-		if(jsonConverterConfig.history) {
-			object.cdoHistory.triggerLoad
-			while(object.cdoHistory.loading) {
-				//TODO could be long running!
-			}
-			val historySize = object.cdoHistory.size
-			if(historySize > 1) {
-				val jsonRevisionsArray = new JsonArray
-				jsonBaseObject.add(HISTORY, jsonRevisionsArray)
-				for (var i = historySize - 1; i > 0; i--) {
-					val commitInfo = object.cdoHistory.getElement(i)
-					val jsonRevsionObject = new JsonObject
-					jsonRevsionObject.addProperty(REVISION, (historySize - i))
-					jsonRevsionObject.addProperty(SELF, object.getUrl(false) + "?" + PARAM_POINT_IN_TIME + "=" + commitInfo.timeStamp)
-					jsonRevsionObject.addProperty(DATE, dateFormat.format(new Date(commitInfo.timeStamp)))
-					jsonRevsionObject.addProperty(AUTHOR, commitInfo.userID)
-					logger.debug("'{}' resolved revsion '{}'", object, (historySize - i))
-					jsonRevisionsArray.add(jsonRevsionObject)
-				}
+
+		object.cdoHistory.triggerLoad
+		while(object.cdoHistory.loading) {
+			//TODO could be long running!
+		}
+		val historySize = object.cdoHistory.size
+		if(historySize > 1) {
+			val jsonRevisionsArray = new JsonArray
+			jsonBaseObject.add(HISTORY, jsonRevisionsArray)
+			for (var i = historySize - 1; i > 0; i--) {
+				val commitInfo = object.cdoHistory.getElement(i)
+				val jsonRevsionObject = new JsonObject
+				jsonRevsionObject.addProperty(REVISION, (historySize - i))
+				jsonRevsionObject.addProperty(SELF, object.getUrl(false) + "?" + PARAM_POINT_IN_TIME + "=" + commitInfo.timeStamp)
+				jsonRevsionObject.addProperty(DATE, dateFormat.format(new Date(commitInfo.timeStamp)))
+				jsonRevsionObject.addProperty(AUTHOR, commitInfo.userID)
+				logger.debug("'{}' resolved revsion '{}'", object, (historySize - i))
+				jsonRevisionsArray.add(jsonRevsionObject)
 			}
 		}
+
 	}
 
 	def private addAttributes(JsonObject jsonBaseObject, EObject object) {
@@ -807,10 +816,10 @@ class JsonConverter {
 		logger.debug("getFeatureDeltaAsJsonObject with CDOListFeatureDelta '{}'", delta)
 		val jsonObject = new JsonObject
 		jsonObject.addProperty(MESSAGE, delta.type + " feature '" + delta.feature.name + "' of 'OID" + object.oid + "' changed")
-		if (delta.listChanges.size > 0) {
+		if(delta.listChanges.size > 0) {
 			val jsonArray = new JsonArray
-			delta.listChanges.forEach[
-				jsonArray.add(it.getFeatureDeltaAsJsonObject(object))	
+			delta.listChanges.forEach [
+				jsonArray.add(it.getFeatureDeltaAsJsonObject(object))
 			]
 			jsonObject.add(DETAILS, jsonArray)
 		}
@@ -831,6 +840,7 @@ class JsonConverter {
 	}
 
 	def private dispatch JsonElement getFeatureDeltaAsJsonObject(CDOContainerFeatureDelta delta, EObject object) {
+
 		// TODO can be more detailed
 		logger.debug("getFeatureDeltaAsJsonObject with CDOContainerFeatureDelta '{}'", delta)
 		val jsonObject = new JsonObject
@@ -839,6 +849,7 @@ class JsonConverter {
 	}
 
 	def private dispatch JsonElement getFeatureDeltaAsJsonObject(CDOMoveFeatureDelta delta, EObject object) {
+
 		// TODO can be more detailed
 		logger.debug("getFeatureDeltaAsJsonObject with CDOMoveFeatureDelta '{}'", delta)
 		val jsonObject = new JsonObject

@@ -45,7 +45,10 @@ class Binding {
 class Json {
 	boolean[1] validate
 	boolean[1] references
+	boolean[1] xreferences
 	boolean[1] history
 	boolean[1] fullUrl
 	boolean[1] meta
+	boolean[1] links
+	boolean[1] xlinks
 }

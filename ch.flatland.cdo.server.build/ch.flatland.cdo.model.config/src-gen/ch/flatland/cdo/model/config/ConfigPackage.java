@@ -379,13 +379,22 @@ public interface ConfigPackage extends EPackage {
 	int JSON__REFERENCES = 1;
 
 	/**
+	 * The feature id for the '<em><b>Xreferences</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JSON__XREFERENCES = 2;
+
+	/**
 	 * The feature id for the '<em><b>History</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int JSON__HISTORY = 2;
+	int JSON__HISTORY = 3;
 
 	/**
 	 * The feature id for the '<em><b>Full Url</b></em>' attribute.
@@ -394,7 +403,7 @@ public interface ConfigPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int JSON__FULL_URL = 3;
+	int JSON__FULL_URL = 4;
 
 	/**
 	 * The feature id for the '<em><b>Meta</b></em>' attribute.
@@ -403,7 +412,25 @@ public interface ConfigPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int JSON__META = 4;
+	int JSON__META = 5;
+
+	/**
+	 * The feature id for the '<em><b>Links</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JSON__LINKS = 6;
+
+	/**
+	 * The feature id for the '<em><b>Xlinks</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JSON__XLINKS = 7;
 
 	/**
 	 * The number of structural features of the '<em>Json</em>' class.
@@ -412,7 +439,7 @@ public interface ConfigPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int JSON_FEATURE_COUNT = 5;
+	int JSON_FEATURE_COUNT = 8;
 
 	/**
 	 * The number of operations of the '<em>Json</em>' class.
@@ -737,6 +764,17 @@ public interface ConfigPackage extends EPackage {
 	EAttribute getJson_References();
 
 	/**
+	 * Returns the meta object for the attribute '{@link ch.flatland.cdo.model.config.Json#isXreferences <em>Xreferences</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Xreferences</em>'.
+	 * @see ch.flatland.cdo.model.config.Json#isXreferences()
+	 * @see #getJson()
+	 * @generated
+	 */
+	EAttribute getJson_Xreferences();
+
+	/**
 	 * Returns the meta object for the attribute '{@link ch.flatland.cdo.model.config.Json#isHistory <em>History</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -768,6 +806,28 @@ public interface ConfigPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getJson_Meta();
+
+	/**
+	 * Returns the meta object for the attribute '{@link ch.flatland.cdo.model.config.Json#isLinks <em>Links</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Links</em>'.
+	 * @see ch.flatland.cdo.model.config.Json#isLinks()
+	 * @see #getJson()
+	 * @generated
+	 */
+	EAttribute getJson_Links();
+
+	/**
+	 * Returns the meta object for the attribute '{@link ch.flatland.cdo.model.config.Json#isXlinks <em>Xlinks</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Xlinks</em>'.
+	 * @see ch.flatland.cdo.model.config.Json#isXlinks()
+	 * @see #getJson()
+	 * @generated
+	 */
+	EAttribute getJson_Xlinks();
 
 	/**
 	 * Returns the meta object for enum '{@link ch.flatland.cdo.model.config.StoreType <em>Store Type</em>}'.
@@ -1039,6 +1099,14 @@ public interface ConfigPackage extends EPackage {
 		EAttribute JSON__REFERENCES = eINSTANCE.getJson_References();
 
 		/**
+		 * The meta object literal for the '<em><b>Xreferences</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute JSON__XREFERENCES = eINSTANCE.getJson_Xreferences();
+
+		/**
 		 * The meta object literal for the '<em><b>History</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1061,6 +1129,22 @@ public interface ConfigPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute JSON__META = eINSTANCE.getJson_Meta();
+
+		/**
+		 * The meta object literal for the '<em><b>Links</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute JSON__LINKS = eINSTANCE.getJson_Links();
+
+		/**
+		 * The meta object literal for the '<em><b>Xlinks</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute JSON__XLINKS = eINSTANCE.getJson_Xlinks();
 
 		/**
 		 * The meta object literal for the '{@link ch.flatland.cdo.model.config.StoreType <em>Store Type</em>}' enum.

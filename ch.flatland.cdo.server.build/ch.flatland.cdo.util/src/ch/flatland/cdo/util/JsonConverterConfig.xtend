@@ -16,9 +16,12 @@ import static ch.flatland.cdo.server.config.ServerConfig.*
 class JsonConverterConfig {
 
 	var meta = false
-	var showReferences = true
-	var validate = false
+	var references = false
+	var xreferences = false
+	var validate = true
 	var history = false
+	var links = true
+	var xlinks = true
 	var serverAddress = ""
 
 	val extension Request = new Request
@@ -29,10 +32,13 @@ class JsonConverterConfig {
 
 	def private init(HttpServletRequest req) {
 		meta = req.metaDataRequested
-		showReferences = req.refs
+		references = req.refs
+		xreferences = req.refs
 		validate = req.validate
 		history = req.history
 		serverAddress = req.serverAddress
+		links = req.links
+		xlinks = req.xlinks
 	}
 
 	new() {
@@ -45,11 +51,18 @@ class JsonConverterConfig {
 		return meta
 	}
 
-	def isShowReferences() {
+	def isReferences() {
 		if(CONFIG.json.references) {
 			return true
 		}
-		return showReferences
+		return references
+	}
+	
+	def isXreferences() {
+		if(CONFIG.json.xreferences) {
+			return true
+		}
+		return xreferences
 	}
 
 	def isValidate() {
@@ -64,6 +77,20 @@ class JsonConverterConfig {
 			return true
 		}
 		return history
+	}
+	
+	def isLinks() {
+		if(CONFIG.json.links) {
+			return true
+		}
+		return links
+	}
+	
+	def isXlinks() {
+		if(CONFIG.json.xlinks) {
+			return true
+		}
+		return xlinks
 	}
 
 	def getServerAddress() {

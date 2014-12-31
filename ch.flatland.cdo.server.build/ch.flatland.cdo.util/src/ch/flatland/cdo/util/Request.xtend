@@ -95,7 +95,19 @@ class Request {
 	def isRefs(HttpServletRequest req) {
 		return req.getParameter(PARAM_REFS) != null
 	}
+	
+	def isXrefs(HttpServletRequest req) {
+		return req.getParameter(PARAM_XREFS) != null
+	}
+	
+	def isLinks(HttpServletRequest req) {
+		return req.getParameter(PARAM_LINKS) != null
+	}
 
+	def isXlinks(HttpServletRequest req) {
+		return req.getParameter(PARAM_XLINKS) != null
+	}
+	
 	def isMetaDataRequested(HttpServletRequest req) {
 		return req.getParameter(PARAM_META) != null
 	}

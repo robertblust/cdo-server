@@ -24,8 +24,11 @@
     "json": {
     	"validate": true,
 		"references": false,
+		"xreferences": false,
 		"history": false,
 		"fullUrl": false,
-		"meta": false
+		"meta": false,
+		"links": true,
+		"xlinks": true
     }
 }

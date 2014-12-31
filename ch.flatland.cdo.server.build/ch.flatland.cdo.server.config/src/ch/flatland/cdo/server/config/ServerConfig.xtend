@@ -142,9 +142,12 @@ class ServerConfig {
 		val json = ConfigFactory.eINSTANCE.createJson => [
 			validate = true
 			references = false
+			xreferences = false
 			history = false
 			fullUrl = false
 			meta = false
+			links = true
+			xlinks = true
 		]
 		
 		config.dataStore = dataStore
