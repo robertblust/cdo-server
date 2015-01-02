@@ -48,6 +48,7 @@ class Constants {
 	val public static CONTAINER = "container"
 	val public static ATTRIBUTES = "attributes"
 	val public static REFERENCES = "references"
+	val public static XREFERENCES = "xReferences"
 	val public static CONTAINMENT = "containment"
 	val public static EXTENDS = "extends"
 	val public static DERIVED = "derived"

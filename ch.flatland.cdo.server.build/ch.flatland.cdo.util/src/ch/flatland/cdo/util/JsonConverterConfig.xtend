@@ -33,7 +33,7 @@ class JsonConverterConfig {
 	def private init(HttpServletRequest req) {
 		meta = req.metaDataRequested
 		references = req.refs
-		xreferences = req.refs
+		xreferences = req.xrefs
 		validate = req.validate
 		history = req.history
 		serverAddress = req.serverAddress

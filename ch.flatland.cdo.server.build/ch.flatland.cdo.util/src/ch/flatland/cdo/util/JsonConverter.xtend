@@ -228,6 +228,17 @@ class JsonConverter {
 			jsonBaseObject.addReferences(object)
 		}
 
+		if(jsonConverterConfig.xreferences && !stop) {
+			val xrefs = object.allXReferences
+			if(xrefs.size > 0) {
+				val jsonXrefsArray = new JsonArray
+				jsonBaseObject.add(XREFERENCES, jsonXrefsArray)
+				xrefs.forEach [
+					jsonXrefsArray.add(it.toJsonBase(true))
+				]
+			}
+		}
+
 		if(object.oid != null) {
 			if(jsonConverterConfig.links) {
 
