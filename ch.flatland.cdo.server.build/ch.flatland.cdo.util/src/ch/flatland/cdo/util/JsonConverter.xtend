@@ -263,6 +263,7 @@ class JsonConverter {
 						val jsonReferenceLink = new JsonObject
 						jsonReferenceLink.addProperty(HREF, object.getUrl(false) + "/" + REFERENCES + "/" + it.name + object.getTimestampParam(true))
 						jsonReferenceLink.addProperty(SIZE, object.referencesSize(it.name))
+						jsonReferenceLink.addProperty(CONTAINMENT, it.containment)
 						jsonReferencesLink.add(it.name, jsonReferenceLink)
 					]
 				}
