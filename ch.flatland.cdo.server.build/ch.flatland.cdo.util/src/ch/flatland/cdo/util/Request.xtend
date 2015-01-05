@@ -70,7 +70,7 @@ class Request {
 	}
 
 	def getJsonCallback(HttpServletRequest req) {
-		if(req.getParameter(PARAM_JSONP_CALLBACK) != null && req.getParameter(PARAM_JSONP_CALLBACK).length > 0) {
+		if(req.method == METHOD_GET && req.getParameter(PARAM_JSONP_CALLBACK) != null && req.getParameter(PARAM_JSONP_CALLBACK).length > 0) {
 			return req.getParameter(PARAM_JSONP_CALLBACK)
 		}
 		return null

@@ -20,11 +20,19 @@ import static javax.servlet.http.HttpServletResponse.*
 class Response {
 	val logger = LoggerFactory.getLogger(this.class)
 
+	val static ACCESS_CONTROL_ALLOW_ORIGIN = "Access-Control-Allow-Origin"
+	val static ACCESS_CONTROL_ALLOW_CREDENTIALS = "Access-Control-Allow-Credentials"
+	val static ACCESS_CONTROL_ALLOW_METHODS = "Access-Control-Allow-Methods"
+	val static ACCESS_CONTROL_ALLOW_HEADERS = "Access-Control-Allow-Headers"
+	val static HEADER_ORIGIN = "Origin"
+
 	val extension Request = new Request
 
 	def writeResponse(HttpServletResponse resp, HttpServletRequest req, String jsonString) {
 		logger.debug("Json '{}'", jsonString)
 
+		resp.addCORSHeader(req)
+		
 		// write response
 		if(req.jsonCallback != null) {
 			resp.contentType = JSONP_CONTENTTYPE_UTF8
@@ -33,6 +41,29 @@ class Response {
 			resp.contentType = JSON_CONTENTTYPE_UTF8
 			resp.writer.append(jsonString)
 		}
+	}
+
+	def writeEmptyResponse(HttpServletResponse resp, HttpServletRequest req) {
+		logger.debug("Return empty response")
+
+		resp.addCORSHeader(req)
+		
+		// write response
+		if(req.jsonCallback != null) {
+			resp.contentType = JSONP_CONTENTTYPE_UTF8
+
+		} else {
+			resp.contentType = JSON_CONTENTTYPE_UTF8
+		}
+	}
+
+	def private addCORSHeader(HttpServletResponse resp, HttpServletRequest req) {
+		if (req.getHeader(HEADER_ORIGIN) != null) {
+			resp.addHeader(ACCESS_CONTROL_ALLOW_ORIGIN, req.getHeader("Origin"))
+		}
+		resp.addHeader(ACCESS_CONTROL_ALLOW_CREDENTIALS, "true")
+		resp.addHeader(ACCESS_CONTROL_ALLOW_METHODS, "GET, POST, PUT, DELETE")
+		resp.addHeader(ACCESS_CONTROL_ALLOW_HEADERS, "Origin, X-Requested-With, Content-Type, Accept, Authorization, Cookie")
 	}
 
 	def statusForbidden(HttpServletResponse resp) {

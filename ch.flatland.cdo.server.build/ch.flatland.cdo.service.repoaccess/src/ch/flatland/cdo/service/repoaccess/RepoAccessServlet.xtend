@@ -31,4 +31,8 @@ class RepoAccessServlet extends AbstractServlet {
 	override protected doPut(HttpServletRequest req, HttpServletResponse resp) {
 		(new Put).run(req, resp)
 	}
+	
+	override protected doOptions(HttpServletRequest req, HttpServletResponse resp) {
+		(new Options).run(req, resp)
+	}
 }

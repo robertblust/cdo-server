@@ -19,6 +19,8 @@ import javax.servlet.http.HttpServletResponse
 import org.osgi.service.http.HttpContext
 import org.slf4j.LoggerFactory
 
+import static ch.flatland.cdo.util.Constants.*
+
 class AuthHttpContext implements HttpContext {
 
 	val logger = LoggerFactory.getLogger(this.class)
@@ -29,12 +31,17 @@ class AuthHttpContext implements HttpContext {
 		val extension Response = new Response
 		
 		req.logRequest
-
+		
 		// only allow https
 		if(!req.secureConnection) {
 			logger.debug("Forbidden - not secure (https)")
 			resp.sendError(req, resp.statusForbidden)
 			return false
+		}
+		
+		// CORS request
+		if (req.method == METHOD_OPTIONS) {
+			return true
 		}
 
 		// check accepted contentypes
