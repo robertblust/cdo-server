@@ -13,6 +13,7 @@ package ch.flatland.cdo.util
 import com.google.common.base.Splitter
 import javax.servlet.http.HttpServletRequest
 import org.apache.commons.codec.binary.Base64
+import org.slf4j.LoggerFactory
 
 import static ch.flatland.cdo.util.Constants.*
 import static javax.servlet.http.HttpServletRequest.*
@@ -20,6 +21,8 @@ import static javax.servlet.http.HttpServletResponse.*
 
 class Request {
 
+	val logger = LoggerFactory.getLogger(this.class)
+	
 	val public static AUTH_HEADER = "Authorization"
 	val public static ACCEPT_HEADER = "Accept"
 	val public static OPENSHIFT_FORWARD_PROTO_HEADER = "X-Forwarded-Proto"
@@ -188,5 +191,25 @@ class Request {
 		}
 		val usernameAndPassword = new String(Base64.decodeBase64(authHeader.substring(6).getBytes()))
 		return usernameAndPassword
+	}
+	
+	def logRequest(HttpServletRequest req) {
+		if(logger.isDebugEnabled) {
+			var userId = "anonymous"
+			if(req.basicAuth) {
+				userId = req.userId
+			}
+			logger.debug("Request '{}' with params '{}' from '{}'", req.requestURL, req.parameterMap, userId)
+			val headerNames = req.headerNames
+			while(headerNames.hasMoreElements) {
+				val key = headerNames.nextElement
+				logger.debug("Http header field '{}'", key)
+				val fieldValues = req.getHeaders(key)
+				while(fieldValues.hasMoreElements) {
+					val value = fieldValues.nextElement
+					logger.debug("  '{}'", value)
+				}
+			}
+		}
 	}
 }

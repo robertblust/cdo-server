@@ -34,13 +34,14 @@ class IconServlet extends AbstractServlet {
 	val static final IGNORED_EPACKAGES = newArrayList("xcore.lang")
 	
 	override protected doGet(HttpServletRequest req, HttpServletResponse resp) {
-		logRequest(req)
-
+		
 		val logger = LoggerFactory.getLogger(this.class)
 		
 		val extension Request = new Request
 		val extension Response = new Response
 		val extension JsonConverter = req.createJsonConverter
+		
+		req.logRequest
 
 		val ITEM_DELEGATOR = new AdapterFactoryItemDelegator(new ComposedAdapterFactory(EMFEditPlugin.getComposedAdapterFactoryDescriptorRegistry))
 

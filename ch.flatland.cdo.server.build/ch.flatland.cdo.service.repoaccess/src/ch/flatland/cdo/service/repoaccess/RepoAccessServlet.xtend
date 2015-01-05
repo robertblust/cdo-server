@@ -17,22 +17,18 @@ import javax.servlet.http.HttpServletResponse
 class RepoAccessServlet extends AbstractServlet {
 
 	override protected doGet(HttpServletRequest req, HttpServletResponse resp) {
-		logRequest(req)
 		(new Get).run(req, resp)
 	}
 
 	override protected doPost(HttpServletRequest req, HttpServletResponse resp) {
-		logRequest(req)
 		(new Post).run(req, resp)
 	}
 
 	override protected doDelete(HttpServletRequest req, HttpServletResponse resp) {
-		logRequest(req)
 		(new Delete).run(req, resp)
 	}
 
 	override protected doPut(HttpServletRequest req, HttpServletResponse resp) {
-		logRequest(req)
 		(new Put).run(req, resp)
 	}
 }

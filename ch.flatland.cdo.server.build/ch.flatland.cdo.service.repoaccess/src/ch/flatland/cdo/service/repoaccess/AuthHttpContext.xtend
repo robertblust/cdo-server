@@ -27,6 +27,8 @@ class AuthHttpContext implements HttpContext {
 
 		val extension Request = new Request
 		val extension Response = new Response
+		
+		req.logRequest
 
 		// only allow https
 		if(!req.secureConnection) {

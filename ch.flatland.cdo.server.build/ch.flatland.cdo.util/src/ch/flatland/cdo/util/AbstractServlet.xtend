@@ -22,7 +22,6 @@ class AbstractServlet extends HttpServlet {
 
 	val logger = LoggerFactory.getLogger(this.class)
 
-	val extension Request = new Request
 	val extension Response = new Response
 
 	val static SESSION_COOKIE = "CH-FLATLAND-CDO"
@@ -69,25 +68,5 @@ class AbstractServlet extends HttpServlet {
 	def methodNotAllowed(HttpServletRequest req, HttpServletResponse resp) {
 		val extension JsonConverter = new JsonConverter
 		resp.writeResponse(req, resp.statusMethodNotAllowed.safeToJson)
-	}
-
-	def logRequest(HttpServletRequest req) {
-		if(logger.isDebugEnabled) {
-			var userId = "anonymous"
-			if(req.basicAuth) {
-				userId = req.userId
-			}
-			logger.debug("Request '{}' with params '{}' from '{}'", req.requestURL, req.parameterMap, userId)
-			val headerNames = req.headerNames
-			while(headerNames.hasMoreElements) {
-				val key = headerNames.nextElement
-				logger.debug("Http header field '{}'", key)
-				val fieldValues = req.getHeaders(key)
-				while(fieldValues.hasMoreElements) {
-					val value = fieldValues.nextElement
-					logger.debug("  '{}'", value)
-				}
-			}
-		}
 	}
 }
