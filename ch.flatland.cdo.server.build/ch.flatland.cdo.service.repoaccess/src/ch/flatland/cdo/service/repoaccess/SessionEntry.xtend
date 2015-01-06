@@ -15,10 +15,12 @@ import org.eclipse.emf.cdo.session.CDOSession
 class SessionEntry {
 	var CDOSession cdoSession
 	var long lastHttpSessionActivity
+	var String password
 
-	new(CDOSession cdoSession) {
+	new(CDOSession cdoSession, String password) {
 		this.cdoSession = cdoSession
 		lastHttpSessionActivity = System.currentTimeMillis
+		this.password = password
 	}
 
 	def updateHttpSessionActivity() {
@@ -27,6 +29,10 @@ class SessionEntry {
 
 	def getLastHttpSessionActivity() {
 		lastHttpSessionActivity
+	}
+	
+	def getPassword() {
+		password
 	}
 
 	def getCDOSession() {
