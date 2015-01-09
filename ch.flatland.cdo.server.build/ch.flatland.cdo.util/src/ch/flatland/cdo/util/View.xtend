@@ -67,7 +67,7 @@ class View {
 						} else {
 
 							// resolve references
-							return req.orderBy(req.filterBy(object.safeResolveReferences(referenceName)))
+							return req.orderBy(req.filterBy(object.safeResolveReferences(referenceName, req)))
 						}
 					} else {
 						return view.getResourceNode("/")
@@ -90,7 +90,7 @@ class View {
 						case 4: {
 							if(pathSegments.get(3) == REFERENCES) {
 								val object = view.safeResolveObject(pathSegments)
-								return req.orderBy(req.filterBy(object.safeResolveReferences(null)))
+								return req.orderBy(req.filterBy(object.safeResolveReferences(null, req)))
 							} else {
 								throw new Exception
 							}
@@ -102,7 +102,7 @@ class View {
 								if(req.method == METHOD_POST) {
 									return view.safeResolveObject(pathSegments)
 								}
-								return req.orderBy(req.filterBy(object.safeResolveReferences(pathSegments.get(4))))
+								return req.orderBy(req.filterBy(object.safeResolveReferences(pathSegments.get(4), req)))
 							} else {
 								throw new Exception
 							}

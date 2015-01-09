@@ -96,7 +96,18 @@ class Request {
 	}
 
 	def isRefs(HttpServletRequest req) {
-		return req.getParameter(PARAM_REFS) != null
+		if (req.crefs || req.rrefs) {
+			return true
+		}
+		return false
+	}
+	
+	def isRrefs(HttpServletRequest req) {
+		return req.getParameter(PARAM_RREFS) != null
+	}
+	
+	def isCrefs(HttpServletRequest req) {
+		return req.getParameter(PARAM_CREFS) != null
 	}
 	
 	def isXrefs(HttpServletRequest req) {

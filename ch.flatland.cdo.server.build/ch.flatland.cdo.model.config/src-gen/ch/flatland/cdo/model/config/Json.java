@@ -13,7 +13,8 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * <ul>
  *   <li>{@link ch.flatland.cdo.model.config.Json#isValidate <em>Validate</em>}</li>
- *   <li>{@link ch.flatland.cdo.model.config.Json#isReferences <em>References</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.config.Json#isRreferences <em>Rreferences</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.config.Json#isCreferences <em>Creferences</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.config.Json#isXreferences <em>Xreferences</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.config.Json#isHistory <em>History</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.config.Json#isFullUrl <em>Full Url</em>}</li>
@@ -55,30 +56,56 @@ public interface Json extends EObject {
 	void setValidate(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>References</b></em>' attribute.
+	 * Returns the value of the '<em><b>Rreferences</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>References</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Rreferences</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>References</em>' attribute.
-	 * @see #setReferences(boolean)
-	 * @see ch.flatland.cdo.model.config.ConfigPackage#getJson_References()
+	 * @return the value of the '<em>Rreferences</em>' attribute.
+	 * @see #setRreferences(boolean)
+	 * @see ch.flatland.cdo.model.config.ConfigPackage#getJson_Rreferences()
 	 * @model unique="false" required="true"
 	 * @generated
 	 */
-	boolean isReferences();
+	boolean isRreferences();
 
 	/**
-	 * Sets the value of the '{@link ch.flatland.cdo.model.config.Json#isReferences <em>References</em>}' attribute.
+	 * Sets the value of the '{@link ch.flatland.cdo.model.config.Json#isRreferences <em>Rreferences</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>References</em>' attribute.
-	 * @see #isReferences()
+	 * @param value the new value of the '<em>Rreferences</em>' attribute.
+	 * @see #isRreferences()
 	 * @generated
 	 */
-	void setReferences(boolean value);
+	void setRreferences(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Creferences</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Creferences</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Creferences</em>' attribute.
+	 * @see #setCreferences(boolean)
+	 * @see ch.flatland.cdo.model.config.ConfigPackage#getJson_Creferences()
+	 * @model unique="false" required="true"
+	 * @generated
+	 */
+	boolean isCreferences();
+
+	/**
+	 * Sets the value of the '{@link ch.flatland.cdo.model.config.Json#isCreferences <em>Creferences</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Creferences</em>' attribute.
+	 * @see #isCreferences()
+	 * @generated
+	 */
+	void setCreferences(boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Xreferences</b></em>' attribute.

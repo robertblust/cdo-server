@@ -377,31 +377,35 @@ class JsonConverter {
 		val jsonReferences = new JsonObject
 		if(references.size > 0) {
 			for (EReference reference : references) {
-				val name = reference.name
-				if(reference.many) {
-					val List<Object> values = eObject.eGet(reference, true) as List<Object>
-					if(values.size > 0) {
-						val jsonReferencesArray = new JsonArray
-						for (value : values) {
+
+				// show containments or relations or both?
+				if((reference.containment && jsonConverterConfig.creferences) || (!reference.containment && jsonConverterConfig.rreferences)) {
+					val name = reference.name
+					if(reference.many) {
+						val List<Object> values = eObject.eGet(reference, true) as List<Object>
+						if(values.size > 0) {
+							val jsonReferencesArray = new JsonArray
+							for (value : values) {
+								val valueAsEobject = value as EObject
+								if(valueAsEobject.hasPermission) {
+									val jsonRefObject = valueAsEobject.toJsonObject(true) as JsonObject
+									jsonRefObject.addAttributes(valueAsEobject)
+									jsonRefObject.addDiagnosticsAndMeta(valueAsEobject)
+									jsonReferencesArray.add(jsonRefObject)
+								}
+							}
+							jsonReferences.add(name, jsonReferencesArray)
+						}
+					} else {
+						val value = eObject.eGet(reference, true)
+						if(value != null) {
 							val valueAsEobject = value as EObject
 							if(valueAsEobject.hasPermission) {
 								val jsonRefObject = valueAsEobject.toJsonObject(true) as JsonObject
 								jsonRefObject.addAttributes(valueAsEobject)
 								jsonRefObject.addDiagnosticsAndMeta(valueAsEobject)
-								jsonReferencesArray.add(jsonRefObject)
+								jsonReferences.add(name, jsonRefObject)
 							}
-						}
-						jsonReferences.add(name, jsonReferencesArray)
-					}
-				} else {
-					val value = eObject.eGet(reference, true)
-					if(value != null) {
-						val valueAsEobject = value as EObject
-						if(valueAsEobject.hasPermission) {
-							val jsonRefObject = valueAsEobject.toJsonObject(true) as JsonObject
-							jsonRefObject.addAttributes(valueAsEobject)
-							jsonRefObject.addDiagnosticsAndMeta(valueAsEobject)
-							jsonReferences.add(name, jsonRefObject)
 						}
 					}
 				}

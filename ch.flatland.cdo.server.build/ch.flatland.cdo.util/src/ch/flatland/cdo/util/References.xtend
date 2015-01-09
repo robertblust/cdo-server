@@ -11,15 +11,18 @@
 package ch.flatland.cdo.util
 
 import java.util.List
+import javax.servlet.http.HttpServletRequest
 import org.eclipse.emf.ecore.EObject
+import org.eclipse.emf.ecore.EReference
 
 class References {
 
 	val extension EMF = new EMF
+	val extension Request = new Request
 
-	def safeResolveReferences(EObject object, String referenceName) {
+	def safeResolveReferences(EObject object, String referenceName, HttpServletRequest req) {
 		if(referenceName == null) {
-			val allReferences = object.allReferences
+			val allReferences = object.getAllReferences(req)
 			return allReferences.checkNullOrEmpty
 		} else {
 			val references = object.getReferences(referenceName)
@@ -29,7 +32,7 @@ class References {
 
 	def referencesSize(EObject object, String referenceName) {
 		if(referenceName == null) {
-			val allReferences = object.allReferences
+			val allReferences = object.getAllReferences(null)
 			return allReferences.size
 		} else {
 			val references = object.getReferences(referenceName)
@@ -39,7 +42,7 @@ class References {
 			if(references instanceof List<?>) {
 				return references.size
 			}
-			if (references instanceof EObject) {
+			if(references instanceof EObject) {
 				return 1
 			}
 			return 0
@@ -48,7 +51,7 @@ class References {
 
 	def hasReferences(EObject object, String referenceName) {
 		if(referenceName == null) {
-			val allReferences = object.allReferences
+			val allReferences = object.getAllReferences(null)
 			return allReferences.size > 0
 		} else {
 			val references = object.getReferences(referenceName)
@@ -64,20 +67,22 @@ class References {
 		}
 	}
 
-	def private getAllReferences(EObject object) {
+	def private getAllReferences(EObject object, HttpServletRequest req) {
 		val allReferences = newArrayList
 		object.eClass.EAllReferences.forEach [
-			if(it.many) {
-				val List<EObject> refs = object.eGet(it) as List<EObject>
-				for (r : refs) {
-					if(r.hasPermission) {
+			if(it.needsReference(req)) {
+				if(it.many) {
+					val List<EObject> refs = object.eGet(it) as List<EObject>
+					for (r : refs) {
+						if(r.hasPermission) {
+							allReferences.addIfNotExits(r)
+						}
+					}
+				} else {
+					val r = object.eGet(it) as EObject
+					if(r != null && r.hasPermission) {
 						allReferences.addIfNotExits(r)
 					}
-				}
-			} else {
-				val r = object.eGet(it) as EObject
-				if(r != null && r.hasPermission) {
-					allReferences.addIfNotExits(r)
 				}
 			}
 		]
@@ -122,5 +127,18 @@ class References {
 		if(!list.contains(toAdd) && toAdd != null) {
 			list.add(toAdd)
 		}
+	}
+
+	def private needsReference(EReference reference, HttpServletRequest req) {
+		if(req == null || !req.refs) {
+			return true
+		}
+		if(req.crefs && reference.containment) {
+			return true
+		}
+		if(req.rrefs && !reference.containment) {
+			return true
+		}
+		return false
 	}
 }

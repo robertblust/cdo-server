@@ -20,7 +20,8 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * <ul>
  *   <li>{@link ch.flatland.cdo.model.config.impl.JsonImpl#isValidate <em>Validate</em>}</li>
- *   <li>{@link ch.flatland.cdo.model.config.impl.JsonImpl#isReferences <em>References</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.config.impl.JsonImpl#isRreferences <em>Rreferences</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.config.impl.JsonImpl#isCreferences <em>Creferences</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.config.impl.JsonImpl#isXreferences <em>Xreferences</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.config.impl.JsonImpl#isHistory <em>History</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.config.impl.JsonImpl#isFullUrl <em>Full Url</em>}</li>
@@ -54,24 +55,44 @@ public class JsonImpl extends MinimalEObjectImpl.Container implements Json {
 	protected boolean validate = VALIDATE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #isReferences() <em>References</em>}' attribute.
+	 * The default value of the '{@link #isRreferences() <em>Rreferences</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isReferences()
+	 * @see #isRreferences()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean REFERENCES_EDEFAULT = false;
+	protected static final boolean RREFERENCES_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isReferences() <em>References</em>}' attribute.
+	 * The cached value of the '{@link #isRreferences() <em>Rreferences</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isReferences()
+	 * @see #isRreferences()
 	 * @generated
 	 * @ordered
 	 */
-	protected boolean references = REFERENCES_EDEFAULT;
+	protected boolean rreferences = RREFERENCES_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isCreferences() <em>Creferences</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isCreferences()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean CREFERENCES_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isCreferences() <em>Creferences</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isCreferences()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean creferences = CREFERENCES_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #isXreferences() <em>Xreferences</em>}' attribute.
@@ -238,8 +259,8 @@ public class JsonImpl extends MinimalEObjectImpl.Container implements Json {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isReferences() {
-		return references;
+	public boolean isRreferences() {
+		return rreferences;
 	}
 
 	/**
@@ -247,11 +268,32 @@ public class JsonImpl extends MinimalEObjectImpl.Container implements Json {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setReferences(boolean newReferences) {
-		boolean oldReferences = references;
-		references = newReferences;
+	public void setRreferences(boolean newRreferences) {
+		boolean oldRreferences = rreferences;
+		rreferences = newRreferences;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ConfigPackage.JSON__REFERENCES, oldReferences, references));
+			eNotify(new ENotificationImpl(this, Notification.SET, ConfigPackage.JSON__RREFERENCES, oldRreferences, rreferences));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isCreferences() {
+		return creferences;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setCreferences(boolean newCreferences) {
+		boolean oldCreferences = creferences;
+		creferences = newCreferences;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ConfigPackage.JSON__CREFERENCES, oldCreferences, creferences));
 	}
 
 	/**
@@ -390,8 +432,10 @@ public class JsonImpl extends MinimalEObjectImpl.Container implements Json {
 		switch (featureID) {
 			case ConfigPackage.JSON__VALIDATE:
 				return isValidate();
-			case ConfigPackage.JSON__REFERENCES:
-				return isReferences();
+			case ConfigPackage.JSON__RREFERENCES:
+				return isRreferences();
+			case ConfigPackage.JSON__CREFERENCES:
+				return isCreferences();
 			case ConfigPackage.JSON__XREFERENCES:
 				return isXreferences();
 			case ConfigPackage.JSON__HISTORY:
@@ -419,8 +463,11 @@ public class JsonImpl extends MinimalEObjectImpl.Container implements Json {
 			case ConfigPackage.JSON__VALIDATE:
 				setValidate((Boolean)newValue);
 				return;
-			case ConfigPackage.JSON__REFERENCES:
-				setReferences((Boolean)newValue);
+			case ConfigPackage.JSON__RREFERENCES:
+				setRreferences((Boolean)newValue);
+				return;
+			case ConfigPackage.JSON__CREFERENCES:
+				setCreferences((Boolean)newValue);
 				return;
 			case ConfigPackage.JSON__XREFERENCES:
 				setXreferences((Boolean)newValue);
@@ -455,8 +502,11 @@ public class JsonImpl extends MinimalEObjectImpl.Container implements Json {
 			case ConfigPackage.JSON__VALIDATE:
 				setValidate(VALIDATE_EDEFAULT);
 				return;
-			case ConfigPackage.JSON__REFERENCES:
-				setReferences(REFERENCES_EDEFAULT);
+			case ConfigPackage.JSON__RREFERENCES:
+				setRreferences(RREFERENCES_EDEFAULT);
+				return;
+			case ConfigPackage.JSON__CREFERENCES:
+				setCreferences(CREFERENCES_EDEFAULT);
 				return;
 			case ConfigPackage.JSON__XREFERENCES:
 				setXreferences(XREFERENCES_EDEFAULT);
@@ -490,8 +540,10 @@ public class JsonImpl extends MinimalEObjectImpl.Container implements Json {
 		switch (featureID) {
 			case ConfigPackage.JSON__VALIDATE:
 				return validate != VALIDATE_EDEFAULT;
-			case ConfigPackage.JSON__REFERENCES:
-				return references != REFERENCES_EDEFAULT;
+			case ConfigPackage.JSON__RREFERENCES:
+				return rreferences != RREFERENCES_EDEFAULT;
+			case ConfigPackage.JSON__CREFERENCES:
+				return creferences != CREFERENCES_EDEFAULT;
 			case ConfigPackage.JSON__XREFERENCES:
 				return xreferences != XREFERENCES_EDEFAULT;
 			case ConfigPackage.JSON__HISTORY:
@@ -520,8 +572,10 @@ public class JsonImpl extends MinimalEObjectImpl.Container implements Json {
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (validate: ");
 		result.append(validate);
-		result.append(", references: ");
-		result.append(references);
+		result.append(", rreferences: ");
+		result.append(rreferences);
+		result.append(", creferences: ");
+		result.append(creferences);
 		result.append(", xreferences: ");
 		result.append(xreferences);
 		result.append(", history: ");

@@ -380,7 +380,7 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getJson_References() {
+	public EAttribute getJson_Rreferences() {
 		return (EAttribute)jsonEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -389,7 +389,7 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getJson_Xreferences() {
+	public EAttribute getJson_Creferences() {
 		return (EAttribute)jsonEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -398,7 +398,7 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getJson_History() {
+	public EAttribute getJson_Xreferences() {
 		return (EAttribute)jsonEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -407,7 +407,7 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getJson_FullUrl() {
+	public EAttribute getJson_History() {
 		return (EAttribute)jsonEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -416,7 +416,7 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getJson_Meta() {
+	public EAttribute getJson_FullUrl() {
 		return (EAttribute)jsonEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -425,7 +425,7 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getJson_Links() {
+	public EAttribute getJson_Meta() {
 		return (EAttribute)jsonEClass.getEStructuralFeatures().get(6);
 	}
 
@@ -434,8 +434,17 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getJson_Xlinks() {
+	public EAttribute getJson_Links() {
 		return (EAttribute)jsonEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getJson_Xlinks() {
+		return (EAttribute)jsonEClass.getEStructuralFeatures().get(8);
 	}
 
 	/**
@@ -514,7 +523,8 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 
 		jsonEClass = createEClass(JSON);
 		createEAttribute(jsonEClass, JSON__VALIDATE);
-		createEAttribute(jsonEClass, JSON__REFERENCES);
+		createEAttribute(jsonEClass, JSON__RREFERENCES);
+		createEAttribute(jsonEClass, JSON__CREFERENCES);
 		createEAttribute(jsonEClass, JSON__XREFERENCES);
 		createEAttribute(jsonEClass, JSON__HISTORY);
 		createEAttribute(jsonEClass, JSON__FULL_URL);
@@ -590,7 +600,8 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 
 		initEClass(jsonEClass, Json.class, "Json", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getJson_Validate(), theEcorePackage.getEBoolean(), "validate", null, 1, 1, Json.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getJson_References(), theEcorePackage.getEBoolean(), "references", null, 1, 1, Json.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getJson_Rreferences(), theEcorePackage.getEBoolean(), "rreferences", null, 1, 1, Json.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getJson_Creferences(), theEcorePackage.getEBoolean(), "creferences", null, 1, 1, Json.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getJson_Xreferences(), theEcorePackage.getEBoolean(), "xreferences", null, 1, 1, Json.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getJson_History(), theEcorePackage.getEBoolean(), "history", null, 1, 1, Json.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getJson_FullUrl(), theEcorePackage.getEBoolean(), "fullUrl", null, 1, 1, Json.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -18,7 +18,11 @@ class Constants {
 	val public static PARAM_ORDER_BY = "orderBy"
 	val public static PARAM_FORCE = "force"
 	val public static PARAM_XOR_FILTER = "or"
-	val public static PARAM_REFS = "refs"
+	/* all containment references */
+	val public static PARAM_CREFS = "crefs"
+	/* all relation references */
+	val public static PARAM_RREFS = "rrefs"
+	/* all cross references */
 	val public static PARAM_XREFS = "xrefs"
 	val public static PARAM_LINKS = "links"
 	val public static PARAM_XLINKS = "xlinks"

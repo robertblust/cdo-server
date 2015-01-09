@@ -17,6 +17,8 @@ class JsonConverterConfig {
 
 	var meta = false
 	var references = false
+	var rreferences = false
+	var creferences = false
 	var xreferences = false
 	var validate = true
 	var history = false
@@ -33,6 +35,8 @@ class JsonConverterConfig {
 	def private init(HttpServletRequest req) {
 		meta = req.metaDataRequested
 		references = req.refs
+		rreferences = req.rrefs
+		creferences = req.crefs
 		xreferences = req.xrefs
 		validate = req.validate
 		history = req.history
@@ -52,10 +56,24 @@ class JsonConverterConfig {
 	}
 
 	def isReferences() {
-		if(CONFIG.json.references) {
+		if(CONFIG.json.rreferences || CONFIG.json.creferences) {
 			return true
 		}
 		return references
+	}
+	
+	def isRreferences() {
+		if(CONFIG.json.rreferences) {
+			return true
+		}
+		return rreferences
+	}
+	
+	def isCreferences() {
+		if(CONFIG.json.creferences) {
+			return true
+		}
+		return creferences
 	}
 	
 	def isXreferences() {

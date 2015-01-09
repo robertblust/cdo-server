@@ -1,6 +1,6 @@
 {
     "dataStore": {
-        "storeType": "H2",
+      	"storeType": "H2",
         "repositoryName": "repo",
         "connectionUrl": "jdbc:h2:database/",
         "userName": "cdo",
@@ -22,13 +22,14 @@
         "httpPort": "8080"
     },
     "json": {
-    	"validate": true,
-		"references": false,
-		"xreferences": false,
-		"history": false,
-		"fullUrl": false,
-		"meta": false,
-		"links": true,
-		"xlinks": true
+        "validate": true,
+        "rreferences": false,
+        "creferences": false,
+        "xreferences": false,
+        "history": false,
+        "fullUrl": false,
+        "meta": false,
+        "links": true,
+        "xlinks": true
     }
 }

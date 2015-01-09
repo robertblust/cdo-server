@@ -370,13 +370,22 @@ public interface ConfigPackage extends EPackage {
 	int JSON__VALIDATE = 0;
 
 	/**
-	 * The feature id for the '<em><b>References</b></em>' attribute.
+	 * The feature id for the '<em><b>Rreferences</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int JSON__REFERENCES = 1;
+	int JSON__RREFERENCES = 1;
+
+	/**
+	 * The feature id for the '<em><b>Creferences</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JSON__CREFERENCES = 2;
 
 	/**
 	 * The feature id for the '<em><b>Xreferences</b></em>' attribute.
@@ -385,7 +394,7 @@ public interface ConfigPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int JSON__XREFERENCES = 2;
+	int JSON__XREFERENCES = 3;
 
 	/**
 	 * The feature id for the '<em><b>History</b></em>' attribute.
@@ -394,7 +403,7 @@ public interface ConfigPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int JSON__HISTORY = 3;
+	int JSON__HISTORY = 4;
 
 	/**
 	 * The feature id for the '<em><b>Full Url</b></em>' attribute.
@@ -403,7 +412,7 @@ public interface ConfigPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int JSON__FULL_URL = 4;
+	int JSON__FULL_URL = 5;
 
 	/**
 	 * The feature id for the '<em><b>Meta</b></em>' attribute.
@@ -412,7 +421,7 @@ public interface ConfigPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int JSON__META = 5;
+	int JSON__META = 6;
 
 	/**
 	 * The feature id for the '<em><b>Links</b></em>' attribute.
@@ -421,7 +430,7 @@ public interface ConfigPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int JSON__LINKS = 6;
+	int JSON__LINKS = 7;
 
 	/**
 	 * The feature id for the '<em><b>Xlinks</b></em>' attribute.
@@ -430,7 +439,7 @@ public interface ConfigPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int JSON__XLINKS = 7;
+	int JSON__XLINKS = 8;
 
 	/**
 	 * The number of structural features of the '<em>Json</em>' class.
@@ -439,7 +448,7 @@ public interface ConfigPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int JSON_FEATURE_COUNT = 8;
+	int JSON_FEATURE_COUNT = 9;
 
 	/**
 	 * The number of operations of the '<em>Json</em>' class.
@@ -753,15 +762,26 @@ public interface ConfigPackage extends EPackage {
 	EAttribute getJson_Validate();
 
 	/**
-	 * Returns the meta object for the attribute '{@link ch.flatland.cdo.model.config.Json#isReferences <em>References</em>}'.
+	 * Returns the meta object for the attribute '{@link ch.flatland.cdo.model.config.Json#isRreferences <em>Rreferences</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>References</em>'.
-	 * @see ch.flatland.cdo.model.config.Json#isReferences()
+	 * @return the meta object for the attribute '<em>Rreferences</em>'.
+	 * @see ch.flatland.cdo.model.config.Json#isRreferences()
 	 * @see #getJson()
 	 * @generated
 	 */
-	EAttribute getJson_References();
+	EAttribute getJson_Rreferences();
+
+	/**
+	 * Returns the meta object for the attribute '{@link ch.flatland.cdo.model.config.Json#isCreferences <em>Creferences</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Creferences</em>'.
+	 * @see ch.flatland.cdo.model.config.Json#isCreferences()
+	 * @see #getJson()
+	 * @generated
+	 */
+	EAttribute getJson_Creferences();
 
 	/**
 	 * Returns the meta object for the attribute '{@link ch.flatland.cdo.model.config.Json#isXreferences <em>Xreferences</em>}'.
@@ -1091,12 +1111,20 @@ public interface ConfigPackage extends EPackage {
 		EAttribute JSON__VALIDATE = eINSTANCE.getJson_Validate();
 
 		/**
-		 * The meta object literal for the '<em><b>References</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Rreferences</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute JSON__REFERENCES = eINSTANCE.getJson_References();
+		EAttribute JSON__RREFERENCES = eINSTANCE.getJson_Rreferences();
+
+		/**
+		 * The meta object literal for the '<em><b>Creferences</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute JSON__CREFERENCES = eINSTANCE.getJson_Creferences();
 
 		/**
 		 * The meta object literal for the '<em><b>Xreferences</b></em>' attribute feature.
