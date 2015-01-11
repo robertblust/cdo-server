@@ -447,7 +447,7 @@ class JsonConverter {
 	def private addFeatureMeta(JsonObject jsonBaseObject, EStructuralFeature feature) {
 
 		if(feature instanceof EAttribute) {
-			jsonBaseObject.add(FEATURE, new JsonPrimitive(ATTRIBUTES + "." + feature.name))
+			jsonBaseObject.add(FEATURE, new JsonPrimitive(feature.name))
 			jsonBaseObject.addType(feature.EAttributeType)
 			if(feature.EAttributeType instanceof EEnum) {
 				val enum = feature.EAttributeType as EEnum
@@ -470,7 +470,7 @@ class JsonConverter {
 			]
 		}
 		if(feature instanceof EReference) {
-			jsonBaseObject.add(FEATURE, new JsonPrimitive(REFERENCES + "." + feature.name))
+			jsonBaseObject.add(FEATURE, new JsonPrimitive(feature.name))
 			jsonBaseObject.addType(feature.EReferenceType)
 			jsonBaseObject.addProperty(CONTAINMENT, feature.containment)
 		}
