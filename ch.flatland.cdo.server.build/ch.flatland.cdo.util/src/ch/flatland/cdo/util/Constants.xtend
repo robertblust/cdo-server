@@ -45,6 +45,7 @@ class Constants {
 	// json
 	val public static ID = "id"
 	val public static TYPE = "type"
+	val public static JS_TYPE = "jsType"
 	val public static ENUM_LITERALS = "literals"
 	val public static LABEL = "label"
 	val public static LOWER_BOUND = "lowerBound"

@@ -449,6 +449,31 @@ class JsonConverter {
 		if(feature instanceof EAttribute) {
 			jsonBaseObject.add(FEATURE, new JsonPrimitive(feature.name))
 			jsonBaseObject.addType(feature.EAttributeType)
+			var jsonType = "string"
+			switch feature.EAttributeType.instanceClass {
+				
+				case typeof(boolean): jsonType = "boolean"
+				case typeof(Boolean): jsonType = "boolean"
+				case typeof(int): jsonType = "number"
+				case typeof(Integer): jsonType = "number"
+				case typeof(long): jsonType = "number"
+				case typeof(Long): jsonType = "number"
+				case typeof(short): jsonType = "number"
+				case typeof(Short): jsonType = "number"
+				case typeof(double): jsonType = "number"
+				case typeof(Double): jsonType = "number"
+				case typeof(float): jsonType = "number"
+				case typeof(Float): jsonType = "number"
+				case typeof(BigDecimal): jsonType = "number"
+				case typeof(BigInteger): jsonType = "number"
+				case typeof(Date): jsonType = "date"
+			}
+			if(feature.EAttributeType instanceof EEnum) {
+				jsonType = "enum"
+			}
+			
+			jsonBaseObject.add(JS_TYPE, new JsonPrimitive(jsonType))
+			
 			if(feature.EAttributeType instanceof EEnum) {
 				val enum = feature.EAttributeType as EEnum
 				val jsonLiterals = new JsonArray
