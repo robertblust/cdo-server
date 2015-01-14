@@ -82,6 +82,10 @@ class Request {
 		}
 		return null
 	}
+	
+	def isArrayAccessor(HttpServletRequest req) {
+		return req.getParameter(PARAM_ARRAY_ACCESSOR) != null
+	}
 
 	def isValidate(HttpServletRequest req) {
 		return req.getParameter(PARAM_VALIDATION) != null

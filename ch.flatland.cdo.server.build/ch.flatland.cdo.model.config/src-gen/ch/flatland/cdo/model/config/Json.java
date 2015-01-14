@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link ch.flatland.cdo.model.config.Json#isMeta <em>Meta</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.config.Json#isLinks <em>Links</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.config.Json#isXlinks <em>Xlinks</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.config.Json#isArrayaccessor <em>Arrayaccessor</em>}</li>
  * </ul>
  * </p>
  *
@@ -262,5 +263,31 @@ public interface Json extends EObject {
 	 * @generated
 	 */
 	void setXlinks(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Arrayaccessor</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Arrayaccessor</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Arrayaccessor</em>' attribute.
+	 * @see #setArrayaccessor(boolean)
+	 * @see ch.flatland.cdo.model.config.ConfigPackage#getJson_Arrayaccessor()
+	 * @model unique="false" required="true"
+	 * @generated
+	 */
+	boolean isArrayaccessor();
+
+	/**
+	 * Sets the value of the '{@link ch.flatland.cdo.model.config.Json#isArrayaccessor <em>Arrayaccessor</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Arrayaccessor</em>' attribute.
+	 * @see #isArrayaccessor()
+	 * @generated
+	 */
+	void setArrayaccessor(boolean value);
 
 } // Json

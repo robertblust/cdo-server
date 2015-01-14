@@ -30,6 +30,7 @@
         "fullUrl": false,
         "meta": false,
         "links": true,
-        "xlinks": true
+        "xlinks": true,
+        "arrayaccessor": false
     }
 }

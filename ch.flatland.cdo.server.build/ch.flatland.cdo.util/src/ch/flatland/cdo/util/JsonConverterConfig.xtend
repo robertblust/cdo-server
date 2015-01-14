@@ -15,6 +15,7 @@ import static ch.flatland.cdo.server.config.ServerConfig.*
 
 class JsonConverterConfig {
 
+	var arrayAccessor = false
 	var meta = false
 	var references = false
 	var rreferences = false
@@ -33,6 +34,7 @@ class JsonConverterConfig {
 	}
 
 	def private init(HttpServletRequest req) {
+		arrayAccessor = req.arrayAccessor
 		meta = req.metaDataRequested
 		references = req.refs
 		rreferences = req.rrefs
@@ -53,6 +55,13 @@ class JsonConverterConfig {
 			return true
 		}
 		return meta
+	}
+	
+	def isArrayAccessor() {
+		if(CONFIG.json.arrayaccessor) {
+			return true
+		}
+		return arrayAccessor
 	}
 
 	def isReferences() {

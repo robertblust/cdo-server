@@ -149,6 +149,7 @@ class ServerConfig {
 			meta = false
 			links = true
 			xlinks = true
+			arrayaccessor = false
 		]
 		
 		config.dataStore = dataStore

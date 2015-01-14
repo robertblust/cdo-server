@@ -452,6 +452,15 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getJson_Arrayaccessor() {
+		return (EAttribute)jsonEClass.getEStructuralFeatures().get(9);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getStoreType() {
 		return storeTypeEEnum;
 	}
@@ -531,6 +540,7 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 		createEAttribute(jsonEClass, JSON__META);
 		createEAttribute(jsonEClass, JSON__LINKS);
 		createEAttribute(jsonEClass, JSON__XLINKS);
+		createEAttribute(jsonEClass, JSON__ARRAYACCESSOR);
 
 		// Create enums
 		storeTypeEEnum = createEEnum(STORE_TYPE);
@@ -608,6 +618,7 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 		initEAttribute(getJson_Meta(), theEcorePackage.getEBoolean(), "meta", null, 1, 1, Json.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getJson_Links(), theEcorePackage.getEBoolean(), "links", null, 1, 1, Json.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getJson_Xlinks(), theEcorePackage.getEBoolean(), "xlinks", null, 1, 1, Json.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getJson_Arrayaccessor(), theEcorePackage.getEBoolean(), "arrayaccessor", null, 1, 1, Json.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(storeTypeEEnum, StoreType.class, "StoreType");

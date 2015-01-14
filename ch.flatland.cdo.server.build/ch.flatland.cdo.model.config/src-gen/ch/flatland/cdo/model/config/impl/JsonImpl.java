@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link ch.flatland.cdo.model.config.impl.JsonImpl#isMeta <em>Meta</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.config.impl.JsonImpl#isLinks <em>Links</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.config.impl.JsonImpl#isXlinks <em>Xlinks</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.config.impl.JsonImpl#isArrayaccessor <em>Arrayaccessor</em>}</li>
  * </ul>
  * </p>
  *
@@ -213,6 +214,26 @@ public class JsonImpl extends MinimalEObjectImpl.Container implements Json {
 	 * @ordered
 	 */
 	protected boolean xlinks = XLINKS_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isArrayaccessor() <em>Arrayaccessor</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isArrayaccessor()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean ARRAYACCESSOR_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isArrayaccessor() <em>Arrayaccessor</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isArrayaccessor()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean arrayaccessor = ARRAYACCESSOR_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -427,6 +448,27 @@ public class JsonImpl extends MinimalEObjectImpl.Container implements Json {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isArrayaccessor() {
+		return arrayaccessor;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setArrayaccessor(boolean newArrayaccessor) {
+		boolean oldArrayaccessor = arrayaccessor;
+		arrayaccessor = newArrayaccessor;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ConfigPackage.JSON__ARRAYACCESSOR, oldArrayaccessor, arrayaccessor));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -448,6 +490,8 @@ public class JsonImpl extends MinimalEObjectImpl.Container implements Json {
 				return isLinks();
 			case ConfigPackage.JSON__XLINKS:
 				return isXlinks();
+			case ConfigPackage.JSON__ARRAYACCESSOR:
+				return isArrayaccessor();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -486,6 +530,9 @@ public class JsonImpl extends MinimalEObjectImpl.Container implements Json {
 				return;
 			case ConfigPackage.JSON__XLINKS:
 				setXlinks((Boolean)newValue);
+				return;
+			case ConfigPackage.JSON__ARRAYACCESSOR:
+				setArrayaccessor((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -526,6 +573,9 @@ public class JsonImpl extends MinimalEObjectImpl.Container implements Json {
 			case ConfigPackage.JSON__XLINKS:
 				setXlinks(XLINKS_EDEFAULT);
 				return;
+			case ConfigPackage.JSON__ARRAYACCESSOR:
+				setArrayaccessor(ARRAYACCESSOR_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -556,6 +606,8 @@ public class JsonImpl extends MinimalEObjectImpl.Container implements Json {
 				return links != LINKS_EDEFAULT;
 			case ConfigPackage.JSON__XLINKS:
 				return xlinks != XLINKS_EDEFAULT;
+			case ConfigPackage.JSON__ARRAYACCESSOR:
+				return arrayaccessor != ARRAYACCESSOR_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -588,6 +640,8 @@ public class JsonImpl extends MinimalEObjectImpl.Container implements Json {
 		result.append(links);
 		result.append(", xlinks: ");
 		result.append(xlinks);
+		result.append(", arrayaccessor: ");
+		result.append(arrayaccessor);
 		result.append(')');
 		return result.toString();
 	}

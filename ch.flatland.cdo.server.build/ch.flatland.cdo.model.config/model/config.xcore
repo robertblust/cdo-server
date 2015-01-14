@@ -52,4 +52,5 @@ class Json {
 	boolean[1] meta
 	boolean[1] links
 	boolean[1] xlinks
+	boolean[1] arrayaccessor
 }

@@ -13,6 +13,7 @@ package ch.flatland.cdo.util
 class Constants {
 
 	// http
+	val public static PARAM_ARRAY_ACCESSOR = "arrayAccessor"
 	val public static PARAM_META = "meta"
 	val public static PARAM_JSONP_CALLBACK = "callback"
 	val public static PARAM_ORDER_BY = "orderBy"
