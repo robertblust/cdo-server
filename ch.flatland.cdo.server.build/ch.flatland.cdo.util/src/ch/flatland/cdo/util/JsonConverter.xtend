@@ -346,9 +346,12 @@ class JsonConverter {
 
 	def private addAttributes(JsonObject jsonBaseObject, EObject object) {
 		val attributes = object.eClass.EAllAttributes
-		val jsonAttributes = new JsonObject
+		
 		if(attributes.size > 0) {
+			val jsonAttributes = new JsonObject
+			val jsonAttributesArrayAccessor = new JsonArray
 			for (attribute : attributes.filter[!ignoredAttributes.contains(name)]) {
+				val jsonAttributesArrayEntry = new JsonObject;
 				val name = attribute.name
 				if(attribute.many) {
 					val values = object.eGet(attribute, true) as List<Object>
@@ -358,16 +361,25 @@ class JsonConverter {
 							jsonPrimitiveArray.add(value.toJsonPrimitive)
 						}
 						jsonAttributes.add(name, jsonPrimitiveArray)
+						jsonAttributesArrayEntry.add(NAME, new JsonPrimitive(name))
+						jsonAttributesArrayEntry.add(VALUE, jsonPrimitiveArray)
+						jsonAttributesArrayAccessor.add(jsonAttributesArrayEntry)
 					}
 				} else {
 					val value = object.eGet(attribute, true)
 					if(value != null) {
 						jsonAttributes.add(name, value.toJsonPrimitive)
+						jsonAttributesArrayEntry.add(NAME, new JsonPrimitive(name))
+						jsonAttributesArrayEntry.add(VALUE, value.toJsonPrimitive)
+						jsonAttributesArrayAccessor.add(jsonAttributesArrayEntry)
 					}
 				}
 			}
 			if(jsonAttributes.entrySet.size > 0) {
 				jsonBaseObject.add(ATTRIBUTES, jsonAttributes)
+				if (jsonConverterConfig.arrayAccessor) {
+					jsonBaseObject.add(ATTRIBUTES_ARRAY, jsonAttributesArrayAccessor)
+				}
 			}
 		}
 	}
@@ -375,9 +387,10 @@ class JsonConverter {
 	def private addReferences(JsonObject jsonBaseObject, EObject eObject) {
 		val references = eObject.eClass.EAllReferences
 		val jsonReferences = new JsonObject
+		val jsonReferencesArrayAccessor = new JsonArray
 		if(references.size > 0) {
 			for (EReference reference : references) {
-
+				val jsonReferencesArrayEntry = new JsonObject;
 				// show containments or relations or both?
 				if((reference.containment && jsonConverterConfig.creferences) || (!reference.containment && jsonConverterConfig.rreferences)) {
 					val name = reference.name
@@ -395,6 +408,9 @@ class JsonConverter {
 								}
 							}
 							jsonReferences.add(name, jsonReferencesArray)
+							jsonReferencesArrayEntry.add(NAME, new JsonPrimitive(name))
+							jsonReferencesArrayEntry.add(VALUE, jsonReferencesArray)
+							jsonReferencesArrayAccessor.add(jsonReferencesArrayEntry)
 						}
 					} else {
 						val value = eObject.eGet(reference, true)
@@ -405,6 +421,9 @@ class JsonConverter {
 								jsonRefObject.addAttributes(valueAsEobject)
 								jsonRefObject.addDiagnosticsAndMeta(valueAsEobject)
 								jsonReferences.add(name, jsonRefObject)
+								jsonReferencesArrayEntry.add(NAME, new JsonPrimitive(name))
+								jsonReferencesArrayEntry.add(VALUE, jsonRefObject)
+								jsonReferencesArrayAccessor.add(jsonReferencesArrayEntry)
 							}
 						}
 					}
@@ -412,6 +431,9 @@ class JsonConverter {
 			}
 			if(jsonReferences.entrySet.size > 0) {
 				jsonBaseObject.add(REFERENCES, jsonReferences)
+				if (jsonConverterConfig.arrayAccessor) {
+					jsonBaseObject.add(REFERENCES_ARRAY, jsonReferencesArrayAccessor)
+				}
 			}
 		}
 	}
