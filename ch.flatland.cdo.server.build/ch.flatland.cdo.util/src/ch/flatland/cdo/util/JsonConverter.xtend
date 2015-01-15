@@ -346,7 +346,7 @@ class JsonConverter {
 
 	def private addAttributes(JsonObject jsonBaseObject, EObject object) {
 		val attributes = object.eClass.EAllAttributes
-		
+
 		if(attributes.size > 0) {
 			val jsonAttributes = new JsonObject
 			val jsonAttributesArrayAccessor = new JsonArray
@@ -377,7 +377,7 @@ class JsonConverter {
 			}
 			if(jsonAttributes.entrySet.size > 0) {
 				jsonBaseObject.add(ATTRIBUTES, jsonAttributes)
-				if (jsonConverterConfig.arrayAccessor) {
+				if(jsonConverterConfig.arrayAccessor) {
 					jsonBaseObject.add(ATTRIBUTES_ARRAY, jsonAttributesArrayAccessor)
 				}
 			}
@@ -391,6 +391,7 @@ class JsonConverter {
 		if(references.size > 0) {
 			for (EReference reference : references) {
 				val jsonReferencesArrayEntry = new JsonObject;
+
 				// show containments or relations or both?
 				if((reference.containment && jsonConverterConfig.creferences) || (!reference.containment && jsonConverterConfig.rreferences)) {
 					val name = reference.name
@@ -431,7 +432,7 @@ class JsonConverter {
 			}
 			if(jsonReferences.entrySet.size > 0) {
 				jsonBaseObject.add(REFERENCES, jsonReferences)
-				if (jsonConverterConfig.arrayAccessor) {
+				if(jsonConverterConfig.arrayAccessor) {
 					jsonBaseObject.add(REFERENCES_ARRAY, jsonReferencesArrayAccessor)
 				}
 			}
@@ -449,7 +450,11 @@ class JsonConverter {
 			jsonTypeMeta.add(ATTRIBUTES, jsonAttributes)
 			for (attribute : attributes) {
 				val jsonAttribute = new JsonObject
-				jsonAttribute.addFeatureMeta(attribute)
+				if(object instanceof CDOResourceNode && attribute.name == "name") {
+					jsonAttribute.addFeatureMeta(attribute, true)
+				} else {
+					jsonAttribute.addFeatureMeta(attribute, false)
+				}
 				jsonAttributes.add(jsonAttribute)
 			}
 		}
@@ -459,21 +464,20 @@ class JsonConverter {
 			jsonTypeMeta.add(REFERENCES, jsonReferences)
 			for (reference : references) {
 				val jsonReference = new JsonObject
-				jsonReference.addFeatureMeta(reference)
+				jsonReference.addFeatureMeta(reference, false)
 				jsonReferences.add(jsonReference)
 			}
 		}
 		jsonBaseObject.add(PARAM_META, jsonTypeMeta)
 	}
 
-	def private addFeatureMeta(JsonObject jsonBaseObject, EStructuralFeature feature) {
+	def private addFeatureMeta(JsonObject jsonBaseObject, EStructuralFeature feature, boolean overuleRequired) {
 
 		if(feature instanceof EAttribute) {
 			jsonBaseObject.add(FEATURE, new JsonPrimitive(feature.name))
 			jsonBaseObject.addType(feature.EAttributeType)
 			var jsonType = "string"
 			switch feature.EAttributeType.instanceClass {
-				
 				case typeof(boolean): jsonType = "boolean"
 				case typeof(Boolean): jsonType = "boolean"
 				case typeof(int): jsonType = "number"
@@ -493,9 +497,9 @@ class JsonConverter {
 			if(feature.EAttributeType instanceof EEnum) {
 				jsonType = "enum"
 			}
-			
+
 			jsonBaseObject.add(JS_TYPE, new JsonPrimitive(jsonType))
-			
+
 			if(feature.EAttributeType instanceof EEnum) {
 				val enum = feature.EAttributeType as EEnum
 				val jsonLiterals = new JsonArray
@@ -524,8 +528,14 @@ class JsonConverter {
 		jsonBaseObject.addProperty(DERIVED, feature.isDerived)
 		jsonBaseObject.addProperty(MANY, feature.isMany)
 		jsonBaseObject.addProperty(REQUIRED, feature.required)
+		if(overuleRequired) {
+			jsonBaseObject.addProperty(REQUIRED, true)
+		}
 		jsonBaseObject.addProperty(LOWER_BOUND, feature.lowerBound)
 		jsonBaseObject.addProperty(UPPER_BOUND, feature.upperBound)
+		if(overuleRequired) {
+			jsonBaseObject.addProperty(UPPER_BOUND, 1)
+		}
 	}
 
 	def private addDiagnosticsAndMeta(JsonObject jsonBaseObject, EObject object) {
@@ -568,19 +578,11 @@ class JsonConverter {
 		object.toJsonBase(stop)
 	}
 
-	def private dispatch getUrl(CDOResourceNode object) {
+	def private getUrl(EObject object) {
 		return object.getUrl(true)
 	}
 
-	def private dispatch getUrl(EObject object) {
-		return object.getUrl(true)
-	}
-
-	def private dispatch getUrl(CDOResourceNode object, boolean withTimestamp) {
-		jsonConverterConfig.serverAddress + ALIAS_NODE + object.path + object.getTimestampParam(withTimestamp)
-	}
-
-	def private dispatch getUrl(EObject object, boolean withTimestamp) {
+	def private getUrl(EObject object, boolean withTimestamp) {
 		var id = ""
 		if(object instanceof CDOObject) {
 			id = object.cdoID.toURIFragment.replace("L", "")
