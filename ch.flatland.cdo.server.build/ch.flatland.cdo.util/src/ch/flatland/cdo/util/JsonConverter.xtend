@@ -23,6 +23,7 @@ import java.util.Date
 import java.util.LinkedHashMap
 import java.util.List
 import java.util.Map
+import java.util.TimeZone
 import org.apache.commons.codec.binary.Base64
 import org.eclipse.emf.cdo.CDOObject
 import org.eclipse.emf.cdo.common.revision.delta.CDOAddFeatureDelta
@@ -59,7 +60,7 @@ class JsonConverter {
 
 	val gson = new Gson
 	val parser = new JsonParser
-	val dateFormat = new SimpleDateFormat(DATE_FORMAT);
+
 	val extension EMF = new EMF
 	val extension View = new View
 	val extension HttpStatus = new HttpStatus
@@ -85,6 +86,12 @@ class JsonConverter {
 
 	def getConfig() {
 		jsonConverterConfig
+	}
+	
+	def getDateFormat() {
+		val dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+		dateFormat.timeZone = TimeZone.getTimeZone("Zulu")
+		return dateFormat
 	}
 
 	def getDiagnostics() {
@@ -769,7 +776,7 @@ class JsonConverter {
 				return null
 			}
 		} catch(Exception e) {
-			throw new FlatlandException(SC_BAD_REQUEST, "Json primitive '{}' could not be converted to '{}' for attribute '{}", jsonPrimitive.asString, eAttribute.EAttributeType.name, eAttribute.name)
+			throw new FlatlandException(SC_BAD_REQUEST, "Json primitive '{}' could not be converted to '{}' for attribute '{}'", jsonPrimitive.asString, eAttribute.EAttributeType.name, eAttribute.name)
 		}
 
 		logger.error("NO CONVERSION WAS POSSIBLE of eAttribute '{}' to data type {}", eAttribute.name, eAttribute.EAttributeType.name)
@@ -790,7 +797,7 @@ class JsonConverter {
 	}
 
 	def private dispatch toJsonPrimitive(Character object) {
-		new JsonPrimitive(object.toString)
+		new JsonPrimitive(object)
 	}
 
 	def private dispatch toJsonPrimitive(Date object) {
