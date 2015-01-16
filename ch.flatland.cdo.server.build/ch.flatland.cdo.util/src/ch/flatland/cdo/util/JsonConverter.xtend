@@ -54,6 +54,7 @@ import org.slf4j.LoggerFactory
 
 import static ch.flatland.cdo.util.Constants.*
 import static javax.servlet.http.HttpServletResponse.*
+import org.eclipse.emf.ecore.EDataType
 
 class JsonConverter {
 	val logger = LoggerFactory.getLogger(this.class)
@@ -87,7 +88,7 @@ class JsonConverter {
 	def getConfig() {
 		jsonConverterConfig
 	}
-	
+
 	def getDateFormat() {
 		val dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
 		dateFormat.timeZone = TimeZone.getTimeZone("Zulu")
@@ -483,29 +484,7 @@ class JsonConverter {
 		if(feature instanceof EAttribute) {
 			jsonBaseObject.add(FEATURE, new JsonPrimitive(feature.name))
 			jsonBaseObject.addType(feature.EAttributeType)
-			var jsonType = "string"
-			switch feature.EAttributeType.instanceClass {
-				case typeof(boolean): jsonType = "boolean"
-				case typeof(Boolean): jsonType = "boolean"
-				case typeof(int): jsonType = "number"
-				case typeof(Integer): jsonType = "number"
-				case typeof(long): jsonType = "number"
-				case typeof(Long): jsonType = "number"
-				case typeof(short): jsonType = "number"
-				case typeof(Short): jsonType = "number"
-				case typeof(double): jsonType = "number"
-				case typeof(Double): jsonType = "number"
-				case typeof(float): jsonType = "number"
-				case typeof(Float): jsonType = "number"
-				case typeof(BigDecimal): jsonType = "number"
-				case typeof(BigInteger): jsonType = "number"
-				case typeof(Date): jsonType = "date"
-			}
-			if(feature.EAttributeType instanceof EEnum) {
-				jsonType = "enum"
-			}
-
-			jsonBaseObject.add(JS_TYPE, new JsonPrimitive(jsonType))
+			jsonBaseObject.addJsType(feature.EAttributeType)
 
 			if(feature.EAttributeType instanceof EEnum) {
 				val enum = feature.EAttributeType as EEnum
@@ -515,6 +494,8 @@ class JsonConverter {
 					jsonBaseObject.add(ENUM_LITERALS, jsonLiterals)
 				}
 			}
+			jsonBaseObject.addDefaultPattern(feature.EAttributeType)
+			
 			jsonBaseObject.addProperty(INSTANCE_CLASS_NAME, feature.EAttributeType.instanceClassName)
 			feature.EAttributeType.EAnnotations.forEach [
 				it.details.filter[it.key.toString != "name" && it.key.toString != "baseType"].forEach [
@@ -543,6 +524,50 @@ class JsonConverter {
 			jsonBaseObject.addProperty(LOWER_BOUND, 1)
 		}
 		jsonBaseObject.addProperty(UPPER_BOUND, feature.upperBound)
+	}
+
+	def private addDefaultPattern(JsonObject jsonBaseObject, EDataType type) {
+		switch type.instanceClass {
+			case typeof(int): jsonBaseObject.addProperty(PATTERN, PATTERN_NUMBER)
+			case typeof(Integer): jsonBaseObject.addProperty(PATTERN, PATTERN_NUMBER)
+			case typeof(long): jsonBaseObject.addProperty(PATTERN, PATTERN_NUMBER)
+			case typeof(Long): jsonBaseObject.addProperty(PATTERN, PATTERN_NUMBER)
+			case typeof(short): jsonBaseObject.addProperty(PATTERN, PATTERN_NUMBER)
+			case typeof(Short): jsonBaseObject.addProperty(PATTERN, PATTERN_NUMBER)
+			case typeof(double): jsonBaseObject.addProperty(PATTERN, PATTERN_DECIMAL)
+			case typeof(Double): jsonBaseObject.addProperty(PATTERN, PATTERN_DECIMAL)
+			case typeof(float): jsonBaseObject.addProperty(PATTERN, PATTERN_DECIMAL)
+			case typeof(Float): jsonBaseObject.addProperty(PATTERN, PATTERN_DECIMAL)
+			case typeof(BigDecimal): jsonBaseObject.addProperty(PATTERN, PATTERN_DECIMAL)
+			case typeof(BigInteger): jsonBaseObject.addProperty(PATTERN, PATTERN_NUMBER)
+			case typeof(Date): jsonBaseObject.addProperty(PATTERN, PATTERN_DATE)
+		}
+	}
+
+	def private addJsType(JsonObject jsonBaseObject, EDataType type) {
+		var jsonType = "string"
+		switch type.instanceClass {
+			case typeof(boolean): jsonType = "boolean"
+			case typeof(Boolean): jsonType = "boolean"
+			case typeof(int): jsonType = "number"
+			case typeof(Integer): jsonType = "number"
+			case typeof(long): jsonType = "number"
+			case typeof(Long): jsonType = "number"
+			case typeof(short): jsonType = "number"
+			case typeof(Short): jsonType = "number"
+			case typeof(double): jsonType = "number"
+			case typeof(Double): jsonType = "number"
+			case typeof(float): jsonType = "number"
+			case typeof(Float): jsonType = "number"
+			case typeof(BigDecimal): jsonType = "number"
+			case typeof(BigInteger): jsonType = "number"
+			case typeof(Date): jsonType = "date"
+		}
+		if(type instanceof EEnum) {
+			jsonType = "enum"
+		}
+
+		jsonBaseObject.add(JS_TYPE, new JsonPrimitive(jsonType))
 	}
 
 	def private addDiagnosticsAndMeta(JsonObject jsonBaseObject, EObject object) {
