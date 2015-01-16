@@ -539,10 +539,10 @@ class JsonConverter {
 			jsonBaseObject.addProperty(REQUIRED, true)
 		}
 		jsonBaseObject.addProperty(LOWER_BOUND, feature.lowerBound)
-		jsonBaseObject.addProperty(UPPER_BOUND, feature.upperBound)
 		if(overuleRequired) {
-			jsonBaseObject.addProperty(UPPER_BOUND, 1)
+			jsonBaseObject.addProperty(LOWER_BOUND, 1)
 		}
+		jsonBaseObject.addProperty(UPPER_BOUND, feature.upperBound)
 	}
 
 	def private addDiagnosticsAndMeta(JsonObject jsonBaseObject, EObject object) {
