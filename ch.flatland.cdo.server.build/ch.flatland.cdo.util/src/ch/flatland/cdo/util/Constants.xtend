@@ -94,9 +94,8 @@ class Constants {
 	val public static ICON = "icon"
 	val public static PATTERN = "pattern"
 	val public static PATTERN_NUMBER = "-?[0-9]*"
-	val public static PATTERN_DECIMAL = "-?[0-9]*\\.?[0-9]*" 
-	val public static PATTERN_DATE = "[0-9][0-9][0-9][0-9]-(([1]([0|1|2]))|([0][1-9]))-(([3]([0|1]))|(([0])[1-9])|(([1]|[2])[0-9]))T([0-1][0-9]|[2][0-3]):([0-5][0-9]):([0-5][0-9]).[0-9][0-9][0-9]Z"
-
+	val public static PATTERN_DECIMAL = "-?[0-9]*\\.?[0-9]*"
+											   
 	// servlets
 	val public static ALIAS_NODE = "/node"
 	val public static ALIAS_OBJECT = "/obj"

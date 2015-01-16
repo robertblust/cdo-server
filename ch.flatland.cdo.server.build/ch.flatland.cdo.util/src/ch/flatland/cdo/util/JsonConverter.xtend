@@ -18,12 +18,10 @@ import com.google.gson.JsonParser
 import com.google.gson.JsonPrimitive
 import java.math.BigDecimal
 import java.math.BigInteger
-import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.LinkedHashMap
 import java.util.List
 import java.util.Map
-import java.util.TimeZone
 import org.apache.commons.codec.binary.Base64
 import org.eclipse.emf.cdo.CDOObject
 import org.eclipse.emf.cdo.common.revision.delta.CDOAddFeatureDelta
@@ -41,6 +39,7 @@ import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.EAttribute
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EClassifier
+import org.eclipse.emf.ecore.EDataType
 import org.eclipse.emf.ecore.EEnum
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
@@ -54,7 +53,6 @@ import org.slf4j.LoggerFactory
 
 import static ch.flatland.cdo.util.Constants.*
 import static javax.servlet.http.HttpServletResponse.*
-import org.eclipse.emf.ecore.EDataType
 
 class JsonConverter {
 	val logger = LoggerFactory.getLogger(this.class)
@@ -63,6 +61,7 @@ class JsonConverter {
 	val parser = new JsonParser
 
 	val extension EMF = new EMF
+	val extension DateConverter = new DateConverter
 	val extension View = new View
 	val extension HttpStatus = new HttpStatus
 	val extension References = new References
@@ -87,12 +86,6 @@ class JsonConverter {
 
 	def getConfig() {
 		jsonConverterConfig
-	}
-
-	def getDateFormat() {
-		val dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
-		dateFormat.timeZone = TimeZone.getTimeZone("Zulu")
-		return dateFormat
 	}
 
 	def getDiagnostics() {
@@ -227,7 +220,7 @@ class JsonConverter {
 		if(object instanceof CDOObject) {
 			jsonBaseObject.addProperty(PERMISSION, object.cdoPermission.name)
 			jsonBaseObject.addProperty(REVISION, object.cdoRevision.version)
-			jsonBaseObject.addProperty(DATE, dateFormat.format(new Date(object.cdoRevision.timeStamp)))
+			jsonBaseObject.addProperty(DATE, (new Date(object.cdoRevision.timeStamp).formatDate))
 			jsonBaseObject.addProperty(AUTHOR, object.view.session.commitInfoManager.getCommitInfo(object.cdoRevision.timeStamp).userID)
 		}
 
@@ -343,7 +336,7 @@ class JsonConverter {
 				val jsonRevsionObject = new JsonObject
 				jsonRevsionObject.addProperty(REVISION, (historySize - i))
 				jsonRevsionObject.addProperty(SELF, object.getUrl(false) + "?" + PARAM_POINT_IN_TIME + "=" + commitInfo.timeStamp)
-				jsonRevsionObject.addProperty(DATE, dateFormat.format(new Date(commitInfo.timeStamp)))
+				jsonRevsionObject.addProperty(DATE, formatDate(new Date(commitInfo.timeStamp)))
 				jsonRevsionObject.addProperty(AUTHOR, commitInfo.userID)
 				logger.debug("'{}' resolved revsion '{}'", object, (historySize - i))
 				jsonRevisionsArray.add(jsonRevsionObject)
@@ -540,7 +533,7 @@ class JsonConverter {
 			case typeof(Float): jsonBaseObject.addProperty(PATTERN, PATTERN_DECIMAL)
 			case typeof(BigDecimal): jsonBaseObject.addProperty(PATTERN, PATTERN_DECIMAL)
 			case typeof(BigInteger): jsonBaseObject.addProperty(PATTERN, PATTERN_NUMBER)
-			case typeof(Date): jsonBaseObject.addProperty(PATTERN, PATTERN_DATE)
+			case typeof(Date): jsonBaseObject.addProperty(PATTERN, DateConverter.PATTERN_DATE_ALL)
 		}
 	}
 
@@ -785,7 +778,7 @@ class JsonConverter {
 				case typeof(Byte): return jsonPrimitive.asByte
 				case typeof(char): return jsonPrimitive.asCharacter
 				case typeof(Character): return jsonPrimitive.asCharacter
-				case typeof(Date): return dateFormat.parse(jsonPrimitive.asString)
+				case typeof(Date): return parseDate(jsonPrimitive.asString)
 				case typeof(BigDecimal): return jsonPrimitive.asBigDecimal
 				case typeof(BigInteger): return jsonPrimitive.asBigInteger
 				case typeof(byte[]): return Base64.decodeBase64(jsonPrimitive.asString)
@@ -826,7 +819,7 @@ class JsonConverter {
 	}
 
 	def private dispatch toJsonPrimitive(Date object) {
-		new JsonPrimitive(dateFormat.format(object))
+		new JsonPrimitive(formatDate(object))
 	}
 
 	def private dispatch toJsonPrimitive(URI object) {
