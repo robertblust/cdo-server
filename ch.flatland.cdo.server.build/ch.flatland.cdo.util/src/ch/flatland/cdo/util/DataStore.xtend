@@ -45,6 +45,7 @@ class DataStore {
 		}
 
 		toProcess.forEach [
+
 			val mappingStrategy = view.mappingStrategy
 			var tableName = it.type.replace(".", "_")
 			try {

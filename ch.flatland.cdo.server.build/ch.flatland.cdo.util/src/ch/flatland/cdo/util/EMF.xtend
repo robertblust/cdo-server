@@ -30,6 +30,7 @@ class EMF {
 
 	val logger = LoggerFactory.getLogger(this.class)
 	val static IGNORED_EPACKAGES = newArrayList("xcore.lang")
+	val static IGNORED_ECLASSES = newArrayList("CDOBinaryResource", "CDOTextResource")
 
 	def getType(EClassifier classifier) {
 		classifier.EPackage.nsPrefix + "." + classifier.name
@@ -98,7 +99,7 @@ class EMF {
 		view.session.packageRegistry.packageInfos.forEach [
 			it.EPackage.eContents.forEach [
 				if(it instanceof EClass) {
-					if(it.EAllSuperTypes.contains(eClass) && it.abstract == false) {
+					if(it.EAllSuperTypes.contains(eClass) && it.abstract == false && !IGNORED_ECLASSES.contains(it.name)) {
 						eClasses.add(it)
 					}
 				}
@@ -116,7 +117,7 @@ class EMF {
 			val ePackage = EPackage.Registry.INSTANCE.getEPackage(key)
 			ePackage.eContents.forEach [
 				if(it instanceof EClass) {
-					if(it.EAllSuperTypes.contains(eClass) && it.abstract == false) {
+					if(it.EAllSuperTypes.contains(eClass) && it.abstract == false && !IGNORED_ECLASSES.contains(it.name)) {
 						eClasses.add(it)
 					}
 				}
