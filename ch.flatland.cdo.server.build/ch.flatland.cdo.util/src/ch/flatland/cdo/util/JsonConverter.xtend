@@ -898,14 +898,14 @@ class JsonConverter {
 	def private dispatch JsonElement getFeatureDeltaAsJsonObject(CDOFeatureDelta delta, EObject object) {
 		logger.debug("getFeatureDeltaAsJsonObject with CDOFeatureDelta '{}'", delta)
 		val jsonObject = new JsonObject
-		jsonObject.addProperty(MESSAGE, delta.type + " feature '" + delta.feature.name + "' of 'OID" + object.oid + "' to '" + object.eGet(delta.feature) + "'")
+		jsonObject.addProperty(MESSAGE, delta.type + " feature '" + delta.feature.name + "' to '" + object.eGet(delta.feature) + "'")
 		return jsonObject
 	}
 
 	def private dispatch JsonElement getFeatureDeltaAsJsonObject(CDOListFeatureDelta delta, EObject object) {
 		logger.debug("getFeatureDeltaAsJsonObject with CDOListFeatureDelta '{}'", delta)
 		val jsonObject = new JsonObject
-		jsonObject.addProperty(MESSAGE, delta.type + " feature '" + delta.feature.name + "' of 'OID" + object.oid + "' changed")
+		jsonObject.addProperty(MESSAGE, delta.type + " feature '" + delta.feature.name + "' changed")
 		if(delta.listChanges.size > 0) {
 			val jsonArray = new JsonArray
 			delta.listChanges.forEach [
@@ -919,7 +919,7 @@ class JsonConverter {
 	def private dispatch JsonElement getFeatureDeltaAsJsonObject(CDOSetFeatureDelta delta, EObject object) {
 		logger.debug("getFeatureDeltaAsJsonObject with CDOSetFeatureDelta '{}'", delta)
 		val jsonObject = new JsonObject
-		jsonObject.addProperty(MESSAGE, delta.type + " feature '" + delta.feature.name + "' of 'OID" + object.oid + "' from '" + delta.oldValue + "' to '" + delta.value + "'")
+		jsonObject.addProperty(MESSAGE, delta.type + " feature '" + delta.feature.name + "' from '" + delta.oldValue + "' to '" + delta.value + "'")
 		return jsonObject
 	}
 
@@ -934,7 +934,7 @@ class JsonConverter {
 		// TODO can be more detailed
 		logger.debug("getFeatureDeltaAsJsonObject with CDOContainerFeatureDelta '{}'", delta)
 		val jsonObject = new JsonObject
-		jsonObject.addProperty(MESSAGE, delta.type + " feature '" + delta.feature.name + "' of 'OID" + object.oid + "' to '" + object.eGet(delta.feature) + "'")
+		jsonObject.addProperty(MESSAGE, delta.type + " feature '" + delta.feature.name + "' to '" + object.eGet(delta.feature) + "'")
 		return jsonObject
 	}
 
@@ -943,7 +943,7 @@ class JsonConverter {
 		// TODO can be more detailed
 		logger.debug("getFeatureDeltaAsJsonObject with CDOMoveFeatureDelta '{}'", delta)
 		val jsonObject = new JsonObject
-		jsonObject.addProperty(MESSAGE, delta.type + " feature '" + delta.feature.name + "' of 'OID" + object.oid + "' to '" + object.eGet(delta.feature) + "'")
+		jsonObject.addProperty(MESSAGE, delta.type + " feature '" + delta.feature.name + "' to '" + object.eGet(delta.feature) + "'")
 		return jsonObject
 	}
 
