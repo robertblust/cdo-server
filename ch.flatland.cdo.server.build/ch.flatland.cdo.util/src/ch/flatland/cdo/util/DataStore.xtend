@@ -39,18 +39,7 @@ class DataStore {
 
 		val eClass = view.safeEClass(type)
 		if(eClass.abstract) {
-
-			// look for all concrete classes inherit from this eClass
-			view.session.packageRegistry.packageInfos.forEach [
-				it.EPackage.eContents.forEach [
-					if(it instanceof EClass) {
-						if(it.EAllSuperTypes.contains(eClass) && it.abstract == false) {
-							toProcess.add(it)
-						}
-					}
-				]
-			]
-
+			toProcess.addAll(eClass.getExtendedFrom(view))
 		} else {
 			toProcess.add(eClass)
 		}

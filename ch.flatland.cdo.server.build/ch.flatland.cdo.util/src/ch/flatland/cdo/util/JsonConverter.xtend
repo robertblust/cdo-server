@@ -504,6 +504,7 @@ class JsonConverter {
 		if(feature instanceof EReference) {
 			jsonBaseObject.add(FEATURE, new JsonPrimitive(feature.name))
 			jsonBaseObject.addType(feature.EReferenceType)
+			jsonBaseObject.addProperty(ABSTRACT, feature.EReferenceType.abstract)
 			jsonBaseObject.addProperty(CONTAINMENT, feature.containment)
 		}
 		jsonBaseObject.addProperty(DERIVED, feature.isDerived)
@@ -590,6 +591,13 @@ class JsonConverter {
 					jsonSuperTypesArray.add(new JsonPrimitive(it.type))
 				]
 				jsonBaseObject.add(EXTENDS, jsonSuperTypesArray)
+			}
+			if (classifier.getExtendedFrom.size > 0) {
+				val jsonExtendedFromArray = new JsonArray
+				classifier.getExtendedFrom.forEach[
+					jsonExtendedFromArray.add(new JsonPrimitive(it.type))
+				]
+				jsonBaseObject.add(EXTENDED_FROM, jsonExtendedFromArray)
 			}
 		}
 	}

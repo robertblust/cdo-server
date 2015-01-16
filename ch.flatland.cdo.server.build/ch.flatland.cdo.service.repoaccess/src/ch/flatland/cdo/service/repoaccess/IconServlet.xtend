@@ -11,6 +11,7 @@
 package ch.flatland.cdo.service.repoaccess
 
 import ch.flatland.cdo.util.AbstractServlet
+import ch.flatland.cdo.util.EMF
 import ch.flatland.cdo.util.FlatlandException
 import ch.flatland.cdo.util.Request
 import ch.flatland.cdo.util.Response
@@ -19,9 +20,7 @@ import java.io.BufferedInputStream
 import java.net.URL
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
-import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EObject
-import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.edit.EMFEditPlugin
 import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory
@@ -31,7 +30,6 @@ import static ch.flatland.cdo.util.Constants.*
 import static javax.servlet.http.HttpServletResponse.*
 
 class IconServlet extends AbstractServlet {
-	val static final IGNORED_EPACKAGES = newArrayList("xcore.lang")
 	
 	override protected doGet(HttpServletRequest req, HttpServletResponse resp) {
 		
@@ -39,6 +37,8 @@ class IconServlet extends AbstractServlet {
 		
 		val extension Request = new Request
 		val extension Response = new Response
+		val extension EMF = new EMF
+		
 		val extension JsonConverter = req.createJsonConverter
 		
 		req.logRequest
@@ -96,30 +96,5 @@ class IconServlet extends AbstractServlet {
 			resp.writeResponse(req, e.safeToJson)
 			logger.error("Request failed", e)
 		}
-	}
-	
-	def private safeEPackage(String nsPrefix) {
-		val keySet = EPackage.Registry.INSTANCE.keySet.filter[!IGNORED_EPACKAGES.contains(it)].clone
-		for (key : keySet) {
-			val ePackage = EPackage.Registry.INSTANCE.getEPackage(key)
-			if(ePackage != null) {
-				if(ePackage.nsPrefix == nsPrefix) {
-					return ePackage
-				}
-			}
-		}
-		throw new Exception
-	}
-	
-	def private safeEClass(EPackage ePackage, String type) {
-		val eClassifier = ePackage.EClassifiers.filter[it.name == type].head
-		if(eClassifier == null) {
-			throw new Exception
-		}
-		if(!(eClassifier instanceof EClass)) {
-			throw new Exception
-		}
-		val eClass = eClassifier as EClass
-		return eClass
 	}
 }

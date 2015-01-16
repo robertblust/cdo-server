@@ -91,6 +91,41 @@ class EMF {
 		return eClass.EAllAttributes.filter[it.name == name && !it.derived].head
 	}
 
+	def getExtendedFrom(EClass eClass, CDOView view) {
+		val eClasses = newArrayList
+
+		// look for all concrete classes inherit from this eClass
+		view.session.packageRegistry.packageInfos.forEach [
+			it.EPackage.eContents.forEach [
+				if(it instanceof EClass) {
+					if(it.EAllSuperTypes.contains(eClass) && it.abstract == false) {
+						eClasses.add(it)
+					}
+				}
+			]
+		]
+		return eClasses
+	}
+	
+	def getExtendedFrom(EClass eClass) {
+		val eClasses = newArrayList
+
+		// look for all concrete classes inherit from this eClass
+		val keySet = EPackage.Registry.INSTANCE.keySet.filter[!IGNORED_EPACKAGES.contains(it)].clone
+		for (key : keySet) {
+			val ePackage = EPackage.Registry.INSTANCE.getEPackage(key)
+			ePackage.eContents.forEach [
+				if(it instanceof EClass) {
+					if(it.EAllSuperTypes.contains(eClass) && it.abstract == false) {
+						eClasses.add(it)
+					}
+				}
+			]
+		}
+		
+		return eClasses
+	}
+
 	def validate(EObject object) {
 		val fLDiagnostics = newArrayList
 
@@ -154,6 +189,32 @@ class EMF {
 		val eType = type.safeEType
 		val ePackage = view.safeEPackage(type.safePackagePrefix)
 		val eClassifier = ePackage.EClassifiers.filter[it.name == eType].head
+		if(eClassifier == null) {
+			throw new FlatlandException(SC_BAD_REQUEST, "Could not resolve eClass for '{}'", type)
+		}
+		if(!(eClassifier instanceof EClass)) {
+			throw new FlatlandException(SC_BAD_REQUEST, "Not an eClass '{}', i'm a '{}'", type, eClassifier.eClass.name)
+		}
+		val eClass = eClassifier as EClass
+		logger.debug("Resolved EClass '{}'", eClass.name)
+		return eClass
+	}
+
+	def safeEPackage(String nsPrefix) {
+		val keySet = EPackage.Registry.INSTANCE.keySet.filter[!IGNORED_EPACKAGES.contains(it)].clone
+		for (key : keySet) {
+			val ePackage = EPackage.Registry.INSTANCE.getEPackage(key)
+			if(ePackage != null) {
+				if(ePackage.nsPrefix == nsPrefix) {
+					return ePackage
+				}
+			}
+		}
+		throw new FlatlandException(SC_BAD_REQUEST, "Invalid package prefix '{}'", nsPrefix)
+	}
+
+	def safeEClass(EPackage ePackage, String type) {
+		val eClassifier = ePackage.EClassifiers.filter[it.name == type].head
 		if(eClassifier == null) {
 			throw new FlatlandException(SC_BAD_REQUEST, "Could not resolve eClass for '{}'", type)
 		}
