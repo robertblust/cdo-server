@@ -34,56 +34,70 @@ class DataStore {
 		// TODO find better solution 'Depends on Relation DB Store' 
 		//sql depends on mapping strategy
 		val List<EObject> result = newArrayList
-		
+
+		val toProcess = newArrayList
+
 		val eClass = view.safeEClass(type)
-		val mappingStrategy = view.mappingStrategy
-		var tableName = type.replace(".", "_")
-		try {
-			tableName = mappingStrategy.getTableName(eClass)
-		} catch(Exception e) {
-			// TODO find better solution 'Depends on MappingStrategy'
-			// mappingStrategy.getTableName(eClass) causes an Exception
-			// 'StoreThreadLocal.getSession == null'
-			// when the requested class is never requested via standard cdo mechanism
-			// Solution to initialize session is a hack!!! 
-			// The exception should appears max once per eClass
-			// The tableName is known instead of asking the mappingStrategy
-			logger.debug("Hack NoSessionRegisteredException '{}'", e.message)
-			val query = view.createQuery("sql", "SELECT DISTINCT CDO_ID FROM " + tableName + " WHERE " + view.temporality)
-			query.maxResults = 1
-			logger.debug("Hack NoSessionRegisteredException Execute '{}' query '{}'", query.queryLanguage, query.queryString)
+		if(eClass.abstract) {
+
+			// look for all concrete classes inherit from this eClass
+			view.session.packageRegistry.packageInfos.forEach [
+				it.EPackage.eContents.forEach [
+					if(it instanceof EClass) {
+						if(it.EAllSuperTypes.contains(eClass) && it.abstract == false) {
+							toProcess.add(it)
+						}
+					}
+				]
+			]
+
+		} else {
+			toProcess.add(eClass)
+		}
+
+		toProcess.forEach [
+			val mappingStrategy = view.mappingStrategy
+			var tableName = it.type.replace(".", "_")
+			try {
+				tableName = mappingStrategy.getTableName(it)
+			} catch(Exception e) {
+
+				// TODO find better solution 'Depends on MappingStrategy'
+				// mappingStrategy.getTableName(eClass) causes an Exception
+				// 'StoreThreadLocal.getSession == null'
+				// when the requested class is never requested via standard cdo mechanism
+				// Solution to initialize session is a hack!!! 
+				// The exception should appears max once per eClass
+				// The tableName is known instead of asking the mappingStrategy
+				logger.debug("Hack NoSessionRegisteredException '{}'", e.message)
+				val query = view.createQuery("sql", "SELECT DISTINCT CDO_ID FROM " + tableName + " WHERE " + view.temporality)
+				query.maxResults = 1
+				logger.debug("Hack NoSessionRegisteredException Execute '{}' query '{}'", query.queryLanguage, query.queryString)
+				val iterator = query.getResultAsync(typeof(EObject))
+				while(iterator.hasNext) {
+					val obj = iterator.next
+					logger.debug("Hack NoSessionRegisteredException Found '{}'", obj)
+				}
+				iterator.close
+			}
+			val query = view.createQuery("sql", "SELECT DISTINCT CDO_ID " + it.max(req, mappingStrategy) + " FROM " + mappingStrategy.getTableName(it) + " WHERE " + view.temporality + it.filterQuery(req, mappingStrategy) + it.orderBy(req, mappingStrategy))
+			logger.debug("Execute '{}' query '{}'", query.queryLanguage, query.queryString)
 			val iterator = query.getResultAsync(typeof(EObject))
 			while(iterator.hasNext) {
 				val obj = iterator.next
-				logger.debug("Hack NoSessionRegisteredException Found '{}'", obj)
+				logger.debug("Found '{}'", obj)
+				result.add(obj)
 			}
 			iterator.close
-		}
-		
-		val query = view.createQuery("sql", "SELECT DISTINCT CDO_ID " + eClass.max(req, mappingStrategy) + " FROM "
-				+ mappingStrategy.getTableName(eClass) 
-				+ " WHERE "
-				+ view.temporality
-				+ eClass.filterQuery(req, mappingStrategy) 
-				+ eClass.orderBy(req, mappingStrategy))
-			
-
-		logger.debug("Execute '{}' query '{}'", query.queryLanguage, query.queryString)
-		val iterator = query.getResultAsync(typeof(EObject))
-		while(iterator.hasNext) {
-			val obj = iterator.next
-			logger.debug("Found '{}'", obj)
-			result.add(obj)
-		}
-		iterator.close
+		]
 
 		// TODO check other opinion 'Rest Standards'
 		// Should an empty list be returned or Status 404?
 		return result
 	}
-		
-	def	private temporality(CDOView view) {
-		if (view.timeStamp > 0) {
+
+	def private temporality(CDOView view) {
+		if(view.timeStamp > 0) {
 			return "((CDO_CREATED <= " + view.timeStamp + " AND CDO_VERSION > 0) AND (CDO_REVISED >= " + view.timeStamp + " OR CDO_REVISED = 0 AND CDO_VERSION > 0))"
 		} else {
 			return "(CDO_REVISED = 0 AND CDO_VERSION > 0)"
@@ -111,18 +125,18 @@ class DataStore {
 		}
 		return builder.toString
 	}
-	
+
 	def private max(EClass eClass, HttpServletRequest req, IMappingStrategy mappingStrategy) {
 		val max = eClass.orderByName(req, mappingStrategy)
-		if (max != null) {
+		if(max != null) {
 			return ", MAX(" + max + ")"
 		}
 		return ""
 	}
-	
+
 	def private orderBy(EClass eClass, HttpServletRequest req, IMappingStrategy mappingStrategy) {
 		val name = eClass.orderByName(req, mappingStrategy)
-		if (name != null) {
+		if(name != null) {
 			return " GROUP BY CDO_ID ORDER BY MAX(" + name + ")"
 		}
 		return ""
@@ -159,6 +173,7 @@ class DataStore {
 			}
 			return "-1"
 		} else {
+
 			// escape single quotes!
 			return value.replace("'", "''")
 		}
