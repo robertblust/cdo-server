@@ -12,6 +12,7 @@ package ch.flatland.cdo.util
 
 import com.google.common.base.Splitter
 import com.google.gson.JsonElement
+import java.util.List
 import org.eclipse.emf.cdo.CDOObject
 import org.eclipse.emf.cdo.common.security.CDOPermission
 import org.eclipse.emf.cdo.common.security.NoPermissionException
@@ -143,8 +144,13 @@ class EMF {
 			eClasses.add(EresourcePackage.eINSTANCE.CDOResourceFolder)
 		}
 		
+		val List<String> newIgnoredPackages = IGNORED_EPACKAGES_META.clone as List<String>
+		if (eClass.EPackage.nsURI == "http://www.eclipse.org/emf/CDO/security/4.1.0") {
+			newIgnoredPackages.remove("http://www.eclipse.org/emf/CDO/security/4.1.0")
+		}
+		
 		// look for all concrete classes inherit from this eClass
-		val keySet = EPackage.Registry.INSTANCE.keySet.filter[!IGNORED_EPACKAGES_META.contains(it)].clone
+		val keySet = EPackage.Registry.INSTANCE.keySet.filter[!newIgnoredPackages.contains(it)].clone
 
 		for (key : keySet) {
 			val ePackage = EPackage.Registry.INSTANCE.getEPackage(key)
