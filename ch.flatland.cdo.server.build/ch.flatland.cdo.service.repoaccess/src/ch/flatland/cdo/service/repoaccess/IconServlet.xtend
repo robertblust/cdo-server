@@ -56,7 +56,11 @@ class IconServlet extends AbstractServlet {
 				case 2: {
 					try {
 						var EObject object = null 
-						val typeSegment = pathSegments.get(1)
+						var typeSegment = pathSegments.get(1)
+						if (typeSegment == "eresource.CDOResource") {
+							// TODO use different icon can be done better
+							typeSegment = "security.ResourceFilter"
+						}
 						if (typeSegment.contains(".")) {
 							val segments = Splitter.on(".").split(typeSegment)
 							val ePackage = safeEPackage(segments.get(0))
