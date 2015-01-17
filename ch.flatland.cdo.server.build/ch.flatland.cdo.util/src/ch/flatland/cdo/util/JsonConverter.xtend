@@ -505,6 +505,10 @@ class JsonConverter {
 			jsonBaseObject.add(FEATURE, new JsonPrimitive(feature.name))
 			jsonBaseObject.addType(feature.EReferenceType)
 			jsonBaseObject.addProperty(ABSTRACT, feature.EReferenceType.abstract)
+			if (feature.EReferenceType.name == "EObject") {
+				// overrule, must not be instantiated
+				jsonBaseObject.addProperty(ABSTRACT, true)
+			}
 			jsonBaseObject.addProperty(CONTAINMENT, feature.containment)
 		}
 		jsonBaseObject.addProperty(DERIVED, feature.isDerived)
