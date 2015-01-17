@@ -138,7 +138,7 @@ class EMF {
 	def getExtendedFrom(EClass eClass) {
 		val eClasses = newArrayList	
 					
-		if (eClass.name == "CDOResourceFolder" || eClass.name == "CDOResourceNode" ) {
+		if (eClass.name == "CDOResourceNode" ) {
 			eClasses.add(EresourcePackage.eINSTANCE.CDOResource)
 			eClasses.add(EresourcePackage.eINSTANCE.CDOResourceFolder)
 		}
