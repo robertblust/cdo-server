@@ -15,6 +15,7 @@ import com.google.gson.JsonElement
 import org.eclipse.emf.cdo.CDOObject
 import org.eclipse.emf.cdo.common.security.CDOPermission
 import org.eclipse.emf.cdo.common.security.NoPermissionException
+import org.eclipse.emf.cdo.eresource.EresourcePackage
 import org.eclipse.emf.cdo.view.CDOView
 import org.eclipse.emf.ecore.EAttribute
 import org.eclipse.emf.ecore.EClass
@@ -29,8 +30,30 @@ import static javax.servlet.http.HttpServletResponse.*
 class EMF {
 
 	val logger = LoggerFactory.getLogger(this.class)
-	val static IGNORED_EPACKAGES = newArrayList("xcore.lang")
-	val static IGNORED_ECLASSES = newArrayList("CDOBinaryResource", "CDOTextResource")
+	val static IGNORED_EPACKAGES = newArrayList(
+		"xcore.lang"
+	)
+	val static IGNORED_EPACKAGES_META = newArrayList(
+		"xcore.lang",
+		"ch.flatland.cdo.model.config",
+		"http://www.eclipse.org/emf/2003/Change",
+		"http://www.eclipse.org/ocl/1.1.0/Ecore",
+		"http://www.eclipse.org/emf/CDO/security/4.1.0",
+		"http://www.eclipse.org/ocl/1.1.0/OCL/CST",
+		"http://www.eclipse.org/emf/2003/XMLType",
+		"http://www.eclipse.org/emf/2002/Ecore",
+		"http://www.eclipse.org/emf/CDO/expressions/4.3.0",
+		"http://www.eclipse.org/emf/CDO/Etypes/4.0.0",
+		"http://www.eclipse.org/ocl/1.1.0/OCL",
+		"http://www.eclipse.org/ocl/1.1.0/OCL/Types",
+		"http://www.eclipse.org/ocl/1.1.0/OCL/Expressions",
+		"http://www.eclipse.org/emf/2002/Tree",
+		"http://www.eclipse.org/emf/CDO/admin/RepositoryCatalog/4.3.0",
+		"http://www.eclipse.org/ocl/1.1.0/OCL/Utilities",
+		"http://www.w3.org/XML/1998/namespace",
+		"http://www.eclipse.org/emf/CDO/Eresource/4.0.0"
+	)
+	val static IGNORED_ECLASSES = newArrayList("CDOBinaryResource", "CDOTextResource", "EObject")
 
 	def getType(EClassifier classifier) {
 		classifier.EPackage.nsPrefix + "." + classifier.name
@@ -102,17 +125,27 @@ class EMF {
 					if(it.EAllSuperTypes.contains(eClass) && it.abstract == false && !IGNORED_ECLASSES.contains(it.name)) {
 						eClasses.add(it)
 					}
+					if(eClass.name == "EObject" && it.abstract == false) {
+						logger.debug("Look for all valid sub types of EObject add '{}'", it.name)
+						eClasses.add(it)
+					}
 				}
 			]
 		]
 		return eClasses
 	}
-	
-	def getExtendedFrom(EClass eClass) {
-		val eClasses = newArrayList
 
+	def getExtendedFrom(EClass eClass) {
+		val eClasses = newArrayList	
+					
+		if (eClass.name == "CDOResourceFolder" || eClass.name == "CDOResourceNode" ) {
+			eClasses.add(EresourcePackage.eINSTANCE.CDOResource)
+			eClasses.add(EresourcePackage.eINSTANCE.CDOResourceFolder)
+		}
+		
 		// look for all concrete classes inherit from this eClass
-		val keySet = EPackage.Registry.INSTANCE.keySet.filter[!IGNORED_EPACKAGES.contains(it)].clone
+		val keySet = EPackage.Registry.INSTANCE.keySet.filter[!IGNORED_EPACKAGES_META.contains(it)].clone
+
 		for (key : keySet) {
 			val ePackage = EPackage.Registry.INSTANCE.getEPackage(key)
 			ePackage.eContents.forEach [
@@ -120,10 +153,14 @@ class EMF {
 					if(it.EAllSuperTypes.contains(eClass) && it.abstract == false && !IGNORED_ECLASSES.contains(it.name)) {
 						eClasses.add(it)
 					}
+					if(eClass.name == "EObject" && it.abstract == false && !IGNORED_ECLASSES.contains(it.name)) {
+
+						logger.debug("Look for all valid sub types of EObject add '{}'", it.name)
+						eClasses.add(it)
+					}
 				}
 			]
 		}
-		
 		return eClasses
 	}
 
