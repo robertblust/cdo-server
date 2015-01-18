@@ -81,13 +81,15 @@ class Post {
 			}
 
 			val jsonElement = body.safeFromJson
+			
+			val newObjects = newArrayList
 
 			if(jsonElement.isJsonArray) {
 				jsonElement.asJsonArray.forEach [
-					createObject(it.asJsonObject, container, eReference, req)
+					newObjects.add(createObject(it.asJsonObject, container, eReference, req))
 				]
 			} else {
-				createObject(jsonElement.asJsonObject, container, eReference, req)
+				newObjects.add(createObject(jsonElement.asJsonObject, container, eReference, req))
 			}
 
 			view.addRevisionDelta(JsonConverter.revisionDeltas)
@@ -99,8 +101,12 @@ class Post {
 				throw new FlatlandException(SC_BAD_REQUEST, container, e.message)
 			}
 
-			// now transform manipulated object to json for the response			
-			jsonString = container.eGet(eReference).safeToJson
+			// now transform manipulated object to json for the response
+			if (newObjects.size == 1) {
+				jsonString = newObjects.get(0).safeToJson
+			} else  {
+				jsonString = newObjects.safeToJson
+			}
 			resp.status = SC_CREATED
 
 		} catch(FlatlandException e) {
@@ -134,6 +140,7 @@ class Post {
 		} else {
 			container.eSet(eReference, newObject)
 		}
+		return newObject
 	}
 
 	def private methodAllowed(HttpServletRequest req, Object object) {
