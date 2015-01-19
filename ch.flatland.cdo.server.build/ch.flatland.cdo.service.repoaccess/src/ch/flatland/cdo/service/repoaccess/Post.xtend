@@ -98,6 +98,9 @@ class Post {
 				view.commit
 			} catch(CommitException e) {
 				view.rollback
+				if (e.message.contains("Duplicate resource node in folder")) {
+					throw new FlatlandException(SC_CONFLICT, container, "Duplicate resource node in folder '" + container.cdoID + "'")
+				}				
 				throw new FlatlandException(SC_BAD_REQUEST, container, e.message)
 			}
 
