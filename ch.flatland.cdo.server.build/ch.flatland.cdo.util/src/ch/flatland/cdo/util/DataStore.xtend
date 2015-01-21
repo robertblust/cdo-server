@@ -38,11 +38,10 @@ class DataStore {
 		val toProcess = newArrayList
 
 		val eClass = view.safeEClass(type)
-		if(eClass.abstract) {
-			toProcess.addAll(eClass.getExtendedFrom(view))
-		} else {
-			toProcess.add(eClass)
-		}
+		if(!eClass.abstract) {
+			toProcess.add(eClass)	
+		} 
+		toProcess.addAll(eClass.getExtendedFrom(view))
 
 		toProcess.forEach [
 
