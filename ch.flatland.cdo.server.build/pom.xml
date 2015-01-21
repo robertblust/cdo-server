@@ -10,7 +10,7 @@
 	<name>Flatland CDO Server</name>
 
 	<properties>
-		<tycho.version>0.21.0</tycho.version>
+		<tycho.version>0.22.0</tycho.version>
 		<xtend.version>2.7.2</xtend.version>
 		<build.qualifier>'v'yyyyMMddHHmm</build.qualifier>
 		<project.build.sourceEncoding>cp1252</project.build.sourceEncoding>
