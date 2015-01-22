@@ -42,33 +42,7 @@ class View {
 			switch (req.servletAlias) {
 				case ALIAS_NODE: {
 					if(req.pathInfo != null) {
-						var String referenceName = null
-						var pathInfo = req.pathInfo
-						val pathSegments = req.pathSegments
-						var references = false
-
-						// all references requested?
-						if(pathSegments.get(pathSegments.size - 1) == REFERENCES) {
-							pathInfo = pathInfo.replace("/" + REFERENCES, "")
-							references = true
-						}
-
-						// detail references requested?
-						if(pathSegments.get(pathSegments.size - 2) == REFERENCES) {
-							pathInfo = pathInfo.replace("/" + REFERENCES + "/" + pathSegments.get(pathSegments.size - 1), "")
-							referenceName = pathSegments.get(pathSegments.size - 1)
-							if(req.method != METHOD_POST) {
-								references = true
-							}
-						}
-						val CDOObject object = view.getResourceNode(pathInfo)
-						if(!references) {
-							return object
-						} else {
-
-							// resolve references
-							return req.orderBy(req.filterBy(object.safeResolveReferences(referenceName, req)))
-						}
+						return view.getResourceNode(req.pathInfo)
 					} else {
 						return view.getResourceNode("/")
 					}
