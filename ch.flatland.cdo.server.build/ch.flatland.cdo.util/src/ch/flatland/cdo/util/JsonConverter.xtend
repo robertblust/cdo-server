@@ -269,6 +269,17 @@ class JsonConverter {
 					]
 				}
 
+				if(object.eContents.size > 0) {
+					val jsonContentsLink = new JsonObject
+					jsonContentsLink.addProperty(HREF, object.getUrl(false) + "/" + CONTENTS + object.getTimestampParam(true))
+					jsonContentsLink.addProperty(SIZE, object.eContents.size)
+					jsonLinksObject.add(CONTENTS, jsonContentsLink)
+				}
+
+				val jsonAllContentsLink = new JsonObject
+				jsonAllContentsLink.addProperty(HREF, object.getUrl(false) + "/" + ALL_CONTENTS + object.getTimestampParam(true))
+				jsonLinksObject.add(ALL_CONTENTS, jsonAllContentsLink)
+
 				val jsonContainerLink = new JsonObject
 				if(object.eContainer != null) {
 					jsonContainerLink.addProperty(HREF, object.eContainer.url)
@@ -488,7 +499,7 @@ class JsonConverter {
 				}
 			}
 			jsonBaseObject.addDefaultPattern(feature.EAttributeType)
-			
+
 			jsonBaseObject.addProperty(INSTANCE_CLASS_NAME, feature.EAttributeType.instanceClassName)
 			feature.EAttributeType.EAnnotations.forEach [
 				it.details.filter[it.key.toString != "name" && it.key.toString != "baseType"].forEach [
@@ -505,7 +516,8 @@ class JsonConverter {
 			jsonBaseObject.add(FEATURE, new JsonPrimitive(feature.name))
 			jsonBaseObject.addType(feature.EReferenceType)
 			jsonBaseObject.addProperty(ABSTRACT, feature.EReferenceType.abstract)
-			if (feature.EReferenceType.name == "EObject") {
+			if(feature.EReferenceType.name == "EObject") {
+
 				// overrule, must not be instantiated
 				jsonBaseObject.addProperty(ABSTRACT, true)
 			}
@@ -596,9 +608,9 @@ class JsonConverter {
 				]
 				jsonBaseObject.add(EXTENDS, jsonSuperTypesArray)
 			}
-			if (classifier.getExtendedFrom.size > 0) {
+			if(classifier.getExtendedFrom.size > 0) {
 				val jsonExtendedFromArray = new JsonArray
-				classifier.getExtendedFrom.forEach[
+				classifier.getExtendedFrom.forEach [
 					jsonExtendedFromArray.add(new JsonPrimitive(it.type))
 				]
 				jsonBaseObject.add(EXTENDED_FROM, jsonExtendedFromArray)

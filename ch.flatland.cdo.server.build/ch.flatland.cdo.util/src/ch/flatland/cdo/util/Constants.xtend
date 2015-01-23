@@ -58,6 +58,8 @@ class Constants {
 	val public static ATTRIBUTES = "attributes"
 	val public static ATTRIBUTES_ARRAY = "attributesArray"
 	val public static REFERENCES = "references"
+	val public static CONTENTS = "contents"
+	val public static ALL_CONTENTS = "allContents"
 	val public static REFERENCES_ARRAY = "referencesArray"
 	val public static XREFERENCES = "xReferences"
 	val public static CONTAINMENT = "containment"
