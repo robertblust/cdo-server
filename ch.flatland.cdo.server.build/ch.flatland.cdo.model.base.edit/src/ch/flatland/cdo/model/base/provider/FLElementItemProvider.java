@@ -109,7 +109,7 @@ public class FLElementItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
+				 getString("_UI_BasePropertyCategory"),
 				 null));
 	}
 
@@ -131,7 +131,7 @@ public class FLElementItemProvider
 				 true,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
+				 getString("_UI_BasePropertyCategory"),
 				 null));
 	}
 
@@ -153,7 +153,7 @@ public class FLElementItemProvider
 				 false,
 				 false,
 				 null,
-				 null,
+				 getString("_UI_TracetoPropertyCategory"),
 				 null));
 	}
 
@@ -175,7 +175,7 @@ public class FLElementItemProvider
 				 false,
 				 false,
 				 null,
-				 null,
+				 getString("_UI_TracetoPropertyCategory"),
 				 null));
 	}
 
@@ -197,7 +197,7 @@ public class FLElementItemProvider
 				 false,
 				 false,
 				 null,
-				 null,
+				 getString("_UI_TracetoPropertyCategory"),
 				 null));
 	}
 
@@ -219,7 +219,7 @@ public class FLElementItemProvider
 				 false,
 				 false,
 				 null,
-				 null,
+				 getString("_UI_TracetoPropertyCategory"),
 				 null));
 	}
 
@@ -241,7 +241,7 @@ public class FLElementItemProvider
 				 false,
 				 false,
 				 null,
-				 null,
+				 getString("_UI_TracetoPropertyCategory"),
 				 null));
 	}
 
@@ -263,7 +263,7 @@ public class FLElementItemProvider
 				 false,
 				 false,
 				 null,
-				 null,
+				 getString("_UI_TracetoPropertyCategory"),
 				 null));
 	}
 
@@ -285,7 +285,7 @@ public class FLElementItemProvider
 				 false,
 				 false,
 				 null,
-				 null,
+				 getString("_UI_TracetoPropertyCategory"),
 				 null));
 	}
 
@@ -307,7 +307,7 @@ public class FLElementItemProvider
 				 false,
 				 false,
 				 null,
-				 null,
+				 getString("_UI_TracetoPropertyCategory"),
 				 null));
 	}
 
@@ -329,7 +329,7 @@ public class FLElementItemProvider
 				 false,
 				 false,
 				 null,
-				 null,
+				 getString("_UI_TracetoPropertyCategory"),
 				 null));
 	}
 
@@ -351,7 +351,7 @@ public class FLElementItemProvider
 				 false,
 				 false,
 				 null,
-				 null,
+				 getString("_UI_TracetoPropertyCategory"),
 				 null));
 	}
 
@@ -373,7 +373,7 @@ public class FLElementItemProvider
 				 false,
 				 false,
 				 null,
-				 null,
+				 getString("_UI_TracetoPropertyCategory"),
 				 null));
 	}
 
@@ -395,7 +395,7 @@ public class FLElementItemProvider
 				 false,
 				 false,
 				 null,
-				 null,
+				 getString("_UI_TracetoPropertyCategory"),
 				 null));
 	}
 
@@ -417,7 +417,7 @@ public class FLElementItemProvider
 				 false,
 				 false,
 				 null,
-				 null,
+				 getString("_UI_TracetoPropertyCategory"),
 				 null));
 	}
 
@@ -439,7 +439,7 @@ public class FLElementItemProvider
 				 false,
 				 false,
 				 null,
-				 null,
+				 getString("_UI_TracetoPropertyCategory"),
 				 null));
 	}
 
@@ -461,7 +461,7 @@ public class FLElementItemProvider
 				 false,
 				 false,
 				 null,
-				 null,
+				 getString("_UI_TracetoPropertyCategory"),
 				 null));
 	}
 
@@ -483,7 +483,7 @@ public class FLElementItemProvider
 				 false,
 				 false,
 				 null,
-				 null,
+				 getString("_UI_TracefromPropertyCategory"),
 				 null));
 	}
 
@@ -505,7 +505,7 @@ public class FLElementItemProvider
 				 false,
 				 false,
 				 null,
-				 null,
+				 getString("_UI_TracefromPropertyCategory"),
 				 null));
 	}
 
@@ -527,7 +527,7 @@ public class FLElementItemProvider
 				 false,
 				 false,
 				 null,
-				 null,
+				 getString("_UI_TracefromPropertyCategory"),
 				 null));
 	}
 
@@ -549,7 +549,7 @@ public class FLElementItemProvider
 				 false,
 				 false,
 				 null,
-				 null,
+				 getString("_UI_TracefromPropertyCategory"),
 				 null));
 	}
 
@@ -571,7 +571,7 @@ public class FLElementItemProvider
 				 false,
 				 false,
 				 null,
-				 null,
+				 getString("_UI_TracefromPropertyCategory"),
 				 null));
 	}
 
@@ -593,7 +593,7 @@ public class FLElementItemProvider
 				 false,
 				 false,
 				 null,
-				 null,
+				 getString("_UI_TracefromPropertyCategory"),
 				 null));
 	}
 
@@ -615,7 +615,7 @@ public class FLElementItemProvider
 				 false,
 				 false,
 				 null,
-				 null,
+				 getString("_UI_TracefromPropertyCategory"),
 				 null));
 	}
 
@@ -637,7 +637,7 @@ public class FLElementItemProvider
 				 false,
 				 false,
 				 null,
-				 null,
+				 getString("_UI_TracefromPropertyCategory"),
 				 null));
 	}
 
@@ -659,7 +659,7 @@ public class FLElementItemProvider
 				 false,
 				 false,
 				 null,
-				 null,
+				 getString("_UI_TracefromPropertyCategory"),
 				 null));
 	}
 
@@ -681,7 +681,7 @@ public class FLElementItemProvider
 				 false,
 				 false,
 				 null,
-				 null,
+				 getString("_UI_TracefromPropertyCategory"),
 				 null));
 	}
 
@@ -703,7 +703,7 @@ public class FLElementItemProvider
 				 false,
 				 false,
 				 null,
-				 null,
+				 getString("_UI_TracefromPropertyCategory"),
 				 null));
 	}
 
@@ -725,7 +725,7 @@ public class FLElementItemProvider
 				 false,
 				 false,
 				 null,
-				 null,
+				 getString("_UI_TracefromPropertyCategory"),
 				 null));
 	}
 
@@ -747,7 +747,7 @@ public class FLElementItemProvider
 				 false,
 				 false,
 				 null,
-				 null,
+				 getString("_UI_TracefromPropertyCategory"),
 				 null));
 	}
 
@@ -769,7 +769,7 @@ public class FLElementItemProvider
 				 false,
 				 false,
 				 null,
-				 null,
+				 getString("_UI_TracefromPropertyCategory"),
 				 null));
 	}
 
@@ -791,7 +791,7 @@ public class FLElementItemProvider
 				 false,
 				 false,
 				 null,
-				 null,
+				 getString("_UI_TracefromPropertyCategory"),
 				 null));
 	}
 

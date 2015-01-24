@@ -8,6 +8,7 @@
 	modelDirectory="/ch.flatland.cdo.model.base/src",
 	creationIcons="false")
 package ch.flatland.cdo.model.base
+
 //featureDelegation="Dynamic",
 /*
  * Base elements all Concepts should at least inherit from.
@@ -17,103 +18,133 @@ import org.eclipse.emf.common.util.BasicEList
 import ch.flatland.cdo.model.base.BasePackage.Literals
 
 abstract class FLElement {
+	@GenModel(propertyCategory="Base")
 	String[1] name
 	/* 
 	 * Markdown formatted description
 	 * http://en.wikipedia.org/wiki/Markdown
 	 */
-	@GenModel(propertyMultiLine="true")
+	@GenModel(propertyMultiLine="true", propertyCategory="Base")
 	String description
 	contains FLTrace[] traces
 	contains FLProperty[] properties
+	@GenModel(propertyCategory="Trace to")
 	refers FLElement[] traceToOwn get {
 		return traces.toFilterByType(FLTraceType.OWN)
 	}
+	@GenModel(propertyCategory="Trace to")
 	refers FLElement[] traceToUse get {
 		return traces.toFilterByType(FLTraceType.USE)
 	}
+	@GenModel(propertyCategory="Trace to")
 	refers FLElement[] traceToRealize get {
 		return traces.toFilterByType(FLTraceType.REALIZE)
 	}
+	@GenModel(propertyCategory="Trace to")
 	refers FLElement[] traceToSpecify get {
 		return traces.toFilterByType(FLTraceType.SPECIFY)
 	}
+	@GenModel(propertyCategory="Trace to")
 	refers FLElement[] traceToImplement get {
 		return traces.toFilterByType(FLTraceType.IMPLEMENT)
 	}
+	@GenModel(propertyCategory="Trace to")
 	refers FLElement[] traceToElaborate get {
 		return traces.toFilterByType(FLTraceType.ELABORATE)
 	}
+	@GenModel(propertyCategory="Trace to")
 	refers FLElement[] traceToDerive get {
 		return traces.toFilterByType(FLTraceType.DERIVE)
 	}
+	@GenModel(propertyCategory="Trace to")
 	refers FLElement[] traceToValidate get {
 		return traces.toFilterByType(FLTraceType.VALIDATE)
 	}
+	@GenModel(propertyCategory="Trace to")
 	refers FLElement[] traceToTest get {
 		return traces.toFilterByType(FLTraceType.TEST)
 	}
+	@GenModel(propertyCategory="Trace to")
 	refers FLElement[] traceToRelate get {
 		return traces.toFilterByType(FLTraceType.RELATE)
 	}
+	@GenModel(propertyCategory="Trace to")
 	refers FLElement[] traceToAffect get {
 		return traces.toFilterByType(FLTraceType.AFFECT)
 	}
+	@GenModel(propertyCategory="Trace to")
 	refers FLElement[] traceToSatisfy get {
 		return traces.toFilterByType(FLTraceType.SATISFY)
 	}
+	@GenModel(propertyCategory="Trace to")
 	refers FLElement[] traceToVerify get {
 		return traces.toFilterByType(FLTraceType.VERIFY)
 	}
+	@GenModel(propertyCategory="Trace to")
 	refers FLElement[] traceToRefine get {
 		return traces.toFilterByType(FLTraceType.REFINE)
 	}
+	@GenModel(propertyCategory="Trace to")
 	refers FLElement[] traceToTrack get {
 		return traces.toFilterByType(FLTraceType.TRACK)
 	}
-	
+	@GenModel(propertyCategory="Trace from")
 	refers FLElement[] traceFromOwn get {
 		return this.fromFilterByType(FLTraceType.OWN)
 	}
+	@GenModel(propertyCategory="Trace from")
 	refers FLElement[] traceFromUse get {
 		return this.fromFilterByType(FLTraceType.USE)
 	}
+	@GenModel(propertyCategory="Trace from")
 	refers FLElement[] traceFromRealize get {
 		return this.fromFilterByType(FLTraceType.REALIZE)
 	}
+	@GenModel(propertyCategory="Trace from")
 	refers FLElement[] traceFromSpecify get {
 		return this.fromFilterByType(FLTraceType.SPECIFY)
 	}
+	@GenModel(propertyCategory="Trace from")
 	refers FLElement[] traceFromImplement get {
 		return this.fromFilterByType(FLTraceType.IMPLEMENT)
 	}
+	@GenModel(propertyCategory="Trace from")
 	refers FLElement[] traceFromElaborate get {
 		return this.fromFilterByType(FLTraceType.ELABORATE)
 	}
+	@GenModel(propertyCategory="Trace from")
 	refers FLElement[] traceFromDerive get {
 		return this.fromFilterByType(FLTraceType.DERIVE)
 	}
+	@GenModel(propertyCategory="Trace from")
 	refers FLElement[] traceFromValidate get {
 		return this.fromFilterByType(FLTraceType.VALIDATE)
 	}
+	@GenModel(propertyCategory="Trace from")
 	refers FLElement[] traceFromTest get {
 		return this.fromFilterByType(FLTraceType.TEST)
 	}
+	@GenModel(propertyCategory="Trace from")
 	refers FLElement[] traceFromRelate get {
 		return this.fromFilterByType(FLTraceType.RELATE)
 	}
+	@GenModel(propertyCategory="Trace from")
 	refers FLElement[] traceFromAffect get {
 		return this.fromFilterByType(FLTraceType.AFFECT)
 	}
+	@GenModel(propertyCategory="Trace from")
 	refers FLElement[] traceFromSatisfy get {
 		return this.fromFilterByType(FLTraceType.SATISFY)
 	}
+	@GenModel(propertyCategory="Trace from")
 	refers FLElement[] traceFromVerify get {
 		return this.fromFilterByType(FLTraceType.VERIFY)
 	}
+	@GenModel(propertyCategory="Trace from")
 	refers FLElement[] traceFromRefine get {
 		return this.fromFilterByType(FLTraceType.REFINE)
 	}
+	@GenModel(propertyCategory="Trace from")
 	refers FLElement[] traceFromTrack get {
 		return this.fromFilterByType(FLTraceType.TRACK)
 	}
@@ -128,7 +159,6 @@ abstract class FLElement {
 		]
 		return targets
 	}
-	
 	/*
 	 * Filters the traces from by trace type.
 	 * @return filtered list
@@ -141,7 +171,7 @@ abstract class FLElement {
 				val trace = x.sourceObject as FLTrace
 				if (trace.traceType == traceType) {
 					sources.add(trace.eContainer as FLElement)
-				}			
+				}
 			}
 		}
 		return sources
