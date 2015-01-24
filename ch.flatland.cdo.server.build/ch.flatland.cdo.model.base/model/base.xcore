@@ -3,6 +3,7 @@
 	rootExtendsInterface="org.eclipse.emf.cdo.CDOObject",
 	modelPluginVariables="org.eclipse.xtext.xbase.lib org.eclipse.emf.ecore.xcore.lib org.eclipse.emf.cdo",
 	childCreationExtenders="true",
+	extensibleProviderFactory="true",
 	editDirectory="/ch.flatland.cdo.model.base.edit/src",
 	modelDirectory="/ch.flatland.cdo.model.base/src",
 	creationIcons="false")
