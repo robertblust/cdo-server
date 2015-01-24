@@ -293,7 +293,7 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFLElement_TraceToffect() {
+	public EReference getFLElement_TraceToAffect() {
 		return (EReference)flElementEClass.getEStructuralFeatures().get(14);
 	}
 
@@ -338,8 +338,152 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getFLElement_TraceFromOwn() {
+		return (EReference)flElementEClass.getEStructuralFeatures().get(19);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getFLElement_TraceFromUse() {
+		return (EReference)flElementEClass.getEStructuralFeatures().get(20);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getFLElement_TraceFromRealize() {
+		return (EReference)flElementEClass.getEStructuralFeatures().get(21);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getFLElement_TraceFromSpecify() {
+		return (EReference)flElementEClass.getEStructuralFeatures().get(22);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getFLElement_TraceFromImplement() {
+		return (EReference)flElementEClass.getEStructuralFeatures().get(23);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getFLElement_TraceFromElaborate() {
+		return (EReference)flElementEClass.getEStructuralFeatures().get(24);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getFLElement_TraceFromDerive() {
+		return (EReference)flElementEClass.getEStructuralFeatures().get(25);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getFLElement_TraceFromValidate() {
+		return (EReference)flElementEClass.getEStructuralFeatures().get(26);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getFLElement_TraceFromTest() {
+		return (EReference)flElementEClass.getEStructuralFeatures().get(27);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getFLElement_TraceFromRelate() {
+		return (EReference)flElementEClass.getEStructuralFeatures().get(28);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getFLElement_TraceFromAffect() {
+		return (EReference)flElementEClass.getEStructuralFeatures().get(29);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getFLElement_TraceFromSatisfy() {
+		return (EReference)flElementEClass.getEStructuralFeatures().get(30);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getFLElement_TraceFromVerify() {
+		return (EReference)flElementEClass.getEStructuralFeatures().get(31);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getFLElement_TraceFromRefine() {
+		return (EReference)flElementEClass.getEStructuralFeatures().get(32);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getFLElement_TraceFromTrack() {
+		return (EReference)flElementEClass.getEStructuralFeatures().get(33);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EOperation getFLElement__ToFilterByType__EList_FLTraceType() {
 		return flElementEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getFLElement__FromFilterByType__FLElement_FLTraceType() {
+		return flElementEClass.getEOperations().get(1);
 	}
 
 	/**
@@ -520,12 +664,28 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 		createEReference(flElementEClass, FL_ELEMENT__TRACE_TO_VALIDATE);
 		createEReference(flElementEClass, FL_ELEMENT__TRACE_TO_TEST);
 		createEReference(flElementEClass, FL_ELEMENT__TRACE_TO_RELATE);
-		createEReference(flElementEClass, FL_ELEMENT__TRACE_TOFFECT);
+		createEReference(flElementEClass, FL_ELEMENT__TRACE_TO_AFFECT);
 		createEReference(flElementEClass, FL_ELEMENT__TRACE_TO_SATISFY);
 		createEReference(flElementEClass, FL_ELEMENT__TRACE_TO_VERIFY);
 		createEReference(flElementEClass, FL_ELEMENT__TRACE_TO_REFINE);
 		createEReference(flElementEClass, FL_ELEMENT__TRACE_TO_TRACK);
+		createEReference(flElementEClass, FL_ELEMENT__TRACE_FROM_OWN);
+		createEReference(flElementEClass, FL_ELEMENT__TRACE_FROM_USE);
+		createEReference(flElementEClass, FL_ELEMENT__TRACE_FROM_REALIZE);
+		createEReference(flElementEClass, FL_ELEMENT__TRACE_FROM_SPECIFY);
+		createEReference(flElementEClass, FL_ELEMENT__TRACE_FROM_IMPLEMENT);
+		createEReference(flElementEClass, FL_ELEMENT__TRACE_FROM_ELABORATE);
+		createEReference(flElementEClass, FL_ELEMENT__TRACE_FROM_DERIVE);
+		createEReference(flElementEClass, FL_ELEMENT__TRACE_FROM_VALIDATE);
+		createEReference(flElementEClass, FL_ELEMENT__TRACE_FROM_TEST);
+		createEReference(flElementEClass, FL_ELEMENT__TRACE_FROM_RELATE);
+		createEReference(flElementEClass, FL_ELEMENT__TRACE_FROM_AFFECT);
+		createEReference(flElementEClass, FL_ELEMENT__TRACE_FROM_SATISFY);
+		createEReference(flElementEClass, FL_ELEMENT__TRACE_FROM_VERIFY);
+		createEReference(flElementEClass, FL_ELEMENT__TRACE_FROM_REFINE);
+		createEReference(flElementEClass, FL_ELEMENT__TRACE_FROM_TRACK);
 		createEOperation(flElementEClass, FL_ELEMENT___TO_FILTER_BY_TYPE__ELIST_FLTRACETYPE);
+		createEOperation(flElementEClass, FL_ELEMENT___FROM_FILTER_BY_TYPE__FLELEMENT_FLTRACETYPE);
 
 		flComponentEClass = createEClass(FL_COMPONENT);
 		createEAttribute(flComponentEClass, FL_COMPONENT__COMPONENT_ID);
@@ -601,14 +761,33 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 		initEReference(getFLElement_TraceToValidate(), this.getFLElement(), null, "traceToValidate", null, 0, -1, FLElement.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEReference(getFLElement_TraceToTest(), this.getFLElement(), null, "traceToTest", null, 0, -1, FLElement.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEReference(getFLElement_TraceToRelate(), this.getFLElement(), null, "traceToRelate", null, 0, -1, FLElement.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-		initEReference(getFLElement_TraceToffect(), this.getFLElement(), null, "traceToffect", null, 0, -1, FLElement.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getFLElement_TraceToAffect(), this.getFLElement(), null, "traceToAffect", null, 0, -1, FLElement.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEReference(getFLElement_TraceToSatisfy(), this.getFLElement(), null, "traceToSatisfy", null, 0, -1, FLElement.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEReference(getFLElement_TraceToVerify(), this.getFLElement(), null, "traceToVerify", null, 0, -1, FLElement.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEReference(getFLElement_TraceToRefine(), this.getFLElement(), null, "traceToRefine", null, 0, -1, FLElement.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEReference(getFLElement_TraceToTrack(), this.getFLElement(), null, "traceToTrack", null, 0, -1, FLElement.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getFLElement_TraceFromOwn(), this.getFLElement(), null, "traceFromOwn", null, 0, -1, FLElement.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getFLElement_TraceFromUse(), this.getFLElement(), null, "traceFromUse", null, 0, -1, FLElement.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getFLElement_TraceFromRealize(), this.getFLElement(), null, "traceFromRealize", null, 0, -1, FLElement.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getFLElement_TraceFromSpecify(), this.getFLElement(), null, "traceFromSpecify", null, 0, -1, FLElement.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getFLElement_TraceFromImplement(), this.getFLElement(), null, "traceFromImplement", null, 0, -1, FLElement.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getFLElement_TraceFromElaborate(), this.getFLElement(), null, "traceFromElaborate", null, 0, -1, FLElement.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getFLElement_TraceFromDerive(), this.getFLElement(), null, "traceFromDerive", null, 0, -1, FLElement.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getFLElement_TraceFromValidate(), this.getFLElement(), null, "traceFromValidate", null, 0, -1, FLElement.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getFLElement_TraceFromTest(), this.getFLElement(), null, "traceFromTest", null, 0, -1, FLElement.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getFLElement_TraceFromRelate(), this.getFLElement(), null, "traceFromRelate", null, 0, -1, FLElement.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getFLElement_TraceFromAffect(), this.getFLElement(), null, "traceFromAffect", null, 0, -1, FLElement.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getFLElement_TraceFromSatisfy(), this.getFLElement(), null, "traceFromSatisfy", null, 0, -1, FLElement.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getFLElement_TraceFromVerify(), this.getFLElement(), null, "traceFromVerify", null, 0, -1, FLElement.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getFLElement_TraceFromRefine(), this.getFLElement(), null, "traceFromRefine", null, 0, -1, FLElement.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getFLElement_TraceFromTrack(), this.getFLElement(), null, "traceFromTrack", null, 0, -1, FLElement.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
 		EOperation op = initEOperation(getFLElement__ToFilterByType__EList_FLTraceType(), this.getFLElement(), "toFilterByType", 0, -1, !IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getFLTrace(), "traces", 0, -1, !IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getFLTraceType(), "traceType", 0, 1, !IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getFLElement__FromFilterByType__FLElement_FLTraceType(), this.getFLElement(), "fromFilterByType", 0, -1, !IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getFLElement(), "instance", 0, 1, !IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getFLTraceType(), "traceType", 0, 1, !IS_UNIQUE, IS_ORDERED);
 
 		initEClass(flComponentEClass, FLComponent.class, "FLComponent", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

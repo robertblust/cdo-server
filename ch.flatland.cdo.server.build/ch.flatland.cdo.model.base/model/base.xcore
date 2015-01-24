@@ -13,6 +13,7 @@ package ch.flatland.cdo.model.base
  * Provides generic features.
  */
 import org.eclipse.emf.common.util.BasicEList
+import ch.flatland.cdo.model.base.BasePackage.Literals
 
 abstract class FLElement {
 	String[1] name
@@ -54,7 +55,7 @@ abstract class FLElement {
 	refers FLElement[] traceToRelate get {
 		return traces.toFilterByType(FLTraceType.RELATE)
 	}
-	refers FLElement[] traceToffect get {
+	refers FLElement[] traceToAffect get {
 		return traces.toFilterByType(FLTraceType.AFFECT)
 	}
 	refers FLElement[] traceToSatisfy get {
@@ -69,8 +70,54 @@ abstract class FLElement {
 	refers FLElement[] traceToTrack get {
 		return traces.toFilterByType(FLTraceType.TRACK)
 	}
+	
+	refers FLElement[] traceFromOwn get {
+		return this.fromFilterByType(FLTraceType.OWN)
+	}
+	refers FLElement[] traceFromUse get {
+		return this.fromFilterByType(FLTraceType.USE)
+	}
+	refers FLElement[] traceFromRealize get {
+		return this.fromFilterByType(FLTraceType.REALIZE)
+	}
+	refers FLElement[] traceFromSpecify get {
+		return this.fromFilterByType(FLTraceType.SPECIFY)
+	}
+	refers FLElement[] traceFromImplement get {
+		return this.fromFilterByType(FLTraceType.IMPLEMENT)
+	}
+	refers FLElement[] traceFromElaborate get {
+		return this.fromFilterByType(FLTraceType.ELABORATE)
+	}
+	refers FLElement[] traceFromDerive get {
+		return this.fromFilterByType(FLTraceType.DERIVE)
+	}
+	refers FLElement[] traceFromValidate get {
+		return this.fromFilterByType(FLTraceType.VALIDATE)
+	}
+	refers FLElement[] traceFromTest get {
+		return this.fromFilterByType(FLTraceType.TEST)
+	}
+	refers FLElement[] traceFromRelate get {
+		return this.fromFilterByType(FLTraceType.RELATE)
+	}
+	refers FLElement[] traceFromAffect get {
+		return this.fromFilterByType(FLTraceType.AFFECT)
+	}
+	refers FLElement[] traceFromSatisfy get {
+		return this.fromFilterByType(FLTraceType.SATISFY)
+	}
+	refers FLElement[] traceFromVerify get {
+		return this.fromFilterByType(FLTraceType.VERIFY)
+	}
+	refers FLElement[] traceFromRefine get {
+		return this.fromFilterByType(FLTraceType.REFINE)
+	}
+	refers FLElement[] traceFromTrack get {
+		return this.fromFilterByType(FLTraceType.TRACK)
+	}
 	/*
-	 * Filters the traces by trace type.
+	 * Filters the traces to by trace type.
 	 * @return filtered list
 	 */
 	op FLElement[] toFilterByType(FLTrace[] traces, FLTraceType traceType) {
@@ -79,6 +126,24 @@ abstract class FLElement {
 			targets.add(it.target)
 		]
 		return targets
+	}
+	
+	/*
+	 * Filters the traces from by trace type.
+	 * @return filtered list
+	 */
+	op FLElement[] fromFilterByType(FLElement instance, FLTraceType traceType) {
+		val sources = new BasicEList
+		if (instance.cdoView != null && !instance.cdoView.isClosed) {
+			val xrefs = instance.cdoView.queryXRefs(instance, newArrayList(Literals.FL_TRACE__TARGET))
+			for (x : xrefs) {
+				val trace = x.sourceObject as FLTrace
+				if (trace.traceType == traceType) {
+					sources.add(trace.eContainer as FLElement)
+				}			
+			}
+		}
+		return sources
 	}
 }
 

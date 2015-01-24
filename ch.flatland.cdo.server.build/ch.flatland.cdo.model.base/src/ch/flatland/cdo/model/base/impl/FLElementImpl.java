@@ -3,6 +3,7 @@
 package ch.flatland.cdo.model.base.impl;
 
 import ch.flatland.cdo.model.base.BasePackage;
+import ch.flatland.cdo.model.base.BasePackage.Literals;
 import ch.flatland.cdo.model.base.FLElement;
 import ch.flatland.cdo.model.base.FLProperty;
 import ch.flatland.cdo.model.base.FLTrace;
@@ -10,14 +11,22 @@ import ch.flatland.cdo.model.base.FLTraceType;
 import com.google.common.base.Objects;
 import java.lang.Iterable;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
+import org.eclipse.emf.cdo.CDOObject;
+import org.eclipse.emf.cdo.CDOObjectReference;
+import org.eclipse.emf.cdo.view.CDOView;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.internal.cdo.CDOObjectImpl;
+import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
@@ -43,11 +52,26 @@ import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
  *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getTraceToValidate <em>Trace To Validate</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getTraceToTest <em>Trace To Test</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getTraceToRelate <em>Trace To Relate</em>}</li>
- *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getTraceToffect <em>Trace Toffect</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getTraceToAffect <em>Trace To Affect</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getTraceToSatisfy <em>Trace To Satisfy</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getTraceToVerify <em>Trace To Verify</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getTraceToRefine <em>Trace To Refine</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getTraceToTrack <em>Trace To Track</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getTraceFromOwn <em>Trace From Own</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getTraceFromUse <em>Trace From Use</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getTraceFromRealize <em>Trace From Realize</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getTraceFromSpecify <em>Trace From Specify</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getTraceFromImplement <em>Trace From Implement</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getTraceFromElaborate <em>Trace From Elaborate</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getTraceFromDerive <em>Trace From Derive</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getTraceFromValidate <em>Trace From Validate</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getTraceFromTest <em>Trace From Test</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getTraceFromRelate <em>Trace From Relate</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getTraceFromAffect <em>Trace From Affect</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getTraceFromSatisfy <em>Trace From Satisfy</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getTraceFromVerify <em>Trace From Verify</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getTraceFromRefine <em>Trace From Refine</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getTraceFromTrack <em>Trace From Track</em>}</li>
  * </ul>
  * </p>
  *
@@ -264,6 +288,16 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	public EList<FLElement> getTraceToAffect() {
+		EList<FLTrace> _traces = this.getTraces();
+		return this.toFilterByType(_traces, FLTraceType.AFFECT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
 	public EList<FLElement> getTraceToffect() {
 		EList<FLTrace> _traces = this.getTraces();
 		return this.toFilterByType(_traces, FLTraceType.AFFECT);
@@ -312,6 +346,150 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public EList<FLElement> getTraceFromOwn() {
+		return this.fromFilterByType(this, FLTraceType.OWN);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public EList<FLElement> getTraceFromUse() {
+		return this.fromFilterByType(this, FLTraceType.USE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public EList<FLElement> getTraceFromRealize() {
+		return this.fromFilterByType(this, FLTraceType.REALIZE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public EList<FLElement> getTraceFromSpecify() {
+		return this.fromFilterByType(this, FLTraceType.SPECIFY);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public EList<FLElement> getTraceFromImplement() {
+		return this.fromFilterByType(this, FLTraceType.IMPLEMENT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public EList<FLElement> getTraceFromElaborate() {
+		return this.fromFilterByType(this, FLTraceType.ELABORATE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public EList<FLElement> getTraceFromDerive() {
+		return this.fromFilterByType(this, FLTraceType.DERIVE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public EList<FLElement> getTraceFromValidate() {
+		return this.fromFilterByType(this, FLTraceType.VALIDATE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public EList<FLElement> getTraceFromTest() {
+		return this.fromFilterByType(this, FLTraceType.TEST);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public EList<FLElement> getTraceFromRelate() {
+		return this.fromFilterByType(this, FLTraceType.RELATE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public EList<FLElement> getTraceFromAffect() {
+		return this.fromFilterByType(this, FLTraceType.AFFECT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public EList<FLElement> getTraceFromffect() {
+		return this.fromFilterByType(this, FLTraceType.AFFECT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public EList<FLElement> getTraceFromSatisfy() {
+		return this.fromFilterByType(this, FLTraceType.SATISFY);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public EList<FLElement> getTraceFromVerify() {
+		return this.fromFilterByType(this, FLTraceType.VERIFY);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public EList<FLElement> getTraceFromRefine() {
+		return this.fromFilterByType(this, FLTraceType.REFINE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public EList<FLElement> getTraceFromTrack() {
+		return this.fromFilterByType(this, FLTraceType.TRACK);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EList<FLElement> toFilterByType(final EList<FLTrace> traces, final FLTraceType traceType) {
@@ -331,6 +509,44 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 		};
 		IterableExtensions.<FLTrace>forEach(_filter, _function_1);
 		return targets;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<FLElement> fromFilterByType(final FLElement instance, final FLTraceType traceType) {
+		final BasicEList<FLElement> sources = new BasicEList<FLElement>();
+		boolean _and = false;
+		CDOView _cdoView = instance.cdoView();
+		boolean _notEquals = (!Objects.equal(_cdoView, null));
+		if (!_notEquals) {
+			_and = false;
+		} else {
+			CDOView _cdoView_1 = instance.cdoView();
+			boolean _isClosed = _cdoView_1.isClosed();
+			boolean _not = (!_isClosed);
+			_and = _not;
+		}
+		if (_and) {
+			CDOView _cdoView_2 = instance.cdoView();
+			ArrayList<EReference> _newArrayList = CollectionLiterals.<EReference>newArrayList(Literals.FL_TRACE__TARGET);
+			final List<CDOObjectReference> xrefs = _cdoView_2.queryXRefs(instance, ((EReference[])org.eclipse.xtext.xbase.lib.Conversions.unwrapArray(_newArrayList, EReference.class)));
+			for (final CDOObjectReference x : xrefs) {
+				{
+					CDOObject _sourceObject = x.getSourceObject();
+					final FLTrace trace = ((FLTrace) _sourceObject);
+					FLTraceType _traceType = trace.getTraceType();
+					boolean _equals = Objects.equal(_traceType, traceType);
+					if (_equals) {
+						EObject _eContainer = trace.eContainer();
+						sources.add(((FLElement) _eContainer));
+					}
+				}
+			}
+		}
+		return sources;
 	}
 
 	/**
@@ -385,8 +601,8 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 				return getTraceToTest();
 			case BasePackage.FL_ELEMENT__TRACE_TO_RELATE:
 				return getTraceToRelate();
-			case BasePackage.FL_ELEMENT__TRACE_TOFFECT:
-				return getTraceToffect();
+			case BasePackage.FL_ELEMENT__TRACE_TO_AFFECT:
+				return getTraceToAffect();
 			case BasePackage.FL_ELEMENT__TRACE_TO_SATISFY:
 				return getTraceToSatisfy();
 			case BasePackage.FL_ELEMENT__TRACE_TO_VERIFY:
@@ -395,6 +611,36 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 				return getTraceToRefine();
 			case BasePackage.FL_ELEMENT__TRACE_TO_TRACK:
 				return getTraceToTrack();
+			case BasePackage.FL_ELEMENT__TRACE_FROM_OWN:
+				return getTraceFromOwn();
+			case BasePackage.FL_ELEMENT__TRACE_FROM_USE:
+				return getTraceFromUse();
+			case BasePackage.FL_ELEMENT__TRACE_FROM_REALIZE:
+				return getTraceFromRealize();
+			case BasePackage.FL_ELEMENT__TRACE_FROM_SPECIFY:
+				return getTraceFromSpecify();
+			case BasePackage.FL_ELEMENT__TRACE_FROM_IMPLEMENT:
+				return getTraceFromImplement();
+			case BasePackage.FL_ELEMENT__TRACE_FROM_ELABORATE:
+				return getTraceFromElaborate();
+			case BasePackage.FL_ELEMENT__TRACE_FROM_DERIVE:
+				return getTraceFromDerive();
+			case BasePackage.FL_ELEMENT__TRACE_FROM_VALIDATE:
+				return getTraceFromValidate();
+			case BasePackage.FL_ELEMENT__TRACE_FROM_TEST:
+				return getTraceFromTest();
+			case BasePackage.FL_ELEMENT__TRACE_FROM_RELATE:
+				return getTraceFromRelate();
+			case BasePackage.FL_ELEMENT__TRACE_FROM_AFFECT:
+				return getTraceFromAffect();
+			case BasePackage.FL_ELEMENT__TRACE_FROM_SATISFY:
+				return getTraceFromSatisfy();
+			case BasePackage.FL_ELEMENT__TRACE_FROM_VERIFY:
+				return getTraceFromVerify();
+			case BasePackage.FL_ELEMENT__TRACE_FROM_REFINE:
+				return getTraceFromRefine();
+			case BasePackage.FL_ELEMENT__TRACE_FROM_TRACK:
+				return getTraceFromTrack();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -486,8 +732,8 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 				return !getTraceToTest().isEmpty();
 			case BasePackage.FL_ELEMENT__TRACE_TO_RELATE:
 				return !getTraceToRelate().isEmpty();
-			case BasePackage.FL_ELEMENT__TRACE_TOFFECT:
-				return !getTraceToffect().isEmpty();
+			case BasePackage.FL_ELEMENT__TRACE_TO_AFFECT:
+				return !getTraceToAffect().isEmpty();
 			case BasePackage.FL_ELEMENT__TRACE_TO_SATISFY:
 				return !getTraceToSatisfy().isEmpty();
 			case BasePackage.FL_ELEMENT__TRACE_TO_VERIFY:
@@ -496,6 +742,36 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 				return !getTraceToRefine().isEmpty();
 			case BasePackage.FL_ELEMENT__TRACE_TO_TRACK:
 				return !getTraceToTrack().isEmpty();
+			case BasePackage.FL_ELEMENT__TRACE_FROM_OWN:
+				return !getTraceFromOwn().isEmpty();
+			case BasePackage.FL_ELEMENT__TRACE_FROM_USE:
+				return !getTraceFromUse().isEmpty();
+			case BasePackage.FL_ELEMENT__TRACE_FROM_REALIZE:
+				return !getTraceFromRealize().isEmpty();
+			case BasePackage.FL_ELEMENT__TRACE_FROM_SPECIFY:
+				return !getTraceFromSpecify().isEmpty();
+			case BasePackage.FL_ELEMENT__TRACE_FROM_IMPLEMENT:
+				return !getTraceFromImplement().isEmpty();
+			case BasePackage.FL_ELEMENT__TRACE_FROM_ELABORATE:
+				return !getTraceFromElaborate().isEmpty();
+			case BasePackage.FL_ELEMENT__TRACE_FROM_DERIVE:
+				return !getTraceFromDerive().isEmpty();
+			case BasePackage.FL_ELEMENT__TRACE_FROM_VALIDATE:
+				return !getTraceFromValidate().isEmpty();
+			case BasePackage.FL_ELEMENT__TRACE_FROM_TEST:
+				return !getTraceFromTest().isEmpty();
+			case BasePackage.FL_ELEMENT__TRACE_FROM_RELATE:
+				return !getTraceFromRelate().isEmpty();
+			case BasePackage.FL_ELEMENT__TRACE_FROM_AFFECT:
+				return !getTraceFromAffect().isEmpty();
+			case BasePackage.FL_ELEMENT__TRACE_FROM_SATISFY:
+				return !getTraceFromSatisfy().isEmpty();
+			case BasePackage.FL_ELEMENT__TRACE_FROM_VERIFY:
+				return !getTraceFromVerify().isEmpty();
+			case BasePackage.FL_ELEMENT__TRACE_FROM_REFINE:
+				return !getTraceFromRefine().isEmpty();
+			case BasePackage.FL_ELEMENT__TRACE_FROM_TRACK:
+				return !getTraceFromTrack().isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -511,6 +787,8 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 		switch (operationID) {
 			case BasePackage.FL_ELEMENT___TO_FILTER_BY_TYPE__ELIST_FLTRACETYPE:
 				return toFilterByType((EList<FLTrace>)arguments.get(0), (FLTraceType)arguments.get(1));
+			case BasePackage.FL_ELEMENT___FROM_FILTER_BY_TYPE__FLELEMENT_FLTRACETYPE:
+				return fromFilterByType((FLElement)arguments.get(0), (FLTraceType)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}
