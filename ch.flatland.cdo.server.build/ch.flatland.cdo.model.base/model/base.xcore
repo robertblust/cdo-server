@@ -52,12 +52,69 @@ class FLTrace {
 	refers FLElement[1] target
 }
 
+/*
+ * Expresses the concrete type of a relationship between entities.
+ */
 enum FLTraceType {
-	ownedBy = 0
-	verifies = 1
-	specifies = 2
-	satisfies = 3
-	mesures = 4
+	/*
+	 * ---------------------------------------------
+	 * UML2
+	 * ---------------------------------------------
+	 */
+	own = 101
+	use = 102
+	realize = 103
+	specify = 104
+	implement = 105
+	elaborate = 106
+	derive = 107
+	/*
+	 * ---------------------------------------------
+	 * Test Management Domain
+	 * ---------------------------------------------
+	 */
+	/* 
+	 * OSLC TM - A test case validates a requirement
+	 */
+	validate = 201
+	/* 
+	 * OSLC TM / CM - A test case tests a change request
+	 */
+	test = 202
+	/* 
+	 *  OSLC TM / CM - A test case relates to a change request
+	 */
+	relate = 203
+	/* 
+	 * OSLC TM - A defect may be said to affect a requirement.
+	 */
+	affect = 204
+	/*
+	 * ---------------------------------------------
+	 * Requirement Management Domain
+	 * ---------------------------------------------
+	 */
+	/*
+	 * SYSML REQ - A requirement satisfy a requirement
+	 */
+	satisfy = 301
+	/*
+	 * SYSML REQ - A requirement satisfy a requirement
+	 */
+	verify = 302
+	/*
+	 * SYSML REQ - A requirement verifies a requirement
+	 */
+	refine = 303
+	/*
+	 * ---------------------------------------------
+	 * Change Management Domain
+	 * ---------------------------------------------
+	 */
+	/* 
+	 * OSLC - CM - A change request tracks the life cycle of a entity
+	 */
+	track = 401
 }
 
 /*
@@ -67,7 +124,6 @@ class FLProperty {
 	FLIdentifier[1] name
 	String[1] value
 }
-
 
 /* 
  * Technical, machine readable identifier should only contain

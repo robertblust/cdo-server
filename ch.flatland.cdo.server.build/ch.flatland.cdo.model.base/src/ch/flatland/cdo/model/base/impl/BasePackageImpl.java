@@ -450,11 +450,21 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 
 		// Initialize enums and add enum literals
 		initEEnum(flTraceTypeEEnum, FLTraceType.class, "FLTraceType");
-		addEEnumLiteral(flTraceTypeEEnum, FLTraceType.OWNED_BY);
-		addEEnumLiteral(flTraceTypeEEnum, FLTraceType.VERIFIES);
-		addEEnumLiteral(flTraceTypeEEnum, FLTraceType.SPECIFIES);
-		addEEnumLiteral(flTraceTypeEEnum, FLTraceType.SATISFIES);
-		addEEnumLiteral(flTraceTypeEEnum, FLTraceType.MESURES);
+		addEEnumLiteral(flTraceTypeEEnum, FLTraceType.OWN);
+		addEEnumLiteral(flTraceTypeEEnum, FLTraceType.USE);
+		addEEnumLiteral(flTraceTypeEEnum, FLTraceType.REALIZE);
+		addEEnumLiteral(flTraceTypeEEnum, FLTraceType.SPECIFY);
+		addEEnumLiteral(flTraceTypeEEnum, FLTraceType.IMPLEMENT);
+		addEEnumLiteral(flTraceTypeEEnum, FLTraceType.ELABORATE);
+		addEEnumLiteral(flTraceTypeEEnum, FLTraceType.DERIVE);
+		addEEnumLiteral(flTraceTypeEEnum, FLTraceType.VALIDATE);
+		addEEnumLiteral(flTraceTypeEEnum, FLTraceType.TEST);
+		addEEnumLiteral(flTraceTypeEEnum, FLTraceType.RELATE);
+		addEEnumLiteral(flTraceTypeEEnum, FLTraceType.AFFECT);
+		addEEnumLiteral(flTraceTypeEEnum, FLTraceType.SATISFY);
+		addEEnumLiteral(flTraceTypeEEnum, FLTraceType.VERIFY);
+		addEEnumLiteral(flTraceTypeEEnum, FLTraceType.REFINE);
+		addEEnumLiteral(flTraceTypeEEnum, FLTraceType.TRACK);
 
 		// Initialize data types
 		initEDataType(flIdentifierEDataType, String.class, "FLIdentifier", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);

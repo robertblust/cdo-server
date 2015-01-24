@@ -32,7 +32,7 @@ public class FLTraceImpl extends CDOObjectImpl implements FLTrace {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final FLTraceType TRACE_TYPE_EDEFAULT = FLTraceType.OWNED_BY;
+	protected static final FLTraceType TRACE_TYPE_EDEFAULT = FLTraceType.OWN;
 
 	/**
 	 * <!-- begin-user-doc -->

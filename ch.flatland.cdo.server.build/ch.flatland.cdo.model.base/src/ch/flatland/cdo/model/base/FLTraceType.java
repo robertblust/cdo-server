@@ -13,135 +13,367 @@ import org.eclipse.emf.common.util.Enumerator;
  * A representation of the literals of the enumeration '<em><b>FL Trace Type</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
+ * <!-- begin-model-doc -->
+ * Expresses the concrete type of a relationship between entities.
+ * <!-- end-model-doc -->
  * @see ch.flatland.cdo.model.base.BasePackage#getFLTraceType()
  * @model
  * @generated
  */
 public enum FLTraceType implements Enumerator {
 	/**
-	 * The '<em><b>Owned By</b></em>' literal object.
+	 * The '<em><b>Own</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #OWNED_BY_VALUE
+	 * @see #OWN_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	OWNED_BY(0, "ownedBy", "ownedBy"),
-
-	/**
-	 * The '<em><b>Verifies</b></em>' literal object.
+	OWN(101, "own", "own"), /**
+	 * The '<em><b>Use</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #VERIFIES_VALUE
+	 * @see #USE_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	VERIFIES(1, "verifies", "verifies"),
-
-	/**
-	 * The '<em><b>Specifies</b></em>' literal object.
+	USE(102, "use", "use"), /**
+	 * The '<em><b>Realize</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #SPECIFIES_VALUE
+	 * @see #REALIZE_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	SPECIFIES(2, "specifies", "specifies"),
-
-	/**
-	 * The '<em><b>Satisfies</b></em>' literal object.
+	REALIZE(103, "realize", "realize"), /**
+	 * The '<em><b>Specify</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #SATISFIES_VALUE
+	 * @see #SPECIFY_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	SATISFIES(3, "satisfies", "satisfies"),
-
-	/**
-	 * The '<em><b>Mesures</b></em>' literal object.
+	SPECIFY(104, "specify", "specify"), /**
+	 * The '<em><b>Implement</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #MESURES_VALUE
+	 * @see #IMPLEMENT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	MESURES(4, "mesures", "mesures");
+	IMPLEMENT(105, "implement", "implement"), /**
+	 * The '<em><b>Elaborate</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #ELABORATE_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	ELABORATE(106, "elaborate", "elaborate"), /**
+	 * The '<em><b>Derive</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #DERIVE_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	DERIVE(107, "derive", "derive"), /**
+	 * The '<em><b>Validate</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #VALIDATE_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	VALIDATE(201, "validate", "validate"), /**
+	 * The '<em><b>Test</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #TEST_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	TEST(202, "test", "test"), /**
+	 * The '<em><b>Relate</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #RELATE_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	RELATE(203, "relate", "relate"), /**
+	 * The '<em><b>Affect</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #AFFECT_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	AFFECT(204, "affect", "affect"), /**
+	 * The '<em><b>Satisfy</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #SATISFY_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	SATISFY(301, "satisfy", "satisfy"), /**
+	 * The '<em><b>Verify</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #VERIFY_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	VERIFY(302, "verify", "verify"), /**
+	 * The '<em><b>Refine</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #REFINE_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	REFINE(303, "refine", "refine"), /**
+	 * The '<em><b>Track</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #TRACK_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	TRACK(401, "track", "track");
 
 	/**
-	 * The '<em><b>Owned By</b></em>' literal value.
+	 * The '<em><b>Own</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Owned By</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>Own</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #OWNED_BY
-	 * @model name="ownedBy"
+	 * <!-- begin-model-doc -->
+	 * ---------------------------------------------
+	 * UML2
+	 * ---------------------------------------------
+	 * <!-- end-model-doc -->
+	 * @see #OWN
+	 * @model name="own"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int OWNED_BY_VALUE = 0;
+	public static final int OWN_VALUE = 101;
 
 	/**
-	 * The '<em><b>Verifies</b></em>' literal value.
+	 * The '<em><b>Use</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Verifies</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>Use</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #VERIFIES
-	 * @model name="verifies"
+	 * @see #USE
+	 * @model name="use"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int VERIFIES_VALUE = 1;
+	public static final int USE_VALUE = 102;
 
 	/**
-	 * The '<em><b>Specifies</b></em>' literal value.
+	 * The '<em><b>Realize</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Specifies</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>Realize</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #SPECIFIES
-	 * @model name="specifies"
+	 * @see #REALIZE
+	 * @model name="realize"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SPECIFIES_VALUE = 2;
+	public static final int REALIZE_VALUE = 103;
 
 	/**
-	 * The '<em><b>Satisfies</b></em>' literal value.
+	 * The '<em><b>Specify</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Satisfies</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>Specify</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #SATISFIES
-	 * @model name="satisfies"
+	 * @see #SPECIFY
+	 * @model name="specify"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SATISFIES_VALUE = 3;
+	public static final int SPECIFY_VALUE = 104;
 
 	/**
-	 * The '<em><b>Mesures</b></em>' literal value.
+	 * The '<em><b>Implement</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #IMPLEMENT
+	 * @model name="implement"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int IMPLEMENT_VALUE = 105;
+
+	/**
+	 * The '<em><b>Elaborate</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #ELABORATE
+	 * @model name="elaborate"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int ELABORATE_VALUE = 106;
+
+	/**
+	 * The '<em><b>Derive</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Mesures</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>Derive</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #MESURES
-	 * @model name="mesures"
+	 * @see #DERIVE
+	 * @model name="derive"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MESURES_VALUE = 4;
+	public static final int DERIVE_VALUE = 107;
+
+	/**
+	 * The '<em><b>Validate</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>Validate</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * ---------------------------------------------
+	 * Test Management Domain
+	 * ---------------------------------------------
+	 * <!-- end-model-doc -->
+	 * @see #VALIDATE
+	 * @model name="validate"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int VALIDATE_VALUE = 201;
+
+	/**
+	 * The '<em><b>Test</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * OSLC TM / CM - A test case tests a change request
+	 * <!-- end-model-doc -->
+	 * @see #TEST
+	 * @model name="test"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int TEST_VALUE = 202;
+
+	/**
+	 * The '<em><b>Relate</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 *  OSLC TM / CM - A test case relates to a change request
+	 * <!-- end-model-doc -->
+	 * @see #RELATE
+	 * @model name="relate"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int RELATE_VALUE = 203;
+
+	/**
+	 * The '<em><b>Affect</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * OSLC TM - A defect may be said to affect a requirement.
+	 * <!-- end-model-doc -->
+	 * @see #AFFECT
+	 * @model name="affect"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int AFFECT_VALUE = 204;
+
+	/**
+	 * The '<em><b>Satisfy</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>Satisfy</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * ---------------------------------------------
+	 * Requirement Management Domain
+	 * ---------------------------------------------
+	 * <!-- end-model-doc -->
+	 * @see #SATISFY
+	 * @model name="satisfy"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SATISFY_VALUE = 301;
+
+	/**
+	 * The '<em><b>Verify</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * SYSML REQ - A requirement satisfy a requirement
+	 * <!-- end-model-doc -->
+	 * @see #VERIFY
+	 * @model name="verify"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int VERIFY_VALUE = 302;
+
+	/**
+	 * The '<em><b>Refine</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>Refine</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * SYSML REQ - A requirement verifies a requirement
+	 * <!-- end-model-doc -->
+	 * @see #REFINE
+	 * @model name="refine"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int REFINE_VALUE = 303;
+
+	/**
+	 * The '<em><b>Track</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * ---------------------------------------------
+	 * Change Management Domain
+	 * ---------------------------------------------
+	 * <!-- end-model-doc -->
+	 * @see #TRACK
+	 * @model name="track"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int TRACK_VALUE = 401;
 
 	/**
 	 * An array of all the '<em><b>FL Trace Type</b></em>' enumerators.
@@ -151,11 +383,21 @@ public enum FLTraceType implements Enumerator {
 	 */
 	private static final FLTraceType[] VALUES_ARRAY =
 		new FLTraceType[] {
-			OWNED_BY,
-			VERIFIES,
-			SPECIFIES,
-			SATISFIES,
-			MESURES,
+			OWN,
+			USE,
+			REALIZE,
+			SPECIFY,
+			IMPLEMENT,
+			ELABORATE,
+			DERIVE,
+			VALIDATE,
+			TEST,
+			RELATE,
+			AFFECT,
+			SATISFY,
+			VERIFY,
+			REFINE,
+			TRACK,
 		};
 
 	/**
@@ -206,11 +448,21 @@ public enum FLTraceType implements Enumerator {
 	 */
 	public static FLTraceType get(int value) {
 		switch (value) {
-			case OWNED_BY_VALUE: return OWNED_BY;
-			case VERIFIES_VALUE: return VERIFIES;
-			case SPECIFIES_VALUE: return SPECIFIES;
-			case SATISFIES_VALUE: return SATISFIES;
-			case MESURES_VALUE: return MESURES;
+			case OWN_VALUE: return OWN;
+			case USE_VALUE: return USE;
+			case REALIZE_VALUE: return REALIZE;
+			case SPECIFY_VALUE: return SPECIFY;
+			case IMPLEMENT_VALUE: return IMPLEMENT;
+			case ELABORATE_VALUE: return ELABORATE;
+			case DERIVE_VALUE: return DERIVE;
+			case VALIDATE_VALUE: return VALIDATE;
+			case TEST_VALUE: return TEST;
+			case RELATE_VALUE: return RELATE;
+			case AFFECT_VALUE: return AFFECT;
+			case SATISFY_VALUE: return SATISFY;
+			case VERIFY_VALUE: return VERIFY;
+			case REFINE_VALUE: return REFINE;
+			case TRACK_VALUE: return TRACK;
 		}
 		return null;
 	}
