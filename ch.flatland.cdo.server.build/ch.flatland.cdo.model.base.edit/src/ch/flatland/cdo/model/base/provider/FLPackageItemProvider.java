@@ -67,7 +67,7 @@ public class FLPackageItemProvider extends FLElementItemProvider {
 				 false,
 				 false,
 				 null,
-				 null,
+				 getString("_UI_PackagePropertyCategory"),
 				 null));
 	}
 
@@ -89,7 +89,7 @@ public class FLPackageItemProvider extends FLElementItemProvider {
 				 false,
 				 false,
 				 null,
-				 null,
+				 getString("_UI_PackagePropertyCategory"),
 				 null));
 	}
 

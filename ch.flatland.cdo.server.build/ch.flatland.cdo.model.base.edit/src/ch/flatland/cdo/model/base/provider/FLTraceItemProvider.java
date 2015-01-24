@@ -78,7 +78,7 @@ public class FLTraceItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
+				 getString("_UI_TracePropertyCategory"),
 				 null));
 	}
 
@@ -100,7 +100,7 @@ public class FLTraceItemProvider
 				 false,
 				 true,
 				 null,
-				 null,
+				 getString("_UI_TracePropertyCategory"),
 				 null));
 	}
 

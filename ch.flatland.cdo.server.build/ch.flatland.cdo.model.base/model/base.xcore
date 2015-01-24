@@ -180,16 +180,20 @@ abstract class FLElement {
 
 class FLPackage extends FLElement {
 	contains FLElement[] elements
+	@GenModel(propertyCategory="Package")
 	refers FLPackage[] subPackages get {
 		elements.filter(FLPackage).asEList
 	}
+	@GenModel(propertyCategory="Package")
 	refers FLElement[] contents get {
 		elements.filter[!(it instanceof FLPackage)].asEList
 	}
 }
 
 class FLTrace {
+	@GenModel(propertyCategory="Trace")
 	FLTraceType[1] traceType
+	@GenModel(propertyCategory="Trace")
 	refers FLElement[1] target
 }
 
@@ -262,7 +266,9 @@ enum FLTraceType {
  * Generic Holder for name value pairs
  */
 class FLProperty {
+	@GenModel(propertyCategory="Property")
 	FLIdentifier[1] name
+	@GenModel(propertyCategory="Property")
 	String[1] value
 }
 

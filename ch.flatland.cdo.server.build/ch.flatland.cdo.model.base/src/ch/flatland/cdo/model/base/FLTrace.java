@@ -37,6 +37,7 @@ public interface FLTrace extends CDOObject {
 	 * @see #setTraceType(FLTraceType)
 	 * @see ch.flatland.cdo.model.base.BasePackage#getFLTrace_TraceType()
 	 * @model unique="false" required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Trace'"
 	 * @generated
 	 */
 	FLTraceType getTraceType();
@@ -64,6 +65,7 @@ public interface FLTrace extends CDOObject {
 	 * @see #setTarget(FLElement)
 	 * @see ch.flatland.cdo.model.base.BasePackage#getFLTrace_Target()
 	 * @model required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Trace'"
 	 * @generated
 	 */
 	FLElement getTarget();
