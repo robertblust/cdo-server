@@ -62,11 +62,20 @@ class View {
 						}
 						// all references requested?
 						case 4: {
-							if(pathSegments.get(3) == REFERENCES) {
-								val object = view.safeResolveObject(pathSegments)
-								return req.orderBy(req.filterBy(object.safeResolveReferences(null, req)))
-							} else {
-								throw new Exception
+							switch (pathSegments.get(3)) {
+								case REFERENCES : {
+									val object = view.safeResolveObject(pathSegments)
+									return req.orderBy(req.filterBy(object.safeResolveReferences(null, req)))
+								}
+								case CONTENTS : {
+									val object = view.safeResolveObject(pathSegments)
+									return req.orderBy(req.filterBy(object.eContents))
+								}
+								case ALL_CONTENTS : {
+									val object = view.safeResolveObject(pathSegments)
+									return req.orderBy(req.filterBy(object.eAllContents.toList))
+								}
+								default : throw new Exception
 							}
 						}
 						// detail references requested?
