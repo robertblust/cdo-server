@@ -189,11 +189,6 @@ public class FLPackageItemProvider extends FLElementItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(BasePackage.Literals.FL_PACKAGE__ELEMENTS,
-				 BaseFactory.eINSTANCE.createFLComponent()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BasePackage.Literals.FL_PACKAGE__ELEMENTS,
 				 BaseFactory.eINSTANCE.createFLPackage()));
 	}
 

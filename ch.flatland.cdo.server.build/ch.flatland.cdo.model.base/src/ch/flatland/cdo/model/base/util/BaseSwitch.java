@@ -72,13 +72,6 @@ public class BaseSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case BasePackage.FL_COMPONENT: {
-				FLComponent flComponent = (FLComponent)theEObject;
-				T result = caseFLComponent(flComponent);
-				if (result == null) result = caseFLElement(flComponent);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case BasePackage.FL_PACKAGE: {
 				FLPackage flPackage = (FLPackage)theEObject;
 				T result = caseFLPackage(flPackage);
@@ -114,21 +107,6 @@ public class BaseSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseFLElement(FLElement object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>FL Component</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>FL Component</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseFLComponent(FLComponent object) {
 		return null;
 	}
 

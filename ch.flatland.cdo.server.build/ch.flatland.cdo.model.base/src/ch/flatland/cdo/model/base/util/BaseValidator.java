@@ -90,8 +90,6 @@ public class BaseValidator extends EObjectValidator {
 		switch (classifierID) {
 			case BasePackage.FL_ELEMENT:
 				return validateFLElement((FLElement)value, diagnostics, context);
-			case BasePackage.FL_COMPONENT:
-				return validateFLComponent((FLComponent)value, diagnostics, context);
 			case BasePackage.FL_PACKAGE:
 				return validateFLPackage((FLPackage)value, diagnostics, context);
 			case BasePackage.FL_TRACE:
@@ -114,15 +112,6 @@ public class BaseValidator extends EObjectValidator {
 	 */
 	public boolean validateFLElement(FLElement flElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)flElement, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateFLComponent(FLComponent flComponent, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint((EObject)flComponent, diagnostics, context);
 	}
 
 	/**

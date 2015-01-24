@@ -147,19 +147,6 @@ abstract class FLElement {
 	}
 }
 
-/*
- * An encapsulation of functionality that is aligned to architectural structuring.
- * Can be further detailed by nesting.
- */
-class FLComponent extends FLElement {
-	FLIdentifier componentId
-	/* 
-	 * Recursive structure to define hierarchies of components.
-	 * Relationship not defined as containment allows restructuring of components.
-	 */
-	refers FLComponent[] children
-}
-
 class FLPackage extends FLElement {
 	contains FLElement[] elements
 	refers FLPackage[] subPackages get {

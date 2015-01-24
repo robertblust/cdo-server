@@ -72,10 +72,6 @@ public class BaseAdapterFactory extends AdapterFactoryImpl {
 				return createFLElementAdapter();
 			}
 			@Override
-			public Adapter caseFLComponent(FLComponent object) {
-				return createFLComponentAdapter();
-			}
-			@Override
 			public Adapter caseFLPackage(FLPackage object) {
 				return createFLPackageAdapter();
 			}
@@ -118,20 +114,6 @@ public class BaseAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createFLElementAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link ch.flatland.cdo.model.base.FLComponent <em>FL Component</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see ch.flatland.cdo.model.base.FLComponent
-	 * @generated
-	 */
-	public Adapter createFLComponentAdapter() {
 		return null;
 	}
 

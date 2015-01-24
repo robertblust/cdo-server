@@ -4,13 +4,11 @@ package ch.flatland.cdo.model.base.impl;
 
 import ch.flatland.cdo.model.base.BaseFactory;
 import ch.flatland.cdo.model.base.BasePackage;
-import ch.flatland.cdo.model.base.FLComponent;
 import ch.flatland.cdo.model.base.FLElement;
 import ch.flatland.cdo.model.base.FLPackage;
 import ch.flatland.cdo.model.base.FLProperty;
 import ch.flatland.cdo.model.base.FLTrace;
 import ch.flatland.cdo.model.base.FLTraceType;
-
 import ch.flatland.cdo.model.base.util.BaseValidator;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -21,7 +19,6 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.EcorePackage;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 /**
@@ -37,13 +34,6 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 	 * @generated
 	 */
 	private EClass flElementEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass flComponentEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -491,33 +481,6 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getFLComponent() {
-		return flComponentEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getFLComponent_ComponentId() {
-		return (EAttribute)flComponentEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getFLComponent_Children() {
-		return (EReference)flComponentEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getFLPackage() {
 		return flPackageEClass;
 	}
@@ -687,10 +650,6 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 		createEOperation(flElementEClass, FL_ELEMENT___TO_FILTER_BY_TYPE__ELIST_FLTRACETYPE);
 		createEOperation(flElementEClass, FL_ELEMENT___FROM_FILTER_BY_TYPE__FLELEMENT_FLTRACETYPE);
 
-		flComponentEClass = createEClass(FL_COMPONENT);
-		createEAttribute(flComponentEClass, FL_COMPONENT__COMPONENT_ID);
-		createEReference(flComponentEClass, FL_COMPONENT__CHILDREN);
-
 		flPackageEClass = createEClass(FL_PACKAGE);
 		createEReference(flPackageEClass, FL_PACKAGE__ELEMENTS);
 		createEReference(flPackageEClass, FL_PACKAGE__SUB_PACKAGES);
@@ -742,7 +701,6 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		flComponentEClass.getESuperTypes().add(this.getFLElement());
 		flPackageEClass.getESuperTypes().add(this.getFLElement());
 
 		// Initialize classes, features, and operations; add parameters
@@ -789,10 +747,6 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 		op = initEOperation(getFLElement__FromFilterByType__FLElement_FLTraceType(), this.getFLElement(), "fromFilterByType", 0, -1, !IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getFLElement(), "instance", 0, 1, !IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getFLTraceType(), "traceType", 0, 1, !IS_UNIQUE, IS_ORDERED);
-
-		initEClass(flComponentEClass, FLComponent.class, "FLComponent", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getFLComponent_ComponentId(), this.getFLIdentifier(), "componentId", null, 0, 1, FLComponent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getFLComponent_Children(), this.getFLComponent(), null, "children", null, 0, -1, FLComponent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(flPackageEClass, FLPackage.class, "FLPackage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getFLPackage_Elements(), this.getFLElement(), null, "elements", null, 0, -1, FLPackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

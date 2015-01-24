@@ -57,7 +57,6 @@ public class BaseFactoryImpl extends EFactoryImpl implements BaseFactory {
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case BasePackage.FL_COMPONENT: return (EObject)createFLComponent();
 			case BasePackage.FL_PACKAGE: return (EObject)createFLPackage();
 			case BasePackage.FL_TRACE: return (EObject)createFLTrace();
 			case BasePackage.FL_PROPERTY: return (EObject)createFLProperty();
@@ -98,16 +97,6 @@ public class BaseFactoryImpl extends EFactoryImpl implements BaseFactory {
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public FLComponent createFLComponent() {
-		FLComponentImpl flComponent = new FLComponentImpl();
-		return flComponent;
 	}
 
 	/**

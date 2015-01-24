@@ -22,15 +22,6 @@ public interface BaseFactory extends EFactory {
 	BaseFactory eINSTANCE = ch.flatland.cdo.model.base.impl.BaseFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>FL Component</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>FL Component</em>'.
-	 * @generated
-	 */
-	FLComponent createFLComponent();
-
-	/**
 	 * Returns a new object of class '<em>FL Package</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
