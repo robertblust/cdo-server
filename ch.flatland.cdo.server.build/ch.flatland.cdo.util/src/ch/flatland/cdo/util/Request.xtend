@@ -30,13 +30,14 @@ class Request {
 	val public static HTTPS_PROTO = "https"
 	val public static HTTP_PROTO = "http"
 	val public static HTTPS_PORT = "443"
+	val static IGNORED_PARAMS_FOR_FILTER = newArrayList(PARAM_POINT_IN_TIME);
 
 	def getParameterNameAsListValueNotNull(HttpServletRequest req) {
 		val params = newArrayList
 		val enum = req.parameterNames
 		while(enum.hasMoreElements) {
 			val paramName = enum.nextElement
-			if(req.getParameter(paramName) != null && req.getParameter(paramName).length > 0) {
+			if(req.getParameter(paramName) != null && req.getParameter(paramName).length > 0 && !IGNORED_PARAMS_FOR_FILTER.contains(paramName)) {
 				params.add(paramName)
 			}
 		}

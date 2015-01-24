@@ -63,19 +63,20 @@ class View {
 						// all references requested?
 						case 4: {
 							switch (pathSegments.get(3)) {
-								case REFERENCES : {
+								case REFERENCES: {
 									val object = view.safeResolveObject(pathSegments)
 									return req.orderBy(req.filterBy(object.safeResolveReferences(null, req)))
 								}
-								case CONTENTS : {
+								case CONTENTS: {
 									val object = view.safeResolveObject(pathSegments)
 									return req.orderBy(req.filterBy(object.eContents))
 								}
-								case ALL_CONTENTS : {
+								case ALL_CONTENTS: {
 									val object = view.safeResolveObject(pathSegments)
 									return req.orderBy(req.filterBy(object.eAllContents.toList))
 								}
-								default : throw new Exception
+								default:
+									throw new Exception
 							}
 						}
 						// detail references requested?
@@ -178,9 +179,9 @@ class View {
 		}
 		return object
 	}
-	
+
 	def private safeResolveObject(CDOView view, String id) {
-		return view.getObject(CDOIDUtil.createLong(Long.parseLong(id)))	
+		return view.getObject(CDOIDUtil.createLong(Long.parseLong(id)))
 	}
 
 	def private dispatch filterBy(HttpServletRequest req, Object object) {
@@ -215,7 +216,17 @@ class View {
 				}
 			]
 		]
+
+		if(params.size == 0) {
+			logger.debug("'{}' MATCH, no filter requested", object)
+			return true
+		}
+
 		logger.debug("'{}' supports features '{}' and query is or = '{}'", object, supportedFeatures, or)
+		if(!or && params.size != supportedFeatures.size) {
+			logger.debug("'{}' NO MATCH, cause object supports not all features to filter", object)
+			return false;
+		}
 		for (paramName : supportedFeatures) {
 			val eAttribute = object.eClass.EAllAttributes.filter[it.name == paramName].head
 			val toCheck = object.eGet(eAttribute)
@@ -232,10 +243,10 @@ class View {
 			}
 		}
 		logger.debug("Matches '{}' - Criterias '{}'", matches, criterias)
-		if(or && matches > 0) {
+		if(or && matches > 0 && criterias > 0) {
 			return true
 		}
-		if(!or && matches == criterias) {
+		if(!or && matches == criterias && criterias > 0) {
 			return true
 		}
 		return false
