@@ -56,6 +56,21 @@ public class FLElementItemProvider
 
 			addNamePropertyDescriptor(object);
 			addDescriptionPropertyDescriptor(object);
+			addTraceToOwnPropertyDescriptor(object);
+			addTraceToUsePropertyDescriptor(object);
+			addTraceToRealizePropertyDescriptor(object);
+			addTraceToSpecifyPropertyDescriptor(object);
+			addTraceToImplementPropertyDescriptor(object);
+			addTraceToElaboratePropertyDescriptor(object);
+			addTraceToDerivePropertyDescriptor(object);
+			addTraceToValidatePropertyDescriptor(object);
+			addTraceToTestPropertyDescriptor(object);
+			addTraceToRelatePropertyDescriptor(object);
+			addTraceToffectPropertyDescriptor(object);
+			addTraceToSatisfyPropertyDescriptor(object);
+			addTraceToVerifyPropertyDescriptor(object);
+			addTraceToRefinePropertyDescriptor(object);
+			addTraceToTrackPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -100,6 +115,336 @@ public class FLElementItemProvider
 				 true,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Trace To Own feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTraceToOwnPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_FLElement_traceToOwn_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FLElement_traceToOwn_feature", "_UI_FLElement_type"),
+				 BasePackage.Literals.FL_ELEMENT__TRACE_TO_OWN,
+				 false,
+				 false,
+				 false,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Trace To Use feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTraceToUsePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_FLElement_traceToUse_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FLElement_traceToUse_feature", "_UI_FLElement_type"),
+				 BasePackage.Literals.FL_ELEMENT__TRACE_TO_USE,
+				 false,
+				 false,
+				 false,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Trace To Realize feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTraceToRealizePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_FLElement_traceToRealize_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FLElement_traceToRealize_feature", "_UI_FLElement_type"),
+				 BasePackage.Literals.FL_ELEMENT__TRACE_TO_REALIZE,
+				 false,
+				 false,
+				 false,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Trace To Specify feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTraceToSpecifyPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_FLElement_traceToSpecify_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FLElement_traceToSpecify_feature", "_UI_FLElement_type"),
+				 BasePackage.Literals.FL_ELEMENT__TRACE_TO_SPECIFY,
+				 false,
+				 false,
+				 false,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Trace To Implement feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTraceToImplementPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_FLElement_traceToImplement_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FLElement_traceToImplement_feature", "_UI_FLElement_type"),
+				 BasePackage.Literals.FL_ELEMENT__TRACE_TO_IMPLEMENT,
+				 false,
+				 false,
+				 false,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Trace To Elaborate feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTraceToElaboratePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_FLElement_traceToElaborate_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FLElement_traceToElaborate_feature", "_UI_FLElement_type"),
+				 BasePackage.Literals.FL_ELEMENT__TRACE_TO_ELABORATE,
+				 false,
+				 false,
+				 false,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Trace To Derive feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTraceToDerivePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_FLElement_traceToDerive_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FLElement_traceToDerive_feature", "_UI_FLElement_type"),
+				 BasePackage.Literals.FL_ELEMENT__TRACE_TO_DERIVE,
+				 false,
+				 false,
+				 false,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Trace To Validate feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTraceToValidatePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_FLElement_traceToValidate_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FLElement_traceToValidate_feature", "_UI_FLElement_type"),
+				 BasePackage.Literals.FL_ELEMENT__TRACE_TO_VALIDATE,
+				 false,
+				 false,
+				 false,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Trace To Test feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTraceToTestPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_FLElement_traceToTest_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FLElement_traceToTest_feature", "_UI_FLElement_type"),
+				 BasePackage.Literals.FL_ELEMENT__TRACE_TO_TEST,
+				 false,
+				 false,
+				 false,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Trace To Relate feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTraceToRelatePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_FLElement_traceToRelate_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FLElement_traceToRelate_feature", "_UI_FLElement_type"),
+				 BasePackage.Literals.FL_ELEMENT__TRACE_TO_RELATE,
+				 false,
+				 false,
+				 false,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Trace Toffect feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTraceToffectPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_FLElement_traceToffect_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FLElement_traceToffect_feature", "_UI_FLElement_type"),
+				 BasePackage.Literals.FL_ELEMENT__TRACE_TOFFECT,
+				 false,
+				 false,
+				 false,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Trace To Satisfy feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTraceToSatisfyPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_FLElement_traceToSatisfy_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FLElement_traceToSatisfy_feature", "_UI_FLElement_type"),
+				 BasePackage.Literals.FL_ELEMENT__TRACE_TO_SATISFY,
+				 false,
+				 false,
+				 false,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Trace To Verify feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTraceToVerifyPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_FLElement_traceToVerify_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FLElement_traceToVerify_feature", "_UI_FLElement_type"),
+				 BasePackage.Literals.FL_ELEMENT__TRACE_TO_VERIFY,
+				 false,
+				 false,
+				 false,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Trace To Refine feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTraceToRefinePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_FLElement_traceToRefine_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FLElement_traceToRefine_feature", "_UI_FLElement_type"),
+				 BasePackage.Literals.FL_ELEMENT__TRACE_TO_REFINE,
+				 false,
+				 false,
+				 false,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Trace To Track feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTraceToTrackPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_FLElement_traceToTrack_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FLElement_traceToTrack_feature", "_UI_FLElement_type"),
+				 BasePackage.Literals.FL_ELEMENT__TRACE_TO_TRACK,
+				 false,
+				 false,
+				 false,
+				 null,
 				 null,
 				 null));
 	}

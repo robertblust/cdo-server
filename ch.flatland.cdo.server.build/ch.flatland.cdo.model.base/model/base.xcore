@@ -7,11 +7,13 @@
 	modelDirectory="/ch.flatland.cdo.model.base/src",
 	creationIcons="false")
 package ch.flatland.cdo.model.base
-
+//featureDelegation="Dynamic",
 /*
  * Base elements all Concepts should at least inherit from.
  * Provides generic features.
  */
+import org.eclipse.emf.common.util.BasicEList
+
 abstract class FLElement {
 	String[1] name
 	/* 
@@ -22,6 +24,62 @@ abstract class FLElement {
 	String description
 	contains FLTrace[] traces
 	contains FLProperty[] properties
+	refers FLElement[] traceToOwn get {
+		return traces.toFilterByType(FLTraceType.OWN)
+	}
+	refers FLElement[] traceToUse get {
+		return traces.toFilterByType(FLTraceType.USE)
+	}
+	refers FLElement[] traceToRealize get {
+		return traces.toFilterByType(FLTraceType.REALIZE)
+	}
+	refers FLElement[] traceToSpecify get {
+		return traces.toFilterByType(FLTraceType.SPECIFY)
+	}
+	refers FLElement[] traceToImplement get {
+		return traces.toFilterByType(FLTraceType.IMPLEMENT)
+	}
+	refers FLElement[] traceToElaborate get {
+		return traces.toFilterByType(FLTraceType.ELABORATE)
+	}
+	refers FLElement[] traceToDerive get {
+		return traces.toFilterByType(FLTraceType.DERIVE)
+	}
+	refers FLElement[] traceToValidate get {
+		return traces.toFilterByType(FLTraceType.VALIDATE)
+	}
+	refers FLElement[] traceToTest get {
+		return traces.toFilterByType(FLTraceType.TEST)
+	}
+	refers FLElement[] traceToRelate get {
+		return traces.toFilterByType(FLTraceType.RELATE)
+	}
+	refers FLElement[] traceToffect get {
+		return traces.toFilterByType(FLTraceType.AFFECT)
+	}
+	refers FLElement[] traceToSatisfy get {
+		return traces.toFilterByType(FLTraceType.SATISFY)
+	}
+	refers FLElement[] traceToVerify get {
+		return traces.toFilterByType(FLTraceType.VERIFY)
+	}
+	refers FLElement[] traceToRefine get {
+		return traces.toFilterByType(FLTraceType.REFINE)
+	}
+	refers FLElement[] traceToTrack get {
+		return traces.toFilterByType(FLTraceType.TRACK)
+	}
+	/*
+	 * Filters the traces by trace type.
+	 * @return filtered list
+	 */
+	op FLElement[] toFilterByType(FLTrace[] traces, FLTraceType traceType) {
+		val targets = new BasicEList
+		traces.filter[it.traceType == traceType].forEach [
+			targets.add(it.target)
+		]
+		return targets
+	}
 }
 
 /*

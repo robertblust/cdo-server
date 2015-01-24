@@ -6,6 +6,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -106,13 +107,157 @@ public interface BasePackage extends EPackage {
 	int FL_ELEMENT__PROPERTIES = 3;
 
 	/**
+	 * The feature id for the '<em><b>Trace To Own</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_ELEMENT__TRACE_TO_OWN = 4;
+
+	/**
+	 * The feature id for the '<em><b>Trace To Use</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_ELEMENT__TRACE_TO_USE = 5;
+
+	/**
+	 * The feature id for the '<em><b>Trace To Realize</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_ELEMENT__TRACE_TO_REALIZE = 6;
+
+	/**
+	 * The feature id for the '<em><b>Trace To Specify</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_ELEMENT__TRACE_TO_SPECIFY = 7;
+
+	/**
+	 * The feature id for the '<em><b>Trace To Implement</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_ELEMENT__TRACE_TO_IMPLEMENT = 8;
+
+	/**
+	 * The feature id for the '<em><b>Trace To Elaborate</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_ELEMENT__TRACE_TO_ELABORATE = 9;
+
+	/**
+	 * The feature id for the '<em><b>Trace To Derive</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_ELEMENT__TRACE_TO_DERIVE = 10;
+
+	/**
+	 * The feature id for the '<em><b>Trace To Validate</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_ELEMENT__TRACE_TO_VALIDATE = 11;
+
+	/**
+	 * The feature id for the '<em><b>Trace To Test</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_ELEMENT__TRACE_TO_TEST = 12;
+
+	/**
+	 * The feature id for the '<em><b>Trace To Relate</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_ELEMENT__TRACE_TO_RELATE = 13;
+
+	/**
+	 * The feature id for the '<em><b>Trace Toffect</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_ELEMENT__TRACE_TOFFECT = 14;
+
+	/**
+	 * The feature id for the '<em><b>Trace To Satisfy</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_ELEMENT__TRACE_TO_SATISFY = 15;
+
+	/**
+	 * The feature id for the '<em><b>Trace To Verify</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_ELEMENT__TRACE_TO_VERIFY = 16;
+
+	/**
+	 * The feature id for the '<em><b>Trace To Refine</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_ELEMENT__TRACE_TO_REFINE = 17;
+
+	/**
+	 * The feature id for the '<em><b>Trace To Track</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_ELEMENT__TRACE_TO_TRACK = 18;
+
+	/**
 	 * The number of structural features of the '<em>FL Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT_FEATURE_COUNT = 4;
+	int FL_ELEMENT_FEATURE_COUNT = 19;
+
+	/**
+	 * The operation id for the '<em>To Filter By Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_ELEMENT___TO_FILTER_BY_TYPE__ELIST_FLTRACETYPE = 0;
 
 	/**
 	 * The number of operations of the '<em>FL Element</em>' class.
@@ -121,7 +266,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT_OPERATION_COUNT = 0;
+	int FL_ELEMENT_OPERATION_COUNT = 1;
 
 	/**
 	 * The meta object id for the '{@link ch.flatland.cdo.model.base.impl.FLComponentImpl <em>FL Component</em>}' class.
@@ -170,6 +315,141 @@ public interface BasePackage extends EPackage {
 	int FL_COMPONENT__PROPERTIES = FL_ELEMENT__PROPERTIES;
 
 	/**
+	 * The feature id for the '<em><b>Trace To Own</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_COMPONENT__TRACE_TO_OWN = FL_ELEMENT__TRACE_TO_OWN;
+
+	/**
+	 * The feature id for the '<em><b>Trace To Use</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_COMPONENT__TRACE_TO_USE = FL_ELEMENT__TRACE_TO_USE;
+
+	/**
+	 * The feature id for the '<em><b>Trace To Realize</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_COMPONENT__TRACE_TO_REALIZE = FL_ELEMENT__TRACE_TO_REALIZE;
+
+	/**
+	 * The feature id for the '<em><b>Trace To Specify</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_COMPONENT__TRACE_TO_SPECIFY = FL_ELEMENT__TRACE_TO_SPECIFY;
+
+	/**
+	 * The feature id for the '<em><b>Trace To Implement</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_COMPONENT__TRACE_TO_IMPLEMENT = FL_ELEMENT__TRACE_TO_IMPLEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Trace To Elaborate</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_COMPONENT__TRACE_TO_ELABORATE = FL_ELEMENT__TRACE_TO_ELABORATE;
+
+	/**
+	 * The feature id for the '<em><b>Trace To Derive</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_COMPONENT__TRACE_TO_DERIVE = FL_ELEMENT__TRACE_TO_DERIVE;
+
+	/**
+	 * The feature id for the '<em><b>Trace To Validate</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_COMPONENT__TRACE_TO_VALIDATE = FL_ELEMENT__TRACE_TO_VALIDATE;
+
+	/**
+	 * The feature id for the '<em><b>Trace To Test</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_COMPONENT__TRACE_TO_TEST = FL_ELEMENT__TRACE_TO_TEST;
+
+	/**
+	 * The feature id for the '<em><b>Trace To Relate</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_COMPONENT__TRACE_TO_RELATE = FL_ELEMENT__TRACE_TO_RELATE;
+
+	/**
+	 * The feature id for the '<em><b>Trace Toffect</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_COMPONENT__TRACE_TOFFECT = FL_ELEMENT__TRACE_TOFFECT;
+
+	/**
+	 * The feature id for the '<em><b>Trace To Satisfy</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_COMPONENT__TRACE_TO_SATISFY = FL_ELEMENT__TRACE_TO_SATISFY;
+
+	/**
+	 * The feature id for the '<em><b>Trace To Verify</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_COMPONENT__TRACE_TO_VERIFY = FL_ELEMENT__TRACE_TO_VERIFY;
+
+	/**
+	 * The feature id for the '<em><b>Trace To Refine</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_COMPONENT__TRACE_TO_REFINE = FL_ELEMENT__TRACE_TO_REFINE;
+
+	/**
+	 * The feature id for the '<em><b>Trace To Track</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_COMPONENT__TRACE_TO_TRACK = FL_ELEMENT__TRACE_TO_TRACK;
+
+	/**
 	 * The feature id for the '<em><b>Component Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -195,6 +475,15 @@ public interface BasePackage extends EPackage {
 	 * @ordered
 	 */
 	int FL_COMPONENT_FEATURE_COUNT = FL_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The operation id for the '<em>To Filter By Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_COMPONENT___TO_FILTER_BY_TYPE__ELIST_FLTRACETYPE = FL_ELEMENT___TO_FILTER_BY_TYPE__ELIST_FLTRACETYPE;
 
 	/**
 	 * The number of operations of the '<em>FL Component</em>' class.
@@ -252,6 +541,141 @@ public interface BasePackage extends EPackage {
 	int FL_PACKAGE__PROPERTIES = FL_ELEMENT__PROPERTIES;
 
 	/**
+	 * The feature id for the '<em><b>Trace To Own</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_PACKAGE__TRACE_TO_OWN = FL_ELEMENT__TRACE_TO_OWN;
+
+	/**
+	 * The feature id for the '<em><b>Trace To Use</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_PACKAGE__TRACE_TO_USE = FL_ELEMENT__TRACE_TO_USE;
+
+	/**
+	 * The feature id for the '<em><b>Trace To Realize</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_PACKAGE__TRACE_TO_REALIZE = FL_ELEMENT__TRACE_TO_REALIZE;
+
+	/**
+	 * The feature id for the '<em><b>Trace To Specify</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_PACKAGE__TRACE_TO_SPECIFY = FL_ELEMENT__TRACE_TO_SPECIFY;
+
+	/**
+	 * The feature id for the '<em><b>Trace To Implement</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_PACKAGE__TRACE_TO_IMPLEMENT = FL_ELEMENT__TRACE_TO_IMPLEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Trace To Elaborate</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_PACKAGE__TRACE_TO_ELABORATE = FL_ELEMENT__TRACE_TO_ELABORATE;
+
+	/**
+	 * The feature id for the '<em><b>Trace To Derive</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_PACKAGE__TRACE_TO_DERIVE = FL_ELEMENT__TRACE_TO_DERIVE;
+
+	/**
+	 * The feature id for the '<em><b>Trace To Validate</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_PACKAGE__TRACE_TO_VALIDATE = FL_ELEMENT__TRACE_TO_VALIDATE;
+
+	/**
+	 * The feature id for the '<em><b>Trace To Test</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_PACKAGE__TRACE_TO_TEST = FL_ELEMENT__TRACE_TO_TEST;
+
+	/**
+	 * The feature id for the '<em><b>Trace To Relate</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_PACKAGE__TRACE_TO_RELATE = FL_ELEMENT__TRACE_TO_RELATE;
+
+	/**
+	 * The feature id for the '<em><b>Trace Toffect</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_PACKAGE__TRACE_TOFFECT = FL_ELEMENT__TRACE_TOFFECT;
+
+	/**
+	 * The feature id for the '<em><b>Trace To Satisfy</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_PACKAGE__TRACE_TO_SATISFY = FL_ELEMENT__TRACE_TO_SATISFY;
+
+	/**
+	 * The feature id for the '<em><b>Trace To Verify</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_PACKAGE__TRACE_TO_VERIFY = FL_ELEMENT__TRACE_TO_VERIFY;
+
+	/**
+	 * The feature id for the '<em><b>Trace To Refine</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_PACKAGE__TRACE_TO_REFINE = FL_ELEMENT__TRACE_TO_REFINE;
+
+	/**
+	 * The feature id for the '<em><b>Trace To Track</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_PACKAGE__TRACE_TO_TRACK = FL_ELEMENT__TRACE_TO_TRACK;
+
+	/**
 	 * The feature id for the '<em><b>Elements</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -286,6 +710,15 @@ public interface BasePackage extends EPackage {
 	 * @ordered
 	 */
 	int FL_PACKAGE_FEATURE_COUNT = FL_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The operation id for the '<em>To Filter By Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_PACKAGE___TO_FILTER_BY_TYPE__ELIST_FLTRACETYPE = FL_ELEMENT___TO_FILTER_BY_TYPE__ELIST_FLTRACETYPE;
 
 	/**
 	 * The number of operations of the '<em>FL Package</em>' class.
@@ -462,6 +895,181 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getFLElement_Properties();
+
+	/**
+	 * Returns the meta object for the reference list '{@link ch.flatland.cdo.model.base.FLElement#getTraceToOwn <em>Trace To Own</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Trace To Own</em>'.
+	 * @see ch.flatland.cdo.model.base.FLElement#getTraceToOwn()
+	 * @see #getFLElement()
+	 * @generated
+	 */
+	EReference getFLElement_TraceToOwn();
+
+	/**
+	 * Returns the meta object for the reference list '{@link ch.flatland.cdo.model.base.FLElement#getTraceToUse <em>Trace To Use</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Trace To Use</em>'.
+	 * @see ch.flatland.cdo.model.base.FLElement#getTraceToUse()
+	 * @see #getFLElement()
+	 * @generated
+	 */
+	EReference getFLElement_TraceToUse();
+
+	/**
+	 * Returns the meta object for the reference list '{@link ch.flatland.cdo.model.base.FLElement#getTraceToRealize <em>Trace To Realize</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Trace To Realize</em>'.
+	 * @see ch.flatland.cdo.model.base.FLElement#getTraceToRealize()
+	 * @see #getFLElement()
+	 * @generated
+	 */
+	EReference getFLElement_TraceToRealize();
+
+	/**
+	 * Returns the meta object for the reference list '{@link ch.flatland.cdo.model.base.FLElement#getTraceToSpecify <em>Trace To Specify</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Trace To Specify</em>'.
+	 * @see ch.flatland.cdo.model.base.FLElement#getTraceToSpecify()
+	 * @see #getFLElement()
+	 * @generated
+	 */
+	EReference getFLElement_TraceToSpecify();
+
+	/**
+	 * Returns the meta object for the reference list '{@link ch.flatland.cdo.model.base.FLElement#getTraceToImplement <em>Trace To Implement</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Trace To Implement</em>'.
+	 * @see ch.flatland.cdo.model.base.FLElement#getTraceToImplement()
+	 * @see #getFLElement()
+	 * @generated
+	 */
+	EReference getFLElement_TraceToImplement();
+
+	/**
+	 * Returns the meta object for the reference list '{@link ch.flatland.cdo.model.base.FLElement#getTraceToElaborate <em>Trace To Elaborate</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Trace To Elaborate</em>'.
+	 * @see ch.flatland.cdo.model.base.FLElement#getTraceToElaborate()
+	 * @see #getFLElement()
+	 * @generated
+	 */
+	EReference getFLElement_TraceToElaborate();
+
+	/**
+	 * Returns the meta object for the reference list '{@link ch.flatland.cdo.model.base.FLElement#getTraceToDerive <em>Trace To Derive</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Trace To Derive</em>'.
+	 * @see ch.flatland.cdo.model.base.FLElement#getTraceToDerive()
+	 * @see #getFLElement()
+	 * @generated
+	 */
+	EReference getFLElement_TraceToDerive();
+
+	/**
+	 * Returns the meta object for the reference list '{@link ch.flatland.cdo.model.base.FLElement#getTraceToValidate <em>Trace To Validate</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Trace To Validate</em>'.
+	 * @see ch.flatland.cdo.model.base.FLElement#getTraceToValidate()
+	 * @see #getFLElement()
+	 * @generated
+	 */
+	EReference getFLElement_TraceToValidate();
+
+	/**
+	 * Returns the meta object for the reference list '{@link ch.flatland.cdo.model.base.FLElement#getTraceToTest <em>Trace To Test</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Trace To Test</em>'.
+	 * @see ch.flatland.cdo.model.base.FLElement#getTraceToTest()
+	 * @see #getFLElement()
+	 * @generated
+	 */
+	EReference getFLElement_TraceToTest();
+
+	/**
+	 * Returns the meta object for the reference list '{@link ch.flatland.cdo.model.base.FLElement#getTraceToRelate <em>Trace To Relate</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Trace To Relate</em>'.
+	 * @see ch.flatland.cdo.model.base.FLElement#getTraceToRelate()
+	 * @see #getFLElement()
+	 * @generated
+	 */
+	EReference getFLElement_TraceToRelate();
+
+	/**
+	 * Returns the meta object for the reference list '{@link ch.flatland.cdo.model.base.FLElement#getTraceToffect <em>Trace Toffect</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Trace Toffect</em>'.
+	 * @see ch.flatland.cdo.model.base.FLElement#getTraceToffect()
+	 * @see #getFLElement()
+	 * @generated
+	 */
+	EReference getFLElement_TraceToffect();
+
+	/**
+	 * Returns the meta object for the reference list '{@link ch.flatland.cdo.model.base.FLElement#getTraceToSatisfy <em>Trace To Satisfy</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Trace To Satisfy</em>'.
+	 * @see ch.flatland.cdo.model.base.FLElement#getTraceToSatisfy()
+	 * @see #getFLElement()
+	 * @generated
+	 */
+	EReference getFLElement_TraceToSatisfy();
+
+	/**
+	 * Returns the meta object for the reference list '{@link ch.flatland.cdo.model.base.FLElement#getTraceToVerify <em>Trace To Verify</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Trace To Verify</em>'.
+	 * @see ch.flatland.cdo.model.base.FLElement#getTraceToVerify()
+	 * @see #getFLElement()
+	 * @generated
+	 */
+	EReference getFLElement_TraceToVerify();
+
+	/**
+	 * Returns the meta object for the reference list '{@link ch.flatland.cdo.model.base.FLElement#getTraceToRefine <em>Trace To Refine</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Trace To Refine</em>'.
+	 * @see ch.flatland.cdo.model.base.FLElement#getTraceToRefine()
+	 * @see #getFLElement()
+	 * @generated
+	 */
+	EReference getFLElement_TraceToRefine();
+
+	/**
+	 * Returns the meta object for the reference list '{@link ch.flatland.cdo.model.base.FLElement#getTraceToTrack <em>Trace To Track</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Trace To Track</em>'.
+	 * @see ch.flatland.cdo.model.base.FLElement#getTraceToTrack()
+	 * @see #getFLElement()
+	 * @generated
+	 */
+	EReference getFLElement_TraceToTrack();
+
+	/**
+	 * Returns the meta object for the '{@link ch.flatland.cdo.model.base.FLElement#toFilterByType(org.eclipse.emf.common.util.EList, ch.flatland.cdo.model.base.FLTraceType) <em>To Filter By Type</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>To Filter By Type</em>' operation.
+	 * @see ch.flatland.cdo.model.base.FLElement#toFilterByType(org.eclipse.emf.common.util.EList, ch.flatland.cdo.model.base.FLTraceType)
+	 * @generated
+	 */
+	EOperation getFLElement__ToFilterByType__EList_FLTraceType();
 
 	/**
 	 * Returns the meta object for class '{@link ch.flatland.cdo.model.base.FLComponent <em>FL Component</em>}'.
@@ -688,6 +1296,134 @@ public interface BasePackage extends EPackage {
 		 * @generated
 		 */
 		EReference FL_ELEMENT__PROPERTIES = eINSTANCE.getFLElement_Properties();
+
+		/**
+		 * The meta object literal for the '<em><b>Trace To Own</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FL_ELEMENT__TRACE_TO_OWN = eINSTANCE.getFLElement_TraceToOwn();
+
+		/**
+		 * The meta object literal for the '<em><b>Trace To Use</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FL_ELEMENT__TRACE_TO_USE = eINSTANCE.getFLElement_TraceToUse();
+
+		/**
+		 * The meta object literal for the '<em><b>Trace To Realize</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FL_ELEMENT__TRACE_TO_REALIZE = eINSTANCE.getFLElement_TraceToRealize();
+
+		/**
+		 * The meta object literal for the '<em><b>Trace To Specify</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FL_ELEMENT__TRACE_TO_SPECIFY = eINSTANCE.getFLElement_TraceToSpecify();
+
+		/**
+		 * The meta object literal for the '<em><b>Trace To Implement</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FL_ELEMENT__TRACE_TO_IMPLEMENT = eINSTANCE.getFLElement_TraceToImplement();
+
+		/**
+		 * The meta object literal for the '<em><b>Trace To Elaborate</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FL_ELEMENT__TRACE_TO_ELABORATE = eINSTANCE.getFLElement_TraceToElaborate();
+
+		/**
+		 * The meta object literal for the '<em><b>Trace To Derive</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FL_ELEMENT__TRACE_TO_DERIVE = eINSTANCE.getFLElement_TraceToDerive();
+
+		/**
+		 * The meta object literal for the '<em><b>Trace To Validate</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FL_ELEMENT__TRACE_TO_VALIDATE = eINSTANCE.getFLElement_TraceToValidate();
+
+		/**
+		 * The meta object literal for the '<em><b>Trace To Test</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FL_ELEMENT__TRACE_TO_TEST = eINSTANCE.getFLElement_TraceToTest();
+
+		/**
+		 * The meta object literal for the '<em><b>Trace To Relate</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FL_ELEMENT__TRACE_TO_RELATE = eINSTANCE.getFLElement_TraceToRelate();
+
+		/**
+		 * The meta object literal for the '<em><b>Trace Toffect</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FL_ELEMENT__TRACE_TOFFECT = eINSTANCE.getFLElement_TraceToffect();
+
+		/**
+		 * The meta object literal for the '<em><b>Trace To Satisfy</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FL_ELEMENT__TRACE_TO_SATISFY = eINSTANCE.getFLElement_TraceToSatisfy();
+
+		/**
+		 * The meta object literal for the '<em><b>Trace To Verify</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FL_ELEMENT__TRACE_TO_VERIFY = eINSTANCE.getFLElement_TraceToVerify();
+
+		/**
+		 * The meta object literal for the '<em><b>Trace To Refine</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FL_ELEMENT__TRACE_TO_REFINE = eINSTANCE.getFLElement_TraceToRefine();
+
+		/**
+		 * The meta object literal for the '<em><b>Trace To Track</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FL_ELEMENT__TRACE_TO_TRACK = eINSTANCE.getFLElement_TraceToTrack();
+
+		/**
+		 * The meta object literal for the '<em><b>To Filter By Type</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation FL_ELEMENT___TO_FILTER_BY_TYPE__ELIST_FLTRACETYPE = eINSTANCE.getFLElement__ToFilterByType__EList_FLTraceType();
 
 		/**
 		 * The meta object literal for the '{@link ch.flatland.cdo.model.base.impl.FLComponentImpl <em>FL Component</em>}' class.

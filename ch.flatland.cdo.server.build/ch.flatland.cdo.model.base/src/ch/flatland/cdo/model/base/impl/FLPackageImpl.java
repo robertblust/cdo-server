@@ -3,7 +3,6 @@
 package ch.flatland.cdo.model.base.impl;
 
 import java.util.Collection;
-
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
@@ -12,12 +11,11 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
-
 import ch.flatland.cdo.model.base.BasePackage;
 import ch.flatland.cdo.model.base.FLElement;
 import ch.flatland.cdo.model.base.FLPackage;
-
 import com.google.common.collect.Iterables;
+import java.lang.Iterable;
 
 /**
  * <!-- begin-user-doc -->
