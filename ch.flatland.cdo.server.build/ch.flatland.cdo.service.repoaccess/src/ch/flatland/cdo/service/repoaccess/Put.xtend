@@ -130,7 +130,7 @@ class Put {
 	}
 
 	def private methodAllowed(HttpServletRequest req) {
-		if(req.pointInTime != null || req.pathSegments == null || req.pathSegments.size != 6 || (req.pathSegments.size > 3 && req.pathSegments.get(3) != REFERENCES)) {
+		if(req.pointInTime == null && req.pathSegments != null && (req.pathSegments.size == 6 || req.pathSegments.size == 3) && (req.pathSegments.size > 3 && req.pathSegments.get(3) != REFERENCES)) {
 			return false
 		}
 		return true
