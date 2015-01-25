@@ -26,7 +26,6 @@ import org.eclipse.emf.cdo.view.CDOView
 import org.eclipse.emf.ecore.EObject
 import org.slf4j.LoggerFactory
 
-import static ch.flatland.cdo.util.Constants.*
 import static javax.servlet.http.HttpServletResponse.*
 
 class Delete {
@@ -185,12 +184,5 @@ class Delete {
 			}
 		}
 		return container
-	}
-
-	def private methodAllowed(HttpServletRequest req) {
-		if(req.pointInTime == null && req.pathSegments != null && (req.pathSegments.size == 6 || req.pathSegments.size == 3) && (req.pathSegments.size > 3 && req.pathSegments.get(3) != REFERENCES)) {
-			return false
-		}
-		return true
 	}
 }

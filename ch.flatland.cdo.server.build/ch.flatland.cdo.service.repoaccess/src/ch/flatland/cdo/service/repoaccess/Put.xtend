@@ -24,7 +24,6 @@ import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
 import org.slf4j.LoggerFactory
 
-import static ch.flatland.cdo.util.Constants.*
 import static javax.servlet.http.HttpServletResponse.*
 
 class Put {
@@ -127,13 +126,6 @@ class Put {
 			}
 		}
 		resp.writeResponse(req, jsonString)
-	}
-
-	def private methodAllowed(HttpServletRequest req) {
-		if(req.pointInTime == null && req.pathSegments != null && (req.pathSegments.size == 6 || req.pathSegments.size == 3) && (req.pathSegments.size > 3 && req.pathSegments.get(3) != REFERENCES)) {
-			return false
-		}
-		return true
 	}
 
 	def private safeAddReferenceArray(EObject container, EReference eReference, EObject objectToPut) {

@@ -22,7 +22,7 @@ import static javax.servlet.http.HttpServletResponse.*
 class Request {
 
 	val logger = LoggerFactory.getLogger(this.class)
-	
+
 	val public static AUTH_HEADER = "Authorization"
 	val public static ACCEPT_HEADER = "Accept"
 	val public static OPENSHIFT_FORWARD_PROTO_HEADER = "X-Forwarded-Proto"
@@ -50,19 +50,19 @@ class Request {
 		}
 		return null
 	}
-	
+
 	def getServerAddress(HttpServletRequest req) {
 		var serverAddress = req.requestURL.substring(0, req.requestURL.indexOf(req.servletAlias))
-		if (req.getHeader(OPENSHIFT_FORWARD_PROTO_HEADER) != null && req.getHeader(OPENSHIFT_FORWARD_PROTO_HEADER) == HTTPS_PROTO) {
+		if(req.getHeader(OPENSHIFT_FORWARD_PROTO_HEADER) != null && req.getHeader(OPENSHIFT_FORWARD_PROTO_HEADER) == HTTPS_PROTO) {
 			serverAddress = serverAddress.replaceFirst(HTTP_PROTO, HTTPS_PROTO)
 		}
 		return serverAddress
 	}
-	
+
 	def getServletAlias(HttpServletRequest req) {
 		return "/" + Splitter.on("/").split(req.requestURL).get(3)
 	}
-	
+
 	def getPathSegments(HttpServletRequest req) {
 		if(req.pathInfo == null) {
 			return null
@@ -83,7 +83,7 @@ class Request {
 		}
 		return null
 	}
-	
+
 	def isArrayAccessor(HttpServletRequest req) {
 		return req.getParameter(PARAM_ARRAY_ACCESSOR) != null
 	}
@@ -101,24 +101,24 @@ class Request {
 	}
 
 	def isRefs(HttpServletRequest req) {
-		if (req.crefs || req.rrefs) {
+		if(req.crefs || req.rrefs) {
 			return true
 		}
 		return false
 	}
-	
+
 	def isRrefs(HttpServletRequest req) {
 		return req.getParameter(PARAM_RREFS) != null
 	}
-	
+
 	def isCrefs(HttpServletRequest req) {
 		return req.getParameter(PARAM_CREFS) != null
 	}
-	
+
 	def isXrefs(HttpServletRequest req) {
 		return req.getParameter(PARAM_XREFS) != null
 	}
-	
+
 	def isLinks(HttpServletRequest req) {
 		return req.getParameter(PARAM_LINKS) != null
 	}
@@ -126,7 +126,7 @@ class Request {
 	def isXlinks(HttpServletRequest req) {
 		return req.getParameter(PARAM_XLINKS) != null
 	}
-	
+
 	def isMetaDataRequested(HttpServletRequest req) {
 		return req.getParameter(PARAM_META) != null
 	}
@@ -185,6 +185,32 @@ class Request {
 		return new JsonConverter(new JsonConverterConfig(req))
 	}
 
+	def methodAllowed(HttpServletRequest req) {
+		if(req.method == METHOD_PUT || req.method == METHOD_DELETE) {
+			if (req.pointInTime != null) {
+				// history can not be edited
+				return false
+			}
+			if (req.pathSegments == null) {
+				// one of 2 path pattern must be present
+				return false
+			}
+			// required path pattern
+			// 1. /obj/prefix.type/oid --> size == 3
+			// 2. /obj/prefix.type/oid/references/feature/oid --> size == 6
+			if (req.pathSegments.size < 3) {
+				return false
+			}
+			if (req.pathSegments.size > 3 && req.pathSegments.size < 6) {
+				return false
+			}
+			if (req.pathSegments.size == 6 && req.pathSegments.get(3) != REFERENCES) {
+				return false
+			}
+			return true
+		}
+	}
+
 	// methods which could throw an Exception
 	def String safeReadBody(HttpServletRequest request) {
 		val buffer = new StringBuffer();
@@ -208,7 +234,7 @@ class Request {
 		val usernameAndPassword = new String(Base64.decodeBase64(authHeader.substring(6).getBytes()))
 		return usernameAndPassword
 	}
-	
+
 	def logRequest(HttpServletRequest req) {
 		if(logger.isDebugEnabled) {
 			var userId = "anonymous"
