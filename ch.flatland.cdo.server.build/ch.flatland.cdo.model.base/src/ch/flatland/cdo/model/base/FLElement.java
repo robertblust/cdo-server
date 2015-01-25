@@ -88,14 +88,10 @@ public interface FLElement extends CDOObject {
 	 * Returns the value of the '<em><b>Description</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * Markdown formatted description
-	 * http://en.wikipedia.org/wiki/Markdown
-	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Description</em>' attribute.
 	 * @see #setDescription(String)
 	 * @see ch.flatland.cdo.model.base.BasePackage#getFLElement_Description()
-	 * @model unique="false"
+	 * @model unique="false" dataType="ch.flatland.cdo.model.base.FLMarkdown"
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyMultiLine='true' propertyCategory='Base'"
 	 * @generated
 	 */

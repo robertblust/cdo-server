@@ -77,6 +77,8 @@ public class BaseFactoryImpl extends EFactoryImpl implements BaseFactory {
 				return createFLTraceTypeFromString(eDataType, initialValue);
 			case BasePackage.FL_IDENTIFIER:
 				return createFLIdentifierFromString(eDataType, initialValue);
+			case BasePackage.FL_MARKDOWN:
+				return createFLMarkdownFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -94,6 +96,8 @@ public class BaseFactoryImpl extends EFactoryImpl implements BaseFactory {
 				return convertFLTraceTypeToString(eDataType, instanceValue);
 			case BasePackage.FL_IDENTIFIER:
 				return convertFLIdentifierToString(eDataType, instanceValue);
+			case BasePackage.FL_MARKDOWN:
+				return convertFLMarkdownToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -164,6 +168,24 @@ public class BaseFactoryImpl extends EFactoryImpl implements BaseFactory {
 	 * @generated
 	 */
 	public String convertFLIdentifierToString(EDataType eDataType, Object instanceValue) {
+		return super.convertToString(eDataType, instanceValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String createFLMarkdownFromString(EDataType eDataType, String initialValue) {
+		return (String)super.createFromString(eDataType, initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertFLMarkdownToString(EDataType eDataType, Object instanceValue) {
 		return super.convertToString(eDataType, instanceValue);
 	}
 

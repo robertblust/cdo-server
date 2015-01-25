@@ -905,6 +905,16 @@ public interface BasePackage extends EPackage {
 	int FL_IDENTIFIER = 5;
 
 	/**
+	 * The meta object id for the '<em>FL Markdown</em>' data type.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see java.lang.String
+	 * @see ch.flatland.cdo.model.base.impl.BasePackageImpl#getFLMarkdown()
+	 * @generated
+	 */
+	int FL_MARKDOWN = 6;
+
+	/**
 	 * Returns the meta object for class '{@link ch.flatland.cdo.model.base.FLElement <em>FL Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1438,6 +1448,17 @@ public interface BasePackage extends EPackage {
 	EDataType getFLIdentifier();
 
 	/**
+	 * Returns the meta object for data type '{@link java.lang.String <em>FL Markdown</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for data type '<em>FL Markdown</em>'.
+	 * @see java.lang.String
+	 * @model instanceClass="java.lang.String"
+	 * @generated
+	 */
+	EDataType getFLMarkdown();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1863,6 +1884,16 @@ public interface BasePackage extends EPackage {
 		 * @generated
 		 */
 		EDataType FL_IDENTIFIER = eINSTANCE.getFLIdentifier();
+
+		/**
+		 * The meta object literal for the '<em>FL Markdown</em>' data type.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see java.lang.String
+		 * @see ch.flatland.cdo.model.base.impl.BasePackageImpl#getFLMarkdown()
+		 * @generated
+		 */
+		EDataType FL_MARKDOWN = eINSTANCE.getFLMarkdown();
 
 	}
 

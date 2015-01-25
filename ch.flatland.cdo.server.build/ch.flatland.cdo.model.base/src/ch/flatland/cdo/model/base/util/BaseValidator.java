@@ -100,6 +100,8 @@ public class BaseValidator extends EObjectValidator {
 				return validateFLTraceType((FLTraceType)value, diagnostics, context);
 			case BasePackage.FL_IDENTIFIER:
 				return validateFLIdentifier((String)value, diagnostics, context);
+			case BasePackage.FL_MARKDOWN:
+				return validateFLMarkdown((String)value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -181,6 +183,15 @@ public class BaseValidator extends EObjectValidator {
 	 */
 	public boolean validateFLIdentifier_Pattern(String flIdentifier, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validatePattern(BasePackage.Literals.FL_IDENTIFIER, flIdentifier, FL_IDENTIFIER__PATTERN__VALUES, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateFLMarkdown(String flMarkdown, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
 	}
 
 	/**

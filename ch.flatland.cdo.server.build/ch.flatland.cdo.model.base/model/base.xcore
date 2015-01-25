@@ -20,12 +20,8 @@ import ch.flatland.cdo.model.base.BasePackage.Literals
 abstract class FLElement {
 	@GenModel(propertyCategory="Base")
 	String[1] name
-	/* 
-	 * Markdown formatted description
-	 * http://en.wikipedia.org/wiki/Markdown
-	 */
 	@GenModel(propertyMultiLine="true", propertyCategory="Base")
-	String description
+	FLMarkdown description
 	contains FLTrace[] traces
 	contains FLProperty[] properties
 	@GenModel(propertyCategory="Trace to")
@@ -278,4 +274,10 @@ class FLProperty {
  */
 @ExtendedMetaData(name="FLIdentifier", pattern="[a-zA-Z0-9_\\-\\.]*")
 type FLIdentifier wraps String
+
+/* 
+ * Markdown formatted string
+ * http://en.wikipedia.org/wiki/Markdown
+ */
+type FLMarkdown wraps String
 
