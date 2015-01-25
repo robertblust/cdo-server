@@ -44,9 +44,12 @@ class Put {
 		var String jsonString = null
 
 		try {
-			val object = view.safeRequestResource(req, resp)
 
-			if(!req.methodAllowed(object)) {
+			if(!req.methodAllowed) {
+				throw resp.statusMethodNotAllowed
+			}
+			val object = view.safeRequestResource(req, resp)
+			if(!(object instanceof CDOObject)) {
 				throw resp.statusMethodNotAllowed
 			}
 			val requestedObject = object as CDOObject
@@ -86,17 +89,17 @@ class Put {
 					if(!eReference.isReferenceSettable) {
 						throw new FlatlandException(SC_BAD_REQUEST, requestedObject, "Feature '{}' is not a containment", referenceName)
 					}
-					
+
 					try {
 						val objectToPut = view.safeResolveObject(req.pathSegments.get(5))
-						
-						if (eReference.isMany) {
+
+						if(eReference.isMany) {
 							requestedObject.safeAddReferenceArray(eReference, objectToPut)
 						} else {
 							requestedObject.safeSetReference(eReference, objectToPut)
 						}
-						
-					} catch (Exception e) {
+
+					} catch(Exception e) {
 						throw new FlatlandException(SC_BAD_REQUEST, requestedObject, e.message)
 					}
 				}
@@ -126,16 +129,16 @@ class Put {
 		resp.writeResponse(req, jsonString)
 	}
 
-	def private methodAllowed(HttpServletRequest req, Object object) {
-		if(!(object instanceof CDOObject) || req.pointInTime != null || req.pathSegments == null || (req.pathSegments.size > 3 && req.pathSegments.get(3) != REFERENCES)) {
+	def private methodAllowed(HttpServletRequest req) {
+		if(req.pointInTime != null || req.pathSegments == null || req.pathSegments.size != 6 || (req.pathSegments.size > 3 && req.pathSegments.get(3) != REFERENCES)) {
 			return false
 		}
 		return true
 	}
-	
+
 	def private safeAddReferenceArray(EObject container, EReference eReference, EObject objectToPut) {
 		val eList = container.eGet(eReference, true) as List<EObject>
-							
+
 		if(eReference.upperBound > 0 && (eList.size + 1) > eReference.upperBound) {
 			throw new FlatlandException(SC_BAD_REQUEST, container, "Try to add new element to array '{}' with '{}' items having upper limit of '{}'", eReference.name, eList.size, eReference.upperBound)
 		}
@@ -145,7 +148,7 @@ class Put {
 			throw new FlatlandException(SC_BAD_REQUEST, container, "Element has wrong type for reference '{}'", eReference.name)
 		}
 	}
-	
+
 	def private safeSetReference(EObject container, EReference eReference, EObject refObject) {
 		try {
 			container.eSet(eReference, refObject)

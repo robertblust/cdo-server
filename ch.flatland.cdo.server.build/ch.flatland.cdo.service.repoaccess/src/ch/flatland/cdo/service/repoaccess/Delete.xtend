@@ -48,10 +48,14 @@ class Delete {
 		try {
 			logger.debug("Run for '{}'", req.userId)
 
-			val object = view.safeRequestResource(req, resp)
-			if(!req.methodAllowed(object)) {
+			if(!req.methodAllowed) {
 				throw resp.statusMethodNotAllowed
 			}
+			val object = view.safeRequestResource(req, resp)
+			if (!(object instanceof CDOObject)) {
+				throw resp.statusMethodNotAllowed
+			}
+
 			val requestedObject = object as CDOObject
 
 			logger.debug("Object '{}' loaded type of {}", requestedObject.cdoID, requestedObject.eClass.type)
@@ -183,8 +187,8 @@ class Delete {
 		return container
 	}
 
-	def private methodAllowed(HttpServletRequest req, Object object) {
-		if(!(object instanceof CDOObject) || req.pointInTime != null || req.pathSegments == null || (req.pathSegments.size > 3 && req.pathSegments.get(3) != REFERENCES)) {
+	def private methodAllowed(HttpServletRequest req) {
+		if(req.pointInTime != null || req.pathSegments == null || req.pathSegments.size != 6 || (req.pathSegments.size > 3 && req.pathSegments.get(3) != REFERENCES)) {
 			return false
 		}
 		return true
