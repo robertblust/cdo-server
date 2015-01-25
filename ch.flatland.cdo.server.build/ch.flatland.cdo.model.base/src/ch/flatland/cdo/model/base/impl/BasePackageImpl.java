@@ -470,7 +470,7 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getFLElement__ToFilterByType__EList_FLTraceType() {
+	public EOperation getFLElement__ToFilterByType__FLTraceType() {
 		return flElementEClass.getEOperations().get(0);
 	}
 
@@ -479,7 +479,7 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getFLElement__FromFilterByType__FLElement_FLTraceType() {
+	public EOperation getFLElement__FromFilterByType__FLTraceType() {
 		return flElementEClass.getEOperations().get(1);
 	}
 
@@ -663,8 +663,8 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 		createEReference(flElementEClass, FL_ELEMENT__TRACE_FROM_VERIFY);
 		createEReference(flElementEClass, FL_ELEMENT__TRACE_FROM_REFINE);
 		createEReference(flElementEClass, FL_ELEMENT__TRACE_FROM_TRACK);
-		createEOperation(flElementEClass, FL_ELEMENT___TO_FILTER_BY_TYPE__ELIST_FLTRACETYPE);
-		createEOperation(flElementEClass, FL_ELEMENT___FROM_FILTER_BY_TYPE__FLELEMENT_FLTRACETYPE);
+		createEOperation(flElementEClass, FL_ELEMENT___TO_FILTER_BY_TYPE__FLTRACETYPE);
+		createEOperation(flElementEClass, FL_ELEMENT___FROM_FILTER_BY_TYPE__FLTRACETYPE);
 
 		flPackageEClass = createEClass(FL_PACKAGE);
 		createEReference(flPackageEClass, FL_PACKAGE__ELEMENTS);
@@ -757,12 +757,10 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 		initEReference(getFLElement_TraceFromRefine(), this.getFLElement(), null, "traceFromRefine", null, 0, -1, FLElement.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEReference(getFLElement_TraceFromTrack(), this.getFLElement(), null, "traceFromTrack", null, 0, -1, FLElement.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
-		EOperation op = initEOperation(getFLElement__ToFilterByType__EList_FLTraceType(), this.getFLElement(), "toFilterByType", 0, -1, !IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getFLTrace(), "traces", 0, -1, !IS_UNIQUE, IS_ORDERED);
+		EOperation op = initEOperation(getFLElement__ToFilterByType__FLTraceType(), this.getFLElement(), "toFilterByType", 0, -1, !IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getFLTraceType(), "traceType", 0, 1, !IS_UNIQUE, IS_ORDERED);
 
-		op = initEOperation(getFLElement__FromFilterByType__FLElement_FLTraceType(), this.getFLElement(), "fromFilterByType", 0, -1, !IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getFLElement(), "instance", 0, 1, !IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getFLElement__FromFilterByType__FLTraceType(), this.getFLElement(), "fromFilterByType", 0, -1, !IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getFLTraceType(), "traceType", 0, 1, !IS_UNIQUE, IS_ORDERED);
 
 		initEClass(flPackageEClass, FLPackage.class, "FLPackage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

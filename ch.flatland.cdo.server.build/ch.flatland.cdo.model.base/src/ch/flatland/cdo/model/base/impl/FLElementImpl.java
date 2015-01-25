@@ -189,8 +189,7 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 	 * @generated NOT
 	 */
 	public EList<FLElement> getTraceToOwn() {
-		EList<FLTrace> _traces = this.getTraces();
-		return this.toFilterByType(_traces, FLTraceType.OWN);
+		return this.toFilterByType(FLTraceType.OWN);
 	}
 
 	/**
@@ -199,8 +198,7 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 	 * @generated NOT
 	 */
 	public EList<FLElement> getTraceToUse() {
-		EList<FLTrace> _traces = this.getTraces();
-		return this.toFilterByType(_traces, FLTraceType.USE);
+		return this.toFilterByType(FLTraceType.USE);
 	}
 
 	/**
@@ -209,8 +207,7 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 	 * @generated NOT
 	 */
 	public EList<FLElement> getTraceToRealize() {
-		EList<FLTrace> _traces = this.getTraces();
-		return this.toFilterByType(_traces, FLTraceType.REALIZE);
+		return this.toFilterByType(FLTraceType.REALIZE);
 	}
 
 	/**
@@ -219,8 +216,7 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 	 * @generated NOT
 	 */
 	public EList<FLElement> getTraceToSpecify() {
-		EList<FLTrace> _traces = this.getTraces();
-		return this.toFilterByType(_traces, FLTraceType.SPECIFY);
+		return this.toFilterByType(FLTraceType.SPECIFY);
 	}
 
 	/**
@@ -229,8 +225,7 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 	 * @generated NOT
 	 */
 	public EList<FLElement> getTraceToImplement() {
-		EList<FLTrace> _traces = this.getTraces();
-		return this.toFilterByType(_traces, FLTraceType.IMPLEMENT);
+		return this.toFilterByType(FLTraceType.IMPLEMENT);
 	}
 
 	/**
@@ -239,8 +234,7 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 	 * @generated NOT
 	 */
 	public EList<FLElement> getTraceToElaborate() {
-		EList<FLTrace> _traces = this.getTraces();
-		return this.toFilterByType(_traces, FLTraceType.ELABORATE);
+		return this.toFilterByType(FLTraceType.ELABORATE);
 	}
 
 	/**
@@ -249,8 +243,7 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 	 * @generated NOT
 	 */
 	public EList<FLElement> getTraceToDerive() {
-		EList<FLTrace> _traces = this.getTraces();
-		return this.toFilterByType(_traces, FLTraceType.DERIVE);
+		return this.toFilterByType(FLTraceType.DERIVE);
 	}
 
 	/**
@@ -259,8 +252,7 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 	 * @generated NOT
 	 */
 	public EList<FLElement> getTraceToValidate() {
-		EList<FLTrace> _traces = this.getTraces();
-		return this.toFilterByType(_traces, FLTraceType.VALIDATE);
+		return this.toFilterByType(FLTraceType.VALIDATE);
 	}
 
 	/**
@@ -269,8 +261,7 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 	 * @generated NOT
 	 */
 	public EList<FLElement> getTraceToTest() {
-		EList<FLTrace> _traces = this.getTraces();
-		return this.toFilterByType(_traces, FLTraceType.TEST);
+		return this.toFilterByType(FLTraceType.TEST);
 	}
 
 	/**
@@ -279,8 +270,7 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 	 * @generated NOT
 	 */
 	public EList<FLElement> getTraceToRelate() {
-		EList<FLTrace> _traces = this.getTraces();
-		return this.toFilterByType(_traces, FLTraceType.RELATE);
+		return this.toFilterByType(FLTraceType.RELATE);
 	}
 
 	/**
@@ -289,8 +279,7 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 	 * @generated NOT
 	 */
 	public EList<FLElement> getTraceToAffect() {
-		EList<FLTrace> _traces = this.getTraces();
-		return this.toFilterByType(_traces, FLTraceType.AFFECT);
+		return this.toFilterByType(FLTraceType.AFFECT);
 	}
 
 	/**
@@ -299,8 +288,7 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 	 * @generated NOT
 	 */
 	public EList<FLElement> getTraceToffect() {
-		EList<FLTrace> _traces = this.getTraces();
-		return this.toFilterByType(_traces, FLTraceType.AFFECT);
+		return this.toFilterByType(FLTraceType.AFFECT);
 	}
 
 	/**
@@ -309,8 +297,7 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 	 * @generated NOT
 	 */
 	public EList<FLElement> getTraceToSatisfy() {
-		EList<FLTrace> _traces = this.getTraces();
-		return this.toFilterByType(_traces, FLTraceType.SATISFY);
+		return this.toFilterByType(FLTraceType.SATISFY);
 	}
 
 	/**
@@ -319,8 +306,7 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 	 * @generated NOT
 	 */
 	public EList<FLElement> getTraceToVerify() {
-		EList<FLTrace> _traces = this.getTraces();
-		return this.toFilterByType(_traces, FLTraceType.VERIFY);
+		return this.toFilterByType(FLTraceType.VERIFY);
 	}
 
 	/**
@@ -329,8 +315,7 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 	 * @generated NOT
 	 */
 	public EList<FLElement> getTraceToRefine() {
-		EList<FLTrace> _traces = this.getTraces();
-		return this.toFilterByType(_traces, FLTraceType.REFINE);
+		return this.toFilterByType(FLTraceType.REFINE);
 	}
 
 	/**
@@ -339,8 +324,7 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 	 * @generated NOT
 	 */
 	public EList<FLElement> getTraceToTrack() {
-		EList<FLTrace> _traces = this.getTraces();
-		return this.toFilterByType(_traces, FLTraceType.TRACK);
+		return this.toFilterByType(FLTraceType.TRACK);
 	}
 
 	/**
@@ -349,7 +333,7 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 	 * @generated NOT
 	 */
 	public EList<FLElement> getTraceFromOwn() {
-		return this.fromFilterByType(this, FLTraceType.OWN);
+		return this.fromFilterByType(FLTraceType.OWN);
 	}
 
 	/**
@@ -358,7 +342,7 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 	 * @generated NOT
 	 */
 	public EList<FLElement> getTraceFromUse() {
-		return this.fromFilterByType(this, FLTraceType.USE);
+		return this.fromFilterByType(FLTraceType.USE);
 	}
 
 	/**
@@ -367,7 +351,7 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 	 * @generated NOT
 	 */
 	public EList<FLElement> getTraceFromRealize() {
-		return this.fromFilterByType(this, FLTraceType.REALIZE);
+		return this.fromFilterByType(FLTraceType.REALIZE);
 	}
 
 	/**
@@ -376,7 +360,7 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 	 * @generated NOT
 	 */
 	public EList<FLElement> getTraceFromSpecify() {
-		return this.fromFilterByType(this, FLTraceType.SPECIFY);
+		return this.fromFilterByType(FLTraceType.SPECIFY);
 	}
 
 	/**
@@ -385,7 +369,7 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 	 * @generated NOT
 	 */
 	public EList<FLElement> getTraceFromImplement() {
-		return this.fromFilterByType(this, FLTraceType.IMPLEMENT);
+		return this.fromFilterByType(FLTraceType.IMPLEMENT);
 	}
 
 	/**
@@ -394,7 +378,7 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 	 * @generated NOT
 	 */
 	public EList<FLElement> getTraceFromElaborate() {
-		return this.fromFilterByType(this, FLTraceType.ELABORATE);
+		return this.fromFilterByType(FLTraceType.ELABORATE);
 	}
 
 	/**
@@ -403,7 +387,7 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 	 * @generated NOT
 	 */
 	public EList<FLElement> getTraceFromDerive() {
-		return this.fromFilterByType(this, FLTraceType.DERIVE);
+		return this.fromFilterByType(FLTraceType.DERIVE);
 	}
 
 	/**
@@ -412,7 +396,7 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 	 * @generated NOT
 	 */
 	public EList<FLElement> getTraceFromValidate() {
-		return this.fromFilterByType(this, FLTraceType.VALIDATE);
+		return this.fromFilterByType(FLTraceType.VALIDATE);
 	}
 
 	/**
@@ -421,7 +405,7 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 	 * @generated NOT
 	 */
 	public EList<FLElement> getTraceFromTest() {
-		return this.fromFilterByType(this, FLTraceType.TEST);
+		return this.fromFilterByType(FLTraceType.TEST);
 	}
 
 	/**
@@ -430,7 +414,7 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 	 * @generated NOT
 	 */
 	public EList<FLElement> getTraceFromRelate() {
-		return this.fromFilterByType(this, FLTraceType.RELATE);
+		return this.fromFilterByType(FLTraceType.RELATE);
 	}
 
 	/**
@@ -439,7 +423,7 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 	 * @generated NOT
 	 */
 	public EList<FLElement> getTraceFromAffect() {
-		return this.fromFilterByType(this, FLTraceType.AFFECT);
+		return this.fromFilterByType(FLTraceType.AFFECT);
 	}
 
 	/**
@@ -448,7 +432,7 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 	 * @generated NOT
 	 */
 	public EList<FLElement> getTraceFromffect() {
-		return this.fromFilterByType(this, FLTraceType.AFFECT);
+		return this.fromFilterByType(FLTraceType.AFFECT);
 	}
 
 	/**
@@ -457,7 +441,7 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 	 * @generated NOT
 	 */
 	public EList<FLElement> getTraceFromSatisfy() {
-		return this.fromFilterByType(this, FLTraceType.SATISFY);
+		return this.fromFilterByType(FLTraceType.SATISFY);
 	}
 
 	/**
@@ -466,7 +450,7 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 	 * @generated NOT
 	 */
 	public EList<FLElement> getTraceFromVerify() {
-		return this.fromFilterByType(this, FLTraceType.VERIFY);
+		return this.fromFilterByType(FLTraceType.VERIFY);
 	}
 
 	/**
@@ -475,7 +459,7 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 	 * @generated NOT
 	 */
 	public EList<FLElement> getTraceFromRefine() {
-		return this.fromFilterByType(this, FLTraceType.REFINE);
+		return this.fromFilterByType(FLTraceType.REFINE);
 	}
 
 	/**
@@ -484,7 +468,7 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 	 * @generated NOT
 	 */
 	public EList<FLElement> getTraceFromTrack() {
-		return this.fromFilterByType(this, FLTraceType.TRACK);
+		return this.fromFilterByType(FLTraceType.TRACK);
 	}
 
 	/**
@@ -492,15 +476,16 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<FLElement> toFilterByType(final EList<FLTrace> traces, final FLTraceType traceType) {
+	public EList<FLElement> toFilterByType(final FLTraceType traceType) {
 		final BasicEList<FLElement> targets = new BasicEList<FLElement>();
+		EList<FLTrace> _traces = this.getTraces();
 		final Function1<FLTrace, Boolean> _function = new Function1<FLTrace, Boolean>() {
 			public Boolean apply(final FLTrace it) {
 				FLTraceType _traceType = it.getTraceType();
 				return Boolean.valueOf(Objects.equal(_traceType, traceType));
 			}
 		};
-		Iterable<FLTrace> _filter = IterableExtensions.<FLTrace>filter(traces, _function);
+		Iterable<FLTrace> _filter = IterableExtensions.<FLTrace>filter(_traces, _function);
 		final Procedure1<FLTrace> _function_1 = new Procedure1<FLTrace>() {
 			public void apply(final FLTrace it) {
 				FLElement _target = it.getTarget();
@@ -516,23 +501,23 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<FLElement> fromFilterByType(final FLElement instance, final FLTraceType traceType) {
+	public EList<FLElement> fromFilterByType(final FLTraceType traceType) {
 		final BasicEList<FLElement> sources = new BasicEList<FLElement>();
 		boolean _and = false;
-		CDOView _cdoView = instance.cdoView();
+		CDOView _cdoView = this.cdoView();
 		boolean _notEquals = (!Objects.equal(_cdoView, null));
 		if (!_notEquals) {
 			_and = false;
 		} else {
-			CDOView _cdoView_1 = instance.cdoView();
+			CDOView _cdoView_1 = this.cdoView();
 			boolean _isClosed = _cdoView_1.isClosed();
 			boolean _not = (!_isClosed);
 			_and = _not;
 		}
 		if (_and) {
-			CDOView _cdoView_2 = instance.cdoView();
+			CDOView _cdoView_2 = this.cdoView();
 			ArrayList<EReference> _newArrayList = CollectionLiterals.<EReference>newArrayList(Literals.FL_TRACE__TARGET);
-			final List<CDOObjectReference> xrefs = _cdoView_2.queryXRefs(instance, ((EReference[])org.eclipse.xtext.xbase.lib.Conversions.unwrapArray(_newArrayList, EReference.class)));
+			final List<CDOObjectReference> xrefs = _cdoView_2.queryXRefs(this, ((EReference[])org.eclipse.xtext.xbase.lib.Conversions.unwrapArray(_newArrayList, EReference.class)));
 			for (final CDOObjectReference x : xrefs) {
 				{
 					CDOObject _sourceObject = x.getSourceObject();
@@ -782,13 +767,12 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 	 * @generated
 	 */
 	@Override
-	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case BasePackage.FL_ELEMENT___TO_FILTER_BY_TYPE__ELIST_FLTRACETYPE:
-				return toFilterByType((EList<FLTrace>)arguments.get(0), (FLTraceType)arguments.get(1));
-			case BasePackage.FL_ELEMENT___FROM_FILTER_BY_TYPE__FLELEMENT_FLTRACETYPE:
-				return fromFilterByType((FLElement)arguments.get(0), (FLTraceType)arguments.get(1));
+			case BasePackage.FL_ELEMENT___TO_FILTER_BY_TYPE__FLTRACETYPE:
+				return toFilterByType((FLTraceType)arguments.get(0));
+			case BasePackage.FL_ELEMENT___FROM_FILTER_BY_TYPE__FLTRACETYPE:
+				return fromFilterByType((FLTraceType)arguments.get(0));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

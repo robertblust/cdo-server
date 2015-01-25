@@ -392,7 +392,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT___TO_FILTER_BY_TYPE__ELIST_FLTRACETYPE = 0;
+	int FL_ELEMENT___TO_FILTER_BY_TYPE__FLTRACETYPE = 0;
 
 	/**
 	 * The operation id for the '<em>From Filter By Type</em>' operation.
@@ -401,7 +401,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT___FROM_FILTER_BY_TYPE__FLELEMENT_FLTRACETYPE = 1;
+	int FL_ELEMENT___FROM_FILTER_BY_TYPE__FLTRACETYPE = 1;
 
 	/**
 	 * The number of operations of the '<em>FL Element</em>' class.
@@ -771,7 +771,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_PACKAGE___TO_FILTER_BY_TYPE__ELIST_FLTRACETYPE = FL_ELEMENT___TO_FILTER_BY_TYPE__ELIST_FLTRACETYPE;
+	int FL_PACKAGE___TO_FILTER_BY_TYPE__FLTRACETYPE = FL_ELEMENT___TO_FILTER_BY_TYPE__FLTRACETYPE;
 
 	/**
 	 * The operation id for the '<em>From Filter By Type</em>' operation.
@@ -780,7 +780,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_PACKAGE___FROM_FILTER_BY_TYPE__FLELEMENT_FLTRACETYPE = FL_ELEMENT___FROM_FILTER_BY_TYPE__FLELEMENT_FLTRACETYPE;
+	int FL_PACKAGE___FROM_FILTER_BY_TYPE__FLTRACETYPE = FL_ELEMENT___FROM_FILTER_BY_TYPE__FLTRACETYPE;
 
 	/**
 	 * The number of operations of the '<em>FL Package</em>' class.
@@ -1299,24 +1299,24 @@ public interface BasePackage extends EPackage {
 	EReference getFLElement_TraceFromTrack();
 
 	/**
-	 * Returns the meta object for the '{@link ch.flatland.cdo.model.base.FLElement#toFilterByType(org.eclipse.emf.common.util.EList, ch.flatland.cdo.model.base.FLTraceType) <em>To Filter By Type</em>}' operation.
+	 * Returns the meta object for the '{@link ch.flatland.cdo.model.base.FLElement#toFilterByType(ch.flatland.cdo.model.base.FLTraceType) <em>To Filter By Type</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>To Filter By Type</em>' operation.
-	 * @see ch.flatland.cdo.model.base.FLElement#toFilterByType(org.eclipse.emf.common.util.EList, ch.flatland.cdo.model.base.FLTraceType)
+	 * @see ch.flatland.cdo.model.base.FLElement#toFilterByType(ch.flatland.cdo.model.base.FLTraceType)
 	 * @generated
 	 */
-	EOperation getFLElement__ToFilterByType__EList_FLTraceType();
+	EOperation getFLElement__ToFilterByType__FLTraceType();
 
 	/**
-	 * Returns the meta object for the '{@link ch.flatland.cdo.model.base.FLElement#fromFilterByType(ch.flatland.cdo.model.base.FLElement, ch.flatland.cdo.model.base.FLTraceType) <em>From Filter By Type</em>}' operation.
+	 * Returns the meta object for the '{@link ch.flatland.cdo.model.base.FLElement#fromFilterByType(ch.flatland.cdo.model.base.FLTraceType) <em>From Filter By Type</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>From Filter By Type</em>' operation.
-	 * @see ch.flatland.cdo.model.base.FLElement#fromFilterByType(ch.flatland.cdo.model.base.FLElement, ch.flatland.cdo.model.base.FLTraceType)
+	 * @see ch.flatland.cdo.model.base.FLElement#fromFilterByType(ch.flatland.cdo.model.base.FLTraceType)
 	 * @generated
 	 */
-	EOperation getFLElement__FromFilterByType__FLElement_FLTraceType();
+	EOperation getFLElement__FromFilterByType__FLTraceType();
 
 	/**
 	 * Returns the meta object for class '{@link ch.flatland.cdo.model.base.FLPackage <em>FL Package</em>}'.
@@ -1769,7 +1769,7 @@ public interface BasePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation FL_ELEMENT___TO_FILTER_BY_TYPE__ELIST_FLTRACETYPE = eINSTANCE.getFLElement__ToFilterByType__EList_FLTraceType();
+		EOperation FL_ELEMENT___TO_FILTER_BY_TYPE__FLTRACETYPE = eINSTANCE.getFLElement__ToFilterByType__FLTraceType();
 
 		/**
 		 * The meta object literal for the '<em><b>From Filter By Type</b></em>' operation.
@@ -1777,7 +1777,7 @@ public interface BasePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation FL_ELEMENT___FROM_FILTER_BY_TYPE__FLELEMENT_FLTRACETYPE = eINSTANCE.getFLElement__FromFilterByType__FLElement_FLTraceType();
+		EOperation FL_ELEMENT___FROM_FILTER_BY_TYPE__FLTRACETYPE = eINSTANCE.getFLElement__FromFilterByType__FLTraceType();
 
 		/**
 		 * The meta object literal for the '{@link ch.flatland.cdo.model.base.impl.FLPackageImpl <em>FL Package</em>}' class.
