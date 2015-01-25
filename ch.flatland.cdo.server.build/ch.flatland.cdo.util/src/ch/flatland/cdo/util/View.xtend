@@ -93,7 +93,7 @@ class View {
 						}
 						case 6: {
 							if(pathSegments.get(3) == REFERENCES) {
-								if(req.method == METHOD_PUT) {
+								if(req.method == METHOD_PUT || req.method == METHOD_DELETE) {
 									return view.safeResolveObject(pathSegments)
 								}
 							}

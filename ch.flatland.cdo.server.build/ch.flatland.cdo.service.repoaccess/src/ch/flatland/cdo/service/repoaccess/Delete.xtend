@@ -23,8 +23,10 @@ import org.eclipse.emf.cdo.common.security.NoPermissionException
 import org.eclipse.emf.cdo.eresource.CDOResourceNode
 import org.eclipse.emf.cdo.util.CommitException
 import org.eclipse.emf.cdo.view.CDOView
+import org.eclipse.emf.ecore.EObject
 import org.slf4j.LoggerFactory
 
+import static ch.flatland.cdo.util.Constants.*
 import static javax.servlet.http.HttpServletResponse.*
 
 class Delete {
@@ -47,7 +49,7 @@ class Delete {
 			logger.debug("Run for '{}'", req.userId)
 
 			val object = view.safeRequestResource(req, resp)
-			if(!(object instanceof CDOObject) || req.pointInTime != null) {
+			if(!req.methodAllowed(object)) {
 				throw resp.statusMethodNotAllowed
 			}
 			val requestedObject = object as CDOObject
@@ -56,20 +58,62 @@ class Delete {
 
 			requestedObject.safeCanWrite
 
-			try {
-				if(requestedObject instanceof CDOResourceNode) {
-					val resource = requestedObject
-					if(resource.eContents.size > 0) {
-						throw new FlatlandException(SC_CONFLICT, resource, "Resource '{}' cannot be deleted cause not empty", requestedObject.cdoID)
+			switch req.pathSegments.size {
+				case 3: {
+
+					// delete containment
+					try {
+						if(requestedObject instanceof CDOResourceNode) {
+							val resource = requestedObject
+							if(resource.eContents.size > 0) {
+								throw new FlatlandException(SC_CONFLICT, resource, "Resource '{}' cannot be deleted cause not empty", requestedObject.cdoID)
+							}
+						}
+
+						view.xRefsDelete(requestedObject)
+
+					} catch(NoPermissionException npe) {
+						throw new FlatlandException(SC_FORBIDDEN, requestedObject, npe.message)
 					}
 				}
+				case 6: {
 
-				view.xRefsDelete(requestedObject)
-				view.addRevisionDelta(JsonConverter.revisionDeltas)
+					// delete reference
+					val referenceName = req.pathSegments.get(4)
 
-			} catch(NoPermissionException npe) {
-				throw new FlatlandException(SC_FORBIDDEN, requestedObject, npe.message)
+					val eReference = requestedObject.eClass.EAllReferences.filter[it.name == referenceName].head
+
+					if(eReference == null) {
+						throw new FlatlandException(SC_BAD_REQUEST, requestedObject, "Object '{}' does not support the feature '{}'", requestedObject.cdoID, referenceName)
+					}
+					if(!eReference.isReferenceSettable) {
+						throw new FlatlandException(SC_BAD_REQUEST, requestedObject, "Feature '{}' is not a containment", referenceName)
+					}
+
+					try {
+						var removed = false
+						val refToDelete = view.safeResolveObject(req.pathSegments.get(5))
+						if(eReference.isMany) {
+							val eList = requestedObject.eGet(eReference, true) as List<EObject>
+							removed = eList.remove(refToDelete)
+						} else {
+							val eRef = requestedObject.eGet(eReference, true) as EObject
+							if(eRef == refToDelete) {
+								requestedObject.eUnset(eReference)
+								removed = true
+							}
+						}
+						if(!removed) {
+							throw new FlatlandException(SC_BAD_REQUEST, requestedObject, "Feature '{}' does not refers to '{}'", eReference.name, refToDelete)
+						}
+
+					} catch(Exception e) {
+						throw new FlatlandException(SC_BAD_REQUEST, requestedObject, e.message)
+					}
+				}
 			}
+
+			view.addRevisionDelta(JsonConverter.revisionDeltas)
 
 			try {
 				view.commit
@@ -78,8 +122,16 @@ class Delete {
 				throw new FlatlandException(SC_BAD_REQUEST, requestedObject, e.message)
 			}
 
-			// now transform manipulated object to json for the response			
-			jsonString = JsonConverter.okToJson
+			// now transform manipulated object to json for the response		
+			if(req.pathSegments.size == 3) {
+				// object was deleted
+				jsonString = JsonConverter.okToJson
+			} else {
+				// reference of object was removed
+				jsonString = requestedObject.safeToJson
+			}
+
+			
 
 		} catch(FlatlandException e) {
 			resp.status = e.httpStatus
@@ -129,5 +181,12 @@ class Delete {
 			}
 		}
 		return container
+	}
+
+	def private methodAllowed(HttpServletRequest req, Object object) {
+		if(!(object instanceof CDOObject) || req.pointInTime != null || req.pathSegments == null || (req.pathSegments.size > 3 && req.pathSegments.get(3) != REFERENCES)) {
+			return false
+		}
+		return true
 	}
 }

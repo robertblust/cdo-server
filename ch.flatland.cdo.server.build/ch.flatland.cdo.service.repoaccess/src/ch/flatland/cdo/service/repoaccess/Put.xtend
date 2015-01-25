@@ -75,6 +75,7 @@ class Put {
 				case 6: {
 
 					// put new relations
+					logger.debug("Run for '{}'", req.userId)
 					val referenceName = req.pathSegments.get(4)
 
 					val eReference = requestedObject.eClass.EAllReferences.filter[it.name == referenceName].head
@@ -151,6 +152,5 @@ class Put {
 		} catch(Exception e) {
 			throw new FlatlandException(SC_BAD_REQUEST, container, "Object '{}' has wrong type for reference '{}'", refObject, eReference.name)
 		}
-
 	}
 }
