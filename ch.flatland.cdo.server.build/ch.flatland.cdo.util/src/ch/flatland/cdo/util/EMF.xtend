@@ -78,34 +78,24 @@ class EMF {
 		return false
 	}
 
-	def isReferenceSettable(JsonElement element, EReference feature) {
-		if(feature.containment) {
-			logger.debug("EReference '{}' is containment", feature.name)
-			return false
-		}
-
-		if(feature.derived) {
-			logger.debug("EReference '{}' is derived", feature.name)
-			return false
-		}
-
-		if((element.jsonNull || element.jsonObject) && !feature.many) {
-			logger.debug("EReference '{}' is object or null", feature.name)
-			return true
-		}
-
-		if((element.jsonNull || element.jsonArray) && feature.many) {
-			logger.debug("EReference '{}' is array or null", feature.name)
-			return true
-		}
-		return false
-	}
-
 	def isContainmentSettable(EReference feature) {
 		if(feature.containment) {
 			logger.debug("EReference '{}' is containment", feature.name)
 			return true
 		}
+	}
+	
+	def isReferenceSettable(EReference feature) {
+		if(feature.containment) {
+			logger.debug("EReference '{}' is containment", feature.name)
+			return false
+		}
+		
+		if(feature.derived) {
+			logger.debug("EReference '{}' is derived", feature.name)
+			return false
+		}
+		return true
 	}
 
 	def getNameAttribute(EClass eClass) {

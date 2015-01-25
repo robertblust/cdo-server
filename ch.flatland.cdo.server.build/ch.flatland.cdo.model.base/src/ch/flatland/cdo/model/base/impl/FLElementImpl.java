@@ -489,7 +489,11 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 		final Procedure1<FLTrace> _function_1 = new Procedure1<FLTrace>() {
 			public void apply(final FLTrace it) {
 				FLElement _target = it.getTarget();
-				targets.add(_target);
+				boolean _notEquals = (!Objects.equal(_target, null));
+				if (_notEquals) {
+					FLElement _target_1 = it.getTarget();
+					targets.add(_target_1);
+				}
 			}
 		};
 		IterableExtensions.<FLTrace>forEach(_filter, _function_1);

@@ -62,7 +62,6 @@ class JsonConverter {
 
 	val extension EMF = new EMF
 	val extension DateConverter = new DateConverter
-	val extension View = new View
 	val extension HttpStatus = new HttpStatus
 	val extension References = new References
 	val extension XReferences = new XReferences
@@ -121,9 +120,6 @@ class JsonConverter {
 			if(jsonName == ATTRIBUTES) {
 				jsonElement.attributes = eObject
 			}
-			if(jsonName == REFERENCES) {
-				jsonElement.references = eObject
-			}
 		]
 		eObject
 	}
@@ -177,6 +173,7 @@ class JsonConverter {
 		} catch(NoPermissionException npe) {
 			throw new FlatlandException(SC_FORBIDDEN, npe.message)
 		} catch(Exception e) {
+			e.printStackTrace
 			throw new FlatlandException(SC_BAD_REQUEST, e.message)
 		}
 	}
@@ -722,70 +719,6 @@ class JsonConverter {
 		}
 	}
 
-	def private setReferences(JsonElement element, EObject eObject) {
-		if(element.jsonObject) {
-
-			// should always be the case if it is a valid json
-			val jsonObject = element.asJsonObject
-			jsonObject.entrySet.forEach [
-				val jsonName = it.key
-				val jsonElement = it.value
-				logger.debug("Found reference with name '{}'", jsonName)
-				val eReference = eObject.eClass.EAllReferences.filter[it.name == jsonName].head
-				if(eReference != null) {
-					logger.debug("Found matching eReference with name '{}'", jsonName)
-					if(jsonElement.isReferenceSettable(eReference)) {
-						logger.debug("Match - json reference is settable to eReference for '{}'", jsonName)
-						if(eReference.many) {
-							val eArray = newArrayList
-							if(jsonElement.jsonNull) {
-								logger.debug("JsonElement '{}' is null", jsonName)
-							} else {
-								jsonElement.asJsonArray.forEach [
-									val jsonRefObject = it.asJsonObject
-									val id = jsonRefObject.safeResolveId
-									if(id.value.jsonNull) {
-										logger.debug("JsonElement '{}' is null", id.key)
-									} else {
-										logger.debug("Object '{}' requested", id)
-										val referencedObject = eObject.view.safeRequestObject(id.value.safeAsLong)
-
-										logger.debug("ReferencedObject '{}'", referencedObject)
-										eArray.add(referencedObject)
-									}
-								]
-							}
-							eObject.safeSetReferenceArray(eReference, eArray)
-						} else {
-							if(jsonElement.jsonNull) {
-								logger.debug("JsonElement '{}' is null", jsonName)
-								eObject.eUnset(eReference)
-							} else {
-								val jsonRefObject = jsonElement.asJsonObject
-								val id = jsonRefObject.safeResolveId
-
-								if(id.value.jsonNull) {
-									logger.debug("JsonElement '{}' is null", id.key)
-									eObject.eUnset(eReference)
-								} else {
-									logger.debug("Object '{}' requested", id)
-									val referencedObject = eObject.view.safeRequestObject(id.value.safeAsLong)
-
-									logger.debug("ReferencedObject '{}'", referencedObject)
-									eObject.safeSetReference(eReference, referencedObject)
-								}
-							}
-						}
-					} else {
-						logger.debug("MISSmatch - json reference is NOT settable to eReference for '{}'", jsonName)
-					}
-				} else {
-					logger.debug("NOT found matching eReference with name '{}'", jsonName)
-				}
-			]
-		}
-	}
-
 	def private safeToEType(JsonPrimitive jsonPrimitive, EAttribute eAttribute) {
 		logger.debug("eAttribute '{}' has data type '{}', try to set json value '{}'", eAttribute.name, eAttribute.EAttributeType.name, jsonPrimitive)
 		try {
@@ -1030,26 +963,6 @@ class JsonConverter {
 			throw new FlatlandException(SC_BAD_REQUEST, "Attribute '{}={}' must be a long", ID, element.asString)
 		}
 
-	}
-
-	def safeSetReference(EObject container, EReference eReference, EObject refObject) {
-		try {
-			container.eSet(eReference, refObject)
-		} catch(Exception e) {
-			throw new FlatlandException(SC_BAD_REQUEST, container, "Object '{}' has wrong type for reference '{}'", refObject, eReference.name)
-		}
-
-	}
-
-	def safeSetReferenceArray(EObject container, EReference eReference, List<EObject> refArray) {
-		if(eReference.upperBound > 0 && refArray.size > eReference.upperBound) {
-			throw new FlatlandException(SC_BAD_REQUEST, container, "Try to add '{}' elements to array '{}' having upper limit of '{}'", refArray.size, eReference.name, eReference.upperBound)
-		}
-		try {
-			container.eSet(eReference, refArray)
-		} catch(Exception e) {
-			throw new FlatlandException(SC_BAD_REQUEST, container, "Reference list contains object with wrong type for reference '{}'", eReference.name)
-		}
 	}
 
 	def safeSetAttributeArray(EObject container, EAttribute eAttribute, List<Object> attArray) {

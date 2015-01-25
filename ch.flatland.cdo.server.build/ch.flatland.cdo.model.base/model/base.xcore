@@ -151,7 +151,9 @@ abstract class FLElement {
 	op FLElement[] toFilterByType(FLTraceType traceType) {
 		val targets = new BasicEList
 		traces.filter[it.traceType == traceType].forEach [
-			targets.add(it.target)
+			if (it.target != null) {
+				targets.add(it.target)
+			}	
 		]
 		return targets
 	}

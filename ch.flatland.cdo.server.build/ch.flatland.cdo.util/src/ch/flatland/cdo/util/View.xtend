@@ -84,12 +84,20 @@ class View {
 							if(pathSegments.get(3) == REFERENCES) {
 								val object = view.safeResolveObject(pathSegments)
 								if(req.method == METHOD_POST) {
-									return view.safeResolveObject(pathSegments)
+									return object
 								}
 								return req.orderBy(req.filterBy(object.safeResolveReferences(pathSegments.get(4), req)))
 							} else {
 								throw new Exception
 							}
+						}
+						case 6: {
+							if(pathSegments.get(3) == REFERENCES) {
+								if(req.method == METHOD_PUT) {
+									return view.safeResolveObject(pathSegments)
+								}
+							}
+							throw new Exception
 						}
 						default:
 							throw new Exception
@@ -180,7 +188,7 @@ class View {
 		return object
 	}
 
-	def private safeResolveObject(CDOView view, String id) {
+	def safeResolveObject(CDOView view, String id) {
 		return view.getObject(CDOIDUtil.createLong(Long.parseLong(id)))
 	}
 

@@ -15,12 +15,16 @@ import ch.flatland.cdo.util.FlatlandException
 import ch.flatland.cdo.util.Request
 import ch.flatland.cdo.util.Response
 import ch.flatland.cdo.util.View
+import java.util.List
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 import org.eclipse.emf.cdo.CDOObject
 import org.eclipse.emf.cdo.util.CommitException
+import org.eclipse.emf.ecore.EObject
+import org.eclipse.emf.ecore.EReference
 import org.slf4j.LoggerFactory
 
+import static ch.flatland.cdo.util.Constants.*
 import static javax.servlet.http.HttpServletResponse.*
 
 class Put {
@@ -41,26 +45,61 @@ class Put {
 
 		try {
 			val object = view.safeRequestResource(req, resp)
-			if(!(object instanceof CDOObject) || req.pointInTime != null) {
+
+			if(!req.methodAllowed(object)) {
 				throw resp.statusMethodNotAllowed
 			}
 			val requestedObject = object as CDOObject
 
-			val body = req.safeReadBody
-			logger.debug("Run for '{}' with body '{}'", req.userId, body)
-			
-			val jsonElement = body.safeFromJson
-			if(!jsonElement.isJsonObject) {
-				throw new FlatlandException(SC_BAD_REQUEST, requestedObject, "Request body is not a json object!")
+			switch req.pathSegments.size {
+				case 3: {
+
+					// put new attributes
+					val body = req.safeReadBody
+					logger.debug("Run for '{}' with body '{}'", req.userId, body)
+
+					val jsonElement = body.safeFromJson
+					if(!jsonElement.isJsonObject) {
+						throw new FlatlandException(SC_BAD_REQUEST, requestedObject, "Request body is not a json object!")
+					}
+
+					val jsonObject = jsonElement.asJsonObject
+
+					logger.debug("Object '{}' loaded type of {}", requestedObject.cdoID, requestedObject.eClass.type)
+
+					requestedObject.safeCanWrite
+
+					jsonObject.toEObject = requestedObject
+
+				}
+				case 6: {
+
+					// put new relations
+					val referenceName = req.pathSegments.get(4)
+
+					val eReference = requestedObject.eClass.EAllReferences.filter[it.name == referenceName].head
+
+					if(eReference == null) {
+						throw new FlatlandException(SC_BAD_REQUEST, requestedObject, "Object '{}' does not support the feature '{}'", requestedObject.cdoID, referenceName)
+					}
+					if(!eReference.isReferenceSettable) {
+						throw new FlatlandException(SC_BAD_REQUEST, requestedObject, "Feature '{}' is not a containment", referenceName)
+					}
+					
+					try {
+						val objectToPut = view.safeResolveObject(req.pathSegments.get(5))
+						
+						if (eReference.isMany) {
+							requestedObject.safeAddReferenceArray(eReference, objectToPut)
+						} else {
+							requestedObject.safeSetReference(eReference, objectToPut)
+						}
+						
+					} catch (Exception e) {
+						throw new FlatlandException(SC_BAD_REQUEST, requestedObject, e.message)
+					}
+				}
 			}
-
-			val jsonObject = jsonElement.asJsonObject
-
-			logger.debug("Object '{}' loaded type of {}", requestedObject.cdoID, requestedObject.eClass.type)
-
-			requestedObject.safeCanWrite
-
-			jsonObject.toEObject = requestedObject
 
 			view.addRevisionDelta(JsonConverter.revisionDeltas)
 
@@ -84,5 +123,34 @@ class Put {
 			}
 		}
 		resp.writeResponse(req, jsonString)
+	}
+
+	def private methodAllowed(HttpServletRequest req, Object object) {
+		if(!(object instanceof CDOObject) || req.pointInTime != null || req.pathSegments == null || (req.pathSegments.size > 3 && req.pathSegments.get(3) != REFERENCES)) {
+			return false
+		}
+		return true
+	}
+	
+	def private safeAddReferenceArray(EObject container, EReference eReference, EObject objectToPut) {
+		val eList = container.eGet(eReference, true) as List<EObject>
+							
+		if(eReference.upperBound > 0 && (eList.size + 1) > eReference.upperBound) {
+			throw new FlatlandException(SC_BAD_REQUEST, container, "Try to add new element to array '{}' with '{}' items having upper limit of '{}'", eReference.name, eList.size, eReference.upperBound)
+		}
+		try {
+			eList.add(objectToPut)
+		} catch(Exception e) {
+			throw new FlatlandException(SC_BAD_REQUEST, container, "Element has wrong type for reference '{}'", eReference.name)
+		}
+	}
+	
+	def private safeSetReference(EObject container, EReference eReference, EObject refObject) {
+		try {
+			container.eSet(eReference, refObject)
+		} catch(Exception e) {
+			throw new FlatlandException(SC_BAD_REQUEST, container, "Object '{}' has wrong type for reference '{}'", refObject, eReference.name)
+		}
+
 	}
 }

@@ -39,6 +39,8 @@ class Constants {
 	val public static GIF_FORMAT = "gif"
 	val public static METHOD_POST = "POST"
 	val public static METHOD_GET = "GET"
+	val public static METHOD_PUT = "PUT"
+	val public static METHOD_DELETE = "DELETE"
 	val public static METHOD_OPTIONS = "OPTIONS"
 
 	val public static ACCEPTED_CONTENTTYPES = newArrayList(ACCEPT_ALL_CONTENTTYPE, JSON_CONTENTTYPE, JSON_CONTENTTYPE_UTF8)

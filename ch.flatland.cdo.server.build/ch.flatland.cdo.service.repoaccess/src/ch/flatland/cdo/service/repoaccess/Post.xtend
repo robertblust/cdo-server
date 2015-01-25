@@ -69,7 +69,7 @@ class Post {
 
 			logger.debug("Run for '{}' with body '{}'", req.userId, body)
 
-			val referenceName = req.pathSegments.get(req.pathSegments.size - 1)
+			val referenceName = req.pathSegments.get(4)
 
 			val eReference = container.eClass.EAllReferences.filter[it.name == referenceName].head
 
@@ -147,7 +147,7 @@ class Post {
 	}
 
 	def private methodAllowed(HttpServletRequest req, Object object) {
-		if(!(object instanceof CDOObject) || req.pointInTime != null || req.pathSegments == null || req.pathSegments.get(req.pathSegments.size - 2) != REFERENCES) {
+		if(!(object instanceof CDOObject) || req.pointInTime != null || req.pathSegments == null || req.pathSegments.size != 5 || req.pathSegments.get(3) != REFERENCES) {
 			return false
 		}
 		return true
