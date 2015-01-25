@@ -464,9 +464,9 @@ class JsonConverter {
 			for (attribute : attributes) {
 				val jsonAttribute = new JsonObject
 				if(object instanceof CDOResourceNode && attribute.name == "name") {
-					jsonAttribute.addFeatureMeta(attribute, true)
+					jsonAttribute.addFeatureMeta(attribute, true, false)
 				} else {
-					jsonAttribute.addFeatureMeta(attribute, false)
+					jsonAttribute.addFeatureMeta(attribute, false, false)
 				}
 				jsonAttributes.add(jsonAttribute)
 			}
@@ -477,14 +477,18 @@ class JsonConverter {
 			jsonTypeMeta.add(REFERENCES, jsonReferences)
 			for (reference : references) {
 				val jsonReference = new JsonObject
-				jsonReference.addFeatureMeta(reference, false)
+				if(object instanceof CDOResourceNode && reference.name == "folder") {
+					jsonReference.addFeatureMeta(reference, false, true)
+				} else {
+					jsonReference.addFeatureMeta(reference, false, false)
+				}
 				jsonReferences.add(jsonReference)
 			}
 		}
 		jsonBaseObject.add(PARAM_META, jsonTypeMeta)
 	}
 
-	def private addFeatureMeta(JsonObject jsonBaseObject, EStructuralFeature feature, boolean overuleRequired) {
+	def private addFeatureMeta(JsonObject jsonBaseObject, EStructuralFeature feature, boolean overuleRequired, boolean overuleDerived) {
 
 		if(feature instanceof EAttribute) {
 			jsonBaseObject.add(FEATURE, new JsonPrimitive(feature.name))
@@ -525,6 +529,9 @@ class JsonConverter {
 			jsonBaseObject.addProperty(CONTAINMENT, feature.containment)
 		}
 		jsonBaseObject.addProperty(DERIVED, feature.isDerived)
+		if (overuleDerived) {
+			jsonBaseObject.addProperty(DERIVED, true)
+		}
 		jsonBaseObject.addProperty(MANY, feature.isMany)
 		jsonBaseObject.addProperty(REQUIRED, feature.required)
 		if(overuleRequired) {
