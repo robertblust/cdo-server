@@ -110,6 +110,9 @@ class Put {
 				view.commit
 			} catch(CommitException e) {
 				view.rollback
+				if (e.message.contains("Duplicate resource node in folder")) {
+					throw new FlatlandException(SC_CONFLICT, requestedObject, "Duplicate resource name '" + requestedObject.cdoID + "'")
+				}
 				throw new FlatlandException(SC_BAD_REQUEST, requestedObject, e.message)
 			}
 
