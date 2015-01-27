@@ -2,7 +2,7 @@
 <notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmi:id="_U313EKReEeS9_41OCTj8fw" type="EcoreTools" measurementUnit="Pixel">
   <children xmi:type="notation:Node" xmi:id="_U69cgKReEeS9_41OCTj8fw" type="1001">
     <children xmi:type="notation:Node" xmi:id="_U7N7MKReEeS9_41OCTj8fw" type="4001"/>
-    <children xmi:type="notation:Node" xmi:id="_U7QXcKReEeS9_41OCTj8fw" visible="false" type="5001">
+    <children xmi:type="notation:Node" xmi:id="_U7QXcKReEeS9_41OCTj8fw" type="5001">
       <children xmi:type="notation:Node" xmi:id="_U7irUKReEeS9_41OCTj8fw" type="2001">
         <element xmi:type="ecore:EAttribute" href="base.xcore#/EPackage/FLElement/name"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_U7jSYKReEeS9_41OCTj8fw"/>
@@ -15,7 +15,7 @@
       <styles xmi:type="notation:SortingStyle" xmi:id="_U7QXcqReEeS9_41OCTj8fw"/>
       <styles xmi:type="notation:FilteringStyle" xmi:id="_U7QXc6ReEeS9_41OCTj8fw"/>
     </children>
-    <children xmi:type="notation:Node" xmi:id="_U7QXdKReEeS9_41OCTj8fw" visible="false" type="5002">
+    <children xmi:type="notation:Node" xmi:id="_U7QXdKReEeS9_41OCTj8fw" type="5002">
       <children xmi:type="notation:Node" xmi:id="_U7j5cKReEeS9_41OCTj8fw" type="2002">
         <element xmi:type="ecore:EOperation" href="base.xcore#/EPackage/FLElement/toFilterByType"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_U7kggKReEeS9_41OCTj8fw"/>
@@ -30,7 +30,7 @@
     </children>
     <styles xmi:type="notation:ShapeStyle" xmi:id="_U69cgaReEeS9_41OCTj8fw" fontColor="4210752" fontName=".Helvetica Neue DeskInterface" fontHeight="10" fillColor="13761016" lineColor="8421504"/>
     <element xmi:type="ecore:EClass" href="base.xcore#/EPackage/FLElement"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_U69cgqReEeS9_41OCTj8fw" x="324" y="90" width="165"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_U69cgqReEeS9_41OCTj8fw" x="261" y="90" width="291" height="111"/>
   </children>
   <children xmi:type="notation:Node" xmi:id="_U7lHkqReEeS9_41OCTj8fw" type="1001">
     <children xmi:type="notation:Node" xmi:id="_U7luoKReEeS9_41OCTj8fw" type="4001"/>
