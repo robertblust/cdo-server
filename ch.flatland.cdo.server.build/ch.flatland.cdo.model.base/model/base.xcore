@@ -20,6 +20,16 @@ import ch.flatland.cdo.model.base.BasePackage.Literals
 abstract class FLElement {
 	@GenModel(propertyCategory="Base")
 	String[1] name
+	/*
+	 * A universally unique identifier (UUID) is an identifier standard used in software construction.
+	 * 
+	 * The intent of UUIDs is to enable distributed systems to uniquely
+	 * identify information without significant central coordination.
+	 * In this context the word unique should be taken to mean
+	 * "practically unique" rather than "guaranteed unique". 
+	 */
+	@GenModel(propertyCategory="Base")
+	FLIdentifier uuid
 	@GenModel(propertyMultiLine="true", propertyCategory="Base")
 	FLMarkdown description
 	contains FLTrace[] traces

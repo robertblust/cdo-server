@@ -15,6 +15,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * <ul>
  *   <li>{@link ch.flatland.cdo.model.base.FLElement#getName <em>Name</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.base.FLElement#getUuid <em>Uuid</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.FLElement#getDescription <em>Description</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.FLElement#getTraces <em>Traces</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.FLElement#getProperties <em>Properties</em>}</li>
@@ -83,6 +84,37 @@ public interface FLElement extends CDOObject {
 	 * @generated
 	 */
 	void setName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Uuid</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * A universally unique identifier (UUID) is an identifier standard used in software construction.
+	 * 
+	 * The intent of UUIDs is to enable distributed systems to uniquely
+	 * identify information without significant central coordination.
+	 * In this context the word unique should be taken to mean
+	 * "practically unique" rather than "guaranteed unique".
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Uuid</em>' attribute.
+	 * @see #setUuid(String)
+	 * @see ch.flatland.cdo.model.base.BasePackage#getFLElement_Uuid()
+	 * @model unique="false" dataType="ch.flatland.cdo.model.base.FLIdentifier"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Base'"
+	 * @generated
+	 */
+	String getUuid();
+
+	/**
+	 * Sets the value of the '{@link ch.flatland.cdo.model.base.FLElement#getUuid <em>Uuid</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Uuid</em>' attribute.
+	 * @see #getUuid()
+	 * @generated
+	 */
+	void setUuid(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Description</b></em>' attribute.
