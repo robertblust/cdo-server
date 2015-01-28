@@ -200,6 +200,14 @@ class JsonConverter {
 
 		if(object.oid != null) {
 			jsonBaseObject.addProperty(ID, object.oid)
+			
+			if(object.eContainer != null) {
+				jsonBaseObject.addProperty(CONTAINER_ID, object.eContainer.oid)
+			 } else if(object.eResource instanceof CDOResourceNode) {
+
+				// it must be contained in a CDOResourceNode
+				jsonBaseObject.addProperty(CONTAINER_ID, (object.eResource as CDOResourceNode).oid)		
+			}
 		}
 
 		// CDO Legacy Adapter implements EObject but is not an EObject
