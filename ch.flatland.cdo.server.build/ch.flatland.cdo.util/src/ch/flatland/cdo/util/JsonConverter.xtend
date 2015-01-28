@@ -173,6 +173,7 @@ class JsonConverter {
 		} catch(NoPermissionException npe) {
 			throw new FlatlandException(SC_FORBIDDEN, npe.message)
 		} catch(Exception e) {
+			e.printStackTrace
 			throw new FlatlandException(SC_BAD_REQUEST, e.message)
 		}
 	}
@@ -464,9 +465,9 @@ class JsonConverter {
 			for (attribute : attributes) {
 				val jsonAttribute = new JsonObject
 				if(object instanceof CDOResourceNode && attribute.name == "name") {
-					jsonAttribute.addFeatureMeta(attribute, true, false)
+					jsonAttribute.addFeatureMeta(attribute, true)
 				} else {
-					jsonAttribute.addFeatureMeta(attribute, false, false)
+					jsonAttribute.addFeatureMeta(attribute, false)
 				}
 				jsonAttributes.add(jsonAttribute)
 			}
@@ -477,18 +478,14 @@ class JsonConverter {
 			jsonTypeMeta.add(REFERENCES, jsonReferences)
 			for (reference : references) {
 				val jsonReference = new JsonObject
-				if(object instanceof CDOResourceNode && reference.name == "folder") {
-					jsonReference.addFeatureMeta(reference, false, true)
-				} else {
-					jsonReference.addFeatureMeta(reference, false, false)
-				}
+				jsonReference.addFeatureMeta(reference, false)
 				jsonReferences.add(jsonReference)
 			}
 		}
 		jsonBaseObject.add(PARAM_META, jsonTypeMeta)
 	}
 
-	def private addFeatureMeta(JsonObject jsonBaseObject, EStructuralFeature feature, boolean overuleRequired, boolean overuleDerived) {
+	def private addFeatureMeta(JsonObject jsonBaseObject, EStructuralFeature feature, boolean overuleRequired) {
 
 		if(feature instanceof EAttribute) {
 			jsonBaseObject.add(FEATURE, new JsonPrimitive(feature.name))
@@ -529,9 +526,6 @@ class JsonConverter {
 			jsonBaseObject.addProperty(CONTAINMENT, feature.containment)
 		}
 		jsonBaseObject.addProperty(DERIVED, feature.isDerived)
-		if (overuleDerived) {
-			jsonBaseObject.addProperty(DERIVED, true)
-		}
 		jsonBaseObject.addProperty(MANY, feature.isMany)
 		jsonBaseObject.addProperty(REQUIRED, feature.required)
 		if(overuleRequired) {
@@ -902,7 +896,7 @@ class JsonConverter {
 		// TODO can be more detailed
 		logger.debug("getFeatureDeltaAsJsonObject with CDOContainerFeatureDelta '{}'", delta)
 		val jsonObject = new JsonObject
-		jsonObject.addProperty(MESSAGE, delta.type + " feature '" + delta.feature.name + "' to '" + object.eGet(delta.feature) + "'")
+		jsonObject.addProperty(MESSAGE, delta.type.toString)
 		return jsonObject
 	}
 
