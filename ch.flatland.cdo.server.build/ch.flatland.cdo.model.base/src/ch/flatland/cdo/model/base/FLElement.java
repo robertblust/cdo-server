@@ -11,6 +11,11 @@ import org.eclipse.emf.common.util.EList;
  * A representation of the model object '<em><b>FL Element</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * Base elements all Concepts should at least inherit from.
+ * Provides generic features.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * <ul>

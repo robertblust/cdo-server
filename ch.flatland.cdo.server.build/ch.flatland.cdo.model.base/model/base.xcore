@@ -9,14 +9,12 @@
 	creationIcons="false")
 package ch.flatland.cdo.model.base
 
-//featureDelegation="Dynamic",
+import org.eclipse.emf.common.util.BasicEList
+
 /*
  * Base elements all Concepts should at least inherit from.
  * Provides generic features.
  */
-import org.eclipse.emf.common.util.BasicEList
-import ch.flatland.cdo.model.base.BasePackage.Literals
-
 abstract class FLElement {
 	@GenModel(propertyCategory="Base")
 	String[1] name
@@ -163,7 +161,7 @@ abstract class FLElement {
 		traces.filter[it.traceType == traceType].forEach [
 			if (it.target != null) {
 				targets.add(it.target)
-			}	
+			}
 		]
 		return targets
 	}
@@ -174,7 +172,8 @@ abstract class FLElement {
 	op FLElement[] fromFilterByType(FLTraceType traceType) {
 		val sources = new BasicEList
 		if (this.cdoView != null && !this.cdoView.isClosed) {
-			val xrefs = this.cdoView.queryXRefs(this, newArrayList(Literals.FL_TRACE__TARGET))
+			val xrefs = this.cdoView.queryXRefs(this,
+				newArrayList(ch.flatland.cdo.model.base.BasePackage.Literals.FL_TRACE__TARGET))
 			for (x : xrefs) {
 				val trace = x.sourceObject as FLTrace
 				if (trace.traceType == traceType) {
