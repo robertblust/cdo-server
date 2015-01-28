@@ -892,10 +892,9 @@ class JsonConverter {
 
 	def private dispatch JsonElement getFeatureDeltaAsJsonObject(CDOContainerFeatureDelta delta, EObject object) {
 
-		// TODO can be more detailed
 		logger.debug("getFeatureDeltaAsJsonObject with CDOContainerFeatureDelta '{}'", delta)
 		val jsonObject = new JsonObject
-		jsonObject.addProperty(MESSAGE, delta.type.toString)
+		jsonObject.addProperty(MESSAGE, delta.type + " changed to '" + delta.containerID + "'")
 		return jsonObject
 	}
 
