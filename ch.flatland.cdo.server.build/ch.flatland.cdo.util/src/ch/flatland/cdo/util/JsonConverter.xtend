@@ -173,7 +173,6 @@ class JsonConverter {
 		} catch(NoPermissionException npe) {
 			throw new FlatlandException(SC_FORBIDDEN, npe.message)
 		} catch(Exception e) {
-			e.printStackTrace
 			throw new FlatlandException(SC_BAD_REQUEST, e.message)
 		}
 	}
