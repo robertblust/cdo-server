@@ -8,8 +8,9 @@
  * Contributors:
  *    Robert Blust - initial API and implementation
  */
-package ch.flatland.cdo.service.repoaccess
+package ch.flatland.cdo.service.repoaccess.internal
 
+import ch.flatland.cdo.service.repoaccess.SessionFactory
 import org.slf4j.LoggerFactory
 
 class SessionManager extends Thread {

@@ -11,6 +11,7 @@
 package ch.flatland.cdo.service.repoaccess
 
 import ch.flatland.cdo.server.ServerUtil
+import ch.flatland.cdo.service.repoaccess.internal.SessionEntry
 import ch.flatland.cdo.util.Request
 import java.util.HashMap
 import javax.servlet.http.HttpServletRequest

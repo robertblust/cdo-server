@@ -8,7 +8,7 @@
  * Contributors:
  *    Robert Blust - initial API and implementation
  */
-package ch.flatland.cdo.service.repoaccess
+package ch.flatland.cdo.service.repoaccess.internal
 
 import org.eclipse.emf.cdo.session.CDOSession
 

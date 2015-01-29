@@ -8,7 +8,7 @@
  * Contributors:
  *    Robert Blust - initial API and implementation
  */
-package ch.flatland.cdo.service.repoaccess
+package ch.flatland.cdo.service.repoaccess.internal
 
 import ch.flatland.cdo.util.AbstractServlet
 import ch.flatland.cdo.util.EMF

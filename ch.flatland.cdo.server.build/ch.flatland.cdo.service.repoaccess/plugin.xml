@@ -5,24 +5,24 @@
          point="org.eclipse.equinox.http.registry.servlets">
       <servlet
             alias="/node"
-            class="ch.flatland.cdo.service.repoaccess.NodeAccessServlet"
+            class="ch.flatland.cdo.service.repoaccess.internal.NodeAccessServlet"
             httpcontextId="ch.flatland.cdo.service.repoaccess.AuthHttpContext"
             load-on-startup="true">
       </servlet>
       <servlet
             alias="/obj"
-            class="ch.flatland.cdo.service.repoaccess.RepoAccessServlet"
+            class="ch.flatland.cdo.service.repoaccess.internal.RepoAccessServlet"
             httpcontextId="ch.flatland.cdo.service.repoaccess.AuthHttpContext"
             load-on-startup="true">
       </servlet>
       <servlet
             alias="/icon"
-            class="ch.flatland.cdo.service.repoaccess.IconServlet"
+            class="ch.flatland.cdo.service.repoaccess.internal.IconServlet"
             load-on-startup="true">
       </servlet>
       <servlet
             alias="/xrefs"
-            class="ch.flatland.cdo.service.repoaccess.RepoAccessServlet"
+            class="ch.flatland.cdo.service.repoaccess.internal.RepoAccessServlet"
             httpcontextId="ch.flatland.cdo.service.repoaccess.AuthHttpContext"
             load-on-startup="true">
       </servlet>
