@@ -51,7 +51,7 @@ public interface FLPackage extends FLElement {
 	 * @return the value of the '<em>Sub Packages</em>' reference list.
 	 * @see ch.flatland.cdo.model.base.BasePackage#getFLPackage_SubPackages()
 	 * @model transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Package' get='<%org.eclipse.emf.common.util.EList%><<%ch.flatland.cdo.model.base.FLElement%>> _elements = this.getElements();\n<%java.lang.Iterable%><<%ch.flatland.cdo.model.base.FLPackage%>> _filter = <%com.google.common.collect.Iterables%>.<<%ch.flatland.cdo.model.base.FLPackage%>>filter(_elements, <%ch.flatland.cdo.model.base.FLPackage%>.class);\nreturn <%org.eclipse.emf.common.util.ECollections%>.<<%ch.flatland.cdo.model.base.FLPackage%>>asEList(((<%ch.flatland.cdo.model.base.FLPackage%>[])org.eclipse.xtext.xbase.lib.Conversions.unwrapArray(_filter, <%ch.flatland.cdo.model.base.FLPackage%>.class)));'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Package' get='return this.filterSubPackages();'"
 	 * @generated
 	 */
 	EList<FLPackage> getSubPackages();
@@ -72,5 +72,23 @@ public interface FLPackage extends FLElement {
 	 * @generated
 	 */
 	EList<FLElement> getContents();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model unique="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='<%org.eclipse.emf.common.util.EList%><<%ch.flatland.cdo.model.base.FLElement%>> _elements = this.getElements();\n<%java.lang.Iterable%><<%ch.flatland.cdo.model.base.FLPackage%>> _filter = <%com.google.common.collect.Iterables%>.<<%ch.flatland.cdo.model.base.FLPackage%>>filter(_elements, <%ch.flatland.cdo.model.base.FLPackage%>.class);\nreturn <%org.eclipse.emf.common.util.ECollections%>.<<%ch.flatland.cdo.model.base.FLPackage%>>asEList(((<%ch.flatland.cdo.model.base.FLPackage%>[])org.eclipse.xtext.xbase.lib.Conversions.unwrapArray(_filter, <%ch.flatland.cdo.model.base.FLPackage%>.class)));'"
+	 * @generated
+	 */
+	EList<FLPackage> filterSubPackages();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model unique="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='<%org.eclipse.emf.common.util.EList%><<%ch.flatland.cdo.model.base.FLElement%>> _elements = this.getElements();\nfinal <%org.eclipse.xtext.xbase.lib.Functions.Function1%><<%ch.flatland.cdo.model.base.FLElement%>, <%java.lang.Boolean%>> _function = new <%org.eclipse.xtext.xbase.lib.Functions.Function1%><<%ch.flatland.cdo.model.base.FLElement%>, <%java.lang.Boolean%>>()\n{\n\tpublic <%java.lang.Boolean%> apply(final <%ch.flatland.cdo.model.base.FLElement%> it)\n\t{\n\t\treturn <%java.lang.Boolean%>.valueOf((!(it instanceof <%ch.flatland.cdo.model.base.FLPackage%>)));\n\t}\n};\n<%java.lang.Iterable%><<%ch.flatland.cdo.model.base.FLElement%>> _filter = <%org.eclipse.xtext.xbase.lib.IterableExtensions%>.<<%ch.flatland.cdo.model.base.FLElement%>>filter(_elements, _function);\nreturn <%org.eclipse.emf.common.util.ECollections%>.<<%ch.flatland.cdo.model.base.FLElement%>>asEList(((<%ch.flatland.cdo.model.base.FLElement%>[])org.eclipse.xtext.xbase.lib.Conversions.unwrapArray(_filter, <%ch.flatland.cdo.model.base.FLElement%>.class)));'"
+	 * @generated
+	 */
+	EList<FLElement> filterContents();
 
 } // FLPackage

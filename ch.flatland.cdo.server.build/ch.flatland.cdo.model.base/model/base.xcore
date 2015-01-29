@@ -189,10 +189,16 @@ class FLPackage extends FLElement {
 	contains FLElement[] elements
 	@GenModel(propertyCategory="Package")
 	refers FLPackage[] subPackages get {
-		elements.filter(FLPackage).asEList
+		filterSubPackages
 	}
 	@GenModel(propertyCategory="Package")
 	refers FLElement[] contents get {
+		elements.filter[!(it instanceof FLPackage)].asEList
+	}
+	op FLPackage[] filterSubPackages() {
+		elements.filter(FLPackage).asEList
+	}
+	op FLElement[] filterContents() {
 		elements.filter[!(it instanceof FLPackage)].asEList
 	}
 }

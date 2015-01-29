@@ -16,6 +16,7 @@ import ch.flatland.cdo.model.base.FLElement;
 import ch.flatland.cdo.model.base.FLPackage;
 import com.google.common.collect.Iterables;
 import java.lang.Iterable;
+import java.lang.reflect.InvocationTargetException;
 
 /**
  * <!-- begin-user-doc -->
@@ -68,9 +69,7 @@ public class FLPackageImpl extends FLElementImpl implements FLPackage {
 	 * @generated NOT
 	 */
 	public EList<FLPackage> getSubPackages() {
-		EList<FLElement> _elements = this.getElements();
-		Iterable<FLPackage> _filter = Iterables.<FLPackage>filter(_elements, FLPackage.class);
-		return ECollections.<FLPackage>asEList(((FLPackage[])org.eclipse.xtext.xbase.lib.Conversions.unwrapArray(_filter, FLPackage.class)));
+		return this.filterSubPackages();
 	}
 
 	/**
@@ -79,6 +78,26 @@ public class FLPackageImpl extends FLElementImpl implements FLPackage {
 	 * @generated NOT
 	 */
 	public EList<FLElement> getContents() {
+		return this.filterContents();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<FLPackage> filterSubPackages() {
+		EList<FLElement> _elements = this.getElements();
+		Iterable<FLPackage> _filter = Iterables.<FLPackage>filter(_elements, FLPackage.class);
+		return ECollections.<FLPackage>asEList(((FLPackage[])org.eclipse.xtext.xbase.lib.Conversions.unwrapArray(_filter, FLPackage.class)));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<FLElement> filterContents() {
 		EList<FLElement> _elements = this.getElements();
 		final Function1<FLElement, Boolean> _function = new Function1<FLElement, Boolean>() {
 			public Boolean apply(final FLElement it) {
@@ -169,6 +188,22 @@ public class FLPackageImpl extends FLElementImpl implements FLPackage {
 				return !getContents().isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case BasePackage.FL_PACKAGE___FILTER_SUB_PACKAGES:
+				return filterSubPackages();
+			case BasePackage.FL_PACKAGE___FILTER_CONTENTS:
+				return filterContents();
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 } //FLPackageImpl

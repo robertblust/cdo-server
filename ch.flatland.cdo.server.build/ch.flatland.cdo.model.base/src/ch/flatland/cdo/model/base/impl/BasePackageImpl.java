@@ -533,6 +533,24 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getFLPackage__FilterSubPackages() {
+		return flPackageEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getFLPackage__FilterContents() {
+		return flPackageEClass.getEOperations().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getFLTrace() {
 		return flTraceEClass;
 	}
@@ -680,6 +698,8 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 		createEReference(flPackageEClass, FL_PACKAGE__ELEMENTS);
 		createEReference(flPackageEClass, FL_PACKAGE__SUB_PACKAGES);
 		createEReference(flPackageEClass, FL_PACKAGE__CONTENTS);
+		createEOperation(flPackageEClass, FL_PACKAGE___FILTER_SUB_PACKAGES);
+		createEOperation(flPackageEClass, FL_PACKAGE___FILTER_CONTENTS);
 
 		flTraceEClass = createEClass(FL_TRACE);
 		createEAttribute(flTraceEClass, FL_TRACE__TRACE_TYPE);
@@ -778,6 +798,10 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 		initEReference(getFLPackage_Elements(), this.getFLElement(), null, "elements", null, 0, -1, FLPackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFLPackage_SubPackages(), this.getFLPackage(), null, "subPackages", null, 0, -1, FLPackage.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEReference(getFLPackage_Contents(), this.getFLElement(), null, "contents", null, 0, -1, FLPackage.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+
+		initEOperation(getFLPackage__FilterSubPackages(), this.getFLPackage(), "filterSubPackages", 0, -1, !IS_UNIQUE, IS_ORDERED);
+
+		initEOperation(getFLPackage__FilterContents(), this.getFLElement(), "filterContents", 0, -1, !IS_UNIQUE, IS_ORDERED);
 
 		initEClass(flTraceEClass, FLTrace.class, "FLTrace", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getFLTrace_TraceType(), this.getFLTraceType(), "traceType", null, 1, 1, FLTrace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

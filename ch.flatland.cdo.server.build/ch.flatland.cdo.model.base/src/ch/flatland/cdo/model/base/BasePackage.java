@@ -801,13 +801,31 @@ public interface BasePackage extends EPackage {
 	int FL_PACKAGE___FROM_FILTER_BY_TYPE__FLTRACETYPE = FL_ELEMENT___FROM_FILTER_BY_TYPE__FLTRACETYPE;
 
 	/**
+	 * The operation id for the '<em>Filter Sub Packages</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_PACKAGE___FILTER_SUB_PACKAGES = FL_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Filter Contents</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_PACKAGE___FILTER_CONTENTS = FL_ELEMENT_OPERATION_COUNT + 1;
+
+	/**
 	 * The number of operations of the '<em>FL Package</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FL_PACKAGE_OPERATION_COUNT = FL_ELEMENT_OPERATION_COUNT + 0;
+	int FL_PACKAGE_OPERATION_COUNT = FL_ELEMENT_OPERATION_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link ch.flatland.cdo.model.base.impl.FLTraceImpl <em>FL Trace</em>}' class.
@@ -1391,6 +1409,26 @@ public interface BasePackage extends EPackage {
 	EReference getFLPackage_Contents();
 
 	/**
+	 * Returns the meta object for the '{@link ch.flatland.cdo.model.base.FLPackage#filterSubPackages() <em>Filter Sub Packages</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Filter Sub Packages</em>' operation.
+	 * @see ch.flatland.cdo.model.base.FLPackage#filterSubPackages()
+	 * @generated
+	 */
+	EOperation getFLPackage__FilterSubPackages();
+
+	/**
+	 * Returns the meta object for the '{@link ch.flatland.cdo.model.base.FLPackage#filterContents() <em>Filter Contents</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Filter Contents</em>' operation.
+	 * @see ch.flatland.cdo.model.base.FLPackage#filterContents()
+	 * @generated
+	 */
+	EOperation getFLPackage__FilterContents();
+
+	/**
 	 * Returns the meta object for class '{@link ch.flatland.cdo.model.base.FLTrace <em>FL Trace</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1849,6 +1887,22 @@ public interface BasePackage extends EPackage {
 		 * @generated
 		 */
 		EReference FL_PACKAGE__CONTENTS = eINSTANCE.getFLPackage_Contents();
+
+		/**
+		 * The meta object literal for the '<em><b>Filter Sub Packages</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation FL_PACKAGE___FILTER_SUB_PACKAGES = eINSTANCE.getFLPackage__FilterSubPackages();
+
+		/**
+		 * The meta object literal for the '<em><b>Filter Contents</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation FL_PACKAGE___FILTER_CONTENTS = eINSTANCE.getFLPackage__FilterContents();
 
 		/**
 		 * The meta object literal for the '{@link ch.flatland.cdo.model.base.impl.FLTraceImpl <em>FL Trace</em>}' class.
