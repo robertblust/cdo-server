@@ -12,7 +12,7 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * Base elements all Concepts should at least inherit from.
+ * Base element all Concepts should at least inherit from.
  * Provides generic features.
  * <!-- end-model-doc -->
  *

@@ -12,7 +12,7 @@ package ch.flatland.cdo.model.base
 import org.eclipse.emf.common.util.BasicEList
 
 /*
- * Base elements all Concepts should at least inherit from.
+ * Base element all Concepts should at least inherit from.
  * Provides generic features.
  */
 abstract class FLElement {
