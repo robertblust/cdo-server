@@ -278,14 +278,9 @@ class JsonConverter {
 					jsonContentsLink.addProperty(HREF, object.getUrl(false) + "/" + CONTENTS + object.getTimestampParam(true))
 					jsonContentsLink.addProperty(SIZE, object.eContents.size)
 					jsonLinksObject.add(CONTENTS, jsonContentsLink)
-				}
-
-				//TODO could be long running!
-				val allContentSize = object.eAllContents.toList.size
-				if(allContentSize > 0) {
+					
 					val jsonAllContentsLink = new JsonObject
 					jsonAllContentsLink.addProperty(HREF, object.getUrl(false) + "/" + ALL_CONTENTS + object.getTimestampParam(true))
-					jsonAllContentsLink.addProperty(SIZE, allContentSize)
 					jsonLinksObject.add(ALL_CONTENTS, jsonAllContentsLink)
 				}
 
