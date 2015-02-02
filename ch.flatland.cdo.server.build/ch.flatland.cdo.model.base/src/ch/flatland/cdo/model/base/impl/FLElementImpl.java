@@ -39,7 +39,8 @@ import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
  * The following features are implemented:
  * <ul>
  *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getName <em>Name</em>}</li>
- *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getUuid <em>Uuid</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getUUID <em>UUID</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getID <em>ID</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getTraces <em>Traces</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getProperties <em>Properties</em>}</li>
@@ -90,14 +91,24 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 	protected static final String NAME_EDEFAULT = null;
 
 	/**
-	 * The default value of the '{@link #getUuid() <em>Uuid</em>}' attribute.
+	 * The default value of the '{@link #getUUID() <em>UUID</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getUuid()
+	 * @see #getUUID()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final String UUID_EDEFAULT = null;
+
+	/**
+	 * The default value of the '{@link #getID() <em>ID</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getID()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String ID_EDEFAULT = null;
 
 	/**
 	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
@@ -161,7 +172,7 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getUuid() {
+	public String getUUID() {
 		return (String)eDynamicGet(BasePackage.FL_ELEMENT__UUID, BasePackage.Literals.FL_ELEMENT__UUID, true, true);
 	}
 
@@ -170,8 +181,26 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setUuid(String newUuid) {
-		eDynamicSet(BasePackage.FL_ELEMENT__UUID, BasePackage.Literals.FL_ELEMENT__UUID, newUuid);
+	public void setUUID(String newUUID) {
+		eDynamicSet(BasePackage.FL_ELEMENT__UUID, BasePackage.Literals.FL_ELEMENT__UUID, newUUID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getID() {
+		return (String)eDynamicGet(BasePackage.FL_ELEMENT__ID, BasePackage.Literals.FL_ELEMENT__ID, true, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setID(String newID) {
+		eDynamicSet(BasePackage.FL_ELEMENT__ID, BasePackage.Literals.FL_ELEMENT__ID, newID);
 	}
 
 	/**
@@ -572,6 +601,39 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public <T extends FLElement> EList<T> resolveXrefs(final EReference eRefernce, final Class<T> classType) {
+		final BasicEList<T> elements = new BasicEList<T>();
+		boolean _and = false;
+		CDOView _cdoView = this.cdoView();
+		boolean _notEquals = (!Objects.equal(_cdoView, null));
+		if (!_notEquals) {
+			_and = false;
+		} else {
+			CDOView _cdoView_1 = this.cdoView();
+			boolean _isClosed = _cdoView_1.isClosed();
+			boolean _not = (!_isClosed);
+			_and = _not;
+		}
+		if (_and) {
+			CDOView _cdoView_2 = this.cdoView();
+			ArrayList<EReference> _newArrayList = CollectionLiterals.<EReference>newArrayList(eRefernce);
+			final List<CDOObjectReference> xrefs = _cdoView_2.queryXRefs(this, ((EReference[])org.eclipse.xtext.xbase.lib.Conversions.unwrapArray(_newArrayList, EReference.class)));
+			for (final CDOObjectReference x : xrefs) {
+				{
+					CDOObject _sourceObject = x.getSourceObject();
+					final T element = classType.cast(_sourceObject);
+					elements.add(element);
+				}
+			}
+		}
+		return elements;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -594,7 +656,9 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 			case BasePackage.FL_ELEMENT__NAME:
 				return getName();
 			case BasePackage.FL_ELEMENT__UUID:
-				return getUuid();
+				return getUUID();
+			case BasePackage.FL_ELEMENT__ID:
+				return getID();
 			case BasePackage.FL_ELEMENT__DESCRIPTION:
 				return getDescription();
 			case BasePackage.FL_ELEMENT__TRACES:
@@ -678,7 +742,10 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 				setName((String)newValue);
 				return;
 			case BasePackage.FL_ELEMENT__UUID:
-				setUuid((String)newValue);
+				setUUID((String)newValue);
+				return;
+			case BasePackage.FL_ELEMENT__ID:
+				setID((String)newValue);
 				return;
 			case BasePackage.FL_ELEMENT__DESCRIPTION:
 				setDescription((String)newValue);
@@ -707,7 +774,10 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 				setName(NAME_EDEFAULT);
 				return;
 			case BasePackage.FL_ELEMENT__UUID:
-				setUuid(UUID_EDEFAULT);
+				setUUID(UUID_EDEFAULT);
+				return;
+			case BasePackage.FL_ELEMENT__ID:
+				setID(ID_EDEFAULT);
 				return;
 			case BasePackage.FL_ELEMENT__DESCRIPTION:
 				setDescription(DESCRIPTION_EDEFAULT);
@@ -733,7 +803,9 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 			case BasePackage.FL_ELEMENT__NAME:
 				return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT.equals(getName());
 			case BasePackage.FL_ELEMENT__UUID:
-				return UUID_EDEFAULT == null ? getUuid() != null : !UUID_EDEFAULT.equals(getUuid());
+				return UUID_EDEFAULT == null ? getUUID() != null : !UUID_EDEFAULT.equals(getUUID());
+			case BasePackage.FL_ELEMENT__ID:
+				return ID_EDEFAULT == null ? getID() != null : !ID_EDEFAULT.equals(getID());
 			case BasePackage.FL_ELEMENT__DESCRIPTION:
 				return DESCRIPTION_EDEFAULT == null ? getDescription() != null : !DESCRIPTION_EDEFAULT.equals(getDescription());
 			case BasePackage.FL_ELEMENT__TRACES:
@@ -810,12 +882,15 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 	 * @generated
 	 */
 	@Override
+	@SuppressWarnings({"rawtypes", "unchecked" })
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
 			case BasePackage.FL_ELEMENT___TO_FILTER_BY_TYPE__FLTRACETYPE:
 				return toFilterByType((FLTraceType)arguments.get(0));
 			case BasePackage.FL_ELEMENT___FROM_FILTER_BY_TYPE__FLTRACETYPE:
 				return fromFilterByType((FLTraceType)arguments.get(0));
+			case BasePackage.FL_ELEMENT___RESOLVE_XREFS__EREFERENCE_CLASS:
+				return resolveXrefs((EReference)arguments.get(0), (Class)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

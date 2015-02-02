@@ -56,7 +56,8 @@ public class FLElementItemProvider
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
-			addUuidPropertyDescriptor(object);
+			addUUIDPropertyDescriptor(object);
+			addIDPropertyDescriptor(object);
 			addDescriptionPropertyDescriptor(object);
 			addTraceToOwnPropertyDescriptor(object);
 			addTraceToUsePropertyDescriptor(object);
@@ -115,19 +116,41 @@ public class FLElementItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Uuid feature.
+	 * This adds a property descriptor for the UUID feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addUuidPropertyDescriptor(Object object) {
+	protected void addUUIDPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_FLElement_uuid_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_FLElement_uuid_feature", "_UI_FLElement_type"),
+				 getString("_UI_FLElement_UUID_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FLElement_UUID_feature", "_UI_FLElement_type"),
 				 BasePackage.Literals.FL_ELEMENT__UUID,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 getString("_UI_BasePropertyCategory"),
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the ID feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addIDPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_FLElement_ID_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FLElement_ID_feature", "_UI_FLElement_type"),
+				 BasePackage.Literals.FL_ELEMENT__ID,
 				 true,
 				 false,
 				 false,
@@ -888,6 +911,7 @@ public class FLElementItemProvider
 		switch (notification.getFeatureID(FLElement.class)) {
 			case BasePackage.FL_ELEMENT__NAME:
 			case BasePackage.FL_ELEMENT__UUID:
+			case BasePackage.FL_ELEMENT__ID:
 			case BasePackage.FL_ELEMENT__DESCRIPTION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

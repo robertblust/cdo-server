@@ -10,24 +10,39 @@
 package ch.flatland.cdo.model.base
 
 import org.eclipse.emf.common.util.BasicEList
+import org.eclipse.emf.ecore.EReference
+import org.eclipse.emf.ecore.EEList
 
 /*
+ * <p>
  * Base element all Concepts should at least inherit from.
  * Provides generic features.
+ * <p>
  */
 abstract class FLElement {
 	@GenModel(propertyCategory="Base")
 	String[1] name
 	/*
+	 * <p>
 	 * A universally unique identifier (UUID) is an identifier standard used in software construction.
 	 * 
 	 * The intent of UUIDs is to enable distributed systems to uniquely
 	 * identify information without significant central coordination.
 	 * In this context the word unique should be taken to mean
-	 * "practically unique" rather than "guaranteed unique". 
+	 * "practically unique" rather than "guaranteed unique".
+	 * </p>
 	 */
 	@GenModel(propertyCategory="Base")
-	FLIdentifier uuid
+	FLIdentifier UUID
+	/*
+	 * <p>
+	 * ID represents a kind of id from the business perspective. E.g a project id,
+	 * test case id. The scope of uniqueness is not clear a this 
+	 * abstract level. It depends on the actual concrete sub type.
+	 * </p>
+	 */
+	@GenModel(propertyCategory="Base")
+	FLIdentifier ID
 	@GenModel(propertyMultiLine="true", propertyCategory="Base")
 	FLMarkdown description
 	contains FLTrace[] traces
@@ -183,6 +198,25 @@ abstract class FLElement {
 		}
 		return sources
 	}
+	
+	/*
+	 * <p>
+	 * Generic operation to resolve xRefs for an eReference.
+	 * Just work when the instance comes from a cdo repository
+	 * otherwise an empty list is returned.
+	 * </p>
+	 */
+	op<T extends FLElement> EEList<T> resolveXrefs(EReference eRefernce, Class<T> classType) {
+		val elements = new BasicEList
+		if (this.cdoView != null && !this.cdoView.isClosed) {
+			val xrefs = this.cdoView.queryXRefs(this, newArrayList(eRefernce))
+			for (x : xrefs) {
+				val element = classType.cast(x.sourceObject)
+				elements.add(element)
+			}
+		}
+		return elements
+	}
 }
 
 class FLPackage extends FLElement {
@@ -211,7 +245,9 @@ class FLTrace {
 }
 
 /*
+ * <p>
  * Expresses the concrete type of a relationship between entities.
+ * </p>
  */
 enum FLTraceType {
 	/*

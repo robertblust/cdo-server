@@ -14,7 +14,9 @@ import org.eclipse.emf.common.util.Enumerator;
  * and utility methods for working with them.
  * <!-- end-user-doc -->
  * <!-- begin-model-doc -->
+ * <p>
  * Expresses the concrete type of a relationship between entities.
+ * </p>
  * <!-- end-model-doc -->
  * @see ch.flatland.cdo.model.base.BasePackage#getFLTraceType()
  * @model

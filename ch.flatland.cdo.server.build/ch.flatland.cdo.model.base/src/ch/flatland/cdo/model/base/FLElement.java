@@ -5,6 +5,7 @@ package ch.flatland.cdo.model.base;
 import org.eclipse.emf.cdo.CDOObject;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EReference;
 
 /**
  * <!-- begin-user-doc -->
@@ -12,15 +13,18 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
+ * <p>
  * Base element all Concepts should at least inherit from.
  * Provides generic features.
+ * <p>
  * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
  *   <li>{@link ch.flatland.cdo.model.base.FLElement#getName <em>Name</em>}</li>
- *   <li>{@link ch.flatland.cdo.model.base.FLElement#getUuid <em>Uuid</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.base.FLElement#getUUID <em>UUID</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.base.FLElement#getID <em>ID</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.FLElement#getDescription <em>Description</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.FLElement#getTraces <em>Traces</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.FLElement#getProperties <em>Properties</em>}</li>
@@ -91,35 +95,71 @@ public interface FLElement extends CDOObject {
 	void setName(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Uuid</b></em>' attribute.
+	 * Returns the value of the '<em><b>UUID</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
+	 * <p>
 	 * A universally unique identifier (UUID) is an identifier standard used in software construction.
 	 * 
 	 * The intent of UUIDs is to enable distributed systems to uniquely
 	 * identify information without significant central coordination.
 	 * In this context the word unique should be taken to mean
 	 * "practically unique" rather than "guaranteed unique".
+	 * </p>
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Uuid</em>' attribute.
-	 * @see #setUuid(String)
-	 * @see ch.flatland.cdo.model.base.BasePackage#getFLElement_Uuid()
+	 * @return the value of the '<em>UUID</em>' attribute.
+	 * @see #setUUID(String)
+	 * @see ch.flatland.cdo.model.base.BasePackage#getFLElement_UUID()
 	 * @model unique="false" dataType="ch.flatland.cdo.model.base.FLIdentifier"
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Base'"
 	 * @generated
 	 */
-	String getUuid();
+	String getUUID();
 
 	/**
-	 * Sets the value of the '{@link ch.flatland.cdo.model.base.FLElement#getUuid <em>Uuid</em>}' attribute.
+	 * Sets the value of the '{@link ch.flatland.cdo.model.base.FLElement#getUUID <em>UUID</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Uuid</em>' attribute.
-	 * @see #getUuid()
+	 * @param value the new value of the '<em>UUID</em>' attribute.
+	 * @see #getUUID()
 	 * @generated
 	 */
-	void setUuid(String value);
+	void setUUID(String value);
+
+	/**
+	 * Returns the value of the '<em><b>ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>ID</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>
+	 * ID represents a kind of id from the business perspective. E.g a project id,
+	 * test case id. The scope of uniqueness is not clear a this
+	 * abstract level. It depends on the actual concrete sub type.
+	 * </p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>ID</em>' attribute.
+	 * @see #setID(String)
+	 * @see ch.flatland.cdo.model.base.BasePackage#getFLElement_ID()
+	 * @model unique="false" dataType="ch.flatland.cdo.model.base.FLIdentifier"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Base'"
+	 * @generated
+	 */
+	String getID();
+
+	/**
+	 * Sets the value of the '{@link ch.flatland.cdo.model.base.FLElement#getID <em>ID</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>ID</em>' attribute.
+	 * @see #getID()
+	 * @generated
+	 */
+	void setID(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Description</b></em>' attribute.
@@ -711,5 +751,21 @@ public interface FLElement extends CDOObject {
 	 * @generated
 	 */
 	EList<FLElement> fromFilterByType(FLTraceType traceType);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>
+	 * Generic operation to resolve xRefs for an eReference.
+	 * Just work when the instance comes from a cdo repository
+	 * otherwise an empty list is returned.
+	 * </p>
+	 * <!-- end-model-doc -->
+	 * @model unique="false" many="false" eRefernceUnique="false" classTypeUnique="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='final <%org.eclipse.emf.common.util.BasicEList%><T> elements = new <%org.eclipse.emf.common.util.BasicEList%><T>();\nboolean _and = false;\n<%org.eclipse.emf.cdo.view.CDOView%> _cdoView = this.cdoView();\nboolean _notEquals = (!<%com.google.common.base.Objects%>.equal(_cdoView, null));\nif (!_notEquals)\n{\n\t_and = false;\n} else\n{\n\t<%org.eclipse.emf.cdo.view.CDOView%> _cdoView_1 = this.cdoView();\n\tboolean _isClosed = _cdoView_1.isClosed();\n\tboolean _not = (!_isClosed);\n\t_and = _not;\n}\nif (_and)\n{\n\t<%org.eclipse.emf.cdo.view.CDOView%> _cdoView_2 = this.cdoView();\n\t<%java.util.ArrayList%><<%org.eclipse.emf.ecore.EReference%>> _newArrayList = <%org.eclipse.xtext.xbase.lib.CollectionLiterals%>.<<%org.eclipse.emf.ecore.EReference%>>newArrayList(eRefernce);\n\tfinal <%java.util.List%><<%org.eclipse.emf.cdo.CDOObjectReference%>> xrefs = _cdoView_2.queryXRefs(this, ((<%org.eclipse.emf.ecore.EReference%>[])org.eclipse.xtext.xbase.lib.Conversions.unwrapArray(_newArrayList, <%org.eclipse.emf.ecore.EReference%>.class)));\n\tfor (final <%org.eclipse.emf.cdo.CDOObjectReference%> x : xrefs)\n\t{\n\t\t{\n\t\t\t<%org.eclipse.emf.cdo.CDOObject%> _sourceObject = x.getSourceObject();\n\t\t\tfinal T element = classType.cast(_sourceObject);\n\t\t\telements.add(element);\n\t\t}\n\t}\n}\nreturn elements;'"
+	 * @generated
+	 */
+	<T extends FLElement> EList<T> resolveXrefs(EReference eRefernce, Class<T> classType);
 
 } // FLElement
