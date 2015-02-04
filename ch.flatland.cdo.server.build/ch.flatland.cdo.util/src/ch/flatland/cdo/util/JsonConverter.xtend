@@ -200,13 +200,13 @@ class JsonConverter {
 
 		if(object.oid != null) {
 			jsonBaseObject.addProperty(ID, object.oid)
-			
+
 			if(object.eContainer != null) {
 				jsonBaseObject.addProperty(CONTAINER_ID, object.eContainer.oid)
-			 } else if(object.eResource instanceof CDOResourceNode) {
+			} else if(object.eResource instanceof CDOResourceNode) {
 
 				// it must be contained in a CDOResourceNode
-				jsonBaseObject.addProperty(CONTAINER_ID, (object.eResource as CDOResourceNode).oid)		
+				jsonBaseObject.addProperty(CONTAINER_ID, (object.eResource as CDOResourceNode).oid)
 			}
 		}
 
@@ -265,11 +265,13 @@ class JsonConverter {
 
 					// add detailed reference link
 					object.eClass.EAllReferences.forEach [
-						val jsonReferenceLink = new JsonObject
-						jsonReferenceLink.addProperty(HREF, object.getUrl(false) + "/" + REFERENCES + "/" + it.name + object.getTimestampParam(true))
-						jsonReferenceLink.addProperty(SIZE, object.referencesSize(it.name))
-						jsonReferenceLink.addProperty(CONTAINMENT, it.containment)
-						jsonReferencesLink.add(it.name, jsonReferenceLink)
+						if(object.referencesSize(it.name) > 0) {
+							val jsonReferenceLink = new JsonObject
+							jsonReferenceLink.addProperty(HREF, object.getUrl(false) + "/" + REFERENCES + "/" + it.name + object.getTimestampParam(true))
+							jsonReferenceLink.addProperty(SIZE, object.referencesSize(it.name))
+							jsonReferenceLink.addProperty(CONTAINMENT, it.containment)
+							jsonReferencesLink.add(it.name, jsonReferenceLink)
+						}
 					]
 				}
 
@@ -278,7 +280,7 @@ class JsonConverter {
 					jsonContentsLink.addProperty(HREF, object.getUrl(false) + "/" + CONTENTS + object.getTimestampParam(true))
 					jsonContentsLink.addProperty(SIZE, object.eContents.size)
 					jsonLinksObject.add(CONTENTS, jsonContentsLink)
-					
+
 					val jsonAllContentsLink = new JsonObject
 					jsonAllContentsLink.addProperty(HREF, object.getUrl(false) + "/" + ALL_CONTENTS + object.getTimestampParam(true))
 					jsonLinksObject.add(ALL_CONTENTS, jsonAllContentsLink)
