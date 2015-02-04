@@ -14,8 +14,6 @@ import ch.flatland.cdo.service.ping.model.PingBean
 import ch.flatland.cdo.util.AbstractServlet
 import ch.flatland.cdo.util.JsonConverter
 import ch.flatland.cdo.util.Response
-import java.io.IOException
-import javax.servlet.ServletException
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
@@ -26,7 +24,7 @@ class PingServlet extends AbstractServlet {
 	val static extension JsonConverter = new JsonConverter
 	val static PING = new PingBean("OK", "Flatland CDO Server", "1.0.0").safeToJson
 
-	override protected doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	override protected doGet(HttpServletRequest req, HttpServletResponse resp) {
 		resp.writeResponse(req, PING)
 	}
 }
