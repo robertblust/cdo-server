@@ -7,7 +7,7 @@
    </configIni>
 
    <launcherArgs>
-      <programArgs>-debug -console
+      <programArgs>-debug
       </programArgs>
       <vmArgsLin>-Xms40m
 -Xmx1024m
