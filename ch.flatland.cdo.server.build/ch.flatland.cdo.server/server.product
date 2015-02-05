@@ -9,7 +9,23 @@
    <launcherArgs>
       <programArgs>-debug -console
       </programArgs>
-      <vmArgs>-Xms40m
+      <vmArgsLin>-vmargs
+-Xms40m
+-Xmx1024m
+-Dorg.eclipse.equinox.http.jetty.http.host=0.0.0.0
+-Dorg.eclipse.equinox.http.jetty.http.port=8081
+-Dorg.eclipse.equinox.http.jetty.http.enabled=true
+-Dorg.eclipse.equinox.http.jetty.https.port=8091
+-Dorg.eclipse.equinox.http.jetty.https.enabled=true
+-Dorg.eclipse.equinox.http.jetty.context.sessioninactiveinterval=60
+-Dorg.eclipse.equinox.http.jetty.ssl.keystore=/opt/cdo/keystore
+-Djavax.net.ssl.trustStore=/opt/cdo/keystore
+-Dlogback.configurationFile=/opt/cdo/logback.xml
+-Dch.flatland.cdo.server.config=/opt/cdo/config.json
+-Dorg.eclipse.equinox.http.jetty.ssl.password=password
+      </vmArgsLin>
+      <vmArgsMac>-XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts
+-Xms40m
 -Xmx1024m
 -Dorg.eclipse.equinox.http.jetty.http.host=0.0.0.0
 -Dorg.eclipse.equinox.http.jetty.http.port=80
@@ -23,9 +39,37 @@
 -Dch.flatland.cdo.server.config=./config.json
 
 -Dorg.eclipse.equinox.http.jetty.ssl.password=password
-      </vmArgs>
-      <vmArgsMac>-XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts
       </vmArgsMac>
+      <vmArgsSol>-Xms40m
+-Xmx1024m
+-Dorg.eclipse.equinox.http.jetty.http.host=0.0.0.0
+-Dorg.eclipse.equinox.http.jetty.http.port=80
+-Dorg.eclipse.equinox.http.jetty.http.enabled=true
+-Dorg.eclipse.equinox.http.jetty.https.port=443
+-Dorg.eclipse.equinox.http.jetty.https.enabled=true
+-Dorg.eclipse.equinox.http.jetty.context.sessioninactiveinterval=60
+-Dorg.eclipse.equinox.http.jetty.ssl.keystore=./keystore
+-Djavax.net.ssl.trustStore=./keystore
+-Dlogback.configurationFile=./logback.xml
+-Dch.flatland.cdo.server.config=./config.json
+
+-Dorg.eclipse.equinox.http.jetty.ssl.password=password
+      </vmArgsSol>
+      <vmArgsWin>-Xms40m
+-Xmx1024m
+-Dorg.eclipse.equinox.http.jetty.http.host=0.0.0.0
+-Dorg.eclipse.equinox.http.jetty.http.port=80
+-Dorg.eclipse.equinox.http.jetty.http.enabled=true
+-Dorg.eclipse.equinox.http.jetty.https.port=443
+-Dorg.eclipse.equinox.http.jetty.https.enabled=true
+-Dorg.eclipse.equinox.http.jetty.context.sessioninactiveinterval=60
+-Dorg.eclipse.equinox.http.jetty.ssl.keystore=./keystore
+-Djavax.net.ssl.trustStore=./keystore
+-Dlogback.configurationFile=./logback.xml
+-Dch.flatland.cdo.server.config=./config.json
+
+-Dorg.eclipse.equinox.http.jetty.ssl.password=password
+      </vmArgsWin>
    </launcherArgs>
 
    <windowImages/>
