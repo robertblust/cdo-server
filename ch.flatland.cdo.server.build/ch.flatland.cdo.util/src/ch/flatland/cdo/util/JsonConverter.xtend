@@ -260,15 +260,15 @@ class JsonConverter {
 					// add reference link
 					val jsonReferencesLink = new JsonObject
 					jsonReferencesLink.addProperty(HREF, object.getUrl(false) + "/" + REFERENCES + object.getTimestampParam(true))
-					jsonReferencesLink.addProperty(SIZE, object.referencesSize(null))
+					jsonReferencesLink.addProperty(SIZE, object.referencesSize(null, jsonConverterConfig.xtraces))
 					jsonLinksObject.add(REFERENCES, jsonReferencesLink)
 
 					// add detailed reference link
 					object.eClass.EAllReferences.forEach [
-						if(object.referencesSize(it.name) > 0) {
+						if(object.referencesSize(it.name, jsonConverterConfig.xtraces) > 0) {
 							val jsonReferenceLink = new JsonObject
 							jsonReferenceLink.addProperty(HREF, object.getUrl(false) + "/" + REFERENCES + "/" + it.name + object.getTimestampParam(true))
-							jsonReferenceLink.addProperty(SIZE, object.referencesSize(it.name))
+							jsonReferenceLink.addProperty(SIZE, object.referencesSize(it.name, jsonConverterConfig.xtraces))
 							jsonReferenceLink.addProperty(CONTAINMENT, it.containment)
 							jsonReferencesLink.add(it.name, jsonReferenceLink)
 						}

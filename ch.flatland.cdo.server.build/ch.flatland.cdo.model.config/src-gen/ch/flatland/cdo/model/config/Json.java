@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link ch.flatland.cdo.model.config.Json#isLinks <em>Links</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.config.Json#isXlinks <em>Xlinks</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.config.Json#isArrayaccessor <em>Arrayaccessor</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.config.Json#isXtraces <em>Xtraces</em>}</li>
  * </ul>
  * </p>
  *
@@ -289,5 +290,31 @@ public interface Json extends EObject {
 	 * @generated
 	 */
 	void setArrayaccessor(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Xtraces</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Xtraces</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Xtraces</em>' attribute.
+	 * @see #setXtraces(boolean)
+	 * @see ch.flatland.cdo.model.config.ConfigPackage#getJson_Xtraces()
+	 * @model unique="false" required="true"
+	 * @generated
+	 */
+	boolean isXtraces();
+
+	/**
+	 * Sets the value of the '{@link ch.flatland.cdo.model.config.Json#isXtraces <em>Xtraces</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Xtraces</em>' attribute.
+	 * @see #isXtraces()
+	 * @generated
+	 */
+	void setXtraces(boolean value);
 
 } // Json

@@ -150,6 +150,7 @@ class ServerConfig {
 			links = true
 			xlinks = true
 			arrayaccessor = false
+			xtraces = false
 		]
 		
 		config.dataStore = dataStore

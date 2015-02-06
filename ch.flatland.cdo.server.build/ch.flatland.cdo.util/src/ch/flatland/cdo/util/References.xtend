@@ -25,17 +25,17 @@ class References {
 			val allReferences = object.getAllReferences(req)
 			return allReferences.checkNullOrEmpty
 		} else {
-			val references = object.getReferences(referenceName)
+			val references = object.getReferences(referenceName, true)
 			return references.checkNullOrEmpty
 		}
 	}
 
-	def referencesSize(EObject object, String referenceName) {
+	def referencesSize(EObject object, String referenceName, boolean includeXtraces) {
 		if(referenceName == null) {
-			val allReferences = object.getAllReferences(null)
+			val allReferences = object.getAllReferences(includeXtraces)
 			return allReferences.size
 		} else {
-			val references = object.getReferences(referenceName)
+			val references = object.getReferences(referenceName, includeXtraces)
 			if(references == null) {
 				return 0
 			}
@@ -49,12 +49,12 @@ class References {
 		}
 	}
 
-	def hasReferences(EObject object, String referenceName) {
+	def hasReferences(EObject object, String referenceName, boolean includeXtraces) {
 		if(referenceName == null) {
-			val allReferences = object.getAllReferences(null)
+			val allReferences = object.getAllReferences(includeXtraces)
 			return allReferences.size > 0
 		} else {
-			val references = object.getReferences(referenceName)
+			val references = object.getReferences(referenceName, includeXtraces)
 			if(references != null) {
 				if(references instanceof EObject) {
 					return true
@@ -69,8 +69,30 @@ class References {
 
 	def private getAllReferences(EObject object, HttpServletRequest req) {
 		val allReferences = newArrayList
+		object.eClass.EAllReferences.forEach [	
+			if(it.needsReference(req) && it.name.includeRef(true)) {
+				if(it.many) {
+					val List<EObject> refs = object.eGet(it) as List<EObject>
+					for (r : refs) {
+						if(r.hasPermission) {
+							allReferences.addIfNotExits(r)
+						}
+					}
+				} else {
+					val r = object.eGet(it) as EObject
+					if(r != null && r.hasPermission) {
+						allReferences.addIfNotExits(r)
+					}
+				}
+			}
+		]
+		return allReferences
+	}
+	
+	def private getAllReferences(EObject object, boolean includeXtraces) {
+		val allReferences = newArrayList
 		object.eClass.EAllReferences.forEach [
-			if(it.needsReference(req)) {
+			if(it.name.includeRef(includeXtraces)) {
 				if(it.many) {
 					val List<EObject> refs = object.eGet(it) as List<EObject>
 					for (r : refs) {
@@ -89,8 +111,11 @@ class References {
 		return allReferences
 	}
 
-	def private getReferences(EObject object, String referenceName) {
+	def private getReferences(EObject object, String referenceName, boolean includeXtraces) {
 		val eReference = object.eClass.EAllReferences.filter[it.name == referenceName].head
+		if (!eReference.name.includeRef(includeXtraces)) {
+			return null
+		}
 		if(eReference != null) {
 			if(eReference.many) {
 				val references = newArrayList
@@ -137,6 +162,17 @@ class References {
 			return true
 		}
 		if(req.rrefs && !reference.containment) {
+			return true
+		}
+		return false
+	}
+	
+	def private includeRef(String referenceName, boolean includeXtraces) {
+		if (referenceName.startsWith("traceFrom")) {
+			if (includeXtraces) {
+				return true
+			}
+		} else {
 			return true
 		}
 		return false

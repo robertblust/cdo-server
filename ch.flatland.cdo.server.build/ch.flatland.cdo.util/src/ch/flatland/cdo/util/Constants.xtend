@@ -27,6 +27,7 @@ class Constants {
 	val public static PARAM_XREFS = "xrefs"
 	val public static PARAM_LINKS = "links"
 	val public static PARAM_XLINKS = "xlinks"
+	val public static PARAM_XTRACES = "xtraces"
 	val public static PARAM_VALIDATION = "val"
 	val public static PARAM_POINT_IN_TIME = "pit"
 	val public static PARAM_HISTORY = "history"

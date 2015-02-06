@@ -91,6 +91,10 @@ class Request {
 	def isValidate(HttpServletRequest req) {
 		return req.getParameter(PARAM_VALIDATION) != null
 	}
+	
+	def isXtraces(HttpServletRequest req) {
+		return req.getParameter(PARAM_XTRACES) != null
+	}
 
 	def isHistory(HttpServletRequest req) {
 		return req.getParameter(PARAM_HISTORY) != null

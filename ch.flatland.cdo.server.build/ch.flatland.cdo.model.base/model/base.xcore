@@ -47,63 +47,63 @@ abstract class FLElement {
 	FLMarkdown description
 	contains FLTrace[] traces
 	contains FLProperty[] properties
-	@GenModel(propertyCategory="Trace to", property="None")
+	@GenModel(propertyCategory="Trace to")
 	refers FLElement[] traceToOwn get {
 		return toFilterByType(FLTraceType.OWN)
 	}
-	@GenModel(propertyCategory="Trace to", property="None")
+	@GenModel(propertyCategory="Trace to")
 	refers FLElement[] traceToUse get {
 		return toFilterByType(FLTraceType.USE)
 	}
-	@GenModel(propertyCategory="Trace to", property="None")
+	@GenModel(propertyCategory="Trace to")
 	refers FLElement[] traceToRealize get {
 		return toFilterByType(FLTraceType.REALIZE)
 	}
-	@GenModel(propertyCategory="Trace to", property="None")
+	@GenModel(propertyCategory="Trace to")
 	refers FLElement[] traceToSpecify get {
 		return toFilterByType(FLTraceType.SPECIFY)
 	}
-	@GenModel(propertyCategory="Trace to", property="None")
+	@GenModel(propertyCategory="Trace to")
 	refers FLElement[] traceToImplement get {
 		return toFilterByType(FLTraceType.IMPLEMENT)
 	}
-	@GenModel(propertyCategory="Trace to", property="None")
+	@GenModel(propertyCategory="Trace to")
 	refers FLElement[] traceToElaborate get {
 		return toFilterByType(FLTraceType.ELABORATE)
 	}
-	@GenModel(propertyCategory="Trace to", property="None")
+	@GenModel(propertyCategory="Trace to")
 	refers FLElement[] traceToDerive get {
 		return toFilterByType(FLTraceType.DERIVE)
 	}
-	@GenModel(propertyCategory="Trace to", property="None")
+	@GenModel(propertyCategory="Trace to")
 	refers FLElement[] traceToValidate get {
 		return toFilterByType(FLTraceType.VALIDATE)
 	}
-	@GenModel(propertyCategory="Trace to", property="None")
+	@GenModel(propertyCategory="Trace to")
 	refers FLElement[] traceToTest get {
 		return toFilterByType(FLTraceType.TEST)
 	}
-	@GenModel(propertyCategory="Trace to", property="None")
+	@GenModel(propertyCategory="Trace to")
 	refers FLElement[] traceToRelate get {
 		return toFilterByType(FLTraceType.RELATE)
 	}
-	@GenModel(propertyCategory="Trace to", property="None")
+	@GenModel(propertyCategory="Trace to")
 	refers FLElement[] traceToAffect get {
 		return toFilterByType(FLTraceType.AFFECT)
 	}
-	@GenModel(propertyCategory="Trace to", property="None")
+	@GenModel(propertyCategory="Trace to")
 	refers FLElement[] traceToSatisfy get {
 		return toFilterByType(FLTraceType.SATISFY)
 	}
-	@GenModel(propertyCategory="Trace to", property="None")
+	@GenModel(propertyCategory="Trace to")
 	refers FLElement[] traceToVerify get {
 		return toFilterByType(FLTraceType.VERIFY)
 	}
-	@GenModel(propertyCategory="Trace to", property="None")
+	@GenModel(propertyCategory="Trace to")
 	refers FLElement[] traceToRefine get {
 		return toFilterByType(FLTraceType.REFINE)
 	}
-	@GenModel(propertyCategory="Trace to", property="None")
+	@GenModel(propertyCategory="Trace to")
 	refers FLElement[] traceToTrack get {
 		return toFilterByType(FLTraceType.TRACK)
 	}

@@ -451,13 +451,22 @@ public interface ConfigPackage extends EPackage {
 	int JSON__ARRAYACCESSOR = 9;
 
 	/**
+	 * The feature id for the '<em><b>Xtraces</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JSON__XTRACES = 10;
+
+	/**
 	 * The number of structural features of the '<em>Json</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int JSON_FEATURE_COUNT = 10;
+	int JSON_FEATURE_COUNT = 11;
 
 	/**
 	 * The number of operations of the '<em>Json</em>' class.
@@ -870,6 +879,17 @@ public interface ConfigPackage extends EPackage {
 	EAttribute getJson_Arrayaccessor();
 
 	/**
+	 * Returns the meta object for the attribute '{@link ch.flatland.cdo.model.config.Json#isXtraces <em>Xtraces</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Xtraces</em>'.
+	 * @see ch.flatland.cdo.model.config.Json#isXtraces()
+	 * @see #getJson()
+	 * @generated
+	 */
+	EAttribute getJson_Xtraces();
+
+	/**
 	 * Returns the meta object for enum '{@link ch.flatland.cdo.model.config.StoreType <em>Store Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1201,6 +1221,14 @@ public interface ConfigPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute JSON__ARRAYACCESSOR = eINSTANCE.getJson_Arrayaccessor();
+
+		/**
+		 * The meta object literal for the '<em><b>Xtraces</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute JSON__XTRACES = eINSTANCE.getJson_Xtraces();
 
 		/**
 		 * The meta object literal for the '{@link ch.flatland.cdo.model.config.StoreType <em>Store Type</em>}' enum.

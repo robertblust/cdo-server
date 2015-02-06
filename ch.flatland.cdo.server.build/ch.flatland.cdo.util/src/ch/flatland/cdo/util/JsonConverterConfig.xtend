@@ -25,6 +25,7 @@ class JsonConverterConfig {
 	var history = false
 	var links = true
 	var xlinks = true
+	var xtraces = false
 	var serverAddress = ""
 
 	val extension Request = new Request
@@ -45,6 +46,7 @@ class JsonConverterConfig {
 		serverAddress = req.serverAddress
 		links = req.links
 		xlinks = req.xlinks
+		xtraces = req.xtraces
 	}
 
 	new() {
@@ -97,6 +99,13 @@ class JsonConverterConfig {
 			return true
 		}
 		return validate
+	}
+	
+	def isXtraces() {
+		if(CONFIG.json.xtraces) {
+			return true
+		}
+		return xtraces
 	}
 
 	def isHistory() {
