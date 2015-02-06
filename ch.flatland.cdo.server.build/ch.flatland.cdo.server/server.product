@@ -9,8 +9,8 @@
    <launcherArgs>
       <programArgs>-debug
       </programArgs>
-      <vmArgsLin>-Xms40m
--Xmx1024m
+      <vmArgsLin>-Xms512m
+-Xmx2048m
 -Dorg.eclipse.equinox.http.jetty.http.host=0.0.0.0
 -Dorg.eclipse.equinox.http.jetty.http.port=8081
 -Dorg.eclipse.equinox.http.jetty.http.enabled=true
