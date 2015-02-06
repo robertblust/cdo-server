@@ -612,9 +612,11 @@ class JsonConverter {
 				classifier.EAllSuperTypes.forEach [
 					jsonSuperTypesArray.add(new JsonPrimitive(it.type))
 				]
-				jsonBaseObject.add(EXTENDS, jsonSuperTypesArray)
+				if (jsonConverterConfig.meta) {
+					jsonBaseObject.add(EXTENDS, jsonSuperTypesArray)
+				}
 			}
-			if(classifier.getExtendedFrom.size > 0) {
+			if(jsonConverterConfig.meta && classifier.getExtendedFrom.size > 0) {
 				val jsonExtendedFromArray = new JsonArray
 				classifier.getExtendedFrom.forEach [
 					jsonExtendedFromArray.add(new JsonPrimitive(it.type))
