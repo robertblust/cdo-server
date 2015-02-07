@@ -39,12 +39,11 @@ class DataStore {
 
 		val eClass = view.safeEClass(type)
 		if(!eClass.abstract) {
-			toProcess.add(eClass)	
-		} 
+			toProcess.add(eClass)
+		}
 		toProcess.addAll(eClass.getExtendedFrom(view))
 
 		toProcess.forEach [
-
 			val mappingStrategy = view.mappingStrategy
 			var tableName = it.type.replace(".", "_")
 			try {
@@ -105,7 +104,7 @@ class DataStore {
 			if(attribute != null) {
 				logger.debug("Parameter name for filter '{}'", paramName)
 				for (value : req.parameterMap.get(paramName)) {
-					builder.append(" " + kind + " LOWER(" + mappingStrategy.getFieldName(attribute) + ") LIKE '%" + attribute.getValue(value).toLowerCase + "%'")
+					builder.append(" " + kind + " LOWER(" + mappingStrategy.getFieldName(attribute) + ") LIKE '%" + attribute.getValue(value, mappingStrategy).toLowerCase + "%'")
 				}
 			}
 		}
@@ -152,7 +151,15 @@ class DataStore {
 		return mappingStrategy
 	}
 
-	def private getValue(EAttribute attribute, String value) {
+	def private getValue(EAttribute attribute, String value, IMappingStrategy mappingStrategy) {
+		logger.debug("DBStore '{}'", mappingStrategy.store.DBAdapter.name)
+		if(mappingStrategy.store.DBAdapter.name == "mysql") {
+			switch attribute.EAttributeType.instanceClass {
+				case typeof(boolean): return value.booleanIntValue
+				case typeof(Boolean): return value.booleanIntValue
+			}
+		}
+
 		if(attribute.EAttributeType instanceof EEnum) {
 			val enum = attribute.EAttributeType as EEnum
 			for (literal : enum.ELiterals) {
@@ -166,5 +173,12 @@ class DataStore {
 			// escape single quotes!
 			return value.replace("'", "''")
 		}
+	}
+	
+	def private getBooleanIntValue(String value) {
+		if (value == "true") {
+			return "1";
+		}
+		return "0";
 	}
 }
