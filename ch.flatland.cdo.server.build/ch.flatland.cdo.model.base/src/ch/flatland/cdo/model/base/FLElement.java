@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.EReference;
  *   <li>{@link ch.flatland.cdo.model.base.FLElement#getName <em>Name</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.FLElement#getUUID <em>UUID</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.FLElement#getID <em>ID</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.base.FLElement#getObjectID <em>Object ID</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.FLElement#getDescription <em>Description</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.FLElement#getTraces <em>Traces</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.FLElement#getProperties <em>Properties</em>}</li>
@@ -160,6 +161,38 @@ public interface FLElement extends CDOObject {
 	 * @generated
 	 */
 	void setID(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Object ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Object ID</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>
+	 * objectID represents a additional technical id.
+	 * </p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Object ID</em>' attribute.
+	 * @see #setObjectID(String)
+	 * @see ch.flatland.cdo.model.base.BasePackage#getFLElement_ObjectID()
+	 * @model unique="false" dataType="ch.flatland.cdo.model.base.FLIdentifier"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Base'"
+	 * @generated
+	 */
+	String getObjectID();
+
+	/**
+	 * Sets the value of the '{@link ch.flatland.cdo.model.base.FLElement#getObjectID <em>Object ID</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Object ID</em>' attribute.
+	 * @see #getObjectID()
+	 * @generated
+	 */
+	void setObjectID(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Description</b></em>' attribute.

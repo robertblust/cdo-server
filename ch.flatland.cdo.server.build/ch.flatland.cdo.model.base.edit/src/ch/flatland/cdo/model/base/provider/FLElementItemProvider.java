@@ -58,6 +58,7 @@ public class FLElementItemProvider
 			addNamePropertyDescriptor(object);
 			addUUIDPropertyDescriptor(object);
 			addIDPropertyDescriptor(object);
+			addObjectIDPropertyDescriptor(object);
 			addDescriptionPropertyDescriptor(object);
 			addTraceToOwnPropertyDescriptor(object);
 			addTraceToUsePropertyDescriptor(object);
@@ -136,6 +137,28 @@ public class FLElementItemProvider
 				 getString("_UI_FLElement_ID_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_FLElement_ID_feature", "_UI_FLElement_type"),
 				 BasePackage.Literals.FL_ELEMENT__ID,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 getString("_UI_BasePropertyCategory"),
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Object ID feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addObjectIDPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_FLElement_objectID_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FLElement_objectID_feature", "_UI_FLElement_type"),
+				 BasePackage.Literals.FL_ELEMENT__OBJECT_ID,
 				 true,
 				 false,
 				 false,
@@ -567,6 +590,7 @@ public class FLElementItemProvider
 			case BasePackage.FL_ELEMENT__NAME:
 			case BasePackage.FL_ELEMENT__UUID:
 			case BasePackage.FL_ELEMENT__ID:
+			case BasePackage.FL_ELEMENT__OBJECT_ID:
 			case BasePackage.FL_ELEMENT__DESCRIPTION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

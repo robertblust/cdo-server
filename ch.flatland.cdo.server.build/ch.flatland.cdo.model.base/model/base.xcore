@@ -43,6 +43,13 @@ abstract class FLElement {
 	 */
 	@GenModel(propertyCategory="Base")
 	FLIdentifier ID
+	/*
+	 * <p>
+	 * objectID represents a additional technical id.
+	 * </p>
+	 */
+	@GenModel(propertyCategory="Base")
+	FLIdentifier objectID
 	@GenModel(propertyMultiLine="true", propertyCategory="Base")
 	FLMarkdown description
 	contains FLTrace[] traces
