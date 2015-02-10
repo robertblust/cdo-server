@@ -147,8 +147,8 @@ class ServerConfig {
 			history = false
 			fullUrl = false
 			meta = false
-			links = true
-			xlinks = true
+			links = false
+			xlinks = false
 			arrayaccessor = false
 			xtraces = false
 		]

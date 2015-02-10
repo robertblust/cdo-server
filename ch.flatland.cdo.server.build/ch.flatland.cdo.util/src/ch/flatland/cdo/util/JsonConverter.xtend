@@ -245,16 +245,16 @@ class JsonConverter {
 		}
 
 		if(object.oid != null) {
+
+			// no meta model, a real object
+			val jsonLinksObject = new JsonObject
+			jsonBaseObject.add(LINKS, jsonLinksObject)
+
+			val jsonSelfLink = new JsonObject
+			jsonSelfLink.addProperty(HREF, object.url)
+			jsonLinksObject.add(SELF, jsonSelfLink)
+			
 			if(jsonConverterConfig.links) {
-
-				// no meta model, a real object
-				val jsonLinksObject = new JsonObject
-				jsonBaseObject.add(LINKS, jsonLinksObject)
-
-				val jsonSelfLink = new JsonObject
-				jsonSelfLink.addProperty(HREF, object.url)
-				jsonLinksObject.add(SELF, jsonSelfLink)
-
 				if(object.eClass.EAllReferences.size > 0) {
 
 					// add reference link
@@ -301,28 +301,27 @@ class JsonConverter {
 				jsonLinksObject.add(ALL_INSTANCES, jsonAllInstancesLink)
 
 			}
+		}
+		if(jsonConverterConfig.xlinks) {
 
-			if(jsonConverterConfig.xlinks) {
+			// xrefs
+			if(object.hasXReferences) {
+				val jsonXLinksObject = new JsonObject
+				jsonBaseObject.add(XLINKS, jsonXLinksObject)
 
-				// xrefs
-				if(object.hasXReferences) {
-					val jsonXLinksObject = new JsonObject
-					jsonBaseObject.add(XLINKS, jsonXLinksObject)
+				// add x reference link
+				val jsonXReferencesLink = new JsonObject
+				jsonXReferencesLink.addProperty(HREF, jsonConverterConfig.serverAddress + ALIAS_XREFS + "/" + object.oid + "/" + REFERENCES + object.getTimestampParam(true))
+				jsonXReferencesLink.addProperty(SIZE, object.allXReferences.size)
+				jsonXLinksObject.add(REFERENCES, jsonXReferencesLink)
 
-					// add x reference link
-					val jsonXReferencesLink = new JsonObject
-					jsonXReferencesLink.addProperty(HREF, jsonConverterConfig.serverAddress + ALIAS_XREFS + "/" + object.oid + "/" + REFERENCES + object.getTimestampParam(true))
-					jsonXReferencesLink.addProperty(SIZE, object.allXReferences.size)
-					jsonXLinksObject.add(REFERENCES, jsonXReferencesLink)
-
-					// add detailed x reference link
-					object.resolveGroupXReferences.forEach [ p1, p2 |
-						val jsonXReferenceLink = new JsonObject
-						jsonXReferenceLink.addProperty(HREF, jsonConverterConfig.serverAddress + ALIAS_XREFS + "/" + object.oid + "/" + REFERENCES + "/" + p1.name + object.getTimestampParam(true))
-						jsonXReferenceLink.addProperty(SIZE, p2.size)
-						jsonXReferencesLink.add(p1.name, jsonXReferenceLink)
-					]
-				}
+				// add detailed x reference link
+				object.resolveGroupXReferences.forEach [ p1, p2 |
+					val jsonXReferenceLink = new JsonObject
+					jsonXReferenceLink.addProperty(HREF, jsonConverterConfig.serverAddress + ALIAS_XREFS + "/" + object.oid + "/" + REFERENCES + "/" + p1.name + object.getTimestampParam(true))
+					jsonXReferenceLink.addProperty(SIZE, p2.size)
+					jsonXReferencesLink.add(p1.name, jsonXReferenceLink)
+				]
 			}
 
 		}
@@ -612,7 +611,7 @@ class JsonConverter {
 				classifier.EAllSuperTypes.forEach [
 					jsonSuperTypesArray.add(new JsonPrimitive(it.type))
 				]
-				if (jsonConverterConfig.meta) {
+				if(jsonConverterConfig.meta) {
 					jsonBaseObject.add(EXTENDS, jsonSuperTypesArray)
 				}
 			}

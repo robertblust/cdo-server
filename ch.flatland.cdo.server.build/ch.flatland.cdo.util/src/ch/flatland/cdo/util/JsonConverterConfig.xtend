@@ -23,8 +23,8 @@ class JsonConverterConfig {
 	var xreferences = false
 	var validate = true
 	var history = false
-	var links = true
-	var xlinks = true
+	var links = false
+	var xlinks = false
 	var xtraces = false
 	var serverAddress = ""
 
