@@ -46,9 +46,11 @@ class DataStore {
 		toProcess.forEach [
 			val mappingStrategy = view.mappingStrategy
 			var tableName = it.type.replace(".", "_")
+			var tableExists = true
 			try {
 				tableName = mappingStrategy.getTableName(it)
 			} catch(Exception e) {
+				tableExists = false
 
 				// TODO find better solution 'Depends on MappingStrategy'
 				// mappingStrategy.getTableName(eClass) causes an Exception
@@ -65,18 +67,21 @@ class DataStore {
 				while(iterator.hasNext) {
 					val obj = iterator.next
 					logger.debug("Hack NoSessionRegisteredException Found '{}'", obj)
+					tableExists = true
 				}
 				iterator.close
 			}
-			val query = view.createQuery("sql", "SELECT DISTINCT CDO_ID " + it.max(req, mappingStrategy) + " FROM " + mappingStrategy.getTableName(it) + " WHERE " + view.temporality + it.filterQuery(req, mappingStrategy) + it.orderBy(req, mappingStrategy))
-			logger.debug("Execute '{}' query '{}'", query.queryLanguage, query.queryString)
-			val iterator = query.getResultAsync(typeof(EObject))
-			while(iterator.hasNext) {
-				val obj = iterator.next
-				logger.debug("Found '{}'", obj)
-				result.add(obj)
+			if(tableExists) {
+				val query = view.createQuery("sql", "SELECT DISTINCT CDO_ID " + it.max(req, mappingStrategy) + " FROM " + mappingStrategy.getTableName(it) + " WHERE " + view.temporality + it.filterQuery(req, mappingStrategy) + it.orderBy(req, mappingStrategy))
+				logger.debug("Execute '{}' query '{}'", query.queryLanguage, query.queryString)
+				val iterator = query.getResultAsync(typeof(EObject))
+				while(iterator.hasNext) {
+					val obj = iterator.next
+					logger.debug("Found '{}'", obj)
+					result.add(obj)
+				}
+				iterator.close
 			}
-			iterator.close
 		]
 
 		// TODO check other opinion 'Rest Standards'
@@ -174,9 +179,9 @@ class DataStore {
 			return value.replace("'", "''")
 		}
 	}
-	
+
 	def private getBooleanIntValue(String value) {
-		if (value == "true") {
+		if(value == "true") {
 			return "1";
 		}
 		return "0";
