@@ -140,7 +140,7 @@ class ServerConfig {
 		]
 
 		val json = ConfigFactory.eINSTANCE.createJson => [
-			validate = true
+			validate = false
 			rreferences = false
 			creferences = false
 			xreferences = false

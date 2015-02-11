@@ -22,7 +22,7 @@
         "httpPort": "8080"
     },
     "json": {
-        "validate": true,
+        "validate": false,
         "rreferences": false,
         "creferences": false,
         "xreferences": false,
