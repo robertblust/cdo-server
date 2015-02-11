@@ -30,7 +30,17 @@
 		<appender-ref ref="STDOUT" />
 	</logger>
 	
+	<logger name="ch.flatland.cdo.util.AbstractServlet" level="DEBUG"
+		additivity="false">
+		<appender-ref ref="STDOUT" />
+	</logger>
+	
 	<logger name="ch.flatland.cdo.util.View" level="DEBUG"
+		additivity="false">
+		<appender-ref ref="STDOUT" />
+	</logger>
+		
+	<logger name="ch.flatland.cdo.service.repoaccess.SessionFactory" level="DEBUG"
 		additivity="false">
 		<appender-ref ref="STDOUT" />
 	</logger>

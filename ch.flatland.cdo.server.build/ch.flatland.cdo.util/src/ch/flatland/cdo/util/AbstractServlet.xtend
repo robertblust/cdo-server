@@ -20,7 +20,7 @@ import org.slf4j.LoggerFactory
 
 class AbstractServlet extends HttpServlet {
 
-	val logger = LoggerFactory.getLogger(this.class)
+	val logger = LoggerFactory.getLogger(AbstractServlet)
 
 	val extension Response = new Response
 
@@ -28,13 +28,13 @@ class AbstractServlet extends HttpServlet {
 
 	override init() throws ServletException {
 		super.init()
-		logger.debug("init")
+		logger.debug("init '{}'", this.class.simpleName)
 	}
 
 	override init(ServletConfig config) throws ServletException {
 		config.servletContext.sessionCookieConfig.name = SESSION_COOKIE
 		super.init(config)
-		logger.debug("init(ServletConfig config) - set cookie name {}", SESSION_COOKIE)
+		logger.debug("init(ServletConfig config) '{}' - set cookie name {}", this.class.simpleName, SESSION_COOKIE)
 	}
 
 	override protected doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
