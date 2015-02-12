@@ -10,6 +10,8 @@
  */
 package ch.flatland.cdo.util
 
+import java.util.Map
+import org.eclipse.emf.common.util.DiagnosticChain
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.util.Diagnostician
 import org.eclipse.emf.edit.EMFEditPlugin
@@ -22,14 +24,19 @@ class FLDiagnostician extends Diagnostician {
 	var EObject context
 
 	def override getObjectLabel(EObject eObject) {
-		if (context != null) {
+		if(context != null) {
 			return ITEM_DELEGATOR.getText(context)
 		}
 		return super.getObjectLabel(eObject)
 	}
-	
+
 	def override validate(EObject eObject) {
 		this.context = eObject
-		return super.validate(eObject)
+		return super.validate(eObject, emptyMap)
 	}
+	
+	def override doValidateContents(EObject eObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		// do not validate contents! it is to expensive in the context of cdo
+		return true
+  	}
 }
