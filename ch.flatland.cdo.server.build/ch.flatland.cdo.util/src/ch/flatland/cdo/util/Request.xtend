@@ -30,7 +30,7 @@ class Request {
 	val public static HTTPS_PROTO = "https"
 	val public static HTTP_PROTO = "http"
 	val public static HTTPS_PORT = "443"
-	val static IGNORED_PARAMS_FOR_FILTER = newArrayList(PARAM_POINT_IN_TIME);
+	val static IGNORED_PARAMS_FOR_FILTER = newArrayList(PARAM_POINT_IN_TIME, PARAM_ORDER_BY);
 
 	def getParameterNameAsListValueNotNull(HttpServletRequest req) {
 		val params = newArrayList

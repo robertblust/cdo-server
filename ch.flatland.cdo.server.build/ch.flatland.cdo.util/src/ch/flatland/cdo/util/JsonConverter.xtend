@@ -218,7 +218,7 @@ class JsonConverter {
 			jsonBaseObject.addProperty(LABEL, ITEM_DELEGATOR.getText(object))
 		}
 
-		jsonBaseObject.addType(object.eClass)
+		jsonBaseObject.addType(object.eClass, stop)
 		jsonBaseObject.addProperty(ICON, jsonConverterConfig.serverAddress + ALIAS_ICON + "/" + object.eClass.type)
 
 		if(object instanceof CDOObject) {
@@ -331,9 +331,10 @@ class JsonConverter {
 				jsonBaseObject.addRevisions(object)
 			}
 		}
-
-		jsonBaseObject.addDiagnosticsAndMeta(object)
-
+		if (!stop) {
+			jsonBaseObject.addDiagnosticsAndMeta(object)
+		}
+		
 		return jsonBaseObject
 	}
 
@@ -420,8 +421,6 @@ class JsonConverter {
 								val valueAsEobject = value as EObject
 								if(valueAsEobject.hasPermission) {
 									val jsonRefObject = valueAsEobject.toJsonObject(true) as JsonObject
-									jsonRefObject.addAttributes(valueAsEobject)
-									jsonRefObject.addDiagnosticsAndMeta(valueAsEobject)
 									jsonReferencesArray.add(jsonRefObject)
 								}
 							}
@@ -436,8 +435,6 @@ class JsonConverter {
 							val valueAsEobject = value as EObject
 							if(valueAsEobject.hasPermission) {
 								val jsonRefObject = valueAsEobject.toJsonObject(true) as JsonObject
-								jsonRefObject.addAttributes(valueAsEobject)
-								jsonRefObject.addDiagnosticsAndMeta(valueAsEobject)
 								jsonReferences.add(name, jsonRefObject)
 								jsonReferencesArrayEntry.add(NAME, new JsonPrimitive(name))
 								jsonReferencesArrayEntry.add(VALUE, jsonRefObject)
@@ -492,7 +489,7 @@ class JsonConverter {
 
 		if(feature instanceof EAttribute) {
 			jsonBaseObject.add(FEATURE, new JsonPrimitive(feature.name))
-			jsonBaseObject.addType(feature.EAttributeType)
+			jsonBaseObject.addType(feature.EAttributeType, false)
 			jsonBaseObject.addJsType(feature.EAttributeType)
 
 			if(feature.EAttributeType instanceof EEnum) {
@@ -519,7 +516,7 @@ class JsonConverter {
 		}
 		if(feature instanceof EReference) {
 			jsonBaseObject.add(FEATURE, new JsonPrimitive(feature.name))
-			jsonBaseObject.addType(feature.EReferenceType)
+			jsonBaseObject.addType(feature.EReferenceType, false)
 			jsonBaseObject.addProperty(ABSTRACT, feature.EReferenceType.abstract)
 			if(feature.EReferenceType.name == "EObject") {
 
@@ -603,7 +600,7 @@ class JsonConverter {
 		}
 	}
 
-	def private addType(JsonObject jsonBaseObject, EClassifier classifier) {
+	def private addType(JsonObject jsonBaseObject, EClassifier classifier, boolean stop) {
 		jsonBaseObject.addProperty(TYPE, classifier.type)
 		if(classifier instanceof EClass) {
 			if(classifier.EAllSuperTypes.size > 0) {
@@ -611,11 +608,11 @@ class JsonConverter {
 				classifier.EAllSuperTypes.forEach [
 					jsonSuperTypesArray.add(new JsonPrimitive(it.type))
 				]
-				if(jsonConverterConfig.meta) {
+				if(jsonConverterConfig.meta && !stop) {
 					jsonBaseObject.add(EXTENDS, jsonSuperTypesArray)
 				}
 			}
-			if(jsonConverterConfig.meta && classifier.getExtendedFrom.size > 0) {
+			if(jsonConverterConfig.meta && !stop && classifier.getExtendedFrom.size > 0) {
 				val jsonExtendedFromArray = new JsonArray
 				classifier.getExtendedFrom.forEach [
 					jsonExtendedFromArray.add(new JsonPrimitive(it.type))
