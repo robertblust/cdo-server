@@ -130,7 +130,7 @@ class JsonConverter {
 
 	def dispatch String safeToJson(Object object) {
 		try {
-			gson.toJson(object)
+			gson.toJson(new MessageResponse(object))
 		} catch(Exception e) {
 			throw new FlatlandException(SC_INTERNAL_SERVER_ERROR, e.message)
 		}
