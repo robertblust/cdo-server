@@ -75,7 +75,7 @@ class StoreFactory {
 		dataSource.password = CONFIG.dataStore.password
 
 		// dbAdapter
-		val dbAdapter = DBUtil.getDBAdapter("mysql")
+		val dbAdapter = new CustomMYSQLAdapter
 
 		// db connection
 		val dbConnectionProvider = dbAdapter.createConnectionProvider(dataSource)
