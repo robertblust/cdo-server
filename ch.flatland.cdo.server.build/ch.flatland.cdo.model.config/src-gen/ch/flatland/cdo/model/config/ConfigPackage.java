@@ -260,13 +260,22 @@ public interface ConfigPackage extends EPackage {
 	int AUTHENTICATOR__ADMIN_PASSWORD = 5;
 
 	/**
+	 * The feature id for the '<em><b>Check SSL</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AUTHENTICATOR__CHECK_SSL = 6;
+
+	/**
 	 * The number of structural features of the '<em>Authenticator</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int AUTHENTICATOR_FEATURE_COUNT = 6;
+	int AUTHENTICATOR_FEATURE_COUNT = 7;
 
 	/**
 	 * The number of operations of the '<em>Authenticator</em>' class.
@@ -694,6 +703,17 @@ public interface ConfigPackage extends EPackage {
 	EAttribute getAuthenticator_AdminPassword();
 
 	/**
+	 * Returns the meta object for the attribute '{@link ch.flatland.cdo.model.config.Authenticator#isCheckSSL <em>Check SSL</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Check SSL</em>'.
+	 * @see ch.flatland.cdo.model.config.Authenticator#isCheckSSL()
+	 * @see #getAuthenticator()
+	 * @generated
+	 */
+	EAttribute getAuthenticator_CheckSSL();
+
+	/**
 	 * Returns the meta object for class '{@link ch.flatland.cdo.model.config.Binding <em>Binding</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1081,6 +1101,14 @@ public interface ConfigPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute AUTHENTICATOR__ADMIN_PASSWORD = eINSTANCE.getAuthenticator_AdminPassword();
+
+		/**
+		 * The meta object literal for the '<em><b>Check SSL</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute AUTHENTICATOR__CHECK_SSL = eINSTANCE.getAuthenticator_CheckSSL();
 
 		/**
 		 * The meta object literal for the '{@link ch.flatland.cdo.model.config.impl.BindingImpl <em>Binding</em>}' class.

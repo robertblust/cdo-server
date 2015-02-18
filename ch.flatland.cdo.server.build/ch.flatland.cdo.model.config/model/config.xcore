@@ -27,6 +27,7 @@ class Authenticator {
 	String userIdField
 	String readOnlyPassword
 	String adminPassword
+	boolean checkSSL
 }
 
 enum AuthenticatorType {

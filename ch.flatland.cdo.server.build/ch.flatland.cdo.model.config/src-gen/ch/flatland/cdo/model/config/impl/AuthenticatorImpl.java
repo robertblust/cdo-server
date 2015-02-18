@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link ch.flatland.cdo.model.config.impl.AuthenticatorImpl#getUserIdField <em>User Id Field</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.config.impl.AuthenticatorImpl#getReadOnlyPassword <em>Read Only Password</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.config.impl.AuthenticatorImpl#getAdminPassword <em>Admin Password</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.config.impl.AuthenticatorImpl#isCheckSSL <em>Check SSL</em>}</li>
  * </ul>
  * </p>
  *
@@ -151,6 +152,26 @@ public class AuthenticatorImpl extends MinimalEObjectImpl.Container implements A
 	 * @ordered
 	 */
 	protected String adminPassword = ADMIN_PASSWORD_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isCheckSSL() <em>Check SSL</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isCheckSSL()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean CHECK_SSL_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isCheckSSL() <em>Check SSL</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isCheckSSL()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean checkSSL = CHECK_SSL_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -302,6 +323,27 @@ public class AuthenticatorImpl extends MinimalEObjectImpl.Container implements A
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isCheckSSL() {
+		return checkSSL;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setCheckSSL(boolean newCheckSSL) {
+		boolean oldCheckSSL = checkSSL;
+		checkSSL = newCheckSSL;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ConfigPackage.AUTHENTICATOR__CHECK_SSL, oldCheckSSL, checkSSL));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -317,6 +359,8 @@ public class AuthenticatorImpl extends MinimalEObjectImpl.Container implements A
 				return getReadOnlyPassword();
 			case ConfigPackage.AUTHENTICATOR__ADMIN_PASSWORD:
 				return getAdminPassword();
+			case ConfigPackage.AUTHENTICATOR__CHECK_SSL:
+				return isCheckSSL();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -346,6 +390,9 @@ public class AuthenticatorImpl extends MinimalEObjectImpl.Container implements A
 				return;
 			case ConfigPackage.AUTHENTICATOR__ADMIN_PASSWORD:
 				setAdminPassword((String)newValue);
+				return;
+			case ConfigPackage.AUTHENTICATOR__CHECK_SSL:
+				setCheckSSL((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -377,6 +424,9 @@ public class AuthenticatorImpl extends MinimalEObjectImpl.Container implements A
 			case ConfigPackage.AUTHENTICATOR__ADMIN_PASSWORD:
 				setAdminPassword(ADMIN_PASSWORD_EDEFAULT);
 				return;
+			case ConfigPackage.AUTHENTICATOR__CHECK_SSL:
+				setCheckSSL(CHECK_SSL_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -401,6 +451,8 @@ public class AuthenticatorImpl extends MinimalEObjectImpl.Container implements A
 				return READ_ONLY_PASSWORD_EDEFAULT == null ? readOnlyPassword != null : !READ_ONLY_PASSWORD_EDEFAULT.equals(readOnlyPassword);
 			case ConfigPackage.AUTHENTICATOR__ADMIN_PASSWORD:
 				return ADMIN_PASSWORD_EDEFAULT == null ? adminPassword != null : !ADMIN_PASSWORD_EDEFAULT.equals(adminPassword);
+			case ConfigPackage.AUTHENTICATOR__CHECK_SSL:
+				return checkSSL != CHECK_SSL_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -427,6 +479,8 @@ public class AuthenticatorImpl extends MinimalEObjectImpl.Container implements A
 		result.append(readOnlyPassword);
 		result.append(", adminPassword: ");
 		result.append(adminPassword);
+		result.append(", checkSSL: ");
+		result.append(checkSSL);
 		result.append(')');
 		return result.toString();
 	}

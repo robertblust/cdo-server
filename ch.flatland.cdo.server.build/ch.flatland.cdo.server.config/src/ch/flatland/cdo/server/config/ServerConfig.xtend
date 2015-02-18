@@ -129,6 +129,7 @@ class ServerConfig {
 			userIdField = "empid"
 			readOnlyPassword = "password"
 			adminPassword = "password"
+			checkSSL = false
 		]
 
 		val binding = ConfigFactory.eINSTANCE.createBinding => [

@@ -12,7 +12,8 @@
         "domainBase": "ou=person,o=FLATLAND,c=CH",
         "userIdField": "empid",
         "readOnlyPassword": "password",
-        "adminPassword": "password"
+        "adminPassword": "password",
+        "checkSSL": false
     },
     "binding": {
         "ip": "0.0.0.0",

@@ -19,6 +19,8 @@ import static ch.flatland.cdo.util.Constants.*
 import static javax.servlet.http.HttpServletRequest.*
 import static javax.servlet.http.HttpServletResponse.*
 
+import static ch.flatland.cdo.server.config.ServerConfig.*
+
 class Request {
 
 	val logger = LoggerFactory.getLogger(this.class)
@@ -164,6 +166,9 @@ class Request {
 	}
 
 	def isSecureConnection(HttpServletRequest req) {
+		if (CONFIG.authenticator.checkSSL == false) {
+			return true
+		}
 		if(req.secure) {
 			return true
 		}

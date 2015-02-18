@@ -308,6 +308,15 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getAuthenticator_CheckSSL() {
+		return (EAttribute)authenticatorEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getBinding() {
 		return bindingEClass;
 	}
@@ -531,6 +540,7 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 		createEAttribute(authenticatorEClass, AUTHENTICATOR__USER_ID_FIELD);
 		createEAttribute(authenticatorEClass, AUTHENTICATOR__READ_ONLY_PASSWORD);
 		createEAttribute(authenticatorEClass, AUTHENTICATOR__ADMIN_PASSWORD);
+		createEAttribute(authenticatorEClass, AUTHENTICATOR__CHECK_SSL);
 
 		bindingEClass = createEClass(BINDING);
 		createEAttribute(bindingEClass, BINDING__IP);
@@ -610,6 +620,7 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 		initEAttribute(getAuthenticator_UserIdField(), theEcorePackage.getEString(), "userIdField", null, 0, 1, Authenticator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAuthenticator_ReadOnlyPassword(), theEcorePackage.getEString(), "readOnlyPassword", null, 0, 1, Authenticator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAuthenticator_AdminPassword(), theEcorePackage.getEString(), "adminPassword", null, 0, 1, Authenticator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAuthenticator_CheckSSL(), theEcorePackage.getEBoolean(), "checkSSL", null, 0, 1, Authenticator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(bindingEClass, Binding.class, "Binding", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getBinding_Ip(), theEcorePackage.getEString(), "ip", null, 1, 1, Binding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
