@@ -135,6 +135,14 @@ class JsonConverter {
 			throw new FlatlandException(SC_INTERNAL_SERVER_ERROR, e.message)
 		}
 	}
+	
+	def dispatch String safeToJson(Object[] object) {
+		try {
+			gson.toJson(new MessageResponse(object))
+		} catch(Exception e) {
+			throw new FlatlandException(SC_INTERNAL_SERVER_ERROR, e.message)
+		}
+	}
 
 	def dispatch String safeToJson(List<EObject> objects) {
 		try {
@@ -660,7 +668,7 @@ class JsonConverter {
 		return ""
 	}
 
-	def private getOid(EObject object) {
+	def getOid(EObject object) {
 		val uri = EcoreUtil.getURI(object)
 		try {
 			return Long.parseLong(uri.fragment.replace("L", ""))
