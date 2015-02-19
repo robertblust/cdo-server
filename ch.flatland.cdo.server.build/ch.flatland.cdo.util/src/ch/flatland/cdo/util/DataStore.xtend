@@ -11,6 +11,7 @@
 package ch.flatland.cdo.util
 
 import java.util.List
+import java.util.Map
 import javax.servlet.http.HttpServletRequest
 import org.eclipse.emf.cdo.server.IRepository
 import org.eclipse.emf.cdo.server.db.IDBStore
@@ -29,7 +30,7 @@ class DataStore {
 	val extension Request = new Request
 	val extension EMF = new EMF
 
-	def findByType(CDOView view, String type, HttpServletRequest req) {
+	def findByType(CDOView view, String type, HttpServletRequest req, Map<String, String[]> filters) {
 
 		// TODO find better solution 'Depends on Relation DB Store' 
 		//sql depends on mapping strategy
@@ -72,12 +73,13 @@ class DataStore {
 				iterator.close
 			}
 			if(tableExists) {
-				val query = view.createQuery("sql", "SELECT DISTINCT CDO_ID " + it.max(req, mappingStrategy) + " FROM " + mappingStrategy.getTableName(it) + " WHERE " + view.temporality + it.filterQuery(req, mappingStrategy) + it.orderBy(req, mappingStrategy))
+				val query = view.createQuery("sql", "SELECT DISTINCT CDO_ID " + it.max(req, mappingStrategy) + " FROM " + mappingStrategy.getTableName(it) + " WHERE " + view.temporality + it.filterQuery(req, mappingStrategy, filters) + it.orderBy(req, mappingStrategy))
 				logger.debug("Execute '{}' query '{}'", query.queryLanguage, query.queryString)
 				val iterator = query.getResultAsync(typeof(EObject))
 				while(iterator.hasNext) {
 					val obj = iterator.next
-					logger.debug("Found '{}'", obj)
+
+					//logger.debug("Found '{}'", obj)
 					result.add(obj)
 				}
 				iterator.close
@@ -97,10 +99,10 @@ class DataStore {
 		}
 	}
 
-	def private filterQuery(EClass eClass, HttpServletRequest req, IMappingStrategy mappingStrategy) {
+	def private filterQuery(EClass eClass, HttpServletRequest req, IMappingStrategy mappingStrategy, Map<String, String[]> filters) {
 		val builder = new StringBuilder
 		var kind = "AND"
-		if(req.xor) {
+		if(req.xor || filters != null && filters.keySet.contains("or")) {
 			kind = "OR"
 		}
 		val params = req.parameterNameAsListValueNotNull
@@ -113,7 +115,22 @@ class DataStore {
 				}
 			}
 		}
-		if(req.xor && builder.length > 0) {
+		val finalKind = kind
+		if(filters != null) {
+			filters.keySet.forEach [
+				if(filters.get(it) != null) {
+					val attribute = eClass.getAttribute(it)
+					if(attribute != null) {
+						logger.debug("Parameter name for filter '{}'", it)
+						for (value : filters.get(it)) {
+							builder.append(" " + finalKind + " LOWER(" + mappingStrategy.getFieldName(attribute) + ") LIKE '%" + attribute.getValue(value, mappingStrategy).toLowerCase + "%'")
+						}
+					}
+				}
+			]
+		}
+
+		if(kind == "OR" && builder.length > 0) {
 			return builder.toString.replaceFirst("OR ", "AND (") + ")"
 		}
 		return builder.toString
