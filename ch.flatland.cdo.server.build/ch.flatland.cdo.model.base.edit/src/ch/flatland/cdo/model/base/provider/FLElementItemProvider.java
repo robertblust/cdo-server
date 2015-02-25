@@ -569,6 +569,10 @@ public class FLElementItemProvider
 	@Override
 	public String getText(Object object) {
 		String label = ((FLElement)object).getName();
+		String id =  ((FLElement)object).getID();
+		if (id != null) {
+			label = "[" + id + "] " + label;
+		}
 		return label == null || label.length() == 0 ?
 			"?" :
 			label;
