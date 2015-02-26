@@ -42,6 +42,7 @@ import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
  *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getUUID <em>UUID</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getID <em>ID</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getObjectID <em>Object ID</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getRevisionID <em>Revision ID</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getTraces <em>Traces</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getProperties <em>Properties</em>}</li>
@@ -120,6 +121,16 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 	 * @ordered
 	 */
 	protected static final String OBJECT_ID_EDEFAULT = null;
+
+	/**
+	 * The default value of the '{@link #getRevisionID() <em>Revision ID</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRevisionID()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String REVISION_ID_EDEFAULT = null;
 
 	/**
 	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
@@ -230,6 +241,24 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 	 */
 	public void setObjectID(String newObjectID) {
 		eDynamicSet(BasePackage.FL_ELEMENT__OBJECT_ID, BasePackage.Literals.FL_ELEMENT__OBJECT_ID, newObjectID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getRevisionID() {
+		return (String)eDynamicGet(BasePackage.FL_ELEMENT__REVISION_ID, BasePackage.Literals.FL_ELEMENT__REVISION_ID, true, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setRevisionID(String newRevisionID) {
+		eDynamicSet(BasePackage.FL_ELEMENT__REVISION_ID, BasePackage.Literals.FL_ELEMENT__REVISION_ID, newRevisionID);
 	}
 
 	/**
@@ -690,6 +719,8 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 				return getID();
 			case BasePackage.FL_ELEMENT__OBJECT_ID:
 				return getObjectID();
+			case BasePackage.FL_ELEMENT__REVISION_ID:
+				return getRevisionID();
 			case BasePackage.FL_ELEMENT__DESCRIPTION:
 				return getDescription();
 			case BasePackage.FL_ELEMENT__TRACES:
@@ -781,6 +812,9 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 			case BasePackage.FL_ELEMENT__OBJECT_ID:
 				setObjectID((String)newValue);
 				return;
+			case BasePackage.FL_ELEMENT__REVISION_ID:
+				setRevisionID((String)newValue);
+				return;
 			case BasePackage.FL_ELEMENT__DESCRIPTION:
 				setDescription((String)newValue);
 				return;
@@ -816,6 +850,9 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 			case BasePackage.FL_ELEMENT__OBJECT_ID:
 				setObjectID(OBJECT_ID_EDEFAULT);
 				return;
+			case BasePackage.FL_ELEMENT__REVISION_ID:
+				setRevisionID(REVISION_ID_EDEFAULT);
+				return;
 			case BasePackage.FL_ELEMENT__DESCRIPTION:
 				setDescription(DESCRIPTION_EDEFAULT);
 				return;
@@ -845,6 +882,8 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 				return ID_EDEFAULT == null ? getID() != null : !ID_EDEFAULT.equals(getID());
 			case BasePackage.FL_ELEMENT__OBJECT_ID:
 				return OBJECT_ID_EDEFAULT == null ? getObjectID() != null : !OBJECT_ID_EDEFAULT.equals(getObjectID());
+			case BasePackage.FL_ELEMENT__REVISION_ID:
+				return REVISION_ID_EDEFAULT == null ? getRevisionID() != null : !REVISION_ID_EDEFAULT.equals(getRevisionID());
 			case BasePackage.FL_ELEMENT__DESCRIPTION:
 				return DESCRIPTION_EDEFAULT == null ? getDescription() != null : !DESCRIPTION_EDEFAULT.equals(getDescription());
 			case BasePackage.FL_ELEMENT__TRACES:

@@ -50,6 +50,8 @@ abstract class FLElement {
 	 */
 	@GenModel(propertyCategory="Base")
 	FLIdentifier objectID
+	@GenModel(propertyCategory="Base")
+	FLIdentifier revisionID
 	@GenModel(propertyMultiLine="true", propertyCategory="Base")
 	FLMarkdown description
 	contains FLTrace[] traces
