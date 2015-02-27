@@ -68,6 +68,10 @@ public class BaseAdapterFactory extends AdapterFactoryImpl {
 	protected BaseSwitch<Adapter> modelSwitch =
 		new BaseSwitch<Adapter>() {
 			@Override
+			public Adapter caseFLID(FLID object) {
+				return createFLIDAdapter();
+			}
+			@Override
 			public Adapter caseFLElement(FLElement object) {
 				return createFLElementAdapter();
 			}
@@ -102,6 +106,20 @@ public class BaseAdapterFactory extends AdapterFactoryImpl {
 		return modelSwitch.doSwitch((EObject)target);
 	}
 
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ch.flatland.cdo.model.base.FLID <em>FLID</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ch.flatland.cdo.model.base.FLID
+	 * @generated
+	 */
+	public Adapter createFLIDAdapter() {
+		return null;
+	}
 
 	/**
 	 * Creates a new adapter for an object of class '{@link ch.flatland.cdo.model.base.FLElement <em>FL Element</em>}'.

@@ -10,8 +10,8 @@
 package ch.flatland.cdo.model.base
 
 import org.eclipse.emf.common.util.BasicEList
-import org.eclipse.emf.ecore.EReference
 import org.eclipse.emf.ecore.EEList
+import org.eclipse.emf.ecore.EReference
 
 /*
  * <p>
@@ -19,9 +19,7 @@ import org.eclipse.emf.ecore.EEList
  * Provides generic features.
  * <p>
  */
-abstract class FLElement {
-	@GenModel(propertyCategory="Base")
-	String[1] name
+abstract class FLID {
 	/*
 	 * <p>
 	 * A universally unique identifier (UUID) is an identifier standard used in software construction.
@@ -32,7 +30,7 @@ abstract class FLElement {
 	 * "practically unique" rather than "guaranteed unique".
 	 * </p>
 	 */
-	@GenModel(propertyCategory="Base")
+	@GenModel(propertyCategory="ID")
 	FLIdentifier UUID
 	/*
 	 * <p>
@@ -41,17 +39,22 @@ abstract class FLElement {
 	 * abstract level. It depends on the actual concrete sub type.
 	 * </p>
 	 */
-	@GenModel(propertyCategory="Base")
+	@GenModel(propertyCategory="ID")
 	FLIdentifier ID
 	/*
 	 * <p>
 	 * objectID represents a additional technical id.
 	 * </p>
 	 */
-	@GenModel(propertyCategory="Base")
+	@GenModel(propertyCategory="ID")
 	FLIdentifier objectID
-	@GenModel(propertyCategory="Base")
+	@GenModel(propertyCategory="ID")
 	FLIdentifier revisionID
+}
+
+abstract class FLElement extends FLID{
+	@GenModel(propertyCategory="Base")
+	String[1] name
 	@GenModel(propertyMultiLine="true", propertyCategory="Base")
 	FLMarkdown description
 	contains FLTrace[] traces
@@ -207,7 +210,6 @@ abstract class FLElement {
 		}
 		return sources
 	}
-	
 	/*
 	 * <p>
 	 * Generic operation to resolve xRefs for an eReference.

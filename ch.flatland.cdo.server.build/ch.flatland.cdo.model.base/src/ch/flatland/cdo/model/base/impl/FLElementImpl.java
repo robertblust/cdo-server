@@ -25,7 +25,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.emf.internal.cdo.CDOObjectImpl;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
@@ -39,10 +38,6 @@ import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
  * The following features are implemented:
  * <ul>
  *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getName <em>Name</em>}</li>
- *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getUUID <em>UUID</em>}</li>
- *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getID <em>ID</em>}</li>
- *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getObjectID <em>Object ID</em>}</li>
- *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getRevisionID <em>Revision ID</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getTraces <em>Traces</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getProperties <em>Properties</em>}</li>
@@ -81,7 +76,7 @@ import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
  *
  * @generated
  */
-public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
+public abstract class FLElementImpl extends FLIDImpl implements FLElement {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -91,46 +86,6 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 	 * @ordered
 	 */
 	protected static final String NAME_EDEFAULT = null;
-
-	/**
-	 * The default value of the '{@link #getUUID() <em>UUID</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getUUID()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String UUID_EDEFAULT = null;
-
-	/**
-	 * The default value of the '{@link #getID() <em>ID</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getID()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String ID_EDEFAULT = null;
-
-	/**
-	 * The default value of the '{@link #getObjectID() <em>Object ID</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getObjectID()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String OBJECT_ID_EDEFAULT = null;
-
-	/**
-	 * The default value of the '{@link #getRevisionID() <em>Revision ID</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getRevisionID()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String REVISION_ID_EDEFAULT = null;
 
 	/**
 	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
@@ -166,16 +121,6 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	protected int eStaticFeatureCount() {
-		return 0;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public String getName() {
 		return (String)eDynamicGet(BasePackage.FL_ELEMENT__NAME, BasePackage.Literals.FL_ELEMENT__NAME, true, true);
 	}
@@ -187,78 +132,6 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 	 */
 	public void setName(String newName) {
 		eDynamicSet(BasePackage.FL_ELEMENT__NAME, BasePackage.Literals.FL_ELEMENT__NAME, newName);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getUUID() {
-		return (String)eDynamicGet(BasePackage.FL_ELEMENT__UUID, BasePackage.Literals.FL_ELEMENT__UUID, true, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setUUID(String newUUID) {
-		eDynamicSet(BasePackage.FL_ELEMENT__UUID, BasePackage.Literals.FL_ELEMENT__UUID, newUUID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getID() {
-		return (String)eDynamicGet(BasePackage.FL_ELEMENT__ID, BasePackage.Literals.FL_ELEMENT__ID, true, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setID(String newID) {
-		eDynamicSet(BasePackage.FL_ELEMENT__ID, BasePackage.Literals.FL_ELEMENT__ID, newID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getObjectID() {
-		return (String)eDynamicGet(BasePackage.FL_ELEMENT__OBJECT_ID, BasePackage.Literals.FL_ELEMENT__OBJECT_ID, true, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setObjectID(String newObjectID) {
-		eDynamicSet(BasePackage.FL_ELEMENT__OBJECT_ID, BasePackage.Literals.FL_ELEMENT__OBJECT_ID, newObjectID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getRevisionID() {
-		return (String)eDynamicGet(BasePackage.FL_ELEMENT__REVISION_ID, BasePackage.Literals.FL_ELEMENT__REVISION_ID, true, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setRevisionID(String newRevisionID) {
-		eDynamicSet(BasePackage.FL_ELEMENT__REVISION_ID, BasePackage.Literals.FL_ELEMENT__REVISION_ID, newRevisionID);
 	}
 
 	/**
@@ -713,14 +586,6 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 		switch (featureID) {
 			case BasePackage.FL_ELEMENT__NAME:
 				return getName();
-			case BasePackage.FL_ELEMENT__UUID:
-				return getUUID();
-			case BasePackage.FL_ELEMENT__ID:
-				return getID();
-			case BasePackage.FL_ELEMENT__OBJECT_ID:
-				return getObjectID();
-			case BasePackage.FL_ELEMENT__REVISION_ID:
-				return getRevisionID();
 			case BasePackage.FL_ELEMENT__DESCRIPTION:
 				return getDescription();
 			case BasePackage.FL_ELEMENT__TRACES:
@@ -803,18 +668,6 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 			case BasePackage.FL_ELEMENT__NAME:
 				setName((String)newValue);
 				return;
-			case BasePackage.FL_ELEMENT__UUID:
-				setUUID((String)newValue);
-				return;
-			case BasePackage.FL_ELEMENT__ID:
-				setID((String)newValue);
-				return;
-			case BasePackage.FL_ELEMENT__OBJECT_ID:
-				setObjectID((String)newValue);
-				return;
-			case BasePackage.FL_ELEMENT__REVISION_ID:
-				setRevisionID((String)newValue);
-				return;
 			case BasePackage.FL_ELEMENT__DESCRIPTION:
 				setDescription((String)newValue);
 				return;
@@ -841,18 +694,6 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 			case BasePackage.FL_ELEMENT__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case BasePackage.FL_ELEMENT__UUID:
-				setUUID(UUID_EDEFAULT);
-				return;
-			case BasePackage.FL_ELEMENT__ID:
-				setID(ID_EDEFAULT);
-				return;
-			case BasePackage.FL_ELEMENT__OBJECT_ID:
-				setObjectID(OBJECT_ID_EDEFAULT);
-				return;
-			case BasePackage.FL_ELEMENT__REVISION_ID:
-				setRevisionID(REVISION_ID_EDEFAULT);
-				return;
 			case BasePackage.FL_ELEMENT__DESCRIPTION:
 				setDescription(DESCRIPTION_EDEFAULT);
 				return;
@@ -876,14 +717,6 @@ public abstract class FLElementImpl extends CDOObjectImpl implements FLElement {
 		switch (featureID) {
 			case BasePackage.FL_ELEMENT__NAME:
 				return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT.equals(getName());
-			case BasePackage.FL_ELEMENT__UUID:
-				return UUID_EDEFAULT == null ? getUUID() != null : !UUID_EDEFAULT.equals(getUUID());
-			case BasePackage.FL_ELEMENT__ID:
-				return ID_EDEFAULT == null ? getID() != null : !ID_EDEFAULT.equals(getID());
-			case BasePackage.FL_ELEMENT__OBJECT_ID:
-				return OBJECT_ID_EDEFAULT == null ? getObjectID() != null : !OBJECT_ID_EDEFAULT.equals(getObjectID());
-			case BasePackage.FL_ELEMENT__REVISION_ID:
-				return REVISION_ID_EDEFAULT == null ? getRevisionID() != null : !REVISION_ID_EDEFAULT.equals(getRevisionID());
 			case BasePackage.FL_ELEMENT__DESCRIPTION:
 				return DESCRIPTION_EDEFAULT == null ? getDescription() != null : !DESCRIPTION_EDEFAULT.equals(getDescription());
 			case BasePackage.FL_ELEMENT__TRACES:

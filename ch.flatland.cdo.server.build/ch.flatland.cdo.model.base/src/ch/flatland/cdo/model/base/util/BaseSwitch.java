@@ -66,9 +66,16 @@ public class BaseSwitch<T> extends Switch<T> {
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
+			case BasePackage.FLID: {
+				FLID flid = (FLID)theEObject;
+				T result = caseFLID(flid);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case BasePackage.FL_ELEMENT: {
 				FLElement flElement = (FLElement)theEObject;
 				T result = caseFLElement(flElement);
+				if (result == null) result = caseFLID(flElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -76,6 +83,7 @@ public class BaseSwitch<T> extends Switch<T> {
 				FLPackage flPackage = (FLPackage)theEObject;
 				T result = caseFLPackage(flPackage);
 				if (result == null) result = caseFLElement(flPackage);
+				if (result == null) result = caseFLID(flPackage);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -93,6 +101,21 @@ public class BaseSwitch<T> extends Switch<T> {
 			}
 			default: return defaultCase(theEObject);
 		}
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>FLID</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>FLID</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseFLID(FLID object) {
+		return null;
 	}
 
 	/**

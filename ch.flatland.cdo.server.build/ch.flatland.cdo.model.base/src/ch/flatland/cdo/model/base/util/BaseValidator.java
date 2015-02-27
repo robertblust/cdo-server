@@ -88,6 +88,8 @@ public class BaseValidator extends EObjectValidator {
 	@Override
 	protected boolean validate(int classifierID, Object value, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		switch (classifierID) {
+			case BasePackage.FLID:
+				return validateFLID((FLID)value, diagnostics, context);
 			case BasePackage.FL_ELEMENT:
 				return validateFLElement((FLElement)value, diagnostics, context);
 			case BasePackage.FL_PACKAGE:
@@ -105,6 +107,15 @@ public class BaseValidator extends EObjectValidator {
 			default:
 				return true;
 		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateFLID(FLID flid, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint((EObject)flid, diagnostics, context);
 	}
 
 	/**
