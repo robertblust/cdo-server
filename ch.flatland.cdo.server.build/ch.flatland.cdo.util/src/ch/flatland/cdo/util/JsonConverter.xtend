@@ -164,7 +164,7 @@ class JsonConverter {
 		} catch(NoPermissionException npe) {
 			throw new FlatlandException(SC_FORBIDDEN, npe.message)
 		} catch(Exception e) {
-			throw new FlatlandException(SC_BAD_REQUEST, e.message)
+			throw new FlatlandException(SC_INTERNAL_SERVER_ERROR, e.message)
 		}
 	}
 
@@ -181,7 +181,7 @@ class JsonConverter {
 		} catch(NoPermissionException npe) {
 			throw new FlatlandException(SC_FORBIDDEN, npe.message)
 		} catch(Exception e) {
-			throw new FlatlandException(SC_BAD_REQUEST, e.message)
+			throw new FlatlandException(SC_INTERNAL_SERVER_ERROR, e.message)
 		}
 	}
 
