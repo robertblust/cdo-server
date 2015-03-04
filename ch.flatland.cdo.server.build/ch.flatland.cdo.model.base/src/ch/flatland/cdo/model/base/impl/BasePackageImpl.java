@@ -209,6 +209,15 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getFLID_Version() {
+		return (EAttribute)flidEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getFLElement() {
 		return flElementEClass;
 	}
@@ -714,6 +723,7 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 		createEAttribute(flidEClass, FLID__ID);
 		createEAttribute(flidEClass, FLID__OBJECT_ID);
 		createEAttribute(flidEClass, FLID__REVISION_ID);
+		createEAttribute(flidEClass, FLID__VERSION);
 
 		flElementEClass = createEClass(FL_ELEMENT);
 		createEAttribute(flElementEClass, FL_ELEMENT__NAME);
@@ -817,6 +827,7 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 		initEAttribute(getFLID_ID(), this.getFLIdentifier(), "ID", null, 0, 1, ch.flatland.cdo.model.base.FLID.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getFLID_ObjectID(), this.getFLIdentifier(), "objectID", null, 0, 1, ch.flatland.cdo.model.base.FLID.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getFLID_RevisionID(), this.getFLIdentifier(), "revisionID", null, 0, 1, ch.flatland.cdo.model.base.FLID.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFLID_Version(), theEcorePackage.getELong(), "version", null, 0, 1, ch.flatland.cdo.model.base.FLID.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(flElementEClass, FLElement.class, "FLElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getFLElement_Name(), theEcorePackage.getEString(), "name", null, 1, 1, FLElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

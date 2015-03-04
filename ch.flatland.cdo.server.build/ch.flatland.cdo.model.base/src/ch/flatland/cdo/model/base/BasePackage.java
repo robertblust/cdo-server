@@ -107,13 +107,22 @@ public interface BasePackage extends EPackage {
 	int FLID__REVISION_ID = 3;
 
 	/**
+	 * The feature id for the '<em><b>Version</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FLID__VERSION = 4;
+
+	/**
 	 * The number of structural features of the '<em>FLID</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FLID_FEATURE_COUNT = 4;
+	int FLID_FEATURE_COUNT = 5;
 
 	/**
 	 * The number of operations of the '<em>FLID</em>' class.
@@ -169,6 +178,15 @@ public interface BasePackage extends EPackage {
 	 * @ordered
 	 */
 	int FL_ELEMENT__REVISION_ID = FLID__REVISION_ID;
+
+	/**
+	 * The feature id for the '<em><b>Version</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_ELEMENT__VERSION = FLID__VERSION;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -566,6 +584,15 @@ public interface BasePackage extends EPackage {
 	 * @ordered
 	 */
 	int FL_PACKAGE__REVISION_ID = FL_ELEMENT__REVISION_ID;
+
+	/**
+	 * The feature id for the '<em><b>Version</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_PACKAGE__VERSION = FL_ELEMENT__VERSION;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1139,6 +1166,17 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getFLID_RevisionID();
+
+	/**
+	 * Returns the meta object for the attribute '{@link ch.flatland.cdo.model.base.FLID#getVersion <em>Version</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Version</em>'.
+	 * @see ch.flatland.cdo.model.base.FLID#getVersion()
+	 * @see #getFLID()
+	 * @generated
+	 */
+	EAttribute getFLID_Version();
 
 	/**
 	 * Returns the meta object for class '{@link ch.flatland.cdo.model.base.FLElement <em>FL Element</em>}'.
@@ -1778,6 +1816,14 @@ public interface BasePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute FLID__REVISION_ID = eINSTANCE.getFLID_RevisionID();
+
+		/**
+		 * The meta object literal for the '<em><b>Version</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FLID__VERSION = eINSTANCE.getFLID_Version();
 
 		/**
 		 * The meta object literal for the '{@link ch.flatland.cdo.model.base.impl.FLElementImpl <em>FL Element</em>}' class.

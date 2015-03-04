@@ -20,6 +20,7 @@ import org.eclipse.emf.internal.cdo.CDOObjectImpl;
  *   <li>{@link ch.flatland.cdo.model.base.impl.FLIDImpl#getID <em>ID</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.impl.FLIDImpl#getObjectID <em>Object ID</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.impl.FLIDImpl#getRevisionID <em>Revision ID</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.base.impl.FLIDImpl#getVersion <em>Version</em>}</li>
  * </ul>
  * </p>
  *
@@ -65,6 +66,16 @@ public abstract class FLIDImpl extends CDOObjectImpl implements FLID {
 	 * @ordered
 	 */
 	protected static final String REVISION_ID_EDEFAULT = null;
+
+	/**
+	 * The default value of the '{@link #getVersion() <em>Version</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getVersion()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final long VERSION_EDEFAULT = 0L;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -172,6 +183,24 @@ public abstract class FLIDImpl extends CDOObjectImpl implements FLID {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public long getVersion() {
+		return (Long)eDynamicGet(BasePackage.FLID__VERSION, BasePackage.Literals.FLID__VERSION, true, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setVersion(long newVersion) {
+		eDynamicSet(BasePackage.FLID__VERSION, BasePackage.Literals.FLID__VERSION, newVersion);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -183,6 +212,8 @@ public abstract class FLIDImpl extends CDOObjectImpl implements FLID {
 				return getObjectID();
 			case BasePackage.FLID__REVISION_ID:
 				return getRevisionID();
+			case BasePackage.FLID__VERSION:
+				return getVersion();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -206,6 +237,9 @@ public abstract class FLIDImpl extends CDOObjectImpl implements FLID {
 				return;
 			case BasePackage.FLID__REVISION_ID:
 				setRevisionID((String)newValue);
+				return;
+			case BasePackage.FLID__VERSION:
+				setVersion((Long)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -231,6 +265,9 @@ public abstract class FLIDImpl extends CDOObjectImpl implements FLID {
 			case BasePackage.FLID__REVISION_ID:
 				setRevisionID(REVISION_ID_EDEFAULT);
 				return;
+			case BasePackage.FLID__VERSION:
+				setVersion(VERSION_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -251,6 +288,8 @@ public abstract class FLIDImpl extends CDOObjectImpl implements FLID {
 				return OBJECT_ID_EDEFAULT == null ? getObjectID() != null : !OBJECT_ID_EDEFAULT.equals(getObjectID());
 			case BasePackage.FLID__REVISION_ID:
 				return REVISION_ID_EDEFAULT == null ? getRevisionID() != null : !REVISION_ID_EDEFAULT.equals(getRevisionID());
+			case BasePackage.FLID__VERSION:
+				return getVersion() != VERSION_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

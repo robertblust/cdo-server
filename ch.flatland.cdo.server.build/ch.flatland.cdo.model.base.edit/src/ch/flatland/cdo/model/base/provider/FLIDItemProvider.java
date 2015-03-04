@@ -65,6 +65,7 @@ public class FLIDItemProvider
 			addIDPropertyDescriptor(object);
 			addObjectIDPropertyDescriptor(object);
 			addRevisionIDPropertyDescriptor(object);
+			addVersionPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -158,6 +159,28 @@ public class FLIDItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Version feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addVersionPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_FLID_version_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FLID_version_feature", "_UI_FLID_type"),
+				 BasePackage.Literals.FLID__VERSION,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 getString("_UI_IDPropertyCategory"),
+				 null));
+	}
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -198,6 +221,7 @@ public class FLIDItemProvider
 			case BasePackage.FLID__ID:
 			case BasePackage.FLID__OBJECT_ID:
 			case BasePackage.FLID__REVISION_ID:
+			case BasePackage.FLID__VERSION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

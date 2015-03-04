@@ -23,6 +23,7 @@ import org.eclipse.emf.cdo.CDOObject;
  *   <li>{@link ch.flatland.cdo.model.base.FLID#getID <em>ID</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.FLID#getObjectID <em>Object ID</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.FLID#getRevisionID <em>Revision ID</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.base.FLID#getVersion <em>Version</em>}</li>
  * </ul>
  * </p>
  *
@@ -149,5 +150,32 @@ public interface FLID extends CDOObject {
 	 * @generated
 	 */
 	void setRevisionID(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Version</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Version</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Version</em>' attribute.
+	 * @see #setVersion(long)
+	 * @see ch.flatland.cdo.model.base.BasePackage#getFLID_Version()
+	 * @model unique="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='ID'"
+	 * @generated
+	 */
+	long getVersion();
+
+	/**
+	 * Sets the value of the '{@link ch.flatland.cdo.model.base.FLID#getVersion <em>Version</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Version</em>' attribute.
+	 * @see #getVersion()
+	 * @generated
+	 */
+	void setVersion(long value);
 
 } // FLID
