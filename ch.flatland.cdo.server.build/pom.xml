@@ -11,7 +11,7 @@
 
 	<properties>
 		<tycho.version>0.22.0</tycho.version>
-		<xtend.version>2.7.0</xtend.version>
+		<xtend.version>2.7.3</xtend.version>
 		<build.qualifier>'v'yyyyMMddHHmm</build.qualifier>
 		<project.build.sourceEncoding>cp1252</project.build.sourceEncoding>
 	</properties>

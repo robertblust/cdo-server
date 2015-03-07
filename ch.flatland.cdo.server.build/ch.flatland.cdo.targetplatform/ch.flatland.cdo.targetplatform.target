@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<?pde version="3.8"?><target name="Flatland CDO Server" sequenceNumber="17">
+<?pde version="3.8"?><target name="Flatland CDO Server" sequenceNumber="20">
 <locations>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-<unit id="org.eclipse.equinox.sdk.feature.group" version="3.10.0.v20140909-1633"/>
-<unit id="org.eclipse.platform.sdk" version="4.4.1.M20140925-0400"/>
-<unit id="org.eclipse.emf.sdk.feature.group" version="2.10.1.v20140901-1055"/>
-<unit id="org.eclipse.emf.ecore.xcore.sdk.feature.group" version="1.2.1.v20140909-0808"/>
+<unit id="org.eclipse.equinox.sdk.feature.group" version="3.10.2.v20150204-1316"/>
+<unit id="org.eclipse.platform.sdk" version="4.4.2.M20150204-1700"/>
+<unit id="org.eclipse.emf.sdk.feature.group" version="2.10.2.v20150123-0452"/>
+<unit id="org.eclipse.emf.ecore.xcore.sdk.feature.group" version="1.2.2.v20150202-0452"/>
 <unit id="org.eclipse.net4j.sdk.feature.group" version="4.3.0.v20140308-0604"/>
 <unit id="org.eclipse.emf.cdo.sdk.feature.group" version="4.3.0.v20140606-1557"/>
-<unit id="org.eclipse.xtext.sdk.feature.group" version="2.7.2.v201409160908"/>
+<unit id="org.eclipse.xtext.sdk.feature.group" version="2.7.3.v201411190455"/>
 <repository location="http://download.eclipse.org/releases/luna"/>
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
@@ -23,7 +23,7 @@
 <repository location="http://download.eclipsesource.com/technology/restfuse/p2/"/>
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-<unit id="org.apache.commons.io" version="1.4.0.v20081110-1000"/>
+<unit id="org.apache.commons.io" version="2.2.0.v201405211200"/>
 <unit id="org.json" version="1.0.0.v201011060100"/>
 <unit id="org.apache.commons.fileupload" version="1.2.2.v20111214-1400"/>
 <repository location="http://download.eclipse.org/tools/orbit/downloads/drops/R20140525021250/repository/"/>
@@ -35,7 +35,7 @@
 <repository location="http://download.eclipse.org/modeling/emf/cdo/drops/R20140218-1655"/>
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-<unit id="org.eclipse.rcp.sdk.id" version="4.4.1.M20140925-0400"/>
+<unit id="org.eclipse.rcp.sdk.id" version="4.4.2.M20150204-1700"/>
 <repository location="http://download.eclipse.org/releases/luna"/>
 </location>
 </locations>
