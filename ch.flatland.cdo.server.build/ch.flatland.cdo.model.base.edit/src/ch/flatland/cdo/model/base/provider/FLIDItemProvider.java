@@ -66,6 +66,8 @@ public class FLIDItemProvider
 			addObjectIDPropertyDescriptor(object);
 			addRevisionIDPropertyDescriptor(object);
 			addVersionPropertyDescriptor(object);
+			addCreationDatePropertyDescriptor(object);
+			addUpdateDatePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -181,6 +183,50 @@ public class FLIDItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Creation Date feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addCreationDatePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_FLID_creationDate_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FLID_creationDate_feature", "_UI_FLID_type"),
+				 BasePackage.Literals.FLID__CREATION_DATE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 getString("_UI_IDPropertyCategory"),
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Update Date feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addUpdateDatePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_FLID_updateDate_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FLID_updateDate_feature", "_UI_FLID_type"),
+				 BasePackage.Literals.FLID__UPDATE_DATE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 getString("_UI_IDPropertyCategory"),
+				 null));
+	}
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -222,6 +268,8 @@ public class FLIDItemProvider
 			case BasePackage.FLID__OBJECT_ID:
 			case BasePackage.FLID__REVISION_ID:
 			case BasePackage.FLID__VERSION:
+			case BasePackage.FLID__CREATION_DATE:
+			case BasePackage.FLID__UPDATE_DATE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

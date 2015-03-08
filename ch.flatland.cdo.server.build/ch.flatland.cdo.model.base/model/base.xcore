@@ -52,6 +52,10 @@ abstract class FLID {
 	FLIdentifier revisionID
 	@GenModel(propertyCategory="ID")
 	long version
+	@GenModel(propertyCategory="ID")
+	Date creationDate
+	@GenModel(propertyCategory="ID")
+	Date updateDate
 }
 
 abstract class FLElement extends FLID{

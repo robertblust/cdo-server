@@ -5,6 +5,7 @@ package ch.flatland.cdo.model.base.impl;
 import ch.flatland.cdo.model.base.BasePackage;
 import ch.flatland.cdo.model.base.FLID;
 
+import java.util.Date;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.internal.cdo.CDOObjectImpl;
@@ -21,6 +22,8 @@ import org.eclipse.emf.internal.cdo.CDOObjectImpl;
  *   <li>{@link ch.flatland.cdo.model.base.impl.FLIDImpl#getObjectID <em>Object ID</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.impl.FLIDImpl#getRevisionID <em>Revision ID</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.impl.FLIDImpl#getVersion <em>Version</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.base.impl.FLIDImpl#getCreationDate <em>Creation Date</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.base.impl.FLIDImpl#getUpdateDate <em>Update Date</em>}</li>
  * </ul>
  * </p>
  *
@@ -76,6 +79,26 @@ public abstract class FLIDImpl extends CDOObjectImpl implements FLID {
 	 * @ordered
 	 */
 	protected static final long VERSION_EDEFAULT = 0L;
+
+	/**
+	 * The default value of the '{@link #getCreationDate() <em>Creation Date</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCreationDate()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final Date CREATION_DATE_EDEFAULT = null;
+
+	/**
+	 * The default value of the '{@link #getUpdateDate() <em>Update Date</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getUpdateDate()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final Date UPDATE_DATE_EDEFAULT = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -201,6 +224,42 @@ public abstract class FLIDImpl extends CDOObjectImpl implements FLID {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Date getCreationDate() {
+		return (Date)eDynamicGet(BasePackage.FLID__CREATION_DATE, BasePackage.Literals.FLID__CREATION_DATE, true, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setCreationDate(Date newCreationDate) {
+		eDynamicSet(BasePackage.FLID__CREATION_DATE, BasePackage.Literals.FLID__CREATION_DATE, newCreationDate);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Date getUpdateDate() {
+		return (Date)eDynamicGet(BasePackage.FLID__UPDATE_DATE, BasePackage.Literals.FLID__UPDATE_DATE, true, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setUpdateDate(Date newUpdateDate) {
+		eDynamicSet(BasePackage.FLID__UPDATE_DATE, BasePackage.Literals.FLID__UPDATE_DATE, newUpdateDate);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -214,6 +273,10 @@ public abstract class FLIDImpl extends CDOObjectImpl implements FLID {
 				return getRevisionID();
 			case BasePackage.FLID__VERSION:
 				return getVersion();
+			case BasePackage.FLID__CREATION_DATE:
+				return getCreationDate();
+			case BasePackage.FLID__UPDATE_DATE:
+				return getUpdateDate();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -240,6 +303,12 @@ public abstract class FLIDImpl extends CDOObjectImpl implements FLID {
 				return;
 			case BasePackage.FLID__VERSION:
 				setVersion((Long)newValue);
+				return;
+			case BasePackage.FLID__CREATION_DATE:
+				setCreationDate((Date)newValue);
+				return;
+			case BasePackage.FLID__UPDATE_DATE:
+				setUpdateDate((Date)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -268,6 +337,12 @@ public abstract class FLIDImpl extends CDOObjectImpl implements FLID {
 			case BasePackage.FLID__VERSION:
 				setVersion(VERSION_EDEFAULT);
 				return;
+			case BasePackage.FLID__CREATION_DATE:
+				setCreationDate(CREATION_DATE_EDEFAULT);
+				return;
+			case BasePackage.FLID__UPDATE_DATE:
+				setUpdateDate(UPDATE_DATE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -290,6 +365,10 @@ public abstract class FLIDImpl extends CDOObjectImpl implements FLID {
 				return REVISION_ID_EDEFAULT == null ? getRevisionID() != null : !REVISION_ID_EDEFAULT.equals(getRevisionID());
 			case BasePackage.FLID__VERSION:
 				return getVersion() != VERSION_EDEFAULT;
+			case BasePackage.FLID__CREATION_DATE:
+				return CREATION_DATE_EDEFAULT == null ? getCreationDate() != null : !CREATION_DATE_EDEFAULT.equals(getCreationDate());
+			case BasePackage.FLID__UPDATE_DATE:
+				return UPDATE_DATE_EDEFAULT == null ? getUpdateDate() != null : !UPDATE_DATE_EDEFAULT.equals(getUpdateDate());
 		}
 		return super.eIsSet(featureID);
 	}

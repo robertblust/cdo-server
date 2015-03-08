@@ -2,6 +2,7 @@
  */
 package ch.flatland.cdo.model.base;
 
+import java.util.Date;
 import org.eclipse.emf.cdo.CDOObject;
 
 /**
@@ -24,6 +25,8 @@ import org.eclipse.emf.cdo.CDOObject;
  *   <li>{@link ch.flatland.cdo.model.base.FLID#getObjectID <em>Object ID</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.FLID#getRevisionID <em>Revision ID</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.FLID#getVersion <em>Version</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.base.FLID#getCreationDate <em>Creation Date</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.base.FLID#getUpdateDate <em>Update Date</em>}</li>
  * </ul>
  * </p>
  *
@@ -177,5 +180,59 @@ public interface FLID extends CDOObject {
 	 * @generated
 	 */
 	void setVersion(long value);
+
+	/**
+	 * Returns the value of the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Creation Date</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Creation Date</em>' attribute.
+	 * @see #setCreationDate(Date)
+	 * @see ch.flatland.cdo.model.base.BasePackage#getFLID_CreationDate()
+	 * @model unique="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='ID'"
+	 * @generated
+	 */
+	Date getCreationDate();
+
+	/**
+	 * Sets the value of the '{@link ch.flatland.cdo.model.base.FLID#getCreationDate <em>Creation Date</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Creation Date</em>' attribute.
+	 * @see #getCreationDate()
+	 * @generated
+	 */
+	void setCreationDate(Date value);
+
+	/**
+	 * Returns the value of the '<em><b>Update Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Update Date</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Update Date</em>' attribute.
+	 * @see #setUpdateDate(Date)
+	 * @see ch.flatland.cdo.model.base.BasePackage#getFLID_UpdateDate()
+	 * @model unique="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='ID'"
+	 * @generated
+	 */
+	Date getUpdateDate();
+
+	/**
+	 * Sets the value of the '{@link ch.flatland.cdo.model.base.FLID#getUpdateDate <em>Update Date</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Update Date</em>' attribute.
+	 * @see #getUpdateDate()
+	 * @generated
+	 */
+	void setUpdateDate(Date value);
 
 } // FLID

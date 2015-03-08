@@ -116,13 +116,31 @@ public interface BasePackage extends EPackage {
 	int FLID__VERSION = 4;
 
 	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FLID__CREATION_DATE = 5;
+
+	/**
+	 * The feature id for the '<em><b>Update Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FLID__UPDATE_DATE = 6;
+
+	/**
 	 * The number of structural features of the '<em>FLID</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FLID_FEATURE_COUNT = 5;
+	int FLID_FEATURE_COUNT = 7;
 
 	/**
 	 * The number of operations of the '<em>FLID</em>' class.
@@ -187,6 +205,24 @@ public interface BasePackage extends EPackage {
 	 * @ordered
 	 */
 	int FL_ELEMENT__VERSION = FLID__VERSION;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_ELEMENT__CREATION_DATE = FLID__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Update Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_ELEMENT__UPDATE_DATE = FLID__UPDATE_DATE;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -593,6 +629,24 @@ public interface BasePackage extends EPackage {
 	 * @ordered
 	 */
 	int FL_PACKAGE__VERSION = FL_ELEMENT__VERSION;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_PACKAGE__CREATION_DATE = FL_ELEMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Update Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_PACKAGE__UPDATE_DATE = FL_ELEMENT__UPDATE_DATE;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1177,6 +1231,28 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getFLID_Version();
+
+	/**
+	 * Returns the meta object for the attribute '{@link ch.flatland.cdo.model.base.FLID#getCreationDate <em>Creation Date</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Creation Date</em>'.
+	 * @see ch.flatland.cdo.model.base.FLID#getCreationDate()
+	 * @see #getFLID()
+	 * @generated
+	 */
+	EAttribute getFLID_CreationDate();
+
+	/**
+	 * Returns the meta object for the attribute '{@link ch.flatland.cdo.model.base.FLID#getUpdateDate <em>Update Date</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Update Date</em>'.
+	 * @see ch.flatland.cdo.model.base.FLID#getUpdateDate()
+	 * @see #getFLID()
+	 * @generated
+	 */
+	EAttribute getFLID_UpdateDate();
 
 	/**
 	 * Returns the meta object for class '{@link ch.flatland.cdo.model.base.FLElement <em>FL Element</em>}'.
@@ -1824,6 +1900,22 @@ public interface BasePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute FLID__VERSION = eINSTANCE.getFLID_Version();
+
+		/**
+		 * The meta object literal for the '<em><b>Creation Date</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FLID__CREATION_DATE = eINSTANCE.getFLID_CreationDate();
+
+		/**
+		 * The meta object literal for the '<em><b>Update Date</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FLID__UPDATE_DATE = eINSTANCE.getFLID_UpdateDate();
 
 		/**
 		 * The meta object literal for the '{@link ch.flatland.cdo.model.base.impl.FLElementImpl <em>FL Element</em>}' class.
