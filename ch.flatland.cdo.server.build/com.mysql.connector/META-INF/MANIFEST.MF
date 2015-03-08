@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Oracle MySql Connector
+Bundle-Name: MySql JDBC Connector
 Bundle-SymbolicName: com.mysql.connector
 Bundle-Version: 5.0.8
 Bundle-Vendor: oracle.com
