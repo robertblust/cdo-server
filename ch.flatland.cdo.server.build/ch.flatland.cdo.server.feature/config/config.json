@@ -1,18 +1,11 @@
 {
     "dataStore": {
-      	"storeType": "MYSQL",
-        "repositoryName": "repo",
-         "connectionUrl":"jdbc:mysql://localhost:3306/cdo",
+      	"storeType": "H2",
         "userName": "cdo",
         "password": "cdo"
     },
     "authenticator": {
         "authenticatorType": "CDO",
-        "connectionUrl": "faked://flatland.ch:333",
-        "domainBase": "ou=person,o=FLATLAND,c=CH",
-        "userIdField": "empid",
-        "readOnlyPassword": "password",
-        "adminPassword": "password",
         "checkSSL": false
     },
     "binding": {
