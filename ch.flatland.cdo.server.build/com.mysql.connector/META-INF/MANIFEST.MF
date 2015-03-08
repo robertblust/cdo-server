@@ -1,0 +1,18 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Oracle MySql Connector
+Bundle-SymbolicName: com.mysql.connector
+Bundle-Version: 5.0.8
+Bundle-Vendor: oracle.com
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-ClassPath: mysql-connector-java-5.0.8-bin.jar,
+ .
+Export-Package: com.mysql.jdbc,
+ com.mysql.jdbc.exceptions,
+ com.mysql.jdbc.integration.c3p0,
+ com.mysql.jdbc.integration.jboss,
+ com.mysql.jdbc.jdbc2.optional,
+ com.mysql.jdbc.log,
+ com.mysql.jdbc.profiler,
+ com.mysql.jdbc.util,
+ org.gjt.mm.mysql
