@@ -11,10 +11,12 @@
 package ch.flatland.cdo.service.repoaccess.internal
 
 import ch.flatland.cdo.service.repoaccess.SessionFactory
+import ch.flatland.cdo.util.DateConverter
 import ch.flatland.cdo.util.FlatlandException
 import ch.flatland.cdo.util.Request
 import ch.flatland.cdo.util.Response
 import ch.flatland.cdo.util.View
+import java.util.Date
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 import org.eclipse.emf.cdo.view.CDOView
@@ -29,6 +31,7 @@ class Get {
 	val extension Request = new Request
 	val extension Response = new Response
 	val extension View = new View
+	val extension DateConverter = new DateConverter
 
 	def void run(HttpServletRequest req, HttpServletResponse resp) {
 		logger.debug("Run for '{}'", req.userId)
@@ -40,7 +43,15 @@ class Get {
 		try {
 			if(req.pointInTime != null) {
 				try {
+					val session = SessionFactory.getCDOSession(req)
+					val creationTime = session.repositoryInfo.creationTime
+					val pit = Long.parseLong(req.pointInTime)
+					if (pit < creationTime) {
+						throw new FlatlandException(SC_BAD_REQUEST, "Requested pit '{}' is older than the Repository Creation Time '{}'", new Date(pit).formatDate, new Date(creationTime).formatDate)
+					}
 					view = SessionFactory.getCDOSession(req).openView(Long.parseLong(req.pointInTime))
+				} catch (FlatlandException fle) {
+					throw fle
 				} catch(Exception e) {
 					throw new FlatlandException(SC_NOT_FOUND, "{} not found", req.pathInfo)
 				}
