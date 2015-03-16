@@ -10,6 +10,7 @@
  */
 package ch.flatland.cdo.service.repoaccess.internal
 
+import ch.flatland.cdo.service.repoaccess.Options
 import ch.flatland.cdo.util.AbstractServlet
 import ch.flatland.cdo.util.JsonConverter
 import ch.flatland.cdo.util.Response
@@ -20,5 +21,9 @@ class AuthServlet extends AbstractServlet {
 	def override protected doGet(HttpServletRequest req, HttpServletResponse resp) {
 		val extension Response = new Response
 		resp.writeResponse(req, (new JsonConverter).okToJson)
+	}
+
+	override protected doOptions(HttpServletRequest req, HttpServletResponse resp) {
+		(new Options).run(req, resp)
 	}
 }
