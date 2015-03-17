@@ -313,7 +313,7 @@ class JsonConverter {
 				jsonLinksObject.add(CONTAINER, jsonContainerLink)
 
 				val jsonAllInstancesLink = new JsonObject
-				jsonAllInstancesLink.addProperty(HREF, jsonConverterConfig.serverAddress + ALIAS_OBJECT + "/" + object.eClass.type + object.getTimestampParam(true))
+				jsonAllInstancesLink.addProperty(HREF, jsonConverterConfig.serverAddress + ALIAS_OBJECT + "/" + jsonConverterConfig.repoName + "/" + object.eClass.type + object.getTimestampParam(true))
 				jsonLinksObject.add(ALL_INSTANCES, jsonAllInstancesLink)
 
 			}
@@ -327,14 +327,14 @@ class JsonConverter {
 
 				// add x reference link
 				val jsonXReferencesLink = new JsonObject
-				jsonXReferencesLink.addProperty(HREF, jsonConverterConfig.serverAddress + ALIAS_XREFS + "/" + object.oid + "/" + REFERENCES + object.getTimestampParam(true))
+				jsonXReferencesLink.addProperty(HREF, jsonConverterConfig.serverAddress + ALIAS_XREFS + "/" + jsonConverterConfig.repoName + "/" + object.oid + "/" + REFERENCES + object.getTimestampParam(true))
 				jsonXReferencesLink.addProperty(SIZE, object.allXReferences.size)
 				jsonXLinksObject.add(REFERENCES, jsonXReferencesLink)
 
 				// add detailed x reference link
 				object.resolveGroupXReferences.forEach [ p1, p2 |
 					val jsonXReferenceLink = new JsonObject
-					jsonXReferenceLink.addProperty(HREF, jsonConverterConfig.serverAddress + ALIAS_XREFS + "/" + object.oid + "/" + REFERENCES + "/" + p1.name + object.getTimestampParam(true))
+					jsonXReferenceLink.addProperty(HREF, jsonConverterConfig.serverAddress + ALIAS_XREFS + "/" + jsonConverterConfig.repoName + "/" + object.oid + "/" + REFERENCES + "/" + p1.name + object.getTimestampParam(true))
 					jsonXReferenceLink.addProperty(SIZE, p2.size)
 					jsonXReferencesLink.add(p1.name, jsonXReferenceLink)
 				]
@@ -660,7 +660,7 @@ class JsonConverter {
 			// Legacy models do not inherit from CDOObject
 			id = EcoreUtil.getURI(object).fragment.replace("L", "")
 		}
-		jsonConverterConfig.serverAddress + ALIAS_OBJECT + "/" + object.eClass.type + "/" + id + object.getTimestampParam(withTimestamp)
+		jsonConverterConfig.serverAddress + ALIAS_OBJECT + "/" + jsonConverterConfig.repoName + "/" + object.eClass.type + "/" + id + object.getTimestampParam(withTimestamp)
 
 	}
 

@@ -16,11 +16,13 @@ class SessionEntry {
 	var CDOSession cdoSession
 	var long lastHttpSessionActivity
 	var String password
+	var String repoName
 
-	new(CDOSession cdoSession, String password) {
+	new(CDOSession cdoSession, String password, String repoName) {
 		this.cdoSession = cdoSession
 		lastHttpSessionActivity = System.currentTimeMillis
 		this.password = password
+		this.repoName = repoName
 	}
 
 	def updateHttpSessionActivity() {
@@ -37,6 +39,10 @@ class SessionEntry {
 
 	def getCDOSession() {
 		cdoSession
+	}
+	
+	def getRepoName() {
+		repoName
 	}
 
 	def setCDOSession(CDOSession cdoSession) {

@@ -31,13 +31,13 @@ class SessionFactory {
 			}
 			if(sessionEntry.CDOSession.closed) {
 				sessionEntry.invalidateCDOsession
-				sessionEntry.CDOSession = ServerUtil.openSession(request.userId, request.password)
+				sessionEntry.CDOSession = ServerUtil.openSession(request.userId, request.password, request.repoName)
 			}
 			sessionEntry.updateHttpSessionActivity
 
 			logger.debug("Reuse CDO Session")
 		} else {
-			sessionMap.put(request.sessionKey, new SessionEntry(ServerUtil.openSession(request.userId, request.password), request.password))
+			sessionMap.put(request.sessionKey, new SessionEntry(ServerUtil.openSession(request.userId, request.password, request.repoName), request.password, request.repoName))
 
 			logger.debug("Create CDO Session")
 		}

@@ -65,11 +65,15 @@ class Request {
 		return "/" + Splitter.on("/").split(req.requestURL).get(3)
 	}
 
-	def getPathSegments(HttpServletRequest req) {
+	private def getOriginalPathSegments(HttpServletRequest req) {
 		if(req.pathInfo == null) {
 			return null
 		}
 		return Splitter.on("/").split(req.pathInfo)
+	}
+	
+	def getPathSegments(HttpServletRequest req) {
+		return Splitter.on("/").split(req.contentPath)
 	}
 
 	def getJsonCallback(HttpServletRequest req) {
@@ -146,13 +150,21 @@ class Request {
 		val userName = request.safeUserNameAndPassword.substring(0, userNameIndex)
 		return userName
 	}
+	
+	def getRepoName(HttpServletRequest request) {
+		request.originalPathSegments.get(1)
+	}
+	
+	def getContentPath(HttpServletRequest req) {
+		return req.pathInfo.replace("/" + req.repoName, "")
+	}
 
 	def getSessionId(HttpServletRequest request) {
 		return request.session.id
 	}
 
 	def getSessionKey(HttpServletRequest request) {
-		return request.sessionId + "-" + request.userId
+		return request.repoName + "-" + request.sessionId + "-" + request.userId
 	}
 
 	def getPassword(HttpServletRequest request) {

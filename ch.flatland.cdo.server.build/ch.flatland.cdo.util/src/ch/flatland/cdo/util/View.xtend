@@ -41,11 +41,11 @@ class View {
 		try {
 			switch (req.servletAlias) {
 				case ALIAS_NODE: {
-					if(req.pathInfo != null) {
-						return view.getResourceNode(req.pathInfo)
-					} else {
+					if (req.contentPath == "") {
 						return view.getResourceNode("/")
-					}
+					} else {
+						return view.getResourceNode(req.contentPath)
+					}	
 				}
 				case ALIAS_OBJECT: {
 					val pathSegments = req.pathSegments

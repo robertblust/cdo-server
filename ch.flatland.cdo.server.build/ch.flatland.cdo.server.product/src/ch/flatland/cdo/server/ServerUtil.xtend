@@ -37,15 +37,14 @@ class ServerUtil {
 		Net4jUtil.getConnector(IPluginContainer.INSTANCE, "jvm", acceptorName)
 	}
 
-	def static openReadOnlySession() {
-		ServerUtil.openSession(AuthenticationUtil.READONLY_USER, CONFIG.authenticator.readOnlyPassword)
+	def static openReadOnlySession(String repoName) {
+		ServerUtil.openSession(AuthenticationUtil.READONLY_USER, CONFIG.authenticator.readOnlyPassword, repoName)
 	}
 
-	def static openSession(String userID, String password) {
-
+	def static openSession(String userID, String password, String repoName) {
 		val config = CDONet4jUtil.createNet4jSessionConfiguration()
 		config.setConnector(connector)
-		config.setRepositoryName(CONFIG.dataStore.repositoryName)
+		config.setRepositoryName(repoName)
 
 		config.credentialsProvider = new CredentialsProvider(userID, password)
 

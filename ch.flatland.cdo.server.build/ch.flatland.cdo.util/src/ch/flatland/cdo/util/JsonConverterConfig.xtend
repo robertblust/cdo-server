@@ -27,6 +27,7 @@ class JsonConverterConfig {
 	var xlinks = false
 	var xtraces = false
 	var serverAddress = ""
+	var repoName = ""
 
 	val extension Request = new Request
 
@@ -47,6 +48,7 @@ class JsonConverterConfig {
 		links = req.links
 		xlinks = req.xlinks
 		xtraces = req.xtraces
+		repoName = req.repoName
 	}
 
 	new() {
@@ -134,5 +136,9 @@ class JsonConverterConfig {
 			return serverAddress
 		}
 		return ""
+	}
+	
+	def getRepoName() {
+		return repoName
 	}
 }
