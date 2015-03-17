@@ -82,7 +82,7 @@ class JsonConverter {
 	new() {
 		this.jsonConverterConfig = new JsonConverterConfig
 	}
-
+	
 	def getConfig() {
 		jsonConverterConfig
 	}
@@ -126,6 +126,14 @@ class JsonConverter {
 
 	def okToJson() {
 		newObjectWithStatus().toString
+	}
+	
+	def safeAnyObjectToJson(Object object) {
+		try {
+			gson.toJson(object)
+		} catch(Exception e) {
+			throw new FlatlandException(SC_INTERNAL_SERVER_ERROR, e.message)
+		}
 	}
 
 	def dispatch String safeToJson(Object object) {
