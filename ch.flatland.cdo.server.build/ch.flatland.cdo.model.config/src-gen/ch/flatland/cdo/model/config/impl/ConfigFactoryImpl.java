@@ -58,10 +58,11 @@ public class ConfigFactoryImpl extends EFactoryImpl implements ConfigFactory {
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case ConfigPackage.CONFIG: return createConfig();
-			case ConfigPackage.DATA_STORE: return createDataStore();
-			case ConfigPackage.AUTHENTICATOR: return createAuthenticator();
 			case ConfigPackage.BINDING: return createBinding();
 			case ConfigPackage.JSON: return createJson();
+			case ConfigPackage.REPOSITORY: return createRepository();
+			case ConfigPackage.DATA_STORE: return createDataStore();
+			case ConfigPackage.AUTHENTICATOR: return createAuthenticator();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -116,26 +117,6 @@ public class ConfigFactoryImpl extends EFactoryImpl implements ConfigFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DataStore createDataStore() {
-		DataStoreImpl dataStore = new DataStoreImpl();
-		return dataStore;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Authenticator createAuthenticator() {
-		AuthenticatorImpl authenticator = new AuthenticatorImpl();
-		return authenticator;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public Binding createBinding() {
 		BindingImpl binding = new BindingImpl();
 		return binding;
@@ -149,6 +130,36 @@ public class ConfigFactoryImpl extends EFactoryImpl implements ConfigFactory {
 	public Json createJson() {
 		JsonImpl json = new JsonImpl();
 		return json;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Repository createRepository() {
+		RepositoryImpl repository = new RepositoryImpl();
+		return repository;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DataStore createDataStore() {
+		DataStoreImpl dataStore = new DataStoreImpl();
+		return dataStore;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Authenticator createAuthenticator() {
+		AuthenticatorImpl authenticator = new AuthenticatorImpl();
+		return authenticator;
 	}
 
 	/**

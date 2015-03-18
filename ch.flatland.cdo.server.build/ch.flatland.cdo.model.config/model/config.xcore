@@ -1,10 +1,42 @@
 package ch.flatland.cdo.model.config
 
 class Config {
-	contains DataStore[1] dataStore
-	contains Authenticator[1] authenticator
+	String readOnlyPassword
+	String adminPassword
+	contains Repository[] repositories
 	contains Binding[1] binding
 	contains Json[1] json
+	op Repository getByName(String repoName) {
+		repositories.filter[it.dataStore.repositoryName == repoName].head
+	}
+}
+
+class Binding {
+	String[1] ip
+	boolean[1] tcp
+	String tcpPort
+	boolean[1] http
+	String httpPort
+	boolean checkSSL
+}
+
+class Json {
+	boolean[1] validate
+	boolean[1] rreferences
+	boolean[1] creferences
+	boolean[1] xreferences
+	boolean[1] history
+	boolean[1] fullUrl
+	boolean[1] meta
+	boolean[1] links
+	boolean[1] xlinks
+	boolean[1] arrayaccessor
+	boolean[1] xtraces
+}
+
+class Repository {
+	contains DataStore[1] dataStore
+	contains Authenticator[1] authenticator
 }
 
 class DataStore {
@@ -25,34 +57,9 @@ class Authenticator {
 	String connectionUrl
 	String domainBase
 	String userIdField
-	String readOnlyPassword
-	String adminPassword
-	boolean checkSSL
 }
 
 enum AuthenticatorType {
 	CDO = 0
 	LDAP = 1
-}
-
-class Binding {
-	String[1] ip
-	boolean[1] tcp
-	String tcpPort
-	boolean[1] http
-	String httpPort
-}
-
-class Json {
-	boolean[1] validate
-	boolean[1] rreferences
-	boolean[1] creferences
-	boolean[1] xreferences
-	boolean[1] history
-	boolean[1] fullUrl
-	boolean[1] meta
-	boolean[1] links
-	boolean[1] xlinks
-	boolean[1] arrayaccessor
-	boolean[1] xtraces
 }

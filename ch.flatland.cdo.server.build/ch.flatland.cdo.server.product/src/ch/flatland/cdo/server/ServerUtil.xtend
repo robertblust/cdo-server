@@ -31,14 +31,14 @@ class ServerUtil {
 		// hide constructor
 	}
 
-	val static acceptorName = CONFIG.dataStore.repositoryName + "_jvm"
+	val static acceptorName = "flatland_jvm"
 	val static connector = {
 		Net4jUtil.getAcceptor(IPluginContainer.INSTANCE, "jvm", acceptorName)
 		Net4jUtil.getConnector(IPluginContainer.INSTANCE, "jvm", acceptorName)
 	}
 
 	def static openReadOnlySession(String repoName) {
-		ServerUtil.openSession(AuthenticationUtil.READONLY_USER, CONFIG.authenticator.readOnlyPassword, repoName)
+		ServerUtil.openSession(AuthenticationUtil.READONLY_USER, CONFIG.readOnlyPassword, repoName)
 	}
 
 	def static openSession(String userID, String password, String repoName) {

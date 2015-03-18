@@ -85,11 +85,11 @@ public class LdapAuthenticatorManager implements IAuthenticator {
 
 		String p = new String(password);
 
-		if (userId.equals(AuthenticationUtil.ADMIN_USER) && p.equals(ServerConfig.CONFIG().getAuthenticator().getAdminPassword())) {
+		if (userId.equals(AuthenticationUtil.ADMIN_USER) && p.equals(ServerConfig.CONFIG().getAdminPassword())) {
 			return;
 		}
 
-		if (userId.equals(AuthenticationUtil.READONLY_USER) && p.equals(ServerConfig.CONFIG().getAuthenticator().getReadOnlyPassword())) {
+		if (userId.equals(AuthenticationUtil.READONLY_USER) && p.equals(ServerConfig.CONFIG().getReadOnlyPassword())) {
 			return;
 		}
 

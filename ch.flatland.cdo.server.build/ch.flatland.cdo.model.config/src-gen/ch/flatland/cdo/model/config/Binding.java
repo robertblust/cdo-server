@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link ch.flatland.cdo.model.config.Binding#getTcpPort <em>Tcp Port</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.config.Binding#isHttp <em>Http</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.config.Binding#getHttpPort <em>Http Port</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.config.Binding#isCheckSSL <em>Check SSL</em>}</li>
  * </ul>
  * </p>
  *
@@ -154,5 +155,31 @@ public interface Binding extends EObject {
 	 * @generated
 	 */
 	void setHttpPort(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Check SSL</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Check SSL</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Check SSL</em>' attribute.
+	 * @see #setCheckSSL(boolean)
+	 * @see ch.flatland.cdo.model.config.ConfigPackage#getBinding_CheckSSL()
+	 * @model unique="false"
+	 * @generated
+	 */
+	boolean isCheckSSL();
+
+	/**
+	 * Sets the value of the '{@link ch.flatland.cdo.model.config.Binding#isCheckSSL <em>Check SSL</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Check SSL</em>' attribute.
+	 * @see #isCheckSSL()
+	 * @generated
+	 */
+	void setCheckSSL(boolean value);
 
 } // Binding

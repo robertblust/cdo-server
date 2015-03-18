@@ -10,6 +10,7 @@
  */
 package ch.flatland.cdo.server.product
 
+import java.util.List
 import org.eclipse.emf.cdo.server.CDOServerUtil
 import org.eclipse.emf.cdo.server.IRepository
 import org.eclipse.emf.cdo.server.spi.security.InternalSecurityManager
@@ -17,6 +18,7 @@ import org.eclipse.emf.cdo.spi.server.InternalRepository
 import org.eclipse.net4j.util.container.IPluginContainer
 import org.eclipse.net4j.util.lifecycle.Lifecycle
 import org.eclipse.net4j.util.lifecycle.LifecycleUtil
+import org.eclipse.xtend.lib.annotations.Data
 
 import static ch.flatland.cdo.server.ServerUtil.*
 import static ch.flatland.cdo.server.config.ServerConfig.*
@@ -27,42 +29,55 @@ class Repository {
 		// hide constructor
 	}
 
-	var static transient InternalRepository REPOSITORY
-	var static transient InternalSecurityManager SECURITY_MANAGER
+	var static transient List<RepositoryInfo> repositories = newArrayList
 
 	def static void start() {
-		App.info("Start repository")
+		App.info("Start repositories")
 
-		// repository store
-		val repositoryProps = newHashMap(
-			IRepository.Props.SUPPORTING_AUDITS -> SUPPORTING_AUDITS.toString,
-			IRepository.Props.SUPPORTING_BRANCHES -> SUPPORTING_BRANCHES.toString,
-			IRepository.Props.ENSURE_REFERENTIAL_INTEGRITY -> ENSURE_REFERENTIAL_INTEGRITY.toString,
-			IRepository.Props.ALLOW_INTERRUPT_RUNNING_QUERIES -> "true",
-			IRepository.Props.ID_GENERATION_LOCATION -> "STORE",
-			IRepository.Props.SERIALIZE_COMMITS -> "false",
-			IRepository.Props.OPTIMISTIC_LOCKING_TIMEOUT -> "10000",
-			IRepository.Props.OVERRIDE_UUID -> CONFIG.dataStore.repositoryName
-		)
+		CONFIG.repositories.forEach [
+			App.info("Start " + it.dataStore.repositoryName)
+			var InternalRepository repository
+			var InternalSecurityManager securityManager
+			// repository store
+			val repositoryProps = newHashMap(
+				IRepository.Props.SUPPORTING_AUDITS -> SUPPORTING_AUDITS.toString,
+				IRepository.Props.SUPPORTING_BRANCHES -> SUPPORTING_BRANCHES.toString,
+				IRepository.Props.ENSURE_REFERENTIAL_INTEGRITY -> ENSURE_REFERENTIAL_INTEGRITY.toString,
+				IRepository.Props.ALLOW_INTERRUPT_RUNNING_QUERIES -> "true",
+				IRepository.Props.ID_GENERATION_LOCATION -> "STORE",
+				IRepository.Props.SERIALIZE_COMMITS -> "false",
+				IRepository.Props.OPTIMISTIC_LOCKING_TIMEOUT -> "10000",
+				IRepository.Props.OVERRIDE_UUID -> it.dataStore.repositoryName
+			)
+			repository = CDOServerUtil.createRepository(it.dataStore.repositoryName, StoreFactory.createStore(it.dataStore.repositoryName), repositoryProps) as InternalRepository
+			CDOServerUtil.addRepository(IPluginContainer.INSTANCE, repository);
+			securityManager = SecurityManagerFactory.createSecurityManager(it.dataStore.repositoryName)
+			securityManager.addCommitHandler(CommitHandlerFactory.createAnnotationCommitHandler)
+			securityManager.addCommitHandler(CommitHandlerFactory.createHomeCommitHandler)
+			securityManager.repository = repository
+			val lifecycle = securityManager as Lifecycle
+			lifecycle.activate
+			val repositoryInfo = new RepositoryInfo(repository, securityManager)
+			repositories.add(repositoryInfo)
+		]
 
-		REPOSITORY = CDOServerUtil.createRepository(CONFIG.dataStore.repositoryName, StoreFactory.createStore, repositoryProps) as InternalRepository
-
-		CDOServerUtil.addRepository(IPluginContainer.INSTANCE, REPOSITORY);
-
-		SECURITY_MANAGER = SecurityManagerFactory.createSecurityManager
-		SECURITY_MANAGER.addCommitHandler(CommitHandlerFactory.createAnnotationCommitHandler)
-		SECURITY_MANAGER.addCommitHandler(CommitHandlerFactory.createHomeCommitHandler)
-		SECURITY_MANAGER.repository = REPOSITORY
-		val lifecycle = SECURITY_MANAGER as Lifecycle
-		lifecycle.activate
 	}
 
 	def static stop() {
-		App.info("Stop repository")
-		val lifecycle = SECURITY_MANAGER as Lifecycle
-		lifecycle.deactivate
-		if(REPOSITORY != null) {
-			LifecycleUtil.deactivate(REPOSITORY)
-		}
+		App.info("Stop repositories")
+		repositories.forEach [
+			App.info("Stop " + it.repository.name)
+			val lifecycle = it.securityManager as Lifecycle
+			lifecycle.deactivate
+			if(it.repository != null) {
+				LifecycleUtil.deactivate(it.repository)
+			}
+		]
 	}
+}
+
+@Data
+package class RepositoryInfo {
+	InternalRepository repository
+	InternalSecurityManager securityManager
 }

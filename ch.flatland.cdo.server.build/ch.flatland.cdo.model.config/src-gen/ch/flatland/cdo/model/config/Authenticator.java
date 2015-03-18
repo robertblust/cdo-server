@@ -16,9 +16,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link ch.flatland.cdo.model.config.Authenticator#getConnectionUrl <em>Connection Url</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.config.Authenticator#getDomainBase <em>Domain Base</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.config.Authenticator#getUserIdField <em>User Id Field</em>}</li>
- *   <li>{@link ch.flatland.cdo.model.config.Authenticator#getReadOnlyPassword <em>Read Only Password</em>}</li>
- *   <li>{@link ch.flatland.cdo.model.config.Authenticator#getAdminPassword <em>Admin Password</em>}</li>
- *   <li>{@link ch.flatland.cdo.model.config.Authenticator#isCheckSSL <em>Check SSL</em>}</li>
  * </ul>
  * </p>
  *
@@ -133,83 +130,5 @@ public interface Authenticator extends EObject {
 	 * @generated
 	 */
 	void setUserIdField(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Read Only Password</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Read Only Password</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Read Only Password</em>' attribute.
-	 * @see #setReadOnlyPassword(String)
-	 * @see ch.flatland.cdo.model.config.ConfigPackage#getAuthenticator_ReadOnlyPassword()
-	 * @model unique="false"
-	 * @generated
-	 */
-	String getReadOnlyPassword();
-
-	/**
-	 * Sets the value of the '{@link ch.flatland.cdo.model.config.Authenticator#getReadOnlyPassword <em>Read Only Password</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Read Only Password</em>' attribute.
-	 * @see #getReadOnlyPassword()
-	 * @generated
-	 */
-	void setReadOnlyPassword(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Admin Password</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Admin Password</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Admin Password</em>' attribute.
-	 * @see #setAdminPassword(String)
-	 * @see ch.flatland.cdo.model.config.ConfigPackage#getAuthenticator_AdminPassword()
-	 * @model unique="false"
-	 * @generated
-	 */
-	String getAdminPassword();
-
-	/**
-	 * Sets the value of the '{@link ch.flatland.cdo.model.config.Authenticator#getAdminPassword <em>Admin Password</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Admin Password</em>' attribute.
-	 * @see #getAdminPassword()
-	 * @generated
-	 */
-	void setAdminPassword(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Check SSL</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Check SSL</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Check SSL</em>' attribute.
-	 * @see #setCheckSSL(boolean)
-	 * @see ch.flatland.cdo.model.config.ConfigPackage#getAuthenticator_CheckSSL()
-	 * @model unique="false"
-	 * @generated
-	 */
-	boolean isCheckSSL();
-
-	/**
-	 * Sets the value of the '{@link ch.flatland.cdo.model.config.Authenticator#isCheckSSL <em>Check SSL</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Check SSL</em>' attribute.
-	 * @see #isCheckSSL()
-	 * @generated
-	 */
-	void setCheckSSL(boolean value);
 
 } // Authenticator

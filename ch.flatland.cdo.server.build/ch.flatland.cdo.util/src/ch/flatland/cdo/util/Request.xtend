@@ -178,7 +178,7 @@ class Request {
 	}
 
 	def isSecureConnection(HttpServletRequest req) {
-		if (CONFIG.authenticator.checkSSL == false) {
+		if (CONFIG.binding.checkSSL == false) {
 			return true
 		}
 		if(req.secure) {

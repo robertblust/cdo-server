@@ -2,21 +2,38 @@
  */
 package ch.flatland.cdo.model.config.impl;
 
-import ch.flatland.cdo.model.config.Authenticator;
 import ch.flatland.cdo.model.config.Binding;
 import ch.flatland.cdo.model.config.Config;
 import ch.flatland.cdo.model.config.ConfigPackage;
 import ch.flatland.cdo.model.config.DataStore;
 import ch.flatland.cdo.model.config.Json;
+import ch.flatland.cdo.model.config.Repository;
+
+import com.google.common.base.Objects;
+
+import java.lang.Iterable;
+
+import java.lang.reflect.InvocationTargetException;
+
+import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
+
+import org.eclipse.xtext.xbase.lib.Functions.Function1;
+
+import org.eclipse.xtext.xbase.lib.IterableExtensions;
 
 /**
  * <!-- begin-user-doc -->
@@ -25,8 +42,9 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link ch.flatland.cdo.model.config.impl.ConfigImpl#getDataStore <em>Data Store</em>}</li>
- *   <li>{@link ch.flatland.cdo.model.config.impl.ConfigImpl#getAuthenticator <em>Authenticator</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.config.impl.ConfigImpl#getReadOnlyPassword <em>Read Only Password</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.config.impl.ConfigImpl#getAdminPassword <em>Admin Password</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.config.impl.ConfigImpl#getRepositories <em>Repositories</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.config.impl.ConfigImpl#getBinding <em>Binding</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.config.impl.ConfigImpl#getJson <em>Json</em>}</li>
  * </ul>
@@ -36,24 +54,54 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  */
 public class ConfigImpl extends MinimalEObjectImpl.Container implements Config {
 	/**
-	 * The cached value of the '{@link #getDataStore() <em>Data Store</em>}' containment reference.
+	 * The default value of the '{@link #getReadOnlyPassword() <em>Read Only Password</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDataStore()
+	 * @see #getReadOnlyPassword()
 	 * @generated
 	 * @ordered
 	 */
-	protected DataStore dataStore;
+	protected static final String READ_ONLY_PASSWORD_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getAuthenticator() <em>Authenticator</em>}' containment reference.
+	 * The cached value of the '{@link #getReadOnlyPassword() <em>Read Only Password</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getAuthenticator()
+	 * @see #getReadOnlyPassword()
 	 * @generated
 	 * @ordered
 	 */
-	protected Authenticator authenticator;
+	protected String readOnlyPassword = READ_ONLY_PASSWORD_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getAdminPassword() <em>Admin Password</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAdminPassword()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String ADMIN_PASSWORD_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getAdminPassword() <em>Admin Password</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAdminPassword()
+	 * @generated
+	 * @ordered
+	 */
+	protected String adminPassword = ADMIN_PASSWORD_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getRepositories() <em>Repositories</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRepositories()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Repository> repositories;
 
 	/**
 	 * The cached value of the '{@link #getBinding() <em>Binding</em>}' containment reference.
@@ -99,8 +147,8 @@ public class ConfigImpl extends MinimalEObjectImpl.Container implements Config {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DataStore getDataStore() {
-		return dataStore;
+	public String getReadOnlyPassword() {
+		return readOnlyPassword;
 	}
 
 	/**
@@ -108,76 +156,44 @@ public class ConfigImpl extends MinimalEObjectImpl.Container implements Config {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetDataStore(DataStore newDataStore, NotificationChain msgs) {
-		DataStore oldDataStore = dataStore;
-		dataStore = newDataStore;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ConfigPackage.CONFIG__DATA_STORE, oldDataStore, newDataStore);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+	public void setReadOnlyPassword(String newReadOnlyPassword) {
+		String oldReadOnlyPassword = readOnlyPassword;
+		readOnlyPassword = newReadOnlyPassword;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ConfigPackage.CONFIG__READ_ONLY_PASSWORD, oldReadOnlyPassword, readOnlyPassword));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getAdminPassword() {
+		return adminPassword;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setAdminPassword(String newAdminPassword) {
+		String oldAdminPassword = adminPassword;
+		adminPassword = newAdminPassword;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ConfigPackage.CONFIG__ADMIN_PASSWORD, oldAdminPassword, adminPassword));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Repository> getRepositories() {
+		if (repositories == null) {
+			repositories = new EObjectContainmentEList<Repository>(Repository.class, this, ConfigPackage.CONFIG__REPOSITORIES);
 		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setDataStore(DataStore newDataStore) {
-		if (newDataStore != dataStore) {
-			NotificationChain msgs = null;
-			if (dataStore != null)
-				msgs = ((InternalEObject)dataStore).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ConfigPackage.CONFIG__DATA_STORE, null, msgs);
-			if (newDataStore != null)
-				msgs = ((InternalEObject)newDataStore).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ConfigPackage.CONFIG__DATA_STORE, null, msgs);
-			msgs = basicSetDataStore(newDataStore, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ConfigPackage.CONFIG__DATA_STORE, newDataStore, newDataStore));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Authenticator getAuthenticator() {
-		return authenticator;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetAuthenticator(Authenticator newAuthenticator, NotificationChain msgs) {
-		Authenticator oldAuthenticator = authenticator;
-		authenticator = newAuthenticator;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ConfigPackage.CONFIG__AUTHENTICATOR, oldAuthenticator, newAuthenticator);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setAuthenticator(Authenticator newAuthenticator) {
-		if (newAuthenticator != authenticator) {
-			NotificationChain msgs = null;
-			if (authenticator != null)
-				msgs = ((InternalEObject)authenticator).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ConfigPackage.CONFIG__AUTHENTICATOR, null, msgs);
-			if (newAuthenticator != null)
-				msgs = ((InternalEObject)newAuthenticator).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ConfigPackage.CONFIG__AUTHENTICATOR, null, msgs);
-			msgs = basicSetAuthenticator(newAuthenticator, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ConfigPackage.CONFIG__AUTHENTICATOR, newAuthenticator, newAuthenticator));
+		return repositories;
 	}
 
 	/**
@@ -271,13 +287,29 @@ public class ConfigImpl extends MinimalEObjectImpl.Container implements Config {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Repository getByName(final String repoName) {
+		EList<Repository> _repositories = this.getRepositories();
+		final Function1<Repository, Boolean> _function = new Function1<Repository, Boolean>() {
+			public Boolean apply(final Repository it) {
+				DataStore _dataStore = it.getDataStore();
+				String _repositoryName = _dataStore.getRepositoryName();
+				return Boolean.valueOf(Objects.equal(_repositoryName, repoName));
+			}
+		};
+		Iterable<Repository> _filter = IterableExtensions.<Repository>filter(_repositories, _function);
+		return IterableExtensions.<Repository>head(_filter);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case ConfigPackage.CONFIG__DATA_STORE:
-				return basicSetDataStore(null, msgs);
-			case ConfigPackage.CONFIG__AUTHENTICATOR:
-				return basicSetAuthenticator(null, msgs);
+			case ConfigPackage.CONFIG__REPOSITORIES:
+				return ((InternalEList<?>)getRepositories()).basicRemove(otherEnd, msgs);
 			case ConfigPackage.CONFIG__BINDING:
 				return basicSetBinding(null, msgs);
 			case ConfigPackage.CONFIG__JSON:
@@ -294,10 +326,12 @@ public class ConfigImpl extends MinimalEObjectImpl.Container implements Config {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ConfigPackage.CONFIG__DATA_STORE:
-				return getDataStore();
-			case ConfigPackage.CONFIG__AUTHENTICATOR:
-				return getAuthenticator();
+			case ConfigPackage.CONFIG__READ_ONLY_PASSWORD:
+				return getReadOnlyPassword();
+			case ConfigPackage.CONFIG__ADMIN_PASSWORD:
+				return getAdminPassword();
+			case ConfigPackage.CONFIG__REPOSITORIES:
+				return getRepositories();
 			case ConfigPackage.CONFIG__BINDING:
 				return getBinding();
 			case ConfigPackage.CONFIG__JSON:
@@ -311,14 +345,19 @@ public class ConfigImpl extends MinimalEObjectImpl.Container implements Config {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ConfigPackage.CONFIG__DATA_STORE:
-				setDataStore((DataStore)newValue);
+			case ConfigPackage.CONFIG__READ_ONLY_PASSWORD:
+				setReadOnlyPassword((String)newValue);
 				return;
-			case ConfigPackage.CONFIG__AUTHENTICATOR:
-				setAuthenticator((Authenticator)newValue);
+			case ConfigPackage.CONFIG__ADMIN_PASSWORD:
+				setAdminPassword((String)newValue);
+				return;
+			case ConfigPackage.CONFIG__REPOSITORIES:
+				getRepositories().clear();
+				getRepositories().addAll((Collection<? extends Repository>)newValue);
 				return;
 			case ConfigPackage.CONFIG__BINDING:
 				setBinding((Binding)newValue);
@@ -338,11 +377,14 @@ public class ConfigImpl extends MinimalEObjectImpl.Container implements Config {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ConfigPackage.CONFIG__DATA_STORE:
-				setDataStore((DataStore)null);
+			case ConfigPackage.CONFIG__READ_ONLY_PASSWORD:
+				setReadOnlyPassword(READ_ONLY_PASSWORD_EDEFAULT);
 				return;
-			case ConfigPackage.CONFIG__AUTHENTICATOR:
-				setAuthenticator((Authenticator)null);
+			case ConfigPackage.CONFIG__ADMIN_PASSWORD:
+				setAdminPassword(ADMIN_PASSWORD_EDEFAULT);
+				return;
+			case ConfigPackage.CONFIG__REPOSITORIES:
+				getRepositories().clear();
 				return;
 			case ConfigPackage.CONFIG__BINDING:
 				setBinding((Binding)null);
@@ -362,16 +404,50 @@ public class ConfigImpl extends MinimalEObjectImpl.Container implements Config {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ConfigPackage.CONFIG__DATA_STORE:
-				return dataStore != null;
-			case ConfigPackage.CONFIG__AUTHENTICATOR:
-				return authenticator != null;
+			case ConfigPackage.CONFIG__READ_ONLY_PASSWORD:
+				return READ_ONLY_PASSWORD_EDEFAULT == null ? readOnlyPassword != null : !READ_ONLY_PASSWORD_EDEFAULT.equals(readOnlyPassword);
+			case ConfigPackage.CONFIG__ADMIN_PASSWORD:
+				return ADMIN_PASSWORD_EDEFAULT == null ? adminPassword != null : !ADMIN_PASSWORD_EDEFAULT.equals(adminPassword);
+			case ConfigPackage.CONFIG__REPOSITORIES:
+				return repositories != null && !repositories.isEmpty();
 			case ConfigPackage.CONFIG__BINDING:
 				return binding != null;
 			case ConfigPackage.CONFIG__JSON:
 				return json != null;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case ConfigPackage.CONFIG___GET_BY_NAME__STRING:
+				return getByName((String)arguments.get(0));
+		}
+		return super.eInvoke(operationID, arguments);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (readOnlyPassword: ");
+		result.append(readOnlyPassword);
+		result.append(", adminPassword: ");
+		result.append(adminPassword);
+		result.append(')');
+		return result.toString();
 	}
 
 } //ConfigImpl

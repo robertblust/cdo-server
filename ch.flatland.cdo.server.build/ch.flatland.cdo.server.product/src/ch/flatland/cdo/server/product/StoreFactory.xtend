@@ -28,17 +28,17 @@ class StoreFactory {
 		// hide constructor
 	}
 	
-	def static createStore() {
-		if (CONFIG.dataStore.storeType == StoreType.H2) {
+	def static createStore(String repoName) {
+		if (CONFIG.getByName(repoName).dataStore.storeType == StoreType.H2) {
 			logger.info("Create H2 data store")
-			return createH2Store
+			return createH2Store(repoName)
 		} else {
 			logger.info("Create MYSQL data store")
-			return createMySQLStore
+			return createMySQLStore(repoName)
 		}
 	}
 
-	def private static createH2Store() {
+	def private static createH2Store(String repoName) {
 
 		// db mapping strategy 
 		val mappingStrategy = CDODBUtil.createHorizontalMappingStrategy(true, true)
@@ -47,9 +47,9 @@ class StoreFactory {
 
 		// db datasource
 		val dataSource = new JdbcDataSource
-		dataSource.setURL(CONFIG.dataStore.connectionUrl + CONFIG.dataStore.repositoryName)
-		dataSource.user = CONFIG.dataStore.userName
-		dataSource.password = CONFIG.dataStore.password
+		dataSource.setURL(CONFIG.getByName(repoName).dataStore.connectionUrl + CONFIG.getByName(repoName).dataStore.repositoryName)
+		dataSource.user = CONFIG.getByName(repoName).dataStore.userName
+		dataSource.password = CONFIG.getByName(repoName).dataStore.password
 
 		// dbAdapter
 		val dbAdapter = DBUtil.getDBAdapter("h2")
@@ -61,7 +61,7 @@ class StoreFactory {
 		return store
 	}
 
-	def private static createMySQLStore() {
+	def private static createMySQLStore(String repoName) {
 
 		// db mapping strategy 
 		val mappingStrategy = CDODBUtil.createHorizontalMappingStrategy(true, true)
@@ -70,9 +70,9 @@ class StoreFactory {
 
 		// db datasource
 		val dataSource = new MysqlDataSource
-		dataSource.setURL(CONFIG.dataStore.connectionUrl)
-		dataSource.user = CONFIG.dataStore.userName
-		dataSource.password = CONFIG.dataStore.password
+		dataSource.setURL(CONFIG.getByName(repoName).dataStore.connectionUrl)
+		dataSource.user = CONFIG.getByName(repoName).dataStore.userName
+		dataSource.password = CONFIG.getByName(repoName).dataStore.password
 
 		// dbAdapter
 		val dbAdapter = new CustomMYSQLAdapter
