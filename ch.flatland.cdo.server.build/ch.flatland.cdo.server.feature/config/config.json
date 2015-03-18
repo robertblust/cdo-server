@@ -1,19 +1,11 @@
 {
-    "dataStore": {
-      	"storeType": "H2",
-        "userName": "cdo",
-        "password": "cdo"
-    },
-    "authenticator": {
-        "authenticatorType": "CDO",
-        "checkSSL": false
-    },
-    "binding": {
+	 "binding": {
         "ip": "0.0.0.0",
         "tcp": true,
         "tcpPort": "2036",
         "http": true,
-        "httpPort": "8080"
+        "httpPort": "8080",
+        "checkSSL": false
     },
     "json": {
         "validate": true,
@@ -25,6 +17,22 @@
         "meta": false,
         "links": false,
         "xlinks": false,
+        "xtraces": false,
         "arrayaccessor": false
-    }
+    },		
+	"repositories" : [
+		{
+		    "dataStore": {
+		      	"storeType": "H2",
+		        "repositoryName": "repo2",
+		        "connectionUrl":"jdbc:h2:database/",
+		        "userName": "cdo",
+		        "password": "cdo"
+		    },
+		    "authenticator": {
+		        "authenticatorType": "CDO"
+		    }
+		}
+	]
 }
+
