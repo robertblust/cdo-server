@@ -50,6 +50,7 @@ class DataStore {
 enum StoreType {
 	H2 = 0
 	MYSQL = 1
+	ORACLE = 2
 }
 
 class Authenticator {

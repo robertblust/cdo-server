@@ -52,6 +52,7 @@
 		<module>org.apache.felix.eventadmin</module>
 		<module>org.apache.felix.configadmin</module>
 		<module>com.mysql.connector</module>
+		<module>com.oracle.connector</module>
 	</modules>
 
 	<build>

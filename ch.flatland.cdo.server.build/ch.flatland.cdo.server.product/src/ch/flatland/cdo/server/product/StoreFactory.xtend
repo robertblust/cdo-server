@@ -19,6 +19,7 @@ import org.h2.jdbcx.JdbcDataSource
 import org.slf4j.LoggerFactory
 
 import static ch.flatland.cdo.server.config.ServerConfig.*
+import oracle.jdbc.pool.OracleDataSource
 
 class StoreFactory {
 	
@@ -32,9 +33,14 @@ class StoreFactory {
 		if (CONFIG.getByName(repoName).dataStore.storeType == StoreType.H2) {
 			logger.info("Create H2 data store")
 			return createH2Store(repoName)
-		} else {
+		} 
+		if (CONFIG.getByName(repoName).dataStore.storeType == StoreType.MYSQL) {
 			logger.info("Create MYSQL data store")
 			return createMySQLStore(repoName)
+		}
+		if (CONFIG.getByName(repoName).dataStore.storeType == StoreType.ORACLE) {
+			logger.info("Create ORACLE data store")
+			return createOracleStore(repoName)
 		}
 	}
 
@@ -47,7 +53,7 @@ class StoreFactory {
 
 		// db datasource
 		val dataSource = new JdbcDataSource
-		dataSource.setURL(CONFIG.getByName(repoName).dataStore.connectionUrl + CONFIG.getByName(repoName).dataStore.repositoryName)
+		dataSource.URL = CONFIG.getByName(repoName).dataStore.connectionUrl + CONFIG.getByName(repoName).dataStore.repositoryName
 		dataSource.user = CONFIG.getByName(repoName).dataStore.userName
 		dataSource.password = CONFIG.getByName(repoName).dataStore.password
 
@@ -70,12 +76,35 @@ class StoreFactory {
 
 		// db datasource
 		val dataSource = new MysqlDataSource
-		dataSource.setURL(CONFIG.getByName(repoName).dataStore.connectionUrl)
+		dataSource.URL = CONFIG.getByName(repoName).dataStore.connectionUrl
 		dataSource.user = CONFIG.getByName(repoName).dataStore.userName
 		dataSource.password = CONFIG.getByName(repoName).dataStore.password
 
 		// dbAdapter
 		val dbAdapter = new CustomMYSQLAdapter
+
+		// db connection
+		val dbConnectionProvider = dbAdapter.createConnectionProvider(dataSource)
+		val store = CDODBUtil.createStore(mappingStrategy, dbAdapter, dbConnectionProvider)
+
+		return store
+	}
+	
+	def private static createOracleStore(String repoName) {
+
+		// db mapping strategy 
+		val mappingStrategy = CDODBUtil.createHorizontalMappingStrategy(true, true)
+		val mappingProps = newHashMap(IMappingStrategy.PROP_QUALIFIED_NAMES -> "true")
+		mappingStrategy.properties = mappingProps
+
+		// db datasource
+		val dataSource = new OracleDataSource
+		dataSource.URL = CONFIG.getByName(repoName).dataStore.connectionUrl
+		dataSource.user = CONFIG.getByName(repoName).dataStore.userName
+		dataSource.password = CONFIG.getByName(repoName).dataStore.password
+
+		// dbAdapter
+		val dbAdapter = new CustomOracleAdapter
 
 		// db connection
 		val dbConnectionProvider = dbAdapter.createConnectionProvider(dataSource)

@@ -36,7 +36,17 @@ public enum StoreType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	MYSQL(1, "MYSQL", "MYSQL");
+	MYSQL(1, "MYSQL", "MYSQL"),
+
+	/**
+	 * The '<em><b>ORACLE</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #ORACLE_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	ORACLE(2, "ORACLE", "ORACLE");
 
 	/**
 	 * The '<em><b>H2</b></em>' literal value.
@@ -69,6 +79,21 @@ public enum StoreType implements Enumerator {
 	public static final int MYSQL_VALUE = 1;
 
 	/**
+	 * The '<em><b>ORACLE</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>ORACLE</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #ORACLE
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int ORACLE_VALUE = 2;
+
+	/**
 	 * An array of all the '<em><b>Store Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -78,6 +103,7 @@ public enum StoreType implements Enumerator {
 		new StoreType[] {
 			H2,
 			MYSQL,
+			ORACLE,
 		};
 
 	/**
@@ -130,6 +156,7 @@ public enum StoreType implements Enumerator {
 		switch (value) {
 			case H2_VALUE: return H2;
 			case MYSQL_VALUE: return MYSQL;
+			case ORACLE_VALUE: return ORACLE;
 		}
 		return null;
 	}

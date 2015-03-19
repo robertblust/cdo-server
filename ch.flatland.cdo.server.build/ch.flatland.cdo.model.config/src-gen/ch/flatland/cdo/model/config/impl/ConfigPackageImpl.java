@@ -692,6 +692,7 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 		initEEnum(storeTypeEEnum, StoreType.class, "StoreType");
 		addEEnumLiteral(storeTypeEEnum, StoreType.H2);
 		addEEnumLiteral(storeTypeEEnum, StoreType.MYSQL);
+		addEEnumLiteral(storeTypeEEnum, StoreType.ORACLE);
 
 		initEEnum(authenticatorTypeEEnum, AuthenticatorType.class, "AuthenticatorType");
 		addEEnumLiteral(authenticatorTypeEEnum, AuthenticatorType.CDO);
