@@ -175,7 +175,7 @@ class DataStore {
 
 	def private getValue(EAttribute attribute, String value, IMappingStrategy mappingStrategy) {
 		logger.debug("DBStore '{}'", mappingStrategy.store.DBAdapter.name)
-		if(mappingStrategy.store.DBAdapter.name == "mysql") {
+		if(mappingStrategy.store.DBAdapter.name == "mysql" || mappingStrategy.store.DBAdapter.name == "oracle") {
 			switch attribute.EAttributeType.instanceClass {
 				case typeof(boolean): return value.booleanIntValue
 				case typeof(Boolean): return value.booleanIntValue
