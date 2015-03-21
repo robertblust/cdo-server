@@ -47,7 +47,7 @@ class StoreFactory {
 	def private static createH2Store(String repoName) {
 
 		// db mapping strategy 
-		val mappingStrategy = CDODBUtil.createHorizontalMappingStrategy(true, true)
+		val mappingStrategy = CDODBUtil.createHorizontalMappingStrategy(true, false)
 		val mappingProps = newHashMap(IMappingStrategy.PROP_QUALIFIED_NAMES -> "true")
 		mappingStrategy.properties = mappingProps
 
@@ -70,7 +70,7 @@ class StoreFactory {
 	def private static createMySQLStore(String repoName) {
 
 		// db mapping strategy 
-		val mappingStrategy = CDODBUtil.createHorizontalMappingStrategy(true, true)
+		val mappingStrategy = CDODBUtil.createHorizontalMappingStrategy(true, false)
 		val mappingProps = newHashMap(IMappingStrategy.PROP_QUALIFIED_NAMES -> "true")
 		mappingStrategy.properties = mappingProps
 
@@ -93,7 +93,7 @@ class StoreFactory {
 	def private static createOracleStore(String repoName) {
 
 		// db mapping strategy 
-		val mappingStrategy = CDODBUtil.createHorizontalMappingStrategy(true, true)
+		val mappingStrategy = CDODBUtil.createHorizontalMappingStrategy(true, false)
 		val mappingProps = newHashMap(IMappingStrategy.PROP_QUALIFIED_NAMES -> "true")
 		mappingStrategy.properties = mappingProps
 
