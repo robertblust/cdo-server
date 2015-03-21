@@ -104,7 +104,7 @@ class StoreFactory {
 		dataSource.password = CONFIG.getByName(repoName).dataStore.password
 
 		// dbAdapter
-		val dbAdapter = new CustomOracleAdapter
+		val dbAdapter = new CustomOracleAdapter(CONFIG.getByName(repoName).dataStore.userName)
 
 		// db connection
 		val dbConnectionProvider = dbAdapter.createConnectionProvider(dataSource)

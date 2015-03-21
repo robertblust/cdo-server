@@ -15,6 +15,12 @@ import org.eclipse.net4j.internal.db.ddl.DBField;
 
 @SuppressWarnings("restriction")
 public class CustomOracleAdapter extends OracleAdapter {
+	
+	private String user;
+	public CustomOracleAdapter(String user) {
+		this.user = user;
+	}
+	
 	@Override
 	public void readSchema(Connection connection, IDBSchema schema) {
 		try {
@@ -32,8 +38,9 @@ public class CustomOracleAdapter extends OracleAdapter {
 				String tableName = tables.getString(3);
 
 				IDBTable table = schema.addTable(tableName);
-				String user = tables.getString(2);
-				if (user.toLowerCase().equals("cdo")) {
+				String dbUser = tables.getString(2);
+				
+				if (dbUser.toLowerCase().equals(user)) {
 					readFields(connection, table);
 					readIndices(connection, metaData, table, schemaName);
 				}
