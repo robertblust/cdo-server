@@ -79,7 +79,7 @@ class DataStore {
 				while(iterator.hasNext) {
 					val obj = iterator.next
 
-					//logger.debug("Found '{}'", obj)
+					logger.debug("Found '{}'", obj)
 					result.add(obj)
 				}
 				iterator.close
