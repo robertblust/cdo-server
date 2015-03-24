@@ -132,6 +132,7 @@ class JsonConverter {
 		try {
 			gson.toJson(object)
 		} catch(Exception e) {
+			e.printStackTrace
 			throw new FlatlandException(SC_INTERNAL_SERVER_ERROR, e.message)
 		}
 	}
@@ -140,6 +141,7 @@ class JsonConverter {
 		try {
 			gson.toJson(new MessageResponse(object))
 		} catch(Exception e) {
+			e.printStackTrace
 			throw new FlatlandException(SC_INTERNAL_SERVER_ERROR, e.message)
 		}
 	}
@@ -148,6 +150,7 @@ class JsonConverter {
 		try {
 			gson.toJson(new MessageResponse(object))
 		} catch(Exception e) {
+			e.printStackTrace
 			throw new FlatlandException(SC_INTERNAL_SERVER_ERROR, e.message)
 		}
 	}
@@ -172,6 +175,7 @@ class JsonConverter {
 		} catch(NoPermissionException npe) {
 			throw new FlatlandException(SC_FORBIDDEN, npe.message)
 		} catch(Exception e) {
+			e.printStackTrace
 			throw new FlatlandException(SC_INTERNAL_SERVER_ERROR, e.message)
 		}
 	}
@@ -189,6 +193,7 @@ class JsonConverter {
 		} catch(NoPermissionException npe) {
 			throw new FlatlandException(SC_FORBIDDEN, npe.message)
 		} catch(Exception e) {
+			e.printStackTrace
 			throw new FlatlandException(SC_INTERNAL_SERVER_ERROR, e.message)
 		}
 	}
