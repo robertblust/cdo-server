@@ -13,6 +13,8 @@ import org.eclipse.emf.common.util.BasicEList
 import org.eclipse.emf.ecore.EEList
 import org.eclipse.emf.ecore.EReference
 
+annotation "http://www.eclipse.org/CDO/DBStore" as DBStore
+
 /*
  * <p>
  * Base element all Concepts should at least inherit from.
@@ -52,16 +54,13 @@ abstract class FLID {
 	FLIdentifier revisionID
 	@GenModel(propertyCategory="ID")
 	long version
-	@GenModel(propertyCategory="ID")
-	Date creationDate
-	@GenModel(propertyCategory="ID")
-	Date updateDate
 }
 
 abstract class FLElement extends FLID{
 	@GenModel(propertyCategory="Base")
 	String[1] name
 	@GenModel(propertyMultiLine="true", propertyCategory="Base")
+	@DBStore(columnType="CLOB")
 	FLMarkdown description
 	contains FLTrace[] traces
 	contains FLProperty[] properties

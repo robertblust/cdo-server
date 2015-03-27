@@ -91,6 +91,7 @@ public interface FLElement extends FLID {
 	 * @see ch.flatland.cdo.model.base.BasePackage#getFLElement_Description()
 	 * @model unique="false" dataType="ch.flatland.cdo.model.base.FLMarkdown"
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyMultiLine='true' propertyCategory='Base'"
+	 *        annotation="http://www.eclipse.org/CDO/DBStore columnType='CLOB'"
 	 * @generated
 	 */
 	String getDescription();
