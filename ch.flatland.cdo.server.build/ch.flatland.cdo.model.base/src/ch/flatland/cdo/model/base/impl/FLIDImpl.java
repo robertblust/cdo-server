@@ -4,6 +4,10 @@ package ch.flatland.cdo.model.base.impl;
 
 import ch.flatland.cdo.model.base.BasePackage;
 import ch.flatland.cdo.model.base.FLID;
+import com.google.common.base.Objects;
+import java.lang.reflect.InvocationTargetException;
+import org.eclipse.emf.cdo.common.security.CDOPermission;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.internal.cdo.CDOObjectImpl;
 
@@ -199,6 +203,20 @@ public abstract class FLIDImpl extends CDOObjectImpl implements FLID {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean hasPermission(final FLID object) {
+		CDOPermission _cdoPermission = object.cdoPermission();
+		boolean _notEquals = (!Objects.equal(_cdoPermission, CDOPermission.NONE));
+		if (_notEquals) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -290,6 +308,20 @@ public abstract class FLIDImpl extends CDOObjectImpl implements FLID {
 				return getVersion() != VERSION_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case BasePackage.FLID___HAS_PERMISSION__FLID:
+				return hasPermission((FLID)arguments.get(0));
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 } //FLIDImpl

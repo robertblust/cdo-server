@@ -178,4 +178,13 @@ public interface FLID extends CDOObject {
 	 */
 	void setVersion(long value);
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model unique="false" objectUnique="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='<%org.eclipse.emf.cdo.common.security.CDOPermission%> _cdoPermission = object.cdoPermission();\nboolean _notEquals = (!<%com.google.common.base.Objects%>.equal(_cdoPermission, <%org.eclipse.emf.cdo.common.security.CDOPermission%>.NONE));\nif (_notEquals)\n{\n\treturn true;\n}\nreturn false;'"
+	 * @generated
+	 */
+	boolean hasPermission(FLID object);
+
 } // FLID

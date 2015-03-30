@@ -12,6 +12,7 @@ package ch.flatland.cdo.model.base
 import org.eclipse.emf.common.util.BasicEList
 import org.eclipse.emf.ecore.EEList
 import org.eclipse.emf.ecore.EReference
+import org.eclipse.emf.cdo.common.security.CDOPermission
 
 annotation "http://www.eclipse.org/CDO/DBStore" as DBStore
 
@@ -54,6 +55,13 @@ abstract class FLID {
 	FLIdentifier revisionID
 	@GenModel(propertyCategory="ID")
 	long version
+	
+	op boolean hasPermission(FLID object) {
+		if(object.cdoPermission != CDOPermission.NONE) {
+			return true
+		}
+		return false
+	}
 }
 
 abstract class FLElement extends FLID{

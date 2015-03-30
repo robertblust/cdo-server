@@ -126,13 +126,22 @@ public interface BasePackage extends EPackage {
 	int FLID_FEATURE_COUNT = 5;
 
 	/**
+	 * The operation id for the '<em>Has Permission</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FLID___HAS_PERMISSION__FLID = 0;
+
+	/**
 	 * The number of operations of the '<em>FLID</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FLID_OPERATION_COUNT = 0;
+	int FLID_OPERATION_COUNT = 1;
 
 	/**
 	 * The meta object id for the '{@link ch.flatland.cdo.model.base.impl.FLElementImpl <em>FL Element</em>}' class.
@@ -503,6 +512,15 @@ public interface BasePackage extends EPackage {
 	 * @ordered
 	 */
 	int FL_ELEMENT_FEATURE_COUNT = FLID_FEATURE_COUNT + 34;
+
+	/**
+	 * The operation id for the '<em>Has Permission</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_ELEMENT___HAS_PERMISSION__FLID = FLID___HAS_PERMISSION__FLID;
 
 	/**
 	 * The operation id for the '<em>To Filter By Type</em>' operation.
@@ -938,6 +956,15 @@ public interface BasePackage extends EPackage {
 	int FL_PACKAGE_FEATURE_COUNT = FL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
+	 * The operation id for the '<em>Has Permission</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_PACKAGE___HAS_PERMISSION__FLID = FL_ELEMENT___HAS_PERMISSION__FLID;
+
+	/**
 	 * The operation id for the '<em>To Filter By Type</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1178,6 +1205,16 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getFLID_Version();
+
+	/**
+	 * Returns the meta object for the '{@link ch.flatland.cdo.model.base.FLID#hasPermission(ch.flatland.cdo.model.base.FLID) <em>Has Permission</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Has Permission</em>' operation.
+	 * @see ch.flatland.cdo.model.base.FLID#hasPermission(ch.flatland.cdo.model.base.FLID)
+	 * @generated
+	 */
+	EOperation getFLID__HasPermission__FLID();
 
 	/**
 	 * Returns the meta object for class '{@link ch.flatland.cdo.model.base.FLElement <em>FL Element</em>}'.
@@ -1825,6 +1862,14 @@ public interface BasePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute FLID__VERSION = eINSTANCE.getFLID_Version();
+
+		/**
+		 * The meta object literal for the '<em><b>Has Permission</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation FLID___HAS_PERMISSION__FLID = eINSTANCE.getFLID__HasPermission__FLID();
 
 		/**
 		 * The meta object literal for the '{@link ch.flatland.cdo.model.base.impl.FLElementImpl <em>FL Element</em>}' class.
