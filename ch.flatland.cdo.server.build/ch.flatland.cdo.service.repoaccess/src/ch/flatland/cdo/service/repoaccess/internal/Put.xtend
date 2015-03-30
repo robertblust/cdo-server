@@ -121,6 +121,7 @@ class Put {
 			jsonString = requestedObject.safeToJson
 
 		} catch(FlatlandException e) {
+			e.printStackTrace
 			resp.status = e.httpStatus
 			jsonString = e.safeToJson
 			logger.debug("Request failed", e)

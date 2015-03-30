@@ -156,7 +156,7 @@ class Request {
 	}
 	
 	def getContentPath(HttpServletRequest req) {
-		return req.pathInfo.replace("/" + req.repoName, "")
+		return req.pathInfo.replaceFirst("/" + req.repoName, "")
 	}
 
 	def getSessionId(HttpServletRequest request) {
@@ -216,6 +216,7 @@ class Request {
 				// one of 2 path pattern must be present
 				return false
 			}
+			
 			// required path pattern
 			// 1. /obj/prefix.type/oid --> size == 3
 			// 2. /obj/prefix.type/oid/references/feature/oid --> size == 6
