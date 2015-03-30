@@ -82,7 +82,7 @@ class JsonConverter {
 	new() {
 		this.jsonConverterConfig = new JsonConverterConfig
 	}
-	
+
 	def getConfig() {
 		jsonConverterConfig
 	}
@@ -127,7 +127,7 @@ class JsonConverter {
 	def okToJson() {
 		newObjectWithStatus().toString
 	}
-	
+
 	def safeAnyObjectToJson(Object object) {
 		try {
 			gson.toJson(object)
@@ -145,7 +145,7 @@ class JsonConverter {
 			throw new FlatlandException(SC_INTERNAL_SERVER_ERROR, e.message)
 		}
 	}
-	
+
 	def dispatch String safeToJson(Object[] object) {
 		try {
 			gson.toJson(new MessageResponse(object))
@@ -274,7 +274,7 @@ class JsonConverter {
 			val jsonSelfLink = new JsonObject
 			jsonSelfLink.addProperty(HREF, object.url)
 			jsonLinksObject.add(SELF, jsonSelfLink)
-			
+
 			if(jsonConverterConfig.links) {
 				if(object.eClass.EAllReferences.size > 0) {
 
@@ -352,10 +352,10 @@ class JsonConverter {
 				jsonBaseObject.addRevisions(object)
 			}
 		}
-		if (!stop) {
+		if(!stop) {
 			jsonBaseObject.addDiagnosticsAndMeta(object)
 		}
-		
+
 		return jsonBaseObject
 	}
 
@@ -445,10 +445,12 @@ class JsonConverter {
 									jsonReferencesArray.add(jsonRefObject)
 								}
 							}
-							jsonReferences.add(name, jsonReferencesArray)
-							jsonReferencesArrayEntry.add(NAME, new JsonPrimitive(name))
-							jsonReferencesArrayEntry.add(VALUE, jsonReferencesArray)
-							jsonReferencesArrayAccessor.add(jsonReferencesArrayEntry)
+							if(jsonReferencesArray.size > 0) {
+								jsonReferences.add(name, jsonReferencesArray)
+								jsonReferencesArrayEntry.add(NAME, new JsonPrimitive(name))
+								jsonReferencesArrayEntry.add(VALUE, jsonReferencesArray)
+								jsonReferencesArrayAccessor.add(jsonReferencesArrayEntry)
+							}
 						}
 					} else {
 						val value = eObject.eGet(reference, true)
