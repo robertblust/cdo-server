@@ -189,7 +189,11 @@ class View {
 	}
 
 	def safeResolveObject(CDOView view, String id) {
-		return view.getObject(CDOIDUtil.createLong(Long.parseLong(id)))
+		val result =  view.getObject(CDOIDUtil.createLong(Long.parseLong(id)))
+		if (result.hasPermission) {
+			return result
+		}
+		return null
 	}
 
 	def private dispatch filterBy(HttpServletRequest req, Object object) {
