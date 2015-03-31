@@ -2,6 +2,7 @@
  */
 package ch.flatland.cdo.model.base;
 
+import java.util.Date;
 import org.eclipse.emf.cdo.CDOObject;
 
 /**
@@ -24,6 +25,8 @@ import org.eclipse.emf.cdo.CDOObject;
  *   <li>{@link ch.flatland.cdo.model.base.FLID#getObjectID <em>Object ID</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.FLID#getRevisionID <em>Revision ID</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.FLID#getVersion <em>Version</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.base.FLID#getCDate <em>CDate</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.base.FLID#getUDate <em>UDate</em>}</li>
  * </ul>
  * </p>
  *
@@ -177,6 +180,60 @@ public interface FLID extends CDOObject {
 	 * @generated
 	 */
 	void setVersion(long value);
+
+	/**
+	 * Returns the value of the '<em><b>CDate</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>CDate</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>CDate</em>' attribute.
+	 * @see #setCDate(Date)
+	 * @see ch.flatland.cdo.model.base.BasePackage#getFLID_CDate()
+	 * @model unique="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='ID'"
+	 * @generated
+	 */
+	Date getCDate();
+
+	/**
+	 * Sets the value of the '{@link ch.flatland.cdo.model.base.FLID#getCDate <em>CDate</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>CDate</em>' attribute.
+	 * @see #getCDate()
+	 * @generated
+	 */
+	void setCDate(Date value);
+
+	/**
+	 * Returns the value of the '<em><b>UDate</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>UDate</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>UDate</em>' attribute.
+	 * @see #setUDate(Date)
+	 * @see ch.flatland.cdo.model.base.BasePackage#getFLID_UDate()
+	 * @model unique="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='ID'"
+	 * @generated
+	 */
+	Date getUDate();
+
+	/**
+	 * Sets the value of the '{@link ch.flatland.cdo.model.base.FLID#getUDate <em>UDate</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>UDate</em>' attribute.
+	 * @see #getUDate()
+	 * @generated
+	 */
+	void setUDate(Date value);
 
 	/**
 	 * <!-- begin-user-doc -->

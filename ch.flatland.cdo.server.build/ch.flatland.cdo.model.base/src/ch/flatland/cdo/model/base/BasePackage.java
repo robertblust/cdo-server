@@ -117,13 +117,31 @@ public interface BasePackage extends EPackage {
 	int FLID__VERSION = 4;
 
 	/**
+	 * The feature id for the '<em><b>CDate</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FLID__CDATE = 5;
+
+	/**
+	 * The feature id for the '<em><b>UDate</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FLID__UDATE = 6;
+
+	/**
 	 * The number of structural features of the '<em>FLID</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FLID_FEATURE_COUNT = 5;
+	int FLID_FEATURE_COUNT = 7;
 
 	/**
 	 * The operation id for the '<em>Has Permission</em>' operation.
@@ -197,6 +215,24 @@ public interface BasePackage extends EPackage {
 	 * @ordered
 	 */
 	int FL_ELEMENT__VERSION = FLID__VERSION;
+
+	/**
+	 * The feature id for the '<em><b>CDate</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_ELEMENT__CDATE = FLID__CDATE;
+
+	/**
+	 * The feature id for the '<em><b>UDate</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_ELEMENT__UDATE = FLID__UDATE;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -612,6 +648,24 @@ public interface BasePackage extends EPackage {
 	 * @ordered
 	 */
 	int FL_PACKAGE__VERSION = FL_ELEMENT__VERSION;
+
+	/**
+	 * The feature id for the '<em><b>CDate</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_PACKAGE__CDATE = FL_ELEMENT__CDATE;
+
+	/**
+	 * The feature id for the '<em><b>UDate</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_PACKAGE__UDATE = FL_ELEMENT__UDATE;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1205,6 +1259,28 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getFLID_Version();
+
+	/**
+	 * Returns the meta object for the attribute '{@link ch.flatland.cdo.model.base.FLID#getCDate <em>CDate</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>CDate</em>'.
+	 * @see ch.flatland.cdo.model.base.FLID#getCDate()
+	 * @see #getFLID()
+	 * @generated
+	 */
+	EAttribute getFLID_CDate();
+
+	/**
+	 * Returns the meta object for the attribute '{@link ch.flatland.cdo.model.base.FLID#getUDate <em>UDate</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>UDate</em>'.
+	 * @see ch.flatland.cdo.model.base.FLID#getUDate()
+	 * @see #getFLID()
+	 * @generated
+	 */
+	EAttribute getFLID_UDate();
 
 	/**
 	 * Returns the meta object for the '{@link ch.flatland.cdo.model.base.FLID#hasPermission(ch.flatland.cdo.model.base.FLID) <em>Has Permission</em>}' operation.
@@ -1862,6 +1938,22 @@ public interface BasePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute FLID__VERSION = eINSTANCE.getFLID_Version();
+
+		/**
+		 * The meta object literal for the '<em><b>CDate</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FLID__CDATE = eINSTANCE.getFLID_CDate();
+
+		/**
+		 * The meta object literal for the '<em><b>UDate</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FLID__UDATE = eINSTANCE.getFLID_UDate();
 
 		/**
 		 * The meta object literal for the '<em><b>Has Permission</b></em>' operation.

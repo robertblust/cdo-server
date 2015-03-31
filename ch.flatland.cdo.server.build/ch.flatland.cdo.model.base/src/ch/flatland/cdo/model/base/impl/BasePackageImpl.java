@@ -218,6 +218,24 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getFLID_CDate() {
+		return (EAttribute)flidEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getFLID_UDate() {
+		return (EAttribute)flidEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EOperation getFLID__HasPermission__FLID() {
 		return flidEClass.getEOperations().get(0);
 	}
@@ -733,6 +751,8 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 		createEAttribute(flidEClass, FLID__OBJECT_ID);
 		createEAttribute(flidEClass, FLID__REVISION_ID);
 		createEAttribute(flidEClass, FLID__VERSION);
+		createEAttribute(flidEClass, FLID__CDATE);
+		createEAttribute(flidEClass, FLID__UDATE);
 		createEOperation(flidEClass, FLID___HAS_PERMISSION__FLID);
 
 		flElementEClass = createEClass(FL_ELEMENT);
@@ -838,6 +858,8 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 		initEAttribute(getFLID_ObjectID(), this.getFLIdentifier(), "objectID", null, 0, 1, ch.flatland.cdo.model.base.FLID.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getFLID_RevisionID(), this.getFLIdentifier(), "revisionID", null, 0, 1, ch.flatland.cdo.model.base.FLID.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getFLID_Version(), theEcorePackage.getELong(), "version", null, 0, 1, ch.flatland.cdo.model.base.FLID.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFLID_CDate(), theEcorePackage.getEDate(), "cDate", null, 0, 1, ch.flatland.cdo.model.base.FLID.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFLID_UDate(), theEcorePackage.getEDate(), "uDate", null, 0, 1, ch.flatland.cdo.model.base.FLID.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		EOperation op = initEOperation(getFLID__HasPermission__FLID(), theEcorePackage.getEBoolean(), "hasPermission", 0, 1, !IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getFLID(), "object", 0, 1, !IS_UNIQUE, IS_ORDERED);

@@ -53,7 +53,8 @@ class Repository {
 			CDOServerUtil.addRepository(IPluginContainer.INSTANCE, repository);
 			securityManager = SecurityManagerFactory.createSecurityManager(it.dataStore.repositoryName)
 			securityManager.addCommitHandler(CommitHandlerFactory.createAnnotationCommitHandler)
-			securityManager.addCommitHandler(CommitHandlerFactory.createHomeCommitHandler)
+			
+			//securityManager.addCommitHandler(CommitHandlerFactory.createHomeCommitHandler)
 			securityManager.repository = repository
 			val lifecycle = securityManager as Lifecycle
 			lifecycle.activate
