@@ -24,7 +24,7 @@
 		{
 		    "dataStore": {
 		      	"storeType": "H2",
-		        "repositoryName": "repo2",
+		        "repositoryName": "repo",
 		        "connectionUrl":"jdbc:h2:database/",
 		        "userName": "cdo",
 		        "password": "cdo"
