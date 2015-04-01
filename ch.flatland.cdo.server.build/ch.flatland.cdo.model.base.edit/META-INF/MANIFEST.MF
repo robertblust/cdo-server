@@ -10,7 +10,7 @@ Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: ch.flatland.cdo.model.base.provider
 Require-Bundle: org.eclipse.core.runtime;resolution:=optional,
- ch.flatland.cdo.model.base;bundle-version="[1.1.0,2.0.0)";visibility:=reexport,
+ ch.flatland.cdo.model.base;bundle-version="[1.0.9,2.0.0)";visibility:=reexport,
  org.eclipse.emf.edit;visibility:=reexport,
  org.eclipse.emf.ecore;visibility:=reexport
 Bundle-ActivationPolicy: lazy
