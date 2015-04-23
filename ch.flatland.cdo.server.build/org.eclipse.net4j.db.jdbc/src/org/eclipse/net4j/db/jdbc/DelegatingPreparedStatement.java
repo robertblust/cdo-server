@@ -255,7 +255,8 @@ public abstract class DelegatingPreparedStatement implements PreparedStatement
 
   public void setObject(int parameterIndex, Object x, int targetSqlType) throws SQLException
   {
-	 try {
+	 // FIXME Patch to support Oracle by Rob
+	  try {
 		 delegate.setObject(parameterIndex, x, targetSqlType);
 	 } catch (ClassCastException e) {
 		if (targetSqlType == Types.CLOB) {
