@@ -135,6 +135,7 @@ class View {
 					throw new Exception
 			}
 		} catch(Exception e) {
+			e.printStackTrace
 			var path = req.servletAlias
 			if(req.pathInfo != null) {
 				path = path + req.pathInfo
