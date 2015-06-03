@@ -23,10 +23,10 @@ class References {
 	def safeResolveReferences(EObject object, String referenceName, HttpServletRequest req) {
 		if(referenceName == null) {
 			val allReferences = object.getAllReferences(req)
-			return allReferences.checkNullOrEmpty
+			return allReferences.checkNull
 		} else {
 			val references = object.getReferences(referenceName, true)
-			return references.checkNullOrEmpty
+			return references.checkNull
 		}
 	}
 
@@ -138,12 +138,9 @@ class References {
 		return null
 	}
 
-	def private checkNullOrEmpty(Object object) {
+	def private checkNull(Object object) {
 		if(object == null) {
-			throw new Exception
-		}
-		if(object instanceof List<?> && (object as List<?>).size == 0) {
-			throw new Exception
+			throw new Exception("Passed object is null")
 		}
 		return object
 	}
