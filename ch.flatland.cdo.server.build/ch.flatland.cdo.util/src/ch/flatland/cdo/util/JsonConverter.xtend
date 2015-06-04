@@ -234,7 +234,7 @@ class JsonConverter {
 		// CDO Legacy Adapter implements EObject but is not an EObject
 		// ITEM_DELEGATOR does a cast to EObject
 		if(object instanceof CDOLegacyAdapter) {
-			jsonBaseObject.addProperty(LABEL, object.toString)
+			jsonBaseObject.addProperty(LABEL, ITEM_DELEGATOR.getText(object.target))
 		} else {
 			jsonBaseObject.addProperty(LABEL, ITEM_DELEGATOR.getText(object))
 		}
@@ -836,11 +836,14 @@ class JsonConverter {
 				localDiagnostics.get(it).forEach [
 					val diag = new JsonObject
 					diag.addProperty(MESSAGE, it.message)
-					val feature = it.data.get(1) as EStructuralFeature
-					if(feature instanceof EAttribute) {
-						diag.addProperty(FEATURE, (ATTRIBUTES + "." + feature.name))
-					} else {
-						diag.addProperty(FEATURE, (REFERENCES + "." + feature.name))
+					if(it.data.size > 1) {
+						// index 1 is the actual feature
+						val feature = it.data.get(1) as EStructuralFeature
+						if(feature instanceof EAttribute) {
+							diag.addProperty(FEATURE, (ATTRIBUTES + "." + feature.name))
+						} else {
+							diag.addProperty(FEATURE, (REFERENCES + "." + feature.name))
+						}
 					}
 					diagsArray.add(diag)
 					if(it.children.size > 0) {

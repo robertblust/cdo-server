@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.util.Diagnostician
 import org.eclipse.emf.edit.EMFEditPlugin
 import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory
+import org.eclipse.emf.internal.cdo.object.CDOLegacyAdapter
 
 class FLDiagnostician extends Diagnostician {
 
@@ -24,14 +25,21 @@ class FLDiagnostician extends Diagnostician {
 	var EObject context
 
 	def override getObjectLabel(EObject eObject) {
-		if(context != null) {
-			return ITEM_DELEGATOR.getText(context)
+		if (context == null)  {
+			return super.getObjectLabel(eObject)
 		}
-		return super.getObjectLabel(eObject)
+		if (context instanceof CDOLegacyAdapter) {
+			return ITEM_DELEGATOR.getText(context.target)
+		}
+		return ITEM_DELEGATOR.getText(context)
+		
 	}
 
 	def override validate(EObject eObject) {
 		this.context = eObject
+		if (context instanceof CDOLegacyAdapter) {
+			return super.validate(context.target as EObject, emptyMap)
+		}
 		return super.validate(eObject, emptyMap)
 	}
 	
