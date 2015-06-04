@@ -33,6 +33,7 @@ import org.eclipse.emf.cdo.common.revision.delta.CDORemoveFeatureDelta
 import org.eclipse.emf.cdo.common.revision.delta.CDOSetFeatureDelta
 import org.eclipse.emf.cdo.common.security.NoPermissionException
 import org.eclipse.emf.cdo.eresource.CDOResourceNode
+import org.eclipse.emf.common.notify.Adapter
 import org.eclipse.emf.common.util.Diagnostic
 import org.eclipse.emf.common.util.Enumerator
 import org.eclipse.emf.common.util.URI
@@ -48,7 +49,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil
 import org.eclipse.emf.edit.EMFEditPlugin
 import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory
-import org.eclipse.emf.internal.cdo.object.CDOLegacyAdapter
 import org.slf4j.LoggerFactory
 
 import static ch.flatland.cdo.util.Constants.*
@@ -231,9 +231,7 @@ class JsonConverter {
 			}
 		}
 
-		// CDO Legacy Adapter implements EObject but is not an EObject
-		// ITEM_DELEGATOR does a cast to EObject
-		if(object instanceof CDOLegacyAdapter) {
+		if(object instanceof Adapter) {
 			jsonBaseObject.addProperty(LABEL, ITEM_DELEGATOR.getText(object.target))
 		} else {
 			jsonBaseObject.addProperty(LABEL, ITEM_DELEGATOR.getText(object))

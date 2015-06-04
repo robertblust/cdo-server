@@ -21,6 +21,7 @@ import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 import org.eclipse.emf.cdo.CDOObject
 import org.eclipse.emf.cdo.util.CommitException
+import org.eclipse.emf.common.notify.Adapter
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
 import org.slf4j.LoggerFactory
@@ -111,7 +112,7 @@ class Put {
 				view.commit
 			} catch(CommitException e) {
 				view.rollback
-				if (e.message.contains("Duplicate resource node in folder")) {
+				if(e.message.contains("Duplicate resource node in folder")) {
 					throw new FlatlandException(SC_CONFLICT, requestedObject, "Duplicate resource name '" + requestedObject.cdoID + "'")
 				}
 				throw new FlatlandException(SC_BAD_REQUEST, requestedObject, e.message)
@@ -140,7 +141,11 @@ class Put {
 			throw new FlatlandException(SC_BAD_REQUEST, container, "Try to add new element to array '{}' with '{}' items having upper limit of '{}'", eReference.name, eList.size, eReference.upperBound)
 		}
 		try {
-			eList.add(objectToPut)
+			if(objectToPut instanceof Adapter) {
+				eList.add(objectToPut.target as EObject)
+			} else {
+				eList.add(objectToPut)
+			}
 		} catch(Exception e) {
 			throw new FlatlandException(SC_BAD_REQUEST, container, "Element has wrong type for reference '{}'", eReference.name)
 		}
@@ -148,7 +153,11 @@ class Put {
 
 	def private safeSetReference(EObject container, EReference eReference, EObject refObject) {
 		try {
-			container.eSet(eReference, refObject)
+			if(refObject instanceof Adapter) {
+				container.eSet(eReference, refObject.target)
+			} else {
+				container.eSet(eReference, refObject)
+			}
 		} catch(Exception e) {
 			throw new FlatlandException(SC_BAD_REQUEST, container, "Object '{}' has wrong type for reference '{}'", refObject, eReference.name)
 		}

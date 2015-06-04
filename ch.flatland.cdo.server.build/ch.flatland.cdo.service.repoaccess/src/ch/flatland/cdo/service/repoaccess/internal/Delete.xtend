@@ -24,6 +24,7 @@ import org.eclipse.emf.cdo.common.security.NoPermissionException
 import org.eclipse.emf.cdo.eresource.CDOResourceNode
 import org.eclipse.emf.cdo.util.CommitException
 import org.eclipse.emf.cdo.view.CDOView
+import org.eclipse.emf.common.notify.Adapter
 import org.eclipse.emf.ecore.EObject
 import org.slf4j.LoggerFactory
 
@@ -99,18 +100,28 @@ class Delete {
 						val refToDelete = view.safeResolveObject(req.pathSegments.get(5))
 						if(eReference.isMany) {
 							val eList = requestedObject.eGet(eReference, true) as List<EObject>
-							removed = eList.remove(refToDelete)
+							if(refToDelete instanceof Adapter) {
+								removed = eList.remove(refToDelete.target)
+							} else {
+								removed = eList.remove(refToDelete)
+							}
 						} else {
 							val eRef = requestedObject.eGet(eReference, true) as EObject
-							if(eRef == refToDelete) {
-								requestedObject.eUnset(eReference)
-								removed = true
+							if(refToDelete instanceof Adapter) {
+								if(eRef == refToDelete.target) {
+									requestedObject.eUnset(eReference)
+									removed = true
+								}
+							} else {
+								if(eRef == refToDelete) {
+									requestedObject.eUnset(eReference)
+									removed = true
+								}
 							}
 						}
 						if(!removed) {
 							throw new FlatlandException(SC_BAD_REQUEST, requestedObject, "Feature '{}' does not refers to '{}'", eReference.name, refToDelete)
 						}
-
 					} catch(Exception e) {
 						throw new FlatlandException(SC_BAD_REQUEST, requestedObject, e.message)
 					}

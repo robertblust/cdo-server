@@ -11,13 +11,13 @@
 package ch.flatland.cdo.util
 
 import java.util.Map
+import org.eclipse.emf.common.notify.Adapter
 import org.eclipse.emf.common.util.DiagnosticChain
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.util.Diagnostician
 import org.eclipse.emf.edit.EMFEditPlugin
 import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory
-import org.eclipse.emf.internal.cdo.object.CDOLegacyAdapter
 
 class FLDiagnostician extends Diagnostician {
 
@@ -28,7 +28,7 @@ class FLDiagnostician extends Diagnostician {
 		if (context == null)  {
 			return super.getObjectLabel(eObject)
 		}
-		if (context instanceof CDOLegacyAdapter) {
+		if (context instanceof Adapter) {
 			return ITEM_DELEGATOR.getText(context.target)
 		}
 		return ITEM_DELEGATOR.getText(context)
@@ -37,7 +37,7 @@ class FLDiagnostician extends Diagnostician {
 
 	def override validate(EObject eObject) {
 		this.context = eObject
-		if (context instanceof CDOLegacyAdapter) {
+		if (context instanceof Adapter) {
 			return super.validate(context.target as EObject, emptyMap)
 		}
 		return super.validate(eObject, emptyMap)
