@@ -52,7 +52,7 @@ class Delete {
 				throw resp.statusMethodNotAllowed
 			}
 			val object = view.safeRequestResource(req, resp)
-			if (!(object instanceof CDOObject)) {
+			if(!(object instanceof CDOObject)) {
 				throw resp.statusMethodNotAllowed
 			}
 
@@ -128,14 +128,14 @@ class Delete {
 
 			// now transform manipulated object to json for the response		
 			if(req.pathSegments.size == 3) {
+
 				// object was deleted
 				jsonString = JsonConverter.okToJson
 			} else {
+
 				// reference of object was removed
 				jsonString = requestedObject.safeToJson
 			}
-
-			
 
 		} catch(FlatlandException e) {
 			e.printStackTrace
@@ -156,19 +156,12 @@ class Delete {
 		suspects.addAll(cdoObject.eAllContents.toList)
 
 		suspects.forEach [
-			view.queryXRefs(it as CDOObject, emptyList).forEach [
-				val target = it.targetObject
-				val source = it.sourceObject
-				val sourceFeature = it.sourceFeature
-				if(!sourceFeature.isDerived) {
-					logger.debug("Found xref feature '{}', source '{}', target '{}'", sourceFeature.name, source, target)
-					if(sourceFeature.isMany) {
-						(source.eGet(sourceFeature) as List<Object>).remove(target)
-					} else {
-						source.eUnset(sourceFeature)
-					}
-				}
-			]
+			if(it instanceof CDOObject) {
+				it.handleSuspect(view)
+			} else {
+				val cdoAdapter = it.eAdapters.filter(typeof(CDOObject)).head
+				cdoAdapter.handleSuspect(view)
+			}
 		]
 		val container = cdoObject.eContainer
 		if(container == null) {
@@ -186,5 +179,21 @@ class Delete {
 			}
 		}
 		return container
+	}
+
+	def private handleSuspect(CDOObject suspect, CDOView view) {
+		view.queryXRefs(suspect, emptyList).forEach [
+			val target = it.targetObject
+			val source = it.sourceObject
+			val sourceFeature = it.sourceFeature
+			if(!sourceFeature.isDerived) {
+				logger.debug("Found xref feature '{}', source '{}', target '{}'", sourceFeature.name, source, target)
+				if(sourceFeature.isMany) {
+					(source.eGet(sourceFeature) as List<Object>).remove(target)
+				} else {
+					source.eUnset(sourceFeature)
+				}
+			}
+		]
 	}
 }
