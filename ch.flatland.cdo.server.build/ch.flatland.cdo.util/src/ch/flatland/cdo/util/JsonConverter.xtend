@@ -886,7 +886,7 @@ class JsonConverter {
 	def private dispatch JsonElement getFeatureDeltaAsJsonObject(CDOFeatureDelta delta, EObject object) {
 		logger.debug("getFeatureDeltaAsJsonObject with CDOFeatureDelta '{}'", delta)
 		val jsonObject = new JsonObject
-		jsonObject.addProperty(MESSAGE, delta.type + " feature '" + delta.feature.name + "' to '" + object.eGet(delta.feature) + "'")
+		jsonObject.addProperty(MESSAGE, delta.type + " feature '" + delta.feature.name + "' to '" + object.eGet(delta.feature).deltaObjectName + "'")
 		return jsonObject
 	}
 
@@ -907,7 +907,7 @@ class JsonConverter {
 	def private dispatch JsonElement getFeatureDeltaAsJsonObject(CDOSetFeatureDelta delta, EObject object) {
 		logger.debug("getFeatureDeltaAsJsonObject with CDOSetFeatureDelta '{}'", delta)
 		val jsonObject = new JsonObject
-		jsonObject.addProperty(MESSAGE, delta.type + " feature '" + delta.feature.name + "' from '" + delta.oldValue + "' to '" + delta.value + "'")
+		jsonObject.addProperty(MESSAGE, delta.type + " feature '" + delta.feature.name + "' from '" + delta.oldValue.deltaObjectName + "' to '" + delta.value.deltaObjectName + "'")
 		return jsonObject
 	}
 
@@ -930,7 +930,7 @@ class JsonConverter {
 		// TODO can be more detailed
 		logger.debug("getFeatureDeltaAsJsonObject with CDOMoveFeatureDelta '{}'", delta)
 		val jsonObject = new JsonObject
-		jsonObject.addProperty(MESSAGE, delta.type + " feature '" + delta.feature.name + "' to '" + object.eGet(delta.feature) + "'")
+		jsonObject.addProperty(MESSAGE, delta.type + " feature '" + delta.feature.name + "' to '" + object.eGet(delta.feature).deltaObjectName + "'")
 		return jsonObject
 	}
 
@@ -938,6 +938,19 @@ class JsonConverter {
 		logger.debug("getFeatureDeltaAsJsonObject with CDORemoveFeatureDelta '{}'", delta)
 		val message = delta.type + " '" + delta.value + "' form feature '" + delta.feature.name + "[" + delta.index + "]'"
 		return new JsonPrimitive(message)
+	}
+	
+	def private getDeltaObjectName(Object object) {
+		if (object == null) {
+			return object
+		}
+		if (object instanceof Adapter) {
+			return ITEM_DELEGATOR.getText(object.target)
+		}
+		if (object instanceof EObject) {
+			return ITEM_DELEGATOR.getText(object)
+		}
+		return object.toString
 	}
 
 	def getView(EObject eObject) {
