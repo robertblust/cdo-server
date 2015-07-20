@@ -835,13 +835,18 @@ class JsonConverter {
 					val diag = new JsonObject
 					diag.addProperty(MESSAGE, it.message)
 					if(it.data.size > 1) {
+
 						// index 1 is the actual feature
-						val feature = it.data.get(1) as EStructuralFeature
-						if(feature instanceof EAttribute) {
-							diag.addProperty(FEATURE, (ATTRIBUTES + "." + feature.name))
-						} else {
-							diag.addProperty(FEATURE, (REFERENCES + "." + feature.name))
+						// TODO check this
+						if(it.data.get(1) instanceof EStructuralFeature) {
+							val feature = it.data.get(1) as EStructuralFeature
+							if(feature instanceof EAttribute) {
+								diag.addProperty(FEATURE, (ATTRIBUTES + "." + feature.name))
+							} else {
+								diag.addProperty(FEATURE, (REFERENCES + "." + feature.name))
+							}
 						}
+
 					}
 					diagsArray.add(diag)
 					if(it.children.size > 0) {
@@ -939,15 +944,15 @@ class JsonConverter {
 		val message = delta.type + " '" + delta.value + "' form feature '" + delta.feature.name + "[" + delta.index + "]'"
 		return new JsonPrimitive(message)
 	}
-	
+
 	def private getDeltaObjectName(Object object) {
-		if (object == null) {
+		if(object == null) {
 			return object
 		}
-		if (object instanceof Adapter) {
+		if(object instanceof Adapter) {
 			return ITEM_DELEGATOR.getText(object.target)
 		}
-		if (object instanceof EObject) {
+		if(object instanceof EObject) {
 			return ITEM_DELEGATOR.getText(object)
 		}
 		return object.toString
