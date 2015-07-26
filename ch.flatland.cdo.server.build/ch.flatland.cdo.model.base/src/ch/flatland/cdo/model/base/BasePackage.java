@@ -271,13 +271,22 @@ public interface BasePackage extends EPackage {
 	int FL_ELEMENT__PROPERTIES = FLID_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Derived Container</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_ELEMENT__DERIVED_CONTAINER = FLID_FEATURE_COUNT + 4;
+
+	/**
 	 * The feature id for the '<em><b>Trace To Own</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT__TRACE_TO_OWN = FLID_FEATURE_COUNT + 4;
+	int FL_ELEMENT__TRACE_TO_OWN = FLID_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Trace To Use</b></em>' reference list.
@@ -286,7 +295,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT__TRACE_TO_USE = FLID_FEATURE_COUNT + 5;
+	int FL_ELEMENT__TRACE_TO_USE = FLID_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Trace To Realize</b></em>' reference list.
@@ -295,7 +304,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT__TRACE_TO_REALIZE = FLID_FEATURE_COUNT + 6;
+	int FL_ELEMENT__TRACE_TO_REALIZE = FLID_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Trace To Specify</b></em>' reference list.
@@ -304,7 +313,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT__TRACE_TO_SPECIFY = FLID_FEATURE_COUNT + 7;
+	int FL_ELEMENT__TRACE_TO_SPECIFY = FLID_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Trace To Implement</b></em>' reference list.
@@ -313,7 +322,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT__TRACE_TO_IMPLEMENT = FLID_FEATURE_COUNT + 8;
+	int FL_ELEMENT__TRACE_TO_IMPLEMENT = FLID_FEATURE_COUNT + 9;
 
 	/**
 	 * The feature id for the '<em><b>Trace To Elaborate</b></em>' reference list.
@@ -322,7 +331,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT__TRACE_TO_ELABORATE = FLID_FEATURE_COUNT + 9;
+	int FL_ELEMENT__TRACE_TO_ELABORATE = FLID_FEATURE_COUNT + 10;
 
 	/**
 	 * The feature id for the '<em><b>Trace To Derive</b></em>' reference list.
@@ -331,7 +340,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT__TRACE_TO_DERIVE = FLID_FEATURE_COUNT + 10;
+	int FL_ELEMENT__TRACE_TO_DERIVE = FLID_FEATURE_COUNT + 11;
 
 	/**
 	 * The feature id for the '<em><b>Trace To Validate</b></em>' reference list.
@@ -340,7 +349,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT__TRACE_TO_VALIDATE = FLID_FEATURE_COUNT + 11;
+	int FL_ELEMENT__TRACE_TO_VALIDATE = FLID_FEATURE_COUNT + 12;
 
 	/**
 	 * The feature id for the '<em><b>Trace To Test</b></em>' reference list.
@@ -349,7 +358,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT__TRACE_TO_TEST = FLID_FEATURE_COUNT + 12;
+	int FL_ELEMENT__TRACE_TO_TEST = FLID_FEATURE_COUNT + 13;
 
 	/**
 	 * The feature id for the '<em><b>Trace To Relate</b></em>' reference list.
@@ -358,7 +367,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT__TRACE_TO_RELATE = FLID_FEATURE_COUNT + 13;
+	int FL_ELEMENT__TRACE_TO_RELATE = FLID_FEATURE_COUNT + 14;
 
 	/**
 	 * The feature id for the '<em><b>Trace To Affect</b></em>' reference list.
@@ -367,7 +376,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT__TRACE_TO_AFFECT = FLID_FEATURE_COUNT + 14;
+	int FL_ELEMENT__TRACE_TO_AFFECT = FLID_FEATURE_COUNT + 15;
 
 	/**
 	 * The feature id for the '<em><b>Trace To Satisfy</b></em>' reference list.
@@ -376,7 +385,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT__TRACE_TO_SATISFY = FLID_FEATURE_COUNT + 15;
+	int FL_ELEMENT__TRACE_TO_SATISFY = FLID_FEATURE_COUNT + 16;
 
 	/**
 	 * The feature id for the '<em><b>Trace To Verify</b></em>' reference list.
@@ -385,7 +394,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT__TRACE_TO_VERIFY = FLID_FEATURE_COUNT + 16;
+	int FL_ELEMENT__TRACE_TO_VERIFY = FLID_FEATURE_COUNT + 17;
 
 	/**
 	 * The feature id for the '<em><b>Trace To Refine</b></em>' reference list.
@@ -394,7 +403,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT__TRACE_TO_REFINE = FLID_FEATURE_COUNT + 17;
+	int FL_ELEMENT__TRACE_TO_REFINE = FLID_FEATURE_COUNT + 18;
 
 	/**
 	 * The feature id for the '<em><b>Trace To Track</b></em>' reference list.
@@ -403,7 +412,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT__TRACE_TO_TRACK = FLID_FEATURE_COUNT + 18;
+	int FL_ELEMENT__TRACE_TO_TRACK = FLID_FEATURE_COUNT + 19;
 
 	/**
 	 * The feature id for the '<em><b>Trace From Own</b></em>' reference list.
@@ -412,7 +421,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT__TRACE_FROM_OWN = FLID_FEATURE_COUNT + 19;
+	int FL_ELEMENT__TRACE_FROM_OWN = FLID_FEATURE_COUNT + 20;
 
 	/**
 	 * The feature id for the '<em><b>Trace From Use</b></em>' reference list.
@@ -421,7 +430,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT__TRACE_FROM_USE = FLID_FEATURE_COUNT + 20;
+	int FL_ELEMENT__TRACE_FROM_USE = FLID_FEATURE_COUNT + 21;
 
 	/**
 	 * The feature id for the '<em><b>Trace From Realize</b></em>' reference list.
@@ -430,7 +439,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT__TRACE_FROM_REALIZE = FLID_FEATURE_COUNT + 21;
+	int FL_ELEMENT__TRACE_FROM_REALIZE = FLID_FEATURE_COUNT + 22;
 
 	/**
 	 * The feature id for the '<em><b>Trace From Specify</b></em>' reference list.
@@ -439,7 +448,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT__TRACE_FROM_SPECIFY = FLID_FEATURE_COUNT + 22;
+	int FL_ELEMENT__TRACE_FROM_SPECIFY = FLID_FEATURE_COUNT + 23;
 
 	/**
 	 * The feature id for the '<em><b>Trace From Implement</b></em>' reference list.
@@ -448,7 +457,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT__TRACE_FROM_IMPLEMENT = FLID_FEATURE_COUNT + 23;
+	int FL_ELEMENT__TRACE_FROM_IMPLEMENT = FLID_FEATURE_COUNT + 24;
 
 	/**
 	 * The feature id for the '<em><b>Trace From Elaborate</b></em>' reference list.
@@ -457,7 +466,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT__TRACE_FROM_ELABORATE = FLID_FEATURE_COUNT + 24;
+	int FL_ELEMENT__TRACE_FROM_ELABORATE = FLID_FEATURE_COUNT + 25;
 
 	/**
 	 * The feature id for the '<em><b>Trace From Derive</b></em>' reference list.
@@ -466,7 +475,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT__TRACE_FROM_DERIVE = FLID_FEATURE_COUNT + 25;
+	int FL_ELEMENT__TRACE_FROM_DERIVE = FLID_FEATURE_COUNT + 26;
 
 	/**
 	 * The feature id for the '<em><b>Trace From Validate</b></em>' reference list.
@@ -475,7 +484,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT__TRACE_FROM_VALIDATE = FLID_FEATURE_COUNT + 26;
+	int FL_ELEMENT__TRACE_FROM_VALIDATE = FLID_FEATURE_COUNT + 27;
 
 	/**
 	 * The feature id for the '<em><b>Trace From Test</b></em>' reference list.
@@ -484,7 +493,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT__TRACE_FROM_TEST = FLID_FEATURE_COUNT + 27;
+	int FL_ELEMENT__TRACE_FROM_TEST = FLID_FEATURE_COUNT + 28;
 
 	/**
 	 * The feature id for the '<em><b>Trace From Relate</b></em>' reference list.
@@ -493,7 +502,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT__TRACE_FROM_RELATE = FLID_FEATURE_COUNT + 28;
+	int FL_ELEMENT__TRACE_FROM_RELATE = FLID_FEATURE_COUNT + 29;
 
 	/**
 	 * The feature id for the '<em><b>Trace From Affect</b></em>' reference list.
@@ -502,7 +511,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT__TRACE_FROM_AFFECT = FLID_FEATURE_COUNT + 29;
+	int FL_ELEMENT__TRACE_FROM_AFFECT = FLID_FEATURE_COUNT + 30;
 
 	/**
 	 * The feature id for the '<em><b>Trace From Satisfy</b></em>' reference list.
@@ -511,7 +520,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT__TRACE_FROM_SATISFY = FLID_FEATURE_COUNT + 30;
+	int FL_ELEMENT__TRACE_FROM_SATISFY = FLID_FEATURE_COUNT + 31;
 
 	/**
 	 * The feature id for the '<em><b>Trace From Verify</b></em>' reference list.
@@ -520,7 +529,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT__TRACE_FROM_VERIFY = FLID_FEATURE_COUNT + 31;
+	int FL_ELEMENT__TRACE_FROM_VERIFY = FLID_FEATURE_COUNT + 32;
 
 	/**
 	 * The feature id for the '<em><b>Trace From Refine</b></em>' reference list.
@@ -529,7 +538,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT__TRACE_FROM_REFINE = FLID_FEATURE_COUNT + 32;
+	int FL_ELEMENT__TRACE_FROM_REFINE = FLID_FEATURE_COUNT + 33;
 
 	/**
 	 * The feature id for the '<em><b>Trace From Track</b></em>' reference list.
@@ -538,7 +547,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT__TRACE_FROM_TRACK = FLID_FEATURE_COUNT + 33;
+	int FL_ELEMENT__TRACE_FROM_TRACK = FLID_FEATURE_COUNT + 34;
 
 	/**
 	 * The number of structural features of the '<em>FL Element</em>' class.
@@ -547,7 +556,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT_FEATURE_COUNT = FLID_FEATURE_COUNT + 34;
+	int FL_ELEMENT_FEATURE_COUNT = FLID_FEATURE_COUNT + 35;
 
 	/**
 	 * The operation id for the '<em>Has Permission</em>' operation.
@@ -559,13 +568,22 @@ public interface BasePackage extends EPackage {
 	int FL_ELEMENT___HAS_PERMISSION__FLID = FLID___HAS_PERMISSION__FLID;
 
 	/**
+	 * The operation id for the '<em>Resolve Container</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_ELEMENT___RESOLVE_CONTAINER = FLID_OPERATION_COUNT + 0;
+
+	/**
 	 * The operation id for the '<em>To Filter By Type</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT___TO_FILTER_BY_TYPE__FLTRACETYPE = FLID_OPERATION_COUNT + 0;
+	int FL_ELEMENT___TO_FILTER_BY_TYPE__FLTRACETYPE = FLID_OPERATION_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>From Filter By Type</em>' operation.
@@ -574,7 +592,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT___FROM_FILTER_BY_TYPE__FLTRACETYPE = FLID_OPERATION_COUNT + 1;
+	int FL_ELEMENT___FROM_FILTER_BY_TYPE__FLTRACETYPE = FLID_OPERATION_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Resolve Xrefs</em>' operation.
@@ -583,7 +601,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT___RESOLVE_XREFS__EREFERENCE_CLASS = FLID_OPERATION_COUNT + 2;
+	int FL_ELEMENT___RESOLVE_XREFS__EREFERENCE_CLASS = FLID_OPERATION_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>FL Element</em>' class.
@@ -592,7 +610,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT_OPERATION_COUNT = FLID_OPERATION_COUNT + 3;
+	int FL_ELEMENT_OPERATION_COUNT = FLID_OPERATION_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link ch.flatland.cdo.model.base.impl.FLPackageImpl <em>FL Package</em>}' class.
@@ -702,6 +720,15 @@ public interface BasePackage extends EPackage {
 	 * @ordered
 	 */
 	int FL_PACKAGE__PROPERTIES = FL_ELEMENT__PROPERTIES;
+
+	/**
+	 * The feature id for the '<em><b>Derived Container</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_PACKAGE__DERIVED_CONTAINER = FL_ELEMENT__DERIVED_CONTAINER;
 
 	/**
 	 * The feature id for the '<em><b>Trace To Own</b></em>' reference list.
@@ -1017,6 +1044,15 @@ public interface BasePackage extends EPackage {
 	 * @ordered
 	 */
 	int FL_PACKAGE___HAS_PERMISSION__FLID = FL_ELEMENT___HAS_PERMISSION__FLID;
+
+	/**
+	 * The operation id for the '<em>Resolve Container</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_PACKAGE___RESOLVE_CONTAINER = FL_ELEMENT___RESOLVE_CONTAINER;
 
 	/**
 	 * The operation id for the '<em>To Filter By Type</em>' operation.
@@ -1345,6 +1381,17 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getFLElement_Properties();
+
+	/**
+	 * Returns the meta object for the reference '{@link ch.flatland.cdo.model.base.FLElement#getDerivedContainer <em>Derived Container</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Derived Container</em>'.
+	 * @see ch.flatland.cdo.model.base.FLElement#getDerivedContainer()
+	 * @see #getFLElement()
+	 * @generated
+	 */
+	EReference getFLElement_DerivedContainer();
 
 	/**
 	 * Returns the meta object for the reference list '{@link ch.flatland.cdo.model.base.FLElement#getTraceToOwn <em>Trace To Own</em>}'.
@@ -1677,6 +1724,16 @@ public interface BasePackage extends EPackage {
 	EReference getFLElement_TraceFromTrack();
 
 	/**
+	 * Returns the meta object for the '{@link ch.flatland.cdo.model.base.FLElement#resolveContainer() <em>Resolve Container</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Resolve Container</em>' operation.
+	 * @see ch.flatland.cdo.model.base.FLElement#resolveContainer()
+	 * @generated
+	 */
+	EOperation getFLElement__ResolveContainer();
+
+	/**
 	 * Returns the meta object for the '{@link ch.flatland.cdo.model.base.FLElement#toFilterByType(ch.flatland.cdo.model.base.FLTraceType) <em>To Filter By Type</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2006,6 +2063,14 @@ public interface BasePackage extends EPackage {
 		EReference FL_ELEMENT__PROPERTIES = eINSTANCE.getFLElement_Properties();
 
 		/**
+		 * The meta object literal for the '<em><b>Derived Container</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FL_ELEMENT__DERIVED_CONTAINER = eINSTANCE.getFLElement_DerivedContainer();
+
+		/**
 		 * The meta object literal for the '<em><b>Trace To Own</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2244,6 +2309,14 @@ public interface BasePackage extends EPackage {
 		 * @generated
 		 */
 		EReference FL_ELEMENT__TRACE_FROM_TRACK = eINSTANCE.getFLElement_TraceFromTrack();
+
+		/**
+		 * The meta object literal for the '<em><b>Resolve Container</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation FL_ELEMENT___RESOLVE_CONTAINER = eINSTANCE.getFLElement__ResolveContainer();
 
 		/**
 		 * The meta object literal for the '<em><b>To Filter By Type</b></em>' operation.

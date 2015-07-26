@@ -9,10 +9,11 @@
 	creationIcons="false")
 package ch.flatland.cdo.model.base
 
+import org.eclipse.emf.cdo.common.security.CDOPermission
 import org.eclipse.emf.common.util.BasicEList
 import org.eclipse.emf.ecore.EEList
+import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
-import org.eclipse.emf.cdo.common.security.CDOPermission
 
 annotation "http://www.eclipse.org/CDO/DBStore" as DBStore
 
@@ -76,6 +77,10 @@ abstract class FLElement extends FLID{
 	FLMarkdown description
 	contains FLTrace[] traces
 	contains FLProperty[] properties
+	@GenModel(propertyCategory="Base")
+	refers EObject derivedContainer get {
+		return resolveContainer
+	} 
 	@GenModel(propertyCategory="Trace to")
 	refers FLElement[] traceToOwn get {
 		return toFilterByType(FLTraceType.OWN)
@@ -195,6 +200,9 @@ abstract class FLElement extends FLID{
 	@GenModel(propertyCategory="Trace from", property="None")
 	refers FLElement[] traceFromTrack get {
 		return this.fromFilterByType(FLTraceType.TRACK)
+	}
+	op EObject resolveContainer() {
+		this.eContainer
 	}
 	/*
 	 * Filters the traces to by trace type.
