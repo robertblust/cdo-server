@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="ch.flatland.cdo.server" uid="ch.flatland.cdo.server" id="ch.flatland.cdo.server.product.product" application="ch.flatland.cdo.server.product.app" version="1.1.0.M001" useFeatures="true" includeLaunchers="true">
+<product name="ch.flatland.cdo.server" uid="ch.flatland.cdo.server" id="ch.flatland.cdo.server.product.product" application="ch.flatland.cdo.server.product.app" version="1.1.0.M002" useFeatures="true" includeLaunchers="true">
 
    <configIni use="default">
    </configIni>
@@ -87,12 +87,12 @@
    </plugins>
 
    <features>
-      <feature id="ch.flatland.cdo.server.feature" version="1.1.0.M001"/>
-      <feature id="ch.flatland.cdo.model.feature" version="1.1.0.M001"/>
-      <feature id="ch.flatland.cdo.server.ldap.feature" version="1.1.0.M001"/>
-      <feature id="ch.flatland.cdo.service.feature" version="1.1.0.M001"/>
-      <feature id="ch.flatland.cdo.util.feature" version="1.1.0.M001"/>
-      <feature id="ch.flatland.cdo.webconsole.feature" version="1.1.0.M001"/>
+      <feature id="ch.flatland.cdo.server.feature" version="1.1.0.M002"/>
+      <feature id="ch.flatland.cdo.model.feature" version="1.1.0.M002"/>
+      <feature id="ch.flatland.cdo.server.ldap.feature" version="1.1.0.M002"/>
+      <feature id="ch.flatland.cdo.service.feature" version="1.1.0.M002"/>
+      <feature id="ch.flatland.cdo.util.feature" version="1.1.0.M002"/>
+      <feature id="ch.flatland.cdo.webconsole.feature" version="1.1.0.M002"/>
    </features>
 
    <configurations>

@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Flatland CDO Server Reststyle Repository Access
 Bundle-SymbolicName: ch.flatland.cdo.service.repoaccess;singleton:=true
-Bundle-Version: 1.1.0.M001
+Bundle-Version: 1.1.0.M002
 Bundle-Vendor: flatland.ch
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Require-Bundle: org.eclipse.xtend.lib,

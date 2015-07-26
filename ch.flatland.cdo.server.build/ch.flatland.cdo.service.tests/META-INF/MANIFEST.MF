@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Flatland CDO Service Test
 Bundle-SymbolicName: ch.flatland.cdo.service.tests
-Bundle-Version: 1.1.0.M001
+Bundle-Version: 1.1.0.M002
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Require-Bundle: com.eclipsesource.restfuse;bundle-version="1.2.0",
  org.eclipse.xtend.lib,
