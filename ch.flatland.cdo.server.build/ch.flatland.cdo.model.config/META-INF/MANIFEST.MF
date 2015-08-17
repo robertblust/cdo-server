@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Flatland CDO Config Model
 Bundle-SymbolicName: ch.flatland.cdo.model.config;singleton:=true
-Bundle-Version: 1.1.0.M002
+Bundle-Version: 1.2.0.M001
 Bundle-ClassPath: .
 Bundle-Vendor: flatland.ch
 Bundle-Localization: plugin

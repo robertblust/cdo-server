@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link ch.flatland.cdo.model.config.Json#isValidate <em>Validate</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.config.Json#isRreferences <em>Rreferences</em>}</li>
@@ -24,7 +25,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link ch.flatland.cdo.model.config.Json#isArrayaccessor <em>Arrayaccessor</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.config.Json#isXtraces <em>Xtraces</em>}</li>
  * </ul>
- * </p>
  *
  * @see ch.flatland.cdo.model.config.ConfigPackage#getJson()
  * @model

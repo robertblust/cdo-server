@@ -15,10 +15,10 @@ import org.eclipse.emf.internal.cdo.CDOObjectImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link ch.flatland.cdo.model.test.impl.TestBlobImpl#getBlob <em>Blob</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

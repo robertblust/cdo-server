@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<version>1.1.0.M002</version>
+	<version>1.2.0.M001</version>
 	<groupId>ch.flatland</groupId>
 	<artifactId>ch.flatland.cdo.server.build</artifactId>
 	<packaging>pom</packaging>
@@ -11,7 +11,7 @@
 
 	<properties>
 		<tycho.version>0.22.0</tycho.version>
-		<xtend.version>2.7.3</xtend.version>
+		<xtend.version>2.8.3</xtend.version>
 		<build.qualifier>'v'yyyyMMddHHmm</build.qualifier>
 		<project.build.sourceEncoding>cp1252</project.build.sourceEncoding>
 	</properties>
@@ -100,7 +100,7 @@
 						<artifact>
 							<groupId>ch.flatland</groupId>
 							<artifactId>ch.flatland.cdo.targetplatform</artifactId>
-							<version>1.1.0.M002</version>
+							<version>1.2.0.M001</version>
 						</artifact>
 					</target>
 					<environments>
@@ -115,13 +115,13 @@
 							<ws>win32</ws>
 							<arch>x86_64</arch>
 						</environment>
-
+						<!-- 
 						<environment>
 							<os>macosx</os>
 							<ws>cocoa</ws>
 							<arch>x86</arch>
 						</environment>
-
+ 						-->
 						<environment>
 							<os>solaris</os>
 							<ws>gtk</ws>

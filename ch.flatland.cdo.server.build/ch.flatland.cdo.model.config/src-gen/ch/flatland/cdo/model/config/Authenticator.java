@@ -11,13 +11,13 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link ch.flatland.cdo.model.config.Authenticator#getAuthenticatorType <em>Authenticator Type</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.config.Authenticator#getConnectionUrl <em>Connection Url</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.config.Authenticator#getDomainBase <em>Domain Base</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.config.Authenticator#getUserIdField <em>User Id Field</em>}</li>
  * </ul>
- * </p>
  *
  * @see ch.flatland.cdo.model.config.ConfigPackage#getAuthenticator()
  * @model

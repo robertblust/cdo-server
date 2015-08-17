@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EReference;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link ch.flatland.cdo.model.base.FLElement#getName <em>Name</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.FLElement#getDescription <em>Description</em>}</li>
@@ -50,7 +51,6 @@ import org.eclipse.emf.ecore.EReference;
  *   <li>{@link ch.flatland.cdo.model.base.FLElement#getTraceFromRefine <em>Trace From Refine</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.FLElement#getTraceFromTrack <em>Trace From Track</em>}</li>
  * </ul>
- * </p>
  *
  * @see ch.flatland.cdo.model.base.BasePackage#getFLElement()
  * @model abstract="true"

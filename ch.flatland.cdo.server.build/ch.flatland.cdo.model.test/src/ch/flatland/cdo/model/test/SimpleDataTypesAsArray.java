@@ -18,6 +18,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link ch.flatland.cdo.model.test.SimpleDataTypesAsArray#getTestString <em>Test String</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.test.SimpleDataTypesAsArray#getTestBoolean <em>Test Boolean</em>}</li>
@@ -33,7 +34,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link ch.flatland.cdo.model.test.SimpleDataTypesAsArray#getTestBigInteger <em>Test Big Integer</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.test.SimpleDataTypesAsArray#getTestEnum <em>Test Enum</em>}</li>
  * </ul>
- * </p>
  *
  * @see ch.flatland.cdo.model.test.TestPackage#getSimpleDataTypesAsArray()
  * @model

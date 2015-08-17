@@ -18,6 +18,7 @@ import org.eclipse.emf.internal.cdo.CDOObjectImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link ch.flatland.cdo.model.base.impl.FLIDImpl#getUUID <em>UUID</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.impl.FLIDImpl#getID <em>ID</em>}</li>
@@ -27,7 +28,6 @@ import org.eclipse.emf.internal.cdo.CDOObjectImpl;
  *   <li>{@link ch.flatland.cdo.model.base.impl.FLIDImpl#getCDate <em>CDate</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.impl.FLIDImpl#getUDate <em>UDate</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

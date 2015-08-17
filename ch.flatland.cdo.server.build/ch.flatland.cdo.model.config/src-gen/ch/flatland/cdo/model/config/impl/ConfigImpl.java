@@ -41,6 +41,7 @@ import org.eclipse.xtext.xbase.lib.IterableExtensions;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link ch.flatland.cdo.model.config.impl.ConfigImpl#getReadOnlyPassword <em>Read Only Password</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.config.impl.ConfigImpl#getAdminPassword <em>Admin Password</em>}</li>
@@ -48,7 +49,6 @@ import org.eclipse.xtext.xbase.lib.IterableExtensions;
  *   <li>{@link ch.flatland.cdo.model.config.impl.ConfigImpl#getBinding <em>Binding</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.config.impl.ConfigImpl#getJson <em>Json</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

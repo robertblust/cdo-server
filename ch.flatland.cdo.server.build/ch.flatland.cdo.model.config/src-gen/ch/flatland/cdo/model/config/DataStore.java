@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link ch.flatland.cdo.model.config.DataStore#getStoreType <em>Store Type</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.config.DataStore#getRepositoryName <em>Repository Name</em>}</li>
@@ -18,7 +19,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link ch.flatland.cdo.model.config.DataStore#getUserName <em>User Name</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.config.DataStore#getPassword <em>Password</em>}</li>
  * </ul>
- * </p>
  *
  * @see ch.flatland.cdo.model.config.ConfigPackage#getDataStore()
  * @model

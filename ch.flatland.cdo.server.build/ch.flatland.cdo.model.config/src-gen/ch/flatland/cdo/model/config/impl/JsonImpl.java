@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link ch.flatland.cdo.model.config.impl.JsonImpl#isValidate <em>Validate</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.config.impl.JsonImpl#isRreferences <em>Rreferences</em>}</li>
@@ -31,7 +32,6 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link ch.flatland.cdo.model.config.impl.JsonImpl#isArrayaccessor <em>Arrayaccessor</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.config.impl.JsonImpl#isXtraces <em>Xtraces</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
