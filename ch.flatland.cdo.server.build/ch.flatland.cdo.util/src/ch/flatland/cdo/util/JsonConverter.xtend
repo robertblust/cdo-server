@@ -33,6 +33,7 @@ import org.eclipse.emf.cdo.common.revision.delta.CDORemoveFeatureDelta
 import org.eclipse.emf.cdo.common.revision.delta.CDOSetFeatureDelta
 import org.eclipse.emf.cdo.common.security.NoPermissionException
 import org.eclipse.emf.cdo.eresource.CDOResourceNode
+import org.eclipse.emf.common.notify.Adapter
 import org.eclipse.emf.common.util.Diagnostic
 import org.eclipse.emf.common.util.Enumerator
 import org.eclipse.emf.common.util.URI
@@ -48,7 +49,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil
 import org.eclipse.emf.edit.EMFEditPlugin
 import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory
-import org.eclipse.emf.internal.cdo.object.CDOLegacyAdapter
 import org.slf4j.LoggerFactory
 
 import static ch.flatland.cdo.util.Constants.*
@@ -231,10 +231,8 @@ class JsonConverter {
 			}
 		}
 
-		// CDO Legacy Adapter implements EObject but is not an EObject
-		// ITEM_DELEGATOR does a cast to EObject
-		if(object instanceof CDOLegacyAdapter) {
-			jsonBaseObject.addProperty(LABEL, object.toString)
+		if(object instanceof Adapter) {
+			jsonBaseObject.addProperty(LABEL, ITEM_DELEGATOR.getText(object.target))
 		} else {
 			jsonBaseObject.addProperty(LABEL, ITEM_DELEGATOR.getText(object))
 		}
@@ -836,11 +834,19 @@ class JsonConverter {
 				localDiagnostics.get(it).forEach [
 					val diag = new JsonObject
 					diag.addProperty(MESSAGE, it.message)
-					val feature = it.data.get(1) as EStructuralFeature
-					if(feature instanceof EAttribute) {
-						diag.addProperty(FEATURE, (ATTRIBUTES + "." + feature.name))
-					} else {
-						diag.addProperty(FEATURE, (REFERENCES + "." + feature.name))
+					if(it.data.size > 1) {
+
+						// index 1 is the actual feature
+						// TODO check this
+						if(it.data.get(1) instanceof EStructuralFeature) {
+							val feature = it.data.get(1) as EStructuralFeature
+							if(feature instanceof EAttribute) {
+								diag.addProperty(FEATURE, (ATTRIBUTES + "." + feature.name))
+							} else {
+								diag.addProperty(FEATURE, (REFERENCES + "." + feature.name))
+							}
+						}
+
 					}
 					diagsArray.add(diag)
 					if(it.children.size > 0) {
@@ -885,7 +891,7 @@ class JsonConverter {
 	def private dispatch JsonElement getFeatureDeltaAsJsonObject(CDOFeatureDelta delta, EObject object) {
 		logger.debug("getFeatureDeltaAsJsonObject with CDOFeatureDelta '{}'", delta)
 		val jsonObject = new JsonObject
-		jsonObject.addProperty(MESSAGE, delta.type + " feature '" + delta.feature.name + "' to '" + object.eGet(delta.feature) + "'")
+		jsonObject.addProperty(MESSAGE, delta.type + " feature '" + delta.feature.name + "' to '" + object.eGet(delta.feature).deltaObjectName + "'")
 		return jsonObject
 	}
 
@@ -906,7 +912,7 @@ class JsonConverter {
 	def private dispatch JsonElement getFeatureDeltaAsJsonObject(CDOSetFeatureDelta delta, EObject object) {
 		logger.debug("getFeatureDeltaAsJsonObject with CDOSetFeatureDelta '{}'", delta)
 		val jsonObject = new JsonObject
-		jsonObject.addProperty(MESSAGE, delta.type + " feature '" + delta.feature.name + "' from '" + delta.oldValue + "' to '" + delta.value + "'")
+		jsonObject.addProperty(MESSAGE, delta.type + " feature '" + delta.feature.name + "' from '" + delta.oldValue.deltaObjectName + "' to '" + delta.value.deltaObjectName + "'")
 		return jsonObject
 	}
 
@@ -929,7 +935,7 @@ class JsonConverter {
 		// TODO can be more detailed
 		logger.debug("getFeatureDeltaAsJsonObject with CDOMoveFeatureDelta '{}'", delta)
 		val jsonObject = new JsonObject
-		jsonObject.addProperty(MESSAGE, delta.type + " feature '" + delta.feature.name + "' to '" + object.eGet(delta.feature) + "'")
+		jsonObject.addProperty(MESSAGE, delta.type + " feature '" + delta.feature.name + "' to '" + object.eGet(delta.feature).deltaObjectName + "'")
 		return jsonObject
 	}
 
@@ -937,6 +943,19 @@ class JsonConverter {
 		logger.debug("getFeatureDeltaAsJsonObject with CDORemoveFeatureDelta '{}'", delta)
 		val message = delta.type + " '" + delta.value + "' form feature '" + delta.feature.name + "[" + delta.index + "]'"
 		return new JsonPrimitive(message)
+	}
+
+	def private getDeltaObjectName(Object object) {
+		if(object == null) {
+			return object
+		}
+		if(object instanceof Adapter) {
+			return ITEM_DELEGATOR.getText(object.target)
+		}
+		if(object instanceof EObject) {
+			return ITEM_DELEGATOR.getText(object)
+		}
+		return object.toString
 	}
 
 	def getView(EObject eObject) {

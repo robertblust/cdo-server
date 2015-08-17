@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>ch.flatland</groupId>
 		<artifactId>ch.flatland.cdo.server.build</artifactId>
-		<version>1.1.0.M001</version>
+		<version>1.1.0.M002</version>
 	</parent>
 
 	<artifactId>ch.flatland.cdo.server</artifactId>
@@ -18,11 +18,11 @@
 				<groupId>org.eclipse.tycho</groupId>
 				<artifactId>tycho-p2-repository-plugin</artifactId>
 				<version>${tycho.version}</version>
-				<!--  
+				
 				<configuration>
 					<includeAllDependencies>true</includeAllDependencies>
 				</configuration>
-				-->
+			
 			</plugin>
 			<plugin>
 				<groupId>org.eclipse.tycho</groupId>

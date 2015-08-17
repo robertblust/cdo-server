@@ -11,6 +11,7 @@
 package ch.flatland.cdo.util
 
 import java.util.Map
+import org.eclipse.emf.common.notify.Adapter
 import org.eclipse.emf.common.util.DiagnosticChain
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.util.Diagnostician
@@ -24,14 +25,21 @@ class FLDiagnostician extends Diagnostician {
 	var EObject context
 
 	def override getObjectLabel(EObject eObject) {
-		if(context != null) {
-			return ITEM_DELEGATOR.getText(context)
+		if (context == null)  {
+			return super.getObjectLabel(eObject)
 		}
-		return super.getObjectLabel(eObject)
+		if (context instanceof Adapter) {
+			return ITEM_DELEGATOR.getText(context.target)
+		}
+		return ITEM_DELEGATOR.getText(context)
+		
 	}
 
 	def override validate(EObject eObject) {
 		this.context = eObject
+		if (context instanceof Adapter) {
+			return super.validate(context.target as EObject, emptyMap)
+		}
 		return super.validate(eObject, emptyMap)
 	}
 	

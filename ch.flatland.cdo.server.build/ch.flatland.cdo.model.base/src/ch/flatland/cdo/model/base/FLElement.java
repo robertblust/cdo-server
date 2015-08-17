@@ -3,6 +3,7 @@
 package ch.flatland.cdo.model.base;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 
 /**
@@ -17,6 +18,7 @@ import org.eclipse.emf.ecore.EReference;
  *   <li>{@link ch.flatland.cdo.model.base.FLElement#getDescription <em>Description</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.FLElement#getTraces <em>Traces</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.FLElement#getProperties <em>Properties</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.base.FLElement#getDerivedContainer <em>Derived Container</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.FLElement#getTraceToOwn <em>Trace To Own</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.FLElement#getTraceToUse <em>Trace To Use</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.FLElement#getTraceToRealize <em>Trace To Realize</em>}</li>
@@ -137,6 +139,22 @@ public interface FLElement extends FLID {
 	 * @generated
 	 */
 	EList<FLProperty> getProperties();
+
+	/**
+	 * Returns the value of the '<em><b>Derived Container</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Derived Container</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Derived Container</em>' reference.
+	 * @see ch.flatland.cdo.model.base.BasePackage#getFLElement_DerivedContainer()
+	 * @model transient="true" changeable="false" volatile="true" derived="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Base' get='return this.resolveContainer();'"
+	 * @generated
+	 */
+	EObject getDerivedContainer();
 
 	/**
 	 * Returns the value of the '<em><b>Trace To Own</b></em>' reference list.
@@ -647,6 +665,15 @@ public interface FLElement extends FLID {
 	 * @generated
 	 */
 	EList<FLElement> getTraceFromTrack();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model unique="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return this.eContainer();'"
+	 * @generated
+	 */
+	EObject resolveContainer();
 
 	/**
 	 * <!-- begin-user-doc -->

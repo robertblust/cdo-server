@@ -107,16 +107,17 @@ class EMF {
 	}
 
 	def getExtendedFrom(EClass eClass, CDOView view) {
+		logger.trace("getExtendedFrom(EClass eClass, CDOView view)", eClass.name)
 		val eClasses = newArrayList
 
 		// look for all concrete classes inherit from this eClass
 		view.session.packageRegistry.packageInfos.forEach [
 			it.EPackage.eContents.forEach [
 				if(it instanceof EClass) {
-					if(it.EAllSuperTypes.contains(eClass) && it.abstract == false && !IGNORED_ECLASSES.contains(it.name)) {
+					if(it.EAllSuperTypes.contains(eClass) && it.abstract == false && !IGNORED_ECLASSES.contains(it.name) && !eClasses.contains(it)) {
 						eClasses.add(it)
 					}
-					if(eClass.name == "EObject" && it.abstract == false) {
+					if(eClass.name == "EObject" && it.abstract == false && !eClasses.contains(it)) {
 						logger.debug("Look for all valid sub types of EObject add '{}'", it.name)
 						eClasses.add(it)
 					}
@@ -127,6 +128,7 @@ class EMF {
 	}
 
 	def getExtendedFrom(EClass eClass) {
+		logger.trace("getExtendedFrom(EClass eClass) '{}'", eClass.name)
 		val eClasses = newArrayList	
 					
 		if (eClass.name == "CDOResourceNode" ) {
@@ -146,10 +148,10 @@ class EMF {
 			val ePackage = EPackage.Registry.INSTANCE.getEPackage(key)
 			ePackage.eContents.forEach [
 				if(it instanceof EClass) {
-					if(it.EAllSuperTypes.contains(eClass) && it.abstract == false && !IGNORED_ECLASSES.contains(it.name)) {
+					if(it.EAllSuperTypes.contains(eClass) && it.abstract == false && !IGNORED_ECLASSES.contains(it.name) && !eClasses.contains(it)) {
 						eClasses.add(it)
 					}
-					if(eClass.name == "EObject" && it.abstract == false && !IGNORED_ECLASSES.contains(it.name)) {
+					if(eClass.name == "EObject" && it.abstract == false && !IGNORED_ECLASSES.contains(it.name) && !eClasses.contains(it)) {
 
 						logger.debug("Look for all valid sub types of EObject add '{}'", it.name)
 						eClasses.add(it)

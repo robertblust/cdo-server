@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Flatland CDO Client Https Connector
 Bundle-SymbolicName: ch.flatland.cdo.client.http;singleton:=true
-Bundle-Version: 1.1.0.M001
+Bundle-Version: 1.1.0.M002
 Bundle-Vendor: flatland.ch
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Require-Bundle: org.eclipse.core.runtime;bundle-version="3.10.0";resolution:=optional,

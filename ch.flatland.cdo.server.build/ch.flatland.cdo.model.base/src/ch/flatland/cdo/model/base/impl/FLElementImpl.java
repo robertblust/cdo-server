@@ -41,6 +41,7 @@ import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
  *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getTraces <em>Traces</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getProperties <em>Properties</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getDerivedContainer <em>Derived Container</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getTraceToOwn <em>Trace To Own</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getTraceToUse <em>Trace To Use</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getTraceToRealize <em>Trace To Realize</em>}</li>
@@ -170,6 +171,24 @@ public abstract class FLElementImpl extends FLIDImpl implements FLElement {
 	@SuppressWarnings("unchecked")
 	public EList<FLProperty> getProperties() {
 		return (EList<FLProperty>)eDynamicGet(BasePackage.FL_ELEMENT__PROPERTIES, BasePackage.Literals.FL_ELEMENT__PROPERTIES, true, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public EObject getDerivedContainer() {
+		return this.resolveContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EObject basicGetDerivedContainer() {
+		return (EObject)eDynamicGet(BasePackage.FL_ELEMENT__DERIVED_CONTAINER, BasePackage.Literals.FL_ELEMENT__DERIVED_CONTAINER, false, true);
 	}
 
 	/**
@@ -465,6 +484,15 @@ public abstract class FLElementImpl extends FLIDImpl implements FLElement {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EObject resolveContainer() {
+		return this.eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EList<FLElement> toFilterByType(final FLTraceType traceType) {
 		final BasicEList<FLElement> targets = new BasicEList<FLElement>();
 		EList<FLTrace> _traces = this.getTraces();
@@ -592,6 +620,9 @@ public abstract class FLElementImpl extends FLIDImpl implements FLElement {
 				return getTraces();
 			case BasePackage.FL_ELEMENT__PROPERTIES:
 				return getProperties();
+			case BasePackage.FL_ELEMENT__DERIVED_CONTAINER:
+				if (resolve) return getDerivedContainer();
+				return basicGetDerivedContainer();
 			case BasePackage.FL_ELEMENT__TRACE_TO_OWN:
 				return getTraceToOwn();
 			case BasePackage.FL_ELEMENT__TRACE_TO_USE:
@@ -723,6 +754,8 @@ public abstract class FLElementImpl extends FLIDImpl implements FLElement {
 				return !getTraces().isEmpty();
 			case BasePackage.FL_ELEMENT__PROPERTIES:
 				return !getProperties().isEmpty();
+			case BasePackage.FL_ELEMENT__DERIVED_CONTAINER:
+				return basicGetDerivedContainer() != null;
 			case BasePackage.FL_ELEMENT__TRACE_TO_OWN:
 				return !getTraceToOwn().isEmpty();
 			case BasePackage.FL_ELEMENT__TRACE_TO_USE:
@@ -796,6 +829,8 @@ public abstract class FLElementImpl extends FLIDImpl implements FLElement {
 	@SuppressWarnings({"rawtypes", "unchecked" })
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
+			case BasePackage.FL_ELEMENT___RESOLVE_CONTAINER:
+				return resolveContainer();
 			case BasePackage.FL_ELEMENT___TO_FILTER_BY_TYPE__FLTRACETYPE:
 				return toFilterByType((FLTraceType)arguments.get(0));
 			case BasePackage.FL_ELEMENT___FROM_FILTER_BY_TYPE__FLTRACETYPE:

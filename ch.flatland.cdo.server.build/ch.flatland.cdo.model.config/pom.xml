@@ -6,7 +6,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
   <parent>
     <groupId>ch.flatland</groupId>
     <artifactId>ch.flatland.cdo.server.build</artifactId>
-    <version>1.1.0.M001</version>
+    <version>1.1.0.M002</version>
   </parent>
 
   <artifactId>ch.flatland.cdo.model.config</artifactId>

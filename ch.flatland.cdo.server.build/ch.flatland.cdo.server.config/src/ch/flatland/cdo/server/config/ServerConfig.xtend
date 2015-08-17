@@ -44,8 +44,10 @@ class ServerConfig {
 				val configFile = readFile(FILE_PATH)
 				val parser = new JsonParser
 				val jsonObject = parser.parse(configFile) as JsonObject
-
+				
 				val template = getDefaultConfig
+				jsonObject.convertObject(template)
+				
 				template.eClass.EAllReferences.forEach [
 					if(!it.many) {
 						val eObject = template.eGet(it) as EObject

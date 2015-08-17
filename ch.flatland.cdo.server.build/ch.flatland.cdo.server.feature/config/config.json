@@ -9,13 +9,13 @@
     },
     "json": {
         "validate": true,
-        "rreferences": false,
-        "creferences": false,
+        "rreferences": true,
+        "creferences": true,
         "xreferences": false,
         "history": false,
         "fullUrl": false,
         "meta": false,
-        "links": false,
+        "links": true,
         "xlinks": false,
         "xtraces": false,
         "arrayaccessor": false
