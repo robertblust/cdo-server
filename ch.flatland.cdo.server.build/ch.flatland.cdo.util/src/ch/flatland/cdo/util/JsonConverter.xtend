@@ -33,6 +33,7 @@ import org.eclipse.emf.cdo.common.revision.delta.CDORemoveFeatureDelta
 import org.eclipse.emf.cdo.common.revision.delta.CDOSetFeatureDelta
 import org.eclipse.emf.cdo.common.security.NoPermissionException
 import org.eclipse.emf.cdo.eresource.CDOResourceNode
+import org.eclipse.emf.common.notify.Adapter
 import org.eclipse.emf.common.util.Diagnostic
 import org.eclipse.emf.common.util.Enumerator
 import org.eclipse.emf.common.util.URI
@@ -48,7 +49,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil
 import org.eclipse.emf.edit.EMFEditPlugin
 import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory
-import org.eclipse.emf.internal.cdo.object.CDOLegacyAdapter
 import org.slf4j.LoggerFactory
 
 import static ch.flatland.cdo.util.Constants.*
@@ -82,7 +82,7 @@ class JsonConverter {
 	new() {
 		this.jsonConverterConfig = new JsonConverterConfig
 	}
-	
+
 	def getConfig() {
 		jsonConverterConfig
 	}
@@ -127,11 +127,12 @@ class JsonConverter {
 	def okToJson() {
 		newObjectWithStatus().toString
 	}
-	
+
 	def safeAnyObjectToJson(Object object) {
 		try {
 			gson.toJson(object)
 		} catch(Exception e) {
+			e.printStackTrace
 			throw new FlatlandException(SC_INTERNAL_SERVER_ERROR, e.message)
 		}
 	}
@@ -140,14 +141,16 @@ class JsonConverter {
 		try {
 			gson.toJson(new MessageResponse(object))
 		} catch(Exception e) {
+			e.printStackTrace
 			throw new FlatlandException(SC_INTERNAL_SERVER_ERROR, e.message)
 		}
 	}
-	
+
 	def dispatch String safeToJson(Object[] object) {
 		try {
 			gson.toJson(new MessageResponse(object))
 		} catch(Exception e) {
+			e.printStackTrace
 			throw new FlatlandException(SC_INTERNAL_SERVER_ERROR, e.message)
 		}
 	}
@@ -172,6 +175,7 @@ class JsonConverter {
 		} catch(NoPermissionException npe) {
 			throw new FlatlandException(SC_FORBIDDEN, npe.message)
 		} catch(Exception e) {
+			e.printStackTrace
 			throw new FlatlandException(SC_INTERNAL_SERVER_ERROR, e.message)
 		}
 	}
@@ -189,6 +193,7 @@ class JsonConverter {
 		} catch(NoPermissionException npe) {
 			throw new FlatlandException(SC_FORBIDDEN, npe.message)
 		} catch(Exception e) {
+			e.printStackTrace
 			throw new FlatlandException(SC_INTERNAL_SERVER_ERROR, e.message)
 		}
 	}
@@ -226,10 +231,8 @@ class JsonConverter {
 			}
 		}
 
-		// CDO Legacy Adapter implements EObject but is not an EObject
-		// ITEM_DELEGATOR does a cast to EObject
-		if(object instanceof CDOLegacyAdapter) {
-			jsonBaseObject.addProperty(LABEL, object.toString)
+		if(object instanceof Adapter) {
+			jsonBaseObject.addProperty(LABEL, ITEM_DELEGATOR.getText(object.target))
 		} else {
 			jsonBaseObject.addProperty(LABEL, ITEM_DELEGATOR.getText(object))
 		}
@@ -269,7 +272,7 @@ class JsonConverter {
 			val jsonSelfLink = new JsonObject
 			jsonSelfLink.addProperty(HREF, object.url)
 			jsonLinksObject.add(SELF, jsonSelfLink)
-			
+
 			if(jsonConverterConfig.links) {
 				if(object.eClass.EAllReferences.size > 0) {
 
@@ -313,7 +316,7 @@ class JsonConverter {
 				jsonLinksObject.add(CONTAINER, jsonContainerLink)
 
 				val jsonAllInstancesLink = new JsonObject
-				jsonAllInstancesLink.addProperty(HREF, jsonConverterConfig.serverAddress + ALIAS_OBJECT + "/" + object.eClass.type + object.getTimestampParam(true))
+				jsonAllInstancesLink.addProperty(HREF, jsonConverterConfig.serverAddress + ALIAS_OBJECT + "/" + jsonConverterConfig.repoName + "/" + object.eClass.type + object.getTimestampParam(true))
 				jsonLinksObject.add(ALL_INSTANCES, jsonAllInstancesLink)
 
 			}
@@ -327,14 +330,14 @@ class JsonConverter {
 
 				// add x reference link
 				val jsonXReferencesLink = new JsonObject
-				jsonXReferencesLink.addProperty(HREF, jsonConverterConfig.serverAddress + ALIAS_XREFS + "/" + object.oid + "/" + REFERENCES + object.getTimestampParam(true))
+				jsonXReferencesLink.addProperty(HREF, jsonConverterConfig.serverAddress + ALIAS_XREFS + "/" + jsonConverterConfig.repoName + "/" + object.oid + "/" + REFERENCES + object.getTimestampParam(true))
 				jsonXReferencesLink.addProperty(SIZE, object.allXReferences.size)
 				jsonXLinksObject.add(REFERENCES, jsonXReferencesLink)
 
 				// add detailed x reference link
 				object.resolveGroupXReferences.forEach [ p1, p2 |
 					val jsonXReferenceLink = new JsonObject
-					jsonXReferenceLink.addProperty(HREF, jsonConverterConfig.serverAddress + ALIAS_XREFS + "/" + object.oid + "/" + REFERENCES + "/" + p1.name + object.getTimestampParam(true))
+					jsonXReferenceLink.addProperty(HREF, jsonConverterConfig.serverAddress + ALIAS_XREFS + "/" + jsonConverterConfig.repoName + "/" + object.oid + "/" + REFERENCES + "/" + p1.name + object.getTimestampParam(true))
 					jsonXReferenceLink.addProperty(SIZE, p2.size)
 					jsonXReferencesLink.add(p1.name, jsonXReferenceLink)
 				]
@@ -347,10 +350,10 @@ class JsonConverter {
 				jsonBaseObject.addRevisions(object)
 			}
 		}
-		if (!stop) {
+		if(!stop) {
 			jsonBaseObject.addDiagnosticsAndMeta(object)
 		}
-		
+
 		return jsonBaseObject
 	}
 
@@ -440,10 +443,12 @@ class JsonConverter {
 									jsonReferencesArray.add(jsonRefObject)
 								}
 							}
-							jsonReferences.add(name, jsonReferencesArray)
-							jsonReferencesArrayEntry.add(NAME, new JsonPrimitive(name))
-							jsonReferencesArrayEntry.add(VALUE, jsonReferencesArray)
-							jsonReferencesArrayAccessor.add(jsonReferencesArrayEntry)
+							if(jsonReferencesArray.size > 0) {
+								jsonReferences.add(name, jsonReferencesArray)
+								jsonReferencesArrayEntry.add(NAME, new JsonPrimitive(name))
+								jsonReferencesArrayEntry.add(VALUE, jsonReferencesArray)
+								jsonReferencesArrayAccessor.add(jsonReferencesArrayEntry)
+							}
 						}
 					} else {
 						val value = eObject.eGet(reference, true)
@@ -660,7 +665,7 @@ class JsonConverter {
 			// Legacy models do not inherit from CDOObject
 			id = EcoreUtil.getURI(object).fragment.replace("L", "")
 		}
-		jsonConverterConfig.serverAddress + ALIAS_OBJECT + "/" + object.eClass.type + "/" + id + object.getTimestampParam(withTimestamp)
+		jsonConverterConfig.serverAddress + ALIAS_OBJECT + "/" + jsonConverterConfig.repoName + "/" + object.eClass.type + "/" + id + object.getTimestampParam(withTimestamp)
 
 	}
 
@@ -829,11 +834,19 @@ class JsonConverter {
 				localDiagnostics.get(it).forEach [
 					val diag = new JsonObject
 					diag.addProperty(MESSAGE, it.message)
-					val feature = it.data.get(1) as EStructuralFeature
-					if(feature instanceof EAttribute) {
-						diag.addProperty(FEATURE, (ATTRIBUTES + "." + feature.name))
-					} else {
-						diag.addProperty(FEATURE, (REFERENCES + "." + feature.name))
+					if(it.data.size > 1) {
+
+						// index 1 is the actual feature
+						// TODO check this
+						if(it.data.get(1) instanceof EStructuralFeature) {
+							val feature = it.data.get(1) as EStructuralFeature
+							if(feature instanceof EAttribute) {
+								diag.addProperty(FEATURE, (ATTRIBUTES + "." + feature.name))
+							} else {
+								diag.addProperty(FEATURE, (REFERENCES + "." + feature.name))
+							}
+						}
+
 					}
 					diagsArray.add(diag)
 					if(it.children.size > 0) {
@@ -878,7 +891,7 @@ class JsonConverter {
 	def private dispatch JsonElement getFeatureDeltaAsJsonObject(CDOFeatureDelta delta, EObject object) {
 		logger.debug("getFeatureDeltaAsJsonObject with CDOFeatureDelta '{}'", delta)
 		val jsonObject = new JsonObject
-		jsonObject.addProperty(MESSAGE, delta.type + " feature '" + delta.feature.name + "' to '" + object.eGet(delta.feature) + "'")
+		jsonObject.addProperty(MESSAGE, delta.type + " feature '" + delta.feature.name + "' to '" + object.eGet(delta.feature).deltaObjectName + "'")
 		return jsonObject
 	}
 
@@ -899,7 +912,7 @@ class JsonConverter {
 	def private dispatch JsonElement getFeatureDeltaAsJsonObject(CDOSetFeatureDelta delta, EObject object) {
 		logger.debug("getFeatureDeltaAsJsonObject with CDOSetFeatureDelta '{}'", delta)
 		val jsonObject = new JsonObject
-		jsonObject.addProperty(MESSAGE, delta.type + " feature '" + delta.feature.name + "' from '" + delta.oldValue + "' to '" + delta.value + "'")
+		jsonObject.addProperty(MESSAGE, delta.type + " feature '" + delta.feature.name + "' from '" + delta.oldValue.deltaObjectName + "' to '" + delta.value.deltaObjectName + "'")
 		return jsonObject
 	}
 
@@ -922,7 +935,7 @@ class JsonConverter {
 		// TODO can be more detailed
 		logger.debug("getFeatureDeltaAsJsonObject with CDOMoveFeatureDelta '{}'", delta)
 		val jsonObject = new JsonObject
-		jsonObject.addProperty(MESSAGE, delta.type + " feature '" + delta.feature.name + "' to '" + object.eGet(delta.feature) + "'")
+		jsonObject.addProperty(MESSAGE, delta.type + " feature '" + delta.feature.name + "' to '" + object.eGet(delta.feature).deltaObjectName + "'")
 		return jsonObject
 	}
 
@@ -930,6 +943,19 @@ class JsonConverter {
 		logger.debug("getFeatureDeltaAsJsonObject with CDORemoveFeatureDelta '{}'", delta)
 		val message = delta.type + " '" + delta.value + "' form feature '" + delta.feature.name + "[" + delta.index + "]'"
 		return new JsonPrimitive(message)
+	}
+
+	def private getDeltaObjectName(Object object) {
+		if(object == null) {
+			return object
+		}
+		if(object instanceof Adapter) {
+			return ITEM_DELEGATOR.getText(object.target)
+		}
+		if(object instanceof EObject) {
+			return ITEM_DELEGATOR.getText(object)
+		}
+		return object.toString
 	}
 
 	def getView(EObject eObject) {

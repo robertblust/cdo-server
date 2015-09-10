@@ -14,6 +14,7 @@ import ch.flatland.cdo.model.config.AuthenticatorType
 import ch.flatland.cdo.model.config.Config
 import ch.flatland.cdo.model.config.ConfigFactory
 import ch.flatland.cdo.model.config.StoreType
+import com.google.gson.JsonArray
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import java.io.BufferedReader
@@ -43,56 +44,76 @@ class ServerConfig {
 				val configFile = readFile(FILE_PATH)
 				val parser = new JsonParser
 				val jsonObject = parser.parse(configFile) as JsonObject
-
-				val template = getDefault
+				
+				val template = getDefaultConfig
+				jsonObject.convertObject(template)
+				
 				template.eClass.EAllReferences.forEach [
-					val eObject = template.eGet(it) as EObject
-					val jsonDetailObject = jsonObject.get(it.name) as JsonObject
-					logger.debug("Read config object '{}'", it.name)
-					if(jsonDetailObject != null) {
-						eObject.eClass.EAllAttributes.forEach [
-							if(jsonDetailObject.get(it.name) != null) {
-								switch it.EAttributeType.instanceClass {
-									case typeof(String): {
-										eObject.eSet(it, jsonDetailObject.get(it.name).asString)
-									}
-									case typeof(boolean): {
-										eObject.eSet(it, jsonDetailObject.get(it.name).asBoolean)
-									}
-								}
-								if(it.EAttributeType instanceof EEnum) {
-									val enum = it.EAttributeType as EEnum
-									val literal = enum.getEEnumLiteral(jsonDetailObject.get(it.name).asString)
-									if(literal != null) {
-										eObject.eSet(it, literal.instance)
-									} else {
-										logger.debug("Json primitive '{}' not found", it.name)
-									}
-								}
-							} else {
-								logger.debug("Json primitive '{}' not found", it.name)
-							}
-							logger.debug("Value '{}' = '{}'", it.name, eObject.eGet(it))
-						]
+					if(!it.many) {
+						val eObject = template.eGet(it) as EObject
+						val jsonDetailObject = jsonObject.get(it.name) as JsonObject
+						jsonDetailObject.convertObject(eObject)
 					} else {
-						logger.debug("Config object '{}' not found", it.name)
+						val jsonArray = jsonObject.get(it.name) as JsonArray
+						jsonArray.forEach [
+							val jsonRepoObject = it as JsonObject
+							val detail = defaultRepository
+							detail.eClass.EAllReferences.forEach [
+								val eObject = detail.eGet(it) as EObject
+								val jsonRepoDetailObject = jsonRepoObject.get(it.name) as JsonObject
+								jsonRepoDetailObject.convertObject(eObject)
+							]
+							if(HOST != null) {
+								template.binding.ip = HOST
+								logger.info("Bind host ip '{}' specified by '{}'", HOST, SYSTEM_PARAM_HOST)
+							}
+							if(DB_HOST != null) {
+								detail.dataStore.connectionUrl = detail.dataStore.connectionUrl.replace("$HOST", DB_HOST)
+								logger.info("Use connection url with host replacement '{}' specified by '{}'", detail.dataStore.connectionUrl, SYSTEM_PARAM_DB_HOST)
+							}
+							template.repositories.add(detail)
+						]
 					}
 				]
-				if(HOST != null) {
-					template.binding.ip = HOST
-					logger.info("Bind host ip '{}' specified by '{}'", HOST, SYSTEM_PARAM_HOST)
-				}
-				if(DB_HOST != null) {
-					template.dataStore.connectionUrl = template.dataStore.connectionUrl.replace("$HOST", DB_HOST)
-					logger.info("Use connection url with host replacement '{}' specified by '{}'", template.dataStore.connectionUrl, SYSTEM_PARAM_DB_HOST)
-				}
 				CONFIG = template
 			} catch(Exception e) {
 				logger.debug("Could not read config file!", e)
-				CONFIG = getDefault
+				CONFIG = getDefaultConfig
 			}
 		}
 		return CONFIG
+	}
+
+	def private static convertObject(JsonObject jsonObject, EObject eObject) {
+		logger.debug("Read Config object '{}' not found", jsonObject)
+		if(jsonObject != null) {
+			eObject.eClass.EAllAttributes.forEach [
+				if(jsonObject.get(it.name) != null) {
+					switch it.EAttributeType.instanceClass {
+						case typeof(String): {
+							eObject.eSet(it, jsonObject.get(it.name).asString)
+						}
+						case typeof(boolean): {
+							eObject.eSet(it, jsonObject.get(it.name).asBoolean)
+						}
+					}
+					if(it.EAttributeType instanceof EEnum) {
+						val enum = it.EAttributeType as EEnum
+						val literal = enum.getEEnumLiteral(jsonObject.get(it.name).asString)
+						if(literal != null) {
+							eObject.eSet(it, literal.instance)
+						} else {
+							logger.debug("Json primitive '{}' not found", it.name)
+						}
+					}
+				} else {
+					logger.debug("Json primitive '{}' not found", it.name)
+				}
+				logger.debug("Value '{}' = '{}'", it.name, eObject.eGet(it))
+			]
+		} else {
+			logger.debug("Config object '{}' not found", jsonObject)
+		}
 	}
 
 	def private static readFile(String filePath) {
@@ -111,25 +132,10 @@ class ServerConfig {
 		}
 	}
 
-	def private static getDefault() {
-		val config = ConfigFactory.eINSTANCE.createConfig
-
-		val dataStore = ConfigFactory.eINSTANCE.createDataStore => [
-			storeType = StoreType.H2
-			repositoryName = "repo"
-			connectionUrl = "jdbc:h2:database/"
-			userName = "cdo"
-			password = "cdo"
-		]
-
-		val authenticator = ConfigFactory.eINSTANCE.createAuthenticator => [
-			authenticatorType = AuthenticatorType.LDAP
-			connectionUrl = "faked://flatland.ch:333"
-			domainBase = "ou=person,o=FLATLAND,c=CH"
-			userIdField = "empid"
+	def private static getDefaultConfig() {
+		val config = ConfigFactory.eINSTANCE.createConfig => [
 			readOnlyPassword = "password"
 			adminPassword = "password"
-			checkSSL = false
 		]
 
 		val binding = ConfigFactory.eINSTANCE.createBinding => [
@@ -138,6 +144,7 @@ class ServerConfig {
 			tcpPort = "2036"
 			http = true
 			httpPort = "8080"
+			checkSSL = false
 		]
 
 		val json = ConfigFactory.eINSTANCE.createJson => [
@@ -153,12 +160,34 @@ class ServerConfig {
 			arrayaccessor = false
 			xtraces = false
 		]
-		
-		config.dataStore = dataStore
-		config.authenticator = authenticator
+
 		config.binding = binding
 		config.json = json
 
 		return config
+	}
+
+	def private static getDefaultRepository() {
+		val repo = ConfigFactory.eINSTANCE.createRepository
+
+		val dataStore = ConfigFactory.eINSTANCE.createDataStore => [
+			storeType = StoreType.H2
+			repositoryName = "repo"
+			connectionUrl = "jdbc:h2:database/"
+			userName = "cdo"
+			password = "cdo"
+		]
+
+		val authenticator = ConfigFactory.eINSTANCE.createAuthenticator => [
+			authenticatorType = AuthenticatorType.LDAP
+			connectionUrl = "faked://flatland.ch:333"
+			domainBase = "ou=person,o=FLATLAND,c=CH"
+			userIdField = "empid"
+		]
+
+		repo.dataStore = dataStore
+		repo.authenticator = authenticator
+
+		return repo
 	}
 }

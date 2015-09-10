@@ -19,16 +19,13 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link ch.flatland.cdo.model.config.impl.AuthenticatorImpl#getAuthenticatorType <em>Authenticator Type</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.config.impl.AuthenticatorImpl#getConnectionUrl <em>Connection Url</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.config.impl.AuthenticatorImpl#getDomainBase <em>Domain Base</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.config.impl.AuthenticatorImpl#getUserIdField <em>User Id Field</em>}</li>
- *   <li>{@link ch.flatland.cdo.model.config.impl.AuthenticatorImpl#getReadOnlyPassword <em>Read Only Password</em>}</li>
- *   <li>{@link ch.flatland.cdo.model.config.impl.AuthenticatorImpl#getAdminPassword <em>Admin Password</em>}</li>
- *   <li>{@link ch.flatland.cdo.model.config.impl.AuthenticatorImpl#isCheckSSL <em>Check SSL</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -112,66 +109,6 @@ public class AuthenticatorImpl extends MinimalEObjectImpl.Container implements A
 	 * @ordered
 	 */
 	protected String userIdField = USER_ID_FIELD_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getReadOnlyPassword() <em>Read Only Password</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getReadOnlyPassword()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String READ_ONLY_PASSWORD_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getReadOnlyPassword() <em>Read Only Password</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getReadOnlyPassword()
-	 * @generated
-	 * @ordered
-	 */
-	protected String readOnlyPassword = READ_ONLY_PASSWORD_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getAdminPassword() <em>Admin Password</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getAdminPassword()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String ADMIN_PASSWORD_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getAdminPassword() <em>Admin Password</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getAdminPassword()
-	 * @generated
-	 * @ordered
-	 */
-	protected String adminPassword = ADMIN_PASSWORD_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #isCheckSSL() <em>Check SSL</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isCheckSSL()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean CHECK_SSL_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #isCheckSSL() <em>Check SSL</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isCheckSSL()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean checkSSL = CHECK_SSL_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -281,69 +218,6 @@ public class AuthenticatorImpl extends MinimalEObjectImpl.Container implements A
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getReadOnlyPassword() {
-		return readOnlyPassword;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setReadOnlyPassword(String newReadOnlyPassword) {
-		String oldReadOnlyPassword = readOnlyPassword;
-		readOnlyPassword = newReadOnlyPassword;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ConfigPackage.AUTHENTICATOR__READ_ONLY_PASSWORD, oldReadOnlyPassword, readOnlyPassword));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getAdminPassword() {
-		return adminPassword;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setAdminPassword(String newAdminPassword) {
-		String oldAdminPassword = adminPassword;
-		adminPassword = newAdminPassword;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ConfigPackage.AUTHENTICATOR__ADMIN_PASSWORD, oldAdminPassword, adminPassword));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isCheckSSL() {
-		return checkSSL;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setCheckSSL(boolean newCheckSSL) {
-		boolean oldCheckSSL = checkSSL;
-		checkSSL = newCheckSSL;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ConfigPackage.AUTHENTICATOR__CHECK_SSL, oldCheckSSL, checkSSL));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -355,12 +229,6 @@ public class AuthenticatorImpl extends MinimalEObjectImpl.Container implements A
 				return getDomainBase();
 			case ConfigPackage.AUTHENTICATOR__USER_ID_FIELD:
 				return getUserIdField();
-			case ConfigPackage.AUTHENTICATOR__READ_ONLY_PASSWORD:
-				return getReadOnlyPassword();
-			case ConfigPackage.AUTHENTICATOR__ADMIN_PASSWORD:
-				return getAdminPassword();
-			case ConfigPackage.AUTHENTICATOR__CHECK_SSL:
-				return isCheckSSL();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -384,15 +252,6 @@ public class AuthenticatorImpl extends MinimalEObjectImpl.Container implements A
 				return;
 			case ConfigPackage.AUTHENTICATOR__USER_ID_FIELD:
 				setUserIdField((String)newValue);
-				return;
-			case ConfigPackage.AUTHENTICATOR__READ_ONLY_PASSWORD:
-				setReadOnlyPassword((String)newValue);
-				return;
-			case ConfigPackage.AUTHENTICATOR__ADMIN_PASSWORD:
-				setAdminPassword((String)newValue);
-				return;
-			case ConfigPackage.AUTHENTICATOR__CHECK_SSL:
-				setCheckSSL((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -418,15 +277,6 @@ public class AuthenticatorImpl extends MinimalEObjectImpl.Container implements A
 			case ConfigPackage.AUTHENTICATOR__USER_ID_FIELD:
 				setUserIdField(USER_ID_FIELD_EDEFAULT);
 				return;
-			case ConfigPackage.AUTHENTICATOR__READ_ONLY_PASSWORD:
-				setReadOnlyPassword(READ_ONLY_PASSWORD_EDEFAULT);
-				return;
-			case ConfigPackage.AUTHENTICATOR__ADMIN_PASSWORD:
-				setAdminPassword(ADMIN_PASSWORD_EDEFAULT);
-				return;
-			case ConfigPackage.AUTHENTICATOR__CHECK_SSL:
-				setCheckSSL(CHECK_SSL_EDEFAULT);
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -447,12 +297,6 @@ public class AuthenticatorImpl extends MinimalEObjectImpl.Container implements A
 				return DOMAIN_BASE_EDEFAULT == null ? domainBase != null : !DOMAIN_BASE_EDEFAULT.equals(domainBase);
 			case ConfigPackage.AUTHENTICATOR__USER_ID_FIELD:
 				return USER_ID_FIELD_EDEFAULT == null ? userIdField != null : !USER_ID_FIELD_EDEFAULT.equals(userIdField);
-			case ConfigPackage.AUTHENTICATOR__READ_ONLY_PASSWORD:
-				return READ_ONLY_PASSWORD_EDEFAULT == null ? readOnlyPassword != null : !READ_ONLY_PASSWORD_EDEFAULT.equals(readOnlyPassword);
-			case ConfigPackage.AUTHENTICATOR__ADMIN_PASSWORD:
-				return ADMIN_PASSWORD_EDEFAULT == null ? adminPassword != null : !ADMIN_PASSWORD_EDEFAULT.equals(adminPassword);
-			case ConfigPackage.AUTHENTICATOR__CHECK_SSL:
-				return checkSSL != CHECK_SSL_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -475,12 +319,6 @@ public class AuthenticatorImpl extends MinimalEObjectImpl.Container implements A
 		result.append(domainBase);
 		result.append(", userIdField: ");
 		result.append(userIdField);
-		result.append(", readOnlyPassword: ");
-		result.append(readOnlyPassword);
-		result.append(", adminPassword: ");
-		result.append(adminPassword);
-		result.append(", checkSSL: ");
-		result.append(checkSSL);
 		result.append(')');
 		return result.toString();
 	}

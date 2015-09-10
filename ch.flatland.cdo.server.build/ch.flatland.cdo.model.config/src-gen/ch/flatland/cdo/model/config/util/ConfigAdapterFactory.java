@@ -72,20 +72,24 @@ public class ConfigAdapterFactory extends AdapterFactoryImpl {
 				return createConfigAdapter();
 			}
 			@Override
-			public Adapter caseDataStore(DataStore object) {
-				return createDataStoreAdapter();
-			}
-			@Override
-			public Adapter caseAuthenticator(Authenticator object) {
-				return createAuthenticatorAdapter();
-			}
-			@Override
 			public Adapter caseBinding(Binding object) {
 				return createBindingAdapter();
 			}
 			@Override
 			public Adapter caseJson(Json object) {
 				return createJsonAdapter();
+			}
+			@Override
+			public Adapter caseRepository(Repository object) {
+				return createRepositoryAdapter();
+			}
+			@Override
+			public Adapter caseDataStore(DataStore object) {
+				return createDataStoreAdapter();
+			}
+			@Override
+			public Adapter caseAuthenticator(Authenticator object) {
+				return createAuthenticatorAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -122,34 +126,6 @@ public class ConfigAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link ch.flatland.cdo.model.config.DataStore <em>Data Store</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see ch.flatland.cdo.model.config.DataStore
-	 * @generated
-	 */
-	public Adapter createDataStoreAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link ch.flatland.cdo.model.config.Authenticator <em>Authenticator</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see ch.flatland.cdo.model.config.Authenticator
-	 * @generated
-	 */
-	public Adapter createAuthenticatorAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link ch.flatland.cdo.model.config.Binding <em>Binding</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -174,6 +150,48 @@ public class ConfigAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createJsonAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ch.flatland.cdo.model.config.Repository <em>Repository</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ch.flatland.cdo.model.config.Repository
+	 * @generated
+	 */
+	public Adapter createRepositoryAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ch.flatland.cdo.model.config.DataStore <em>Data Store</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ch.flatland.cdo.model.config.DataStore
+	 * @generated
+	 */
+	public Adapter createDataStoreAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ch.flatland.cdo.model.config.Authenticator <em>Authenticator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ch.flatland.cdo.model.config.Authenticator
+	 * @generated
+	 */
+	public Adapter createAuthenticatorAdapter() {
 		return null;
 	}
 

@@ -1,38 +1,14 @@
 package ch.flatland.cdo.model.config
 
 class Config {
-	contains DataStore[1] dataStore
-	contains Authenticator[1] authenticator
-	contains Binding[1] binding
-	contains Json[1] json
-}
-
-class DataStore {
-	StoreType[1] storeType
-	String[1] repositoryName
-	String[1] connectionUrl
-	String[1] userName
-	String[1] password
-}
-
-enum StoreType {
-	H2 = 0
-	MYSQL = 1
-}
-
-class Authenticator {
-	AuthenticatorType[1] authenticatorType
-	String connectionUrl
-	String domainBase
-	String userIdField
 	String readOnlyPassword
 	String adminPassword
-	boolean checkSSL
-}
-
-enum AuthenticatorType {
-	CDO = 0
-	LDAP = 1
+	contains Repository[] repositories
+	contains Binding[1] binding
+	contains Json[1] json
+	op Repository getByName(String repoName) {
+		repositories.filter[it.dataStore.repositoryName == repoName].head
+	}
 }
 
 class Binding {
@@ -41,6 +17,7 @@ class Binding {
 	String tcpPort
 	boolean[1] http
 	String httpPort
+	boolean checkSSL
 }
 
 class Json {
@@ -55,4 +32,35 @@ class Json {
 	boolean[1] xlinks
 	boolean[1] arrayaccessor
 	boolean[1] xtraces
+}
+
+class Repository {
+	contains DataStore[1] dataStore
+	contains Authenticator[1] authenticator
+}
+
+class DataStore {
+	StoreType[1] storeType
+	String[1] repositoryName
+	String[1] connectionUrl
+	String[1] userName
+	String[1] password
+}
+
+enum StoreType {
+	H2 = 0
+	MYSQL = 1
+	ORACLE = 2
+}
+
+class Authenticator {
+	AuthenticatorType[1] authenticatorType
+	String connectionUrl
+	String domainBase
+	String userIdField
+}
+
+enum AuthenticatorType {
+	CDO = 0
+	LDAP = 1
 }

@@ -114,6 +114,7 @@ class Post {
 			resp.status = SC_CREATED
 
 		} catch(FlatlandException e) {
+			e.printStackTrace
 			resp.status = e.httpStatus
 			jsonString = e.safeToJson
 			logger.debug("Request failed", e)

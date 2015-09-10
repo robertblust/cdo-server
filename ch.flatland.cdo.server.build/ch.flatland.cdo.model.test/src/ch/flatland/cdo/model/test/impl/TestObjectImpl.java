@@ -19,6 +19,7 @@ import org.eclipse.emf.internal.cdo.CDOObjectImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link ch.flatland.cdo.model.test.impl.TestObjectImpl#getName <em>Name</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.test.impl.TestObjectImpl#getMaxlength8 <em>Maxlength8</em>}</li>
@@ -28,7 +29,6 @@ import org.eclipse.emf.internal.cdo.CDOObjectImpl;
  *   <li>{@link ch.flatland.cdo.model.test.impl.TestObjectImpl#getFixBoundReferences <em>Fix Bound References</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.test.impl.TestObjectImpl#getFixlowerBoundReferences <em>Fixlower Bound References</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -36,7 +36,17 @@ public enum StoreType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	MYSQL(1, "MYSQL", "MYSQL");
+	MYSQL(1, "MYSQL", "MYSQL"),
+
+	/**
+	 * The '<em><b>ORACLE</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #ORACLE_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	ORACLE(2, "ORACLE", "ORACLE");
 
 	/**
 	 * The '<em><b>H2</b></em>' literal value.
@@ -69,6 +79,21 @@ public enum StoreType implements Enumerator {
 	public static final int MYSQL_VALUE = 1;
 
 	/**
+	 * The '<em><b>ORACLE</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>ORACLE</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #ORACLE
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int ORACLE_VALUE = 2;
+
+	/**
 	 * An array of all the '<em><b>Store Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -78,6 +103,7 @@ public enum StoreType implements Enumerator {
 		new StoreType[] {
 			H2,
 			MYSQL,
+			ORACLE,
 		};
 
 	/**
@@ -92,6 +118,8 @@ public enum StoreType implements Enumerator {
 	 * Returns the '<em><b>Store Type</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static StoreType get(String literal) {
@@ -108,6 +136,8 @@ public enum StoreType implements Enumerator {
 	 * Returns the '<em><b>Store Type</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static StoreType getByName(String name) {
@@ -124,12 +154,15 @@ public enum StoreType implements Enumerator {
 	 * Returns the '<em><b>Store Type</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static StoreType get(int value) {
 		switch (value) {
 			case H2_VALUE: return H2;
 			case MYSQL_VALUE: return MYSQL;
+			case ORACLE_VALUE: return ORACLE;
 		}
 		return null;
 	}

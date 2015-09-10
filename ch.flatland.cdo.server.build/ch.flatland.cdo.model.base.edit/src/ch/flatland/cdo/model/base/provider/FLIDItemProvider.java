@@ -66,8 +66,8 @@ public class FLIDItemProvider
 			addObjectIDPropertyDescriptor(object);
 			addRevisionIDPropertyDescriptor(object);
 			addVersionPropertyDescriptor(object);
-			addCreationDatePropertyDescriptor(object);
-			addUpdateDatePropertyDescriptor(object);
+			addCDatePropertyDescriptor(object);
+			addUDatePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -183,19 +183,19 @@ public class FLIDItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Creation Date feature.
+	 * This adds a property descriptor for the CDate feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addCreationDatePropertyDescriptor(Object object) {
+	protected void addCDatePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_FLID_creationDate_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_FLID_creationDate_feature", "_UI_FLID_type"),
-				 BasePackage.Literals.FLID__CREATION_DATE,
+				 getString("_UI_FLID_cDate_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FLID_cDate_feature", "_UI_FLID_type"),
+				 BasePackage.Literals.FLID__CDATE,
 				 true,
 				 false,
 				 false,
@@ -205,19 +205,19 @@ public class FLIDItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Update Date feature.
+	 * This adds a property descriptor for the UDate feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addUpdateDatePropertyDescriptor(Object object) {
+	protected void addUDatePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_FLID_updateDate_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_FLID_updateDate_feature", "_UI_FLID_type"),
-				 BasePackage.Literals.FLID__UPDATE_DATE,
+				 getString("_UI_FLID_uDate_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FLID_uDate_feature", "_UI_FLID_type"),
+				 BasePackage.Literals.FLID__UDATE,
 				 true,
 				 false,
 				 false,
@@ -268,8 +268,8 @@ public class FLIDItemProvider
 			case BasePackage.FLID__OBJECT_ID:
 			case BasePackage.FLID__REVISION_ID:
 			case BasePackage.FLID__VERSION:
-			case BasePackage.FLID__CREATION_DATE:
-			case BasePackage.FLID__UPDATE_DATE:
+			case BasePackage.FLID__CDATE:
+			case BasePackage.FLID__UDATE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

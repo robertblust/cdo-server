@@ -24,12 +24,12 @@ import java.lang.reflect.InvocationTargetException;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link ch.flatland.cdo.model.base.impl.FLPackageImpl#getElements <em>Elements</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.impl.FLPackageImpl#getSubPackages <em>Sub Packages</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.impl.FLPackageImpl#getContents <em>Contents</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

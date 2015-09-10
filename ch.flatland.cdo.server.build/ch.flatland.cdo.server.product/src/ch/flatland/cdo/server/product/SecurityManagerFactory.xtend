@@ -26,18 +26,18 @@ class SecurityManagerFactory {
 		// hide constructor
 	}
 
-	def static InternalSecurityManager createSecurityManager() {
-		if(CONFIG.authenticator.authenticatorType == AuthenticatorType.LDAP) {
+	def static InternalSecurityManager createSecurityManager(String repoName) {
+		if(CONFIG.getByName(repoName).authenticator.authenticatorType == AuthenticatorType.LDAP) {
 			logger.info("Create LDAP security manager")
-			return createLDAPSecurityManager
+			return createLDAPSecurityManager(repoName)
 		} else {
 			logger.info("Create CDO security manager")
 			return createCDOSecurityManager
 		}
 	}
 
-	def private static createLDAPSecurityManager() {
-		val authenticator = new LdapAuthenticatorManager(CONFIG.authenticator.connectionUrl, CONFIG.authenticator.domainBase, CONFIG.authenticator.userIdField)
+	def private static createLDAPSecurityManager(String repoName) {
+		val authenticator = new LdapAuthenticatorManager(CONFIG.getByName(repoName).authenticator.connectionUrl, CONFIG.getByName(repoName).authenticator.domainBase, CONFIG.getByName(repoName).authenticator.userIdField)
 		return new SecurityManager("/security", IPluginContainer.INSTANCE, authenticator)
 	}
 

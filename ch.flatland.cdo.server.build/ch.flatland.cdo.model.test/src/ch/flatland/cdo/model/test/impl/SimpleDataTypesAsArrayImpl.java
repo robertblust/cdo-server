@@ -24,6 +24,7 @@ import org.eclipse.emf.internal.cdo.CDOObjectImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link ch.flatland.cdo.model.test.impl.SimpleDataTypesAsArrayImpl#getTestString <em>Test String</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.test.impl.SimpleDataTypesAsArrayImpl#getTestBoolean <em>Test Boolean</em>}</li>
@@ -39,7 +40,6 @@ import org.eclipse.emf.internal.cdo.CDOObjectImpl;
  *   <li>{@link ch.flatland.cdo.model.test.impl.SimpleDataTypesAsArrayImpl#getTestBigInteger <em>Test Big Integer</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.test.impl.SimpleDataTypesAsArrayImpl#getTestEnum <em>Test Enum</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

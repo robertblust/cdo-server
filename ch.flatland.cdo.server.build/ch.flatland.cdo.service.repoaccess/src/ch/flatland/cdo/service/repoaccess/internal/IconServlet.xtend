@@ -24,23 +24,23 @@ import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.edit.EMFEditPlugin
 import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory
+import org.eclipse.emf.edit.provider.ComposedImage
 import org.slf4j.LoggerFactory
 
 import static ch.flatland.cdo.util.Constants.*
 import static javax.servlet.http.HttpServletResponse.*
 
 class IconServlet extends AbstractServlet {
+	val logger = LoggerFactory.getLogger(this.class)
 	
 	override protected doGet(HttpServletRequest req, HttpServletResponse resp) {
-		
-		val logger = LoggerFactory.getLogger(this.class)
-		
+
 		val extension Request = new Request
 		val extension Response = new Response
 		val extension EMF = new EMF
-		
+
 		val extension JsonConverter = req.createJsonConverter
-		
+
 		req.logRequest
 
 		val ITEM_DELEGATOR = new AdapterFactoryItemDelegator(new ComposedAdapterFactory(EMFEditPlugin.getComposedAdapterFactoryDescriptorRegistry))
@@ -52,16 +52,18 @@ class IconServlet extends AbstractServlet {
 
 		try {
 			val pathSegments = Splitter.on("/").split(pathInfo)
+
 			switch (pathSegments.size) {
 				case 2: {
 					try {
-						var EObject object = null 
+						var EObject object = null
 						var typeSegment = pathSegments.get(1)
-						if (typeSegment == "eresource.CDOResource") {
+						if(typeSegment == "eresource.CDOResource") {
+
 							// TODO use different icon can be done better
 							typeSegment = "security.ResourceFilter"
 						}
-						if (typeSegment.contains(".")) {
+						if(typeSegment.contains(".")) {
 							val segments = Splitter.on(".").split(typeSegment)
 							val ePackage = safeEPackage(segments.get(0))
 							val eClass = safeEClass(ePackage, segments.get(1))
@@ -69,26 +71,13 @@ class IconServlet extends AbstractServlet {
 						} else {
 							throw new Exception
 						}
+
+						val imageData = ITEM_DELEGATOR.getImage(object)
 						
-						val imageUrl = ITEM_DELEGATOR.getImage(object) as URL
-						if(imageUrl == null) {
-							throw new Exception
-						}
+						resp.writeImageReponse(imageData)
 
-						val image = new BufferedInputStream(imageUrl.openStream)
-						val out = resp.getOutputStream()
-						val buffer = newByteArrayOfSize(8192)
-
-						for (var int length; (length = image.read(buffer)) > 0;) {
-							out.write(buffer, 0, length)
-						}
-
-						resp.setContentType(GIF_CONTENTTYPE)
-
-						image.close
-						out.close
 					} catch(Exception e) {
-						throw new FlatlandException(SC_NOT_FOUND, "Icon for '{}' not found", pathInfo)
+						throw new FlatlandException(SC_INTERNAL_SERVER_ERROR, "Icon for '{}' not found", pathInfo)
 					}
 				}
 				default:
@@ -99,6 +88,26 @@ class IconServlet extends AbstractServlet {
 			resp.status = e.httpStatus
 			resp.writeResponse(req, e.safeToJson)
 			logger.error("Request failed", e)
+		}
+	}
+
+	def private dispatch void writeImageReponse(HttpServletResponse resp, URL imageUrl) {
+		logger.debug("writeImageReponse with imageUrl")
+		val image = new BufferedInputStream(imageUrl.openStream)
+		val out = resp.getOutputStream()
+		val buffer = newByteArrayOfSize(8192)
+
+		for (var int length; (length = image.read(buffer)) > 0;) {
+			out.write(buffer, 0, length)
+		}
+		resp.setContentType(GIF_CONTENTTYPE)
+		image.close
+		out.close
+	}
+
+	def private dispatch void writeImageReponse(HttpServletResponse resp, ComposedImage composedImage) {
+		if (composedImage.images.size > 0) {
+			resp.writeImageReponse(composedImage.images.get(0))	
 		}
 	}
 }

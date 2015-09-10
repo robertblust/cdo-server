@@ -31,24 +31,6 @@ public interface ConfigFactory extends EFactory {
 	Config createConfig();
 
 	/**
-	 * Returns a new object of class '<em>Data Store</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Data Store</em>'.
-	 * @generated
-	 */
-	DataStore createDataStore();
-
-	/**
-	 * Returns a new object of class '<em>Authenticator</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Authenticator</em>'.
-	 * @generated
-	 */
-	Authenticator createAuthenticator();
-
-	/**
 	 * Returns a new object of class '<em>Binding</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -65,6 +47,33 @@ public interface ConfigFactory extends EFactory {
 	 * @generated
 	 */
 	Json createJson();
+
+	/**
+	 * Returns a new object of class '<em>Repository</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Repository</em>'.
+	 * @generated
+	 */
+	Repository createRepository();
+
+	/**
+	 * Returns a new object of class '<em>Data Store</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Data Store</em>'.
+	 * @generated
+	 */
+	DataStore createDataStore();
+
+	/**
+	 * Returns a new object of class '<em>Authenticator</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Authenticator</em>'.
+	 * @generated
+	 */
+	Authenticator createAuthenticator();
 
 	/**
 	 * Returns the package supported by this factory.

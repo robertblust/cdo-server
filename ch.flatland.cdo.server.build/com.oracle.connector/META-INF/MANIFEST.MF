@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Oracle OJDBC Dirver
+Bundle-SymbolicName: com.oracle.connector
+Bundle-Version: 11.2.0.2
+Bundle-Vendor: oracle.com
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-ClassPath: ojdbc6.jar,
+ .
+Export-Package: oracle.jdbc.pool

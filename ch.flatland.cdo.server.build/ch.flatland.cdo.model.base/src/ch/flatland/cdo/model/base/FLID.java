@@ -19,16 +19,16 @@ import org.eclipse.emf.cdo.CDOObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link ch.flatland.cdo.model.base.FLID#getUUID <em>UUID</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.FLID#getID <em>ID</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.FLID#getObjectID <em>Object ID</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.FLID#getRevisionID <em>Revision ID</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.FLID#getVersion <em>Version</em>}</li>
- *   <li>{@link ch.flatland.cdo.model.base.FLID#getCreationDate <em>Creation Date</em>}</li>
- *   <li>{@link ch.flatland.cdo.model.base.FLID#getUpdateDate <em>Update Date</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.base.FLID#getCDate <em>CDate</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.base.FLID#getUDate <em>UDate</em>}</li>
  * </ul>
- * </p>
  *
  * @see ch.flatland.cdo.model.base.BasePackage#getFLID()
  * @model abstract="true"
@@ -182,57 +182,66 @@ public interface FLID extends CDOObject {
 	void setVersion(long value);
 
 	/**
-	 * Returns the value of the '<em><b>Creation Date</b></em>' attribute.
+	 * Returns the value of the '<em><b>CDate</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Creation Date</em>' attribute isn't clear,
+	 * If the meaning of the '<em>CDate</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Creation Date</em>' attribute.
-	 * @see #setCreationDate(Date)
-	 * @see ch.flatland.cdo.model.base.BasePackage#getFLID_CreationDate()
+	 * @return the value of the '<em>CDate</em>' attribute.
+	 * @see #setCDate(Date)
+	 * @see ch.flatland.cdo.model.base.BasePackage#getFLID_CDate()
 	 * @model unique="false"
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='ID'"
 	 * @generated
 	 */
-	Date getCreationDate();
+	Date getCDate();
 
 	/**
-	 * Sets the value of the '{@link ch.flatland.cdo.model.base.FLID#getCreationDate <em>Creation Date</em>}' attribute.
+	 * Sets the value of the '{@link ch.flatland.cdo.model.base.FLID#getCDate <em>CDate</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Creation Date</em>' attribute.
-	 * @see #getCreationDate()
+	 * @param value the new value of the '<em>CDate</em>' attribute.
+	 * @see #getCDate()
 	 * @generated
 	 */
-	void setCreationDate(Date value);
+	void setCDate(Date value);
 
 	/**
-	 * Returns the value of the '<em><b>Update Date</b></em>' attribute.
+	 * Returns the value of the '<em><b>UDate</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Update Date</em>' attribute isn't clear,
+	 * If the meaning of the '<em>UDate</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Update Date</em>' attribute.
-	 * @see #setUpdateDate(Date)
-	 * @see ch.flatland.cdo.model.base.BasePackage#getFLID_UpdateDate()
+	 * @return the value of the '<em>UDate</em>' attribute.
+	 * @see #setUDate(Date)
+	 * @see ch.flatland.cdo.model.base.BasePackage#getFLID_UDate()
 	 * @model unique="false"
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='ID'"
 	 * @generated
 	 */
-	Date getUpdateDate();
+	Date getUDate();
 
 	/**
-	 * Sets the value of the '{@link ch.flatland.cdo.model.base.FLID#getUpdateDate <em>Update Date</em>}' attribute.
+	 * Sets the value of the '{@link ch.flatland.cdo.model.base.FLID#getUDate <em>UDate</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Update Date</em>' attribute.
-	 * @see #getUpdateDate()
+	 * @param value the new value of the '<em>UDate</em>' attribute.
+	 * @see #getUDate()
 	 * @generated
 	 */
-	void setUpdateDate(Date value);
+	void setUDate(Date value);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model unique="false" objectUnique="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='<%org.eclipse.emf.cdo.common.security.CDOPermission%> _cdoPermission = object.cdoPermission();\nboolean _notEquals = (!<%com.google.common.base.Objects%>.equal(_cdoPermission, <%org.eclipse.emf.cdo.common.security.CDOPermission%>.NONE));\nif (_notEquals)\n{\n\treturn true;\n}\nreturn false;'"
+	 * @generated
+	 */
+	boolean hasPermission(FLID object);
 
 } // FLID

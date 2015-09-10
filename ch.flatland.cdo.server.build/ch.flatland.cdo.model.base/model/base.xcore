@@ -9,9 +9,13 @@
 	creationIcons="false")
 package ch.flatland.cdo.model.base
 
+import org.eclipse.emf.cdo.common.security.CDOPermission
 import org.eclipse.emf.common.util.BasicEList
 import org.eclipse.emf.ecore.EEList
+import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
+
+annotation "http://www.eclipse.org/CDO/DBStore" as DBStore
 
 /*
  * <p>
@@ -53,18 +57,30 @@ abstract class FLID {
 	@GenModel(propertyCategory="ID")
 	long version
 	@GenModel(propertyCategory="ID")
-	Date creationDate
+	Date cDate
 	@GenModel(propertyCategory="ID")
-	Date updateDate
+	Date uDate
+	
+	op boolean hasPermission(FLID object) {
+		if(object.cdoPermission != CDOPermission.NONE) {
+			return true
+		}
+		return false
+	}
 }
 
 abstract class FLElement extends FLID{
 	@GenModel(propertyCategory="Base")
 	String[1] name
 	@GenModel(propertyMultiLine="true", propertyCategory="Base")
+	@DBStore(columnType="CLOB")
 	FLMarkdown description
 	contains FLTrace[] traces
 	contains FLProperty[] properties
+	@GenModel(propertyCategory="Base")
+	refers EObject derivedContainer get {
+		return resolveContainer
+	} 
 	@GenModel(propertyCategory="Trace to")
 	refers FLElement[] traceToOwn get {
 		return toFilterByType(FLTraceType.OWN)
@@ -184,6 +200,9 @@ abstract class FLElement extends FLID{
 	@GenModel(propertyCategory="Trace from", property="None")
 	refers FLElement[] traceFromTrack get {
 		return this.fromFilterByType(FLTraceType.TRACK)
+	}
+	op EObject resolveContainer() {
+		this.eContainer
 	}
 	/*
 	 * Filters the traces to by trace type.

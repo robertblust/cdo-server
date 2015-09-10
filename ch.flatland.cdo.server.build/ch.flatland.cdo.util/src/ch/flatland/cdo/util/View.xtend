@@ -41,11 +41,11 @@ class View {
 		try {
 			switch (req.servletAlias) {
 				case ALIAS_NODE: {
-					if(req.pathInfo != null) {
-						return view.getResourceNode(req.pathInfo)
-					} else {
+					if (req.contentPath == "") {
 						return view.getResourceNode("/")
-					}
+					} else {
+						return view.getResourceNode(req.contentPath)
+					}	
 				}
 				case ALIAS_OBJECT: {
 					val pathSegments = req.pathSegments
@@ -135,6 +135,7 @@ class View {
 					throw new Exception
 			}
 		} catch(Exception e) {
+			e.printStackTrace
 			var path = req.servletAlias
 			if(req.pathInfo != null) {
 				path = path + req.pathInfo
@@ -189,7 +190,11 @@ class View {
 	}
 
 	def safeResolveObject(CDOView view, String id) {
-		return view.getObject(CDOIDUtil.createLong(Long.parseLong(id)))
+		val result =  view.getObject(CDOIDUtil.createLong(Long.parseLong(id)))
+		if (result.hasPermission) {
+			return result
+		}
+		return null
 	}
 
 	def private dispatch filterBy(HttpServletRequest req, Object object) {

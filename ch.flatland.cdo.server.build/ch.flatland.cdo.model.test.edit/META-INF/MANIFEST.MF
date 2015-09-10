@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Flatland CDO Test Model Edit
 Bundle-SymbolicName: ch.flatland.cdo.model.test.edit;singleton:=true
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 1.2.0.M001
 Bundle-ClassPath: .
 Bundle-Activator: ch.flatland.cdo.model.test.provider.TestEditPlugin$Implementation
 Bundle-Vendor: flatland.ch

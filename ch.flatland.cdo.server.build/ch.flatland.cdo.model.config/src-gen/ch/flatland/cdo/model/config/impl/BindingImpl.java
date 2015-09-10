@@ -18,14 +18,15 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link ch.flatland.cdo.model.config.impl.BindingImpl#getIp <em>Ip</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.config.impl.BindingImpl#isTcp <em>Tcp</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.config.impl.BindingImpl#getTcpPort <em>Tcp Port</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.config.impl.BindingImpl#isHttp <em>Http</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.config.impl.BindingImpl#getHttpPort <em>Http Port</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.config.impl.BindingImpl#isCheckSSL <em>Check SSL</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -129,6 +130,26 @@ public class BindingImpl extends MinimalEObjectImpl.Container implements Binding
 	 * @ordered
 	 */
 	protected String httpPort = HTTP_PORT_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isCheckSSL() <em>Check SSL</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isCheckSSL()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean CHECK_SSL_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isCheckSSL() <em>Check SSL</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isCheckSSL()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean checkSSL = CHECK_SSL_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -259,6 +280,27 @@ public class BindingImpl extends MinimalEObjectImpl.Container implements Binding
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isCheckSSL() {
+		return checkSSL;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setCheckSSL(boolean newCheckSSL) {
+		boolean oldCheckSSL = checkSSL;
+		checkSSL = newCheckSSL;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ConfigPackage.BINDING__CHECK_SSL, oldCheckSSL, checkSSL));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -272,6 +314,8 @@ public class BindingImpl extends MinimalEObjectImpl.Container implements Binding
 				return isHttp();
 			case ConfigPackage.BINDING__HTTP_PORT:
 				return getHttpPort();
+			case ConfigPackage.BINDING__CHECK_SSL:
+				return isCheckSSL();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -298,6 +342,9 @@ public class BindingImpl extends MinimalEObjectImpl.Container implements Binding
 				return;
 			case ConfigPackage.BINDING__HTTP_PORT:
 				setHttpPort((String)newValue);
+				return;
+			case ConfigPackage.BINDING__CHECK_SSL:
+				setCheckSSL((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -326,6 +373,9 @@ public class BindingImpl extends MinimalEObjectImpl.Container implements Binding
 			case ConfigPackage.BINDING__HTTP_PORT:
 				setHttpPort(HTTP_PORT_EDEFAULT);
 				return;
+			case ConfigPackage.BINDING__CHECK_SSL:
+				setCheckSSL(CHECK_SSL_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -348,6 +398,8 @@ public class BindingImpl extends MinimalEObjectImpl.Container implements Binding
 				return http != HTTP_EDEFAULT;
 			case ConfigPackage.BINDING__HTTP_PORT:
 				return HTTP_PORT_EDEFAULT == null ? httpPort != null : !HTTP_PORT_EDEFAULT.equals(httpPort);
+			case ConfigPackage.BINDING__CHECK_SSL:
+				return checkSSL != CHECK_SSL_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -372,6 +424,8 @@ public class BindingImpl extends MinimalEObjectImpl.Container implements Binding
 		result.append(http);
 		result.append(", httpPort: ");
 		result.append(httpPort);
+		result.append(", checkSSL: ");
+		result.append(checkSSL);
 		result.append(')');
 		return result.toString();
 	}
