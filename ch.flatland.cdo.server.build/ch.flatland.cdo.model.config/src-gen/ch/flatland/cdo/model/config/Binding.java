@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link ch.flatland.cdo.model.config.Binding#getIp <em>Ip</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.config.Binding#isTcp <em>Tcp</em>}</li>
@@ -19,7 +20,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link ch.flatland.cdo.model.config.Binding#getHttpPort <em>Http Port</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.config.Binding#isCheckSSL <em>Check SSL</em>}</li>
  * </ul>
- * </p>
  *
  * @see ch.flatland.cdo.model.config.ConfigPackage#getBinding()
  * @model

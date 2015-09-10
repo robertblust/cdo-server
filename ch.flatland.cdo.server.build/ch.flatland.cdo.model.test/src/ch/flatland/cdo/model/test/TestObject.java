@@ -13,6 +13,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link ch.flatland.cdo.model.test.TestObject#getName <em>Name</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.test.TestObject#getMaxlength8 <em>Maxlength8</em>}</li>
@@ -22,7 +23,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link ch.flatland.cdo.model.test.TestObject#getFixBoundReferences <em>Fix Bound References</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.test.TestObject#getFixlowerBoundReferences <em>Fixlower Bound References</em>}</li>
  * </ul>
- * </p>
  *
  * @see ch.flatland.cdo.model.test.TestPackage#getTestObject()
  * @model

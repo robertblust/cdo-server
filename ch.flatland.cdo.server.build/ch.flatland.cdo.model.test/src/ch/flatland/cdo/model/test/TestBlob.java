@@ -11,10 +11,10 @@ import org.eclipse.emf.cdo.CDOObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link ch.flatland.cdo.model.test.TestBlob#getBlob <em>Blob</em>}</li>
  * </ul>
- * </p>
  *
  * @see ch.flatland.cdo.model.test.TestPackage#getTestBlob()
  * @model

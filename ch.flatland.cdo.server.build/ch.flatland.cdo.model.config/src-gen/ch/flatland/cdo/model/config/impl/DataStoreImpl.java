@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link ch.flatland.cdo.model.config.impl.DataStoreImpl#getStoreType <em>Store Type</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.config.impl.DataStoreImpl#getRepositoryName <em>Repository Name</em>}</li>
@@ -26,7 +27,6 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link ch.flatland.cdo.model.config.impl.DataStoreImpl#getUserName <em>User Name</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.config.impl.DataStoreImpl#getPassword <em>Password</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

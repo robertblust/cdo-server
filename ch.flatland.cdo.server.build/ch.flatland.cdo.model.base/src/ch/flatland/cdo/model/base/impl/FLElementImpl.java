@@ -36,6 +36,7 @@ import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getName <em>Name</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getDescription <em>Description</em>}</li>
@@ -73,7 +74,6 @@ import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
  *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getTraceFromRefine <em>Trace From Refine</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getTraceFromTrack <em>Trace From Track</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

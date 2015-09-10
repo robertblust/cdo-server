@@ -15,11 +15,11 @@ import org.eclipse.emf.internal.cdo.CDOObjectImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link ch.flatland.cdo.model.base.impl.FLTraceImpl#getTraceType <em>Trace Type</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.impl.FLTraceImpl#getTarget <em>Target</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

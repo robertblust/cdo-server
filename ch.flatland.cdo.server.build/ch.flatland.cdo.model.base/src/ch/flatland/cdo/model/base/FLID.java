@@ -19,6 +19,7 @@ import org.eclipse.emf.cdo.CDOObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link ch.flatland.cdo.model.base.FLID#getUUID <em>UUID</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.FLID#getID <em>ID</em>}</li>
@@ -28,7 +29,6 @@ import org.eclipse.emf.cdo.CDOObject;
  *   <li>{@link ch.flatland.cdo.model.base.FLID#getCDate <em>CDate</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.FLID#getUDate <em>UDate</em>}</li>
  * </ul>
- * </p>
  *
  * @see ch.flatland.cdo.model.base.BasePackage#getFLID()
  * @model abstract="true"

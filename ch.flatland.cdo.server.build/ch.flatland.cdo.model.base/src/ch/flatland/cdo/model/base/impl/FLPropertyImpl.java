@@ -13,11 +13,11 @@ import org.eclipse.emf.internal.cdo.CDOObjectImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link ch.flatland.cdo.model.base.impl.FLPropertyImpl#getName <em>Name</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.impl.FLPropertyImpl#getValue <em>Value</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

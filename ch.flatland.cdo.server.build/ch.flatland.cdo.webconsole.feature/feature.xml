@@ -2,7 +2,7 @@
 <feature
       id="ch.flatland.cdo.webconsole.feature"
       label="Flatland CDO Server Webconsole Feature"
-      version="1.1.0.M002">
+      version="1.2.0.M001">
 
    <description url="http://www.example.com/description">
       [Enter Feature Description here.]

@@ -11,11 +11,11 @@ import org.eclipse.emf.cdo.CDOObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link ch.flatland.cdo.model.base.FLTrace#getTraceType <em>Trace Type</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.FLTrace#getTarget <em>Target</em>}</li>
  * </ul>
- * </p>
  *
  * @see ch.flatland.cdo.model.base.BasePackage#getFLTrace()
  * @model

@@ -19,13 +19,13 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link ch.flatland.cdo.model.config.impl.AuthenticatorImpl#getAuthenticatorType <em>Authenticator Type</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.config.impl.AuthenticatorImpl#getConnectionUrl <em>Connection Url</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.config.impl.AuthenticatorImpl#getDomainBase <em>Domain Base</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.config.impl.AuthenticatorImpl#getUserIdField <em>User Id Field</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

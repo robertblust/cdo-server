@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link ch.flatland.cdo.model.config.impl.BindingImpl#getIp <em>Ip</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.config.impl.BindingImpl#isTcp <em>Tcp</em>}</li>
@@ -26,7 +27,6 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link ch.flatland.cdo.model.config.impl.BindingImpl#getHttpPort <em>Http Port</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.config.impl.BindingImpl#isCheckSSL <em>Check SSL</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

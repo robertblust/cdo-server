@@ -11,11 +11,11 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link ch.flatland.cdo.model.config.Repository#getDataStore <em>Data Store</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.config.Repository#getAuthenticator <em>Authenticator</em>}</li>
  * </ul>
- * </p>
  *
  * @see ch.flatland.cdo.model.config.ConfigPackage#getRepository()
  * @model

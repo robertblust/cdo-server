@@ -11,12 +11,12 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link ch.flatland.cdo.model.base.FLPackage#getElements <em>Elements</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.FLPackage#getSubPackages <em>Sub Packages</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.FLPackage#getContents <em>Contents</em>}</li>
  * </ul>
- * </p>
  *
  * @see ch.flatland.cdo.model.base.BasePackage#getFLPackage()
  * @model

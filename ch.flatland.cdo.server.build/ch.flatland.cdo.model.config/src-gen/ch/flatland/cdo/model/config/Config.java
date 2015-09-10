@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link ch.flatland.cdo.model.config.Config#getReadOnlyPassword <em>Read Only Password</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.config.Config#getAdminPassword <em>Admin Password</em>}</li>
@@ -20,7 +21,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link ch.flatland.cdo.model.config.Config#getBinding <em>Binding</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.config.Config#getJson <em>Json</em>}</li>
  * </ul>
- * </p>
  *
  * @see ch.flatland.cdo.model.config.ConfigPackage#getConfig()
  * @model
