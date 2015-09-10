@@ -32,7 +32,7 @@ class AbstractServlet extends HttpServlet {
 	}
 
 	override init(ServletConfig config) throws ServletException {
-		config.servletContext.sessionCookieConfig.name = SESSION_COOKIE
+		//config.servletContext.sessionCookieConfig.name = SESSION_COOKIE
 		super.init(config)
 		logger.debug("init(ServletConfig config) '{}' - set cookie name {}", this.class.simpleName, SESSION_COOKIE)
 	}
