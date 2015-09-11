@@ -43,8 +43,6 @@
 
 		<module>ch.flatland.cdo.client.http</module>
 
-		<module>ch.flatland.cdo.service.tests</module>
-
 		<module>ch.flatland.cdo.webconsole.feature</module>
 		<module>org.apache.felix.webconsole</module>
 		<module>org.apache.felix.webconsole.plugins.event</module>
@@ -115,13 +113,8 @@
 							<ws>win32</ws>
 							<arch>x86_64</arch>
 						</environment>
-						<!-- 
-						<environment>
-							<os>macosx</os>
-							<ws>cocoa</ws>
-							<arch>x86</arch>
-						</environment>
- 						-->
+						<!-- <environment> <os>macosx</os> <ws>cocoa</ws> <arch>x86</arch> 
+							</environment> -->
 						<environment>
 							<os>solaris</os>
 							<ws>gtk</ws>
@@ -150,6 +143,11 @@
 				<configuration>
 					<format>${build.qualifier}</format>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-source-plugin</artifactId>
+				<version>${tycho.version}</version>
 			</plugin>
 			<plugin>
 				<groupId>org.eclipse.xtend</groupId>
@@ -257,6 +255,4 @@
 		<connection>scm:git:git@github.com:robertblust/cdo-server.git</connection>
 		<developerConnection>scm:git:git@github.com:robertblust/cdo-server.git</developerConnection>
 	</scm>
-	<!-- <dependencies> <dependency> <groupId>org.eclipse.xtend</groupId> <artifactId>org.eclipse.xtend.core</artifactId> 
-		<version>${xtend.version}</version> </dependency> </dependencies> -->
 </project>
