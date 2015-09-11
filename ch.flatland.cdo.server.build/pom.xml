@@ -43,12 +43,6 @@
 
 		<module>ch.flatland.cdo.client.http</module>
 
-		<module>ch.flatland.cdo.webconsole.feature</module>
-		<module>org.apache.felix.webconsole</module>
-		<module>org.apache.felix.webconsole.plugins.event</module>
-		<module>org.apache.felix.metatype</module>
-		<module>org.apache.felix.eventadmin</module>
-		<module>org.apache.felix.configadmin</module>
 		<module>com.mysql.connector</module>
 		<module>com.oracle.connector</module>
 		<module>org.eclipse.net4j.db.jdbc</module>
@@ -148,6 +142,50 @@
 				<groupId>org.eclipse.tycho</groupId>
 				<artifactId>tycho-source-plugin</artifactId>
 				<version>${tycho.version}</version>
+				<executions>
+					<execution>
+						<id>plugin-source</id>
+						<goals>
+							<goal>plugin-source</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.eclipse.tycho.extras</groupId>
+				<artifactId>tycho-source-feature-plugin</artifactId>
+				<version>${tycho.version}</version>
+				<executions>
+					<execution>
+						<id>source-feature</id>
+						<phase>package</phase>
+						<goals>
+							<goal>source-feature</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<excludes>
+						<plugin id="ch.qos.logback.slf4j" />
+						<plugin id="ch.qos.logback.classic" />
+						<plugin id="ch.qos.logback.core" />
+					</excludes>
+				</configuration>
+
+			</plugin>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-p2-plugin</artifactId>
+				<version>${tycho.version}</version>
+				<executions>
+					<execution>
+						<id>attach-p2-metadata</id>
+						<phase>package</phase>
+						<goals>
+							<goal>p2-metadata</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 			<plugin>
 				<groupId>org.eclipse.xtend</groupId>
