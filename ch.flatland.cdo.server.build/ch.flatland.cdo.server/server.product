@@ -92,17 +92,11 @@
       <feature id="ch.flatland.cdo.server.ldap.feature" version="1.2.0.M001"/>
       <feature id="ch.flatland.cdo.service.feature" version="1.2.0.M001"/>
       <feature id="ch.flatland.cdo.util.feature" version="1.2.0.M001"/>
-      <feature id="ch.flatland.cdo.webconsole.feature" version="1.2.0.M001"/>
    </features>
 
    <configurations>
       <plugin id="ch.flatland.cdo.service.ping" autoStart="true" startLevel="0" />
       <plugin id="ch.flatland.cdo.service.repoaccess" autoStart="true" startLevel="0" />
-      <plugin id="org.apache.felix.configadmin" autoStart="true" startLevel="0" />
-      <plugin id="org.apache.felix.eventadmin" autoStart="true" startLevel="0" />
-      <plugin id="org.apache.felix.metatype" autoStart="true" startLevel="0" />
-      <plugin id="org.apache.felix.webconsole" autoStart="true" startLevel="0" />
-      <plugin id="org.apache.felix.webconsole.plugins.event" autoStart="true" startLevel="0" />
       <plugin id="org.eclipse.core.runtime" autoStart="true" startLevel="0" />
       <plugin id="org.eclipse.equinox.common" autoStart="true" startLevel="2" />
       <plugin id="org.eclipse.equinox.http.jetty" autoStart="true" startLevel="0" />
