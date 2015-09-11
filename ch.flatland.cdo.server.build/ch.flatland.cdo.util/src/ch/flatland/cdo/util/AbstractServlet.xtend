@@ -11,7 +11,6 @@
 package ch.flatland.cdo.util
 
 import java.io.IOException
-import javax.servlet.ServletConfig
 import javax.servlet.ServletException
 import javax.servlet.http.HttpServlet
 import javax.servlet.http.HttpServletRequest
@@ -24,17 +23,9 @@ class AbstractServlet extends HttpServlet {
 
 	val extension Response = new Response
 
-	val static SESSION_COOKIE = "CH-FLATLAND-CDO"
-
 	override init() throws ServletException {
 		super.init()
 		logger.debug("init '{}'", this.class.simpleName)
-	}
-
-	override init(ServletConfig config) throws ServletException {
-		//config.servletContext.sessionCookieConfig.name = SESSION_COOKIE
-		super.init(config)
-		logger.debug("init(ServletConfig config) '{}' - set cookie name {}", this.class.simpleName, SESSION_COOKIE)
 	}
 
 	override protected doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
