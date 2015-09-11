@@ -150,6 +150,9 @@
 						</goals>
 					</execution>
 				</executions>
+				<configuration>
+					<includePom>true</includePom>
+				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.eclipse.tycho.extras</groupId>
