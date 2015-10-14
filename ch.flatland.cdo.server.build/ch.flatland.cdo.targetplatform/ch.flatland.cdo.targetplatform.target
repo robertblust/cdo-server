@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<?pde version="3.8"?><target name="Flatland CDO Server" sequenceNumber="23">
+<?pde version="3.8"?><target name="Flatland CDO Server" sequenceNumber="25">
 <locations>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-<unit id="org.eclipse.rcp.sdk.id" version="4.5.0.I20150603-2000"/>
+<unit id="org.eclipse.rcp.sdk.id" version="4.5.1.M20150904-0015"/>
 <repository location="http://download.eclipse.org/releases/mars/"/>
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
@@ -18,13 +18,13 @@
 <repository location="http://download.eclipse.org/tools/orbit/downloads/drops/R20140525021250/repository/"/>
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-<unit id="org.eclipse.equinox.sdk.feature.group" version="3.11.0.v20150602-1417"/>
-<unit id="org.eclipse.platform.sdk" version="4.5.0.I20150603-2000"/>
-<unit id="org.eclipse.emf.sdk.feature.group" version="2.11.0.v20150601-0402"/>
-<unit id="org.eclipse.emf.ecore.xcore.sdk.feature.group" version="1.3.0.v20150602-0808"/>
-<unit id="org.eclipse.net4j.sdk.feature.group" version="4.4.0.v20150610-1925"/>
-<unit id="org.eclipse.emf.cdo.sdk.feature.group" version="4.4.0.v20150610-1925"/>
-<unit id="org.eclipse.xtext.sdk.feature.group" version="2.8.3.v201506010551"/>
+<unit id="org.eclipse.equinox.sdk.feature.group" version="3.11.1.v20150831-1342"/>
+<unit id="org.eclipse.platform.sdk" version="4.5.1.M20150904-0015"/>
+<unit id="org.eclipse.emf.sdk.feature.group" version="2.11.1.v20150806-0404"/>
+<unit id="org.eclipse.emf.ecore.xcore.sdk.feature.group" version="1.3.1.v20150806-0546"/>
+<unit id="org.eclipse.net4j.sdk.feature.group" version="4.4.1.v20150916-0832"/>
+<unit id="org.eclipse.emf.cdo.sdk.feature.group" version="4.4.1.v20150916-0832"/>
+<unit id="org.eclipse.xtext.sdk.feature.group" version="2.8.4.v201508050135"/>
 <repository location="http://download.eclipse.org/releases/mars/"/>
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
