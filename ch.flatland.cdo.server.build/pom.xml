@@ -46,6 +46,8 @@
 		<module>com.mysql.connector</module>
 		<module>com.oracle.connector</module>
 		<module>org.eclipse.net4j.db.jdbc</module>
+		
+		<module>ch.flatland.cdo.jetty.feature</module>
 	</modules>
 
 	<build>

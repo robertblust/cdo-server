@@ -10,21 +10,21 @@
  */
 package ch.flatland.cdo.util
 
+import ch.flatland.cdo.server.config.ServerConfig
 import com.google.common.base.Splitter
 import javax.servlet.http.HttpServletRequest
 import org.apache.commons.codec.binary.Base64
 import org.slf4j.LoggerFactory
 
+import static ch.flatland.cdo.server.config.ServerConfig.*
 import static ch.flatland.cdo.util.Constants.*
 import static javax.servlet.http.HttpServletRequest.*
 import static javax.servlet.http.HttpServletResponse.*
 
-import static ch.flatland.cdo.server.config.ServerConfig.*
-
 class Request {
 
 	val logger = LoggerFactory.getLogger(this.class)
-
+	
 	val public static AUTH_HEADER = "Authorization"
 	val public static ACCEPT_HEADER = "Accept"
 	val public static OPENSHIFT_FORWARD_PROTO_HEADER = "X-Forwarded-Proto"
@@ -62,6 +62,9 @@ class Request {
 	}
 
 	def getServletAlias(HttpServletRequest req) {
+		if (ServerConfig.bridgeMode) {
+			return "/" + Splitter.on("/").split(req.requestURL).get(4)
+		}
 		return "/" + Splitter.on("/").split(req.requestURL).get(3)
 	}
 
@@ -150,12 +153,15 @@ class Request {
 		val userName = request.safeUserNameAndPassword.substring(0, userNameIndex)
 		return userName
 	}
-	
+		
 	def getRepoName(HttpServletRequest request) {
 		request.originalPathSegments.get(1)
 	}
 	
 	def getContentPath(HttpServletRequest req) {
+		if (ServerConfig.bridgeMode) {
+			return req.pathInfo.replaceFirst("bridge", "").replaceFirst("/" + req.repoName, "")
+		}
 		return req.pathInfo.replaceFirst("/" + req.repoName, "")
 	}
 

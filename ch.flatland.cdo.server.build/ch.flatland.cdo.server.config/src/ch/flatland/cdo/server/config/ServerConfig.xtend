@@ -32,10 +32,19 @@ class ServerConfig {
 	val static DB_HOST = System.getProperty(SYSTEM_PARAM_DB_HOST)
 	val static SYSTEM_PARAM_CONFIG = "ch.flatland.cdo.server.config"
 	val static FILE_PATH = System.getProperty(SYSTEM_PARAM_CONFIG)
+	val static BRIDGE_PROPERTY = "ch.flatland.cdo.server.bridge"
+	val static bridgeProperty = System.getProperty(BRIDGE_PROPERTY)
 	var static Config CONFIG = null
 
 	private new() {
 		// hide constructor
+	}
+	
+	def public static isBridgeMode() {			
+		if (bridgeProperty != null && bridgeProperty == "true") {
+			return true
+		}
+		return false
 	}
 
 	def static synchronized CONFIG() {
