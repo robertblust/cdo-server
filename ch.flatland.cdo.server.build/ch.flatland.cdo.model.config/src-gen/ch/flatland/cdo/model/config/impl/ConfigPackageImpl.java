@@ -697,6 +697,7 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 		initEEnum(authenticatorTypeEEnum, AuthenticatorType.class, "AuthenticatorType");
 		addEEnumLiteral(authenticatorTypeEEnum, AuthenticatorType.CDO);
 		addEEnumLiteral(authenticatorTypeEEnum, AuthenticatorType.LDAP);
+		addEEnumLiteral(authenticatorTypeEEnum, AuthenticatorType.NONE);
 
 		// Create resource
 		createResource(eNS_URI);

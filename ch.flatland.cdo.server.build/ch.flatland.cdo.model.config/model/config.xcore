@@ -63,4 +63,5 @@ class Authenticator {
 enum AuthenticatorType {
 	CDO = 0
 	LDAP = 1
+	NONE = 2
 }

@@ -22,6 +22,7 @@ import org.eclipse.xtend.lib.annotations.Data
 
 import static ch.flatland.cdo.server.ServerUtil.*
 import static ch.flatland.cdo.server.config.ServerConfig.*
+import ch.flatland.cdo.model.config.AuthenticatorType
 
 class Repository {
 
@@ -49,15 +50,21 @@ class Repository {
 				IRepository.Props.OPTIMISTIC_LOCKING_TIMEOUT -> "10000",
 				IRepository.Props.OVERRIDE_UUID -> it.dataStore.repositoryName
 			)
-			repository = CDOServerUtil.createRepository(it.dataStore.repositoryName, StoreFactory.createStore(it.dataStore.repositoryName), repositoryProps) as InternalRepository
+			repository = CDOServerUtil.createRepository(it.dataStore.repositoryName,
+				StoreFactory.createStore(it.dataStore.repositoryName), repositoryProps) as InternalRepository
 			CDOServerUtil.addRepository(IPluginContainer.INSTANCE, repository);
-			securityManager = SecurityManagerFactory.createSecurityManager(it.dataStore.repositoryName)
-			securityManager.addCommitHandler(CommitHandlerFactory.createAnnotationCommitHandler)
-			
-			//securityManager.addCommitHandler(CommitHandlerFactory.createHomeCommitHandler)
-			securityManager.repository = repository
-			val lifecycle = securityManager as Lifecycle
-			lifecycle.activate
+
+			if (it.authenticator.authenticatorType != AuthenticatorType.NONE) {
+				securityManager = SecurityManagerFactory.createSecurityManager(it.dataStore.repositoryName)
+				securityManager.addCommitHandler(CommitHandlerFactory.createAnnotationCommitHandler)
+
+				// securityManager.addCommitHandler(CommitHandlerFactory.createHomeCommitHandler)
+				securityManager.repository = repository
+
+				val lifecycle = securityManager as Lifecycle
+				lifecycle.activate
+			}
+
 			val repositoryInfo = new RepositoryInfo(repository, securityManager)
 			repositories.add(repositoryInfo)
 		]
@@ -69,8 +76,11 @@ class Repository {
 		repositories.forEach [
 			App.info("Stop " + it.repository.name)
 			val lifecycle = it.securityManager as Lifecycle
-			lifecycle.deactivate
-			if(it.repository != null) {
+			if (lifecycle != null) {
+				lifecycle.deactivate
+			}
+
+			if (it.repository != null) {
 				LifecycleUtil.deactivate(it.repository)
 			}
 		]
