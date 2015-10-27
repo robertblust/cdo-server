@@ -11,6 +11,7 @@
 package ch.flatland.cdo.service.repoaccess
 
 import ch.flatland.cdo.model.config.AuthenticatorType
+import ch.flatland.cdo.util.FlatlandException
 import ch.flatland.cdo.util.JsonConverter
 import ch.flatland.cdo.util.Request
 import ch.flatland.cdo.util.Response
@@ -54,6 +55,10 @@ class AuthHttpContext implements HttpContext {
 		}
 
 		val repository = CONFIG.repositories.filter[it.dataStore.repositoryName == req.repoName].head
+		if (repository == null) {
+			resp.sendError(req, new FlatlandException(HttpServletResponse.SC_BAD_REQUEST, "Repository '{}' not valid", req.repoName))
+			return false
+		}
 		// check if authorization header is available or repo does not requires authentication
 		if(!req.basicAuth && repository.authenticator.authenticatorType != AuthenticatorType.NONE) {
 			logger.debug("No basic auth in request")
