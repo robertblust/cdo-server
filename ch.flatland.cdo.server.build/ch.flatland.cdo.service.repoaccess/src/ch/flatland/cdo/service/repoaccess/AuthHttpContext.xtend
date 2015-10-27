@@ -27,7 +27,6 @@ class AuthHttpContext implements HttpContext {
 
 	val logger = LoggerFactory.getLogger(this.class)
 	
-	// TODO implement "authenticatorType": "NONE"
 	override handleSecurity(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
 		val extension Request = new Request
