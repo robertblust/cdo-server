@@ -14,6 +14,8 @@ import java.util.concurrent.CountDownLatch
 import org.eclipse.equinox.app.IApplication
 import org.eclipse.equinox.app.IApplicationContext
 
+import static ch.flatland.cdo.server.config.ServerConfig.*
+
 class App implements IApplication {
 
 	public static final String BUNDLE_ID = "ch.flatland.cdo.server.product.app"
@@ -32,7 +34,13 @@ class App implements IApplication {
 	}
 
 	override stop() {
-
+		if(CONFIG.binding.http) {
+			HTTPAcceptor.stop
+		}
+		if(CONFIG.binding.tcp) {
+			TCPAcceptor.stop
+		}
+		Repository.stop
 
 		context = null
 		if(stopLatch != null) {

@@ -20,6 +20,7 @@ import static ch.flatland.cdo.server.config.ServerConfig.*
 import static ch.flatland.cdo.util.Constants.*
 import static javax.servlet.http.HttpServletRequest.*
 import static javax.servlet.http.HttpServletResponse.*
+import ch.flatland.cdo.model.config.AuthenticatorType
 
 class Request {
 
@@ -149,6 +150,10 @@ class Request {
 	}
 
 	def getUserId(HttpServletRequest request) {
+		val repository = CONFIG.repositories.filter[it.dataStore.repositoryName == request.repoName].head
+		if (repository.authenticator.authenticatorType == AuthenticatorType.NONE) {
+			return "NONE"
+		}
 		val userNameIndex = request.safeUserNameAndPassword.indexOf(":")
 		val userName = request.safeUserNameAndPassword.substring(0, userNameIndex)
 		return userName
@@ -174,6 +179,10 @@ class Request {
 	}
 
 	def getPassword(HttpServletRequest request) {
+		val repository = CONFIG.repositories.filter[it.dataStore.repositoryName == request.repoName].head
+		if (repository.authenticator.authenticatorType == AuthenticatorType.NONE) {
+			return "NONE"
+		}
 		val userNameIndex = request.safeUserNameAndPassword.indexOf(":")
 		val password = request.safeUserNameAndPassword.substring(userNameIndex + 1)
 		return password
