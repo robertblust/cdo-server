@@ -250,7 +250,9 @@ class JsonConverter {
 			jsonBaseObject.addProperty(PERMISSION, object.cdoPermission.name)
 			jsonBaseObject.addProperty(REVISION, object.cdoRevision.version)
 			jsonBaseObject.addProperty(DATE, (new Date(object.cdoRevision.timeStamp).formatDate))
-			jsonBaseObject.addProperty(AUTHOR, object.view.session.commitInfoManager.getCommitInfo(object.cdoRevision.timeStamp).userID)
+			if (object.view.session.commitInfoManager.getCommitInfo(object.cdoRevision.timeStamp).userID != null) {
+				jsonBaseObject.addProperty(AUTHOR, object.view.session.commitInfoManager.getCommitInfo(object.cdoRevision.timeStamp).userID)
+			}	
 		}
 
 		jsonBaseObject.addAttributes(object)
