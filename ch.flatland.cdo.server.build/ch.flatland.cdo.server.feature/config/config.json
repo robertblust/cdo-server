@@ -13,7 +13,7 @@
         "creferences": false,
         "xreferences": false,
         "history": false,
-        "fullUrl": true,
+        "fullUrl": false,
         "meta": false,
         "links": true,
         "xlinks": false,
