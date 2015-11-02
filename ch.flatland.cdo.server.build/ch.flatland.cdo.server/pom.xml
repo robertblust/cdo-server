@@ -92,6 +92,23 @@
 										</source>
 									</sources>
 								</mapping>
+								<mapping>
+									<directory>/opt/cdo</directory>
+									<configuration>true</configuration>
+									<filemode>750</filemode>
+									<username>root</username>
+									<groupname>root</groupname>
+									<sources>
+										<source>
+											<location>target/products/ch.flatland.cdo.server/linux/gtk/x86_64</location>
+											<includes>
+												<include>logback.xml</include>
+												<include>config.json</include>
+											</includes>
+											<targetArchitecture>x86_64</targetArchitecture>
+										</source>
+									</sources>
+								</mapping>
 							</mappings>
 						</configuration>
 					</plugin>
