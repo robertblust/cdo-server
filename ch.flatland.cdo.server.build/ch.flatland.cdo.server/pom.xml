@@ -94,6 +94,18 @@
 								</mapping>
 								<mapping>
 									<directory>/opt/cdo</directory>
+									<filemode>750</filemode>
+									<username>root</username>
+									<groupname>root</groupname>
+									<sources>
+										<source>
+											<location>x86_64</location>
+											<targetArchitecture>x86_64</targetArchitecture>
+										</source>
+									</sources>
+								</mapping>
+								<mapping>
+									<directory>/opt/cdo</directory>
 									<configuration>true</configuration>
 									<filemode>750</filemode>
 									<username>root</username>
