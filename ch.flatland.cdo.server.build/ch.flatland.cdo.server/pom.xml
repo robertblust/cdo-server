@@ -51,6 +51,39 @@
 					</execution>
 				</executions>
 			</plugin>
+			<!-- RPM Plugin Creation -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>rpm-maven-plugin</artifactId>
+				<version>2.1.4</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>rpm</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<group>Application/OSGI</group>
+					<license>EPL</license>
+					<needarch>x86_64</needarch>
+					<mappings>
+						<mapping>
+							<directory>/opt/cdo/bin</directory>
+              						<filemode>750</filemode>
+              						<username>root</username>
+              						<groupname>root</groupname>
+							<sources>
+								<source>
+									<location>target/products/ch.flatland.cdo.server/linux/gtk/x86_64</location>
+									<targetArchitecture>x86_64</targetArchitecture>
+								</source>
+							</sources>
+						</mapping>
+					</mappings>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 
