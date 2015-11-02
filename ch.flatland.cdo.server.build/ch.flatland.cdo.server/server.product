@@ -15,7 +15,7 @@
 -Dorg.eclipse.equinox.http.jetty.http.port=8080
 -Dorg.eclipse.equinox.http.jetty.http.enabled=true
 -Dorg.eclipse.equinox.http.jetty.https.port=8443
--Dorg.eclipse.equinox.http.jetty.https.enabled=true
+-Dorg.eclipse.equinox.http.jetty.https.enabled=false
 -Dorg.eclipse.equinox.http.jetty.context.sessioninactiveinterval=60
 -Dorg.eclipse.equinox.http.jetty.ssl.keystore=/opt/cdo/keystore
 -Djavax.net.ssl.trustStore=/opt/cdo/keystore
@@ -31,7 +31,7 @@
 -Dorg.eclipse.equinox.http.jetty.http.port=80
 -Dorg.eclipse.equinox.http.jetty.http.enabled=true
 -Dorg.eclipse.equinox.http.jetty.https.port=443
--Dorg.eclipse.equinox.http.jetty.https.enabled=true
+-Dorg.eclipse.equinox.http.jetty.https.enabled=false
 -Dorg.eclipse.equinox.http.jetty.context.sessioninactiveinterval=60
 -Dorg.eclipse.equinox.http.jetty.ssl.keystore=./keystore
 -Djavax.net.ssl.trustStore=./keystore
@@ -47,7 +47,7 @@
 -Dorg.eclipse.equinox.http.jetty.http.port=80
 -Dorg.eclipse.equinox.http.jetty.http.enabled=true
 -Dorg.eclipse.equinox.http.jetty.https.port=443
--Dorg.eclipse.equinox.http.jetty.https.enabled=true
+-Dorg.eclipse.equinox.http.jetty.https.enabled=false
 -Dorg.eclipse.equinox.http.jetty.context.sessioninactiveinterval=60
 -Dorg.eclipse.equinox.http.jetty.ssl.keystore=./keystore
 -Djavax.net.ssl.trustStore=./keystore
@@ -63,7 +63,7 @@
 -Dorg.eclipse.equinox.http.jetty.http.port=80
 -Dorg.eclipse.equinox.http.jetty.http.enabled=true
 -Dorg.eclipse.equinox.http.jetty.https.port=443
--Dorg.eclipse.equinox.http.jetty.https.enabled=true
+-Dorg.eclipse.equinox.http.jetty.https.enabled=false
 -Dorg.eclipse.equinox.http.jetty.context.sessioninactiveinterval=60
 -Dorg.eclipse.equinox.http.jetty.ssl.keystore=./keystore
 -Djavax.net.ssl.trustStore=./keystore
