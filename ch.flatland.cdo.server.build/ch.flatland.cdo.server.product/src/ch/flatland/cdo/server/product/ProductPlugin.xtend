@@ -10,31 +10,38 @@
  */
 package ch.flatland.cdo.server.product
 
+import ch.flatland.cdo.server.config.ServerConfig
 import ch.flatland.cdo.util.AbstractFlatlandPlugin
 import org.osgi.framework.BundleContext
+
 import static ch.flatland.cdo.server.config.ServerConfig.*
 
 class ProductPlugin extends AbstractFlatlandPlugin {
 
 	override start(BundleContext bundleContext) throws Exception {
 		super.start(bundleContext)
-		if (CONFIG.binding.tcp) {
-			TCPAcceptor.start
+		if (ServerConfig.bridgeMode) {
+			if (CONFIG.binding.tcp) {
+				TCPAcceptor.start
+			}
+			if (CONFIG.binding.http) {
+				HTTPAcceptor.start
+			}
+			Repository.start
 		}
-		if (CONFIG.binding.http) {
-			HTTPAcceptor.start
-		}
-		Repository.start
+
 	}
 
 	override stop(BundleContext bundleContext) throws Exception {
-		if (CONFIG.binding.http) {
-			HTTPAcceptor.stop
+		if (ServerConfig.bridgeMode) {
+			if (CONFIG.binding.http) {
+				HTTPAcceptor.stop
+			}
+			if (CONFIG.binding.tcp) {
+				TCPAcceptor.stop
+			}
+			Repository.stop
 		}
-		if (CONFIG.binding.tcp) {
-			TCPAcceptor.stop
-		}
-		Repository.stop
 		super.stop(bundleContext)
 	}
 
