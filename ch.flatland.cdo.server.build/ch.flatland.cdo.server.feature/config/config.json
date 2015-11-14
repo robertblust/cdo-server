@@ -9,8 +9,8 @@
     },
     "json": {
         "validate": true,
-        "rreferences": true,
-        "creferences": true,
+        "rreferences": false,
+        "creferences": false,
         "xreferences": false,
         "history": false,
         "fullUrl": false,
@@ -30,7 +30,7 @@
 		        "password": "cdo"
 		    },
 		    "authenticator": {
-		        "authenticatorType": "CDO"
+		        "authenticatorType": "NONE"
 		    }
 		}
 	]

@@ -106,6 +106,75 @@ public class BaseItemProviderAdapterFactory extends BaseAdapterFactory implement
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link ch.flatland.cdo.model.base.FLHyperLink} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected FLHyperLinkItemProvider flHyperLinkItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link ch.flatland.cdo.model.base.FLHyperLink}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createFLHyperLinkAdapter() {
+		if (flHyperLinkItemProvider == null) {
+			flHyperLinkItemProvider = new FLHyperLinkItemProvider(this);
+		}
+
+		return flHyperLinkItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link ch.flatland.cdo.model.base.FLComment} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected FLCommentItemProvider flCommentItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link ch.flatland.cdo.model.base.FLComment}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createFLCommentAdapter() {
+		if (flCommentItemProvider == null) {
+			flCommentItemProvider = new FLCommentItemProvider(this);
+		}
+
+		return flCommentItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link ch.flatland.cdo.model.base.FLRating} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected FLRatingItemProvider flRatingItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link ch.flatland.cdo.model.base.FLRating}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createFLRatingAdapter() {
+		if (flRatingItemProvider == null) {
+			flRatingItemProvider = new FLRatingItemProvider(this);
+		}
+
+		return flRatingItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link ch.flatland.cdo.model.base.FLTrace} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -278,6 +347,9 @@ public class BaseItemProviderAdapterFactory extends BaseAdapterFactory implement
 	 */
 	public void dispose() {
 		if (flPackageItemProvider != null) flPackageItemProvider.dispose();
+		if (flHyperLinkItemProvider != null) flHyperLinkItemProvider.dispose();
+		if (flCommentItemProvider != null) flCommentItemProvider.dispose();
+		if (flRatingItemProvider != null) flRatingItemProvider.dispose();
 		if (flTraceItemProvider != null) flTraceItemProvider.dispose();
 		if (flPropertyItemProvider != null) flPropertyItemProvider.dispose();
 	}

@@ -4,10 +4,15 @@ package ch.flatland.cdo.model.base.impl;
 
 import ch.flatland.cdo.model.base.BasePackage;
 import ch.flatland.cdo.model.base.BasePackage.Literals;
+import ch.flatland.cdo.model.base.FLComment;
 import ch.flatland.cdo.model.base.FLElement;
+import ch.flatland.cdo.model.base.FLHyperLink;
 import ch.flatland.cdo.model.base.FLProperty;
+import ch.flatland.cdo.model.base.FLRating;
+import ch.flatland.cdo.model.base.FLRatingType;
 import ch.flatland.cdo.model.base.FLTrace;
 import ch.flatland.cdo.model.base.FLTraceType;
+import ch.flatland.cdo.model.base.Rateable;
 import com.google.common.base.Objects;
 import java.lang.Iterable;
 import java.lang.reflect.InvocationTargetException;
@@ -38,10 +43,21 @@ import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getRatings <em>Ratings</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getLikes <em>Likes</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getDislikes <em>Dislikes</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getName <em>Name</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getDescription <em>Description</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getLongDescription <em>Long Description</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getNotes <em>Notes</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getTraces <em>Traces</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getProperties <em>Properties</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getHyperLinks <em>Hyper Links</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getComments <em>Comments</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getUpStreamMappings <em>Up Stream Mappings</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getDownStreamMappings <em>Down Stream Mappings</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getHorizontalMappings <em>Horizontal Mappings</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getHorizontalOppositeMappings <em>Horizontal Opposite Mappings</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getDerivedContainer <em>Derived Container</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getTraceToOwn <em>Trace To Own</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getTraceToUse <em>Trace To Use</em>}</li>
@@ -79,6 +95,26 @@ import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
  */
 public abstract class FLElementImpl extends FLIDImpl implements FLElement {
 	/**
+	 * The default value of the '{@link #getLikes() <em>Likes</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLikes()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int LIKES_EDEFAULT = 0;
+
+	/**
+	 * The default value of the '{@link #getDislikes() <em>Dislikes</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDislikes()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int DISLIKES_EDEFAULT = 0;
+
+	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -97,6 +133,26 @@ public abstract class FLElementImpl extends FLIDImpl implements FLElement {
 	 * @ordered
 	 */
 	protected static final String DESCRIPTION_EDEFAULT = null;
+
+	/**
+	 * The default value of the '{@link #getLongDescription() <em>Long Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLongDescription()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String LONG_DESCRIPTION_EDEFAULT = null;
+
+	/**
+	 * The default value of the '{@link #getNotes() <em>Notes</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getNotes()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NOTES_EDEFAULT = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -158,6 +214,42 @@ public abstract class FLElementImpl extends FLIDImpl implements FLElement {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getLongDescription() {
+		return (String)eDynamicGet(BasePackage.FL_ELEMENT__LONG_DESCRIPTION, BasePackage.Literals.FL_ELEMENT__LONG_DESCRIPTION, true, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setLongDescription(String newLongDescription) {
+		eDynamicSet(BasePackage.FL_ELEMENT__LONG_DESCRIPTION, BasePackage.Literals.FL_ELEMENT__LONG_DESCRIPTION, newLongDescription);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getNotes() {
+		return (String)eDynamicGet(BasePackage.FL_ELEMENT__NOTES, BasePackage.Literals.FL_ELEMENT__NOTES, true, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setNotes(String newNotes) {
+		eDynamicSet(BasePackage.FL_ELEMENT__NOTES, BasePackage.Literals.FL_ELEMENT__NOTES, newNotes);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	public EList<FLTrace> getTraces() {
 		return (EList<FLTrace>)eDynamicGet(BasePackage.FL_ELEMENT__TRACES, BasePackage.Literals.FL_ELEMENT__TRACES, true, true);
@@ -171,6 +263,94 @@ public abstract class FLElementImpl extends FLIDImpl implements FLElement {
 	@SuppressWarnings("unchecked")
 	public EList<FLProperty> getProperties() {
 		return (EList<FLProperty>)eDynamicGet(BasePackage.FL_ELEMENT__PROPERTIES, BasePackage.Literals.FL_ELEMENT__PROPERTIES, true, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<FLHyperLink> getHyperLinks() {
+		return (EList<FLHyperLink>)eDynamicGet(BasePackage.FL_ELEMENT__HYPER_LINKS, BasePackage.Literals.FL_ELEMENT__HYPER_LINKS, true, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<FLComment> getComments() {
+		return (EList<FLComment>)eDynamicGet(BasePackage.FL_ELEMENT__COMMENTS, BasePackage.Literals.FL_ELEMENT__COMMENTS, true, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<FLElement> getUpStreamMappings() {
+		return (EList<FLElement>)eDynamicGet(BasePackage.FL_ELEMENT__UP_STREAM_MAPPINGS, BasePackage.Literals.FL_ELEMENT__UP_STREAM_MAPPINGS, true, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<FLRating> getRatings() {
+		return (EList<FLRating>)eDynamicGet(BasePackage.FL_ELEMENT__RATINGS, BasePackage.Literals.RATEABLE__RATINGS, true, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public int getLikes() {
+		return this.countLikes();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public int getDislikes() {
+		return this.countDislikes();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<FLElement> getDownStreamMappings() {
+		return (EList<FLElement>)eDynamicGet(BasePackage.FL_ELEMENT__DOWN_STREAM_MAPPINGS, BasePackage.Literals.FL_ELEMENT__DOWN_STREAM_MAPPINGS, true, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<FLElement> getHorizontalMappings() {
+		return (EList<FLElement>)eDynamicGet(BasePackage.FL_ELEMENT__HORIZONTAL_MAPPINGS, BasePackage.Literals.FL_ELEMENT__HORIZONTAL_MAPPINGS, true, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<FLElement> getHorizontalOppositeMappings() {
+		return (EList<FLElement>)eDynamicGet(BasePackage.FL_ELEMENT__HORIZONTAL_OPPOSITE_MAPPINGS, BasePackage.Literals.FL_ELEMENT__HORIZONTAL_OPPOSITE_MAPPINGS, true, true);
 	}
 
 	/**
@@ -593,13 +773,82 @@ public abstract class FLElementImpl extends FLIDImpl implements FLElement {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public int countLikes() {
+		EList<FLRating> _ratings = this.getRatings();
+		final Function1<FLRating, Boolean> _function = new Function1<FLRating, Boolean>() {
+			public Boolean apply(final FLRating it) {
+				FLRatingType _ratingType = it.getRatingType();
+				return Boolean.valueOf(Objects.equal(_ratingType, FLRatingType.LIKE));
+			}
+		};
+		Iterable<FLRating> _filter = IterableExtensions.<FLRating>filter(_ratings, _function);
+		return IterableExtensions.size(_filter);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int countDislikes() {
+		EList<FLRating> _ratings = this.getRatings();
+		final Function1<FLRating, Boolean> _function = new Function1<FLRating, Boolean>() {
+			public Boolean apply(final FLRating it) {
+				FLRatingType _ratingType = it.getRatingType();
+				return Boolean.valueOf(Objects.equal(_ratingType, FLRatingType.DISLIKE));
+			}
+		};
+		Iterable<FLRating> _filter = IterableExtensions.<FLRating>filter(_ratings, _function);
+		return IterableExtensions.size(_filter);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case BasePackage.FL_ELEMENT__UP_STREAM_MAPPINGS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getUpStreamMappings()).basicAdd(otherEnd, msgs);
+			case BasePackage.FL_ELEMENT__DOWN_STREAM_MAPPINGS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getDownStreamMappings()).basicAdd(otherEnd, msgs);
+			case BasePackage.FL_ELEMENT__HORIZONTAL_MAPPINGS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getHorizontalMappings()).basicAdd(otherEnd, msgs);
+			case BasePackage.FL_ELEMENT__HORIZONTAL_OPPOSITE_MAPPINGS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getHorizontalOppositeMappings()).basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case BasePackage.FL_ELEMENT__RATINGS:
+				return ((InternalEList<?>)getRatings()).basicRemove(otherEnd, msgs);
 			case BasePackage.FL_ELEMENT__TRACES:
 				return ((InternalEList<?>)getTraces()).basicRemove(otherEnd, msgs);
 			case BasePackage.FL_ELEMENT__PROPERTIES:
 				return ((InternalEList<?>)getProperties()).basicRemove(otherEnd, msgs);
+			case BasePackage.FL_ELEMENT__HYPER_LINKS:
+				return ((InternalEList<?>)getHyperLinks()).basicRemove(otherEnd, msgs);
+			case BasePackage.FL_ELEMENT__COMMENTS:
+				return ((InternalEList<?>)getComments()).basicRemove(otherEnd, msgs);
+			case BasePackage.FL_ELEMENT__UP_STREAM_MAPPINGS:
+				return ((InternalEList<?>)getUpStreamMappings()).basicRemove(otherEnd, msgs);
+			case BasePackage.FL_ELEMENT__DOWN_STREAM_MAPPINGS:
+				return ((InternalEList<?>)getDownStreamMappings()).basicRemove(otherEnd, msgs);
+			case BasePackage.FL_ELEMENT__HORIZONTAL_MAPPINGS:
+				return ((InternalEList<?>)getHorizontalMappings()).basicRemove(otherEnd, msgs);
+			case BasePackage.FL_ELEMENT__HORIZONTAL_OPPOSITE_MAPPINGS:
+				return ((InternalEList<?>)getHorizontalOppositeMappings()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -612,14 +861,36 @@ public abstract class FLElementImpl extends FLIDImpl implements FLElement {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case BasePackage.FL_ELEMENT__RATINGS:
+				return getRatings();
+			case BasePackage.FL_ELEMENT__LIKES:
+				return getLikes();
+			case BasePackage.FL_ELEMENT__DISLIKES:
+				return getDislikes();
 			case BasePackage.FL_ELEMENT__NAME:
 				return getName();
 			case BasePackage.FL_ELEMENT__DESCRIPTION:
 				return getDescription();
+			case BasePackage.FL_ELEMENT__LONG_DESCRIPTION:
+				return getLongDescription();
+			case BasePackage.FL_ELEMENT__NOTES:
+				return getNotes();
 			case BasePackage.FL_ELEMENT__TRACES:
 				return getTraces();
 			case BasePackage.FL_ELEMENT__PROPERTIES:
 				return getProperties();
+			case BasePackage.FL_ELEMENT__HYPER_LINKS:
+				return getHyperLinks();
+			case BasePackage.FL_ELEMENT__COMMENTS:
+				return getComments();
+			case BasePackage.FL_ELEMENT__UP_STREAM_MAPPINGS:
+				return getUpStreamMappings();
+			case BasePackage.FL_ELEMENT__DOWN_STREAM_MAPPINGS:
+				return getDownStreamMappings();
+			case BasePackage.FL_ELEMENT__HORIZONTAL_MAPPINGS:
+				return getHorizontalMappings();
+			case BasePackage.FL_ELEMENT__HORIZONTAL_OPPOSITE_MAPPINGS:
+				return getHorizontalOppositeMappings();
 			case BasePackage.FL_ELEMENT__DERIVED_CONTAINER:
 				if (resolve) return getDerivedContainer();
 				return basicGetDerivedContainer();
@@ -696,11 +967,21 @@ public abstract class FLElementImpl extends FLIDImpl implements FLElement {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case BasePackage.FL_ELEMENT__RATINGS:
+				getRatings().clear();
+				getRatings().addAll((Collection<? extends FLRating>)newValue);
+				return;
 			case BasePackage.FL_ELEMENT__NAME:
 				setName((String)newValue);
 				return;
 			case BasePackage.FL_ELEMENT__DESCRIPTION:
 				setDescription((String)newValue);
+				return;
+			case BasePackage.FL_ELEMENT__LONG_DESCRIPTION:
+				setLongDescription((String)newValue);
+				return;
+			case BasePackage.FL_ELEMENT__NOTES:
+				setNotes((String)newValue);
 				return;
 			case BasePackage.FL_ELEMENT__TRACES:
 				getTraces().clear();
@@ -709,6 +990,30 @@ public abstract class FLElementImpl extends FLIDImpl implements FLElement {
 			case BasePackage.FL_ELEMENT__PROPERTIES:
 				getProperties().clear();
 				getProperties().addAll((Collection<? extends FLProperty>)newValue);
+				return;
+			case BasePackage.FL_ELEMENT__HYPER_LINKS:
+				getHyperLinks().clear();
+				getHyperLinks().addAll((Collection<? extends FLHyperLink>)newValue);
+				return;
+			case BasePackage.FL_ELEMENT__COMMENTS:
+				getComments().clear();
+				getComments().addAll((Collection<? extends FLComment>)newValue);
+				return;
+			case BasePackage.FL_ELEMENT__UP_STREAM_MAPPINGS:
+				getUpStreamMappings().clear();
+				getUpStreamMappings().addAll((Collection<? extends FLElement>)newValue);
+				return;
+			case BasePackage.FL_ELEMENT__DOWN_STREAM_MAPPINGS:
+				getDownStreamMappings().clear();
+				getDownStreamMappings().addAll((Collection<? extends FLElement>)newValue);
+				return;
+			case BasePackage.FL_ELEMENT__HORIZONTAL_MAPPINGS:
+				getHorizontalMappings().clear();
+				getHorizontalMappings().addAll((Collection<? extends FLElement>)newValue);
+				return;
+			case BasePackage.FL_ELEMENT__HORIZONTAL_OPPOSITE_MAPPINGS:
+				getHorizontalOppositeMappings().clear();
+				getHorizontalOppositeMappings().addAll((Collection<? extends FLElement>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -722,17 +1027,44 @@ public abstract class FLElementImpl extends FLIDImpl implements FLElement {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case BasePackage.FL_ELEMENT__RATINGS:
+				getRatings().clear();
+				return;
 			case BasePackage.FL_ELEMENT__NAME:
 				setName(NAME_EDEFAULT);
 				return;
 			case BasePackage.FL_ELEMENT__DESCRIPTION:
 				setDescription(DESCRIPTION_EDEFAULT);
 				return;
+			case BasePackage.FL_ELEMENT__LONG_DESCRIPTION:
+				setLongDescription(LONG_DESCRIPTION_EDEFAULT);
+				return;
+			case BasePackage.FL_ELEMENT__NOTES:
+				setNotes(NOTES_EDEFAULT);
+				return;
 			case BasePackage.FL_ELEMENT__TRACES:
 				getTraces().clear();
 				return;
 			case BasePackage.FL_ELEMENT__PROPERTIES:
 				getProperties().clear();
+				return;
+			case BasePackage.FL_ELEMENT__HYPER_LINKS:
+				getHyperLinks().clear();
+				return;
+			case BasePackage.FL_ELEMENT__COMMENTS:
+				getComments().clear();
+				return;
+			case BasePackage.FL_ELEMENT__UP_STREAM_MAPPINGS:
+				getUpStreamMappings().clear();
+				return;
+			case BasePackage.FL_ELEMENT__DOWN_STREAM_MAPPINGS:
+				getDownStreamMappings().clear();
+				return;
+			case BasePackage.FL_ELEMENT__HORIZONTAL_MAPPINGS:
+				getHorizontalMappings().clear();
+				return;
+			case BasePackage.FL_ELEMENT__HORIZONTAL_OPPOSITE_MAPPINGS:
+				getHorizontalOppositeMappings().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -746,14 +1078,36 @@ public abstract class FLElementImpl extends FLIDImpl implements FLElement {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case BasePackage.FL_ELEMENT__RATINGS:
+				return !getRatings().isEmpty();
+			case BasePackage.FL_ELEMENT__LIKES:
+				return getLikes() != LIKES_EDEFAULT;
+			case BasePackage.FL_ELEMENT__DISLIKES:
+				return getDislikes() != DISLIKES_EDEFAULT;
 			case BasePackage.FL_ELEMENT__NAME:
 				return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT.equals(getName());
 			case BasePackage.FL_ELEMENT__DESCRIPTION:
 				return DESCRIPTION_EDEFAULT == null ? getDescription() != null : !DESCRIPTION_EDEFAULT.equals(getDescription());
+			case BasePackage.FL_ELEMENT__LONG_DESCRIPTION:
+				return LONG_DESCRIPTION_EDEFAULT == null ? getLongDescription() != null : !LONG_DESCRIPTION_EDEFAULT.equals(getLongDescription());
+			case BasePackage.FL_ELEMENT__NOTES:
+				return NOTES_EDEFAULT == null ? getNotes() != null : !NOTES_EDEFAULT.equals(getNotes());
 			case BasePackage.FL_ELEMENT__TRACES:
 				return !getTraces().isEmpty();
 			case BasePackage.FL_ELEMENT__PROPERTIES:
 				return !getProperties().isEmpty();
+			case BasePackage.FL_ELEMENT__HYPER_LINKS:
+				return !getHyperLinks().isEmpty();
+			case BasePackage.FL_ELEMENT__COMMENTS:
+				return !getComments().isEmpty();
+			case BasePackage.FL_ELEMENT__UP_STREAM_MAPPINGS:
+				return !getUpStreamMappings().isEmpty();
+			case BasePackage.FL_ELEMENT__DOWN_STREAM_MAPPINGS:
+				return !getDownStreamMappings().isEmpty();
+			case BasePackage.FL_ELEMENT__HORIZONTAL_MAPPINGS:
+				return !getHorizontalMappings().isEmpty();
+			case BasePackage.FL_ELEMENT__HORIZONTAL_OPPOSITE_MAPPINGS:
+				return !getHorizontalOppositeMappings().isEmpty();
 			case BasePackage.FL_ELEMENT__DERIVED_CONTAINER:
 				return basicGetDerivedContainer() != null;
 			case BasePackage.FL_ELEMENT__TRACE_TO_OWN:
@@ -826,6 +1180,59 @@ public abstract class FLElementImpl extends FLIDImpl implements FLElement {
 	 * @generated
 	 */
 	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == Rateable.class) {
+			switch (derivedFeatureID) {
+				case BasePackage.FL_ELEMENT__RATINGS: return BasePackage.RATEABLE__RATINGS;
+				case BasePackage.FL_ELEMENT__LIKES: return BasePackage.RATEABLE__LIKES;
+				case BasePackage.FL_ELEMENT__DISLIKES: return BasePackage.RATEABLE__DISLIKES;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == Rateable.class) {
+			switch (baseFeatureID) {
+				case BasePackage.RATEABLE__RATINGS: return BasePackage.FL_ELEMENT__RATINGS;
+				case BasePackage.RATEABLE__LIKES: return BasePackage.FL_ELEMENT__LIKES;
+				case BasePackage.RATEABLE__DISLIKES: return BasePackage.FL_ELEMENT__DISLIKES;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
+		if (baseClass == Rateable.class) {
+			switch (baseOperationID) {
+				case BasePackage.RATEABLE___COUNT_LIKES: return BasePackage.FL_ELEMENT___COUNT_LIKES;
+				case BasePackage.RATEABLE___COUNT_DISLIKES: return BasePackage.FL_ELEMENT___COUNT_DISLIKES;
+				default: return -1;
+			}
+		}
+		return super.eDerivedOperationID(baseOperationID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	@SuppressWarnings({"rawtypes", "unchecked" })
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
@@ -837,6 +1244,10 @@ public abstract class FLElementImpl extends FLIDImpl implements FLElement {
 				return fromFilterByType((FLTraceType)arguments.get(0));
 			case BasePackage.FL_ELEMENT___RESOLVE_XREFS__EREFERENCE_CLASS:
 				return resolveXrefs((EReference)arguments.get(0), (Class)arguments.get(1));
+			case BasePackage.FL_ELEMENT___COUNT_LIKES:
+				return countLikes();
+			case BasePackage.FL_ELEMENT___COUNT_DISLIKES:
+				return countDislikes();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

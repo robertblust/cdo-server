@@ -21,7 +21,9 @@ import java.util.List
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 import org.eclipse.emf.cdo.CDOObject
-import org.eclipse.emf.cdo.util.CommitException
+import org.eclipse.emf.cdo.eresource.CDOResource
+import org.eclipse.emf.cdo.eresource.CDOResourceFolder
+import org.eclipse.emf.cdo.eresource.CDOResourceNode
 import org.eclipse.emf.ecore.EReference
 import org.slf4j.LoggerFactory
 
@@ -39,12 +41,12 @@ class Post {
 
 	/*
 	 * Sample json request body
-	   {
-	 		"type": "base.FLPackage",
-	 			"attributes": {
-	 				"name": "New Child"
-	  			}
-	   }
+	 *    {
+	 *  		"type": "base.FLPackage",
+	 *  			"attributes": {
+	 *  				"name": "New Child"
+	 *   			}
+	 *    }
 	 * 
 	 */
 	def void run(HttpServletRequest req, HttpServletResponse resp) {
@@ -82,7 +84,7 @@ class Post {
 			}
 
 			val jsonElement = body.safeFromJson
-			
+
 			val newObjects = newArrayList
 
 			if(jsonElement.isJsonArray) {
@@ -95,20 +97,12 @@ class Post {
 
 			view.addRevisionDelta(JsonConverter.revisionDeltas)
 
-			try {
-				view.commit
-			} catch(CommitException e) {
-				view.rollback
-				if (e.message.contains("Duplicate resource node in folder")) {
-					throw new FlatlandException(SC_CONFLICT, container, "Duplicate resource name '" + container.cdoID + "'")
-				}				
-				throw new FlatlandException(SC_BAD_REQUEST, container, e.message)
-			}
+			view.commit
 
 			// now transform manipulated object to json for the response
-			if (newObjects.size == 1) {
+			if(newObjects.size == 1) {
 				jsonString = newObjects.get(0).safeToJson
-			} else  {
+			} else {
 				jsonString = newObjects.safeToJson
 			}
 			resp.status = SC_CREATED
@@ -132,8 +126,32 @@ class Post {
 		val type = jsonObject.safeResolveType
 
 		val newObject = container.view.safeCreateType(type.value.asString)
-
 		jsonObject.toEObject = newObject
+
+		if(container instanceof CDOResourceNode && newObject instanceof CDOResourceNode) {
+
+			val node = newObject as CDOResourceNode
+			val containerNode = container as CDOResourceNode
+
+			// check name is not null
+			if(node.name == null || node.name.length == 0) {
+				throw new FlatlandException(SC_BAD_REQUEST, container, "Name must not be null or empty")
+			}
+			// check for duplicates
+			if(containerNode instanceof CDOResourceFolder) {
+				if(containerNode.nodes.filter[it.name == node.name].size > 0) {
+					throw new FlatlandException(SC_BAD_REQUEST, container, "Resource with name '{}' already exist!", node.name)
+				}
+			}
+
+			if(containerNode.isRoot) {
+				// it is the root resource, it can just contain resource node
+				val root = container as CDOResource
+				if(root.contents.filter[(it as CDOResourceNode).name == node.name].size > 0) {
+					throw new FlatlandException(SC_BAD_REQUEST, container, "Resource with name '{}' already exist!", node.name)
+				}
+			}
+		}
 
 		if(eReference.many) {
 			val objects = container.eGet(eReference) as List<Object>

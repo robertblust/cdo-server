@@ -10,6 +10,7 @@
  */
 package ch.flatland.cdo.util
 
+import ch.flatland.cdo.server.config.ServerConfig
 import com.google.gson.Gson
 import com.google.gson.JsonArray
 import com.google.gson.JsonElement
@@ -238,13 +239,20 @@ class JsonConverter {
 		}
 
 		jsonBaseObject.addType(object.eClass, stop)
-		jsonBaseObject.addProperty(ICON, jsonConverterConfig.serverAddress + ALIAS_ICON + "/" + object.eClass.type)
+		if (ServerConfig.isBridgeMode) {
+			jsonBaseObject.addProperty(ICON, jsonConverterConfig.serverAddress + BRIDGE_MODE_PATH + ALIAS_ICON + "/" + object.eClass.type)
+		} else {
+			jsonBaseObject.addProperty(ICON, jsonConverterConfig.serverAddress + ALIAS_ICON + "/" + object.eClass.type)
+		}
+		
 
 		if(object instanceof CDOObject) {
 			jsonBaseObject.addProperty(PERMISSION, object.cdoPermission.name)
 			jsonBaseObject.addProperty(REVISION, object.cdoRevision.version)
 			jsonBaseObject.addProperty(DATE, (new Date(object.cdoRevision.timeStamp).formatDate))
-			jsonBaseObject.addProperty(AUTHOR, object.view.session.commitInfoManager.getCommitInfo(object.cdoRevision.timeStamp).userID)
+			if (object.view.session.commitInfoManager.getCommitInfo(object.cdoRevision.timeStamp).userID != null) {
+				jsonBaseObject.addProperty(AUTHOR, object.view.session.commitInfoManager.getCommitInfo(object.cdoRevision.timeStamp).userID)
+			}	
 		}
 
 		jsonBaseObject.addAttributes(object)
@@ -316,7 +324,11 @@ class JsonConverter {
 				jsonLinksObject.add(CONTAINER, jsonContainerLink)
 
 				val jsonAllInstancesLink = new JsonObject
-				jsonAllInstancesLink.addProperty(HREF, jsonConverterConfig.serverAddress + ALIAS_OBJECT + "/" + jsonConverterConfig.repoName + "/" + object.eClass.type + object.getTimestampParam(true))
+				if (ServerConfig.bridgeMode) {
+					jsonAllInstancesLink.addProperty(HREF, jsonConverterConfig.serverAddress + BRIDGE_MODE_PATH + ALIAS_OBJECT + "/" + jsonConverterConfig.repoName + "/" + object.eClass.type + object.getTimestampParam(true))
+				} else {
+					jsonAllInstancesLink.addProperty(HREF, jsonConverterConfig.serverAddress + ALIAS_OBJECT + "/" + jsonConverterConfig.repoName + "/" + object.eClass.type + object.getTimestampParam(true))
+				}
 				jsonLinksObject.add(ALL_INSTANCES, jsonAllInstancesLink)
 
 			}
@@ -330,14 +342,22 @@ class JsonConverter {
 
 				// add x reference link
 				val jsonXReferencesLink = new JsonObject
-				jsonXReferencesLink.addProperty(HREF, jsonConverterConfig.serverAddress + ALIAS_XREFS + "/" + jsonConverterConfig.repoName + "/" + object.oid + "/" + REFERENCES + object.getTimestampParam(true))
+				if (ServerConfig.bridgeMode) {
+					jsonXReferencesLink.addProperty(HREF, jsonConverterConfig.serverAddress + ALIAS_XREFS + "/" + jsonConverterConfig.repoName + "/" + object.oid + "/" + REFERENCES + object.getTimestampParam(true))
+				} else {
+					jsonXReferencesLink.addProperty(HREF, jsonConverterConfig.serverAddress + BRIDGE_MODE_PATH + ALIAS_XREFS + "/" + jsonConverterConfig.repoName + "/" + object.oid + "/" + REFERENCES + object.getTimestampParam(true))
+				}
 				jsonXReferencesLink.addProperty(SIZE, object.allXReferences.size)
 				jsonXLinksObject.add(REFERENCES, jsonXReferencesLink)
 
 				// add detailed x reference link
 				object.resolveGroupXReferences.forEach [ p1, p2 |
 					val jsonXReferenceLink = new JsonObject
-					jsonXReferenceLink.addProperty(HREF, jsonConverterConfig.serverAddress + ALIAS_XREFS + "/" + jsonConverterConfig.repoName + "/" + object.oid + "/" + REFERENCES + "/" + p1.name + object.getTimestampParam(true))
+					if (ServerConfig.bridgeMode) {
+						jsonXReferenceLink.addProperty(HREF, jsonConverterConfig.serverAddress + BRIDGE_MODE_PATH + ALIAS_XREFS + "/" + jsonConverterConfig.repoName + "/" + object.oid + "/" + REFERENCES + "/" + p1.name + object.getTimestampParam(true))
+					} else {
+						jsonXReferenceLink.addProperty(HREF, jsonConverterConfig.serverAddress + ALIAS_XREFS + "/" + jsonConverterConfig.repoName + "/" + object.oid + "/" + REFERENCES + "/" + p1.name + object.getTimestampParam(true))
+					}
 					jsonXReferenceLink.addProperty(SIZE, p2.size)
 					jsonXReferencesLink.add(p1.name, jsonXReferenceLink)
 				]
@@ -373,7 +393,9 @@ class JsonConverter {
 				jsonRevsionObject.addProperty(REVISION, (historySize - i))
 				jsonRevsionObject.addProperty(SELF, object.getUrl(false) + "?" + PARAM_POINT_IN_TIME + "=" + commitInfo.timeStamp)
 				jsonRevsionObject.addProperty(DATE, formatDate(new Date(commitInfo.timeStamp)))
-				jsonRevsionObject.addProperty(AUTHOR, commitInfo.userID)
+				if (commitInfo.userID != null) {
+					jsonRevsionObject.addProperty(AUTHOR, commitInfo.userID)
+				}
 				logger.debug("'{}' resolved revsion '{}'", object, (historySize - i))
 				jsonRevisionsArray.add(jsonRevsionObject)
 			}
@@ -665,7 +687,11 @@ class JsonConverter {
 			// Legacy models do not inherit from CDOObject
 			id = EcoreUtil.getURI(object).fragment.replace("L", "")
 		}
-		jsonConverterConfig.serverAddress + ALIAS_OBJECT + "/" + jsonConverterConfig.repoName + "/" + object.eClass.type + "/" + id + object.getTimestampParam(withTimestamp)
+		if (ServerConfig.bridgeMode) {
+			return jsonConverterConfig.serverAddress + BRIDGE_MODE_PATH + ALIAS_OBJECT + "/" + jsonConverterConfig.repoName + "/" + object.eClass.type + "/" + id + object.getTimestampParam(withTimestamp)
+			
+		}
+		return jsonConverterConfig.serverAddress + ALIAS_OBJECT + "/" + jsonConverterConfig.repoName + "/" + object.eClass.type + "/" + id + object.getTimestampParam(withTimestamp)
 
 	}
 

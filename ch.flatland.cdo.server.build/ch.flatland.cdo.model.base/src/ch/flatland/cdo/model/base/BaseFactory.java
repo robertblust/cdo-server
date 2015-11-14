@@ -31,6 +31,33 @@ public interface BaseFactory extends EFactory {
 	FLPackage createFLPackage();
 
 	/**
+	 * Returns a new object of class '<em>FL Hyper Link</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>FL Hyper Link</em>'.
+	 * @generated
+	 */
+	FLHyperLink createFLHyperLink();
+
+	/**
+	 * Returns a new object of class '<em>FL Comment</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>FL Comment</em>'.
+	 * @generated
+	 */
+	FLComment createFLComment();
+
+	/**
+	 * Returns a new object of class '<em>FL Rating</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>FL Rating</em>'.
+	 * @generated
+	 */
+	FLRating createFLRating();
+
+	/**
 	 * Returns a new object of class '<em>FL Trace</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

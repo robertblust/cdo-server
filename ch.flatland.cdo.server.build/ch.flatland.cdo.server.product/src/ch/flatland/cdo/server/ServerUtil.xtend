@@ -54,4 +54,16 @@ class ServerUtil {
 
 		return session
 	}
+	
+	def static openUnauthenticatedSession(String repoName) {
+		val config = CDONet4jUtil.createNet4jSessionConfiguration()
+		config.setConnector(connector)
+		config.setRepositoryName(repoName)
+
+		val session = config.openNet4jSession() as CDOSession
+
+		logger.debug("open session '{}' for user '{}'", session.sessionID, "NONE")
+
+		return session
+	}
 }

@@ -80,6 +80,22 @@ public class BaseAdapterFactory extends AdapterFactoryImpl {
 				return createFLPackageAdapter();
 			}
 			@Override
+			public Adapter caseFLHyperLink(FLHyperLink object) {
+				return createFLHyperLinkAdapter();
+			}
+			@Override
+			public Adapter caseFLComment(FLComment object) {
+				return createFLCommentAdapter();
+			}
+			@Override
+			public Adapter caseRateable(Rateable object) {
+				return createRateableAdapter();
+			}
+			@Override
+			public Adapter caseFLRating(FLRating object) {
+				return createFLRatingAdapter();
+			}
+			@Override
 			public Adapter caseFLTrace(FLTrace object) {
 				return createFLTraceAdapter();
 			}
@@ -146,6 +162,62 @@ public class BaseAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createFLPackageAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ch.flatland.cdo.model.base.FLHyperLink <em>FL Hyper Link</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ch.flatland.cdo.model.base.FLHyperLink
+	 * @generated
+	 */
+	public Adapter createFLHyperLinkAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ch.flatland.cdo.model.base.FLComment <em>FL Comment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ch.flatland.cdo.model.base.FLComment
+	 * @generated
+	 */
+	public Adapter createFLCommentAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ch.flatland.cdo.model.base.Rateable <em>Rateable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ch.flatland.cdo.model.base.Rateable
+	 * @generated
+	 */
+	public Adapter createRateableAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ch.flatland.cdo.model.base.FLRating <em>FL Rating</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ch.flatland.cdo.model.base.FLRating
+	 * @generated
+	 */
+	public Adapter createFLRatingAdapter() {
 		return null;
 	}
 

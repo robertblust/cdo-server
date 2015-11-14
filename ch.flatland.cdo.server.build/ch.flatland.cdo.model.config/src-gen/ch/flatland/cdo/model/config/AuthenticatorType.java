@@ -36,7 +36,17 @@ public enum AuthenticatorType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	LDAP(1, "LDAP", "LDAP");
+	LDAP(1, "LDAP", "LDAP"),
+
+	/**
+	 * The '<em><b>NONE</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #NONE_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	NONE(2, "NONE", "NONE");
 
 	/**
 	 * The '<em><b>CDO</b></em>' literal value.
@@ -69,6 +79,21 @@ public enum AuthenticatorType implements Enumerator {
 	public static final int LDAP_VALUE = 1;
 
 	/**
+	 * The '<em><b>NONE</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>NONE</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #NONE
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int NONE_VALUE = 2;
+
+	/**
 	 * An array of all the '<em><b>Authenticator Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -78,6 +103,7 @@ public enum AuthenticatorType implements Enumerator {
 		new AuthenticatorType[] {
 			CDO,
 			LDAP,
+			NONE,
 		};
 
 	/**
@@ -136,6 +162,7 @@ public enum AuthenticatorType implements Enumerator {
 		switch (value) {
 			case CDO_VALUE: return CDO;
 			case LDAP_VALUE: return LDAP;
+			case NONE_VALUE: return NONE;
 		}
 		return null;
 	}

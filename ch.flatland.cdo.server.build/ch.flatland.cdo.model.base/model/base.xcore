@@ -55,32 +55,45 @@ abstract class FLID {
 	@GenModel(propertyCategory="ID")
 	FLIdentifier revisionID
 	@GenModel(propertyCategory="ID")
-	long version
+	Long version
 	@GenModel(propertyCategory="ID")
 	Date cDate
 	@GenModel(propertyCategory="ID")
 	Date uDate
-	
 	op boolean hasPermission(FLID object) {
-		if(object.cdoPermission != CDOPermission.NONE) {
+		if (object.cdoPermission != CDOPermission.NONE) {
 			return true
 		}
 		return false
 	}
 }
 
-abstract class FLElement extends FLID{
+abstract class FLElement extends FLID, Rateable {
 	@GenModel(propertyCategory="Base")
 	String[1] name
 	@GenModel(propertyMultiLine="true", propertyCategory="Base")
 	@DBStore(columnType="CLOB")
 	FLMarkdown description
+	@DBStore(columnType="CLOB")
+	FLMarkdown longDescription
+	@DBStore(columnType="CLOB")
+	FLMarkdown notes
 	contains FLTrace[] traces
 	contains FLProperty[] properties
+	contains FLHyperLink[] hyperLinks
+	contains FLComment[] comments
+	@GenModel(propertyCategory="Mapping")
+	refers FLElement[] upStreamMappings opposite downStreamMappings
+	@GenModel(propertyCategory="Mapping")
+	refers FLElement[] downStreamMappings opposite upStreamMappings
+	@GenModel(propertyCategory="Mapping")
+	refers FLElement[] horizontalMappings opposite horizontalOppositeMappings
+	@GenModel(propertyCategory="Mapping")
+	refers FLElement[] horizontalOppositeMappings opposite horizontalMappings
 	@GenModel(propertyCategory="Base")
 	refers EObject derivedContainer get {
 		return resolveContainer
-	} 
+	}
 	@GenModel(propertyCategory="Trace to")
 	refers FLElement[] traceToOwn get {
 		return toFilterByType(FLTraceType.OWN)
@@ -271,6 +284,42 @@ class FLPackage extends FLElement {
 	op FLElement[] filterContents() {
 		elements.filter[!(it instanceof FLPackage)].asEList
 	}
+}
+
+class FLHyperLink {
+	String name
+	String[1] hyperLink
+}
+
+class FLComment extends Rateable {
+	@DBStore(columnType="CLOB")
+	FLMarkdown[1] comment
+	contains FLComment[] comments
+}
+
+interface Rateable {
+	contains FLRating[] ratings
+	int likes get {
+		countLikes
+	}
+	int dislikes get {
+		countDislikes
+	}
+	op int countLikes() {
+		ratings.filter[it.ratingType == FLRatingType.LIKE].size
+	}
+	op int countDislikes() {
+		ratings.filter[it.ratingType == FLRatingType.DISLIKE].size
+	}
+}
+
+class FLRating {
+	FLRatingType[1] ratingType
+}
+
+enum FLRatingType {
+	like = 0
+	dislike = 1
 }
 
 class FLTrace {

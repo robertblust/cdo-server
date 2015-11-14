@@ -235,13 +235,40 @@ public interface BasePackage extends EPackage {
 	int FL_ELEMENT__UDATE = FLID__UDATE;
 
 	/**
+	 * The feature id for the '<em><b>Ratings</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_ELEMENT__RATINGS = FLID_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Likes</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_ELEMENT__LIKES = FLID_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Dislikes</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_ELEMENT__DISLIKES = FLID_FEATURE_COUNT + 2;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT__NAME = FLID_FEATURE_COUNT + 0;
+	int FL_ELEMENT__NAME = FLID_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -250,7 +277,25 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT__DESCRIPTION = FLID_FEATURE_COUNT + 1;
+	int FL_ELEMENT__DESCRIPTION = FLID_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Long Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_ELEMENT__LONG_DESCRIPTION = FLID_FEATURE_COUNT + 5;
+
+	/**
+	 * The feature id for the '<em><b>Notes</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_ELEMENT__NOTES = FLID_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Traces</b></em>' containment reference list.
@@ -259,7 +304,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT__TRACES = FLID_FEATURE_COUNT + 2;
+	int FL_ELEMENT__TRACES = FLID_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Properties</b></em>' containment reference list.
@@ -268,7 +313,61 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT__PROPERTIES = FLID_FEATURE_COUNT + 3;
+	int FL_ELEMENT__PROPERTIES = FLID_FEATURE_COUNT + 8;
+
+	/**
+	 * The feature id for the '<em><b>Hyper Links</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_ELEMENT__HYPER_LINKS = FLID_FEATURE_COUNT + 9;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_ELEMENT__COMMENTS = FLID_FEATURE_COUNT + 10;
+
+	/**
+	 * The feature id for the '<em><b>Up Stream Mappings</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_ELEMENT__UP_STREAM_MAPPINGS = FLID_FEATURE_COUNT + 11;
+
+	/**
+	 * The feature id for the '<em><b>Down Stream Mappings</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_ELEMENT__DOWN_STREAM_MAPPINGS = FLID_FEATURE_COUNT + 12;
+
+	/**
+	 * The feature id for the '<em><b>Horizontal Mappings</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_ELEMENT__HORIZONTAL_MAPPINGS = FLID_FEATURE_COUNT + 13;
+
+	/**
+	 * The feature id for the '<em><b>Horizontal Opposite Mappings</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_ELEMENT__HORIZONTAL_OPPOSITE_MAPPINGS = FLID_FEATURE_COUNT + 14;
 
 	/**
 	 * The feature id for the '<em><b>Derived Container</b></em>' reference.
@@ -277,7 +376,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT__DERIVED_CONTAINER = FLID_FEATURE_COUNT + 4;
+	int FL_ELEMENT__DERIVED_CONTAINER = FLID_FEATURE_COUNT + 15;
 
 	/**
 	 * The feature id for the '<em><b>Trace To Own</b></em>' reference list.
@@ -286,7 +385,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT__TRACE_TO_OWN = FLID_FEATURE_COUNT + 5;
+	int FL_ELEMENT__TRACE_TO_OWN = FLID_FEATURE_COUNT + 16;
 
 	/**
 	 * The feature id for the '<em><b>Trace To Use</b></em>' reference list.
@@ -295,7 +394,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT__TRACE_TO_USE = FLID_FEATURE_COUNT + 6;
+	int FL_ELEMENT__TRACE_TO_USE = FLID_FEATURE_COUNT + 17;
 
 	/**
 	 * The feature id for the '<em><b>Trace To Realize</b></em>' reference list.
@@ -304,7 +403,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT__TRACE_TO_REALIZE = FLID_FEATURE_COUNT + 7;
+	int FL_ELEMENT__TRACE_TO_REALIZE = FLID_FEATURE_COUNT + 18;
 
 	/**
 	 * The feature id for the '<em><b>Trace To Specify</b></em>' reference list.
@@ -313,7 +412,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT__TRACE_TO_SPECIFY = FLID_FEATURE_COUNT + 8;
+	int FL_ELEMENT__TRACE_TO_SPECIFY = FLID_FEATURE_COUNT + 19;
 
 	/**
 	 * The feature id for the '<em><b>Trace To Implement</b></em>' reference list.
@@ -322,7 +421,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT__TRACE_TO_IMPLEMENT = FLID_FEATURE_COUNT + 9;
+	int FL_ELEMENT__TRACE_TO_IMPLEMENT = FLID_FEATURE_COUNT + 20;
 
 	/**
 	 * The feature id for the '<em><b>Trace To Elaborate</b></em>' reference list.
@@ -331,7 +430,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT__TRACE_TO_ELABORATE = FLID_FEATURE_COUNT + 10;
+	int FL_ELEMENT__TRACE_TO_ELABORATE = FLID_FEATURE_COUNT + 21;
 
 	/**
 	 * The feature id for the '<em><b>Trace To Derive</b></em>' reference list.
@@ -340,7 +439,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT__TRACE_TO_DERIVE = FLID_FEATURE_COUNT + 11;
+	int FL_ELEMENT__TRACE_TO_DERIVE = FLID_FEATURE_COUNT + 22;
 
 	/**
 	 * The feature id for the '<em><b>Trace To Validate</b></em>' reference list.
@@ -349,7 +448,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT__TRACE_TO_VALIDATE = FLID_FEATURE_COUNT + 12;
+	int FL_ELEMENT__TRACE_TO_VALIDATE = FLID_FEATURE_COUNT + 23;
 
 	/**
 	 * The feature id for the '<em><b>Trace To Test</b></em>' reference list.
@@ -358,7 +457,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT__TRACE_TO_TEST = FLID_FEATURE_COUNT + 13;
+	int FL_ELEMENT__TRACE_TO_TEST = FLID_FEATURE_COUNT + 24;
 
 	/**
 	 * The feature id for the '<em><b>Trace To Relate</b></em>' reference list.
@@ -367,7 +466,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT__TRACE_TO_RELATE = FLID_FEATURE_COUNT + 14;
+	int FL_ELEMENT__TRACE_TO_RELATE = FLID_FEATURE_COUNT + 25;
 
 	/**
 	 * The feature id for the '<em><b>Trace To Affect</b></em>' reference list.
@@ -376,7 +475,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT__TRACE_TO_AFFECT = FLID_FEATURE_COUNT + 15;
+	int FL_ELEMENT__TRACE_TO_AFFECT = FLID_FEATURE_COUNT + 26;
 
 	/**
 	 * The feature id for the '<em><b>Trace To Satisfy</b></em>' reference list.
@@ -385,7 +484,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT__TRACE_TO_SATISFY = FLID_FEATURE_COUNT + 16;
+	int FL_ELEMENT__TRACE_TO_SATISFY = FLID_FEATURE_COUNT + 27;
 
 	/**
 	 * The feature id for the '<em><b>Trace To Verify</b></em>' reference list.
@@ -394,7 +493,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT__TRACE_TO_VERIFY = FLID_FEATURE_COUNT + 17;
+	int FL_ELEMENT__TRACE_TO_VERIFY = FLID_FEATURE_COUNT + 28;
 
 	/**
 	 * The feature id for the '<em><b>Trace To Refine</b></em>' reference list.
@@ -403,7 +502,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT__TRACE_TO_REFINE = FLID_FEATURE_COUNT + 18;
+	int FL_ELEMENT__TRACE_TO_REFINE = FLID_FEATURE_COUNT + 29;
 
 	/**
 	 * The feature id for the '<em><b>Trace To Track</b></em>' reference list.
@@ -412,7 +511,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT__TRACE_TO_TRACK = FLID_FEATURE_COUNT + 19;
+	int FL_ELEMENT__TRACE_TO_TRACK = FLID_FEATURE_COUNT + 30;
 
 	/**
 	 * The feature id for the '<em><b>Trace From Own</b></em>' reference list.
@@ -421,7 +520,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT__TRACE_FROM_OWN = FLID_FEATURE_COUNT + 20;
+	int FL_ELEMENT__TRACE_FROM_OWN = FLID_FEATURE_COUNT + 31;
 
 	/**
 	 * The feature id for the '<em><b>Trace From Use</b></em>' reference list.
@@ -430,7 +529,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT__TRACE_FROM_USE = FLID_FEATURE_COUNT + 21;
+	int FL_ELEMENT__TRACE_FROM_USE = FLID_FEATURE_COUNT + 32;
 
 	/**
 	 * The feature id for the '<em><b>Trace From Realize</b></em>' reference list.
@@ -439,7 +538,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT__TRACE_FROM_REALIZE = FLID_FEATURE_COUNT + 22;
+	int FL_ELEMENT__TRACE_FROM_REALIZE = FLID_FEATURE_COUNT + 33;
 
 	/**
 	 * The feature id for the '<em><b>Trace From Specify</b></em>' reference list.
@@ -448,7 +547,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT__TRACE_FROM_SPECIFY = FLID_FEATURE_COUNT + 23;
+	int FL_ELEMENT__TRACE_FROM_SPECIFY = FLID_FEATURE_COUNT + 34;
 
 	/**
 	 * The feature id for the '<em><b>Trace From Implement</b></em>' reference list.
@@ -457,7 +556,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT__TRACE_FROM_IMPLEMENT = FLID_FEATURE_COUNT + 24;
+	int FL_ELEMENT__TRACE_FROM_IMPLEMENT = FLID_FEATURE_COUNT + 35;
 
 	/**
 	 * The feature id for the '<em><b>Trace From Elaborate</b></em>' reference list.
@@ -466,7 +565,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT__TRACE_FROM_ELABORATE = FLID_FEATURE_COUNT + 25;
+	int FL_ELEMENT__TRACE_FROM_ELABORATE = FLID_FEATURE_COUNT + 36;
 
 	/**
 	 * The feature id for the '<em><b>Trace From Derive</b></em>' reference list.
@@ -475,7 +574,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT__TRACE_FROM_DERIVE = FLID_FEATURE_COUNT + 26;
+	int FL_ELEMENT__TRACE_FROM_DERIVE = FLID_FEATURE_COUNT + 37;
 
 	/**
 	 * The feature id for the '<em><b>Trace From Validate</b></em>' reference list.
@@ -484,7 +583,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT__TRACE_FROM_VALIDATE = FLID_FEATURE_COUNT + 27;
+	int FL_ELEMENT__TRACE_FROM_VALIDATE = FLID_FEATURE_COUNT + 38;
 
 	/**
 	 * The feature id for the '<em><b>Trace From Test</b></em>' reference list.
@@ -493,7 +592,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT__TRACE_FROM_TEST = FLID_FEATURE_COUNT + 28;
+	int FL_ELEMENT__TRACE_FROM_TEST = FLID_FEATURE_COUNT + 39;
 
 	/**
 	 * The feature id for the '<em><b>Trace From Relate</b></em>' reference list.
@@ -502,7 +601,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT__TRACE_FROM_RELATE = FLID_FEATURE_COUNT + 29;
+	int FL_ELEMENT__TRACE_FROM_RELATE = FLID_FEATURE_COUNT + 40;
 
 	/**
 	 * The feature id for the '<em><b>Trace From Affect</b></em>' reference list.
@@ -511,7 +610,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT__TRACE_FROM_AFFECT = FLID_FEATURE_COUNT + 30;
+	int FL_ELEMENT__TRACE_FROM_AFFECT = FLID_FEATURE_COUNT + 41;
 
 	/**
 	 * The feature id for the '<em><b>Trace From Satisfy</b></em>' reference list.
@@ -520,7 +619,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT__TRACE_FROM_SATISFY = FLID_FEATURE_COUNT + 31;
+	int FL_ELEMENT__TRACE_FROM_SATISFY = FLID_FEATURE_COUNT + 42;
 
 	/**
 	 * The feature id for the '<em><b>Trace From Verify</b></em>' reference list.
@@ -529,7 +628,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT__TRACE_FROM_VERIFY = FLID_FEATURE_COUNT + 32;
+	int FL_ELEMENT__TRACE_FROM_VERIFY = FLID_FEATURE_COUNT + 43;
 
 	/**
 	 * The feature id for the '<em><b>Trace From Refine</b></em>' reference list.
@@ -538,7 +637,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT__TRACE_FROM_REFINE = FLID_FEATURE_COUNT + 33;
+	int FL_ELEMENT__TRACE_FROM_REFINE = FLID_FEATURE_COUNT + 44;
 
 	/**
 	 * The feature id for the '<em><b>Trace From Track</b></em>' reference list.
@@ -547,7 +646,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT__TRACE_FROM_TRACK = FLID_FEATURE_COUNT + 34;
+	int FL_ELEMENT__TRACE_FROM_TRACK = FLID_FEATURE_COUNT + 45;
 
 	/**
 	 * The number of structural features of the '<em>FL Element</em>' class.
@@ -556,7 +655,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT_FEATURE_COUNT = FLID_FEATURE_COUNT + 35;
+	int FL_ELEMENT_FEATURE_COUNT = FLID_FEATURE_COUNT + 46;
 
 	/**
 	 * The operation id for the '<em>Has Permission</em>' operation.
@@ -568,13 +667,31 @@ public interface BasePackage extends EPackage {
 	int FL_ELEMENT___HAS_PERMISSION__FLID = FLID___HAS_PERMISSION__FLID;
 
 	/**
+	 * The operation id for the '<em>Count Likes</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_ELEMENT___COUNT_LIKES = FLID_OPERATION_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Count Dislikes</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_ELEMENT___COUNT_DISLIKES = FLID_OPERATION_COUNT + 1;
+
+	/**
 	 * The operation id for the '<em>Resolve Container</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT___RESOLVE_CONTAINER = FLID_OPERATION_COUNT + 0;
+	int FL_ELEMENT___RESOLVE_CONTAINER = FLID_OPERATION_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>To Filter By Type</em>' operation.
@@ -583,7 +700,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT___TO_FILTER_BY_TYPE__FLTRACETYPE = FLID_OPERATION_COUNT + 1;
+	int FL_ELEMENT___TO_FILTER_BY_TYPE__FLTRACETYPE = FLID_OPERATION_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>From Filter By Type</em>' operation.
@@ -592,7 +709,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT___FROM_FILTER_BY_TYPE__FLTRACETYPE = FLID_OPERATION_COUNT + 2;
+	int FL_ELEMENT___FROM_FILTER_BY_TYPE__FLTRACETYPE = FLID_OPERATION_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>Resolve Xrefs</em>' operation.
@@ -601,7 +718,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT___RESOLVE_XREFS__EREFERENCE_CLASS = FLID_OPERATION_COUNT + 3;
+	int FL_ELEMENT___RESOLVE_XREFS__EREFERENCE_CLASS = FLID_OPERATION_COUNT + 5;
 
 	/**
 	 * The number of operations of the '<em>FL Element</em>' class.
@@ -610,7 +727,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_ELEMENT_OPERATION_COUNT = FLID_OPERATION_COUNT + 4;
+	int FL_ELEMENT_OPERATION_COUNT = FLID_OPERATION_COUNT + 6;
 
 	/**
 	 * The meta object id for the '{@link ch.flatland.cdo.model.base.impl.FLPackageImpl <em>FL Package</em>}' class.
@@ -686,6 +803,33 @@ public interface BasePackage extends EPackage {
 	int FL_PACKAGE__UDATE = FL_ELEMENT__UDATE;
 
 	/**
+	 * The feature id for the '<em><b>Ratings</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_PACKAGE__RATINGS = FL_ELEMENT__RATINGS;
+
+	/**
+	 * The feature id for the '<em><b>Likes</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_PACKAGE__LIKES = FL_ELEMENT__LIKES;
+
+	/**
+	 * The feature id for the '<em><b>Dislikes</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_PACKAGE__DISLIKES = FL_ELEMENT__DISLIKES;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -704,6 +848,24 @@ public interface BasePackage extends EPackage {
 	int FL_PACKAGE__DESCRIPTION = FL_ELEMENT__DESCRIPTION;
 
 	/**
+	 * The feature id for the '<em><b>Long Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_PACKAGE__LONG_DESCRIPTION = FL_ELEMENT__LONG_DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Notes</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_PACKAGE__NOTES = FL_ELEMENT__NOTES;
+
+	/**
 	 * The feature id for the '<em><b>Traces</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -720,6 +882,60 @@ public interface BasePackage extends EPackage {
 	 * @ordered
 	 */
 	int FL_PACKAGE__PROPERTIES = FL_ELEMENT__PROPERTIES;
+
+	/**
+	 * The feature id for the '<em><b>Hyper Links</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_PACKAGE__HYPER_LINKS = FL_ELEMENT__HYPER_LINKS;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_PACKAGE__COMMENTS = FL_ELEMENT__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Up Stream Mappings</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_PACKAGE__UP_STREAM_MAPPINGS = FL_ELEMENT__UP_STREAM_MAPPINGS;
+
+	/**
+	 * The feature id for the '<em><b>Down Stream Mappings</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_PACKAGE__DOWN_STREAM_MAPPINGS = FL_ELEMENT__DOWN_STREAM_MAPPINGS;
+
+	/**
+	 * The feature id for the '<em><b>Horizontal Mappings</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_PACKAGE__HORIZONTAL_MAPPINGS = FL_ELEMENT__HORIZONTAL_MAPPINGS;
+
+	/**
+	 * The feature id for the '<em><b>Horizontal Opposite Mappings</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_PACKAGE__HORIZONTAL_OPPOSITE_MAPPINGS = FL_ELEMENT__HORIZONTAL_OPPOSITE_MAPPINGS;
 
 	/**
 	 * The feature id for the '<em><b>Derived Container</b></em>' reference.
@@ -1046,6 +1262,24 @@ public interface BasePackage extends EPackage {
 	int FL_PACKAGE___HAS_PERMISSION__FLID = FL_ELEMENT___HAS_PERMISSION__FLID;
 
 	/**
+	 * The operation id for the '<em>Count Likes</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_PACKAGE___COUNT_LIKES = FL_ELEMENT___COUNT_LIKES;
+
+	/**
+	 * The operation id for the '<em>Count Dislikes</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_PACKAGE___COUNT_DISLIKES = FL_ELEMENT___COUNT_DISLIKES;
+
+	/**
 	 * The operation id for the '<em>Resolve Container</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1109,6 +1343,253 @@ public interface BasePackage extends EPackage {
 	int FL_PACKAGE_OPERATION_COUNT = FL_ELEMENT_OPERATION_COUNT + 2;
 
 	/**
+	 * The meta object id for the '{@link ch.flatland.cdo.model.base.impl.FLHyperLinkImpl <em>FL Hyper Link</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see ch.flatland.cdo.model.base.impl.FLHyperLinkImpl
+	 * @see ch.flatland.cdo.model.base.impl.BasePackageImpl#getFLHyperLink()
+	 * @generated
+	 */
+	int FL_HYPER_LINK = 3;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_HYPER_LINK__NAME = 0;
+
+	/**
+	 * The feature id for the '<em><b>Hyper Link</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_HYPER_LINK__HYPER_LINK = 1;
+
+	/**
+	 * The number of structural features of the '<em>FL Hyper Link</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_HYPER_LINK_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>FL Hyper Link</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_HYPER_LINK_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link ch.flatland.cdo.model.base.Rateable <em>Rateable</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see ch.flatland.cdo.model.base.Rateable
+	 * @see ch.flatland.cdo.model.base.impl.BasePackageImpl#getRateable()
+	 * @generated
+	 */
+	int RATEABLE = 5;
+
+	/**
+	 * The feature id for the '<em><b>Ratings</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RATEABLE__RATINGS = 0;
+
+	/**
+	 * The feature id for the '<em><b>Likes</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RATEABLE__LIKES = 1;
+
+	/**
+	 * The feature id for the '<em><b>Dislikes</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RATEABLE__DISLIKES = 2;
+
+	/**
+	 * The number of structural features of the '<em>Rateable</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RATEABLE_FEATURE_COUNT = 3;
+
+	/**
+	 * The operation id for the '<em>Count Likes</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RATEABLE___COUNT_LIKES = 0;
+
+	/**
+	 * The operation id for the '<em>Count Dislikes</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RATEABLE___COUNT_DISLIKES = 1;
+
+	/**
+	 * The number of operations of the '<em>Rateable</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RATEABLE_OPERATION_COUNT = 2;
+
+	/**
+	 * The meta object id for the '{@link ch.flatland.cdo.model.base.impl.FLCommentImpl <em>FL Comment</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see ch.flatland.cdo.model.base.impl.FLCommentImpl
+	 * @see ch.flatland.cdo.model.base.impl.BasePackageImpl#getFLComment()
+	 * @generated
+	 */
+	int FL_COMMENT = 4;
+
+	/**
+	 * The feature id for the '<em><b>Ratings</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_COMMENT__RATINGS = RATEABLE__RATINGS;
+
+	/**
+	 * The feature id for the '<em><b>Likes</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_COMMENT__LIKES = RATEABLE__LIKES;
+
+	/**
+	 * The feature id for the '<em><b>Dislikes</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_COMMENT__DISLIKES = RATEABLE__DISLIKES;
+
+	/**
+	 * The feature id for the '<em><b>Comment</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_COMMENT__COMMENT = RATEABLE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_COMMENT__COMMENTS = RATEABLE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>FL Comment</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_COMMENT_FEATURE_COUNT = RATEABLE_FEATURE_COUNT + 2;
+
+	/**
+	 * The operation id for the '<em>Count Likes</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_COMMENT___COUNT_LIKES = RATEABLE___COUNT_LIKES;
+
+	/**
+	 * The operation id for the '<em>Count Dislikes</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_COMMENT___COUNT_DISLIKES = RATEABLE___COUNT_DISLIKES;
+
+	/**
+	 * The number of operations of the '<em>FL Comment</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_COMMENT_OPERATION_COUNT = RATEABLE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link ch.flatland.cdo.model.base.impl.FLRatingImpl <em>FL Rating</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see ch.flatland.cdo.model.base.impl.FLRatingImpl
+	 * @see ch.flatland.cdo.model.base.impl.BasePackageImpl#getFLRating()
+	 * @generated
+	 */
+	int FL_RATING = 6;
+
+	/**
+	 * The feature id for the '<em><b>Rating Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_RATING__RATING_TYPE = 0;
+
+	/**
+	 * The number of structural features of the '<em>FL Rating</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_RATING_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>FL Rating</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_RATING_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link ch.flatland.cdo.model.base.impl.FLTraceImpl <em>FL Trace</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1116,7 +1597,7 @@ public interface BasePackage extends EPackage {
 	 * @see ch.flatland.cdo.model.base.impl.BasePackageImpl#getFLTrace()
 	 * @generated
 	 */
-	int FL_TRACE = 3;
+	int FL_TRACE = 7;
 
 	/**
 	 * The feature id for the '<em><b>Trace Type</b></em>' attribute.
@@ -1162,7 +1643,7 @@ public interface BasePackage extends EPackage {
 	 * @see ch.flatland.cdo.model.base.impl.BasePackageImpl#getFLProperty()
 	 * @generated
 	 */
-	int FL_PROPERTY = 4;
+	int FL_PROPERTY = 8;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1201,6 +1682,16 @@ public interface BasePackage extends EPackage {
 	int FL_PROPERTY_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link ch.flatland.cdo.model.base.FLRatingType <em>FL Rating Type</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see ch.flatland.cdo.model.base.FLRatingType
+	 * @see ch.flatland.cdo.model.base.impl.BasePackageImpl#getFLRatingType()
+	 * @generated
+	 */
+	int FL_RATING_TYPE = 9;
+
+	/**
 	 * The meta object id for the '{@link ch.flatland.cdo.model.base.FLTraceType <em>FL Trace Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1208,7 +1699,7 @@ public interface BasePackage extends EPackage {
 	 * @see ch.flatland.cdo.model.base.impl.BasePackageImpl#getFLTraceType()
 	 * @generated
 	 */
-	int FL_TRACE_TYPE = 5;
+	int FL_TRACE_TYPE = 10;
 
 
 	/**
@@ -1219,7 +1710,7 @@ public interface BasePackage extends EPackage {
 	 * @see ch.flatland.cdo.model.base.impl.BasePackageImpl#getFLIdentifier()
 	 * @generated
 	 */
-	int FL_IDENTIFIER = 6;
+	int FL_IDENTIFIER = 11;
 
 	/**
 	 * The meta object id for the '<em>FL Markdown</em>' data type.
@@ -1229,7 +1720,7 @@ public interface BasePackage extends EPackage {
 	 * @see ch.flatland.cdo.model.base.impl.BasePackageImpl#getFLMarkdown()
 	 * @generated
 	 */
-	int FL_MARKDOWN = 7;
+	int FL_MARKDOWN = 12;
 
 	/**
 	 * Returns the meta object for class '{@link ch.flatland.cdo.model.base.FLID <em>FLID</em>}'.
@@ -1361,6 +1852,28 @@ public interface BasePackage extends EPackage {
 	EAttribute getFLElement_Description();
 
 	/**
+	 * Returns the meta object for the attribute '{@link ch.flatland.cdo.model.base.FLElement#getLongDescription <em>Long Description</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Long Description</em>'.
+	 * @see ch.flatland.cdo.model.base.FLElement#getLongDescription()
+	 * @see #getFLElement()
+	 * @generated
+	 */
+	EAttribute getFLElement_LongDescription();
+
+	/**
+	 * Returns the meta object for the attribute '{@link ch.flatland.cdo.model.base.FLElement#getNotes <em>Notes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Notes</em>'.
+	 * @see ch.flatland.cdo.model.base.FLElement#getNotes()
+	 * @see #getFLElement()
+	 * @generated
+	 */
+	EAttribute getFLElement_Notes();
+
+	/**
 	 * Returns the meta object for the containment reference list '{@link ch.flatland.cdo.model.base.FLElement#getTraces <em>Traces</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1381,6 +1894,72 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getFLElement_Properties();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link ch.flatland.cdo.model.base.FLElement#getHyperLinks <em>Hyper Links</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Hyper Links</em>'.
+	 * @see ch.flatland.cdo.model.base.FLElement#getHyperLinks()
+	 * @see #getFLElement()
+	 * @generated
+	 */
+	EReference getFLElement_HyperLinks();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link ch.flatland.cdo.model.base.FLElement#getComments <em>Comments</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Comments</em>'.
+	 * @see ch.flatland.cdo.model.base.FLElement#getComments()
+	 * @see #getFLElement()
+	 * @generated
+	 */
+	EReference getFLElement_Comments();
+
+	/**
+	 * Returns the meta object for the reference list '{@link ch.flatland.cdo.model.base.FLElement#getUpStreamMappings <em>Up Stream Mappings</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Up Stream Mappings</em>'.
+	 * @see ch.flatland.cdo.model.base.FLElement#getUpStreamMappings()
+	 * @see #getFLElement()
+	 * @generated
+	 */
+	EReference getFLElement_UpStreamMappings();
+
+	/**
+	 * Returns the meta object for the reference list '{@link ch.flatland.cdo.model.base.FLElement#getDownStreamMappings <em>Down Stream Mappings</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Down Stream Mappings</em>'.
+	 * @see ch.flatland.cdo.model.base.FLElement#getDownStreamMappings()
+	 * @see #getFLElement()
+	 * @generated
+	 */
+	EReference getFLElement_DownStreamMappings();
+
+	/**
+	 * Returns the meta object for the reference list '{@link ch.flatland.cdo.model.base.FLElement#getHorizontalMappings <em>Horizontal Mappings</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Horizontal Mappings</em>'.
+	 * @see ch.flatland.cdo.model.base.FLElement#getHorizontalMappings()
+	 * @see #getFLElement()
+	 * @generated
+	 */
+	EReference getFLElement_HorizontalMappings();
+
+	/**
+	 * Returns the meta object for the reference list '{@link ch.flatland.cdo.model.base.FLElement#getHorizontalOppositeMappings <em>Horizontal Opposite Mappings</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Horizontal Opposite Mappings</em>'.
+	 * @see ch.flatland.cdo.model.base.FLElement#getHorizontalOppositeMappings()
+	 * @see #getFLElement()
+	 * @generated
+	 */
+	EReference getFLElement_HorizontalOppositeMappings();
 
 	/**
 	 * Returns the meta object for the reference '{@link ch.flatland.cdo.model.base.FLElement#getDerivedContainer <em>Derived Container</em>}'.
@@ -1827,6 +2406,154 @@ public interface BasePackage extends EPackage {
 	EOperation getFLPackage__FilterContents();
 
 	/**
+	 * Returns the meta object for class '{@link ch.flatland.cdo.model.base.FLHyperLink <em>FL Hyper Link</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>FL Hyper Link</em>'.
+	 * @see ch.flatland.cdo.model.base.FLHyperLink
+	 * @generated
+	 */
+	EClass getFLHyperLink();
+
+	/**
+	 * Returns the meta object for the attribute '{@link ch.flatland.cdo.model.base.FLHyperLink#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see ch.flatland.cdo.model.base.FLHyperLink#getName()
+	 * @see #getFLHyperLink()
+	 * @generated
+	 */
+	EAttribute getFLHyperLink_Name();
+
+	/**
+	 * Returns the meta object for the attribute '{@link ch.flatland.cdo.model.base.FLHyperLink#getHyperLink <em>Hyper Link</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Hyper Link</em>'.
+	 * @see ch.flatland.cdo.model.base.FLHyperLink#getHyperLink()
+	 * @see #getFLHyperLink()
+	 * @generated
+	 */
+	EAttribute getFLHyperLink_HyperLink();
+
+	/**
+	 * Returns the meta object for class '{@link ch.flatland.cdo.model.base.FLComment <em>FL Comment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>FL Comment</em>'.
+	 * @see ch.flatland.cdo.model.base.FLComment
+	 * @generated
+	 */
+	EClass getFLComment();
+
+	/**
+	 * Returns the meta object for the attribute '{@link ch.flatland.cdo.model.base.FLComment#getComment <em>Comment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Comment</em>'.
+	 * @see ch.flatland.cdo.model.base.FLComment#getComment()
+	 * @see #getFLComment()
+	 * @generated
+	 */
+	EAttribute getFLComment_Comment();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link ch.flatland.cdo.model.base.FLComment#getComments <em>Comments</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Comments</em>'.
+	 * @see ch.flatland.cdo.model.base.FLComment#getComments()
+	 * @see #getFLComment()
+	 * @generated
+	 */
+	EReference getFLComment_Comments();
+
+	/**
+	 * Returns the meta object for class '{@link ch.flatland.cdo.model.base.Rateable <em>Rateable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Rateable</em>'.
+	 * @see ch.flatland.cdo.model.base.Rateable
+	 * @generated
+	 */
+	EClass getRateable();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link ch.flatland.cdo.model.base.Rateable#getRatings <em>Ratings</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Ratings</em>'.
+	 * @see ch.flatland.cdo.model.base.Rateable#getRatings()
+	 * @see #getRateable()
+	 * @generated
+	 */
+	EReference getRateable_Ratings();
+
+	/**
+	 * Returns the meta object for the attribute '{@link ch.flatland.cdo.model.base.Rateable#getLikes <em>Likes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Likes</em>'.
+	 * @see ch.flatland.cdo.model.base.Rateable#getLikes()
+	 * @see #getRateable()
+	 * @generated
+	 */
+	EAttribute getRateable_Likes();
+
+	/**
+	 * Returns the meta object for the attribute '{@link ch.flatland.cdo.model.base.Rateable#getDislikes <em>Dislikes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Dislikes</em>'.
+	 * @see ch.flatland.cdo.model.base.Rateable#getDislikes()
+	 * @see #getRateable()
+	 * @generated
+	 */
+	EAttribute getRateable_Dislikes();
+
+	/**
+	 * Returns the meta object for the '{@link ch.flatland.cdo.model.base.Rateable#countLikes() <em>Count Likes</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Count Likes</em>' operation.
+	 * @see ch.flatland.cdo.model.base.Rateable#countLikes()
+	 * @generated
+	 */
+	EOperation getRateable__CountLikes();
+
+	/**
+	 * Returns the meta object for the '{@link ch.flatland.cdo.model.base.Rateable#countDislikes() <em>Count Dislikes</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Count Dislikes</em>' operation.
+	 * @see ch.flatland.cdo.model.base.Rateable#countDislikes()
+	 * @generated
+	 */
+	EOperation getRateable__CountDislikes();
+
+	/**
+	 * Returns the meta object for class '{@link ch.flatland.cdo.model.base.FLRating <em>FL Rating</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>FL Rating</em>'.
+	 * @see ch.flatland.cdo.model.base.FLRating
+	 * @generated
+	 */
+	EClass getFLRating();
+
+	/**
+	 * Returns the meta object for the attribute '{@link ch.flatland.cdo.model.base.FLRating#getRatingType <em>Rating Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Rating Type</em>'.
+	 * @see ch.flatland.cdo.model.base.FLRating#getRatingType()
+	 * @see #getFLRating()
+	 * @generated
+	 */
+	EAttribute getFLRating_RatingType();
+
+	/**
 	 * Returns the meta object for class '{@link ch.flatland.cdo.model.base.FLTrace <em>FL Trace</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1889,6 +2616,16 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getFLProperty_Value();
+
+	/**
+	 * Returns the meta object for enum '{@link ch.flatland.cdo.model.base.FLRatingType <em>FL Rating Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>FL Rating Type</em>'.
+	 * @see ch.flatland.cdo.model.base.FLRatingType
+	 * @generated
+	 */
+	EEnum getFLRatingType();
 
 	/**
 	 * Returns the meta object for enum '{@link ch.flatland.cdo.model.base.FLTraceType <em>FL Trace Type</em>}'.
@@ -2047,6 +2784,22 @@ public interface BasePackage extends EPackage {
 		EAttribute FL_ELEMENT__DESCRIPTION = eINSTANCE.getFLElement_Description();
 
 		/**
+		 * The meta object literal for the '<em><b>Long Description</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FL_ELEMENT__LONG_DESCRIPTION = eINSTANCE.getFLElement_LongDescription();
+
+		/**
+		 * The meta object literal for the '<em><b>Notes</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FL_ELEMENT__NOTES = eINSTANCE.getFLElement_Notes();
+
+		/**
 		 * The meta object literal for the '<em><b>Traces</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2061,6 +2814,54 @@ public interface BasePackage extends EPackage {
 		 * @generated
 		 */
 		EReference FL_ELEMENT__PROPERTIES = eINSTANCE.getFLElement_Properties();
+
+		/**
+		 * The meta object literal for the '<em><b>Hyper Links</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FL_ELEMENT__HYPER_LINKS = eINSTANCE.getFLElement_HyperLinks();
+
+		/**
+		 * The meta object literal for the '<em><b>Comments</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FL_ELEMENT__COMMENTS = eINSTANCE.getFLElement_Comments();
+
+		/**
+		 * The meta object literal for the '<em><b>Up Stream Mappings</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FL_ELEMENT__UP_STREAM_MAPPINGS = eINSTANCE.getFLElement_UpStreamMappings();
+
+		/**
+		 * The meta object literal for the '<em><b>Down Stream Mappings</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FL_ELEMENT__DOWN_STREAM_MAPPINGS = eINSTANCE.getFLElement_DownStreamMappings();
+
+		/**
+		 * The meta object literal for the '<em><b>Horizontal Mappings</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FL_ELEMENT__HORIZONTAL_MAPPINGS = eINSTANCE.getFLElement_HorizontalMappings();
+
+		/**
+		 * The meta object literal for the '<em><b>Horizontal Opposite Mappings</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FL_ELEMENT__HORIZONTAL_OPPOSITE_MAPPINGS = eINSTANCE.getFLElement_HorizontalOppositeMappings();
 
 		/**
 		 * The meta object literal for the '<em><b>Derived Container</b></em>' reference feature.
@@ -2393,6 +3194,126 @@ public interface BasePackage extends EPackage {
 		EOperation FL_PACKAGE___FILTER_CONTENTS = eINSTANCE.getFLPackage__FilterContents();
 
 		/**
+		 * The meta object literal for the '{@link ch.flatland.cdo.model.base.impl.FLHyperLinkImpl <em>FL Hyper Link</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see ch.flatland.cdo.model.base.impl.FLHyperLinkImpl
+		 * @see ch.flatland.cdo.model.base.impl.BasePackageImpl#getFLHyperLink()
+		 * @generated
+		 */
+		EClass FL_HYPER_LINK = eINSTANCE.getFLHyperLink();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FL_HYPER_LINK__NAME = eINSTANCE.getFLHyperLink_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Hyper Link</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FL_HYPER_LINK__HYPER_LINK = eINSTANCE.getFLHyperLink_HyperLink();
+
+		/**
+		 * The meta object literal for the '{@link ch.flatland.cdo.model.base.impl.FLCommentImpl <em>FL Comment</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see ch.flatland.cdo.model.base.impl.FLCommentImpl
+		 * @see ch.flatland.cdo.model.base.impl.BasePackageImpl#getFLComment()
+		 * @generated
+		 */
+		EClass FL_COMMENT = eINSTANCE.getFLComment();
+
+		/**
+		 * The meta object literal for the '<em><b>Comment</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FL_COMMENT__COMMENT = eINSTANCE.getFLComment_Comment();
+
+		/**
+		 * The meta object literal for the '<em><b>Comments</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FL_COMMENT__COMMENTS = eINSTANCE.getFLComment_Comments();
+
+		/**
+		 * The meta object literal for the '{@link ch.flatland.cdo.model.base.Rateable <em>Rateable</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see ch.flatland.cdo.model.base.Rateable
+		 * @see ch.flatland.cdo.model.base.impl.BasePackageImpl#getRateable()
+		 * @generated
+		 */
+		EClass RATEABLE = eINSTANCE.getRateable();
+
+		/**
+		 * The meta object literal for the '<em><b>Ratings</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference RATEABLE__RATINGS = eINSTANCE.getRateable_Ratings();
+
+		/**
+		 * The meta object literal for the '<em><b>Likes</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute RATEABLE__LIKES = eINSTANCE.getRateable_Likes();
+
+		/**
+		 * The meta object literal for the '<em><b>Dislikes</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute RATEABLE__DISLIKES = eINSTANCE.getRateable_Dislikes();
+
+		/**
+		 * The meta object literal for the '<em><b>Count Likes</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation RATEABLE___COUNT_LIKES = eINSTANCE.getRateable__CountLikes();
+
+		/**
+		 * The meta object literal for the '<em><b>Count Dislikes</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation RATEABLE___COUNT_DISLIKES = eINSTANCE.getRateable__CountDislikes();
+
+		/**
+		 * The meta object literal for the '{@link ch.flatland.cdo.model.base.impl.FLRatingImpl <em>FL Rating</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see ch.flatland.cdo.model.base.impl.FLRatingImpl
+		 * @see ch.flatland.cdo.model.base.impl.BasePackageImpl#getFLRating()
+		 * @generated
+		 */
+		EClass FL_RATING = eINSTANCE.getFLRating();
+
+		/**
+		 * The meta object literal for the '<em><b>Rating Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FL_RATING__RATING_TYPE = eINSTANCE.getFLRating_RatingType();
+
+		/**
 		 * The meta object literal for the '{@link ch.flatland.cdo.model.base.impl.FLTraceImpl <em>FL Trace</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2443,6 +3364,16 @@ public interface BasePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute FL_PROPERTY__VALUE = eINSTANCE.getFLProperty_Value();
+
+		/**
+		 * The meta object literal for the '{@link ch.flatland.cdo.model.base.FLRatingType <em>FL Rating Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see ch.flatland.cdo.model.base.FLRatingType
+		 * @see ch.flatland.cdo.model.base.impl.BasePackageImpl#getFLRatingType()
+		 * @generated
+		 */
+		EEnum FL_RATING_TYPE = eINSTANCE.getFLRatingType();
 
 		/**
 		 * The meta object literal for the '{@link ch.flatland.cdo.model.base.FLTraceType <em>FL Trace Type</em>}' enum.

@@ -94,10 +94,20 @@ public class BaseValidator extends EObjectValidator {
 				return validateFLElement((FLElement)value, diagnostics, context);
 			case BasePackage.FL_PACKAGE:
 				return validateFLPackage((FLPackage)value, diagnostics, context);
+			case BasePackage.FL_HYPER_LINK:
+				return validateFLHyperLink((FLHyperLink)value, diagnostics, context);
+			case BasePackage.FL_COMMENT:
+				return validateFLComment((FLComment)value, diagnostics, context);
+			case BasePackage.RATEABLE:
+				return validateRateable((Rateable)value, diagnostics, context);
+			case BasePackage.FL_RATING:
+				return validateFLRating((FLRating)value, diagnostics, context);
 			case BasePackage.FL_TRACE:
 				return validateFLTrace((FLTrace)value, diagnostics, context);
 			case BasePackage.FL_PROPERTY:
 				return validateFLProperty((FLProperty)value, diagnostics, context);
+			case BasePackage.FL_RATING_TYPE:
+				return validateFLRatingType((FLRatingType)value, diagnostics, context);
 			case BasePackage.FL_TRACE_TYPE:
 				return validateFLTraceType((FLTraceType)value, diagnostics, context);
 			case BasePackage.FL_IDENTIFIER:
@@ -141,6 +151,42 @@ public class BaseValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean validateFLHyperLink(FLHyperLink flHyperLink, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint((EObject)flHyperLink, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateFLComment(FLComment flComment, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint((EObject)flComment, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateRateable(Rateable rateable, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint((EObject)rateable, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateFLRating(FLRating flRating, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint((EObject)flRating, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean validateFLTrace(FLTrace flTrace, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)flTrace, diagnostics, context);
 	}
@@ -152,6 +198,15 @@ public class BaseValidator extends EObjectValidator {
 	 */
 	public boolean validateFLProperty(FLProperty flProperty, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)flProperty, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateFLRatingType(FLRatingType flRatingType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
 	}
 
 	/**

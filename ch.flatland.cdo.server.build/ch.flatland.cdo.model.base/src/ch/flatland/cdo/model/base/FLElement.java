@@ -17,8 +17,16 @@ import org.eclipse.emf.ecore.EReference;
  * <ul>
  *   <li>{@link ch.flatland.cdo.model.base.FLElement#getName <em>Name</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.FLElement#getDescription <em>Description</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.base.FLElement#getLongDescription <em>Long Description</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.base.FLElement#getNotes <em>Notes</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.FLElement#getTraces <em>Traces</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.FLElement#getProperties <em>Properties</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.base.FLElement#getHyperLinks <em>Hyper Links</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.base.FLElement#getComments <em>Comments</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.base.FLElement#getUpStreamMappings <em>Up Stream Mappings</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.base.FLElement#getDownStreamMappings <em>Down Stream Mappings</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.base.FLElement#getHorizontalMappings <em>Horizontal Mappings</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.base.FLElement#getHorizontalOppositeMappings <em>Horizontal Opposite Mappings</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.FLElement#getDerivedContainer <em>Derived Container</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.FLElement#getTraceToOwn <em>Trace To Own</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.FLElement#getTraceToUse <em>Trace To Use</em>}</li>
@@ -56,7 +64,7 @@ import org.eclipse.emf.ecore.EReference;
  * @model abstract="true"
  * @generated
  */
-public interface FLElement extends FLID {
+public interface FLElement extends FLID, Rateable {
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -109,6 +117,60 @@ public interface FLElement extends FLID {
 	void setDescription(String value);
 
 	/**
+	 * Returns the value of the '<em><b>Long Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Long Description</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Long Description</em>' attribute.
+	 * @see #setLongDescription(String)
+	 * @see ch.flatland.cdo.model.base.BasePackage#getFLElement_LongDescription()
+	 * @model unique="false" dataType="ch.flatland.cdo.model.base.FLMarkdown"
+	 *        annotation="http://www.eclipse.org/CDO/DBStore columnType='CLOB'"
+	 * @generated
+	 */
+	String getLongDescription();
+
+	/**
+	 * Sets the value of the '{@link ch.flatland.cdo.model.base.FLElement#getLongDescription <em>Long Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Long Description</em>' attribute.
+	 * @see #getLongDescription()
+	 * @generated
+	 */
+	void setLongDescription(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Notes</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Notes</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Notes</em>' attribute.
+	 * @see #setNotes(String)
+	 * @see ch.flatland.cdo.model.base.BasePackage#getFLElement_Notes()
+	 * @model unique="false" dataType="ch.flatland.cdo.model.base.FLMarkdown"
+	 *        annotation="http://www.eclipse.org/CDO/DBStore columnType='CLOB'"
+	 * @generated
+	 */
+	String getNotes();
+
+	/**
+	 * Sets the value of the '{@link ch.flatland.cdo.model.base.FLElement#getNotes <em>Notes</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Notes</em>' attribute.
+	 * @see #getNotes()
+	 * @generated
+	 */
+	void setNotes(String value);
+
+	/**
 	 * Returns the value of the '<em><b>Traces</b></em>' containment reference list.
 	 * The list contents are of type {@link ch.flatland.cdo.model.base.FLTrace}.
 	 * <!-- begin-user-doc -->
@@ -139,6 +201,114 @@ public interface FLElement extends FLID {
 	 * @generated
 	 */
 	EList<FLProperty> getProperties();
+
+	/**
+	 * Returns the value of the '<em><b>Hyper Links</b></em>' containment reference list.
+	 * The list contents are of type {@link ch.flatland.cdo.model.base.FLHyperLink}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Hyper Links</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Hyper Links</em>' containment reference list.
+	 * @see ch.flatland.cdo.model.base.BasePackage#getFLElement_HyperLinks()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<FLHyperLink> getHyperLinks();
+
+	/**
+	 * Returns the value of the '<em><b>Comments</b></em>' containment reference list.
+	 * The list contents are of type {@link ch.flatland.cdo.model.base.FLComment}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Comments</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Comments</em>' containment reference list.
+	 * @see ch.flatland.cdo.model.base.BasePackage#getFLElement_Comments()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<FLComment> getComments();
+
+	/**
+	 * Returns the value of the '<em><b>Up Stream Mappings</b></em>' reference list.
+	 * The list contents are of type {@link ch.flatland.cdo.model.base.FLElement}.
+	 * It is bidirectional and its opposite is '{@link ch.flatland.cdo.model.base.FLElement#getDownStreamMappings <em>Down Stream Mappings</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Up Stream Mappings</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Up Stream Mappings</em>' reference list.
+	 * @see ch.flatland.cdo.model.base.BasePackage#getFLElement_UpStreamMappings()
+	 * @see ch.flatland.cdo.model.base.FLElement#getDownStreamMappings
+	 * @model opposite="downStreamMappings"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Mapping'"
+	 * @generated
+	 */
+	EList<FLElement> getUpStreamMappings();
+
+	/**
+	 * Returns the value of the '<em><b>Down Stream Mappings</b></em>' reference list.
+	 * The list contents are of type {@link ch.flatland.cdo.model.base.FLElement}.
+	 * It is bidirectional and its opposite is '{@link ch.flatland.cdo.model.base.FLElement#getUpStreamMappings <em>Up Stream Mappings</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Down Stream Mappings</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Down Stream Mappings</em>' reference list.
+	 * @see ch.flatland.cdo.model.base.BasePackage#getFLElement_DownStreamMappings()
+	 * @see ch.flatland.cdo.model.base.FLElement#getUpStreamMappings
+	 * @model opposite="upStreamMappings"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Mapping'"
+	 * @generated
+	 */
+	EList<FLElement> getDownStreamMappings();
+
+	/**
+	 * Returns the value of the '<em><b>Horizontal Mappings</b></em>' reference list.
+	 * The list contents are of type {@link ch.flatland.cdo.model.base.FLElement}.
+	 * It is bidirectional and its opposite is '{@link ch.flatland.cdo.model.base.FLElement#getHorizontalOppositeMappings <em>Horizontal Opposite Mappings</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Horizontal Mappings</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Horizontal Mappings</em>' reference list.
+	 * @see ch.flatland.cdo.model.base.BasePackage#getFLElement_HorizontalMappings()
+	 * @see ch.flatland.cdo.model.base.FLElement#getHorizontalOppositeMappings
+	 * @model opposite="horizontalOppositeMappings"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Mapping'"
+	 * @generated
+	 */
+	EList<FLElement> getHorizontalMappings();
+
+	/**
+	 * Returns the value of the '<em><b>Horizontal Opposite Mappings</b></em>' reference list.
+	 * The list contents are of type {@link ch.flatland.cdo.model.base.FLElement}.
+	 * It is bidirectional and its opposite is '{@link ch.flatland.cdo.model.base.FLElement#getHorizontalMappings <em>Horizontal Mappings</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Horizontal Opposite Mappings</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Horizontal Opposite Mappings</em>' reference list.
+	 * @see ch.flatland.cdo.model.base.BasePackage#getFLElement_HorizontalOppositeMappings()
+	 * @see ch.flatland.cdo.model.base.FLElement#getHorizontalMappings
+	 * @model opposite="horizontalMappings"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Mapping'"
+	 * @generated
+	 */
+	EList<FLElement> getHorizontalOppositeMappings();
 
 	/**
 	 * Returns the value of the '<em><b>Derived Container</b></em>' reference.

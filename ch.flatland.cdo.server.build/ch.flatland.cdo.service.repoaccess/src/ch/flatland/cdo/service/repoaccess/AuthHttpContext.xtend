@@ -10,6 +10,8 @@
  */
 package ch.flatland.cdo.service.repoaccess
 
+import ch.flatland.cdo.model.config.AuthenticatorType
+import ch.flatland.cdo.util.FlatlandException
 import ch.flatland.cdo.util.JsonConverter
 import ch.flatland.cdo.util.Request
 import ch.flatland.cdo.util.Response
@@ -19,12 +21,13 @@ import javax.servlet.http.HttpServletResponse
 import org.osgi.service.http.HttpContext
 import org.slf4j.LoggerFactory
 
+import static ch.flatland.cdo.server.config.ServerConfig.*
 import static ch.flatland.cdo.util.Constants.*
 
 class AuthHttpContext implements HttpContext {
 
 	val logger = LoggerFactory.getLogger(this.class)
-
+	
 	override handleSecurity(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
 		val extension Request = new Request
@@ -51,8 +54,13 @@ class AuthHttpContext implements HttpContext {
 			return false
 		}
 
-		// check if authorization header is available
-		if(!req.basicAuth) {
+		val repository = CONFIG.repositories.filter[it.dataStore.repositoryName == req.repoName].head
+		if (repository == null) {
+			resp.sendError(req, new FlatlandException(HttpServletResponse.SC_BAD_REQUEST, "Repository '{}' not valid", req.repoName))
+			return false
+		}
+		// check if authorization header is available or repo does not requires authentication
+		if(!req.basicAuth && repository.authenticator.authenticatorType != AuthenticatorType.NONE) {
 			logger.debug("No basic auth in request")
 			resp.sendError(req, resp.statusUnauthorized)
 			return false
