@@ -45,8 +45,16 @@ public class FLElementItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addLikesPropertyDescriptor(object);
+			addDislikesPropertyDescriptor(object);
 			addNamePropertyDescriptor(object);
 			addDescriptionPropertyDescriptor(object);
+			addLongDescriptionPropertyDescriptor(object);
+			addNotesPropertyDescriptor(object);
+			addUpStreamMappingsPropertyDescriptor(object);
+			addDownStreamMappingsPropertyDescriptor(object);
+			addHorizontalMappingsPropertyDescriptor(object);
+			addHorizontalOppositeMappingsPropertyDescriptor(object);
 			addDerivedContainerPropertyDescriptor(object);
 			addTraceToOwnPropertyDescriptor(object);
 			addTraceToUsePropertyDescriptor(object);
@@ -65,6 +73,50 @@ public class FLElementItemProvider
 			addTraceToTrackPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Likes feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addLikesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Rateable_likes_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Rateable_likes_feature", "_UI_Rateable_type"),
+				 BasePackage.Literals.RATEABLE__LIKES,
+				 false,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Dislikes feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDislikesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Rateable_dislikes_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Rateable_dislikes_feature", "_UI_Rateable_type"),
+				 BasePackage.Literals.RATEABLE__DISLIKES,
+				 false,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -108,6 +160,138 @@ public class FLElementItemProvider
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 getString("_UI_BasePropertyCategory"),
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Long Description feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addLongDescriptionPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_FLElement_longDescription_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FLElement_longDescription_feature", "_UI_FLElement_type"),
+				 BasePackage.Literals.FL_ELEMENT__LONG_DESCRIPTION,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Notes feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addNotesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_FLElement_notes_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FLElement_notes_feature", "_UI_FLElement_type"),
+				 BasePackage.Literals.FL_ELEMENT__NOTES,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Up Stream Mappings feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addUpStreamMappingsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_FLElement_upStreamMappings_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FLElement_upStreamMappings_feature", "_UI_FLElement_type"),
+				 BasePackage.Literals.FL_ELEMENT__UP_STREAM_MAPPINGS,
+				 true,
+				 false,
+				 true,
+				 null,
+				 getString("_UI_MappingPropertyCategory"),
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Down Stream Mappings feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDownStreamMappingsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_FLElement_downStreamMappings_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FLElement_downStreamMappings_feature", "_UI_FLElement_type"),
+				 BasePackage.Literals.FL_ELEMENT__DOWN_STREAM_MAPPINGS,
+				 true,
+				 false,
+				 true,
+				 null,
+				 getString("_UI_MappingPropertyCategory"),
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Horizontal Mappings feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addHorizontalMappingsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_FLElement_horizontalMappings_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FLElement_horizontalMappings_feature", "_UI_FLElement_type"),
+				 BasePackage.Literals.FL_ELEMENT__HORIZONTAL_MAPPINGS,
+				 true,
+				 false,
+				 true,
+				 null,
+				 getString("_UI_MappingPropertyCategory"),
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Horizontal Opposite Mappings feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addHorizontalOppositeMappingsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_FLElement_horizontalOppositeMappings_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FLElement_horizontalOppositeMappings_feature", "_UI_FLElement_type"),
+				 BasePackage.Literals.FL_ELEMENT__HORIZONTAL_OPPOSITE_MAPPINGS,
+				 true,
+				 false,
+				 true,
+				 null,
+				 getString("_UI_MappingPropertyCategory"),
 				 null));
 	}
 
@@ -475,8 +659,11 @@ public class FLElementItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
+			childrenFeatures.add(BasePackage.Literals.RATEABLE__RATINGS);
 			childrenFeatures.add(BasePackage.Literals.FL_ELEMENT__TRACES);
 			childrenFeatures.add(BasePackage.Literals.FL_ELEMENT__PROPERTIES);
+			childrenFeatures.add(BasePackage.Literals.FL_ELEMENT__HYPER_LINKS);
+			childrenFeatures.add(BasePackage.Literals.FL_ELEMENT__COMMENTS);
 		}
 		return childrenFeatures;
 	}
@@ -535,12 +722,19 @@ public class FLElementItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(FLElement.class)) {
+			case BasePackage.FL_ELEMENT__LIKES:
+			case BasePackage.FL_ELEMENT__DISLIKES:
 			case BasePackage.FL_ELEMENT__NAME:
 			case BasePackage.FL_ELEMENT__DESCRIPTION:
+			case BasePackage.FL_ELEMENT__LONG_DESCRIPTION:
+			case BasePackage.FL_ELEMENT__NOTES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
+			case BasePackage.FL_ELEMENT__RATINGS:
 			case BasePackage.FL_ELEMENT__TRACES:
 			case BasePackage.FL_ELEMENT__PROPERTIES:
+			case BasePackage.FL_ELEMENT__HYPER_LINKS:
+			case BasePackage.FL_ELEMENT__COMMENTS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -560,6 +754,11 @@ public class FLElementItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
+				(BasePackage.Literals.RATEABLE__RATINGS,
+				 BaseFactory.eINSTANCE.createFLRating()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(BasePackage.Literals.FL_ELEMENT__TRACES,
 				 BaseFactory.eINSTANCE.createFLTrace()));
 
@@ -567,6 +766,16 @@ public class FLElementItemProvider
 			(createChildParameter
 				(BasePackage.Literals.FL_ELEMENT__PROPERTIES,
 				 BaseFactory.eINSTANCE.createFLProperty()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BasePackage.Literals.FL_ELEMENT__HYPER_LINKS,
+				 BaseFactory.eINSTANCE.createFLHyperLink()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BasePackage.Literals.FL_ELEMENT__COMMENTS,
+				 BaseFactory.eINSTANCE.createFLComment()));
 	}
 
 }

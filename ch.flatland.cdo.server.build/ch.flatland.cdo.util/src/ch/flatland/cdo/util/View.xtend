@@ -279,7 +279,7 @@ class View {
 			logger.debug("OrderBy '{}'", orderBy)
 			Collections.sort(list, new AttributeComparator(orderBy))
 		} else {
-			// commented out, to have orginial order as object are store in repository
+			// commented out, to have original order as object are store in repository
 			//logger.debug("OrderBy '{}'", "name")
 			//Collections.sort(list, new AttributeComparator("name"))
 		}

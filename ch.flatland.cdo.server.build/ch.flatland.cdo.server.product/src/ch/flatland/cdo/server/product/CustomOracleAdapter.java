@@ -15,12 +15,13 @@ import org.eclipse.net4j.internal.db.ddl.DBField;
 
 @SuppressWarnings("restriction")
 public class CustomOracleAdapter extends OracleAdapter {
-	
+
 	private String user;
+
 	public CustomOracleAdapter(String user) {
 		this.user = user;
 	}
-	
+
 	@Override
 	public void readSchema(Connection connection, IDBSchema schema) {
 		try {
@@ -39,8 +40,14 @@ public class CustomOracleAdapter extends OracleAdapter {
 
 				IDBTable table = schema.addTable(tableName);
 				String dbUser = tables.getString(2);
-				
-				if (dbUser.toLowerCase().equals(user)) {
+
+				/**
+				 * BUG FIX CSMDR-32 Only if the DB schema is owned by the user
+				 * connecting to oracle, the schema should be analyzed. To be
+				 * sure the user matches, the check must be done with both end
+				 * toLowerCase cause oracle user names are not case sensitive.
+				 */
+				if (dbUser.toLowerCase().equals(user.toLowerCase())) {
 					readFields(connection, table);
 					readIndices(connection, metaData, table, schemaName);
 				}

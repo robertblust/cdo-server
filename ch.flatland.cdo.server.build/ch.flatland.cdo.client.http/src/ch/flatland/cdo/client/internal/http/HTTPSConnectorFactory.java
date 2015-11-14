@@ -21,50 +21,41 @@ import java.net.URL;
  * @author Eike Stepper
  */
 @SuppressWarnings("restriction")
-public class HTTPSConnectorFactory extends ConnectorFactory
-{
-  private static final String HTTP_SCHEME_PREFIX = "https://"; //$NON-NLS-1$
+public class HTTPSConnectorFactory extends ConnectorFactory {
+	private static final String HTTP_SCHEME_PREFIX = "https://"; //$NON-NLS-1$
 
-  public static final String TYPE = "https"; //$NON-NLS-1$
+	public static final String TYPE = "https"; //$NON-NLS-1$
 
-  public HTTPSConnectorFactory()
-  {
-    super(TYPE);
-  }
+	public HTTPSConnectorFactory() {
+		super(TYPE);
+	}
 
-  public HTTPSClientConnector create(String description)
-  {
-    String userID = null;
-    if (!description.startsWith(HTTP_SCHEME_PREFIX))
-    {
-      description = HTTP_SCHEME_PREFIX + description;
-    }
+	public HTTPSClientConnector create(String description) {
+		String userID = null;
+		if (!description.startsWith(HTTP_SCHEME_PREFIX)) {
+			description = HTTP_SCHEME_PREFIX + description;
+		}
 
-    try
-    {
-      URL url = new URL(description);
-      userID = url.getUserInfo();
-    }
-    catch (MalformedURLException ex)
-    {
-      OM.LOG.error(ex);
-    }
+		try {
+			URL url = new URL(description);
+			userID = url.getUserInfo();
+		} catch (MalformedURLException ex) {
+			OM.LOG.error(ex);
+		}
 
-    HTTPSClientConnector connector = new HTTPSClientConnector();
-    connector.setURL(description);
-    connector.setUserID(userID);
-    return connector;
-  }
+		HTTPSClientConnector connector = new HTTPSClientConnector();
+		connector.setURL(description);
+		connector.setUserID(userID);
+		return connector;
+	}
 
-  @Override
-  public String getDescriptionFor(Object object)
-  {
-    if (object instanceof HTTPSClientConnector)
-    {
-      HTTPSClientConnector connector = (HTTPSClientConnector)object;
-      return connector.getURL();
-    }
+	@Override
+	public String getDescriptionFor(Object object) {
+		if (object instanceof HTTPSClientConnector) {
+			HTTPSClientConnector connector = (HTTPSClientConnector) object;
+			return connector.getURL();
+		}
 
-    return null;
-  }
+		return null;
+	}
 }

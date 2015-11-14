@@ -17,14 +17,11 @@ import java.util.Properties;
 /**
  * @author Eike Stepper
  */
-public final class JDBCUtil
-{
-  private JDBCUtil()
-  {
-  }
+public final class JDBCUtil {
+	private JDBCUtil() {
+	}
 
-  public static Properties getClientInfo(Connection connection) throws SQLException
-  {
-    return connection.getClientInfo();
-  }
+	public static Properties getClientInfo(Connection connection) throws SQLException {
+		return connection.getClientInfo();
+	}
 }

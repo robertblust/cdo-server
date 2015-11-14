@@ -58,6 +58,9 @@ public class BaseFactoryImpl extends EFactoryImpl implements BaseFactory {
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case BasePackage.FL_PACKAGE: return (EObject)createFLPackage();
+			case BasePackage.FL_HYPER_LINK: return (EObject)createFLHyperLink();
+			case BasePackage.FL_COMMENT: return (EObject)createFLComment();
+			case BasePackage.FL_RATING: return (EObject)createFLRating();
 			case BasePackage.FL_TRACE: return (EObject)createFLTrace();
 			case BasePackage.FL_PROPERTY: return (EObject)createFLProperty();
 			default:
@@ -73,6 +76,8 @@ public class BaseFactoryImpl extends EFactoryImpl implements BaseFactory {
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
+			case BasePackage.FL_RATING_TYPE:
+				return createFLRatingTypeFromString(eDataType, initialValue);
 			case BasePackage.FL_TRACE_TYPE:
 				return createFLTraceTypeFromString(eDataType, initialValue);
 			case BasePackage.FL_IDENTIFIER:
@@ -92,6 +97,8 @@ public class BaseFactoryImpl extends EFactoryImpl implements BaseFactory {
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
+			case BasePackage.FL_RATING_TYPE:
+				return convertFLRatingTypeToString(eDataType, instanceValue);
 			case BasePackage.FL_TRACE_TYPE:
 				return convertFLTraceTypeToString(eDataType, instanceValue);
 			case BasePackage.FL_IDENTIFIER:
@@ -118,6 +125,36 @@ public class BaseFactoryImpl extends EFactoryImpl implements BaseFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public FLHyperLink createFLHyperLink() {
+		FLHyperLinkImpl flHyperLink = new FLHyperLinkImpl();
+		return flHyperLink;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FLComment createFLComment() {
+		FLCommentImpl flComment = new FLCommentImpl();
+		return flComment;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FLRating createFLRating() {
+		FLRatingImpl flRating = new FLRatingImpl();
+		return flRating;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public FLTrace createFLTrace() {
 		FLTraceImpl flTrace = new FLTraceImpl();
 		return flTrace;
@@ -131,6 +168,26 @@ public class BaseFactoryImpl extends EFactoryImpl implements BaseFactory {
 	public FLProperty createFLProperty() {
 		FLPropertyImpl flProperty = new FLPropertyImpl();
 		return flProperty;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FLRatingType createFLRatingTypeFromString(EDataType eDataType, String initialValue) {
+		FLRatingType result = FLRatingType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertFLRatingTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
 	}
 
 	/**

@@ -10,7 +10,7 @@
 <booleanAttribute key="clearConfig" value="false"/>
 <booleanAttribute key="clearws" value="false"/>
 <booleanAttribute key="clearwslog" value="false"/>
-<stringAttribute key="configLocation" value="${workspace_loc}/.metadata/.plugins/org.eclipse.pde.core/CDOClient"/>
+<stringAttribute key="configLocation" value="${workspace_loc}/.metadata/.plugins/org.eclipse.pde.core/CDOClient (JRebel)"/>
 <booleanAttribute key="default" value="true"/>
 <stringAttribute key="deselected_workspace_plugins" value="ch.flatland.cdo.server.ldap,ch.flatland.cdo.server.product,ch.flatland.cdo.service.ping,ch.flatland.cdo.service.repoaccess,ch.flatland.cdo.util,org.eclipse.emf.cdo.examples.company,org.eclipse.emf.cdo.examples.company.edit"/>
 <stringAttribute key="featureDefaultLocation" value="workspace"/>
@@ -29,7 +29,7 @@
 <stringAttribute key="org.eclipse.jdt.launching.JRE_CONTAINER" value="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="-os ${target.os} -ws ${target.ws} -arch ${target.arch} -nl ${target.nl}"/>
 <stringAttribute key="org.eclipse.jdt.launching.SOURCE_PATH_PROVIDER" value="org.eclipse.pde.ui.workbenchClasspathProvider"/>
-<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-XX:MaxPermSize=128m&#13;&#10;-Xms40m&#13;&#10;-Xmx512m"/>
+<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="${jrebel_args:JavaSE-1.7}&#13;&#10;-XX:MaxPermSize=128m&#13;&#10;-Xms40m&#13;&#10;-Xmx512m"/>
 <stringAttribute key="pde.version" value="3.3"/>
 <stringAttribute key="product" value="org.eclipse.platform.ide"/>
 <setAttribute key="selected_features">

@@ -240,7 +240,7 @@ class JsonConverter {
 
 		jsonBaseObject.addType(object.eClass, stop)
 		if (ServerConfig.isBridgeMode) {
-			jsonBaseObject.addProperty(ICON, jsonConverterConfig.serverAddress + "/bridge" + ALIAS_ICON + "/" + object.eClass.type)
+			jsonBaseObject.addProperty(ICON, jsonConverterConfig.serverAddress + BRIDGE_MODE_PATH + ALIAS_ICON + "/" + object.eClass.type)
 		} else {
 			jsonBaseObject.addProperty(ICON, jsonConverterConfig.serverAddress + ALIAS_ICON + "/" + object.eClass.type)
 		}
@@ -325,7 +325,7 @@ class JsonConverter {
 
 				val jsonAllInstancesLink = new JsonObject
 				if (ServerConfig.bridgeMode) {
-					jsonAllInstancesLink.addProperty(HREF, jsonConverterConfig.serverAddress + "/bridge" + ALIAS_OBJECT + "/" + jsonConverterConfig.repoName + "/" + object.eClass.type + object.getTimestampParam(true))
+					jsonAllInstancesLink.addProperty(HREF, jsonConverterConfig.serverAddress + BRIDGE_MODE_PATH + ALIAS_OBJECT + "/" + jsonConverterConfig.repoName + "/" + object.eClass.type + object.getTimestampParam(true))
 				} else {
 					jsonAllInstancesLink.addProperty(HREF, jsonConverterConfig.serverAddress + ALIAS_OBJECT + "/" + jsonConverterConfig.repoName + "/" + object.eClass.type + object.getTimestampParam(true))
 				}
@@ -345,7 +345,7 @@ class JsonConverter {
 				if (ServerConfig.bridgeMode) {
 					jsonXReferencesLink.addProperty(HREF, jsonConverterConfig.serverAddress + ALIAS_XREFS + "/" + jsonConverterConfig.repoName + "/" + object.oid + "/" + REFERENCES + object.getTimestampParam(true))
 				} else {
-					jsonXReferencesLink.addProperty(HREF, jsonConverterConfig.serverAddress + "/bridge" + ALIAS_XREFS + "/" + jsonConverterConfig.repoName + "/" + object.oid + "/" + REFERENCES + object.getTimestampParam(true))
+					jsonXReferencesLink.addProperty(HREF, jsonConverterConfig.serverAddress + BRIDGE_MODE_PATH + ALIAS_XREFS + "/" + jsonConverterConfig.repoName + "/" + object.oid + "/" + REFERENCES + object.getTimestampParam(true))
 				}
 				jsonXReferencesLink.addProperty(SIZE, object.allXReferences.size)
 				jsonXLinksObject.add(REFERENCES, jsonXReferencesLink)
@@ -354,7 +354,7 @@ class JsonConverter {
 				object.resolveGroupXReferences.forEach [ p1, p2 |
 					val jsonXReferenceLink = new JsonObject
 					if (ServerConfig.bridgeMode) {
-						jsonXReferenceLink.addProperty(HREF, jsonConverterConfig.serverAddress + "/bridge" + ALIAS_XREFS + "/" + jsonConverterConfig.repoName + "/" + object.oid + "/" + REFERENCES + "/" + p1.name + object.getTimestampParam(true))
+						jsonXReferenceLink.addProperty(HREF, jsonConverterConfig.serverAddress + BRIDGE_MODE_PATH + ALIAS_XREFS + "/" + jsonConverterConfig.repoName + "/" + object.oid + "/" + REFERENCES + "/" + p1.name + object.getTimestampParam(true))
 					} else {
 						jsonXReferenceLink.addProperty(HREF, jsonConverterConfig.serverAddress + ALIAS_XREFS + "/" + jsonConverterConfig.repoName + "/" + object.oid + "/" + REFERENCES + "/" + p1.name + object.getTimestampParam(true))
 					}
@@ -393,7 +393,9 @@ class JsonConverter {
 				jsonRevsionObject.addProperty(REVISION, (historySize - i))
 				jsonRevsionObject.addProperty(SELF, object.getUrl(false) + "?" + PARAM_POINT_IN_TIME + "=" + commitInfo.timeStamp)
 				jsonRevsionObject.addProperty(DATE, formatDate(new Date(commitInfo.timeStamp)))
-				jsonRevsionObject.addProperty(AUTHOR, commitInfo.userID)
+				if (commitInfo.userID != null) {
+					jsonRevsionObject.addProperty(AUTHOR, commitInfo.userID)
+				}
 				logger.debug("'{}' resolved revsion '{}'", object, (historySize - i))
 				jsonRevisionsArray.add(jsonRevsionObject)
 			}
@@ -686,7 +688,7 @@ class JsonConverter {
 			id = EcoreUtil.getURI(object).fragment.replace("L", "")
 		}
 		if (ServerConfig.bridgeMode) {
-			return jsonConverterConfig.serverAddress + "/bridge" + ALIAS_OBJECT + "/" + jsonConverterConfig.repoName + "/" + object.eClass.type + "/" + id + object.getTimestampParam(withTimestamp)
+			return jsonConverterConfig.serverAddress + BRIDGE_MODE_PATH + ALIAS_OBJECT + "/" + jsonConverterConfig.repoName + "/" + object.eClass.type + "/" + id + object.getTimestampParam(withTimestamp)
 			
 		}
 		return jsonConverterConfig.serverAddress + ALIAS_OBJECT + "/" + jsonConverterConfig.repoName + "/" + object.eClass.type + "/" + id + object.getTimestampParam(withTimestamp)

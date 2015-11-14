@@ -896,7 +896,8 @@ public class SecurityManager extends Lifecycle implements InternalSecurityManage
 					if (securityImpact != CommitNotificationInfo.IMPACT_REALM) {
 						InternalCDORevisionDelta revisionDelta = revisionDeltas[i];
 						if (CDORevisionUtil.isContained(revisionDelta.getID(), realmID, transaction)) // Use
-																										// "before commit"
+																										// "before
+																										// commit"
 																										// state
 						{
 							securityImpact = CommitNotificationInfo.IMPACT_REALM;

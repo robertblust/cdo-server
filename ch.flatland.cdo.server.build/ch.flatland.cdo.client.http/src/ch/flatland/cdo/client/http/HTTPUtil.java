@@ -21,23 +21,18 @@ import ch.flatland.cdo.client.internal.http.HTTPSConnectorFactory;
  * 
  * @author Eike Stepper
  */
-public final class HTTPUtil
-{
-  private HTTPUtil()
-  {
-  }
+public final class HTTPUtil {
+	private HTTPUtil() {
+	}
 
-  public static void prepareContainer(IManagedContainer container)
-  {
-    container.registerFactory(new HTTPSConnectorFactory());
-  }
+	public static void prepareContainer(IManagedContainer container) {
+		container.registerFactory(new HTTPSConnectorFactory());
+	}
 
-  /**
-   * @since 2.0
-   */
-  public static IHTTPConnector getConnector(IManagedContainer container, String description)
-  {
-    return (IHTTPConnector)container.getElement(HTTPSConnectorFactory.PRODUCT_GROUP, HTTPSConnectorFactory.TYPE,
-        description);
-  }
+	/**
+	 * @since 2.0
+	 */
+	public static IHTTPConnector getConnector(IManagedContainer container, String description) {
+		return (IHTTPConnector) container.getElement(HTTPSConnectorFactory.PRODUCT_GROUP, HTTPSConnectorFactory.TYPE, description);
+	}
 }
