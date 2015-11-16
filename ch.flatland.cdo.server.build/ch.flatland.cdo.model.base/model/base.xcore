@@ -68,20 +68,11 @@ abstract class FLID {
 	}
 }
 
-abstract class FLElement extends FLID, Rateable {
-	@GenModel(propertyCategory="Base")
-	String[1] name
-	@GenModel(propertyMultiLine="true", propertyCategory="Base")
-	@DBStore(columnType="CLOB")
-	FLMarkdown description
-	@DBStore(columnType="CLOB")
-	FLMarkdown longDescription
-	@DBStore(columnType="CLOB")
-	FLMarkdown notes
+abstract class FLElement extends FLID, Nameable, Rateable, Commentable, HyperLinkable {
 	contains FLTrace[] traces
 	contains FLProperty[] properties
-	contains FLHyperLink[] hyperLinks
-	contains FLComment[] comments
+	@GenModel(propertyCategory="Base")
+	refers FLDataProvider dataProvider opposite providedElements
 	@GenModel(propertyCategory="Mapping")
 	refers FLElement[] upStreamMappings opposite downStreamMappings
 	@GenModel(propertyCategory="Mapping")
@@ -287,21 +278,53 @@ class FLPackage extends FLElement {
 }
 
 class FLHyperLink {
+	@GenModel(propertyCategory="Hyper Link")
 	String name
+	@GenModel(propertyCategory="Hyper Link")
 	String[1] hyperLink
 }
 
 class FLComment extends Rateable {
 	@DBStore(columnType="CLOB")
+	@GenModel(propertyMultiLine="true", propertyCategory="Comment")
 	FLMarkdown[1] comment
 	contains FLComment[] comments
 }
 
+class FLDataProvider extends FLID, Nameable, Commentable, HyperLinkable {
+	@GenModel(propertyCategory="Data Provider")
+	refers FLElement[] providedElements opposite dataProvider
+}
+
+interface Commentable {
+	contains FLComment[] comments
+}
+
+interface HyperLinkable {
+	contains FLHyperLink[] hyperLinks
+}
+
+interface Nameable {
+	@GenModel(propertyCategory="Named Element")
+	String[1] name
+	@GenModel(propertyMultiLine="true", propertyCategory="Named Element")
+	@DBStore(columnType="CLOB")
+	FLMarkdown description
+	@GenModel(propertyMultiLine="true", propertyCategory="Named Element")
+	@DBStore(columnType="CLOB")
+	FLMarkdown longDescription
+	@GenModel(propertyMultiLine="true", propertyCategory="Named Element")
+	@DBStore(columnType="CLOB")
+	FLMarkdown notes
+}
+
 interface Rateable {
 	contains FLRating[] ratings
+	@GenModel(propertyCategory="Rating")
 	int likes get {
 		countLikes
 	}
+	@GenModel(propertyCategory="Rating")
 	int dislikes get {
 		countDislikes
 	}
@@ -314,6 +337,7 @@ interface Rateable {
 }
 
 class FLRating {
+	@GenModel(propertyCategory="Rating")
 	FLRatingType[1] ratingType
 }
 

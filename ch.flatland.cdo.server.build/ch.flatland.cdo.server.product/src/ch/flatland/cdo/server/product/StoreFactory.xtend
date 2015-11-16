@@ -12,6 +12,7 @@ package ch.flatland.cdo.server.product
 
 import ch.flatland.cdo.model.config.StoreType
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource
+import oracle.jdbc.pool.OracleDataSource
 import org.eclipse.emf.cdo.server.db.CDODBUtil
 import org.eclipse.emf.cdo.server.db.mapping.IMappingStrategy
 import org.eclipse.net4j.db.DBUtil
@@ -19,26 +20,33 @@ import org.h2.jdbcx.JdbcDataSource
 import org.slf4j.LoggerFactory
 
 import static ch.flatland.cdo.server.config.ServerConfig.*
-import oracle.jdbc.pool.OracleDataSource
 
 class StoreFactory {
-	
+
 	val static logger = LoggerFactory.getLogger(StoreFactory)
-	
+
 	private new() {
 		// hide constructor
 	}
-	
+
 	def static createStore(String repoName) {
-		if (CONFIG.getByName(repoName).dataStore.storeType == StoreType.H2) {
+		val info = '''
+			--------------------------------------------------------------------
+			Create Data Store 'ch.flatland.cdo.server.product'
+			Store type: «CONFIG.getByName(repoName).dataStore.storeType»
+			Connection url: «CONFIG.getByName(repoName).dataStore.connectionUrl»
+			--------------------------------------------------------------------
+		'''
+		println(info)
+		if(CONFIG.getByName(repoName).dataStore.storeType == StoreType.H2) {
 			logger.info("Create H2 data store")
 			return createH2Store(repoName)
-		} 
-		if (CONFIG.getByName(repoName).dataStore.storeType == StoreType.MYSQL) {
+		}
+		if(CONFIG.getByName(repoName).dataStore.storeType == StoreType.MYSQL) {
 			logger.info("Create MYSQL data store")
 			return createMySQLStore(repoName)
 		}
-		if (CONFIG.getByName(repoName).dataStore.storeType == StoreType.ORACLE) {
+		if(CONFIG.getByName(repoName).dataStore.storeType == StoreType.ORACLE) {
 			logger.info("Create ORACLE data store")
 			return createOracleStore(repoName)
 		}
@@ -89,7 +97,7 @@ class StoreFactory {
 
 		return store
 	}
-	
+
 	def private static createOracleStore(String repoName) {
 
 		// db mapping strategy 

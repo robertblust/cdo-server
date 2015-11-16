@@ -45,12 +45,13 @@ public class FLElementItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addLikesPropertyDescriptor(object);
-			addDislikesPropertyDescriptor(object);
 			addNamePropertyDescriptor(object);
 			addDescriptionPropertyDescriptor(object);
 			addLongDescriptionPropertyDescriptor(object);
 			addNotesPropertyDescriptor(object);
+			addLikesPropertyDescriptor(object);
+			addDislikesPropertyDescriptor(object);
+			addDataProviderPropertyDescriptor(object);
 			addUpStreamMappingsPropertyDescriptor(object);
 			addDownStreamMappingsPropertyDescriptor(object);
 			addHorizontalMappingsPropertyDescriptor(object);
@@ -93,7 +94,7 @@ public class FLElementItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				 null,
+				 getString("_UI_RatingPropertyCategory"),
 				 null));
 	}
 
@@ -115,7 +116,7 @@ public class FLElementItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				 null,
+				 getString("_UI_RatingPropertyCategory"),
 				 null));
 	}
 
@@ -130,14 +131,14 @@ public class FLElementItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_FLElement_name_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_FLElement_name_feature", "_UI_FLElement_type"),
-				 BasePackage.Literals.FL_ELEMENT__NAME,
+				 getString("_UI_Nameable_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Nameable_name_feature", "_UI_Nameable_type"),
+				 BasePackage.Literals.NAMEABLE__NAME,
 				 true,
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 getString("_UI_BasePropertyCategory"),
+				 getString("_UI_NamedElementPropertyCategory"),
 				 null));
 	}
 
@@ -152,14 +153,14 @@ public class FLElementItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_FLElement_description_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_FLElement_description_feature", "_UI_FLElement_type"),
-				 BasePackage.Literals.FL_ELEMENT__DESCRIPTION,
+				 getString("_UI_Nameable_description_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Nameable_description_feature", "_UI_Nameable_type"),
+				 BasePackage.Literals.NAMEABLE__DESCRIPTION,
 				 true,
 				 true,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 getString("_UI_BasePropertyCategory"),
+				 getString("_UI_NamedElementPropertyCategory"),
 				 null));
 	}
 
@@ -174,14 +175,14 @@ public class FLElementItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_FLElement_longDescription_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_FLElement_longDescription_feature", "_UI_FLElement_type"),
-				 BasePackage.Literals.FL_ELEMENT__LONG_DESCRIPTION,
+				 getString("_UI_Nameable_longDescription_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Nameable_longDescription_feature", "_UI_Nameable_type"),
+				 BasePackage.Literals.NAMEABLE__LONG_DESCRIPTION,
+				 true,
 				 true,
 				 false,
-				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
+				 getString("_UI_NamedElementPropertyCategory"),
 				 null));
 	}
 
@@ -196,14 +197,36 @@ public class FLElementItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_FLElement_notes_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_FLElement_notes_feature", "_UI_FLElement_type"),
-				 BasePackage.Literals.FL_ELEMENT__NOTES,
+				 getString("_UI_Nameable_notes_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Nameable_notes_feature", "_UI_Nameable_type"),
+				 BasePackage.Literals.NAMEABLE__NOTES,
+				 true,
 				 true,
 				 false,
-				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 getString("_UI_NamedElementPropertyCategory"),
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Data Provider feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDataProviderPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_FLElement_dataProvider_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FLElement_dataProvider_feature", "_UI_FLElement_type"),
+				 BasePackage.Literals.FL_ELEMENT__DATA_PROVIDER,
+				 true,
+				 false,
+				 true,
 				 null,
+				 getString("_UI_BasePropertyCategory"),
 				 null));
 	}
 
@@ -660,10 +683,10 @@ public class FLElementItemProvider
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(BasePackage.Literals.RATEABLE__RATINGS);
+			childrenFeatures.add(BasePackage.Literals.COMMENTABLE__COMMENTS);
+			childrenFeatures.add(BasePackage.Literals.HYPER_LINKABLE__HYPER_LINKS);
 			childrenFeatures.add(BasePackage.Literals.FL_ELEMENT__TRACES);
 			childrenFeatures.add(BasePackage.Literals.FL_ELEMENT__PROPERTIES);
-			childrenFeatures.add(BasePackage.Literals.FL_ELEMENT__HYPER_LINKS);
-			childrenFeatures.add(BasePackage.Literals.FL_ELEMENT__COMMENTS);
 		}
 		return childrenFeatures;
 	}
@@ -722,19 +745,19 @@ public class FLElementItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(FLElement.class)) {
-			case BasePackage.FL_ELEMENT__LIKES:
-			case BasePackage.FL_ELEMENT__DISLIKES:
 			case BasePackage.FL_ELEMENT__NAME:
 			case BasePackage.FL_ELEMENT__DESCRIPTION:
 			case BasePackage.FL_ELEMENT__LONG_DESCRIPTION:
 			case BasePackage.FL_ELEMENT__NOTES:
+			case BasePackage.FL_ELEMENT__LIKES:
+			case BasePackage.FL_ELEMENT__DISLIKES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case BasePackage.FL_ELEMENT__RATINGS:
+			case BasePackage.FL_ELEMENT__COMMENTS:
+			case BasePackage.FL_ELEMENT__HYPER_LINKS:
 			case BasePackage.FL_ELEMENT__TRACES:
 			case BasePackage.FL_ELEMENT__PROPERTIES:
-			case BasePackage.FL_ELEMENT__HYPER_LINKS:
-			case BasePackage.FL_ELEMENT__COMMENTS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -759,6 +782,16 @@ public class FLElementItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
+				(BasePackage.Literals.COMMENTABLE__COMMENTS,
+				 BaseFactory.eINSTANCE.createFLComment()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BasePackage.Literals.HYPER_LINKABLE__HYPER_LINKS,
+				 BaseFactory.eINSTANCE.createFLHyperLink()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(BasePackage.Literals.FL_ELEMENT__TRACES,
 				 BaseFactory.eINSTANCE.createFLTrace()));
 
@@ -766,16 +799,6 @@ public class FLElementItemProvider
 			(createChildParameter
 				(BasePackage.Literals.FL_ELEMENT__PROPERTIES,
 				 BaseFactory.eINSTANCE.createFLProperty()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BasePackage.Literals.FL_ELEMENT__HYPER_LINKS,
-				 BaseFactory.eINSTANCE.createFLHyperLink()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BasePackage.Literals.FL_ELEMENT__COMMENTS,
-				 BaseFactory.eINSTANCE.createFLComment()));
 	}
 
 }

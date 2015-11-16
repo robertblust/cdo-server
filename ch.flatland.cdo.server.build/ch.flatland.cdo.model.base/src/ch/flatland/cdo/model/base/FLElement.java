@@ -15,14 +15,9 @@ import org.eclipse.emf.ecore.EReference;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link ch.flatland.cdo.model.base.FLElement#getName <em>Name</em>}</li>
- *   <li>{@link ch.flatland.cdo.model.base.FLElement#getDescription <em>Description</em>}</li>
- *   <li>{@link ch.flatland.cdo.model.base.FLElement#getLongDescription <em>Long Description</em>}</li>
- *   <li>{@link ch.flatland.cdo.model.base.FLElement#getNotes <em>Notes</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.FLElement#getTraces <em>Traces</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.FLElement#getProperties <em>Properties</em>}</li>
- *   <li>{@link ch.flatland.cdo.model.base.FLElement#getHyperLinks <em>Hyper Links</em>}</li>
- *   <li>{@link ch.flatland.cdo.model.base.FLElement#getComments <em>Comments</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.base.FLElement#getDataProvider <em>Data Provider</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.FLElement#getUpStreamMappings <em>Up Stream Mappings</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.FLElement#getDownStreamMappings <em>Down Stream Mappings</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.FLElement#getHorizontalMappings <em>Horizontal Mappings</em>}</li>
@@ -64,112 +59,7 @@ import org.eclipse.emf.ecore.EReference;
  * @model abstract="true"
  * @generated
  */
-public interface FLElement extends FLID, Rateable {
-	/**
-	 * Returns the value of the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Name</em>' attribute.
-	 * @see #setName(String)
-	 * @see ch.flatland.cdo.model.base.BasePackage#getFLElement_Name()
-	 * @model unique="false" required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Base'"
-	 * @generated
-	 */
-	String getName();
-
-	/**
-	 * Sets the value of the '{@link ch.flatland.cdo.model.base.FLElement#getName <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Name</em>' attribute.
-	 * @see #getName()
-	 * @generated
-	 */
-	void setName(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Description</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Description</em>' attribute.
-	 * @see #setDescription(String)
-	 * @see ch.flatland.cdo.model.base.BasePackage#getFLElement_Description()
-	 * @model unique="false" dataType="ch.flatland.cdo.model.base.FLMarkdown"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyMultiLine='true' propertyCategory='Base'"
-	 *        annotation="http://www.eclipse.org/CDO/DBStore columnType='CLOB'"
-	 * @generated
-	 */
-	String getDescription();
-
-	/**
-	 * Sets the value of the '{@link ch.flatland.cdo.model.base.FLElement#getDescription <em>Description</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Description</em>' attribute.
-	 * @see #getDescription()
-	 * @generated
-	 */
-	void setDescription(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Long Description</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Long Description</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Long Description</em>' attribute.
-	 * @see #setLongDescription(String)
-	 * @see ch.flatland.cdo.model.base.BasePackage#getFLElement_LongDescription()
-	 * @model unique="false" dataType="ch.flatland.cdo.model.base.FLMarkdown"
-	 *        annotation="http://www.eclipse.org/CDO/DBStore columnType='CLOB'"
-	 * @generated
-	 */
-	String getLongDescription();
-
-	/**
-	 * Sets the value of the '{@link ch.flatland.cdo.model.base.FLElement#getLongDescription <em>Long Description</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Long Description</em>' attribute.
-	 * @see #getLongDescription()
-	 * @generated
-	 */
-	void setLongDescription(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Notes</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Notes</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Notes</em>' attribute.
-	 * @see #setNotes(String)
-	 * @see ch.flatland.cdo.model.base.BasePackage#getFLElement_Notes()
-	 * @model unique="false" dataType="ch.flatland.cdo.model.base.FLMarkdown"
-	 *        annotation="http://www.eclipse.org/CDO/DBStore columnType='CLOB'"
-	 * @generated
-	 */
-	String getNotes();
-
-	/**
-	 * Sets the value of the '{@link ch.flatland.cdo.model.base.FLElement#getNotes <em>Notes</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Notes</em>' attribute.
-	 * @see #getNotes()
-	 * @generated
-	 */
-	void setNotes(String value);
-
+public interface FLElement extends FLID, Nameable, Rateable, Commentable, HyperLinkable {
 	/**
 	 * Returns the value of the '<em><b>Traces</b></em>' containment reference list.
 	 * The list contents are of type {@link ch.flatland.cdo.model.base.FLTrace}.
@@ -203,36 +93,33 @@ public interface FLElement extends FLID, Rateable {
 	EList<FLProperty> getProperties();
 
 	/**
-	 * Returns the value of the '<em><b>Hyper Links</b></em>' containment reference list.
-	 * The list contents are of type {@link ch.flatland.cdo.model.base.FLHyperLink}.
+	 * Returns the value of the '<em><b>Data Provider</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link ch.flatland.cdo.model.base.FLDataProvider#getProvidedElements <em>Provided Elements</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Hyper Links</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Data Provider</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Hyper Links</em>' containment reference list.
-	 * @see ch.flatland.cdo.model.base.BasePackage#getFLElement_HyperLinks()
-	 * @model containment="true"
+	 * @return the value of the '<em>Data Provider</em>' reference.
+	 * @see #setDataProvider(FLDataProvider)
+	 * @see ch.flatland.cdo.model.base.BasePackage#getFLElement_DataProvider()
+	 * @see ch.flatland.cdo.model.base.FLDataProvider#getProvidedElements
+	 * @model opposite="providedElements"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Base'"
 	 * @generated
 	 */
-	EList<FLHyperLink> getHyperLinks();
+	FLDataProvider getDataProvider();
 
 	/**
-	 * Returns the value of the '<em><b>Comments</b></em>' containment reference list.
-	 * The list contents are of type {@link ch.flatland.cdo.model.base.FLComment}.
+	 * Sets the value of the '{@link ch.flatland.cdo.model.base.FLElement#getDataProvider <em>Data Provider</em>}' reference.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Comments</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Comments</em>' containment reference list.
-	 * @see ch.flatland.cdo.model.base.BasePackage#getFLElement_Comments()
-	 * @model containment="true"
+	 * @param value the new value of the '<em>Data Provider</em>' reference.
+	 * @see #getDataProvider()
 	 * @generated
 	 */
-	EList<FLComment> getComments();
+	void setDataProvider(FLDataProvider value);
 
 	/**
 	 * Returns the value of the '<em><b>Up Stream Mappings</b></em>' reference list.

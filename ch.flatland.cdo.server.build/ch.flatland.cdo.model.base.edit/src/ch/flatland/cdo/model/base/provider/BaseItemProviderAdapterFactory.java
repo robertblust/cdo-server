@@ -152,6 +152,29 @@ public class BaseItemProviderAdapterFactory extends BaseAdapterFactory implement
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link ch.flatland.cdo.model.base.FLDataProvider} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected FLDataProviderItemProvider flDataProviderItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link ch.flatland.cdo.model.base.FLDataProvider}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createFLDataProviderAdapter() {
+		if (flDataProviderItemProvider == null) {
+			flDataProviderItemProvider = new FLDataProviderItemProvider(this);
+		}
+
+		return flDataProviderItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link ch.flatland.cdo.model.base.FLRating} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -349,6 +372,7 @@ public class BaseItemProviderAdapterFactory extends BaseAdapterFactory implement
 		if (flPackageItemProvider != null) flPackageItemProvider.dispose();
 		if (flHyperLinkItemProvider != null) flHyperLinkItemProvider.dispose();
 		if (flCommentItemProvider != null) flCommentItemProvider.dispose();
+		if (flDataProviderItemProvider != null) flDataProviderItemProvider.dispose();
 		if (flRatingItemProvider != null) flRatingItemProvider.dispose();
 		if (flTraceItemProvider != null) flTraceItemProvider.dispose();
 		if (flPropertyItemProvider != null) flPropertyItemProvider.dispose();

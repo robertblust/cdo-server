@@ -40,7 +40,7 @@
 <unit id="org.apache.poi.ooxml.schemas.source" version="3.9.0.v201405241750"/>
 <unit id="org.apache.poi.ooxml.schemas" version="3.9.0.v201405241750"/>
 <unit id="org.apache.poi.ooxml.source" version="3.9.0.v201405241905"/>
-<repository location="http://download.eclipse.org/tools/orbit/downloads/drops/R20140525021250/repository/"/>
+<repository location="http://download.eclipse.org/tools/orbit/downloads/drops/R20150821153341/repository/"/>
 </location>
 </locations>
 </target>

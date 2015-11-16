@@ -60,6 +60,7 @@ public class BaseFactoryImpl extends EFactoryImpl implements BaseFactory {
 			case BasePackage.FL_PACKAGE: return (EObject)createFLPackage();
 			case BasePackage.FL_HYPER_LINK: return (EObject)createFLHyperLink();
 			case BasePackage.FL_COMMENT: return (EObject)createFLComment();
+			case BasePackage.FL_DATA_PROVIDER: return (EObject)createFLDataProvider();
 			case BasePackage.FL_RATING: return (EObject)createFLRating();
 			case BasePackage.FL_TRACE: return (EObject)createFLTrace();
 			case BasePackage.FL_PROPERTY: return (EObject)createFLProperty();
@@ -138,6 +139,16 @@ public class BaseFactoryImpl extends EFactoryImpl implements BaseFactory {
 	public FLComment createFLComment() {
 		FLCommentImpl flComment = new FLCommentImpl();
 		return flComment;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FLDataProvider createFLDataProvider() {
+		FLDataProviderImpl flDataProvider = new FLDataProviderImpl();
+		return flDataProvider;
 	}
 
 	/**

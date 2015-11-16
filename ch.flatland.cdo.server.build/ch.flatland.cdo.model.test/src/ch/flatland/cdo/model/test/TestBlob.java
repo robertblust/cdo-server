@@ -34,6 +34,7 @@ public interface TestBlob extends CDOObject {
 	 * @see #setBlob(byte[])
 	 * @see ch.flatland.cdo.model.test.TestPackage#getTestBlob_Blob()
 	 * @model unique="false" dataType="org.eclipse.emf.ecore.xml.type.Base64Binary"
+	 *        annotation="http://www.eclipse.org/CDO/DBStore columnType='CLOB'"
 	 * @generated
 	 */
 	byte[] getBlob();

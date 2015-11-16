@@ -25,15 +25,15 @@ abstract class AbstractFlatlandPlugin extends Plugin {
 
 	def override start(BundleContext bundleContext) throws Exception {
 		AbstractFlatlandPlugin.context = bundleContext
-		plugin = this;
+		plugin = this
 	}
 
 	def override stop(BundleContext bundleContext) throws Exception {
-		plugin = null;
+		plugin = null
 		AbstractFlatlandPlugin.context = null;
 	}
 
 	def static getDefault() {
-		return plugin;
+		return plugin
 	}
 }

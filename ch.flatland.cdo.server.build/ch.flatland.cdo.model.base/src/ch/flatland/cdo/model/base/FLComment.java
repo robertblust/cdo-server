@@ -34,6 +34,7 @@ public interface FLComment extends Rateable {
 	 * @see #setComment(String)
 	 * @see ch.flatland.cdo.model.base.BasePackage#getFLComment_Comment()
 	 * @model unique="false" dataType="ch.flatland.cdo.model.base.FLMarkdown" required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyMultiLine='true' propertyCategory='Comment'"
 	 *        annotation="http://www.eclipse.org/CDO/DBStore columnType='CLOB'"
 	 * @generated
 	 */

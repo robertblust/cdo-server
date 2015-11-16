@@ -88,6 +88,22 @@ public class BaseAdapterFactory extends AdapterFactoryImpl {
 				return createFLCommentAdapter();
 			}
 			@Override
+			public Adapter caseFLDataProvider(FLDataProvider object) {
+				return createFLDataProviderAdapter();
+			}
+			@Override
+			public Adapter caseCommentable(Commentable object) {
+				return createCommentableAdapter();
+			}
+			@Override
+			public Adapter caseHyperLinkable(HyperLinkable object) {
+				return createHyperLinkableAdapter();
+			}
+			@Override
+			public Adapter caseNameable(Nameable object) {
+				return createNameableAdapter();
+			}
+			@Override
 			public Adapter caseRateable(Rateable object) {
 				return createRateableAdapter();
 			}
@@ -190,6 +206,62 @@ public class BaseAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createFLCommentAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ch.flatland.cdo.model.base.FLDataProvider <em>FL Data Provider</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ch.flatland.cdo.model.base.FLDataProvider
+	 * @generated
+	 */
+	public Adapter createFLDataProviderAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ch.flatland.cdo.model.base.Commentable <em>Commentable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ch.flatland.cdo.model.base.Commentable
+	 * @generated
+	 */
+	public Adapter createCommentableAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ch.flatland.cdo.model.base.HyperLinkable <em>Hyper Linkable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ch.flatland.cdo.model.base.HyperLinkable
+	 * @generated
+	 */
+	public Adapter createHyperLinkableAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ch.flatland.cdo.model.base.Nameable <em>Nameable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ch.flatland.cdo.model.base.Nameable
+	 * @generated
+	 */
+	public Adapter createNameableAdapter() {
 		return null;
 	}
 

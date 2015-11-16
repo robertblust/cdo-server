@@ -4,7 +4,9 @@ package ch.flatland.cdo.model.base.impl;
 
 import ch.flatland.cdo.model.base.BaseFactory;
 import ch.flatland.cdo.model.base.BasePackage;
+import ch.flatland.cdo.model.base.Commentable;
 import ch.flatland.cdo.model.base.FLComment;
+import ch.flatland.cdo.model.base.FLDataProvider;
 import ch.flatland.cdo.model.base.FLElement;
 import ch.flatland.cdo.model.base.FLHyperLink;
 import ch.flatland.cdo.model.base.FLPackage;
@@ -13,6 +15,8 @@ import ch.flatland.cdo.model.base.FLRating;
 import ch.flatland.cdo.model.base.FLRatingType;
 import ch.flatland.cdo.model.base.FLTrace;
 import ch.flatland.cdo.model.base.FLTraceType;
+import ch.flatland.cdo.model.base.HyperLinkable;
+import ch.flatland.cdo.model.base.Nameable;
 import ch.flatland.cdo.model.base.Rateable;
 import ch.flatland.cdo.model.base.util.BaseValidator;
 import org.eclipse.emf.ecore.EAttribute;
@@ -69,6 +73,34 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 	 * @generated
 	 */
 	private EClass flCommentEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass flDataProviderEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass commentableEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass hyperLinkableEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass nameableEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -294,44 +326,8 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getFLElement_Name() {
-		return (EAttribute)flElementEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getFLElement_Description() {
-		return (EAttribute)flElementEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getFLElement_LongDescription() {
-		return (EAttribute)flElementEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getFLElement_Notes() {
-		return (EAttribute)flElementEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getFLElement_Traces() {
-		return (EReference)flElementEClass.getEStructuralFeatures().get(4);
+		return (EReference)flElementEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -340,7 +336,7 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 	 * @generated
 	 */
 	public EReference getFLElement_Properties() {
-		return (EReference)flElementEClass.getEStructuralFeatures().get(5);
+		return (EReference)flElementEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -348,17 +344,8 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFLElement_HyperLinks() {
-		return (EReference)flElementEClass.getEStructuralFeatures().get(6);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getFLElement_Comments() {
-		return (EReference)flElementEClass.getEStructuralFeatures().get(7);
+	public EReference getFLElement_DataProvider() {
+		return (EReference)flElementEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -367,7 +354,7 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 	 * @generated
 	 */
 	public EReference getFLElement_UpStreamMappings() {
-		return (EReference)flElementEClass.getEStructuralFeatures().get(8);
+		return (EReference)flElementEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -376,7 +363,7 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 	 * @generated
 	 */
 	public EReference getFLElement_DownStreamMappings() {
-		return (EReference)flElementEClass.getEStructuralFeatures().get(9);
+		return (EReference)flElementEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -385,7 +372,7 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 	 * @generated
 	 */
 	public EReference getFLElement_HorizontalMappings() {
-		return (EReference)flElementEClass.getEStructuralFeatures().get(10);
+		return (EReference)flElementEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -394,7 +381,7 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 	 * @generated
 	 */
 	public EReference getFLElement_HorizontalOppositeMappings() {
-		return (EReference)flElementEClass.getEStructuralFeatures().get(11);
+		return (EReference)flElementEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -403,7 +390,7 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 	 * @generated
 	 */
 	public EReference getFLElement_DerivedContainer() {
-		return (EReference)flElementEClass.getEStructuralFeatures().get(12);
+		return (EReference)flElementEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -412,7 +399,7 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 	 * @generated
 	 */
 	public EReference getFLElement_TraceToOwn() {
-		return (EReference)flElementEClass.getEStructuralFeatures().get(13);
+		return (EReference)flElementEClass.getEStructuralFeatures().get(8);
 	}
 
 	/**
@@ -421,7 +408,7 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 	 * @generated
 	 */
 	public EReference getFLElement_TraceToUse() {
-		return (EReference)flElementEClass.getEStructuralFeatures().get(14);
+		return (EReference)flElementEClass.getEStructuralFeatures().get(9);
 	}
 
 	/**
@@ -430,7 +417,7 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 	 * @generated
 	 */
 	public EReference getFLElement_TraceToRealize() {
-		return (EReference)flElementEClass.getEStructuralFeatures().get(15);
+		return (EReference)flElementEClass.getEStructuralFeatures().get(10);
 	}
 
 	/**
@@ -439,7 +426,7 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 	 * @generated
 	 */
 	public EReference getFLElement_TraceToSpecify() {
-		return (EReference)flElementEClass.getEStructuralFeatures().get(16);
+		return (EReference)flElementEClass.getEStructuralFeatures().get(11);
 	}
 
 	/**
@@ -448,7 +435,7 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 	 * @generated
 	 */
 	public EReference getFLElement_TraceToImplement() {
-		return (EReference)flElementEClass.getEStructuralFeatures().get(17);
+		return (EReference)flElementEClass.getEStructuralFeatures().get(12);
 	}
 
 	/**
@@ -457,7 +444,7 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 	 * @generated
 	 */
 	public EReference getFLElement_TraceToElaborate() {
-		return (EReference)flElementEClass.getEStructuralFeatures().get(18);
+		return (EReference)flElementEClass.getEStructuralFeatures().get(13);
 	}
 
 	/**
@@ -466,7 +453,7 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 	 * @generated
 	 */
 	public EReference getFLElement_TraceToDerive() {
-		return (EReference)flElementEClass.getEStructuralFeatures().get(19);
+		return (EReference)flElementEClass.getEStructuralFeatures().get(14);
 	}
 
 	/**
@@ -475,7 +462,7 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 	 * @generated
 	 */
 	public EReference getFLElement_TraceToValidate() {
-		return (EReference)flElementEClass.getEStructuralFeatures().get(20);
+		return (EReference)flElementEClass.getEStructuralFeatures().get(15);
 	}
 
 	/**
@@ -484,7 +471,7 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 	 * @generated
 	 */
 	public EReference getFLElement_TraceToTest() {
-		return (EReference)flElementEClass.getEStructuralFeatures().get(21);
+		return (EReference)flElementEClass.getEStructuralFeatures().get(16);
 	}
 
 	/**
@@ -493,7 +480,7 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 	 * @generated
 	 */
 	public EReference getFLElement_TraceToRelate() {
-		return (EReference)flElementEClass.getEStructuralFeatures().get(22);
+		return (EReference)flElementEClass.getEStructuralFeatures().get(17);
 	}
 
 	/**
@@ -502,7 +489,7 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 	 * @generated
 	 */
 	public EReference getFLElement_TraceToAffect() {
-		return (EReference)flElementEClass.getEStructuralFeatures().get(23);
+		return (EReference)flElementEClass.getEStructuralFeatures().get(18);
 	}
 
 	/**
@@ -511,7 +498,7 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 	 * @generated
 	 */
 	public EReference getFLElement_TraceToSatisfy() {
-		return (EReference)flElementEClass.getEStructuralFeatures().get(24);
+		return (EReference)flElementEClass.getEStructuralFeatures().get(19);
 	}
 
 	/**
@@ -520,7 +507,7 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 	 * @generated
 	 */
 	public EReference getFLElement_TraceToVerify() {
-		return (EReference)flElementEClass.getEStructuralFeatures().get(25);
+		return (EReference)flElementEClass.getEStructuralFeatures().get(20);
 	}
 
 	/**
@@ -529,7 +516,7 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 	 * @generated
 	 */
 	public EReference getFLElement_TraceToRefine() {
-		return (EReference)flElementEClass.getEStructuralFeatures().get(26);
+		return (EReference)flElementEClass.getEStructuralFeatures().get(21);
 	}
 
 	/**
@@ -538,7 +525,7 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 	 * @generated
 	 */
 	public EReference getFLElement_TraceToTrack() {
-		return (EReference)flElementEClass.getEStructuralFeatures().get(27);
+		return (EReference)flElementEClass.getEStructuralFeatures().get(22);
 	}
 
 	/**
@@ -547,7 +534,7 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 	 * @generated
 	 */
 	public EReference getFLElement_TraceFromOwn() {
-		return (EReference)flElementEClass.getEStructuralFeatures().get(28);
+		return (EReference)flElementEClass.getEStructuralFeatures().get(23);
 	}
 
 	/**
@@ -556,7 +543,7 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 	 * @generated
 	 */
 	public EReference getFLElement_TraceFromUse() {
-		return (EReference)flElementEClass.getEStructuralFeatures().get(29);
+		return (EReference)flElementEClass.getEStructuralFeatures().get(24);
 	}
 
 	/**
@@ -565,7 +552,7 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 	 * @generated
 	 */
 	public EReference getFLElement_TraceFromRealize() {
-		return (EReference)flElementEClass.getEStructuralFeatures().get(30);
+		return (EReference)flElementEClass.getEStructuralFeatures().get(25);
 	}
 
 	/**
@@ -574,7 +561,7 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 	 * @generated
 	 */
 	public EReference getFLElement_TraceFromSpecify() {
-		return (EReference)flElementEClass.getEStructuralFeatures().get(31);
+		return (EReference)flElementEClass.getEStructuralFeatures().get(26);
 	}
 
 	/**
@@ -583,7 +570,7 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 	 * @generated
 	 */
 	public EReference getFLElement_TraceFromImplement() {
-		return (EReference)flElementEClass.getEStructuralFeatures().get(32);
+		return (EReference)flElementEClass.getEStructuralFeatures().get(27);
 	}
 
 	/**
@@ -592,7 +579,7 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 	 * @generated
 	 */
 	public EReference getFLElement_TraceFromElaborate() {
-		return (EReference)flElementEClass.getEStructuralFeatures().get(33);
+		return (EReference)flElementEClass.getEStructuralFeatures().get(28);
 	}
 
 	/**
@@ -601,7 +588,7 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 	 * @generated
 	 */
 	public EReference getFLElement_TraceFromDerive() {
-		return (EReference)flElementEClass.getEStructuralFeatures().get(34);
+		return (EReference)flElementEClass.getEStructuralFeatures().get(29);
 	}
 
 	/**
@@ -610,7 +597,7 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 	 * @generated
 	 */
 	public EReference getFLElement_TraceFromValidate() {
-		return (EReference)flElementEClass.getEStructuralFeatures().get(35);
+		return (EReference)flElementEClass.getEStructuralFeatures().get(30);
 	}
 
 	/**
@@ -619,7 +606,7 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 	 * @generated
 	 */
 	public EReference getFLElement_TraceFromTest() {
-		return (EReference)flElementEClass.getEStructuralFeatures().get(36);
+		return (EReference)flElementEClass.getEStructuralFeatures().get(31);
 	}
 
 	/**
@@ -628,7 +615,7 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 	 * @generated
 	 */
 	public EReference getFLElement_TraceFromRelate() {
-		return (EReference)flElementEClass.getEStructuralFeatures().get(37);
+		return (EReference)flElementEClass.getEStructuralFeatures().get(32);
 	}
 
 	/**
@@ -637,7 +624,7 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 	 * @generated
 	 */
 	public EReference getFLElement_TraceFromAffect() {
-		return (EReference)flElementEClass.getEStructuralFeatures().get(38);
+		return (EReference)flElementEClass.getEStructuralFeatures().get(33);
 	}
 
 	/**
@@ -646,7 +633,7 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 	 * @generated
 	 */
 	public EReference getFLElement_TraceFromSatisfy() {
-		return (EReference)flElementEClass.getEStructuralFeatures().get(39);
+		return (EReference)flElementEClass.getEStructuralFeatures().get(34);
 	}
 
 	/**
@@ -655,7 +642,7 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 	 * @generated
 	 */
 	public EReference getFLElement_TraceFromVerify() {
-		return (EReference)flElementEClass.getEStructuralFeatures().get(40);
+		return (EReference)flElementEClass.getEStructuralFeatures().get(35);
 	}
 
 	/**
@@ -664,7 +651,7 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 	 * @generated
 	 */
 	public EReference getFLElement_TraceFromRefine() {
-		return (EReference)flElementEClass.getEStructuralFeatures().get(41);
+		return (EReference)flElementEClass.getEStructuralFeatures().get(36);
 	}
 
 	/**
@@ -673,7 +660,7 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 	 * @generated
 	 */
 	public EReference getFLElement_TraceFromTrack() {
-		return (EReference)flElementEClass.getEStructuralFeatures().get(42);
+		return (EReference)flElementEClass.getEStructuralFeatures().get(37);
 	}
 
 	/**
@@ -818,6 +805,105 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 	 */
 	public EReference getFLComment_Comments() {
 		return (EReference)flCommentEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getFLDataProvider() {
+		return flDataProviderEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getFLDataProvider_ProvidedElements() {
+		return (EReference)flDataProviderEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getCommentable() {
+		return commentableEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCommentable_Comments() {
+		return (EReference)commentableEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getHyperLinkable() {
+		return hyperLinkableEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getHyperLinkable_HyperLinks() {
+		return (EReference)hyperLinkableEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getNameable() {
+		return nameableEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getNameable_Name() {
+		return (EAttribute)nameableEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getNameable_Description() {
+		return (EAttribute)nameableEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getNameable_LongDescription() {
+		return (EAttribute)nameableEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getNameable_Notes() {
+		return (EAttribute)nameableEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -1021,14 +1107,9 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 		createEOperation(flidEClass, FLID___HAS_PERMISSION__FLID);
 
 		flElementEClass = createEClass(FL_ELEMENT);
-		createEAttribute(flElementEClass, FL_ELEMENT__NAME);
-		createEAttribute(flElementEClass, FL_ELEMENT__DESCRIPTION);
-		createEAttribute(flElementEClass, FL_ELEMENT__LONG_DESCRIPTION);
-		createEAttribute(flElementEClass, FL_ELEMENT__NOTES);
 		createEReference(flElementEClass, FL_ELEMENT__TRACES);
 		createEReference(flElementEClass, FL_ELEMENT__PROPERTIES);
-		createEReference(flElementEClass, FL_ELEMENT__HYPER_LINKS);
-		createEReference(flElementEClass, FL_ELEMENT__COMMENTS);
+		createEReference(flElementEClass, FL_ELEMENT__DATA_PROVIDER);
 		createEReference(flElementEClass, FL_ELEMENT__UP_STREAM_MAPPINGS);
 		createEReference(flElementEClass, FL_ELEMENT__DOWN_STREAM_MAPPINGS);
 		createEReference(flElementEClass, FL_ELEMENT__HORIZONTAL_MAPPINGS);
@@ -1083,6 +1164,21 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 		flCommentEClass = createEClass(FL_COMMENT);
 		createEAttribute(flCommentEClass, FL_COMMENT__COMMENT);
 		createEReference(flCommentEClass, FL_COMMENT__COMMENTS);
+
+		flDataProviderEClass = createEClass(FL_DATA_PROVIDER);
+		createEReference(flDataProviderEClass, FL_DATA_PROVIDER__PROVIDED_ELEMENTS);
+
+		commentableEClass = createEClass(COMMENTABLE);
+		createEReference(commentableEClass, COMMENTABLE__COMMENTS);
+
+		hyperLinkableEClass = createEClass(HYPER_LINKABLE);
+		createEReference(hyperLinkableEClass, HYPER_LINKABLE__HYPER_LINKS);
+
+		nameableEClass = createEClass(NAMEABLE);
+		createEAttribute(nameableEClass, NAMEABLE__NAME);
+		createEAttribute(nameableEClass, NAMEABLE__DESCRIPTION);
+		createEAttribute(nameableEClass, NAMEABLE__LONG_DESCRIPTION);
+		createEAttribute(nameableEClass, NAMEABLE__NOTES);
 
 		rateableEClass = createEClass(RATEABLE);
 		createEReference(rateableEClass, RATEABLE__RATINGS);
@@ -1143,9 +1239,16 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 
 		// Add supertypes to classes
 		flElementEClass.getESuperTypes().add(this.getFLID());
+		flElementEClass.getESuperTypes().add(this.getNameable());
 		flElementEClass.getESuperTypes().add(this.getRateable());
+		flElementEClass.getESuperTypes().add(this.getCommentable());
+		flElementEClass.getESuperTypes().add(this.getHyperLinkable());
 		flPackageEClass.getESuperTypes().add(this.getFLElement());
 		flCommentEClass.getESuperTypes().add(this.getRateable());
+		flDataProviderEClass.getESuperTypes().add(this.getFLID());
+		flDataProviderEClass.getESuperTypes().add(this.getNameable());
+		flDataProviderEClass.getESuperTypes().add(this.getCommentable());
+		flDataProviderEClass.getESuperTypes().add(this.getHyperLinkable());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(flidEClass, ch.flatland.cdo.model.base.FLID.class, "FLID", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1161,14 +1264,9 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 		addEParameter(op, this.getFLID(), "object", 0, 1, !IS_UNIQUE, IS_ORDERED);
 
 		initEClass(flElementEClass, FLElement.class, "FLElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getFLElement_Name(), theEcorePackage.getEString(), "name", null, 1, 1, FLElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getFLElement_Description(), this.getFLMarkdown(), "description", null, 0, 1, FLElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getFLElement_LongDescription(), this.getFLMarkdown(), "longDescription", null, 0, 1, FLElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getFLElement_Notes(), this.getFLMarkdown(), "notes", null, 0, 1, FLElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFLElement_Traces(), this.getFLTrace(), null, "traces", null, 0, -1, FLElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFLElement_Properties(), this.getFLProperty(), null, "properties", null, 0, -1, FLElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getFLElement_HyperLinks(), this.getFLHyperLink(), null, "hyperLinks", null, 0, -1, FLElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getFLElement_Comments(), this.getFLComment(), null, "comments", null, 0, -1, FLElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFLElement_DataProvider(), this.getFLDataProvider(), this.getFLDataProvider_ProvidedElements(), "dataProvider", null, 0, 1, FLElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFLElement_UpStreamMappings(), this.getFLElement(), this.getFLElement_DownStreamMappings(), "upStreamMappings", null, 0, -1, FLElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFLElement_DownStreamMappings(), this.getFLElement(), this.getFLElement_UpStreamMappings(), "downStreamMappings", null, 0, -1, FLElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFLElement_HorizontalMappings(), this.getFLElement(), this.getFLElement_HorizontalOppositeMappings(), "horizontalMappings", null, 0, -1, FLElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1243,6 +1341,21 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 		initEClass(flCommentEClass, FLComment.class, "FLComment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getFLComment_Comment(), this.getFLMarkdown(), "comment", null, 1, 1, FLComment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFLComment_Comments(), this.getFLComment(), null, "comments", null, 0, -1, FLComment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(flDataProviderEClass, FLDataProvider.class, "FLDataProvider", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getFLDataProvider_ProvidedElements(), this.getFLElement(), this.getFLElement_DataProvider(), "providedElements", null, 0, -1, FLDataProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(commentableEClass, Commentable.class, "Commentable", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getCommentable_Comments(), this.getFLComment(), null, "comments", null, 0, -1, Commentable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(hyperLinkableEClass, HyperLinkable.class, "HyperLinkable", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getHyperLinkable_HyperLinks(), this.getFLHyperLink(), null, "hyperLinks", null, 0, -1, HyperLinkable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(nameableEClass, Nameable.class, "Nameable", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getNameable_Name(), theEcorePackage.getEString(), "name", null, 1, 1, Nameable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getNameable_Description(), this.getFLMarkdown(), "description", null, 0, 1, Nameable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getNameable_LongDescription(), this.getFLMarkdown(), "longDescription", null, 0, 1, Nameable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getNameable_Notes(), this.getFLMarkdown(), "notes", null, 0, 1, Nameable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(rateableEClass, Rateable.class, "Rateable", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getRateable_Ratings(), this.getFLRating(), null, "ratings", null, 0, -1, Rateable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1327,25 +1440,25 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 	protected void createDBStoreAnnotations() {
 		String source = "http://www.eclipse.org/CDO/DBStore";	
 		addAnnotation
-		  (getFLElement_Description(), 
-		   source, 
-		   new String[] {
-			 "columnType", "CLOB"
-		   });	
-		addAnnotation
-		  (getFLElement_LongDescription(), 
-		   source, 
-		   new String[] {
-			 "columnType", "CLOB"
-		   });	
-		addAnnotation
-		  (getFLElement_Notes(), 
-		   source, 
-		   new String[] {
-			 "columnType", "CLOB"
-		   });	
-		addAnnotation
 		  (getFLComment_Comment(), 
+		   source, 
+		   new String[] {
+			 "columnType", "CLOB"
+		   });	
+		addAnnotation
+		  (getNameable_Description(), 
+		   source, 
+		   new String[] {
+			 "columnType", "CLOB"
+		   });	
+		addAnnotation
+		  (getNameable_LongDescription(), 
+		   source, 
+		   new String[] {
+			 "columnType", "CLOB"
+		   });	
+		addAnnotation
+		  (getNameable_Notes(), 
 		   source, 
 		   new String[] {
 			 "columnType", "CLOB"

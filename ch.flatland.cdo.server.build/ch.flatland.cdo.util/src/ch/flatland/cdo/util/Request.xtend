@@ -10,6 +10,7 @@
  */
 package ch.flatland.cdo.util
 
+import ch.flatland.cdo.model.config.AuthenticatorType
 import ch.flatland.cdo.server.config.ServerConfig
 import com.google.common.base.Splitter
 import javax.servlet.http.HttpServletRequest
@@ -20,7 +21,6 @@ import static ch.flatland.cdo.server.config.ServerConfig.*
 import static ch.flatland.cdo.util.Constants.*
 import static javax.servlet.http.HttpServletRequest.*
 import static javax.servlet.http.HttpServletResponse.*
-import ch.flatland.cdo.model.config.AuthenticatorType
 
 class Request {
 

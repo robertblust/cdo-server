@@ -1,0 +1,144 @@
+<div ng-controller="AttributesCtrl" class="panel panel-default">
+  <div class="panel-heading"><i class="glyphicon glyphicon-th-list"></i> <span ng-click="show3 = !show3" class="reflink">Attributes
+    <strong>{{selectedObject.label}}</strong></span><i ng-if="dataLoading" class="loading glyphicon glyphicon-repeat pull-right"></i></div>
+  <div class="panel-body">
+    <form ng-submit="save()" name="attributesForm" class="form-horizontal" role="form"
+          novalidate ng-show="!show3">
+
+      <alert ng-show="showAlertSuccess()" type="success"
+             close="closeAlert(0, status.revisionDeltas)">
+        <i class="glyphicon glyphicon-ok-sign"></i> <label>updated {{status.revisionDeltas[0].origin}}</label>
+        <li ng-repeat="revisionDelta in status.revisionDeltas[0].revisionDelta">{{revisionDelta.message}}</li>
+      </alert>
+
+
+      <div ng-show="showAlertDiagnostics()" ng-repeat="diagnostic in status.diagnostics">
+        <alert ng-show="status.diagnostics != undefined" close="closeAlert($index, status.diagnostics)">
+          <i class="glyphicon glyphicon-exclamation-sign"></i> <label>constraint violation {{diagnostic.origin}}</label>
+
+          <div ng-repeat="revisionDelta in diagnostic.diagnostic" ng-if="revisionDelta.feature.substring(0, 1) === 'a'">
+            <li>{{revisionDelta.message}}</li>
+            <div ng-repeat="detail in revisionDelta.details">
+              <li>{{detail}}</li>
+            </div>
+          </div>
+        </alert>
+      </div>
+
+
+      <alert ng-show="status.error != undefined" type="danger" close="closeAlert()">
+        {{status.error}}
+      </alert>
+
+      <div ng-repeat="attribute in selectedObject.meta.attributes" ng-show="selectedObject.attributes[attribute.feature] !== undefined && selectedObject.attributes[attribute.feature].length > 0|| selectedObject.permission === 'WRITE'" class="form-group">
+        <label class="control-label col-sm-4" for="{{attribute.feature}}"><span ng-if="attribute.derived === true">/</span>{{attribute.feature}}</label>
+
+        <div class="col-sm-8"
+             ng-class="{ 'has-warning' : (attributesForm[attribute.feature].$error.required
+             || attributesForm[attribute.feature].$error.pattern
+             || attributesForm[attribute.feature].$error.number
+             || attributesForm[attribute.feature].$error.date)}">
+
+          <div ng-show="(attributesForm[attribute.feature].$error.required
+          || attributesForm[attribute.feature].$error.pattern
+          || attributesForm[attribute.feature].$error.number
+          || attributesForm[attribute.feature].$error.date)" class="alert-warning" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="warning" ng-show="attributesForm[attribute.feature].$error.required">
+              {{attribute.feature}} is mandatory
+            </span>
+            <span class="warning" ng-show="attributesForm[attribute.feature].$error.pattern">
+              value of {{attribute.feature}} not matches pattern {{attribute.pattern}}
+            </span>
+            <span class="warning" ng-show="attributesForm[attribute.feature].$error.number">
+              value of {{attribute.feature}} is not a valid number
+            </span>
+            <span class="warning" ng-show="attributesForm[attribute.feature].$error.date">
+              value of {{attribute.feature}} is not a valid date and time
+            </span>
+          </div>
+
+          <!-- jsType === string -->
+          <input ng-if="attribute.jsType === 'string' && attribute.type !== 'base.FLMarkdown' && attribute.type !== 'ecore.xml.type.Base64Binary'"
+                 ng-model="selectedObject.attributes[attribute.feature]"
+                 type="text"
+                 class="form-control"
+                 id="{{attribute.feature}}"
+                 name="{{attribute.feature}}"
+                 ng-required="{{attribute.required}}"
+                 pattern="{{attribute.pattern}}"
+                 ng-readonly="selectedObject.permission === 'READ' || attribute.derived === true"/>
+                 <!-- 
+                 <textarea markdown-editor name="{{attribute.feature}}" data-provide="markdown-editable" rows="10" ng-if="attribute.jsType === 'string' && attribute.type === 'base.FLMarkdown' && selectedObject.permission === 'WRITE'"
+                    ng-model="selectedObject.attributes[attribute.feature]"></textarea>
+ -->
+          <textarea ng-if="attribute.jsType === 'string' && attribute.type === 'base.FLMarkdown'"
+                    rows="5" ng-model="selectedObject.attributes[attribute.feature]"
+                 type="text"
+                 class="form-control"
+                 id="{{attribute.feature}}"
+                 name="{{attribute.feature}}"
+                 ng-required="{{attribute.required}}"
+                 pattern="{{attribute.pattern}}"
+                 ng-readonly="selectedObject.permission === 'READ' || attribute.derived === true"></textarea>
+
+
+          <div ng-if="attribute.jsType === 'string' && attribute.type === 'ecore.xml.type.Base64Binary' && selectedObject.permission === 'WRITE'">
+            <input class="form-control" type="file" ng-model="selectedObject.attributes[attribute.feature]" multiple base-sixty-four-input><br>
+            <img class="screenShot" ng-src="data:image/gif;base64,{{selectedObject.attributes[attribute.feature][0].base64}}" ng-if="selectedObject.attributes[attribute.feature] !== undefined">
+          </div>
+
+
+          <img class="screenShot" ng-src="data:image/gif;base64,{{selectedObject.attributes[attribute.feature]}}" ng-if="attribute.jsType === 'string' && attribute.type === 'ecore.xml.type.Base64Binary' && selectedObject.permission === 'READ'">
+          <!-- jsType === number -->
+          <input ng-if="attribute.jsType === 'number'"
+                 ng-model="selectedObject.attributes[attribute.feature]"
+                 type="number"
+                 class="form-control"
+                 id="{{attribute.feature}}"
+                 name="{{attribute.feature}}"
+                 ng-required="{{attribute.required}}"
+                 pattern="{{attribute.pattern}}"
+                 ng-readonly="selectedObject.permission === 'READ' || attribute.derived === true"/>
+
+          <!-- jsType === enum -->
+          <select ng-if="attribute.jsType === 'enum'"
+                  ng-model="selectedObject.attributes[attribute.feature]"
+                  ng-options="opt as opt for opt in attribute.literals"
+                  class="form-control"
+                  id="{{attribute.feature}}"
+                  name="{{attribute.feature}}"
+                  ng-required="{{attribute.required}}"
+                  ng-disabled="selectedObject.permission === 'READ' || attribute.derived === true"></select>
+
+          <!-- jsType === date -->
+          <input ng-if="attribute.jsType === 'date'"
+                 ng-model="selectedObject.attributes[attribute.feature]"
+                 type="text"
+                 class="form-control"
+                 id="{{attribute.feature}}"
+                 name="{{attribute.feature}}"
+                 ng-required="{{attribute.required}}"
+                 pattern="{{attribute.pattern}}"
+                 ng-readonly="selectedObject.permission === 'READ' || attribute.derived === true"/>
+
+          <!-- jsType === boolean -->
+          <input ng-if="attribute.jsType === 'boolean'"
+                 ng-model="selectedObject.attributes[attribute.feature]"
+                 type="checkbox"
+                 id="{{attribute.feature}}"
+                 name="{{attribute.feature}}"
+                 ng-disabled="selectedObject.permission === 'READ' || attribute.derived === true"/>
+        </div>
+      </div>
+      <div ng-show="selectedObject.meta.attributes.length > 0 && selectedObject.permission === 'WRITE'"
+           class="form-actions">
+        <div class="pull-right">
+          <button type="submit" ng-disabled="attributesForm.$invalid || dataLoading" class="btn btn-success pull-right">
+            Save
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

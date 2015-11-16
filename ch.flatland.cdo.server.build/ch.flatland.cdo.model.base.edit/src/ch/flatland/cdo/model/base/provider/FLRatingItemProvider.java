@@ -85,7 +85,7 @@ public class FLRatingItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
+				 getString("_UI_RatingPropertyCategory"),
 				 null));
 	}
 

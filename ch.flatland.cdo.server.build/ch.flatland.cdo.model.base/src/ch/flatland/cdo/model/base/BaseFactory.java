@@ -49,6 +49,15 @@ public interface BaseFactory extends EFactory {
 	FLComment createFLComment();
 
 	/**
+	 * Returns a new object of class '<em>FL Data Provider</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>FL Data Provider</em>'.
+	 * @generated
+	 */
+	FLDataProvider createFLDataProvider();
+
+	/**
 	 * Returns a new object of class '<em>FL Rating</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -85,7 +85,7 @@ public class FLHyperLinkItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
+				 getString("_UI_HyperLinkPropertyCategory"),
 				 null));
 	}
 
@@ -107,7 +107,7 @@ public class FLHyperLinkItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
+				 getString("_UI_HyperLinkPropertyCategory"),
 				 null));
 	}
 

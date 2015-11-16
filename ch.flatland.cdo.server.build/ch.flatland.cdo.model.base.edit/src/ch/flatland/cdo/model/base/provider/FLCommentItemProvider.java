@@ -89,7 +89,7 @@ public class FLCommentItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				 null,
+				 getString("_UI_RatingPropertyCategory"),
 				 null));
 	}
 
@@ -111,7 +111,7 @@ public class FLCommentItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				 null,
+				 getString("_UI_RatingPropertyCategory"),
 				 null));
 	}
 
@@ -130,10 +130,10 @@ public class FLCommentItemProvider
 				 getString("_UI_PropertyDescriptor_description", "_UI_FLComment_comment_feature", "_UI_FLComment_type"),
 				 BasePackage.Literals.FL_COMMENT__COMMENT,
 				 true,
-				 false,
+				 true,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
+				 getString("_UI_CommentPropertyCategory"),
 				 null));
 	}
 

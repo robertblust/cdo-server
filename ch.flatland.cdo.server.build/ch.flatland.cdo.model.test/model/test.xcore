@@ -10,6 +10,8 @@ package ch.flatland.cdo.model.test
 
 import org.eclipse.emf.ecore.xml.^type.Base64Binary
 
+annotation "http://www.eclipse.org/CDO/DBStore" as DBStore
+
 class SimpleDataTypes {
 	String testString
 	boolean testBoolean
@@ -61,6 +63,7 @@ class TestObject {
 }
 
 class TestBlob {
+	@DBStore(columnType="CLOB")
 	Base64Binary blob
 }
 

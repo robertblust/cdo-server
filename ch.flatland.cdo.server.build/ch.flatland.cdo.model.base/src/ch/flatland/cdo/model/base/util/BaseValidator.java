@@ -98,6 +98,14 @@ public class BaseValidator extends EObjectValidator {
 				return validateFLHyperLink((FLHyperLink)value, diagnostics, context);
 			case BasePackage.FL_COMMENT:
 				return validateFLComment((FLComment)value, diagnostics, context);
+			case BasePackage.FL_DATA_PROVIDER:
+				return validateFLDataProvider((FLDataProvider)value, diagnostics, context);
+			case BasePackage.COMMENTABLE:
+				return validateCommentable((Commentable)value, diagnostics, context);
+			case BasePackage.HYPER_LINKABLE:
+				return validateHyperLinkable((HyperLinkable)value, diagnostics, context);
+			case BasePackage.NAMEABLE:
+				return validateNameable((Nameable)value, diagnostics, context);
 			case BasePackage.RATEABLE:
 				return validateRateable((Rateable)value, diagnostics, context);
 			case BasePackage.FL_RATING:
@@ -162,6 +170,42 @@ public class BaseValidator extends EObjectValidator {
 	 */
 	public boolean validateFLComment(FLComment flComment, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)flComment, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateFLDataProvider(FLDataProvider flDataProvider, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint((EObject)flDataProvider, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateCommentable(Commentable commentable, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint((EObject)commentable, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateHyperLinkable(HyperLinkable hyperLinkable, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint((EObject)hyperLinkable, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateNameable(Nameable nameable, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint((EObject)nameable, diagnostics, context);
 	}
 
 	/**
