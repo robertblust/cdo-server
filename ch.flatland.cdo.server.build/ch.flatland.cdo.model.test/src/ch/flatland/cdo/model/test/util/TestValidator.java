@@ -92,8 +92,8 @@ public class TestValidator extends EObjectValidator {
 				return validateSimpleDataTypesAsArray((SimpleDataTypesAsArray)value, diagnostics, context);
 			case TestPackage.TEST_OBJECT:
 				return validateTestObject((TestObject)value, diagnostics, context);
-			case TestPackage.TEST_BLOB:
-				return validateTestBlob((TestBlob)value, diagnostics, context);
+			case TestPackage.TEST_CLOB:
+				return validateTestClob((TestClob)value, diagnostics, context);
 			case TestPackage.TEST_ENUM:
 				return validateTestEnum((TestEnum)value, diagnostics, context);
 			case TestPackage.MAXLENGTH8:
@@ -135,8 +135,8 @@ public class TestValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateTestBlob(TestBlob testBlob, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint((EObject)testBlob, diagnostics, context);
+	public boolean validateTestClob(TestClob testClob, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint((EObject)testClob, diagnostics, context);
 	}
 
 	/**

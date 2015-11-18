@@ -2,7 +2,7 @@
  */
 package ch.flatland.cdo.model.test.impl;
 
-import ch.flatland.cdo.model.test.TestBlob;
+import ch.flatland.cdo.model.test.TestClob;
 import ch.flatland.cdo.model.test.TestPackage;
 
 import org.eclipse.emf.ecore.EClass;
@@ -11,34 +11,34 @@ import org.eclipse.emf.internal.cdo.CDOObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Blob</b></em>'.
+ * An implementation of the model object '<em><b>Clob</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link ch.flatland.cdo.model.test.impl.TestBlobImpl#getBlob <em>Blob</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.test.impl.TestClobImpl#getClob <em>Clob</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class TestBlobImpl extends CDOObjectImpl implements TestBlob {
+public class TestClobImpl extends CDOObjectImpl implements TestClob {
 	/**
-	 * The default value of the '{@link #getBlob() <em>Blob</em>}' attribute.
+	 * The default value of the '{@link #getClob() <em>Clob</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getBlob()
+	 * @see #getClob()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final byte[] BLOB_EDEFAULT = null;
+	protected static final byte[] CLOB_EDEFAULT = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected TestBlobImpl() {
+	protected TestClobImpl() {
 		super();
 	}
 
@@ -49,7 +49,7 @@ public class TestBlobImpl extends CDOObjectImpl implements TestBlob {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return TestPackage.Literals.TEST_BLOB;
+		return TestPackage.Literals.TEST_CLOB;
 	}
 
 	/**
@@ -67,8 +67,8 @@ public class TestBlobImpl extends CDOObjectImpl implements TestBlob {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public byte[] getBlob() {
-		return (byte[])eDynamicGet(TestPackage.TEST_BLOB__BLOB, TestPackage.Literals.TEST_BLOB__BLOB, true, true);
+	public byte[] getClob() {
+		return (byte[])eDynamicGet(TestPackage.TEST_CLOB__CLOB, TestPackage.Literals.TEST_CLOB__CLOB, true, true);
 	}
 
 	/**
@@ -76,8 +76,8 @@ public class TestBlobImpl extends CDOObjectImpl implements TestBlob {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setBlob(byte[] newBlob) {
-		eDynamicSet(TestPackage.TEST_BLOB__BLOB, TestPackage.Literals.TEST_BLOB__BLOB, newBlob);
+	public void setClob(byte[] newClob) {
+		eDynamicSet(TestPackage.TEST_CLOB__CLOB, TestPackage.Literals.TEST_CLOB__CLOB, newClob);
 	}
 
 	/**
@@ -88,8 +88,8 @@ public class TestBlobImpl extends CDOObjectImpl implements TestBlob {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case TestPackage.TEST_BLOB__BLOB:
-				return getBlob();
+			case TestPackage.TEST_CLOB__CLOB:
+				return getClob();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -102,8 +102,8 @@ public class TestBlobImpl extends CDOObjectImpl implements TestBlob {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case TestPackage.TEST_BLOB__BLOB:
-				setBlob((byte[])newValue);
+			case TestPackage.TEST_CLOB__CLOB:
+				setClob((byte[])newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -117,8 +117,8 @@ public class TestBlobImpl extends CDOObjectImpl implements TestBlob {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case TestPackage.TEST_BLOB__BLOB:
-				setBlob(BLOB_EDEFAULT);
+			case TestPackage.TEST_CLOB__CLOB:
+				setClob(CLOB_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -132,10 +132,10 @@ public class TestBlobImpl extends CDOObjectImpl implements TestBlob {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case TestPackage.TEST_BLOB__BLOB:
-				return BLOB_EDEFAULT == null ? getBlob() != null : !BLOB_EDEFAULT.equals(getBlob());
+			case TestPackage.TEST_CLOB__CLOB:
+				return CLOB_EDEFAULT == null ? getClob() != null : !CLOB_EDEFAULT.equals(getClob());
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //TestBlobImpl
+} //TestClobImpl

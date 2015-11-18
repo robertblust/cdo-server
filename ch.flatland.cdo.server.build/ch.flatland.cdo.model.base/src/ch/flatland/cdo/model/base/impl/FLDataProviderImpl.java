@@ -6,20 +6,16 @@ import ch.flatland.cdo.model.base.BasePackage;
 import ch.flatland.cdo.model.base.Commentable;
 import ch.flatland.cdo.model.base.FLComment;
 import ch.flatland.cdo.model.base.FLDataProvider;
+
 import ch.flatland.cdo.model.base.FLElement;
 import ch.flatland.cdo.model.base.FLHyperLink;
 import ch.flatland.cdo.model.base.HyperLinkable;
 import ch.flatland.cdo.model.base.Nameable;
-
 import java.util.Collection;
-
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
@@ -61,7 +57,6 @@ public class FLDataProviderImpl extends FLIDImpl implements FLDataProvider {
 	 * @ordered
 	 */
 	protected static final String DESCRIPTION_EDEFAULT = null;
-
 	/**
 	 * The default value of the '{@link #getLongDescription() <em>Long Description</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -71,7 +66,6 @@ public class FLDataProviderImpl extends FLIDImpl implements FLDataProvider {
 	 * @ordered
 	 */
 	protected static final String LONG_DESCRIPTION_EDEFAULT = null;
-
 	/**
 	 * The default value of the '{@link #getNotes() <em>Notes</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -179,8 +173,8 @@ public class FLDataProviderImpl extends FLIDImpl implements FLDataProvider {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	public EList<FLComment> getComments() {
-		return (EList<FLComment>)eDynamicGet(BasePackage.FL_DATA_PROVIDER__COMMENTS, BasePackage.Literals.COMMENTABLE__COMMENTS, true, true);
+	public EList<FLHyperLink> getHyperLinks() {
+		return (EList<FLHyperLink>)eDynamicGet(BasePackage.FL_DATA_PROVIDER__HYPER_LINKS, BasePackage.Literals.HYPER_LINKABLE__HYPER_LINKS, true, true);
 	}
 
 	/**
@@ -189,8 +183,8 @@ public class FLDataProviderImpl extends FLIDImpl implements FLDataProvider {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	public EList<FLHyperLink> getHyperLinks() {
-		return (EList<FLHyperLink>)eDynamicGet(BasePackage.FL_DATA_PROVIDER__HYPER_LINKS, BasePackage.Literals.HYPER_LINKABLE__HYPER_LINKS, true, true);
+	public EList<FLComment> getComments() {
+		return (EList<FLComment>)eDynamicGet(BasePackage.FL_DATA_PROVIDER__COMMENTS, BasePackage.Literals.COMMENTABLE__COMMENTS, true, true);
 	}
 
 	/**

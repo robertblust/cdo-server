@@ -514,41 +514,41 @@ public interface TestPackage extends EPackage {
 	int TEST_OBJECT_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link ch.flatland.cdo.model.test.impl.TestBlobImpl <em>Blob</em>}' class.
+	 * The meta object id for the '{@link ch.flatland.cdo.model.test.impl.TestClobImpl <em>Clob</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see ch.flatland.cdo.model.test.impl.TestBlobImpl
-	 * @see ch.flatland.cdo.model.test.impl.TestPackageImpl#getTestBlob()
+	 * @see ch.flatland.cdo.model.test.impl.TestClobImpl
+	 * @see ch.flatland.cdo.model.test.impl.TestPackageImpl#getTestClob()
 	 * @generated
 	 */
-	int TEST_BLOB = 3;
+	int TEST_CLOB = 3;
 
 	/**
-	 * The feature id for the '<em><b>Blob</b></em>' attribute.
+	 * The feature id for the '<em><b>Clob</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_BLOB__BLOB = 0;
+	int TEST_CLOB__CLOB = 0;
 
 	/**
-	 * The number of structural features of the '<em>Blob</em>' class.
+	 * The number of structural features of the '<em>Clob</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_BLOB_FEATURE_COUNT = 1;
+	int TEST_CLOB_FEATURE_COUNT = 1;
 
 	/**
-	 * The number of operations of the '<em>Blob</em>' class.
+	 * The number of operations of the '<em>Clob</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_BLOB_OPERATION_COUNT = 0;
+	int TEST_CLOB_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link ch.flatland.cdo.model.test.TestEnum <em>Enum</em>}' enum.
@@ -1053,25 +1053,25 @@ public interface TestPackage extends EPackage {
 	EReference getTestObject_FixlowerBoundReferences();
 
 	/**
-	 * Returns the meta object for class '{@link ch.flatland.cdo.model.test.TestBlob <em>Blob</em>}'.
+	 * Returns the meta object for class '{@link ch.flatland.cdo.model.test.TestClob <em>Clob</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Blob</em>'.
-	 * @see ch.flatland.cdo.model.test.TestBlob
+	 * @return the meta object for class '<em>Clob</em>'.
+	 * @see ch.flatland.cdo.model.test.TestClob
 	 * @generated
 	 */
-	EClass getTestBlob();
+	EClass getTestClob();
 
 	/**
-	 * Returns the meta object for the attribute '{@link ch.flatland.cdo.model.test.TestBlob#getBlob <em>Blob</em>}'.
+	 * Returns the meta object for the attribute '{@link ch.flatland.cdo.model.test.TestClob#getClob <em>Clob</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Blob</em>'.
-	 * @see ch.flatland.cdo.model.test.TestBlob#getBlob()
-	 * @see #getTestBlob()
+	 * @return the meta object for the attribute '<em>Clob</em>'.
+	 * @see ch.flatland.cdo.model.test.TestClob#getClob()
+	 * @see #getTestClob()
 	 * @generated
 	 */
-	EAttribute getTestBlob_Blob();
+	EAttribute getTestClob_Clob();
 
 	/**
 	 * Returns the meta object for enum '{@link ch.flatland.cdo.model.test.TestEnum <em>Enum</em>}'.
@@ -1477,22 +1477,22 @@ public interface TestPackage extends EPackage {
 		EReference TEST_OBJECT__FIXLOWER_BOUND_REFERENCES = eINSTANCE.getTestObject_FixlowerBoundReferences();
 
 		/**
-		 * The meta object literal for the '{@link ch.flatland.cdo.model.test.impl.TestBlobImpl <em>Blob</em>}' class.
+		 * The meta object literal for the '{@link ch.flatland.cdo.model.test.impl.TestClobImpl <em>Clob</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see ch.flatland.cdo.model.test.impl.TestBlobImpl
-		 * @see ch.flatland.cdo.model.test.impl.TestPackageImpl#getTestBlob()
+		 * @see ch.flatland.cdo.model.test.impl.TestClobImpl
+		 * @see ch.flatland.cdo.model.test.impl.TestPackageImpl#getTestClob()
 		 * @generated
 		 */
-		EClass TEST_BLOB = eINSTANCE.getTestBlob();
+		EClass TEST_CLOB = eINSTANCE.getTestClob();
 
 		/**
-		 * The meta object literal for the '<em><b>Blob</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Clob</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute TEST_BLOB__BLOB = eINSTANCE.getTestBlob_Blob();
+		EAttribute TEST_CLOB__CLOB = eINSTANCE.getTestClob_Clob();
 
 		/**
 		 * The meta object literal for the '{@link ch.flatland.cdo.model.test.TestEnum <em>Enum</em>}' enum.

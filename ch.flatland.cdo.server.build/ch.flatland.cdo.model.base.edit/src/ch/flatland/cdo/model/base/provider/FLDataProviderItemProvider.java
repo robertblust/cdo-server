@@ -3,22 +3,20 @@
 package ch.flatland.cdo.model.base.provider;
 
 
-import ch.flatland.cdo.model.base.BaseFactory;
-import ch.flatland.cdo.model.base.BasePackage;
-import ch.flatland.cdo.model.base.FLDataProvider;
-
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
+import ch.flatland.cdo.model.base.BaseFactory;
+import ch.flatland.cdo.model.base.BasePackage;
+import ch.flatland.cdo.model.base.FLDataProvider;
 
 /**
  * This is the item provider adapter for a {@link ch.flatland.cdo.model.base.FLDataProvider} object.
@@ -202,11 +200,11 @@ public class FLDataProviderItemProvider extends FLIDItemProvider {
 	 * This returns FLDataProvider.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/FLDataProvider"));
+		return overlayImage(object, getResourceLocator().getImage("FLDataProvider"));
 	}
 
 	/**
@@ -223,14 +221,18 @@ public class FLDataProviderItemProvider extends FLIDItemProvider {
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
 		String label = ((FLDataProvider)object).getName();
+		String id =  ((FLDataProvider)object).getID();
+		if (id != null) {
+			label = "[" + id + "] " + label;
+		}
 		return label == null || label.length() == 0 ?
-			getString("_UI_FLDataProvider_type") :
-			getString("_UI_FLDataProvider_type") + " " + label;
+			"?" :
+			label;
 	}
 	
 

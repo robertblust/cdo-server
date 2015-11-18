@@ -343,9 +343,9 @@ class JsonConverter {
 				// add x reference link
 				val jsonXReferencesLink = new JsonObject
 				if (ServerConfig.bridgeMode) {
-					jsonXReferencesLink.addProperty(HREF, jsonConverterConfig.serverAddress + ALIAS_XREFS + "/" + jsonConverterConfig.repoName + "/" + object.oid + "/" + REFERENCES + object.getTimestampParam(true))
-				} else {
 					jsonXReferencesLink.addProperty(HREF, jsonConverterConfig.serverAddress + BRIDGE_MODE_PATH + ALIAS_XREFS + "/" + jsonConverterConfig.repoName + "/" + object.oid + "/" + REFERENCES + object.getTimestampParam(true))
+				} else {
+					jsonXReferencesLink.addProperty(HREF, jsonConverterConfig.serverAddress + ALIAS_XREFS + "/" + jsonConverterConfig.repoName + "/" + object.oid + "/" + REFERENCES + object.getTimestampParam(true))
 				}
 				jsonXReferencesLink.addProperty(SIZE, object.allXReferences.size)
 				jsonXLinksObject.add(REFERENCES, jsonXReferencesLink)

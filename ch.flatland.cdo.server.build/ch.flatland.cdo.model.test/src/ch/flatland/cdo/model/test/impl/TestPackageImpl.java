@@ -4,7 +4,7 @@ package ch.flatland.cdo.model.test.impl;
 
 import ch.flatland.cdo.model.test.SimpleDataTypes;
 import ch.flatland.cdo.model.test.SimpleDataTypesAsArray;
-import ch.flatland.cdo.model.test.TestBlob;
+import ch.flatland.cdo.model.test.TestClob;
 import ch.flatland.cdo.model.test.TestEnum;
 import ch.flatland.cdo.model.test.TestFactory;
 import ch.flatland.cdo.model.test.TestObject;
@@ -54,7 +54,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass testBlobEClass = null;
+	private EClass testClobEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -545,8 +545,8 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getTestBlob() {
-		return testBlobEClass;
+	public EClass getTestClob() {
+		return testClobEClass;
 	}
 
 	/**
@@ -554,8 +554,8 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getTestBlob_Blob() {
-		return (EAttribute)testBlobEClass.getEStructuralFeatures().get(0);
+	public EAttribute getTestClob_Clob() {
+		return (EAttribute)testClobEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -651,8 +651,8 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 		createEReference(testObjectEClass, TEST_OBJECT__FIX_BOUND_REFERENCES);
 		createEReference(testObjectEClass, TEST_OBJECT__FIXLOWER_BOUND_REFERENCES);
 
-		testBlobEClass = createEClass(TEST_BLOB);
-		createEAttribute(testBlobEClass, TEST_BLOB__BLOB);
+		testClobEClass = createEClass(TEST_CLOB);
+		createEAttribute(testClobEClass, TEST_CLOB__CLOB);
 
 		// Create enums
 		testEnumEEnum = createEEnum(TEST_ENUM);
@@ -742,8 +742,8 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 		initEReference(getTestObject_FixBoundReferences(), this.getTestObject(), null, "fixBoundReferences", null, 2, 2, TestObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTestObject_FixlowerBoundReferences(), this.getTestObject(), null, "fixlowerBoundReferences", null, 1, 2, TestObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(testBlobEClass, TestBlob.class, "TestBlob", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getTestBlob_Blob(), theXMLTypePackage.getBase64Binary(), "blob", null, 0, 1, TestBlob.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(testClobEClass, TestClob.class, "TestClob", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getTestClob_Clob(), theXMLTypePackage.getBase64Binary(), "clob", null, 0, 1, TestClob.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(testEnumEEnum, TestEnum.class, "TestEnum");
@@ -791,7 +791,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	protected void createDBStoreAnnotations() {
 		String source = "http://www.eclipse.org/CDO/DBStore";	
 		addAnnotation
-		  (getTestBlob_Blob(), 
+		  (getTestClob_Clob(), 
 		   source, 
 		   new String[] {
 			 "columnType", "CLOB"

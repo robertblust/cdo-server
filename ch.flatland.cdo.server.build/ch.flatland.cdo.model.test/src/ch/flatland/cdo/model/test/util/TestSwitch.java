@@ -84,9 +84,9 @@ public class TestSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case TestPackage.TEST_BLOB: {
-				TestBlob testBlob = (TestBlob)theEObject;
-				T result = caseTestBlob(testBlob);
+			case TestPackage.TEST_CLOB: {
+				TestClob testClob = (TestClob)theEObject;
+				T result = caseTestClob(testClob);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -140,17 +140,17 @@ public class TestSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Blob</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Clob</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Blob</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Clob</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseTestBlob(TestBlob object) {
+	public T caseTestClob(TestClob object) {
 		return null;
 	}
 

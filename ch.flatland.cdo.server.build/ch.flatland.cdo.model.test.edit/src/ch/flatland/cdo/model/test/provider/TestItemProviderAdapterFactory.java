@@ -141,26 +141,26 @@ public class TestItemProviderAdapterFactory extends TestAdapterFactory implement
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link ch.flatland.cdo.model.test.TestBlob} instances.
+	 * This keeps track of the one adapter used for all {@link ch.flatland.cdo.model.test.TestClob} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected TestBlobItemProvider testBlobItemProvider;
+	protected TestClobItemProvider testClobItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link ch.flatland.cdo.model.test.TestBlob}.
+	 * This creates an adapter for a {@link ch.flatland.cdo.model.test.TestClob}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createTestBlobAdapter() {
-		if (testBlobItemProvider == null) {
-			testBlobItemProvider = new TestBlobItemProvider(this);
+	public Adapter createTestClobAdapter() {
+		if (testClobItemProvider == null) {
+			testClobItemProvider = new TestClobItemProvider(this);
 		}
 
-		return testBlobItemProvider;
+		return testClobItemProvider;
 	}
 
 	/**
@@ -265,7 +265,7 @@ public class TestItemProviderAdapterFactory extends TestAdapterFactory implement
 		if (simpleDataTypesItemProvider != null) simpleDataTypesItemProvider.dispose();
 		if (simpleDataTypesAsArrayItemProvider != null) simpleDataTypesAsArrayItemProvider.dispose();
 		if (testObjectItemProvider != null) testObjectItemProvider.dispose();
-		if (testBlobItemProvider != null) testBlobItemProvider.dispose();
+		if (testClobItemProvider != null) testClobItemProvider.dispose();
 	}
 
 }

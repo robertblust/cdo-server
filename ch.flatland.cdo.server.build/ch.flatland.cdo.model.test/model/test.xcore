@@ -62,9 +62,9 @@ class TestObject {
 	refers TestObject[1..2] fixlowerBoundReferences
 }
 
-class TestBlob {
+class TestClob {
 	@DBStore(columnType="CLOB")
-	Base64Binary blob
+	Base64Binary clob
 }
 
 enum TestEnum {

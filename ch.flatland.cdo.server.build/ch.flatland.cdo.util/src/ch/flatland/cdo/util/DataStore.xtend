@@ -13,6 +13,7 @@ package ch.flatland.cdo.util
 import java.util.List
 import java.util.Map
 import javax.servlet.http.HttpServletRequest
+import org.eclipse.emf.cdo.common.model.CDOPackageUnit.State
 import org.eclipse.emf.cdo.server.IRepository
 import org.eclipse.emf.cdo.server.db.IDBStore
 import org.eclipse.emf.cdo.server.db.mapping.IMappingStrategy
@@ -33,12 +34,19 @@ class DataStore {
 	def findByType(CDOView view, String type, HttpServletRequest req, Map<String, String[]> filters) {
 
 		// TODO find better solution 'Depends on Relation DB Store' 
-		//sql depends on mapping strategy
+		// sql depends on mapping strategy
 		val List<EObject> result = newArrayList
 
 		val toProcess = newArrayList
 
 		val eClass = view.safeEClass(type)
+
+		val packageRegistry = view.session.packageRegistry
+		val packageInfo = packageRegistry.getPackageInfo(eClass.EPackage)
+		if(packageInfo.packageUnit.state == State.NEW) {
+			throw new Exception("No data store for type '" + type + "' created yet")
+		}
+
 		if(!eClass.abstract) {
 			toProcess.add(eClass)
 		}

@@ -20,7 +20,9 @@ import java.util.List
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 import org.eclipse.emf.cdo.CDOObject
-import org.eclipse.emf.cdo.util.CommitException
+import org.eclipse.emf.cdo.eresource.CDOResource
+import org.eclipse.emf.cdo.eresource.CDOResourceFolder
+import org.eclipse.emf.cdo.eresource.CDOResourceNode
 import org.eclipse.emf.common.notify.Adapter
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
@@ -108,15 +110,32 @@ class Put {
 
 			view.addRevisionDelta(JsonConverter.revisionDeltas)
 
-			try {
-				view.commit
-			} catch(CommitException e) {
-				view.rollback
-				if(e.message.contains("Duplicate resource node in folder")) {
-					throw new FlatlandException(SC_CONFLICT, requestedObject, "Duplicate resource name '" + requestedObject.cdoID + "'")
+			if(requestedObject.eContainer instanceof CDOResourceNode && requestedObject instanceof CDOResourceNode) {
+
+				val node = requestedObject as CDOResourceNode
+				val containerNode = requestedObject.eContainer as CDOResourceNode
+
+				// check name is not null
+				if(node.name == null || node.name.length == 0) {
+					throw new FlatlandException(SC_BAD_REQUEST, containerNode, "Name must not be null or empty")
 				}
-				throw new FlatlandException(SC_BAD_REQUEST, requestedObject, e.message)
+				// check for duplicates
+				if(containerNode instanceof CDOResourceFolder) {
+					if(containerNode.nodes.filter[it.name == node.name && it.cdoID != node.cdoID].size > 0) {
+						throw new FlatlandException(SC_BAD_REQUEST, containerNode, "Resource with name '{}' already exist!", node.name)
+					}
+				}
+
+				if(containerNode.isRoot) {
+					// it is the root resource, it can just contain resource node
+					val root = containerNode as CDOResource
+					if(root.contents.filter[(it as CDOResourceNode).name == node.name && (it as CDOResourceNode).cdoID != node.cdoID].size > 0) {
+						throw new FlatlandException(SC_BAD_REQUEST, containerNode, "Resource with name '{}' already exist!", node.name)
+					}
+				}
 			}
+
+			view.commit
 
 			// now transform manipulated object to json for the response			
 			jsonString = requestedObject.safeToJson

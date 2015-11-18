@@ -4,6 +4,7 @@ package ch.flatland.cdo.model.base;
 
 import org.eclipse.emf.common.util.EList;
 
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>FL Data Provider</b></em>'.
