@@ -162,14 +162,14 @@ public interface BasePackage extends EPackage {
 	int FLID_OPERATION_COUNT = 1;
 
 	/**
-	 * The meta object id for the '{@link ch.flatland.cdo.model.base.Nameable <em>Nameable</em>}' class.
+	 * The meta object id for the '{@link ch.flatland.cdo.model.base.FLNameable <em>FL Nameable</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see ch.flatland.cdo.model.base.Nameable
-	 * @see ch.flatland.cdo.model.base.impl.BasePackageImpl#getNameable()
+	 * @see ch.flatland.cdo.model.base.FLNameable
+	 * @see ch.flatland.cdo.model.base.impl.BasePackageImpl#getFLNameable()
 	 * @generated
 	 */
-	int NAMEABLE = 8;
+	int FL_NAMEABLE = 8;
 
 	/**
 	 * The meta object id for the '{@link ch.flatland.cdo.model.base.impl.FLElementImpl <em>FL Element</em>}' class.
@@ -202,14 +202,14 @@ public interface BasePackage extends EPackage {
 	int FL_HYPER_LINK = 3;
 
 	/**
-	 * The meta object id for the '{@link ch.flatland.cdo.model.base.Rateable <em>Rateable</em>}' class.
+	 * The meta object id for the '{@link ch.flatland.cdo.model.base.FLRateable <em>FL Rateable</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see ch.flatland.cdo.model.base.Rateable
-	 * @see ch.flatland.cdo.model.base.impl.BasePackageImpl#getRateable()
+	 * @see ch.flatland.cdo.model.base.FLRateable
+	 * @see ch.flatland.cdo.model.base.impl.BasePackageImpl#getFLRateable()
 	 * @generated
 	 */
-	int RATEABLE = 9;
+	int FL_RATEABLE = 9;
 
 	/**
 	 * The meta object id for the '{@link ch.flatland.cdo.model.base.impl.FLCommentImpl <em>FL Comment</em>}' class.
@@ -1453,7 +1453,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RATEABLE__RATINGS = 0;
+	int FL_RATEABLE__RATINGS = 0;
 
 	/**
 	 * The feature id for the '<em><b>Likes</b></em>' attribute.
@@ -1462,7 +1462,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RATEABLE__LIKES = 1;
+	int FL_RATEABLE__LIKES = 1;
 
 	/**
 	 * The feature id for the '<em><b>Dislikes</b></em>' attribute.
@@ -1471,16 +1471,16 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RATEABLE__DISLIKES = 2;
+	int FL_RATEABLE__DISLIKES = 2;
 
 	/**
-	 * The number of structural features of the '<em>Rateable</em>' class.
+	 * The number of structural features of the '<em>FL Rateable</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RATEABLE_FEATURE_COUNT = 3;
+	int FL_RATEABLE_FEATURE_COUNT = 3;
 
 	/**
 	 * The operation id for the '<em>Count Likes</em>' operation.
@@ -1489,7 +1489,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RATEABLE___COUNT_LIKES = 0;
+	int FL_RATEABLE___COUNT_LIKES = 0;
 
 	/**
 	 * The operation id for the '<em>Count Dislikes</em>' operation.
@@ -1498,16 +1498,16 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RATEABLE___COUNT_DISLIKES = 1;
+	int FL_RATEABLE___COUNT_DISLIKES = 1;
 
 	/**
-	 * The number of operations of the '<em>Rateable</em>' class.
+	 * The number of operations of the '<em>FL Rateable</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RATEABLE_OPERATION_COUNT = 2;
+	int FL_RATEABLE_OPERATION_COUNT = 2;
 
 	/**
 	 * The feature id for the '<em><b>Ratings</b></em>' containment reference list.
@@ -1516,7 +1516,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_COMMENT__RATINGS = RATEABLE__RATINGS;
+	int FL_COMMENT__RATINGS = FL_RATEABLE__RATINGS;
 
 	/**
 	 * The feature id for the '<em><b>Likes</b></em>' attribute.
@@ -1525,7 +1525,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_COMMENT__LIKES = RATEABLE__LIKES;
+	int FL_COMMENT__LIKES = FL_RATEABLE__LIKES;
 
 	/**
 	 * The feature id for the '<em><b>Dislikes</b></em>' attribute.
@@ -1534,7 +1534,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_COMMENT__DISLIKES = RATEABLE__DISLIKES;
+	int FL_COMMENT__DISLIKES = FL_RATEABLE__DISLIKES;
 
 	/**
 	 * The feature id for the '<em><b>Comment</b></em>' attribute.
@@ -1543,7 +1543,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_COMMENT__COMMENT = RATEABLE_FEATURE_COUNT + 0;
+	int FL_COMMENT__COMMENT = FL_RATEABLE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
@@ -1552,7 +1552,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_COMMENT__COMMENTS = RATEABLE_FEATURE_COUNT + 1;
+	int FL_COMMENT__COMMENTS = FL_RATEABLE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>FL Comment</em>' class.
@@ -1561,7 +1561,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_COMMENT_FEATURE_COUNT = RATEABLE_FEATURE_COUNT + 2;
+	int FL_COMMENT_FEATURE_COUNT = FL_RATEABLE_FEATURE_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Count Likes</em>' operation.
@@ -1570,7 +1570,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_COMMENT___COUNT_LIKES = RATEABLE___COUNT_LIKES;
+	int FL_COMMENT___COUNT_LIKES = FL_RATEABLE___COUNT_LIKES;
 
 	/**
 	 * The operation id for the '<em>Count Dislikes</em>' operation.
@@ -1579,7 +1579,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_COMMENT___COUNT_DISLIKES = RATEABLE___COUNT_DISLIKES;
+	int FL_COMMENT___COUNT_DISLIKES = FL_RATEABLE___COUNT_DISLIKES;
 
 	/**
 	 * The number of operations of the '<em>FL Comment</em>' class.
@@ -1588,7 +1588,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FL_COMMENT_OPERATION_COUNT = RATEABLE_OPERATION_COUNT + 0;
+	int FL_COMMENT_OPERATION_COUNT = FL_RATEABLE_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>UUID</b></em>' attribute.
@@ -1744,14 +1744,14 @@ public interface BasePackage extends EPackage {
 	int FL_DATA_PROVIDER_OPERATION_COUNT = FLID_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link ch.flatland.cdo.model.base.Commentable <em>Commentable</em>}' class.
+	 * The meta object id for the '{@link ch.flatland.cdo.model.base.FLCommentable <em>FL Commentable</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see ch.flatland.cdo.model.base.Commentable
-	 * @see ch.flatland.cdo.model.base.impl.BasePackageImpl#getCommentable()
+	 * @see ch.flatland.cdo.model.base.FLCommentable
+	 * @see ch.flatland.cdo.model.base.impl.BasePackageImpl#getFLCommentable()
 	 * @generated
 	 */
-	int COMMENTABLE = 6;
+	int FL_COMMENTABLE = 6;
 
 	/**
 	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
@@ -1760,35 +1760,35 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMMENTABLE__COMMENTS = 0;
+	int FL_COMMENTABLE__COMMENTS = 0;
 
 	/**
-	 * The number of structural features of the '<em>Commentable</em>' class.
+	 * The number of structural features of the '<em>FL Commentable</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMMENTABLE_FEATURE_COUNT = 1;
+	int FL_COMMENTABLE_FEATURE_COUNT = 1;
 
 	/**
-	 * The number of operations of the '<em>Commentable</em>' class.
+	 * The number of operations of the '<em>FL Commentable</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMMENTABLE_OPERATION_COUNT = 0;
+	int FL_COMMENTABLE_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link ch.flatland.cdo.model.base.HyperLinkable <em>Hyper Linkable</em>}' class.
+	 * The meta object id for the '{@link ch.flatland.cdo.model.base.FLHyperLinkable <em>FL Hyper Linkable</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see ch.flatland.cdo.model.base.HyperLinkable
-	 * @see ch.flatland.cdo.model.base.impl.BasePackageImpl#getHyperLinkable()
+	 * @see ch.flatland.cdo.model.base.FLHyperLinkable
+	 * @see ch.flatland.cdo.model.base.impl.BasePackageImpl#getFLHyperLinkable()
 	 * @generated
 	 */
-	int HYPER_LINKABLE = 7;
+	int FL_HYPER_LINKABLE = 7;
 
 	/**
 	 * The feature id for the '<em><b>Hyper Links</b></em>' containment reference list.
@@ -1797,25 +1797,25 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int HYPER_LINKABLE__HYPER_LINKS = 0;
+	int FL_HYPER_LINKABLE__HYPER_LINKS = 0;
 
 	/**
-	 * The number of structural features of the '<em>Hyper Linkable</em>' class.
+	 * The number of structural features of the '<em>FL Hyper Linkable</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int HYPER_LINKABLE_FEATURE_COUNT = 1;
+	int FL_HYPER_LINKABLE_FEATURE_COUNT = 1;
 
 	/**
-	 * The number of operations of the '<em>Hyper Linkable</em>' class.
+	 * The number of operations of the '<em>FL Hyper Linkable</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int HYPER_LINKABLE_OPERATION_COUNT = 0;
+	int FL_HYPER_LINKABLE_OPERATION_COUNT = 0;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1824,7 +1824,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NAMEABLE__NAME = 0;
+	int FL_NAMEABLE__NAME = 0;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -1833,7 +1833,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NAMEABLE__DESCRIPTION = 1;
+	int FL_NAMEABLE__DESCRIPTION = 1;
 
 	/**
 	 * The feature id for the '<em><b>Long Description</b></em>' attribute.
@@ -1842,7 +1842,7 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NAMEABLE__LONG_DESCRIPTION = 2;
+	int FL_NAMEABLE__LONG_DESCRIPTION = 2;
 
 	/**
 	 * The feature id for the '<em><b>Notes</b></em>' attribute.
@@ -1851,25 +1851,25 @@ public interface BasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NAMEABLE__NOTES = 3;
+	int FL_NAMEABLE__NOTES = 3;
 
 	/**
-	 * The number of structural features of the '<em>Nameable</em>' class.
+	 * The number of structural features of the '<em>FL Nameable</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAMEABLE_FEATURE_COUNT = 4;
+	int FL_NAMEABLE_FEATURE_COUNT = 4;
 
 	/**
-	 * The number of operations of the '<em>Nameable</em>' class.
+	 * The number of operations of the '<em>FL Nameable</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAMEABLE_OPERATION_COUNT = 0;
+	int FL_NAMEABLE_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link ch.flatland.cdo.model.base.impl.FLRatingImpl <em>FL Rating</em>}' class.
@@ -2755,163 +2755,163 @@ public interface BasePackage extends EPackage {
 	EReference getFLDataProvider_ProvidedElements();
 
 	/**
-	 * Returns the meta object for class '{@link ch.flatland.cdo.model.base.Commentable <em>Commentable</em>}'.
+	 * Returns the meta object for class '{@link ch.flatland.cdo.model.base.FLCommentable <em>FL Commentable</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Commentable</em>'.
-	 * @see ch.flatland.cdo.model.base.Commentable
+	 * @return the meta object for class '<em>FL Commentable</em>'.
+	 * @see ch.flatland.cdo.model.base.FLCommentable
 	 * @generated
 	 */
-	EClass getCommentable();
+	EClass getFLCommentable();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link ch.flatland.cdo.model.base.Commentable#getComments <em>Comments</em>}'.
+	 * Returns the meta object for the containment reference list '{@link ch.flatland.cdo.model.base.FLCommentable#getComments <em>Comments</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Comments</em>'.
-	 * @see ch.flatland.cdo.model.base.Commentable#getComments()
-	 * @see #getCommentable()
+	 * @see ch.flatland.cdo.model.base.FLCommentable#getComments()
+	 * @see #getFLCommentable()
 	 * @generated
 	 */
-	EReference getCommentable_Comments();
+	EReference getFLCommentable_Comments();
 
 	/**
-	 * Returns the meta object for class '{@link ch.flatland.cdo.model.base.HyperLinkable <em>Hyper Linkable</em>}'.
+	 * Returns the meta object for class '{@link ch.flatland.cdo.model.base.FLHyperLinkable <em>FL Hyper Linkable</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Hyper Linkable</em>'.
-	 * @see ch.flatland.cdo.model.base.HyperLinkable
+	 * @return the meta object for class '<em>FL Hyper Linkable</em>'.
+	 * @see ch.flatland.cdo.model.base.FLHyperLinkable
 	 * @generated
 	 */
-	EClass getHyperLinkable();
+	EClass getFLHyperLinkable();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link ch.flatland.cdo.model.base.HyperLinkable#getHyperLinks <em>Hyper Links</em>}'.
+	 * Returns the meta object for the containment reference list '{@link ch.flatland.cdo.model.base.FLHyperLinkable#getHyperLinks <em>Hyper Links</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Hyper Links</em>'.
-	 * @see ch.flatland.cdo.model.base.HyperLinkable#getHyperLinks()
-	 * @see #getHyperLinkable()
+	 * @see ch.flatland.cdo.model.base.FLHyperLinkable#getHyperLinks()
+	 * @see #getFLHyperLinkable()
 	 * @generated
 	 */
-	EReference getHyperLinkable_HyperLinks();
+	EReference getFLHyperLinkable_HyperLinks();
 
 	/**
-	 * Returns the meta object for class '{@link ch.flatland.cdo.model.base.Nameable <em>Nameable</em>}'.
+	 * Returns the meta object for class '{@link ch.flatland.cdo.model.base.FLNameable <em>FL Nameable</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Nameable</em>'.
-	 * @see ch.flatland.cdo.model.base.Nameable
+	 * @return the meta object for class '<em>FL Nameable</em>'.
+	 * @see ch.flatland.cdo.model.base.FLNameable
 	 * @generated
 	 */
-	EClass getNameable();
+	EClass getFLNameable();
 
 	/**
-	 * Returns the meta object for the attribute '{@link ch.flatland.cdo.model.base.Nameable#getName <em>Name</em>}'.
+	 * Returns the meta object for the attribute '{@link ch.flatland.cdo.model.base.FLNameable#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see ch.flatland.cdo.model.base.Nameable#getName()
-	 * @see #getNameable()
+	 * @see ch.flatland.cdo.model.base.FLNameable#getName()
+	 * @see #getFLNameable()
 	 * @generated
 	 */
-	EAttribute getNameable_Name();
+	EAttribute getFLNameable_Name();
 
 	/**
-	 * Returns the meta object for the attribute '{@link ch.flatland.cdo.model.base.Nameable#getDescription <em>Description</em>}'.
+	 * Returns the meta object for the attribute '{@link ch.flatland.cdo.model.base.FLNameable#getDescription <em>Description</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Description</em>'.
-	 * @see ch.flatland.cdo.model.base.Nameable#getDescription()
-	 * @see #getNameable()
+	 * @see ch.flatland.cdo.model.base.FLNameable#getDescription()
+	 * @see #getFLNameable()
 	 * @generated
 	 */
-	EAttribute getNameable_Description();
+	EAttribute getFLNameable_Description();
 
 	/**
-	 * Returns the meta object for the attribute '{@link ch.flatland.cdo.model.base.Nameable#getLongDescription <em>Long Description</em>}'.
+	 * Returns the meta object for the attribute '{@link ch.flatland.cdo.model.base.FLNameable#getLongDescription <em>Long Description</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Long Description</em>'.
-	 * @see ch.flatland.cdo.model.base.Nameable#getLongDescription()
-	 * @see #getNameable()
+	 * @see ch.flatland.cdo.model.base.FLNameable#getLongDescription()
+	 * @see #getFLNameable()
 	 * @generated
 	 */
-	EAttribute getNameable_LongDescription();
+	EAttribute getFLNameable_LongDescription();
 
 	/**
-	 * Returns the meta object for the attribute '{@link ch.flatland.cdo.model.base.Nameable#getNotes <em>Notes</em>}'.
+	 * Returns the meta object for the attribute '{@link ch.flatland.cdo.model.base.FLNameable#getNotes <em>Notes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Notes</em>'.
-	 * @see ch.flatland.cdo.model.base.Nameable#getNotes()
-	 * @see #getNameable()
+	 * @see ch.flatland.cdo.model.base.FLNameable#getNotes()
+	 * @see #getFLNameable()
 	 * @generated
 	 */
-	EAttribute getNameable_Notes();
+	EAttribute getFLNameable_Notes();
 
 	/**
-	 * Returns the meta object for class '{@link ch.flatland.cdo.model.base.Rateable <em>Rateable</em>}'.
+	 * Returns the meta object for class '{@link ch.flatland.cdo.model.base.FLRateable <em>FL Rateable</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Rateable</em>'.
-	 * @see ch.flatland.cdo.model.base.Rateable
+	 * @return the meta object for class '<em>FL Rateable</em>'.
+	 * @see ch.flatland.cdo.model.base.FLRateable
 	 * @generated
 	 */
-	EClass getRateable();
+	EClass getFLRateable();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link ch.flatland.cdo.model.base.Rateable#getRatings <em>Ratings</em>}'.
+	 * Returns the meta object for the containment reference list '{@link ch.flatland.cdo.model.base.FLRateable#getRatings <em>Ratings</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Ratings</em>'.
-	 * @see ch.flatland.cdo.model.base.Rateable#getRatings()
-	 * @see #getRateable()
+	 * @see ch.flatland.cdo.model.base.FLRateable#getRatings()
+	 * @see #getFLRateable()
 	 * @generated
 	 */
-	EReference getRateable_Ratings();
+	EReference getFLRateable_Ratings();
 
 	/**
-	 * Returns the meta object for the attribute '{@link ch.flatland.cdo.model.base.Rateable#getLikes <em>Likes</em>}'.
+	 * Returns the meta object for the attribute '{@link ch.flatland.cdo.model.base.FLRateable#getLikes <em>Likes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Likes</em>'.
-	 * @see ch.flatland.cdo.model.base.Rateable#getLikes()
-	 * @see #getRateable()
+	 * @see ch.flatland.cdo.model.base.FLRateable#getLikes()
+	 * @see #getFLRateable()
 	 * @generated
 	 */
-	EAttribute getRateable_Likes();
+	EAttribute getFLRateable_Likes();
 
 	/**
-	 * Returns the meta object for the attribute '{@link ch.flatland.cdo.model.base.Rateable#getDislikes <em>Dislikes</em>}'.
+	 * Returns the meta object for the attribute '{@link ch.flatland.cdo.model.base.FLRateable#getDislikes <em>Dislikes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Dislikes</em>'.
-	 * @see ch.flatland.cdo.model.base.Rateable#getDislikes()
-	 * @see #getRateable()
+	 * @see ch.flatland.cdo.model.base.FLRateable#getDislikes()
+	 * @see #getFLRateable()
 	 * @generated
 	 */
-	EAttribute getRateable_Dislikes();
+	EAttribute getFLRateable_Dislikes();
 
 	/**
-	 * Returns the meta object for the '{@link ch.flatland.cdo.model.base.Rateable#countLikes() <em>Count Likes</em>}' operation.
+	 * Returns the meta object for the '{@link ch.flatland.cdo.model.base.FLRateable#countLikes() <em>Count Likes</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Count Likes</em>' operation.
-	 * @see ch.flatland.cdo.model.base.Rateable#countLikes()
+	 * @see ch.flatland.cdo.model.base.FLRateable#countLikes()
 	 * @generated
 	 */
-	EOperation getRateable__CountLikes();
+	EOperation getFLRateable__CountLikes();
 
 	/**
-	 * Returns the meta object for the '{@link ch.flatland.cdo.model.base.Rateable#countDislikes() <em>Count Dislikes</em>}' operation.
+	 * Returns the meta object for the '{@link ch.flatland.cdo.model.base.FLRateable#countDislikes() <em>Count Dislikes</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Count Dislikes</em>' operation.
-	 * @see ch.flatland.cdo.model.base.Rateable#countDislikes()
+	 * @see ch.flatland.cdo.model.base.FLRateable#countDislikes()
 	 * @generated
 	 */
-	EOperation getRateable__CountDislikes();
+	EOperation getFLRateable__CountDislikes();
 
 	/**
 	 * Returns the meta object for class '{@link ch.flatland.cdo.model.base.FLRating <em>FL Rating</em>}'.
@@ -3605,14 +3605,14 @@ public interface BasePackage extends EPackage {
 		EReference FL_DATA_PROVIDER__PROVIDED_ELEMENTS = eINSTANCE.getFLDataProvider_ProvidedElements();
 
 		/**
-		 * The meta object literal for the '{@link ch.flatland.cdo.model.base.Commentable <em>Commentable</em>}' class.
+		 * The meta object literal for the '{@link ch.flatland.cdo.model.base.FLCommentable <em>FL Commentable</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see ch.flatland.cdo.model.base.Commentable
-		 * @see ch.flatland.cdo.model.base.impl.BasePackageImpl#getCommentable()
+		 * @see ch.flatland.cdo.model.base.FLCommentable
+		 * @see ch.flatland.cdo.model.base.impl.BasePackageImpl#getFLCommentable()
 		 * @generated
 		 */
-		EClass COMMENTABLE = eINSTANCE.getCommentable();
+		EClass FL_COMMENTABLE = eINSTANCE.getFLCommentable();
 
 		/**
 		 * The meta object literal for the '<em><b>Comments</b></em>' containment reference list feature.
@@ -3620,17 +3620,17 @@ public interface BasePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference COMMENTABLE__COMMENTS = eINSTANCE.getCommentable_Comments();
+		EReference FL_COMMENTABLE__COMMENTS = eINSTANCE.getFLCommentable_Comments();
 
 		/**
-		 * The meta object literal for the '{@link ch.flatland.cdo.model.base.HyperLinkable <em>Hyper Linkable</em>}' class.
+		 * The meta object literal for the '{@link ch.flatland.cdo.model.base.FLHyperLinkable <em>FL Hyper Linkable</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see ch.flatland.cdo.model.base.HyperLinkable
-		 * @see ch.flatland.cdo.model.base.impl.BasePackageImpl#getHyperLinkable()
+		 * @see ch.flatland.cdo.model.base.FLHyperLinkable
+		 * @see ch.flatland.cdo.model.base.impl.BasePackageImpl#getFLHyperLinkable()
 		 * @generated
 		 */
-		EClass HYPER_LINKABLE = eINSTANCE.getHyperLinkable();
+		EClass FL_HYPER_LINKABLE = eINSTANCE.getFLHyperLinkable();
 
 		/**
 		 * The meta object literal for the '<em><b>Hyper Links</b></em>' containment reference list feature.
@@ -3638,17 +3638,17 @@ public interface BasePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference HYPER_LINKABLE__HYPER_LINKS = eINSTANCE.getHyperLinkable_HyperLinks();
+		EReference FL_HYPER_LINKABLE__HYPER_LINKS = eINSTANCE.getFLHyperLinkable_HyperLinks();
 
 		/**
-		 * The meta object literal for the '{@link ch.flatland.cdo.model.base.Nameable <em>Nameable</em>}' class.
+		 * The meta object literal for the '{@link ch.flatland.cdo.model.base.FLNameable <em>FL Nameable</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see ch.flatland.cdo.model.base.Nameable
-		 * @see ch.flatland.cdo.model.base.impl.BasePackageImpl#getNameable()
+		 * @see ch.flatland.cdo.model.base.FLNameable
+		 * @see ch.flatland.cdo.model.base.impl.BasePackageImpl#getFLNameable()
 		 * @generated
 		 */
-		EClass NAMEABLE = eINSTANCE.getNameable();
+		EClass FL_NAMEABLE = eINSTANCE.getFLNameable();
 
 		/**
 		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
@@ -3656,7 +3656,7 @@ public interface BasePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute NAMEABLE__NAME = eINSTANCE.getNameable_Name();
+		EAttribute FL_NAMEABLE__NAME = eINSTANCE.getFLNameable_Name();
 
 		/**
 		 * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
@@ -3664,7 +3664,7 @@ public interface BasePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute NAMEABLE__DESCRIPTION = eINSTANCE.getNameable_Description();
+		EAttribute FL_NAMEABLE__DESCRIPTION = eINSTANCE.getFLNameable_Description();
 
 		/**
 		 * The meta object literal for the '<em><b>Long Description</b></em>' attribute feature.
@@ -3672,7 +3672,7 @@ public interface BasePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute NAMEABLE__LONG_DESCRIPTION = eINSTANCE.getNameable_LongDescription();
+		EAttribute FL_NAMEABLE__LONG_DESCRIPTION = eINSTANCE.getFLNameable_LongDescription();
 
 		/**
 		 * The meta object literal for the '<em><b>Notes</b></em>' attribute feature.
@@ -3680,17 +3680,17 @@ public interface BasePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute NAMEABLE__NOTES = eINSTANCE.getNameable_Notes();
+		EAttribute FL_NAMEABLE__NOTES = eINSTANCE.getFLNameable_Notes();
 
 		/**
-		 * The meta object literal for the '{@link ch.flatland.cdo.model.base.Rateable <em>Rateable</em>}' class.
+		 * The meta object literal for the '{@link ch.flatland.cdo.model.base.FLRateable <em>FL Rateable</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see ch.flatland.cdo.model.base.Rateable
-		 * @see ch.flatland.cdo.model.base.impl.BasePackageImpl#getRateable()
+		 * @see ch.flatland.cdo.model.base.FLRateable
+		 * @see ch.flatland.cdo.model.base.impl.BasePackageImpl#getFLRateable()
 		 * @generated
 		 */
-		EClass RATEABLE = eINSTANCE.getRateable();
+		EClass FL_RATEABLE = eINSTANCE.getFLRateable();
 
 		/**
 		 * The meta object literal for the '<em><b>Ratings</b></em>' containment reference list feature.
@@ -3698,7 +3698,7 @@ public interface BasePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference RATEABLE__RATINGS = eINSTANCE.getRateable_Ratings();
+		EReference FL_RATEABLE__RATINGS = eINSTANCE.getFLRateable_Ratings();
 
 		/**
 		 * The meta object literal for the '<em><b>Likes</b></em>' attribute feature.
@@ -3706,7 +3706,7 @@ public interface BasePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute RATEABLE__LIKES = eINSTANCE.getRateable_Likes();
+		EAttribute FL_RATEABLE__LIKES = eINSTANCE.getFLRateable_Likes();
 
 		/**
 		 * The meta object literal for the '<em><b>Dislikes</b></em>' attribute feature.
@@ -3714,7 +3714,7 @@ public interface BasePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute RATEABLE__DISLIKES = eINSTANCE.getRateable_Dislikes();
+		EAttribute FL_RATEABLE__DISLIKES = eINSTANCE.getFLRateable_Dislikes();
 
 		/**
 		 * The meta object literal for the '<em><b>Count Likes</b></em>' operation.
@@ -3722,7 +3722,7 @@ public interface BasePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation RATEABLE___COUNT_LIKES = eINSTANCE.getRateable__CountLikes();
+		EOperation FL_RATEABLE___COUNT_LIKES = eINSTANCE.getFLRateable__CountLikes();
 
 		/**
 		 * The meta object literal for the '<em><b>Count Dislikes</b></em>' operation.
@@ -3730,7 +3730,7 @@ public interface BasePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation RATEABLE___COUNT_DISLIKES = eINSTANCE.getRateable__CountDislikes();
+		EOperation FL_RATEABLE___COUNT_DISLIKES = eINSTANCE.getFLRateable__CountDislikes();
 
 		/**
 		 * The meta object literal for the '{@link ch.flatland.cdo.model.base.impl.FLRatingImpl <em>FL Rating</em>}' class.

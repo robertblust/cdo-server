@@ -21,7 +21,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface FLDataProvider extends FLID, Nameable, Commentable, HyperLinkable {
+public interface FLDataProvider extends FLID, FLNameable, FLCommentable, FLHyperLinkable {
 	/**
 	 * Returns the value of the '<em><b>Provided Elements</b></em>' reference list.
 	 * The list contents are of type {@link ch.flatland.cdo.model.base.FLElement}.

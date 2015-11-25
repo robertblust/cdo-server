@@ -76,10 +76,10 @@ public class BaseSwitch<T> extends Switch<T> {
 				FLElement flElement = (FLElement)theEObject;
 				T result = caseFLElement(flElement);
 				if (result == null) result = caseFLID(flElement);
-				if (result == null) result = caseNameable(flElement);
-				if (result == null) result = caseRateable(flElement);
-				if (result == null) result = caseCommentable(flElement);
-				if (result == null) result = caseHyperLinkable(flElement);
+				if (result == null) result = caseFLNameable(flElement);
+				if (result == null) result = caseFLRateable(flElement);
+				if (result == null) result = caseFLCommentable(flElement);
+				if (result == null) result = caseFLHyperLinkable(flElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -88,10 +88,10 @@ public class BaseSwitch<T> extends Switch<T> {
 				T result = caseFLPackage(flPackage);
 				if (result == null) result = caseFLElement(flPackage);
 				if (result == null) result = caseFLID(flPackage);
-				if (result == null) result = caseNameable(flPackage);
-				if (result == null) result = caseRateable(flPackage);
-				if (result == null) result = caseCommentable(flPackage);
-				if (result == null) result = caseHyperLinkable(flPackage);
+				if (result == null) result = caseFLNameable(flPackage);
+				if (result == null) result = caseFLRateable(flPackage);
+				if (result == null) result = caseFLCommentable(flPackage);
+				if (result == null) result = caseFLHyperLinkable(flPackage);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -104,7 +104,7 @@ public class BaseSwitch<T> extends Switch<T> {
 			case BasePackage.FL_COMMENT: {
 				FLComment flComment = (FLComment)theEObject;
 				T result = caseFLComment(flComment);
-				if (result == null) result = caseRateable(flComment);
+				if (result == null) result = caseFLRateable(flComment);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -112,33 +112,33 @@ public class BaseSwitch<T> extends Switch<T> {
 				FLDataProvider flDataProvider = (FLDataProvider)theEObject;
 				T result = caseFLDataProvider(flDataProvider);
 				if (result == null) result = caseFLID(flDataProvider);
-				if (result == null) result = caseNameable(flDataProvider);
-				if (result == null) result = caseCommentable(flDataProvider);
-				if (result == null) result = caseHyperLinkable(flDataProvider);
+				if (result == null) result = caseFLNameable(flDataProvider);
+				if (result == null) result = caseFLCommentable(flDataProvider);
+				if (result == null) result = caseFLHyperLinkable(flDataProvider);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case BasePackage.COMMENTABLE: {
-				Commentable commentable = (Commentable)theEObject;
-				T result = caseCommentable(commentable);
+			case BasePackage.FL_COMMENTABLE: {
+				FLCommentable flCommentable = (FLCommentable)theEObject;
+				T result = caseFLCommentable(flCommentable);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case BasePackage.HYPER_LINKABLE: {
-				HyperLinkable hyperLinkable = (HyperLinkable)theEObject;
-				T result = caseHyperLinkable(hyperLinkable);
+			case BasePackage.FL_HYPER_LINKABLE: {
+				FLHyperLinkable flHyperLinkable = (FLHyperLinkable)theEObject;
+				T result = caseFLHyperLinkable(flHyperLinkable);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case BasePackage.NAMEABLE: {
-				Nameable nameable = (Nameable)theEObject;
-				T result = caseNameable(nameable);
+			case BasePackage.FL_NAMEABLE: {
+				FLNameable flNameable = (FLNameable)theEObject;
+				T result = caseFLNameable(flNameable);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case BasePackage.RATEABLE: {
-				Rateable rateable = (Rateable)theEObject;
-				T result = caseRateable(rateable);
+			case BasePackage.FL_RATEABLE: {
+				FLRateable flRateable = (FLRateable)theEObject;
+				T result = caseFLRateable(flRateable);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -255,62 +255,62 @@ public class BaseSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Commentable</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>FL Commentable</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Commentable</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>FL Commentable</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseCommentable(Commentable object) {
+	public T caseFLCommentable(FLCommentable object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Hyper Linkable</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>FL Hyper Linkable</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Hyper Linkable</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>FL Hyper Linkable</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseHyperLinkable(HyperLinkable object) {
+	public T caseFLHyperLinkable(FLHyperLinkable object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Nameable</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>FL Nameable</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Nameable</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>FL Nameable</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseNameable(Nameable object) {
+	public T caseFLNameable(FLNameable object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Rateable</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>FL Rateable</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Rateable</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>FL Rateable</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseRateable(Rateable object) {
+	public T caseFLRateable(FLRateable object) {
 		return null;
 	}
 

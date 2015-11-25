@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 import org.slf4j.LoggerFactory
 
-class AbstractServlet extends HttpServlet {
+abstract class AbstractServlet extends HttpServlet {
 
 	val logger = LoggerFactory.getLogger(AbstractServlet)
 

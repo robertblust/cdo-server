@@ -4,7 +4,7 @@ package ch.flatland.cdo.model.base.impl;
 
 import ch.flatland.cdo.model.base.BasePackage;
 import ch.flatland.cdo.model.base.BasePackage.Literals;
-import ch.flatland.cdo.model.base.Commentable;
+import ch.flatland.cdo.model.base.FLCommentable;
 import ch.flatland.cdo.model.base.FLComment;
 import ch.flatland.cdo.model.base.FLDataProvider;
 import ch.flatland.cdo.model.base.FLElement;
@@ -14,9 +14,9 @@ import ch.flatland.cdo.model.base.FLRating;
 import ch.flatland.cdo.model.base.FLRatingType;
 import ch.flatland.cdo.model.base.FLTrace;
 import ch.flatland.cdo.model.base.FLTraceType;
-import ch.flatland.cdo.model.base.HyperLinkable;
-import ch.flatland.cdo.model.base.Nameable;
-import ch.flatland.cdo.model.base.Rateable;
+import ch.flatland.cdo.model.base.FLHyperLinkable;
+import ch.flatland.cdo.model.base.FLNameable;
+import ch.flatland.cdo.model.base.FLRateable;
 import com.google.common.base.Objects;
 import java.lang.Iterable;
 import java.lang.reflect.InvocationTargetException;
@@ -184,7 +184,7 @@ public abstract class FLElementImpl extends FLIDImpl implements FLElement {
 	 * @generated
 	 */
 	public String getName() {
-		return (String)eDynamicGet(BasePackage.FL_ELEMENT__NAME, BasePackage.Literals.NAMEABLE__NAME, true, true);
+		return (String)eDynamicGet(BasePackage.FL_ELEMENT__NAME, BasePackage.Literals.FL_NAMEABLE__NAME, true, true);
 	}
 
 	/**
@@ -193,7 +193,7 @@ public abstract class FLElementImpl extends FLIDImpl implements FLElement {
 	 * @generated
 	 */
 	public void setName(String newName) {
-		eDynamicSet(BasePackage.FL_ELEMENT__NAME, BasePackage.Literals.NAMEABLE__NAME, newName);
+		eDynamicSet(BasePackage.FL_ELEMENT__NAME, BasePackage.Literals.FL_NAMEABLE__NAME, newName);
 	}
 
 	/**
@@ -202,7 +202,7 @@ public abstract class FLElementImpl extends FLIDImpl implements FLElement {
 	 * @generated
 	 */
 	public String getDescription() {
-		return (String)eDynamicGet(BasePackage.FL_ELEMENT__DESCRIPTION, BasePackage.Literals.NAMEABLE__DESCRIPTION, true, true);
+		return (String)eDynamicGet(BasePackage.FL_ELEMENT__DESCRIPTION, BasePackage.Literals.FL_NAMEABLE__DESCRIPTION, true, true);
 	}
 
 	/**
@@ -211,7 +211,7 @@ public abstract class FLElementImpl extends FLIDImpl implements FLElement {
 	 * @generated
 	 */
 	public void setDescription(String newDescription) {
-		eDynamicSet(BasePackage.FL_ELEMENT__DESCRIPTION, BasePackage.Literals.NAMEABLE__DESCRIPTION, newDescription);
+		eDynamicSet(BasePackage.FL_ELEMENT__DESCRIPTION, BasePackage.Literals.FL_NAMEABLE__DESCRIPTION, newDescription);
 	}
 
 	/**
@@ -220,7 +220,7 @@ public abstract class FLElementImpl extends FLIDImpl implements FLElement {
 	 * @generated
 	 */
 	public String getLongDescription() {
-		return (String)eDynamicGet(BasePackage.FL_ELEMENT__LONG_DESCRIPTION, BasePackage.Literals.NAMEABLE__LONG_DESCRIPTION, true, true);
+		return (String)eDynamicGet(BasePackage.FL_ELEMENT__LONG_DESCRIPTION, BasePackage.Literals.FL_NAMEABLE__LONG_DESCRIPTION, true, true);
 	}
 
 	/**
@@ -229,7 +229,7 @@ public abstract class FLElementImpl extends FLIDImpl implements FLElement {
 	 * @generated
 	 */
 	public void setLongDescription(String newLongDescription) {
-		eDynamicSet(BasePackage.FL_ELEMENT__LONG_DESCRIPTION, BasePackage.Literals.NAMEABLE__LONG_DESCRIPTION, newLongDescription);
+		eDynamicSet(BasePackage.FL_ELEMENT__LONG_DESCRIPTION, BasePackage.Literals.FL_NAMEABLE__LONG_DESCRIPTION, newLongDescription);
 	}
 
 	/**
@@ -238,7 +238,7 @@ public abstract class FLElementImpl extends FLIDImpl implements FLElement {
 	 * @generated
 	 */
 	public String getNotes() {
-		return (String)eDynamicGet(BasePackage.FL_ELEMENT__NOTES, BasePackage.Literals.NAMEABLE__NOTES, true, true);
+		return (String)eDynamicGet(BasePackage.FL_ELEMENT__NOTES, BasePackage.Literals.FL_NAMEABLE__NOTES, true, true);
 	}
 
 	/**
@@ -247,7 +247,7 @@ public abstract class FLElementImpl extends FLIDImpl implements FLElement {
 	 * @generated
 	 */
 	public void setNotes(String newNotes) {
-		eDynamicSet(BasePackage.FL_ELEMENT__NOTES, BasePackage.Literals.NAMEABLE__NOTES, newNotes);
+		eDynamicSet(BasePackage.FL_ELEMENT__NOTES, BasePackage.Literals.FL_NAMEABLE__NOTES, newNotes);
 	}
 
 	/**
@@ -277,7 +277,7 @@ public abstract class FLElementImpl extends FLIDImpl implements FLElement {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<FLHyperLink> getHyperLinks() {
-		return (EList<FLHyperLink>)eDynamicGet(BasePackage.FL_ELEMENT__HYPER_LINKS, BasePackage.Literals.HYPER_LINKABLE__HYPER_LINKS, true, true);
+		return (EList<FLHyperLink>)eDynamicGet(BasePackage.FL_ELEMENT__HYPER_LINKS, BasePackage.Literals.FL_HYPER_LINKABLE__HYPER_LINKS, true, true);
 	}
 
 	/**
@@ -287,7 +287,7 @@ public abstract class FLElementImpl extends FLIDImpl implements FLElement {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<FLComment> getComments() {
-		return (EList<FLComment>)eDynamicGet(BasePackage.FL_ELEMENT__COMMENTS, BasePackage.Literals.COMMENTABLE__COMMENTS, true, true);
+		return (EList<FLComment>)eDynamicGet(BasePackage.FL_ELEMENT__COMMENTS, BasePackage.Literals.FL_COMMENTABLE__COMMENTS, true, true);
 	}
 
 	/**
@@ -344,7 +344,7 @@ public abstract class FLElementImpl extends FLIDImpl implements FLElement {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<FLRating> getRatings() {
-		return (EList<FLRating>)eDynamicGet(BasePackage.FL_ELEMENT__RATINGS, BasePackage.Literals.RATEABLE__RATINGS, true, true);
+		return (EList<FLRating>)eDynamicGet(BasePackage.FL_ELEMENT__RATINGS, BasePackage.Literals.FL_RATEABLE__RATINGS, true, true);
 	}
 
 	/**
@@ -1241,32 +1241,32 @@ public abstract class FLElementImpl extends FLIDImpl implements FLElement {
 	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == Nameable.class) {
+		if (baseClass == FLNameable.class) {
 			switch (derivedFeatureID) {
-				case BasePackage.FL_ELEMENT__NAME: return BasePackage.NAMEABLE__NAME;
-				case BasePackage.FL_ELEMENT__DESCRIPTION: return BasePackage.NAMEABLE__DESCRIPTION;
-				case BasePackage.FL_ELEMENT__LONG_DESCRIPTION: return BasePackage.NAMEABLE__LONG_DESCRIPTION;
-				case BasePackage.FL_ELEMENT__NOTES: return BasePackage.NAMEABLE__NOTES;
+				case BasePackage.FL_ELEMENT__NAME: return BasePackage.FL_NAMEABLE__NAME;
+				case BasePackage.FL_ELEMENT__DESCRIPTION: return BasePackage.FL_NAMEABLE__DESCRIPTION;
+				case BasePackage.FL_ELEMENT__LONG_DESCRIPTION: return BasePackage.FL_NAMEABLE__LONG_DESCRIPTION;
+				case BasePackage.FL_ELEMENT__NOTES: return BasePackage.FL_NAMEABLE__NOTES;
 				default: return -1;
 			}
 		}
-		if (baseClass == Rateable.class) {
+		if (baseClass == FLRateable.class) {
 			switch (derivedFeatureID) {
-				case BasePackage.FL_ELEMENT__RATINGS: return BasePackage.RATEABLE__RATINGS;
-				case BasePackage.FL_ELEMENT__LIKES: return BasePackage.RATEABLE__LIKES;
-				case BasePackage.FL_ELEMENT__DISLIKES: return BasePackage.RATEABLE__DISLIKES;
+				case BasePackage.FL_ELEMENT__RATINGS: return BasePackage.FL_RATEABLE__RATINGS;
+				case BasePackage.FL_ELEMENT__LIKES: return BasePackage.FL_RATEABLE__LIKES;
+				case BasePackage.FL_ELEMENT__DISLIKES: return BasePackage.FL_RATEABLE__DISLIKES;
 				default: return -1;
 			}
 		}
-		if (baseClass == Commentable.class) {
+		if (baseClass == FLCommentable.class) {
 			switch (derivedFeatureID) {
-				case BasePackage.FL_ELEMENT__COMMENTS: return BasePackage.COMMENTABLE__COMMENTS;
+				case BasePackage.FL_ELEMENT__COMMENTS: return BasePackage.FL_COMMENTABLE__COMMENTS;
 				default: return -1;
 			}
 		}
-		if (baseClass == HyperLinkable.class) {
+		if (baseClass == FLHyperLinkable.class) {
 			switch (derivedFeatureID) {
-				case BasePackage.FL_ELEMENT__HYPER_LINKS: return BasePackage.HYPER_LINKABLE__HYPER_LINKS;
+				case BasePackage.FL_ELEMENT__HYPER_LINKS: return BasePackage.FL_HYPER_LINKABLE__HYPER_LINKS;
 				default: return -1;
 			}
 		}
@@ -1280,32 +1280,32 @@ public abstract class FLElementImpl extends FLIDImpl implements FLElement {
 	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == Nameable.class) {
+		if (baseClass == FLNameable.class) {
 			switch (baseFeatureID) {
-				case BasePackage.NAMEABLE__NAME: return BasePackage.FL_ELEMENT__NAME;
-				case BasePackage.NAMEABLE__DESCRIPTION: return BasePackage.FL_ELEMENT__DESCRIPTION;
-				case BasePackage.NAMEABLE__LONG_DESCRIPTION: return BasePackage.FL_ELEMENT__LONG_DESCRIPTION;
-				case BasePackage.NAMEABLE__NOTES: return BasePackage.FL_ELEMENT__NOTES;
+				case BasePackage.FL_NAMEABLE__NAME: return BasePackage.FL_ELEMENT__NAME;
+				case BasePackage.FL_NAMEABLE__DESCRIPTION: return BasePackage.FL_ELEMENT__DESCRIPTION;
+				case BasePackage.FL_NAMEABLE__LONG_DESCRIPTION: return BasePackage.FL_ELEMENT__LONG_DESCRIPTION;
+				case BasePackage.FL_NAMEABLE__NOTES: return BasePackage.FL_ELEMENT__NOTES;
 				default: return -1;
 			}
 		}
-		if (baseClass == Rateable.class) {
+		if (baseClass == FLRateable.class) {
 			switch (baseFeatureID) {
-				case BasePackage.RATEABLE__RATINGS: return BasePackage.FL_ELEMENT__RATINGS;
-				case BasePackage.RATEABLE__LIKES: return BasePackage.FL_ELEMENT__LIKES;
-				case BasePackage.RATEABLE__DISLIKES: return BasePackage.FL_ELEMENT__DISLIKES;
+				case BasePackage.FL_RATEABLE__RATINGS: return BasePackage.FL_ELEMENT__RATINGS;
+				case BasePackage.FL_RATEABLE__LIKES: return BasePackage.FL_ELEMENT__LIKES;
+				case BasePackage.FL_RATEABLE__DISLIKES: return BasePackage.FL_ELEMENT__DISLIKES;
 				default: return -1;
 			}
 		}
-		if (baseClass == Commentable.class) {
+		if (baseClass == FLCommentable.class) {
 			switch (baseFeatureID) {
-				case BasePackage.COMMENTABLE__COMMENTS: return BasePackage.FL_ELEMENT__COMMENTS;
+				case BasePackage.FL_COMMENTABLE__COMMENTS: return BasePackage.FL_ELEMENT__COMMENTS;
 				default: return -1;
 			}
 		}
-		if (baseClass == HyperLinkable.class) {
+		if (baseClass == FLHyperLinkable.class) {
 			switch (baseFeatureID) {
-				case BasePackage.HYPER_LINKABLE__HYPER_LINKS: return BasePackage.FL_ELEMENT__HYPER_LINKS;
+				case BasePackage.FL_HYPER_LINKABLE__HYPER_LINKS: return BasePackage.FL_ELEMENT__HYPER_LINKS;
 				default: return -1;
 			}
 		}
@@ -1319,24 +1319,24 @@ public abstract class FLElementImpl extends FLIDImpl implements FLElement {
 	 */
 	@Override
 	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
-		if (baseClass == Nameable.class) {
+		if (baseClass == FLNameable.class) {
 			switch (baseOperationID) {
 				default: return -1;
 			}
 		}
-		if (baseClass == Rateable.class) {
+		if (baseClass == FLRateable.class) {
 			switch (baseOperationID) {
-				case BasePackage.RATEABLE___COUNT_LIKES: return BasePackage.FL_ELEMENT___COUNT_LIKES;
-				case BasePackage.RATEABLE___COUNT_DISLIKES: return BasePackage.FL_ELEMENT___COUNT_DISLIKES;
+				case BasePackage.FL_RATEABLE___COUNT_LIKES: return BasePackage.FL_ELEMENT___COUNT_LIKES;
+				case BasePackage.FL_RATEABLE___COUNT_DISLIKES: return BasePackage.FL_ELEMENT___COUNT_DISLIKES;
 				default: return -1;
 			}
 		}
-		if (baseClass == Commentable.class) {
+		if (baseClass == FLCommentable.class) {
 			switch (baseOperationID) {
 				default: return -1;
 			}
 		}
-		if (baseClass == HyperLinkable.class) {
+		if (baseClass == FLHyperLinkable.class) {
 			switch (baseOperationID) {
 				default: return -1;
 			}

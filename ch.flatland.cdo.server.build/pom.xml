@@ -16,8 +16,7 @@
 		<project.build.sourceEncoding>cp1252</project.build.sourceEncoding>
 	</properties>
 
-	<modules>
-		
+	<modules>		
 		<!-- Flatland CDO base -->
 		<module>ch.flatland.cdo.model.base</module>
 		<module>ch.flatland.cdo.model.base.edit</module>
@@ -177,6 +176,7 @@
 						<plugin id="ch.qos.logback.slf4j" />
 						<plugin id="ch.qos.logback.classic" />
 						<plugin id="ch.qos.logback.core" />
+						<plugin id="ch.flatland.cdo.client.admin" />
 					</excludes>
 				</configuration>
 
@@ -297,8 +297,8 @@
 	</build>
 
 	<scm>
-		<url>scm:git:git@github.com/3AP-AG/cs-cdo-server.git</url>
-		<connection>scm:git:git@github.com/3AP-AG/cs-cdo-server.git</connection>
-		<developerConnection>scm:git:git@github.com/3AP-AG/cs-cdo-server.git</developerConnection>
+		<url>scm:git:git@github.com:robertblust/cdo-server.git</url>
+		<connection>scm:git:git@github.com:robertblust/cdo-server.git</connection>
+		<developerConnection>scm:git:git@github.com:robertblust/cdo-server.git</developerConnection>
 	</scm>
 </project>

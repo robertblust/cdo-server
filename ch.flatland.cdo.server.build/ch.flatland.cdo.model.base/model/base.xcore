@@ -68,7 +68,7 @@ abstract class FLID {
 	}
 }
 
-abstract class FLElement extends FLID, Nameable, Rateable, Commentable, HyperLinkable {
+abstract class FLElement extends FLID, FLNameable, FLRateable, FLCommentable, FLHyperLinkable {
 	contains FLTrace[] traces
 	contains FLProperty[] properties
 	@GenModel(propertyCategory="Base")
@@ -284,27 +284,27 @@ class FLHyperLink {
 	String[1] hyperLink
 }
 
-class FLComment extends Rateable {
+class FLComment extends FLRateable {
 	@DBStore(columnType="CLOB")
 	@GenModel(propertyMultiLine="true", propertyCategory="Comment")
 	FLMarkdown[1] comment
 	contains FLComment[] comments
 }
 
-class FLDataProvider extends FLID, Nameable, Commentable, HyperLinkable {
+class FLDataProvider extends FLID, FLNameable, FLCommentable, FLHyperLinkable {
 	@GenModel(propertyCategory="Data Provider")
 	refers FLElement[] providedElements opposite dataProvider
 }
 
-interface Commentable {
+interface FLCommentable {
 	contains FLComment[] comments
 }
 
-interface HyperLinkable {
+interface FLHyperLinkable {
 	contains FLHyperLink[] hyperLinks
 }
 
-interface Nameable {
+interface FLNameable {
 	@GenModel(propertyCategory="Named Element")
 	String[1] name
 	@GenModel(propertyMultiLine="true", propertyCategory="Named Element")
@@ -318,7 +318,7 @@ interface Nameable {
 	FLMarkdown notes
 }
 
-interface Rateable {
+interface FLRateable {
 	contains FLRating[] ratings
 	@GenModel(propertyCategory="Rating")
 	int likes get {

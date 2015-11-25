@@ -30,9 +30,24 @@ class DataStore {
 
 	val extension Request = new Request
 	val extension EMF = new EMF
-
+	
+	def findByType(CDOView view, String type, HttpServletRequest req) {
+		logger.debug("findByType '{}'", type)
+		return findByType(view, type, req, null, true)
+	}
+	
+	def findByType(CDOView view, String type, HttpServletRequest req, boolean like) {
+		logger.debug("findByType '{}', like = '{}'", type, like)
+		return findByType(view, type, req, null, like)
+	}
+	
 	def findByType(CDOView view, String type, HttpServletRequest req, Map<String, String[]> filters) {
+		logger.debug("findByType '{}', filters = '{}'", type, filters)
+		return findByType(view, type, req, filters, true)
+	}
 
+	def findByType(CDOView view, String type, HttpServletRequest req, Map<String, String[]> filters, boolean like) {
+		logger.debug("findByType '{}', filters = '{}', like = '{}'", type, filters, like)
 		// TODO find better solution 'Depends on Relation DB Store' 
 		// sql depends on mapping strategy
 		val List<EObject> result = newArrayList
@@ -81,7 +96,7 @@ class DataStore {
 				iterator.close
 			}
 			if(tableExists) {
-				val query = view.createQuery("sql", "SELECT DISTINCT CDO_ID " + it.max(req, mappingStrategy) + " FROM " + mappingStrategy.getTableName(it) + " WHERE " + view.temporality + it.filterQuery(req, mappingStrategy, filters) + it.orderBy(req, mappingStrategy))
+				val query = view.createQuery("sql", "SELECT DISTINCT CDO_ID " + it.max(req, mappingStrategy) + " FROM " + mappingStrategy.getTableName(it) + " WHERE " + view.temporality + it.filterQuery(req, mappingStrategy, filters, like) + it.orderBy(req, mappingStrategy))
 				logger.debug("Execute '{}' query '{}'", query.queryLanguage, query.queryString)
 				val iterator = query.getResultAsync(typeof(EObject))
 				while(iterator.hasNext) {
@@ -107,7 +122,7 @@ class DataStore {
 		}
 	}
 
-	def private filterQuery(EClass eClass, HttpServletRequest req, IMappingStrategy mappingStrategy, Map<String, String[]> filters) {
+	def private filterQuery(EClass eClass, HttpServletRequest req, IMappingStrategy mappingStrategy, Map<String, String[]> filters, boolean like) {
 		val builder = new StringBuilder
 		var kind = "AND"
 		if(req.xor || filters != null && filters.keySet.contains("or")) {
@@ -119,7 +134,12 @@ class DataStore {
 			if(attribute != null) {
 				logger.debug("Parameter name for filter '{}'", paramName)
 				for (value : req.parameterMap.get(paramName)) {
-					builder.append(" " + kind + " LOWER(" + mappingStrategy.getFieldName(attribute) + ") LIKE '%" + attribute.getValue(value, mappingStrategy).toLowerCase + "%'")
+					if (like) {
+						builder.append(" " + kind + " LOWER(" + mappingStrategy.getFieldName(attribute) + ") LIKE '%" + attribute.getValue(value, mappingStrategy).toLowerCase + "%'")
+					} else {
+						builder.append(" " + kind + " " + mappingStrategy.getFieldName(attribute) + " = '" + attribute.getValue(value, mappingStrategy) + "'")
+					}
+					
 				}
 			}
 		}
@@ -131,7 +151,11 @@ class DataStore {
 					if(attribute != null) {
 						logger.debug("Parameter name for filter '{}'", it)
 						for (value : filters.get(it)) {
-							builder.append(" " + finalKind + " LOWER(" + mappingStrategy.getFieldName(attribute) + ") LIKE '%" + attribute.getValue(value, mappingStrategy).toLowerCase + "%'")
+							if (like) {
+								builder.append(" " + finalKind + " LOWER(" + mappingStrategy.getFieldName(attribute) + ") LIKE '%" + attribute.getValue(value, mappingStrategy).toLowerCase + "%'")
+							} else {
+								builder.append(" " + finalKind + " " + mappingStrategy.getFieldName(attribute) + " = '" + attribute.getValue(value, mappingStrategy).toLowerCase + "'")
+							}	
 						}
 					}
 				}

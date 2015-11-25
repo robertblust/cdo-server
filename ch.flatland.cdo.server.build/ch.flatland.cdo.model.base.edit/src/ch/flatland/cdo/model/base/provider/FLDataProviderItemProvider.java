@@ -66,9 +66,9 @@ public class FLDataProviderItemProvider extends FLIDItemProvider {
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Nameable_name_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Nameable_name_feature", "_UI_Nameable_type"),
-				 BasePackage.Literals.NAMEABLE__NAME,
+				 getString("_UI_FLNameable_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FLNameable_name_feature", "_UI_FLNameable_type"),
+				 BasePackage.Literals.FL_NAMEABLE__NAME,
 				 true,
 				 false,
 				 false,
@@ -88,9 +88,9 @@ public class FLDataProviderItemProvider extends FLIDItemProvider {
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Nameable_description_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Nameable_description_feature", "_UI_Nameable_type"),
-				 BasePackage.Literals.NAMEABLE__DESCRIPTION,
+				 getString("_UI_FLNameable_description_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FLNameable_description_feature", "_UI_FLNameable_type"),
+				 BasePackage.Literals.FL_NAMEABLE__DESCRIPTION,
 				 true,
 				 true,
 				 false,
@@ -110,9 +110,9 @@ public class FLDataProviderItemProvider extends FLIDItemProvider {
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Nameable_longDescription_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Nameable_longDescription_feature", "_UI_Nameable_type"),
-				 BasePackage.Literals.NAMEABLE__LONG_DESCRIPTION,
+				 getString("_UI_FLNameable_longDescription_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FLNameable_longDescription_feature", "_UI_FLNameable_type"),
+				 BasePackage.Literals.FL_NAMEABLE__LONG_DESCRIPTION,
 				 true,
 				 true,
 				 false,
@@ -132,9 +132,9 @@ public class FLDataProviderItemProvider extends FLIDItemProvider {
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Nameable_notes_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Nameable_notes_feature", "_UI_Nameable_type"),
-				 BasePackage.Literals.NAMEABLE__NOTES,
+				 getString("_UI_FLNameable_notes_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FLNameable_notes_feature", "_UI_FLNameable_type"),
+				 BasePackage.Literals.FL_NAMEABLE__NOTES,
 				 true,
 				 true,
 				 false,
@@ -177,8 +177,8 @@ public class FLDataProviderItemProvider extends FLIDItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(BasePackage.Literals.COMMENTABLE__COMMENTS);
-			childrenFeatures.add(BasePackage.Literals.HYPER_LINKABLE__HYPER_LINKS);
+			childrenFeatures.add(BasePackage.Literals.FL_COMMENTABLE__COMMENTS);
+			childrenFeatures.add(BasePackage.Literals.FL_HYPER_LINKABLE__HYPER_LINKS);
 		}
 		return childrenFeatures;
 	}
@@ -275,12 +275,12 @@ public class FLDataProviderItemProvider extends FLIDItemProvider {
 
 		newChildDescriptors.add
 			(createChildParameter
-				(BasePackage.Literals.COMMENTABLE__COMMENTS,
+				(BasePackage.Literals.FL_COMMENTABLE__COMMENTS,
 				 BaseFactory.eINSTANCE.createFLComment()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(BasePackage.Literals.HYPER_LINKABLE__HYPER_LINKS,
+				(BasePackage.Literals.FL_HYPER_LINKABLE__HYPER_LINKS,
 				 BaseFactory.eINSTANCE.createFLHyperLink()));
 	}
 

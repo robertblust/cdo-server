@@ -23,7 +23,6 @@ import org.eclipse.emf.cdo.CDOObject
 import org.eclipse.emf.cdo.common.security.NoPermissionException
 import org.eclipse.emf.cdo.eresource.CDOResourceNode
 import org.eclipse.emf.cdo.util.CommitException
-import org.eclipse.emf.cdo.view.CDOView
 import org.eclipse.emf.common.notify.Adapter
 import org.eclipse.emf.ecore.EObject
 import org.slf4j.LoggerFactory
@@ -159,52 +158,5 @@ class Delete {
 			}
 		}
 		resp.writeResponse(req, jsonString)
-	}
-
-	def private xRefsDelete(CDOView view, CDOObject cdoObject) {
-		val suspects = newArrayList
-		suspects.add(cdoObject)
-		suspects.addAll(cdoObject.eAllContents.toList)
-
-		suspects.forEach [
-			if(it instanceof CDOObject) {
-				it.handleSuspect(view)
-			} else {
-				val cdoAdapter = it.eAdapters.filter(typeof(CDOObject)).head
-				cdoAdapter.handleSuspect(view)
-			}
-		]
-		val container = cdoObject.eContainer
-		if(container == null) {
-
-			// must be a CDOResource Node
-			val resource = cdoObject.cdoResource
-			resource.contents.remove(cdoObject)
-			return resource
-		} else {
-			val containingFeature = cdoObject.eContainingFeature
-			if(containingFeature.isMany) {
-				(container.eGet(containingFeature) as List<Object>).remove(cdoObject)
-			} else {
-				container.eUnset(containingFeature)
-			}
-		}
-		return container
-	}
-
-	def private handleSuspect(CDOObject suspect, CDOView view) {
-		view.queryXRefs(suspect, emptyList).forEach [
-			val target = it.targetObject
-			val source = it.sourceObject
-			val sourceFeature = it.sourceFeature
-			if(!sourceFeature.isDerived) {
-				logger.debug("Found xref feature '{}', source '{}', target '{}'", sourceFeature.name, source, target)
-				if(sourceFeature.isMany) {
-					(source.eGet(sourceFeature) as List<Object>).remove(target)
-				} else {
-					source.eUnset(sourceFeature)
-				}
-			}
-		]
 	}
 }

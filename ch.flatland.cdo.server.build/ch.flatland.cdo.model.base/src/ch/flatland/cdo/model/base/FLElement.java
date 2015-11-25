@@ -59,7 +59,7 @@ import org.eclipse.emf.ecore.EReference;
  * @model abstract="true"
  * @generated
  */
-public interface FLElement extends FLID, Nameable, Rateable, Commentable, HyperLinkable {
+public interface FLElement extends FLID, FLNameable, FLRateable, FLCommentable, FLHyperLinkable {
 	/**
 	 * Returns the value of the '<em><b>Traces</b></em>' containment reference list.
 	 * The list contents are of type {@link ch.flatland.cdo.model.base.FLTrace}.

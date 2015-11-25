@@ -15,15 +15,15 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link ch.flatland.cdo.model.base.HyperLinkable#getHyperLinks <em>Hyper Links</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.base.FLHyperLinkable#getHyperLinks <em>Hyper Links</em>}</li>
  * </ul>
  *
- * @see ch.flatland.cdo.model.base.BasePackage#getHyperLinkable()
+ * @see ch.flatland.cdo.model.base.BasePackage#getFLHyperLinkable()
  * @model interface="true" abstract="true"
  * @extends CDOObject
  * @generated
  */
-public interface HyperLinkable extends CDOObject {
+public interface FLHyperLinkable extends CDOObject {
 	/**
 	 * Returns the value of the '<em><b>Hyper Links</b></em>' containment reference list.
 	 * The list contents are of type {@link ch.flatland.cdo.model.base.FLHyperLink}.
@@ -34,7 +34,7 @@ public interface HyperLinkable extends CDOObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Hyper Links</em>' containment reference list.
-	 * @see ch.flatland.cdo.model.base.BasePackage#getHyperLinkable_HyperLinks()
+	 * @see ch.flatland.cdo.model.base.BasePackage#getFLHyperLinkable_HyperLinks()
 	 * @model containment="true"
 	 * @generated
 	 */

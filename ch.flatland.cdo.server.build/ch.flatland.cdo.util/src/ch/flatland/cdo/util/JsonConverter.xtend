@@ -890,7 +890,7 @@ class JsonConverter {
 		return null
 	}
 
-	def private getRevisionDeltasAsJsonArray(Map<EObject, List<CDOFeatureDelta>> localRevisionDelta) {
+	def getRevisionDeltasAsJsonArray(Map<EObject, List<CDOFeatureDelta>> localRevisionDelta) {
 		if(localRevisionDelta.size > 0) {
 			val messageArray = new JsonArray
 			localRevisionDelta.keySet.forEach [

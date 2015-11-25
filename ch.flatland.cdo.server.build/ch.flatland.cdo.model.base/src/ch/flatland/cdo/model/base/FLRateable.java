@@ -15,17 +15,17 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link ch.flatland.cdo.model.base.Rateable#getRatings <em>Ratings</em>}</li>
- *   <li>{@link ch.flatland.cdo.model.base.Rateable#getLikes <em>Likes</em>}</li>
- *   <li>{@link ch.flatland.cdo.model.base.Rateable#getDislikes <em>Dislikes</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.base.FLRateable#getRatings <em>Ratings</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.base.FLRateable#getLikes <em>Likes</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.base.FLRateable#getDislikes <em>Dislikes</em>}</li>
  * </ul>
  *
- * @see ch.flatland.cdo.model.base.BasePackage#getRateable()
+ * @see ch.flatland.cdo.model.base.BasePackage#getFLRateable()
  * @model interface="true" abstract="true"
  * @extends CDOObject
  * @generated
  */
-public interface Rateable extends CDOObject {
+public interface FLRateable extends CDOObject {
 	/**
 	 * Returns the value of the '<em><b>Ratings</b></em>' containment reference list.
 	 * The list contents are of type {@link ch.flatland.cdo.model.base.FLRating}.
@@ -36,7 +36,7 @@ public interface Rateable extends CDOObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Ratings</em>' containment reference list.
-	 * @see ch.flatland.cdo.model.base.BasePackage#getRateable_Ratings()
+	 * @see ch.flatland.cdo.model.base.BasePackage#getFLRateable_Ratings()
 	 * @model containment="true"
 	 * @generated
 	 */
@@ -51,7 +51,7 @@ public interface Rateable extends CDOObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Likes</em>' attribute.
-	 * @see ch.flatland.cdo.model.base.BasePackage#getRateable_Likes()
+	 * @see ch.flatland.cdo.model.base.BasePackage#getFLRateable_Likes()
 	 * @model unique="false" transient="true" changeable="false" volatile="true" derived="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Rating' get='return this.countLikes();'"
 	 * @generated
@@ -67,7 +67,7 @@ public interface Rateable extends CDOObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Dislikes</em>' attribute.
-	 * @see ch.flatland.cdo.model.base.BasePackage#getRateable_Dislikes()
+	 * @see ch.flatland.cdo.model.base.BasePackage#getFLRateable_Dislikes()
 	 * @model unique="false" transient="true" changeable="false" volatile="true" derived="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Rating' get='return this.countDislikes();'"
 	 * @generated

@@ -100,14 +100,14 @@ public class BaseValidator extends EObjectValidator {
 				return validateFLComment((FLComment)value, diagnostics, context);
 			case BasePackage.FL_DATA_PROVIDER:
 				return validateFLDataProvider((FLDataProvider)value, diagnostics, context);
-			case BasePackage.COMMENTABLE:
-				return validateCommentable((Commentable)value, diagnostics, context);
-			case BasePackage.HYPER_LINKABLE:
-				return validateHyperLinkable((HyperLinkable)value, diagnostics, context);
-			case BasePackage.NAMEABLE:
-				return validateNameable((Nameable)value, diagnostics, context);
-			case BasePackage.RATEABLE:
-				return validateRateable((Rateable)value, diagnostics, context);
+			case BasePackage.FL_COMMENTABLE:
+				return validateFLCommentable((FLCommentable)value, diagnostics, context);
+			case BasePackage.FL_HYPER_LINKABLE:
+				return validateFLHyperLinkable((FLHyperLinkable)value, diagnostics, context);
+			case BasePackage.FL_NAMEABLE:
+				return validateFLNameable((FLNameable)value, diagnostics, context);
+			case BasePackage.FL_RATEABLE:
+				return validateFLRateable((FLRateable)value, diagnostics, context);
 			case BasePackage.FL_RATING:
 				return validateFLRating((FLRating)value, diagnostics, context);
 			case BasePackage.FL_TRACE:
@@ -186,8 +186,8 @@ public class BaseValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateCommentable(Commentable commentable, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint((EObject)commentable, diagnostics, context);
+	public boolean validateFLCommentable(FLCommentable flCommentable, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint((EObject)flCommentable, diagnostics, context);
 	}
 
 	/**
@@ -195,8 +195,8 @@ public class BaseValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateHyperLinkable(HyperLinkable hyperLinkable, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint((EObject)hyperLinkable, diagnostics, context);
+	public boolean validateFLHyperLinkable(FLHyperLinkable flHyperLinkable, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint((EObject)flHyperLinkable, diagnostics, context);
 	}
 
 	/**
@@ -204,8 +204,8 @@ public class BaseValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateNameable(Nameable nameable, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint((EObject)nameable, diagnostics, context);
+	public boolean validateFLNameable(FLNameable flNameable, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint((EObject)flNameable, diagnostics, context);
 	}
 
 	/**
@@ -213,8 +213,8 @@ public class BaseValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateRateable(Rateable rateable, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint((EObject)rateable, diagnostics, context);
+	public boolean validateFLRateable(FLRateable flRateable, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint((EObject)flRateable, diagnostics, context);
 	}
 
 	/**

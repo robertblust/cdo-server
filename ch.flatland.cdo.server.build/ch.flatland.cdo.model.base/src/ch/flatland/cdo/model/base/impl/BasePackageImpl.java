@@ -4,7 +4,7 @@ package ch.flatland.cdo.model.base.impl;
 
 import ch.flatland.cdo.model.base.BaseFactory;
 import ch.flatland.cdo.model.base.BasePackage;
-import ch.flatland.cdo.model.base.Commentable;
+import ch.flatland.cdo.model.base.FLCommentable;
 import ch.flatland.cdo.model.base.FLComment;
 import ch.flatland.cdo.model.base.FLDataProvider;
 import ch.flatland.cdo.model.base.FLElement;
@@ -15,9 +15,9 @@ import ch.flatland.cdo.model.base.FLRating;
 import ch.flatland.cdo.model.base.FLRatingType;
 import ch.flatland.cdo.model.base.FLTrace;
 import ch.flatland.cdo.model.base.FLTraceType;
-import ch.flatland.cdo.model.base.HyperLinkable;
-import ch.flatland.cdo.model.base.Nameable;
-import ch.flatland.cdo.model.base.Rateable;
+import ch.flatland.cdo.model.base.FLHyperLinkable;
+import ch.flatland.cdo.model.base.FLNameable;
+import ch.flatland.cdo.model.base.FLRateable;
 import ch.flatland.cdo.model.base.util.BaseValidator;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -86,28 +86,28 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass commentableEClass = null;
+	private EClass flCommentableEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass hyperLinkableEClass = null;
+	private EClass flHyperLinkableEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass nameableEClass = null;
+	private EClass flNameableEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass rateableEClass = null;
+	private EClass flRateableEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -830,8 +830,8 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getCommentable() {
-		return commentableEClass;
+	public EClass getFLCommentable() {
+		return flCommentableEClass;
 	}
 
 	/**
@@ -839,8 +839,8 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getCommentable_Comments() {
-		return (EReference)commentableEClass.getEStructuralFeatures().get(0);
+	public EReference getFLCommentable_Comments() {
+		return (EReference)flCommentableEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -848,8 +848,8 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getHyperLinkable() {
-		return hyperLinkableEClass;
+	public EClass getFLHyperLinkable() {
+		return flHyperLinkableEClass;
 	}
 
 	/**
@@ -857,8 +857,8 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getHyperLinkable_HyperLinks() {
-		return (EReference)hyperLinkableEClass.getEStructuralFeatures().get(0);
+	public EReference getFLHyperLinkable_HyperLinks() {
+		return (EReference)flHyperLinkableEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -866,8 +866,8 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getNameable() {
-		return nameableEClass;
+	public EClass getFLNameable() {
+		return flNameableEClass;
 	}
 
 	/**
@@ -875,8 +875,8 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getNameable_Name() {
-		return (EAttribute)nameableEClass.getEStructuralFeatures().get(0);
+	public EAttribute getFLNameable_Name() {
+		return (EAttribute)flNameableEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -884,8 +884,8 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getNameable_Description() {
-		return (EAttribute)nameableEClass.getEStructuralFeatures().get(1);
+	public EAttribute getFLNameable_Description() {
+		return (EAttribute)flNameableEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -893,8 +893,8 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getNameable_LongDescription() {
-		return (EAttribute)nameableEClass.getEStructuralFeatures().get(2);
+	public EAttribute getFLNameable_LongDescription() {
+		return (EAttribute)flNameableEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -902,8 +902,8 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getNameable_Notes() {
-		return (EAttribute)nameableEClass.getEStructuralFeatures().get(3);
+	public EAttribute getFLNameable_Notes() {
+		return (EAttribute)flNameableEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -911,8 +911,8 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getRateable() {
-		return rateableEClass;
+	public EClass getFLRateable() {
+		return flRateableEClass;
 	}
 
 	/**
@@ -920,8 +920,8 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getRateable_Ratings() {
-		return (EReference)rateableEClass.getEStructuralFeatures().get(0);
+	public EReference getFLRateable_Ratings() {
+		return (EReference)flRateableEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -929,8 +929,8 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getRateable_Likes() {
-		return (EAttribute)rateableEClass.getEStructuralFeatures().get(1);
+	public EAttribute getFLRateable_Likes() {
+		return (EAttribute)flRateableEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -938,8 +938,8 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getRateable_Dislikes() {
-		return (EAttribute)rateableEClass.getEStructuralFeatures().get(2);
+	public EAttribute getFLRateable_Dislikes() {
+		return (EAttribute)flRateableEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -947,8 +947,8 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getRateable__CountLikes() {
-		return rateableEClass.getEOperations().get(0);
+	public EOperation getFLRateable__CountLikes() {
+		return flRateableEClass.getEOperations().get(0);
 	}
 
 	/**
@@ -956,8 +956,8 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getRateable__CountDislikes() {
-		return rateableEClass.getEOperations().get(1);
+	public EOperation getFLRateable__CountDislikes() {
+		return flRateableEClass.getEOperations().get(1);
 	}
 
 	/**
@@ -1168,24 +1168,24 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 		flDataProviderEClass = createEClass(FL_DATA_PROVIDER);
 		createEReference(flDataProviderEClass, FL_DATA_PROVIDER__PROVIDED_ELEMENTS);
 
-		commentableEClass = createEClass(COMMENTABLE);
-		createEReference(commentableEClass, COMMENTABLE__COMMENTS);
+		flCommentableEClass = createEClass(FL_COMMENTABLE);
+		createEReference(flCommentableEClass, FL_COMMENTABLE__COMMENTS);
 
-		hyperLinkableEClass = createEClass(HYPER_LINKABLE);
-		createEReference(hyperLinkableEClass, HYPER_LINKABLE__HYPER_LINKS);
+		flHyperLinkableEClass = createEClass(FL_HYPER_LINKABLE);
+		createEReference(flHyperLinkableEClass, FL_HYPER_LINKABLE__HYPER_LINKS);
 
-		nameableEClass = createEClass(NAMEABLE);
-		createEAttribute(nameableEClass, NAMEABLE__NAME);
-		createEAttribute(nameableEClass, NAMEABLE__DESCRIPTION);
-		createEAttribute(nameableEClass, NAMEABLE__LONG_DESCRIPTION);
-		createEAttribute(nameableEClass, NAMEABLE__NOTES);
+		flNameableEClass = createEClass(FL_NAMEABLE);
+		createEAttribute(flNameableEClass, FL_NAMEABLE__NAME);
+		createEAttribute(flNameableEClass, FL_NAMEABLE__DESCRIPTION);
+		createEAttribute(flNameableEClass, FL_NAMEABLE__LONG_DESCRIPTION);
+		createEAttribute(flNameableEClass, FL_NAMEABLE__NOTES);
 
-		rateableEClass = createEClass(RATEABLE);
-		createEReference(rateableEClass, RATEABLE__RATINGS);
-		createEAttribute(rateableEClass, RATEABLE__LIKES);
-		createEAttribute(rateableEClass, RATEABLE__DISLIKES);
-		createEOperation(rateableEClass, RATEABLE___COUNT_LIKES);
-		createEOperation(rateableEClass, RATEABLE___COUNT_DISLIKES);
+		flRateableEClass = createEClass(FL_RATEABLE);
+		createEReference(flRateableEClass, FL_RATEABLE__RATINGS);
+		createEAttribute(flRateableEClass, FL_RATEABLE__LIKES);
+		createEAttribute(flRateableEClass, FL_RATEABLE__DISLIKES);
+		createEOperation(flRateableEClass, FL_RATEABLE___COUNT_LIKES);
+		createEOperation(flRateableEClass, FL_RATEABLE___COUNT_DISLIKES);
 
 		flRatingEClass = createEClass(FL_RATING);
 		createEAttribute(flRatingEClass, FL_RATING__RATING_TYPE);
@@ -1239,16 +1239,16 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 
 		// Add supertypes to classes
 		flElementEClass.getESuperTypes().add(this.getFLID());
-		flElementEClass.getESuperTypes().add(this.getNameable());
-		flElementEClass.getESuperTypes().add(this.getRateable());
-		flElementEClass.getESuperTypes().add(this.getCommentable());
-		flElementEClass.getESuperTypes().add(this.getHyperLinkable());
+		flElementEClass.getESuperTypes().add(this.getFLNameable());
+		flElementEClass.getESuperTypes().add(this.getFLRateable());
+		flElementEClass.getESuperTypes().add(this.getFLCommentable());
+		flElementEClass.getESuperTypes().add(this.getFLHyperLinkable());
 		flPackageEClass.getESuperTypes().add(this.getFLElement());
-		flCommentEClass.getESuperTypes().add(this.getRateable());
+		flCommentEClass.getESuperTypes().add(this.getFLRateable());
 		flDataProviderEClass.getESuperTypes().add(this.getFLID());
-		flDataProviderEClass.getESuperTypes().add(this.getNameable());
-		flDataProviderEClass.getESuperTypes().add(this.getCommentable());
-		flDataProviderEClass.getESuperTypes().add(this.getHyperLinkable());
+		flDataProviderEClass.getESuperTypes().add(this.getFLNameable());
+		flDataProviderEClass.getESuperTypes().add(this.getFLCommentable());
+		flDataProviderEClass.getESuperTypes().add(this.getFLHyperLinkable());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(flidEClass, ch.flatland.cdo.model.base.FLID.class, "FLID", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1345,26 +1345,26 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 		initEClass(flDataProviderEClass, FLDataProvider.class, "FLDataProvider", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getFLDataProvider_ProvidedElements(), this.getFLElement(), this.getFLElement_DataProvider(), "providedElements", null, 0, -1, FLDataProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(commentableEClass, Commentable.class, "Commentable", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getCommentable_Comments(), this.getFLComment(), null, "comments", null, 0, -1, Commentable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(flCommentableEClass, FLCommentable.class, "FLCommentable", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getFLCommentable_Comments(), this.getFLComment(), null, "comments", null, 0, -1, FLCommentable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(hyperLinkableEClass, HyperLinkable.class, "HyperLinkable", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getHyperLinkable_HyperLinks(), this.getFLHyperLink(), null, "hyperLinks", null, 0, -1, HyperLinkable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(flHyperLinkableEClass, FLHyperLinkable.class, "FLHyperLinkable", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getFLHyperLinkable_HyperLinks(), this.getFLHyperLink(), null, "hyperLinks", null, 0, -1, FLHyperLinkable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(nameableEClass, Nameable.class, "Nameable", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getNameable_Name(), theEcorePackage.getEString(), "name", null, 1, 1, Nameable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getNameable_Description(), this.getFLMarkdown(), "description", null, 0, 1, Nameable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getNameable_LongDescription(), this.getFLMarkdown(), "longDescription", null, 0, 1, Nameable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getNameable_Notes(), this.getFLMarkdown(), "notes", null, 0, 1, Nameable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(flNameableEClass, FLNameable.class, "FLNameable", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getFLNameable_Name(), theEcorePackage.getEString(), "name", null, 1, 1, FLNameable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFLNameable_Description(), this.getFLMarkdown(), "description", null, 0, 1, FLNameable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFLNameable_LongDescription(), this.getFLMarkdown(), "longDescription", null, 0, 1, FLNameable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFLNameable_Notes(), this.getFLMarkdown(), "notes", null, 0, 1, FLNameable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(rateableEClass, Rateable.class, "Rateable", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getRateable_Ratings(), this.getFLRating(), null, "ratings", null, 0, -1, Rateable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getRateable_Likes(), theEcorePackage.getEInt(), "likes", null, 0, 1, Rateable.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-		initEAttribute(getRateable_Dislikes(), theEcorePackage.getEInt(), "dislikes", null, 0, 1, Rateable.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEClass(flRateableEClass, FLRateable.class, "FLRateable", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getFLRateable_Ratings(), this.getFLRating(), null, "ratings", null, 0, -1, FLRateable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFLRateable_Likes(), theEcorePackage.getEInt(), "likes", null, 0, 1, FLRateable.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFLRateable_Dislikes(), theEcorePackage.getEInt(), "dislikes", null, 0, 1, FLRateable.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
-		initEOperation(getRateable__CountLikes(), theEcorePackage.getEInt(), "countLikes", 0, 1, !IS_UNIQUE, IS_ORDERED);
+		initEOperation(getFLRateable__CountLikes(), theEcorePackage.getEInt(), "countLikes", 0, 1, !IS_UNIQUE, IS_ORDERED);
 
-		initEOperation(getRateable__CountDislikes(), theEcorePackage.getEInt(), "countDislikes", 0, 1, !IS_UNIQUE, IS_ORDERED);
+		initEOperation(getFLRateable__CountDislikes(), theEcorePackage.getEInt(), "countDislikes", 0, 1, !IS_UNIQUE, IS_ORDERED);
 
 		initEClass(flRatingEClass, FLRating.class, "FLRating", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getFLRating_RatingType(), this.getFLRatingType(), "ratingType", null, 1, 1, FLRating.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1446,19 +1446,19 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 			 "columnType", "CLOB"
 		   });	
 		addAnnotation
-		  (getNameable_Description(), 
+		  (getFLNameable_Description(), 
 		   source, 
 		   new String[] {
 			 "columnType", "CLOB"
 		   });	
 		addAnnotation
-		  (getNameable_LongDescription(), 
+		  (getFLNameable_LongDescription(), 
 		   source, 
 		   new String[] {
 			 "columnType", "CLOB"
 		   });	
 		addAnnotation
-		  (getNameable_Notes(), 
+		  (getFLNameable_Notes(), 
 		   source, 
 		   new String[] {
 			 "columnType", "CLOB"

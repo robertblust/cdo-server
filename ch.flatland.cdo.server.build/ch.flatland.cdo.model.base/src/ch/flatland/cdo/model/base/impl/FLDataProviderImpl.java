@@ -3,14 +3,14 @@
 package ch.flatland.cdo.model.base.impl;
 
 import ch.flatland.cdo.model.base.BasePackage;
-import ch.flatland.cdo.model.base.Commentable;
+import ch.flatland.cdo.model.base.FLCommentable;
 import ch.flatland.cdo.model.base.FLComment;
 import ch.flatland.cdo.model.base.FLDataProvider;
 
 import ch.flatland.cdo.model.base.FLElement;
 import ch.flatland.cdo.model.base.FLHyperLink;
-import ch.flatland.cdo.model.base.HyperLinkable;
-import ch.flatland.cdo.model.base.Nameable;
+import ch.flatland.cdo.model.base.FLHyperLinkable;
+import ch.flatland.cdo.model.base.FLNameable;
 import java.util.Collection;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -101,7 +101,7 @@ public class FLDataProviderImpl extends FLIDImpl implements FLDataProvider {
 	 * @generated
 	 */
 	public String getName() {
-		return (String)eDynamicGet(BasePackage.FL_DATA_PROVIDER__NAME, BasePackage.Literals.NAMEABLE__NAME, true, true);
+		return (String)eDynamicGet(BasePackage.FL_DATA_PROVIDER__NAME, BasePackage.Literals.FL_NAMEABLE__NAME, true, true);
 	}
 
 	/**
@@ -110,7 +110,7 @@ public class FLDataProviderImpl extends FLIDImpl implements FLDataProvider {
 	 * @generated
 	 */
 	public void setName(String newName) {
-		eDynamicSet(BasePackage.FL_DATA_PROVIDER__NAME, BasePackage.Literals.NAMEABLE__NAME, newName);
+		eDynamicSet(BasePackage.FL_DATA_PROVIDER__NAME, BasePackage.Literals.FL_NAMEABLE__NAME, newName);
 	}
 
 	/**
@@ -119,7 +119,7 @@ public class FLDataProviderImpl extends FLIDImpl implements FLDataProvider {
 	 * @generated
 	 */
 	public String getDescription() {
-		return (String)eDynamicGet(BasePackage.FL_DATA_PROVIDER__DESCRIPTION, BasePackage.Literals.NAMEABLE__DESCRIPTION, true, true);
+		return (String)eDynamicGet(BasePackage.FL_DATA_PROVIDER__DESCRIPTION, BasePackage.Literals.FL_NAMEABLE__DESCRIPTION, true, true);
 	}
 
 	/**
@@ -128,7 +128,7 @@ public class FLDataProviderImpl extends FLIDImpl implements FLDataProvider {
 	 * @generated
 	 */
 	public void setDescription(String newDescription) {
-		eDynamicSet(BasePackage.FL_DATA_PROVIDER__DESCRIPTION, BasePackage.Literals.NAMEABLE__DESCRIPTION, newDescription);
+		eDynamicSet(BasePackage.FL_DATA_PROVIDER__DESCRIPTION, BasePackage.Literals.FL_NAMEABLE__DESCRIPTION, newDescription);
 	}
 
 	/**
@@ -137,7 +137,7 @@ public class FLDataProviderImpl extends FLIDImpl implements FLDataProvider {
 	 * @generated
 	 */
 	public String getLongDescription() {
-		return (String)eDynamicGet(BasePackage.FL_DATA_PROVIDER__LONG_DESCRIPTION, BasePackage.Literals.NAMEABLE__LONG_DESCRIPTION, true, true);
+		return (String)eDynamicGet(BasePackage.FL_DATA_PROVIDER__LONG_DESCRIPTION, BasePackage.Literals.FL_NAMEABLE__LONG_DESCRIPTION, true, true);
 	}
 
 	/**
@@ -146,7 +146,7 @@ public class FLDataProviderImpl extends FLIDImpl implements FLDataProvider {
 	 * @generated
 	 */
 	public void setLongDescription(String newLongDescription) {
-		eDynamicSet(BasePackage.FL_DATA_PROVIDER__LONG_DESCRIPTION, BasePackage.Literals.NAMEABLE__LONG_DESCRIPTION, newLongDescription);
+		eDynamicSet(BasePackage.FL_DATA_PROVIDER__LONG_DESCRIPTION, BasePackage.Literals.FL_NAMEABLE__LONG_DESCRIPTION, newLongDescription);
 	}
 
 	/**
@@ -155,7 +155,7 @@ public class FLDataProviderImpl extends FLIDImpl implements FLDataProvider {
 	 * @generated
 	 */
 	public String getNotes() {
-		return (String)eDynamicGet(BasePackage.FL_DATA_PROVIDER__NOTES, BasePackage.Literals.NAMEABLE__NOTES, true, true);
+		return (String)eDynamicGet(BasePackage.FL_DATA_PROVIDER__NOTES, BasePackage.Literals.FL_NAMEABLE__NOTES, true, true);
 	}
 
 	/**
@@ -164,7 +164,7 @@ public class FLDataProviderImpl extends FLIDImpl implements FLDataProvider {
 	 * @generated
 	 */
 	public void setNotes(String newNotes) {
-		eDynamicSet(BasePackage.FL_DATA_PROVIDER__NOTES, BasePackage.Literals.NAMEABLE__NOTES, newNotes);
+		eDynamicSet(BasePackage.FL_DATA_PROVIDER__NOTES, BasePackage.Literals.FL_NAMEABLE__NOTES, newNotes);
 	}
 
 	/**
@@ -174,7 +174,7 @@ public class FLDataProviderImpl extends FLIDImpl implements FLDataProvider {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<FLHyperLink> getHyperLinks() {
-		return (EList<FLHyperLink>)eDynamicGet(BasePackage.FL_DATA_PROVIDER__HYPER_LINKS, BasePackage.Literals.HYPER_LINKABLE__HYPER_LINKS, true, true);
+		return (EList<FLHyperLink>)eDynamicGet(BasePackage.FL_DATA_PROVIDER__HYPER_LINKS, BasePackage.Literals.FL_HYPER_LINKABLE__HYPER_LINKS, true, true);
 	}
 
 	/**
@@ -184,7 +184,7 @@ public class FLDataProviderImpl extends FLIDImpl implements FLDataProvider {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<FLComment> getComments() {
-		return (EList<FLComment>)eDynamicGet(BasePackage.FL_DATA_PROVIDER__COMMENTS, BasePackage.Literals.COMMENTABLE__COMMENTS, true, true);
+		return (EList<FLComment>)eDynamicGet(BasePackage.FL_DATA_PROVIDER__COMMENTS, BasePackage.Literals.FL_COMMENTABLE__COMMENTS, true, true);
 	}
 
 	/**
@@ -359,24 +359,24 @@ public class FLDataProviderImpl extends FLIDImpl implements FLDataProvider {
 	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == Nameable.class) {
+		if (baseClass == FLNameable.class) {
 			switch (derivedFeatureID) {
-				case BasePackage.FL_DATA_PROVIDER__NAME: return BasePackage.NAMEABLE__NAME;
-				case BasePackage.FL_DATA_PROVIDER__DESCRIPTION: return BasePackage.NAMEABLE__DESCRIPTION;
-				case BasePackage.FL_DATA_PROVIDER__LONG_DESCRIPTION: return BasePackage.NAMEABLE__LONG_DESCRIPTION;
-				case BasePackage.FL_DATA_PROVIDER__NOTES: return BasePackage.NAMEABLE__NOTES;
+				case BasePackage.FL_DATA_PROVIDER__NAME: return BasePackage.FL_NAMEABLE__NAME;
+				case BasePackage.FL_DATA_PROVIDER__DESCRIPTION: return BasePackage.FL_NAMEABLE__DESCRIPTION;
+				case BasePackage.FL_DATA_PROVIDER__LONG_DESCRIPTION: return BasePackage.FL_NAMEABLE__LONG_DESCRIPTION;
+				case BasePackage.FL_DATA_PROVIDER__NOTES: return BasePackage.FL_NAMEABLE__NOTES;
 				default: return -1;
 			}
 		}
-		if (baseClass == Commentable.class) {
+		if (baseClass == FLCommentable.class) {
 			switch (derivedFeatureID) {
-				case BasePackage.FL_DATA_PROVIDER__COMMENTS: return BasePackage.COMMENTABLE__COMMENTS;
+				case BasePackage.FL_DATA_PROVIDER__COMMENTS: return BasePackage.FL_COMMENTABLE__COMMENTS;
 				default: return -1;
 			}
 		}
-		if (baseClass == HyperLinkable.class) {
+		if (baseClass == FLHyperLinkable.class) {
 			switch (derivedFeatureID) {
-				case BasePackage.FL_DATA_PROVIDER__HYPER_LINKS: return BasePackage.HYPER_LINKABLE__HYPER_LINKS;
+				case BasePackage.FL_DATA_PROVIDER__HYPER_LINKS: return BasePackage.FL_HYPER_LINKABLE__HYPER_LINKS;
 				default: return -1;
 			}
 		}
@@ -390,24 +390,24 @@ public class FLDataProviderImpl extends FLIDImpl implements FLDataProvider {
 	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == Nameable.class) {
+		if (baseClass == FLNameable.class) {
 			switch (baseFeatureID) {
-				case BasePackage.NAMEABLE__NAME: return BasePackage.FL_DATA_PROVIDER__NAME;
-				case BasePackage.NAMEABLE__DESCRIPTION: return BasePackage.FL_DATA_PROVIDER__DESCRIPTION;
-				case BasePackage.NAMEABLE__LONG_DESCRIPTION: return BasePackage.FL_DATA_PROVIDER__LONG_DESCRIPTION;
-				case BasePackage.NAMEABLE__NOTES: return BasePackage.FL_DATA_PROVIDER__NOTES;
+				case BasePackage.FL_NAMEABLE__NAME: return BasePackage.FL_DATA_PROVIDER__NAME;
+				case BasePackage.FL_NAMEABLE__DESCRIPTION: return BasePackage.FL_DATA_PROVIDER__DESCRIPTION;
+				case BasePackage.FL_NAMEABLE__LONG_DESCRIPTION: return BasePackage.FL_DATA_PROVIDER__LONG_DESCRIPTION;
+				case BasePackage.FL_NAMEABLE__NOTES: return BasePackage.FL_DATA_PROVIDER__NOTES;
 				default: return -1;
 			}
 		}
-		if (baseClass == Commentable.class) {
+		if (baseClass == FLCommentable.class) {
 			switch (baseFeatureID) {
-				case BasePackage.COMMENTABLE__COMMENTS: return BasePackage.FL_DATA_PROVIDER__COMMENTS;
+				case BasePackage.FL_COMMENTABLE__COMMENTS: return BasePackage.FL_DATA_PROVIDER__COMMENTS;
 				default: return -1;
 			}
 		}
-		if (baseClass == HyperLinkable.class) {
+		if (baseClass == FLHyperLinkable.class) {
 			switch (baseFeatureID) {
-				case BasePackage.HYPER_LINKABLE__HYPER_LINKS: return BasePackage.FL_DATA_PROVIDER__HYPER_LINKS;
+				case BasePackage.FL_HYPER_LINKABLE__HYPER_LINKS: return BasePackage.FL_DATA_PROVIDER__HYPER_LINKS;
 				default: return -1;
 			}
 		}

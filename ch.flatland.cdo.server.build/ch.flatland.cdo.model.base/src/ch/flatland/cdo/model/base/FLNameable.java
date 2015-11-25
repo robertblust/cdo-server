@@ -13,18 +13,18 @@ import org.eclipse.emf.cdo.CDOObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link ch.flatland.cdo.model.base.Nameable#getName <em>Name</em>}</li>
- *   <li>{@link ch.flatland.cdo.model.base.Nameable#getDescription <em>Description</em>}</li>
- *   <li>{@link ch.flatland.cdo.model.base.Nameable#getLongDescription <em>Long Description</em>}</li>
- *   <li>{@link ch.flatland.cdo.model.base.Nameable#getNotes <em>Notes</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.base.FLNameable#getName <em>Name</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.base.FLNameable#getDescription <em>Description</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.base.FLNameable#getLongDescription <em>Long Description</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.base.FLNameable#getNotes <em>Notes</em>}</li>
  * </ul>
  *
- * @see ch.flatland.cdo.model.base.BasePackage#getNameable()
+ * @see ch.flatland.cdo.model.base.BasePackage#getFLNameable()
  * @model interface="true" abstract="true"
  * @extends CDOObject
  * @generated
  */
-public interface Nameable extends CDOObject {
+public interface FLNameable extends CDOObject {
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -35,7 +35,7 @@ public interface Nameable extends CDOObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
-	 * @see ch.flatland.cdo.model.base.BasePackage#getNameable_Name()
+	 * @see ch.flatland.cdo.model.base.BasePackage#getFLNameable_Name()
 	 * @model unique="false" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Named Element'"
 	 * @generated
@@ -43,7 +43,7 @@ public interface Nameable extends CDOObject {
 	String getName();
 
 	/**
-	 * Sets the value of the '{@link ch.flatland.cdo.model.base.Nameable#getName <em>Name</em>}' attribute.
+	 * Sets the value of the '{@link ch.flatland.cdo.model.base.FLNameable#getName <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Name</em>' attribute.
@@ -62,7 +62,7 @@ public interface Nameable extends CDOObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Description</em>' attribute.
 	 * @see #setDescription(String)
-	 * @see ch.flatland.cdo.model.base.BasePackage#getNameable_Description()
+	 * @see ch.flatland.cdo.model.base.BasePackage#getFLNameable_Description()
 	 * @model unique="false" dataType="ch.flatland.cdo.model.base.FLMarkdown"
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyMultiLine='true' propertyCategory='Named Element'"
 	 *        annotation="http://www.eclipse.org/CDO/DBStore columnType='CLOB'"
@@ -71,7 +71,7 @@ public interface Nameable extends CDOObject {
 	String getDescription();
 
 	/**
-	 * Sets the value of the '{@link ch.flatland.cdo.model.base.Nameable#getDescription <em>Description</em>}' attribute.
+	 * Sets the value of the '{@link ch.flatland.cdo.model.base.FLNameable#getDescription <em>Description</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Description</em>' attribute.
@@ -90,7 +90,7 @@ public interface Nameable extends CDOObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Long Description</em>' attribute.
 	 * @see #setLongDescription(String)
-	 * @see ch.flatland.cdo.model.base.BasePackage#getNameable_LongDescription()
+	 * @see ch.flatland.cdo.model.base.BasePackage#getFLNameable_LongDescription()
 	 * @model unique="false" dataType="ch.flatland.cdo.model.base.FLMarkdown"
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyMultiLine='true' propertyCategory='Named Element'"
 	 *        annotation="http://www.eclipse.org/CDO/DBStore columnType='CLOB'"
@@ -99,7 +99,7 @@ public interface Nameable extends CDOObject {
 	String getLongDescription();
 
 	/**
-	 * Sets the value of the '{@link ch.flatland.cdo.model.base.Nameable#getLongDescription <em>Long Description</em>}' attribute.
+	 * Sets the value of the '{@link ch.flatland.cdo.model.base.FLNameable#getLongDescription <em>Long Description</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Long Description</em>' attribute.
@@ -118,7 +118,7 @@ public interface Nameable extends CDOObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Notes</em>' attribute.
 	 * @see #setNotes(String)
-	 * @see ch.flatland.cdo.model.base.BasePackage#getNameable_Notes()
+	 * @see ch.flatland.cdo.model.base.BasePackage#getFLNameable_Notes()
 	 * @model unique="false" dataType="ch.flatland.cdo.model.base.FLMarkdown"
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyMultiLine='true' propertyCategory='Named Element'"
 	 *        annotation="http://www.eclipse.org/CDO/DBStore columnType='CLOB'"
@@ -127,7 +127,7 @@ public interface Nameable extends CDOObject {
 	String getNotes();
 
 	/**
-	 * Sets the value of the '{@link ch.flatland.cdo.model.base.Nameable#getNotes <em>Notes</em>}' attribute.
+	 * Sets the value of the '{@link ch.flatland.cdo.model.base.FLNameable#getNotes <em>Notes</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Notes</em>' attribute.

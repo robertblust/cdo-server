@@ -107,7 +107,7 @@ public class FLCommentImpl extends CDOObjectImpl implements FLComment {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<FLRating> getRatings() {
-		return (EList<FLRating>)eDynamicGet(BasePackage.FL_COMMENT__RATINGS, BasePackage.Literals.RATEABLE__RATINGS, true, true);
+		return (EList<FLRating>)eDynamicGet(BasePackage.FL_COMMENT__RATINGS, BasePackage.Literals.FL_RATEABLE__RATINGS, true, true);
 	}
 
 	/**

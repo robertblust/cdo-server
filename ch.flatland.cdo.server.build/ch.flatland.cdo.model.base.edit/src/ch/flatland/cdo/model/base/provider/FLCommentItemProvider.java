@@ -82,9 +82,9 @@ public class FLCommentItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Rateable_likes_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Rateable_likes_feature", "_UI_Rateable_type"),
-				 BasePackage.Literals.RATEABLE__LIKES,
+				 getString("_UI_FLRateable_likes_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FLRateable_likes_feature", "_UI_FLRateable_type"),
+				 BasePackage.Literals.FL_RATEABLE__LIKES,
 				 false,
 				 false,
 				 false,
@@ -104,9 +104,9 @@ public class FLCommentItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Rateable_dislikes_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Rateable_dislikes_feature", "_UI_Rateable_type"),
-				 BasePackage.Literals.RATEABLE__DISLIKES,
+				 getString("_UI_FLRateable_dislikes_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FLRateable_dislikes_feature", "_UI_FLRateable_type"),
+				 BasePackage.Literals.FL_RATEABLE__DISLIKES,
 				 false,
 				 false,
 				 false,
@@ -149,7 +149,7 @@ public class FLCommentItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(BasePackage.Literals.RATEABLE__RATINGS);
+			childrenFeatures.add(BasePackage.Literals.FL_RATEABLE__RATINGS);
 			childrenFeatures.add(BasePackage.Literals.FL_COMMENT__COMMENTS);
 		}
 		return childrenFeatures;
@@ -242,7 +242,7 @@ public class FLCommentItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(BasePackage.Literals.RATEABLE__RATINGS,
+				(BasePackage.Literals.FL_RATEABLE__RATINGS,
 				 BaseFactory.eINSTANCE.createFLRating()));
 
 		newChildDescriptors.add

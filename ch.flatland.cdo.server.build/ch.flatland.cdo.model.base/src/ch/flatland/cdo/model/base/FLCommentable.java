@@ -15,15 +15,15 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link ch.flatland.cdo.model.base.Commentable#getComments <em>Comments</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.base.FLCommentable#getComments <em>Comments</em>}</li>
  * </ul>
  *
- * @see ch.flatland.cdo.model.base.BasePackage#getCommentable()
+ * @see ch.flatland.cdo.model.base.BasePackage#getFLCommentable()
  * @model interface="true" abstract="true"
  * @extends CDOObject
  * @generated
  */
-public interface Commentable extends CDOObject {
+public interface FLCommentable extends CDOObject {
 	/**
 	 * Returns the value of the '<em><b>Comments</b></em>' containment reference list.
 	 * The list contents are of type {@link ch.flatland.cdo.model.base.FLComment}.
@@ -34,7 +34,7 @@ public interface Commentable extends CDOObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Comments</em>' containment reference list.
-	 * @see ch.flatland.cdo.model.base.BasePackage#getCommentable_Comments()
+	 * @see ch.flatland.cdo.model.base.BasePackage#getFLCommentable_Comments()
 	 * @model containment="true"
 	 * @generated
 	 */

@@ -41,11 +41,11 @@ class View {
 		try {
 			switch (req.servletAlias) {
 				case ALIAS_NODE: {
-					if (req.contentPath == "") {
+					if(req.contentPath == "") {
 						return view.getResourceNode("/")
 					} else {
 						return view.getResourceNode(req.contentPath)
-					}	
+					}
 				}
 				case ALIAS_OBJECT: {
 					val pathSegments = req.pathSegments
@@ -190,11 +190,58 @@ class View {
 	}
 
 	def safeResolveObject(CDOView view, String id) {
-		val result =  view.getObject(CDOIDUtil.createLong(Long.parseLong(id)))
-		if (result.hasPermission) {
+		val result = view.getObject(CDOIDUtil.createLong(Long.parseLong(id)))
+		if(result.hasPermission) {
 			return result
 		}
 		return null
+	}
+
+	def xRefsDelete(CDOView view, CDOObject cdoObject) {
+		val suspects = newArrayList
+		suspects.add(cdoObject)
+		suspects.addAll(cdoObject.eAllContents.toList)
+
+		suspects.forEach [
+			if(it instanceof CDOObject) {
+				it.handleSuspect(view)
+			} else {
+				val cdoAdapter = it.eAdapters.filter(typeof(CDOObject)).head
+				cdoAdapter.handleSuspect(view)
+			}
+		]
+		val container = cdoObject.eContainer
+		if(container == null) {
+
+			// must be a CDOResource Node
+			val resource = cdoObject.cdoResource
+			resource.contents.remove(cdoObject)
+			return resource
+		} else {
+			val containingFeature = cdoObject.eContainingFeature
+			if(containingFeature.isMany) {
+				(container.eGet(containingFeature) as List<Object>).remove(cdoObject)
+			} else {
+				container.eUnset(containingFeature)
+			}
+		}
+		return container
+	}
+
+	def private handleSuspect(CDOObject suspect, CDOView view) {
+		view.queryXRefs(suspect, emptyList).forEach [
+			val target = it.targetObject
+			val source = it.sourceObject
+			val sourceFeature = it.sourceFeature
+			if(!sourceFeature.isDerived) {
+				logger.debug("Found xref feature '{}', source '{}', target '{}'", sourceFeature.name, source, target)
+				if(sourceFeature.isMany) {
+					(source.eGet(sourceFeature) as List<Object>).remove(target)
+				} else {
+					source.eUnset(sourceFeature)
+				}
+			}
+		]
 	}
 
 	def private dispatch filterBy(HttpServletRequest req, Object object) {
@@ -280,8 +327,8 @@ class View {
 			Collections.sort(list, new AttributeComparator(orderBy))
 		} else {
 			// commented out, to have original order as object are store in repository
-			//logger.debug("OrderBy '{}'", "name")
-			//Collections.sort(list, new AttributeComparator("name"))
+			// logger.debug("OrderBy '{}'", "name")
+			// Collections.sort(list, new AttributeComparator("name"))
 		}
 		return list
 	}
