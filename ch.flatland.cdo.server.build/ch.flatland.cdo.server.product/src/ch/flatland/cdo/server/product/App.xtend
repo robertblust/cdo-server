@@ -10,12 +10,9 @@
  */
 package ch.flatland.cdo.server.product
 
-import ch.flatland.cdo.server.config.ServerConfig
 import java.util.concurrent.CountDownLatch
 import org.eclipse.equinox.app.IApplication
 import org.eclipse.equinox.app.IApplicationContext
-
-import static ch.flatland.cdo.server.config.ServerConfig.*
 
 class App implements IApplication {
 
@@ -26,17 +23,8 @@ class App implements IApplication {
 
 	override start(IApplicationContext context) throws Exception {
 		this.context = context
-		if (!ServerConfig.bridgeMode) {
-			if (CONFIG.binding.tcp) {
-				TCPAcceptor.start
-			}
-			if (CONFIG.binding.http) {
-				HTTPAcceptor.start
-			}
-			Repository.start
-		}
 
-		if (context != null) {
+		if(context != null) {
 			context.applicationRunning()
 		}
 
@@ -47,18 +35,9 @@ class App implements IApplication {
 	}
 
 	override stop() {
-		if (!ServerConfig.bridgeMode) {
-			if (CONFIG.binding.http) {
-				HTTPAcceptor.stop
-			}
-			if (CONFIG.binding.tcp) {
-				TCPAcceptor.stop
-			}
-			Repository.stop
-		}
-
+		Repository.stop
 		context = null
-		if (stopLatch != null) {
+		if(stopLatch != null) {
 			stopLatch.countDown()
 		}
 	}

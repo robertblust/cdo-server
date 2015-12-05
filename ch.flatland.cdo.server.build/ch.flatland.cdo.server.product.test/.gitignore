@@ -1,0 +1,9 @@
+/.settings/
+/bin/
+/xtend-gen/
+/.classpath
+/.project
+/target/
+/target/
+/database/
+/target/

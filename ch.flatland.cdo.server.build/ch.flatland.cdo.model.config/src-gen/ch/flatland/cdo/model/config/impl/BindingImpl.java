@@ -20,37 +20,15 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link ch.flatland.cdo.model.config.impl.BindingImpl#getIp <em>Ip</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.config.impl.BindingImpl#isTcp <em>Tcp</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.config.impl.BindingImpl#getTcpPort <em>Tcp Port</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.config.impl.BindingImpl#isHttp <em>Http</em>}</li>
- *   <li>{@link ch.flatland.cdo.model.config.impl.BindingImpl#getHttpPort <em>Http Port</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.config.impl.BindingImpl#isCheckSSL <em>Check SSL</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class BindingImpl extends MinimalEObjectImpl.Container implements Binding {
-	/**
-	 * The default value of the '{@link #getIp() <em>Ip</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getIp()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String IP_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getIp() <em>Ip</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getIp()
-	 * @generated
-	 * @ordered
-	 */
-	protected String ip = IP_EDEFAULT;
-
 	/**
 	 * The default value of the '{@link #isTcp() <em>Tcp</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -112,26 +90,6 @@ public class BindingImpl extends MinimalEObjectImpl.Container implements Binding
 	protected boolean http = HTTP_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getHttpPort() <em>Http Port</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getHttpPort()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String HTTP_PORT_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getHttpPort() <em>Http Port</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getHttpPort()
-	 * @generated
-	 * @ordered
-	 */
-	protected String httpPort = HTTP_PORT_EDEFAULT;
-
-	/**
 	 * The default value of the '{@link #isCheckSSL() <em>Check SSL</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -168,27 +126,6 @@ public class BindingImpl extends MinimalEObjectImpl.Container implements Binding
 	@Override
 	protected EClass eStaticClass() {
 		return ConfigPackage.Literals.BINDING;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getIp() {
-		return ip;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setIp(String newIp) {
-		String oldIp = ip;
-		ip = newIp;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ConfigPackage.BINDING__IP, oldIp, ip));
 	}
 
 	/**
@@ -259,27 +196,6 @@ public class BindingImpl extends MinimalEObjectImpl.Container implements Binding
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getHttpPort() {
-		return httpPort;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setHttpPort(String newHttpPort) {
-		String oldHttpPort = httpPort;
-		httpPort = newHttpPort;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ConfigPackage.BINDING__HTTP_PORT, oldHttpPort, httpPort));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public boolean isCheckSSL() {
 		return checkSSL;
 	}
@@ -304,16 +220,12 @@ public class BindingImpl extends MinimalEObjectImpl.Container implements Binding
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ConfigPackage.BINDING__IP:
-				return getIp();
 			case ConfigPackage.BINDING__TCP:
 				return isTcp();
 			case ConfigPackage.BINDING__TCP_PORT:
 				return getTcpPort();
 			case ConfigPackage.BINDING__HTTP:
 				return isHttp();
-			case ConfigPackage.BINDING__HTTP_PORT:
-				return getHttpPort();
 			case ConfigPackage.BINDING__CHECK_SSL:
 				return isCheckSSL();
 		}
@@ -328,9 +240,6 @@ public class BindingImpl extends MinimalEObjectImpl.Container implements Binding
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ConfigPackage.BINDING__IP:
-				setIp((String)newValue);
-				return;
 			case ConfigPackage.BINDING__TCP:
 				setTcp((Boolean)newValue);
 				return;
@@ -339,9 +248,6 @@ public class BindingImpl extends MinimalEObjectImpl.Container implements Binding
 				return;
 			case ConfigPackage.BINDING__HTTP:
 				setHttp((Boolean)newValue);
-				return;
-			case ConfigPackage.BINDING__HTTP_PORT:
-				setHttpPort((String)newValue);
 				return;
 			case ConfigPackage.BINDING__CHECK_SSL:
 				setCheckSSL((Boolean)newValue);
@@ -358,9 +264,6 @@ public class BindingImpl extends MinimalEObjectImpl.Container implements Binding
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ConfigPackage.BINDING__IP:
-				setIp(IP_EDEFAULT);
-				return;
 			case ConfigPackage.BINDING__TCP:
 				setTcp(TCP_EDEFAULT);
 				return;
@@ -369,9 +272,6 @@ public class BindingImpl extends MinimalEObjectImpl.Container implements Binding
 				return;
 			case ConfigPackage.BINDING__HTTP:
 				setHttp(HTTP_EDEFAULT);
-				return;
-			case ConfigPackage.BINDING__HTTP_PORT:
-				setHttpPort(HTTP_PORT_EDEFAULT);
 				return;
 			case ConfigPackage.BINDING__CHECK_SSL:
 				setCheckSSL(CHECK_SSL_EDEFAULT);
@@ -388,16 +288,12 @@ public class BindingImpl extends MinimalEObjectImpl.Container implements Binding
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ConfigPackage.BINDING__IP:
-				return IP_EDEFAULT == null ? ip != null : !IP_EDEFAULT.equals(ip);
 			case ConfigPackage.BINDING__TCP:
 				return tcp != TCP_EDEFAULT;
 			case ConfigPackage.BINDING__TCP_PORT:
 				return TCP_PORT_EDEFAULT == null ? tcpPort != null : !TCP_PORT_EDEFAULT.equals(tcpPort);
 			case ConfigPackage.BINDING__HTTP:
 				return http != HTTP_EDEFAULT;
-			case ConfigPackage.BINDING__HTTP_PORT:
-				return HTTP_PORT_EDEFAULT == null ? httpPort != null : !HTTP_PORT_EDEFAULT.equals(httpPort);
 			case ConfigPackage.BINDING__CHECK_SSL:
 				return checkSSL != CHECK_SSL_EDEFAULT;
 		}
@@ -414,16 +310,12 @@ public class BindingImpl extends MinimalEObjectImpl.Container implements Binding
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (ip: ");
-		result.append(ip);
-		result.append(", tcp: ");
+		result.append(" (tcp: ");
 		result.append(tcp);
 		result.append(", tcpPort: ");
 		result.append(tcpPort);
 		result.append(", http: ");
 		result.append(http);
-		result.append(", httpPort: ");
-		result.append(httpPort);
 		result.append(", checkSSL: ");
 		result.append(checkSSL);
 		result.append(')');

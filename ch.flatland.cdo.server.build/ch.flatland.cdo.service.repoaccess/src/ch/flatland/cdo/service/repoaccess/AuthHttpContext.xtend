@@ -56,6 +56,7 @@ class AuthHttpContext implements HttpContext {
 
 		val repository = CONFIG.repositories.filter[it.dataStore.repositoryName == req.repoName].head
 		if (repository == null) {
+			resp.status = HttpServletResponse.SC_BAD_REQUEST
 			resp.sendError(req, new FlatlandException(HttpServletResponse.SC_BAD_REQUEST, "Repository '{}' not valid", req.repoName))
 			return false
 		}

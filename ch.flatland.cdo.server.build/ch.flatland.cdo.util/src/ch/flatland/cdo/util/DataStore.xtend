@@ -30,6 +30,40 @@ class DataStore {
 
 	val extension Request = new Request
 	val extension EMF = new EMF
+
+	def findByTypeAndID(CDOView view, EClass eClass, String ID, HttpServletRequest req) {
+		val String[] idFilters = #[ID]
+		val filters = newHashMap(new Pair("ID", idFilters))
+		logger.debug("findByTypeAndID '{}', ID = '{}'", eClass.type, ID)
+		return findByType(view, eClass.type, req, filters, true)
+	}
+
+	def findByTypeAndID(CDOView view, String type, String ID, HttpServletRequest req) {
+		val String[] idFilters = #[ID]
+		val filters = newHashMap(new Pair("ID", idFilters))
+		logger.debug("findByTypeAndID '{}', ID = '{}'", type)
+		return findByType(view,type, req, filters, true)
+	}
+
+	def findByType(CDOView view, EClass eClass, HttpServletRequest req) {
+		logger.debug("findByType '{}'", eClass)
+		return findByType(view, eClass.type, req, null, true)
+	}
+	
+	def findByType(CDOView view, EClass eClass, HttpServletRequest req, boolean like) {
+		logger.debug("findByType '{}', like = '{}'", eClass.type, like)
+		return findByType(view, eClass.type, req, null, like)
+	}
+	
+	def findByType(CDOView view, EClass eClass, HttpServletRequest req, Map<String, String[]> filters) {
+		logger.debug("findByType '{}', filters = '{}'", eClass.type, filters)
+		return findByType(view, eClass.type, req, filters, true)
+	}
+	
+	def findByType(CDOView view, EClass eClass, HttpServletRequest req, Map<String, String[]> filters, boolean like) {
+		logger.debug("findByType '{}', filters = '{}', like = '{}'", eClass.type, filters, like)
+		return findByType(view, eClass.type, req, filters, like)
+	}
 	
 	def findByType(CDOView view, String type, HttpServletRequest req) {
 		logger.debug("findByType '{}'", type)

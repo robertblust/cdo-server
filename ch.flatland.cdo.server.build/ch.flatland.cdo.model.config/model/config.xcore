@@ -12,11 +12,9 @@ class Config {
 }
 
 class Binding {
-	String[1] ip
 	boolean[1] tcp
 	String tcpPort
 	boolean[1] http
-	String httpPort
 	boolean checkSSL
 }
 

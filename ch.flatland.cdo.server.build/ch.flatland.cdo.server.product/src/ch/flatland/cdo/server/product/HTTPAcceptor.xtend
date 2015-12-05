@@ -14,10 +14,13 @@ import org.eclipse.net4j.acceptor.IAcceptor
 import org.eclipse.net4j.util.container.IPluginContainer
 import org.eclipse.net4j.util.lifecycle.LifecycleUtil
 
-import static ch.flatland.cdo.server.config.ServerConfig.*
-
 class HTTPAcceptor {
 
+	val static SYSTEM_PARAM_PORT = "org.eclipse.equinox.http.jetty.http.port"
+	val static PORT = System.getProperty(SYSTEM_PARAM_PORT)
+	val static SYSTEM_PARAM_HOST = "org.eclipse.equinox.http.jetty.http.host"
+	val static HOST = System.getProperty(SYSTEM_PARAM_HOST)
+	
 	private new() {
 		// hide constructor
 	}
@@ -30,7 +33,7 @@ class HTTPAcceptor {
 
 	def static void start() {
 		App.info("Start HTTP acceptor")
-		INSTANCE = IPluginContainer.INSTANCE.getElement(ACCEPTORS_KEY, "http", CONFIG.binding.ip + ":" + CONFIG.binding.httpPort) as IAcceptor
+		INSTANCE = IPluginContainer.INSTANCE.getElement(ACCEPTORS_KEY, "http", HOST + ":" + PORT) as IAcceptor
 	}
 
 	def static stop() {

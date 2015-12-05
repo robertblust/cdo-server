@@ -73,7 +73,6 @@ class ServerConfig {
 								jsonRepoDetailObject.convertObject(eObject)
 							]
 							if(HOST != null) {
-								template.binding.ip = HOST
 								logger.info("Bind host ip '{}' specified by '{}'", HOST, SYSTEM_PARAM_HOST)
 							}
 							if(DB_HOST != null) {
@@ -94,7 +93,7 @@ class ServerConfig {
 	}
 
 	def private static convertObject(JsonObject jsonObject, EObject eObject) {
-		logger.debug("Read Config object '{}' not found", jsonObject)
+		logger.debug("Read Config object '{}'", jsonObject)
 		if(jsonObject != null) {
 			eObject.eClass.EAllAttributes.forEach [
 				if(jsonObject.get(it.name) != null) {
@@ -148,11 +147,9 @@ class ServerConfig {
 		]
 
 		val binding = ConfigFactory.eINSTANCE.createBinding => [
-			ip = "0.0.0.0"
 			tcp = true
 			tcpPort = "2036"
 			http = true
-			httpPort = "8080"
 			checkSSL = false
 		]
 

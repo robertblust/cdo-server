@@ -152,22 +152,13 @@ public interface ConfigPackage extends EPackage {
 	int BINDING = 1;
 
 	/**
-	 * The feature id for the '<em><b>Ip</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BINDING__IP = 0;
-
-	/**
 	 * The feature id for the '<em><b>Tcp</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BINDING__TCP = 1;
+	int BINDING__TCP = 0;
 
 	/**
 	 * The feature id for the '<em><b>Tcp Port</b></em>' attribute.
@@ -176,7 +167,7 @@ public interface ConfigPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BINDING__TCP_PORT = 2;
+	int BINDING__TCP_PORT = 1;
 
 	/**
 	 * The feature id for the '<em><b>Http</b></em>' attribute.
@@ -185,16 +176,7 @@ public interface ConfigPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BINDING__HTTP = 3;
-
-	/**
-	 * The feature id for the '<em><b>Http Port</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BINDING__HTTP_PORT = 4;
+	int BINDING__HTTP = 2;
 
 	/**
 	 * The feature id for the '<em><b>Check SSL</b></em>' attribute.
@@ -203,7 +185,7 @@ public interface ConfigPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BINDING__CHECK_SSL = 5;
+	int BINDING__CHECK_SSL = 3;
 
 	/**
 	 * The number of structural features of the '<em>Binding</em>' class.
@@ -212,7 +194,7 @@ public interface ConfigPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BINDING_FEATURE_COUNT = 6;
+	int BINDING_FEATURE_COUNT = 4;
 
 	/**
 	 * The number of operations of the '<em>Binding</em>' class.
@@ -640,17 +622,6 @@ public interface ConfigPackage extends EPackage {
 	EClass getBinding();
 
 	/**
-	 * Returns the meta object for the attribute '{@link ch.flatland.cdo.model.config.Binding#getIp <em>Ip</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Ip</em>'.
-	 * @see ch.flatland.cdo.model.config.Binding#getIp()
-	 * @see #getBinding()
-	 * @generated
-	 */
-	EAttribute getBinding_Ip();
-
-	/**
 	 * Returns the meta object for the attribute '{@link ch.flatland.cdo.model.config.Binding#isTcp <em>Tcp</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -682,17 +653,6 @@ public interface ConfigPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getBinding_Http();
-
-	/**
-	 * Returns the meta object for the attribute '{@link ch.flatland.cdo.model.config.Binding#getHttpPort <em>Http Port</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Http Port</em>'.
-	 * @see ch.flatland.cdo.model.config.Binding#getHttpPort()
-	 * @see #getBinding()
-	 * @generated
-	 */
-	EAttribute getBinding_HttpPort();
 
 	/**
 	 * Returns the meta object for the attribute '{@link ch.flatland.cdo.model.config.Binding#isCheckSSL <em>Check SSL</em>}'.
@@ -1099,14 +1059,6 @@ public interface ConfigPackage extends EPackage {
 		EClass BINDING = eINSTANCE.getBinding();
 
 		/**
-		 * The meta object literal for the '<em><b>Ip</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute BINDING__IP = eINSTANCE.getBinding_Ip();
-
-		/**
 		 * The meta object literal for the '<em><b>Tcp</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1129,14 +1081,6 @@ public interface ConfigPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute BINDING__HTTP = eINSTANCE.getBinding_Http();
-
-		/**
-		 * The meta object literal for the '<em><b>Http Port</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute BINDING__HTTP_PORT = eINSTANCE.getBinding_HttpPort();
 
 		/**
 		 * The meta object literal for the '<em><b>Check SSL</b></em>' attribute feature.

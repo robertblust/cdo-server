@@ -227,7 +227,7 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getBinding_Ip() {
+	public EAttribute getBinding_Tcp() {
 		return (EAttribute)bindingEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -236,7 +236,7 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getBinding_Tcp() {
+	public EAttribute getBinding_TcpPort() {
 		return (EAttribute)bindingEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -245,7 +245,7 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getBinding_TcpPort() {
+	public EAttribute getBinding_Http() {
 		return (EAttribute)bindingEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -254,26 +254,8 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getBinding_Http() {
-		return (EAttribute)bindingEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getBinding_HttpPort() {
-		return (EAttribute)bindingEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EAttribute getBinding_CheckSSL() {
-		return (EAttribute)bindingEClass.getEStructuralFeatures().get(5);
+		return (EAttribute)bindingEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -565,11 +547,9 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 		createEOperation(configEClass, CONFIG___GET_BY_NAME__STRING);
 
 		bindingEClass = createEClass(BINDING);
-		createEAttribute(bindingEClass, BINDING__IP);
 		createEAttribute(bindingEClass, BINDING__TCP);
 		createEAttribute(bindingEClass, BINDING__TCP_PORT);
 		createEAttribute(bindingEClass, BINDING__HTTP);
-		createEAttribute(bindingEClass, BINDING__HTTP_PORT);
 		createEAttribute(bindingEClass, BINDING__CHECK_SSL);
 
 		jsonEClass = createEClass(JSON);
@@ -651,11 +631,9 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 		addEParameter(op, theEcorePackage.getEString(), "repoName", 0, 1, !IS_UNIQUE, IS_ORDERED);
 
 		initEClass(bindingEClass, Binding.class, "Binding", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getBinding_Ip(), theEcorePackage.getEString(), "ip", null, 1, 1, Binding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBinding_Tcp(), theEcorePackage.getEBoolean(), "tcp", null, 1, 1, Binding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBinding_TcpPort(), theEcorePackage.getEString(), "tcpPort", null, 0, 1, Binding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBinding_Http(), theEcorePackage.getEBoolean(), "http", null, 1, 1, Binding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBinding_HttpPort(), theEcorePackage.getEString(), "httpPort", null, 0, 1, Binding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBinding_CheckSSL(), theEcorePackage.getEBoolean(), "checkSSL", null, 0, 1, Binding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(jsonEClass, Json.class, "Json", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

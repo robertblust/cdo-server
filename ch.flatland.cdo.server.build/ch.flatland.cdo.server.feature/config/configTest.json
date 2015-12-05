@@ -23,7 +23,19 @@
 		    "dataStore": {
 		      	"storeType": "H2",
 		        "repositoryName": "repo",
-		        "connectionUrl":"jdbc:h2:database/",
+		        "connectionUrl":"jdbc:h2:target/database/repo/",
+		        "userName": "cdo",
+		        "password": "cdo"
+		    },
+		    "authenticator": {
+		        "authenticatorType": "NONE"
+		    }
+		},
+		{
+		    "dataStore": {
+		      	"storeType": "H2",
+		        "repositoryName": "repo2",
+		        "connectionUrl":"jdbc:h2:target/database/repo2/",
 		        "userName": "cdo",
 		        "password": "cdo"
 		    },
@@ -31,6 +43,7 @@
 		        "authenticatorType": "NONE"
 		    }
 		}
+		
 	]
 }
 

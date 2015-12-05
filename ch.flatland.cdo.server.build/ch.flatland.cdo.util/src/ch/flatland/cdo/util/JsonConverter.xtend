@@ -967,7 +967,7 @@ class JsonConverter {
 
 	def private dispatch JsonElement getFeatureDeltaAsJsonObject(CDORemoveFeatureDelta delta, EObject object) {
 		logger.debug("getFeatureDeltaAsJsonObject with CDORemoveFeatureDelta '{}'", delta)
-		val message = delta.type + " '" + delta.value + "' form feature '" + delta.feature.name + "[" + delta.index + "]'"
+		val message = delta.type + " '" + delta.value + "' from feature '" + delta.feature.name + "[" + delta.index + "]'"
 		return new JsonPrimitive(message)
 	}
 

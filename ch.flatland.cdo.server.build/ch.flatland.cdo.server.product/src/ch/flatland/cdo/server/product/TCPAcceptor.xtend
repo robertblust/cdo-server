@@ -18,6 +18,9 @@ import static ch.flatland.cdo.server.config.ServerConfig.*
 
 class TCPAcceptor {
 
+	val static SYSTEM_PARAM_HOST = "org.eclipse.equinox.http.jetty.http.host"
+	val static HOST = System.getProperty(SYSTEM_PARAM_HOST)
+	
 	private new() {
 		// hide constructor
 	}
@@ -30,7 +33,7 @@ class TCPAcceptor {
 
 	def static void start() {
 		App.info("Start TCP acceptor")
-		INSTANCE = IPluginContainer.INSTANCE.getElement(ACCEPTORS_KEY, "tcp", CONFIG.binding.ip + ":" + CONFIG.binding.tcpPort) as IAcceptor
+		INSTANCE = IPluginContainer.INSTANCE.getElement(ACCEPTORS_KEY, "tcp", HOST + ":" + CONFIG.binding.tcpPort) as IAcceptor
 	}
 
 	def static stop() {

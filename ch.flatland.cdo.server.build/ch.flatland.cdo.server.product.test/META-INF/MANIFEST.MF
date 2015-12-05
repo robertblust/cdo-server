@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Flatland CDO Server Intergration Test
+Bundle-SymbolicName: ch.flatland.cdo.server.product.test
+Bundle-Version: 1.2.0.M001
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-Vendor: flatland.ch
+Require-Bundle: org.junit;bundle-version="4.12.0",
+ com.google.guava,
+ org.eclipse.xtext.xbase.lib,
+ org.eclipse.xtend.lib,
+ org.eclipse.xtend.lib.macro,
+ com.google.gson;bundle-version="2.2.4",
+ org.apache.commons.httpclient;bundle-version="3.1.0"
+Export-Package: ch.flatland.cdo.server.product.test.util
+

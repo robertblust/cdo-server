@@ -24,44 +24,41 @@
 				</configuration>
 
 			</plugin>
-			<plugin>
-				<groupId>org.eclipse.tycho</groupId>
-				<artifactId>tycho-p2-director-plugin</artifactId>
-				<version>${tycho.version}</version>
-				<configuration>
-					<formats>
-						<win32>zip</win32>
-						<!-- <macosx>tar.gz</macosx> -->
-						<solaris>tar.gz</solaris>
-						<linux>tar.gz</linux>
-					</formats>
-				</configuration>
-				<executions>
-					<execution>
-						<id>materialize-products</id>
-						<goals>
-							<goal>materialize-products</goal>
-						</goals>
-					</execution>
-					<execution>
-						<id>archive-products</id>
-						<goals>
-							<goal>archive-products</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
 		</plugins>
 	</build>
 	<profiles>
 		<profile>
-			<activation>
-				<os>
-					<family>Linux</family>
-				</os>
-			</activation>
+			<id>product-build</id>
 			<build>
 				<plugins>
+					<plugin>
+						<groupId>org.eclipse.tycho</groupId>
+						<artifactId>tycho-p2-director-plugin</artifactId>
+						<version>${tycho.version}</version>
+
+						<configuration>
+							<formats>
+								<win32>zip</win32>
+								<!-- <macosx>tar.gz</macosx> -->
+								<solaris>tar.gz</solaris>
+								<linux>tar.gz</linux>
+							</formats>
+						</configuration>
+						<executions>
+							<execution>
+								<id>materialize-products</id>
+								<goals>
+									<goal>materialize-products</goal>
+								</goals>
+							</execution>
+							<execution>
+								<id>archive-products</id>
+								<goals>
+									<goal>archive-products</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
 					<!-- RPM Plugin Creation -->
 					<plugin>
 						<groupId>org.codehaus.mojo</groupId>
@@ -128,6 +125,4 @@
 			</build>
 		</profile>
 	</profiles>
-
-
 </project>

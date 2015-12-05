@@ -23,7 +23,8 @@ class ServerUtil {
 
 	public val static SUPPORTING_AUDITS = false
 	public val static SUPPORTING_BRANCHES = false
-	public val static ENSURE_REFERENTIAL_INTEGRITY = true
+	// set to false cause API already checks referential integrity (xrefsDelete)
+	public val static ENSURE_REFERENTIAL_INTEGRITY = false
 
 	val static logger = LoggerFactory.getLogger(ServerUtil)
 
@@ -41,7 +42,7 @@ class ServerUtil {
 		ServerUtil.openSession(AuthenticationUtil.READONLY_USER, CONFIG.readOnlyPassword, repoName)
 	}
 
-	def static openSession(String userID, String password, String repoName) {
+	def static CDOSession openSession(String userID, String password, String repoName) {
 		val config = CDONet4jUtil.createNet4jSessionConfiguration()
 		config.setConnector(connector)
 		config.setRepositoryName(repoName)
@@ -49,18 +50,22 @@ class ServerUtil {
 		config.credentialsProvider = new CredentialsProvider(userID, password)
 
 		val session = config.openNet4jSession() as CDOSession
+		(session as org.eclipse.emf.cdo.net4j.CDONet4jSession).options.net4jProtocol.setTimeout(Long.MAX_VALUE)
+		(session as org.eclipse.emf.cdo.net4j.CDONet4jSession).options().setCommitTimeout(10000);
 
 		logger.debug("open session '{}' for user '{}'", session.sessionID, session.userID)
 
 		return session
 	}
 	
-	def static openUnauthenticatedSession(String repoName) {
+	def static CDOSession openUnauthenticatedSession(String repoName) {
 		val config = CDONet4jUtil.createNet4jSessionConfiguration()
 		config.setConnector(connector)
 		config.setRepositoryName(repoName)
 
 		val session = config.openNet4jSession() as CDOSession
+		(session as org.eclipse.emf.cdo.net4j.CDONet4jSession).options.net4jProtocol.setTimeout(Long.MAX_VALUE)
+		(session as org.eclipse.emf.cdo.net4j.CDONet4jSession).options().setCommitTimeout(10000);
 
 		logger.debug("open session '{}' for user '{}'", session.sessionID, "NONE")
 

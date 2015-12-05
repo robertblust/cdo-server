@@ -31,13 +31,14 @@ class StoreFactory {
 
 	def static createStore(String repoName) {
 		val info = '''
-			--------------------------------------------------------------------
-			Create Data Store 'ch.flatland.cdo.server.product'
-			Store type: «CONFIG.getByName(repoName).dataStore.storeType»
-			Connection url: «CONFIG.getByName(repoName).dataStore.connectionUrl»
-			--------------------------------------------------------------------
+			
+				--------------------------------------------------------------------
+				Create Data Store 'ch.flatland.cdo.server.product'
+				Store type: «CONFIG.getByName(repoName).dataStore.storeType»
+				Connection url: «CONFIG.getByName(repoName).dataStore.connectionUrl»
+				--------------------------------------------------------------------
 		'''
-		println(info)
+		logger.info(info)
 		if(CONFIG.getByName(repoName).dataStore.storeType == StoreType.H2) {
 			logger.info("Create H2 data store")
 			return createH2Store(repoName)

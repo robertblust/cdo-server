@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>ch.flatland</groupId>
+		<artifactId>ch.flatland.cdo.server.build</artifactId>
+		<version>1.2.0.M001</version>
+	</parent>
+
+	<artifactId>ch.flatland.cdo.server.product.test</artifactId>
+	<packaging>eclipse-test-plugin</packaging>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-surefire-plugin</artifactId>
+				<version>${tycho.version}</version>
+				<configuration>
+					<product>ch.flatland.cdo.server.product.product</product>
+					<application>ch.flatland.cdo.server.product.app</application>
+					<testRuntime>p2Installed</testRuntime>
+					<showEclipseLog>true</showEclipseLog>
+					<testSuite>ch.flatland.cdo.server.product.test.ProductTestSuite</testSuite>
+					<systemProperties>
+						<org.eclipse.equinox.http.jetty.http.port>8888</org.eclipse.equinox.http.jetty.http.port>
+						<org.eclipse.equinox.http.jetty.http.host>0.0.0.0</org.eclipse.equinox.http.jetty.http.host>
+						<org.eclipse.equinox.http.jetty.http.enabled>true</org.eclipse.equinox.http.jetty.http.enabled>
+						<org.eclipse.equinox.http.jetty.context.sessioninactiveinterval>180</org.eclipse.equinox.http.jetty.context.sessioninactiveinterval>
+						<logback.configurationFile>${project.build.directory}/work/logback.xml</logback.configurationFile>
+						<ch.flatland.cdo.server.config>${project.build.directory}/work/configTest.json</ch.flatland.cdo.server.config>
+					</systemProperties>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>target-platform-configuration</artifactId>
+				<version>${tycho.version}</version>
+				<configuration>
+					<dependency-resolution>
+						<extraRequirements>
+							<!-- product under test -->
+							<requirement>
+								<type>p2-installable-unit</type>
+								<id>ch.flatland.cdo.server</id>
+								<versionRange>1.2.0</versionRange>
+							</requirement>
+						</extraRequirements>
+					</dependency-resolution>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
