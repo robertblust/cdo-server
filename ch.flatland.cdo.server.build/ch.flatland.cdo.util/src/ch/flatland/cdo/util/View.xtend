@@ -54,7 +54,7 @@ class View {
 					}
 					switch (pathSegments.size) {
 						case 2: {
-							val objects = view.findByType(pathSegments.get(1), req, null)
+							val objects = view.findByType(pathSegments.get(1), req)
 							return objects
 						}
 						case 3: {

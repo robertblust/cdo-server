@@ -371,6 +371,15 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getJson_Cdometa() {
+		return (EAttribute)jsonEClass.getEStructuralFeatures().get(11);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getRepository() {
 		return repositoryEClass;
 	}
@@ -564,6 +573,7 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 		createEAttribute(jsonEClass, JSON__XLINKS);
 		createEAttribute(jsonEClass, JSON__ARRAYACCESSOR);
 		createEAttribute(jsonEClass, JSON__XTRACES);
+		createEAttribute(jsonEClass, JSON__CDOMETA);
 
 		repositoryEClass = createEClass(REPOSITORY);
 		createEReference(repositoryEClass, REPOSITORY__DATA_STORE);
@@ -648,6 +658,7 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 		initEAttribute(getJson_Xlinks(), theEcorePackage.getEBoolean(), "xlinks", null, 1, 1, Json.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getJson_Arrayaccessor(), theEcorePackage.getEBoolean(), "arrayaccessor", null, 1, 1, Json.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getJson_Xtraces(), theEcorePackage.getEBoolean(), "xtraces", null, 1, 1, Json.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getJson_Cdometa(), theEcorePackage.getEBoolean(), "cdometa", null, 1, 1, Json.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(repositoryEClass, Repository.class, "Repository", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getRepository_DataStore(), this.getDataStore(), null, "dataStore", null, 1, 1, Repository.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

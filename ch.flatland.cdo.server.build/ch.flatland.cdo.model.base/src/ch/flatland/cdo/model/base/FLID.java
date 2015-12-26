@@ -163,13 +163,13 @@ public interface FLID extends CDOObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Version</em>' attribute.
-	 * @see #setVersion(Long)
+	 * @see #setVersion(String)
 	 * @see ch.flatland.cdo.model.base.BasePackage#getFLID_Version()
 	 * @model unique="false"
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='ID'"
 	 * @generated
 	 */
-	Long getVersion();
+	String getVersion();
 
 	/**
 	 * Sets the value of the '{@link ch.flatland.cdo.model.base.FLID#getVersion <em>Version</em>}' attribute.
@@ -179,7 +179,7 @@ public interface FLID extends CDOObject {
 	 * @see #getVersion()
 	 * @generated
 	 */
-	void setVersion(Long value);
+	void setVersion(String value);
 
 	/**
 	 * Returns the value of the '<em><b>CDate</b></em>' attribute.

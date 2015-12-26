@@ -17,6 +17,7 @@
 	</properties>
 
 	<modules>
+		
 		<!-- Flatland CDO base -->
 		<module>ch.flatland.cdo.model.base</module>
 		<module>ch.flatland.cdo.model.base.edit</module>
@@ -48,6 +49,7 @@
 		<module>com.mysql.connector</module>
 		<module>com.oracle.connector</module>
 		<module>org.eclipse.net4j.db.jdbc</module>
+		<module>org.eclipse.emf.cdo.common</module>
 
 		<module>ch.flatland.cdo.jetty.feature</module>
 		<module>ch.flatland.cdo.client.admin</module>

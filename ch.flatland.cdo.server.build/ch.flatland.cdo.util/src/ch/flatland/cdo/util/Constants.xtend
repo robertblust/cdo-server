@@ -13,12 +13,15 @@ package ch.flatland.cdo.util
 class Constants {
 
 	// http
+	val public static PARAM_ID = "ID"
 	val public static PARAM_ARRAY_ACCESSOR = "arrayAccessor"
 	val public static PARAM_META = "meta"
 	val public static PARAM_JSONP_CALLBACK = "callback"
 	val public static PARAM_ORDER_BY = "orderBy"
 	val public static PARAM_FORCE = "force"
 	val public static PARAM_XOR_FILTER = "or"
+	val public static PARAM_LIKE_FILTER = "like"
+	val public static PARAM_CDOMETA = "cdometa"
 	/* all containment references */
 	val public static PARAM_CREFS = "crefs"
 	/* all relation references */

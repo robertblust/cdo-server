@@ -1,0 +1,10 @@
+<project name="DeleteDB" default="deleteDB" basedir=".">
+	<description>
+		Deletes the test db
+	</description>
+
+	<target name="deleteDB" description="clean up database">
+		<echo message="${basedir}/database"></echo>
+		<delete dir="${basedir}/database" />
+	</target>
+</project>

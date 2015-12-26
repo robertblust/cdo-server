@@ -55,7 +55,7 @@ abstract class FLID {
 	@GenModel(propertyCategory="ID")
 	FLIdentifier revisionID
 	@GenModel(propertyCategory="ID")
-	Long version
+	String version
 	@GenModel(propertyCategory="ID")
 	Date cDate
 	@GenModel(propertyCategory="ID")
@@ -81,10 +81,6 @@ abstract class FLElement extends FLID, FLNameable, FLRateable, FLCommentable, FL
 	refers FLElement[] horizontalMappings opposite horizontalOppositeMappings
 	@GenModel(propertyCategory="Mapping")
 	refers FLElement[] horizontalOppositeMappings opposite horizontalMappings
-	@GenModel(propertyCategory="Base")
-	refers EObject derivedContainer get {
-		return resolveContainer
-	}
 	@GenModel(propertyCategory="Trace to")
 	refers FLElement[] traceToOwn get {
 		return toFilterByType(FLTraceType.OWN)
@@ -205,9 +201,6 @@ abstract class FLElement extends FLID, FLNameable, FLRateable, FLCommentable, FL
 	refers FLElement[] traceFromTrack get {
 		return this.fromFilterByType(FLTraceType.TRACK)
 	}
-	op EObject resolveContainer() {
-		this.eContainer
-	}
 	/*
 	 * Filters the traces to by trace type.
 	 * @return filtered list
@@ -246,10 +239,14 @@ abstract class FLElement extends FLID, FLNameable, FLRateable, FLCommentable, FL
 	 * otherwise an empty list is returned.
 	 * </p>
 	 */
-	op<T extends FLElement> EEList<T> resolveXrefs(EReference eRefernce, Class<T> classType) {
+	op<T extends EObject> EEList<T> resolveXrefs(EReference eRefernce, Class<T> classType) {
 		val elements = new BasicEList
 		if (this.cdoView != null && !this.cdoView.isClosed) {
-			val xrefs = this.cdoView.queryXRefs(this, newArrayList(eRefernce))
+			val eRefs = newArrayList
+			if (eRefernce != null) {
+				eRefs.add(eRefernce)
+			}
+			val xrefs = this.cdoView.queryXRefs(this, eRefs)
 			for (x : xrefs) {
 				val element = classType.cast(x.sourceObject)
 				elements.add(element)

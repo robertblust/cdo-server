@@ -86,6 +86,13 @@ class Request {
 		}
 		return null
 	}
+	
+	def getID(HttpServletRequest req) {
+		if(req.getParameter(PARAM_ID) != null && req.getParameter(PARAM_ID).length > 0) {
+			return req.getParameter(PARAM_ID)
+		}
+		return null
+	}
 
 	def getOrderBy(HttpServletRequest req) {
 		if(req.getParameter(PARAM_ORDER_BY) != null && req.getParameter(PARAM_ORDER_BY).length > 0) {
@@ -113,6 +120,10 @@ class Request {
 	def isXor(HttpServletRequest req) {
 		return req.getParameter(PARAM_XOR_FILTER) != null
 	}
+	
+	def isLike(HttpServletRequest req) {
+		return req.getParameter(PARAM_LIKE_FILTER) != null
+	}
 
 	def isRefs(HttpServletRequest req) {
 		if(req.crefs || req.rrefs) {
@@ -120,13 +131,56 @@ class Request {
 		}
 		return false
 	}
+	
+	def isCdoMeta(HttpServletRequest req) {
+		return req.getParameter(PARAM_CDOMETA) != null
+	}
 
 	def isRrefs(HttpServletRequest req) {
 		return req.getParameter(PARAM_RREFS) != null
 	}
+	
+	def int getRrefsLevel(HttpServletRequest req) {
+		if (req.getParameter(PARAM_RREFS) != null) {
+			try {
+				val level = Integer.parseInt(req.getParameter(PARAM_RREFS))
+				return level
+			} catch (NumberFormatException e) {
+				// ignore
+			}
+		}
+		return 1
+	}
 
 	def isCrefs(HttpServletRequest req) {
 		return req.getParameter(PARAM_CREFS) != null
+	}
+	
+	def int getCrefsLevel(HttpServletRequest req) {
+		if (req.getParameter(PARAM_CREFS) != null) {
+			try {
+				val level = Integer.parseInt(req.getParameter(PARAM_CREFS))
+				return level
+			} catch (NumberFormatException e) {
+				// ignore
+			}
+		}
+		return 1
+	}
+	
+	def int getRefsLevel(HttpServletRequest req) {
+		val rrefsLevel = req.rrefsLevel
+		val crefsLevel = req.crefsLevel
+		if (rrefsLevel == crefsLevel) {
+			return rrefsLevel
+		}
+		if (rrefsLevel < crefsLevel) {
+			return crefsLevel
+		}
+		if (crefsLevel < rrefsLevel) {
+			return rrefsLevel
+		}
+		return 1
 	}
 
 	def isXrefs(HttpServletRequest req) {

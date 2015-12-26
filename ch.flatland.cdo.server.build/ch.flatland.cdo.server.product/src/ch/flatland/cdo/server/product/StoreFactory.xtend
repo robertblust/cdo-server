@@ -34,6 +34,7 @@ class StoreFactory {
 			
 				--------------------------------------------------------------------
 				Create Data Store 'ch.flatland.cdo.server.product'
+				Repository Name: «repoName»
 				Store type: «CONFIG.getByName(repoName).dataStore.storeType»
 				Connection url: «CONFIG.getByName(repoName).dataStore.connectionUrl»
 				--------------------------------------------------------------------
@@ -103,7 +104,7 @@ class StoreFactory {
 
 		// db mapping strategy 
 		val mappingStrategy = CDODBUtil.createHorizontalMappingStrategy(true, false)
-		val mappingProps = newHashMap(IMappingStrategy.PROP_QUALIFIED_NAMES -> "true")
+		val mappingProps = newHashMap(IMappingStrategy.PROP_QUALIFIED_NAMES -> "false")
 		mappingStrategy.properties = mappingProps
 
 		// db datasource

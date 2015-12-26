@@ -1,0 +1,1584 @@
+Manifest-Version: 1.0
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-SymbolicName: org.eclipse.emf.cdo.common
+Eclipse-SourceReferences: scm:git:git://git.eclipse.org/gitroot/cdo/cd
+ o.git
+Bundle-Activator: org.eclipse.emf.cdo.internal.common.bundle.OM$Activa
+ tor
+Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.5.0,4.0.0)
+ ";visibility:=reexport,org.eclipse.emf.ecore;bundle-version="[2.5.0,3
+ .0.0)";visibility:=reexport,org.eclipse.emf.ecore.change;bundle-versi
+ on="[2.5.0,3.0.0)";visibility:=reexport,org.eclipse.emf.ecore.xmi;bun
+ dle-version="[2.5.0,3.0.0)";visibility:=reexport,org.eclipse.net4j.ut
+ il;bundle-version="[3.0.0,4.0.0)";visibility:=reexport
+Bundle-Version: 4.4.1.patch
+Export-Package: org.eclipse.emf.cdo.common;version="4.4.1",org.eclipse
+ .emf.cdo.common.admin;version="4.4.1",org.eclipse.emf.cdo.common.bran
+ ch;version="4.4.1",org.eclipse.emf.cdo.common.commit;version="4.4.1",
+ org.eclipse.emf.cdo.common.commit.handler;version="4.4.1",org.eclipse
+ .emf.cdo.common.id;version="4.4.1",org.eclipse.emf.cdo.common.lob;ver
+ sion="4.4.1",org.eclipse.emf.cdo.common.lock;version="4.4.1",org.ecli
+ pse.emf.cdo.common.model;version="4.4.1",org.eclipse.emf.cdo.common.p
+ rotocol;version="4.4.1",org.eclipse.emf.cdo.common.revision;version="
+ 4.4.1",org.eclipse.emf.cdo.common.revision.delta;version="4.4.1",org.
+ eclipse.emf.cdo.common.security;version="4.4.1",org.eclipse.emf.cdo.c
+ ommon.util;version="4.4.1",org.eclipse.emf.cdo.internal.common;versio
+ n="4.4.1"; x-friends:="org.eclipse.emf.cdo.common,  org.eclipse.emf.c
+ do.common.db,  org.eclipse.emf.cdo,  org.eclipse.emf.cdo.net4j,  org.
+ eclipse.emf.cdo.server,  org.eclipse.emf.cdo.server.net4j,  org.eclip
+ se.emf.cdo.ui,  org.eclipse.emf.cdo.tests,  org.eclipse.emf.cdo.serve
+ r.hibernate",org.eclipse.emf.cdo.internal.common.branch;version="4.4.
+ 1";x-friends:="org.eclipse.emf.cdo.tests,org.eclipse.emf.cdo.server.h
+ ibernate",org.eclipse.emf.cdo.internal.common.bundle;version="4.4.1";
+ x-friends:="org.eclipse.emf.cdo.net4j,org.eclipse.emf.cdo.server.net4
+ j",org.eclipse.emf.cdo.internal.common.commit;version="4.4.1"; x-frie
+ nds:="org.eclipse.emf.cdo.common,  org.eclipse.emf.cdo.common.db,  or
+ g.eclipse.emf.cdo,  org.eclipse.emf.cdo.net4j,  org.eclipse.emf.cdo.s
+ erver,  org.eclipse.emf.cdo.server.net4j,  org.eclipse.emf.cdo.ui,  o
+ rg.eclipse.emf.cdo.tests",org.eclipse.emf.cdo.internal.common.id;vers
+ ion="4.4.1"; x-friends:="org.eclipse.emf.cdo.common,  org.eclipse.emf
+ .cdo.common.db,  org.eclipse.emf.cdo,  org.eclipse.emf.cdo.net4j,  or
+ g.eclipse.emf.cdo.server,  org.eclipse.emf.cdo.server.net4j,  org.ecl
+ ipse.emf.cdo.ui,  org.eclipse.emf.cdo.tests,  org.eclipse.emf.cdo.adm
+ in,  org.eclipse.emf.cdo.server.admin",org.eclipse.emf.cdo.internal.c
+ ommon.lock;version="4.4.1";x-friends:="org.eclipse.emf.cdo",org.eclip
+ se.emf.cdo.internal.common.messages;version="4.4.1";x-internal:=true,
+ org.eclipse.emf.cdo.internal.common.model;version="4.4.1"; x-friends:
+ ="org.eclipse.emf.cdo.common,  org.eclipse.emf.cdo.common.db,  org.ec
+ lipse.emf.cdo,  org.eclipse.emf.cdo.net4j,  org.eclipse.emf.cdo.serve
+ r,  org.eclipse.emf.cdo.server.net4j,  org.eclipse.emf.cdo.ui,  org.e
+ clipse.emf.cdo.tests,  org.eclipse.emf.cdo.server.db",org.eclipse.emf
+ .cdo.internal.common.revision;version="4.4.1"; x-friends:="org.eclips
+ e.emf.cdo.common,  org.eclipse.emf.cdo.common.db,  org.eclipse.emf.cd
+ o,  org.eclipse.emf.cdo.net4j,  org.eclipse.emf.cdo.server,  org.ecli
+ pse.emf.cdo.server.net4j,  org.eclipse.emf.cdo.ui,  org.eclipse.emf.c
+ do.tests",org.eclipse.emf.cdo.internal.common.revision.delta;version=
+ "4.4.1"; x-friends:="org.eclipse.emf.cdo.common,  org.eclipse.emf.cdo
+ .common.db,  org.eclipse.emf.cdo,  org.eclipse.emf.cdo.net4j,  org.ec
+ lipse.emf.cdo.server,  org.eclipse.emf.cdo.server.net4j,  org.eclipse
+ .emf.cdo.ui,  org.eclipse.emf.cdo.tests",org.eclipse.emf.cdo.spi.comm
+ on;version="4.4.1",org.eclipse.emf.cdo.spi.common.admin;version="4.4.
+ 1",org.eclipse.emf.cdo.spi.common.branch;version="4.4.1",org.eclipse.
+ emf.cdo.spi.common.commit;version="4.4.1",org.eclipse.emf.cdo.spi.com
+ mon.id;version="4.4.1",org.eclipse.emf.cdo.spi.common.lock;version="4
+ .4.1",org.eclipse.emf.cdo.spi.common.model;version="4.4.1",org.eclips
+ e.emf.cdo.spi.common.protocol;version="4.4.1",org.eclipse.emf.cdo.spi
+ .common.revision;version="4.4.1"
+Ant-Version: Apache Ant 1.9.4
+Bundle-ClassPath: .
+Bundle-ActivationPolicy: lazy
+Bundle-Vendor: %providerName
+Bundle-Name: %pluginName
+Created-By: 1.7.0_80-b15 (Oracle Corporation)
+Bundle-ManifestVersion: 2
+
+Name: org/eclipse/emf/cdo/common/revision/CDORevisionsLoadedEvent.clas
+ s
+SHA1-Digest: ccHX4OxPJQJ74cu2BsEjUHntUiY=
+
+Name: org/eclipse/emf/cdo/internal/common/model/CDOTypeImpl$20.class
+SHA1-Digest: RXiVCJYyIkSK7NQStbdERL0QXWY=
+
+Name: org/eclipse/emf/cdo/common/model/EMFUtil.class
+SHA1-Digest: RHMi39DivO/PIRO1Apcr754tkH4=
+
+Name: org/eclipse/emf/cdo/common/revision/CDOListResolver.class
+SHA1-Digest: hj9mOULKupSuqDBhG+qbK9/VL1U=
+
+Name: org/eclipse/emf/cdo/common/util/CDOCommonUtil$5.class
+SHA1-Digest: ZThvdpB671LR699qxWrrwivndp4=
+
+Name: org/eclipse/emf/cdo/common/commit/handler/BinaryCommitInfoLog.cl
+ ass
+SHA1-Digest: O9zQxZtCJXegrQ9rehTLMMWJXZ4=
+
+Name: org/eclipse/emf/cdo/internal/common/revision/delta/CDORevisionDe
+ ltaImpl$NOOPList.class
+SHA1-Digest: Eh+eapzKZ6Lil/+2wgXz6fElHDE=
+
+Name: org/eclipse/emf/cdo/common/lob/CDOLobUtil.class
+SHA1-Digest: c0Fr6rozngiU+cCcZErAb3YDVPw=
+
+Name: org/eclipse/emf/cdo/common/CDOCommonTransaction.class
+SHA1-Digest: /4h6qQ64fH1bMHMqHkklN/xqH8o=
+
+Name: org/eclipse/emf/cdo/common/model/EMFUtil$1.class
+SHA1-Digest: EHWVDmarR0TUgMtQ67HIQPK9QVE=
+
+Name: org/eclipse/emf/cdo/spi/common/branch/CDOBranchAdjustable.class
+SHA1-Digest: wU4jTGAVEf8CYI0nZIdfopHMmK0=
+
+Name: org/eclipse/emf/cdo/internal/common/model/CDOTypeImpl.class
+SHA1-Digest: SQjtSk96Ne4S6YtHTMPkLVzqb6Q=
+
+Name: org/eclipse/emf/cdo/common/branch/CDOBranchPoint.class
+SHA1-Digest: C2ZEjrw5s/K69Eae/1cExMM1GQY=
+
+Name: org/eclipse/emf/cdo/common/branch/CDOBranchPointRange.class
+SHA1-Digest: XBXcce6Zd/FlYPEYevRntjWsbus=
+
+Name: org/eclipse/emf/cdo/common/lock/CDOLockChangeInfo.class
+SHA1-Digest: ++DGXxkY3OmFT+DEChq2SutKqhc=
+
+Name: org/eclipse/emf/cdo/internal/common/bundle/OM.class
+SHA1-Digest: Md4S4fbpgk6yZ86YnjvDjj7Fsv0=
+
+Name: org/eclipse/emf/cdo/internal/common/model/CDOTypeImpl$31.class
+SHA1-Digest: 0GaAznKylO53l1JE5iDC0kyaftY=
+
+Name: org/eclipse/emf/cdo/internal/common/id/CDOIDObjectUUIDImpl$UUIDI
+ nterner.class
+SHA1-Digest: cFdhkvlVZSWoN+sKPXEBZhyZaO4=
+
+Name: org/eclipse/emf/cdo/internal/common/model/CDOTypeImpl$1.class
+SHA1-Digest: 9SEPfjZuQpOVONO4rd3Pj6ldWcs=
+
+Name: org/eclipse/emf/cdo/internal/common/branch/CDOBranchManagerImpl$
+ BranchChangedEvent.class
+SHA1-Digest: CXylP5L4pLjzrTGNC5LkLS0GikA=
+
+Name: org/eclipse/emf/cdo/internal/common/model/CDOTypeImpl$14.class
+SHA1-Digest: KrvxEll614i4J/SU/9KGMq6ebx4=
+
+Name: org/eclipse/emf/cdo/common/branch/CDOBranchChangedEvent$ChangeKi
+ nd.class
+SHA1-Digest: f9E/wexOSNY48OiIihLAiuHkVjE=
+
+Name: org/eclipse/emf/cdo/spi/common/revision/StubCDORevision.class
+SHA1-Digest: QJLiRQt8Y2GimejQ4g5uwns9Ru4=
+
+Name: org/eclipse/emf/cdo/spi/common/revision/InternalCDORevisionDelta
+ .class
+SHA1-Digest: VQYVlRZ910d9K+s90qfu6F0cRRQ=
+
+Name: org/eclipse/emf/cdo/internal/common/commit/CDOCommitInfoManagerI
+ mpl$3.class
+SHA1-Digest: 5j4ge74/vSoUc2YbgMMC26+Lev0=
+
+Name: org/eclipse/emf/cdo/internal/common/model/CDOClassInfoImpl$Revis
+ ionWithID.class
+SHA1-Digest: HomiNQ7E1UEAldf4EbNJU/kQtlA=
+
+Name: org/eclipse/emf/cdo/internal/common/model/CDOFeatureType$3.class
+SHA1-Digest: fFz8FFxYPt/PKgaPsIvcqNvrXlg=
+
+Name: org/eclipse/emf/cdo/spi/common/revision/ManagedRevisionProvider.
+ class
+SHA1-Digest: xLh0/ZGq4SpohfcVq1/mLXnlX7g=
+
+Name: org/eclipse/emf/cdo/common/commit/CDOCommitInfoManager.class
+SHA1-Digest: slapqfBYD2O7201kpYdwVUHdHvY=
+
+Name: org/eclipse/emf/cdo/internal/common/id/CDOIDNullImpl.class
+SHA1-Digest: /qTyTqHpW/k7Vmy0Y6oo+b1UdfI=
+
+Name: org/eclipse/emf/cdo/common/lock/IDurableLockingManager$LockArea$
+ Handler.class
+SHA1-Digest: kko00Kxycoxh0WqjT4WszXCeTRg=
+
+Name: org/eclipse/emf/cdo/spi/common/revision/CDOFeatureMapEntry.class
+SHA1-Digest: nyKP595t/XBBQu6q4Ax+PM6xohE=
+
+Name: org/eclipse/emf/cdo/spi/common/model/InternalCDOClassInfo.class
+SHA1-Digest: GfQT+yJDN0RKEPd2KOsSEB/9hWA=
+
+Name: org/eclipse/emf/cdo/spi/common/revision/InternalCDOFeatureDelta$
+ ListTargetAdding.class
+SHA1-Digest: oH+oHiq3/QZE0D4IKTzpVxwBcbY=
+
+Name: org/eclipse/emf/cdo/internal/common/branch/CDOBranchImpl.class
+SHA1-Digest: RlcVDRChcDygRfXEefxPZiR52Go=
+
+Name: org/eclipse/emf/cdo/internal/common/model/CDOTypeImpl$25.class
+SHA1-Digest: WIKGKpcOP/xqSrv9zw+fd5vTzj8=
+
+Name: org/eclipse/emf/cdo/common/security/CDOPermissionProvider.class
+SHA1-Digest: IMrKK2KU7X2yl6iTMEbZQQwNnME=
+
+Name: org/eclipse/emf/cdo/internal/common/commit/CDOCommitInfoImpl$1.c
+ lass
+SHA1-Digest: EuDz5pZ33NU5sVNQM4pO0wU1N9Q=
+
+Name: org/eclipse/emf/cdo/common/revision/delta/CDOUnsetFeatureDelta.c
+ lass
+SHA1-Digest: kX9zTSvkk1vFqG08hJy0wm8e8Ic=
+
+Name: org/eclipse/emf/cdo/internal/common/commit/CDOCommitInfoManagerI
+ mpl$BranchInfoCache.class
+SHA1-Digest: w/TUPwJs+NEFqbx38K5WTxzYIAU=
+
+Name: org/eclipse/emf/cdo/common/model/EMFUtil$6.class
+SHA1-Digest: JaR63kkNd8upzDvzEnHHbVSI7LU=
+
+Name: org/eclipse/emf/cdo/spi/common/revision/DelegatingCDORevision.cl
+ ass
+SHA1-Digest: K/K39W5c5cK66Bx1E4/LZwDMeWg=
+
+Name: org/eclipse/emf/cdo/common/revision/CDORevision.class
+SHA1-Digest: D+nlIUlEjwLV4H5MMstvh0TO3Q4=
+
+Name: org/eclipse/emf/cdo/internal/common/messages/Messages.class
+SHA1-Digest: ivmhDY+RYtf4br3UrAnKoinEjxU=
+
+Name: org/eclipse/emf/cdo/common/commit/CDOCommitInfo.class
+SHA1-Digest: Vlokk5coe/3jh1XV8+oL2A0sl7o=
+
+Name: org/eclipse/emf/cdo/internal/common/revision/delta/CDOFeatureDel
+ taImpl.class
+SHA1-Digest: gn4AbBACjzElivjHu/yDfREAZjE=
+
+Name: org/eclipse/emf/cdo/internal/common/id/CDOIDExternalImpl$StringI
+ nterner.class
+SHA1-Digest: B6B0p0TaBjMclvhgwGaorET1gVM=
+
+Name: org/eclipse/emf/cdo/internal/common/model/CDOTypeImpl$6.class
+SHA1-Digest: Wmdozb9n+4PoxadPn5HMBmmxmqc=
+
+Name: org/eclipse/emf/cdo/spi/common/revision/InternalCDORevisionManag
+ er$RevisionLocker.class
+SHA1-Digest: cgMU6TsRtDFr6JkBroNEMNvaCUc=
+
+Name: org/eclipse/emf/cdo/spi/common/revision/RevisionInfo$Available$P
+ ointer.class
+SHA1-Digest: RINsnA/Aqo/6oOFk4/Ob3W6edCY=
+
+Name: org/eclipse/emf/cdo/common/id/CDOIDExternal.class
+SHA1-Digest: 3DpEmWbpeR2E1QpckIm2KErYGpE=
+
+Name: org/eclipse/emf/cdo/common/util/RepositoryStateChangedEvent.clas
+ s
+SHA1-Digest: 9VHUS9hNto/mhqP9tz8uHHSe+uA=
+
+Name: org/eclipse/emf/cdo/spi/common/revision/BaseCDORevision.class
+SHA1-Digest: 2aP/ragJHAaT0Kezk2epn+t0R3w=
+
+Name: org/eclipse/emf/cdo/internal/common/model/CDOTypeImpl$19.class
+SHA1-Digest: dc8l8OuMu6FMOV5FeNvgcwcQwxQ=
+
+Name: org/eclipse/emf/cdo/spi/common/revision/InternalCDORevisionCache
+ .class
+SHA1-Digest: c6BK3NDJUWYk2pj+CQ3nBFK/zds=
+
+Name: org/eclipse/emf/cdo/common/util/CDOException.class
+SHA1-Digest: 1kYkBQuAyTpAqOng2Ha3z88rl08=
+
+Name: org/eclipse/emf/cdo/common/lock/IDurableLockingManager$LockGrade
+ .class
+SHA1-Digest: jXYw1tt9vHDFJThczOOq/cAUfUM=
+
+Name: org/eclipse/emf/cdo/common/util/CDOQueryInfo.class
+SHA1-Digest: SYxij5NseT/L7pH+WzugGdMWN4s=
+
+Name: org/eclipse/emf/cdo/internal/common/model/CDOPackageUnitImpl.cla
+ ss
+SHA1-Digest: IAhVbBjTSiKQ0HV0eykt0f+KzgQ=
+
+Name: org/eclipse/emf/cdo/spi/common/CDORawReplicationContext.class
+SHA1-Digest: J9PszttEcVTxKuIUUdXcFxCwgvA=
+
+Name: org/eclipse/emf/cdo/spi/common/branch/InternalCDOBranch.class
+SHA1-Digest: ZchlCAMJaEoimqiGsbwVTsti5xE=
+
+Name: org/eclipse/emf/cdo/internal/common/branch/CDOBranchImpl$1.class
+SHA1-Digest: XAHRzKUgFLWZz9IquKWqWw6qrnA=
+
+Name: org/eclipse/emf/cdo/common/revision/delta/CDORevisionDeltaProvid
+ er.class
+SHA1-Digest: ldL38SSKBmFm4tW7n/5ZAvzF+70=
+
+Name: org/eclipse/emf/cdo/common/protocol/package-info.class
+SHA1-Digest: YzQKSwC7DwMgEzsameYs2nG999M=
+
+Name: org/eclipse/emf/cdo/common/id/CDOIDGenerator$2.class
+SHA1-Digest: 0FptgINSlrtxtdJ3lPjVF0jUTew=
+
+Name: org/eclipse/emf/cdo/internal/common/revision/delta/CDOMoveFeatur
+ eDeltaImpl.class
+SHA1-Digest: Z0CE05ns+xma/rfqfXKtOxM5Q88=
+
+Name: org/eclipse/emf/cdo/internal/common/commit/CDOCommitHistoryImpl$
+ TriggerLoadElementImpl.class
+SHA1-Digest: pK+8MSZrPzDcSDe2mg9GOtmvcKs=
+
+Name: org/eclipse/emf/cdo/internal/common/model/CDOClassInfoImpl.class
+SHA1-Digest: AN4053vX03fNsEEbxymb3L63Zwo=
+
+Name: org/eclipse/emf/cdo/spi/common/revision/CDOFeatureDeltaVisitorIm
+ pl.class
+SHA1-Digest: Kv17S0krQqBnH5Fg8pLmyjDktQk=
+
+Name: org/eclipse/emf/cdo/spi/common/commit/CDORevisionAvailabilityInf
+ o.class
+SHA1-Digest: GfL4TNjzWW2JWag1/EgIDf3vD64=
+
+Name: org/eclipse/emf/cdo/common/lob/CDOBlob.class
+SHA1-Digest: /PiE2yS2azxi4tI1Wo/jWGTZBSI=
+
+Name: org/eclipse/emf/cdo/spi/common/protocol/CDODataOutputImpl.class
+SHA1-Digest: aQh9SLmDlDEBTI6nbwmSCEMqO8U=
+
+Name: org/eclipse/emf/cdo/internal/common/messages/messages.properties
+SHA1-Digest: 3FJabJBqGI2agryjFZek+eP8ll0=
+
+Name: org/eclipse/emf/cdo/common/revision/delta/CDOContainerFeatureDel
+ ta.class
+SHA1-Digest: /LGy3qcTcc777ZlotGFZF0Tolcw=
+
+Name: org/eclipse/emf/cdo/common/model/CDOType.class
+SHA1-Digest: tUgqpR5fKXh/Ph0YVc9h1RnvaKQ=
+
+Name: org/eclipse/emf/cdo/internal/common/revision/CDOElementProxyImpl
+ .class
+SHA1-Digest: hqummDCwsb4pKw+j7zINa/GBdPY=
+
+Name: org/eclipse/emf/cdo/common/lob/package-info.class
+SHA1-Digest: 6vHlajL+EqtYOTRnkiKrsafWzws=
+
+Name: org/eclipse/emf/cdo/internal/common/revision/CDOListWithElementP
+ roxiesImpl.class
+SHA1-Digest: OIodIiBslNXh1Mw6OEQAZkEKJqo=
+
+Name: org/eclipse/emf/cdo/common/util/CDOClassNotFoundException.class
+SHA1-Digest: WB36e2k0au9YP8GX7ZVuLBct7+s=
+
+Name: org/eclipse/emf/cdo/internal/common/revision/delta/CDOSetFeature
+ DeltaImpl.class
+SHA1-Digest: SGArD+cY2EXvvTZWUyTqjlhoXUk=
+
+Name: org/eclipse/emf/cdo/common/id/CDOID.class
+SHA1-Digest: RlQABX0wBbcz0Y/D7xLgzWcpFH4=
+
+Name: org/eclipse/emf/cdo/spi/common/commit/CDOChangeSetDataRevisionPr
+ ovider.class
+SHA1-Digest: IJ3QObr7nx+b4wsnV6sHCZqZnmw=
+
+Name: org/eclipse/emf/cdo/common/id/CDOIDReference.class
+SHA1-Digest: fAlTFT4/Ho6k1GFxdzXKu9cpfZs=
+
+Name: org/eclipse/emf/cdo/internal/common/id/CDOIDObjectStringWithClas
+ sifierImpl$StringWithClassifierInterner.class
+SHA1-Digest: a2B0sbb7BcJBwzPakj4fzv+aNIQ=
+
+Name: org/eclipse/emf/cdo/spi/common/revision/InternalCDORevisionManag
+ er$RevisionLoader2.class
+SHA1-Digest: ivHPa0tZ1QicJoAdGnUcnuc4Ik0=
+
+Name: org/eclipse/emf/cdo/common/revision/delta/CDOOriginSizeProvider.
+ class
+SHA1-Digest: loxD1FOHGJNfoN7VGMqSvs7ehho=
+
+Name: org/eclipse/emf/cdo/common/model/package-info.class
+SHA1-Digest: s/8Y83D7cHRiTkgP3/eOi/oFCAE=
+
+Name: org/eclipse/emf/cdo/common/CDOCommonSession.class
+SHA1-Digest: SuNOadoxHX1giOeZE3VCJV3zX2Y=
+
+Name: org/eclipse/emf/cdo/common/util/CDOCommonUtil$4.class
+SHA1-Digest: f0CD7tls14kqAUvBsvw0LlqKn6U=
+
+Name: org/eclipse/emf/cdo/spi/common/admin/AbstractCDOAdmin.class
+SHA1-Digest: J+PnWR6vZM7B3lyR59Ljo9hQ7K0=
+
+Name: org/eclipse/emf/cdo/common/revision/delta/CDOSetFeatureDelta.cla
+ ss
+SHA1-Digest: rmNF/7N4PkbTGcSbpzhnLxHbwYE=
+
+Name: org/eclipse/emf/cdo/common/model/CDOPackageRegistryPopulator.cla
+ ss
+SHA1-Digest: gpogo5Kn3EWSI7Ml18Vz5C4PpfE=
+
+Name: org/eclipse/emf/cdo/internal/common/revision/delta/CDOContainerF
+ eatureDeltaImpl$ContainerFeature.class
+SHA1-Digest: hcKaLIFGShMJxUCcMri4wy+0nzU=
+
+Name: org/eclipse/emf/cdo/spi/common/revision/CDOReferenceAdjuster.cla
+ ss
+SHA1-Digest: 7ixdFRtNJoDKaWYpoXWWfvZF6S8=
+
+Name: org/eclipse/emf/cdo/common/revision/CDORevisionHandler.class
+SHA1-Digest: ak8QWNgZg8f+BriMm+2x+lqAUgA=
+
+Name: org/eclipse/emf/cdo/internal/common/model/CDOTypeImpl$30.class
+SHA1-Digest: xt8qh00WvID0T0tV41oL/6umHOQ=
+
+Name: org/eclipse/emf/cdo/spi/common/model/DelegatingCDOPackageRegistr
+ y.class
+SHA1-Digest: P6PWZe5cHsZAa7RFoaY9SzgszUc=
+
+Name: org/eclipse/emf/cdo/internal/common/model/CDOClassInfoImpl$Revis
+ ionWithoutID.class
+SHA1-Digest: Nuros5Wt29iJ+Yeoz3t/04WPug8=
+
+Name: org/eclipse/emf/cdo/internal/common/model/CDOTypeImpl$13.class
+SHA1-Digest: nGcDbH7PfzKYC3DVZSf7ruJtMLM=
+
+Name: org/eclipse/emf/cdo/common/commit/CDOChangeSet.class
+SHA1-Digest: bPxCJCOK4/Pae4WjM5VNHBmsW8Y=
+
+Name: org/eclipse/emf/cdo/internal/common/commit/CDOCommitHistoryImpl$
+ 2.class
+SHA1-Digest: Ujlqd8FtV1oU/fQtzmYOgoFqIpM=
+
+Name: org/eclipse/emf/cdo/internal/common/revision/AbstractCDORevision
+ Cache$CacheStrongReference.class
+SHA1-Digest: 3t0m+R+gJuxVYEU4y2adK6roHsM=
+
+Name: org/eclipse/emf/cdo/internal/common/commit/CDOCommitInfoManagerI
+ mpl$2.class
+SHA1-Digest: R2wAQjKar9TsDasAbZdX6g1AZyw=
+
+Name: org/eclipse/emf/cdo/common/branch/CDOBranchManager.class
+SHA1-Digest: 8ZJ0tps4jCBFUMAkaYEukdtJUf8=
+
+Name: org/eclipse/emf/cdo/internal/common/revision/CDORevisionImpl.cla
+ ss
+SHA1-Digest: VyYurt1NvZ7m9L00fmPUaEoKebQ=
+
+Name: org/eclipse/emf/cdo/internal/common/model/CDOFeatureType$2.class
+SHA1-Digest: kJ3j0bHyS40TeBN+axpNVUabi4Y=
+
+Name: org/eclipse/emf/cdo/spi/common/id/package-info.class
+SHA1-Digest: uxvXPBIEnefo6+mVlwerxQ3PtlI=
+
+Name: org/eclipse/emf/cdo/internal/common/revision/delta/CDORevisionDe
+ ltaImpl$2.class
+SHA1-Digest: VQbY0f5ZhxdMsbT/GrGNgioWCgU=
+
+Name: org/eclipse/emf/cdo/spi/common/admin/package-info.class
+SHA1-Digest: oGG3VoS97fRXpnJmL/FXy93cm+U=
+
+Name: org/eclipse/emf/cdo/common/id/CDOReference.class
+SHA1-Digest: s/vHOPtw+1eaDKEMnqePz5SeA8A=
+
+Name: org/eclipse/emf/cdo/common/lock/CDOLockChangeInfo$Operation.clas
+ s
+SHA1-Digest: 20DOtNl876/MpwLMENfnwb4M0lI=
+
+Name: org/eclipse/emf/cdo/common/revision/CDORevisionUtil.class
+SHA1-Digest: 0866M9JZckGAbWzQ4vfqe6/szY4=
+
+Name: org/eclipse/emf/cdo/spi/common/revision/InternalCDOList.class
+SHA1-Digest: xjB0Q1s0ifzmOp9VZWrc9IraMVI=
+
+Name: org/eclipse/emf/cdo/common/commit/CDOChangeSetDataProvider.class
+SHA1-Digest: UuRmhwlLhxl8tLjqN1dxB9EvVF8=
+
+Name: org/eclipse/emf/cdo/internal/common/model/CDOTypeImpl$24.class
+SHA1-Digest: Vwkuc8KdRItYaGSlRTn0mkhNv2Y=
+
+Name: org/eclipse/emf/cdo/spi/common/branch/InternalCDOBranchManager$B
+ ranchLoader3.class
+SHA1-Digest: 0hRSJbN9HwVPh6aLfiv7/mmtqhg=
+
+Name: org/eclipse/emf/cdo/internal/common/model/CDOPersistenceFilterIm
+ pl.class
+SHA1-Digest: 6THFvC2MMHnGdNvvBI8dWErmmGk=
+
+Name: org/eclipse/emf/cdo/spi/common/CDOAuthenticationResult.class
+SHA1-Digest: w9jTmIGy0c79CrXix0NnJycPi4Q=
+
+Name: org/eclipse/emf/cdo/common/model/EMFUtil$5.class
+SHA1-Digest: j9psfx9Cgvnt9QJgLNsQ6Msiwck=
+
+Name: org/eclipse/emf/cdo/common/lock/IDurableLockingManager.class
+SHA1-Digest: 4eKZzV/GnNFP7z3CdAJ3IlykH6s=
+
+Name: org/eclipse/emf/cdo/common/revision/CDORevisable.class
+SHA1-Digest: l2zxgr6s8uboQu67d3Hmtw3fLqk=
+
+Name: org/eclipse/emf/cdo/internal/common/revision/delta/CDOSingleValu
+ eFeatureDeltaImpl.class
+SHA1-Digest: Y0qTD6uSE/UXismIFf+97h9ywZc=
+
+Name: org/eclipse/emf/cdo/spi/common/revision/InternalCDORevisionManag
+ er$RevisionLoader.class
+SHA1-Digest: Obgr+kmjC71GJBmu1AgyN9hw+E8=
+
+Name: org/eclipse/emf/cdo/internal/common/model/CDOTypeImpl$35.class
+SHA1-Digest: DE0d4bnmYINdZwxRhMI7f6xeEko=
+
+Name: org/eclipse/emf/cdo/internal/common/model/CDOTypeImpl$5.class
+SHA1-Digest: phYWqps2nEiPorLzXCq3P0pk9eg=
+
+Name: org/eclipse/emf/cdo/spi/common/lock/InternalCDOLockState.class
+SHA1-Digest: R0Fq6+HFgBhpBElQAs4m/pFRrLU=
+
+Name: org/eclipse/emf/cdo/common/revision/CDORevisionCacheAdder.class
+SHA1-Digest: 71aIiMVRa85+hM9Fbp6CA7xcW/I=
+
+Name: org/eclipse/emf/cdo/internal/common/model/CDOTypeImpl$18.class
+SHA1-Digest: DbX7xXTd8S3l9Gp6uY/5KRCCjLU=
+
+Name: org/eclipse/emf/cdo/common/id/CDOIDString.class
+SHA1-Digest: MPhv1+T9DsWf1xkCngySFBTY5To=
+
+Name: org/eclipse/emf/cdo/internal/common/branch/CDOBranchPointRangeIm
+ pl.class
+SHA1-Digest: 4xPtmho5Twk6Tft6VUPCHyoYy/E=
+
+Name: org/eclipse/emf/cdo/internal/common/revision/CDORevisionCacheBra
+ nching$TypeAndRefCounter.class
+SHA1-Digest: bPvxT99mUTszt7AqRj9WeCcD9t4=
+
+Name: org/eclipse/emf/cdo/common/model/CDOPackageRegistryPopulator$Des
+ criptor.class
+SHA1-Digest: 6E48Q4gJ5LinDc2jiInyW5AQ1Ao=
+
+Name: org/eclipse/emf/cdo/common/lock/IDurableLockingManager$LockArea.
+ class
+SHA1-Digest: Itl6IshPm9zV6KEB/w3EQO195ds=
+
+Name: org/eclipse/emf/cdo/common/util/CDOQueryQueue$BlockingCloseableI
+ teratorImpl.class
+SHA1-Digest: vG4DzRSTjr/cdgBO3+nFz7o9uhI=
+
+Name: org/eclipse/emf/cdo/internal/common/model/CDOFeatureType$7.class
+SHA1-Digest: 8IMpm+CSbkdWFjHXcN5Z30WugRg=
+
+Name: org/eclipse/emf/cdo/spi/common/id/InternalCDOIDObject.class
+SHA1-Digest: wLAYwsk2YVZa73ijZfdE1C4Dz3A=
+
+Name: org/eclipse/emf/cdo/internal/common/id/CDOIDObjectLongImpl$LongI
+ nterner.class
+SHA1-Digest: VU4BYCxa2Gsq5i85GryW5o2ctQc=
+
+Name: org/eclipse/emf/cdo/common/util/CDONameProvider.class
+SHA1-Digest: Ft6qX9EUftH4lp7Kmu0AFZbN0tY=
+
+Name: org/eclipse/emf/cdo/common/model/CDOPackageUnit$Type.class
+SHA1-Digest: TctUehmtrN+2ELppxc5+kj/u3bA=
+
+Name: org/eclipse/emf/cdo/common/lock/CDOLockState.class
+SHA1-Digest: Uhi+fvpEYmJyoeLD+pc8daqF+NQ=
+
+Name: org/eclipse/emf/cdo/internal/common/model/CDOTypeImpl$29.class
+SHA1-Digest: RR+IvwdvGR12fKF7Cs+wvNUdHqA=
+
+Name: org/eclipse/emf/cdo/internal/common/revision/CDORevisionManagerI
+ mpl$RevisionsLoadedEvent.class
+SHA1-Digest: tVlVD/XADb6G1F4cB1r61D3zhUM=
+
+Name: org/eclipse/emf/cdo/spi/common/model/InternalCDOPackageInfo.clas
+ s
+SHA1-Digest: pzPpYcumTpxYP6Yusko80a+fHgU=
+
+Name: org/eclipse/emf/cdo/common/revision/CDORevisionCache$EvictionEve
+ nt.class
+SHA1-Digest: l2sZs3c6T+F7lEJ7c/Od202Y1Hk=
+
+Name: org/eclipse/emf/cdo/internal/common/commit/CDOChangeSetImpl.clas
+ s
+SHA1-Digest: fVdVWYD+O0CSZitRhU91+i2NE1M=
+
+Name: org/eclipse/emf/cdo/common/util/PartialCollectionLoadingNotSuppo
+ rtedException.class
+SHA1-Digest: dG2v8I0lyPno52ZTzDrDA4+FYUA=
+
+Name: org/eclipse/emf/cdo/common/id/CDOIDGenerator$1.class
+SHA1-Digest: PVTdHxZH1ZrCyGoIvQuvx+QufRc=
+
+Name: org/eclipse/emf/cdo/common/model/CDOModelConstants.class
+SHA1-Digest: PbgaJaHaySox4b8D4mtOqMGngW8=
+
+Name: org/eclipse/emf/cdo/spi/common/protocol/package-info.class
+SHA1-Digest: a8MEOrhVyYpfalRL7VR+63XuZV8=
+
+Name: org/eclipse/emf/cdo/spi/common/commit/package-info.class
+SHA1-Digest: zBg6wtupPgo5Vfe1LRvwRDxlvGo=
+
+Name: org/eclipse/emf/cdo/common/id/CDOIDUtil.class
+SHA1-Digest: Y55ttiPJnInuOsOIUpb97t8lkKg=
+
+Name: org/eclipse/emf/cdo/spi/common/revision/InternalCDORevisionManag
+ er.class
+SHA1-Digest: zIgExJPhJQtodanJFskVJEQHDmo=
+
+Name: org/eclipse/emf/cdo/common/CDOCommonView$Options$LockNotificatio
+ nEvent.class
+SHA1-Digest: /fCqC7wgKxGQbJlOkc/qFCgEevs=
+
+Name: org/eclipse/emf/cdo/common/CDOCommonView$Options.class
+SHA1-Digest: 1iIHzNvvG4qgWzV2MCBTAQeDvFg=
+
+Name: org/eclipse/emf/cdo/common/lob/CDOLob.class
+SHA1-Digest: 01ZcTA26upCut2w6jVSFA4fX7rI=
+
+Name: org/eclipse/emf/cdo/internal/common/revision/CDORevisionManagerI
+ mpl.class
+SHA1-Digest: FHfbCsq+f//Y68ft3RGuUzA/10E=
+
+Name: about.html
+SHA1-Digest: mLkmRLtG3amkcY0I7KSYZX6qKhs=
+
+Name: org/eclipse/emf/cdo/common/revision/CDORevisionUtil$AllRevisions
+ Dumper.class
+SHA1-Digest: 3SgR8+cWvHvbGJgi+TR8xqwTCm0=
+
+Name: org/eclipse/emf/cdo/internal/common/id/CDOIDObjectUUIDImpl.class
+SHA1-Digest: z5fQTEPFPrw12gasK+PKMxvdgm0=
+
+Name: org/eclipse/emf/cdo/common/commit/handler/AsyncCommitInfoHandler
+ .class
+SHA1-Digest: RQmKOT+eQLm0ahMiDuVpbT0koTU=
+
+Name: org/eclipse/emf/cdo/internal/common/commit/DelegatingCommitInfo.
+ class
+SHA1-Digest: YXxymGOMcilUOs0koxHCgE3G6Ms=
+
+Name: org/eclipse/emf/cdo/spi/common/model/InternalCDOClassInfo$Persis
+ tenceFilter.class
+SHA1-Digest: woX1CCNPVVTa0DEUN7zpkg7L6T0=
+
+Name: org/eclipse/emf/cdo/internal/common/id/CDOIDTempObjectExternalIm
+ pl$StringInterner.class
+SHA1-Digest: ZCDgWmL4WN9CroQYEwkra0eExy0=
+
+Name: org/eclipse/emf/cdo/internal/common/revision/AbstractCDORevision
+ Cache$CacheSoftReference.class
+SHA1-Digest: it2igisCMJugREo7VhmfX3TO5TA=
+
+Name: org/eclipse/emf/cdo/common/CDOCommonRepository$State.class
+SHA1-Digest: bfRM7SBOJ1gDQ7rVU+RS6oQfMXs=
+
+Name: org/eclipse/emf/cdo/internal/common/model/CDOPackageRegistryImpl
+ .class
+SHA1-Digest: LsgEkcpp/k+B0F3MbTaGPbaqhMg=
+
+Name: org/eclipse/emf/cdo/common/util/RepositoryTypeChangedEvent.class
+SHA1-Digest: ANrEm1glTON0T3UyGMeoWFCYzqo=
+
+Name: org/eclipse/emf/cdo/common/util/CDOCommonUtil$3.class
+SHA1-Digest: B5EMh+rzmiAtSFhGE9ih/PIVAbE=
+
+Name: org/eclipse/emf/cdo/internal/common/revision/CDOListImpl$1.class
+SHA1-Digest: FTKaEf/UsJfCKLytnIwOm1d/gps=
+
+Name: org/eclipse/emf/cdo/common/util/CDOCommonEventAdapter.class
+SHA1-Digest: 0PrvvtjswNbh7zZZyLNXaYtU/O0=
+
+Name: org/eclipse/emf/cdo/common/branch/package-info.class
+SHA1-Digest: TC/5xRVrwlRCH9YqFV6RT+DKEIs=
+
+Name: org/eclipse/emf/cdo/internal/common/id/CDOIDObjectStringWithClas
+ sifierImpl.class
+SHA1-Digest: XF9uaj4OWRl6/jdYcX+wLvYbmxw=
+
+Name: org/eclipse/emf/cdo/spi/common/model/InternalCDOPackageRegistry$
+ PackageLoader.class
+SHA1-Digest: uZSsWsZm3uWGZOvPCgQk/vpvhJM=
+
+Name: org/eclipse/emf/cdo/common/security/NoPermissionException.class
+SHA1-Digest: vkFx0g8chqIsNsfHOV9QN9Ye5wY=
+
+Name: org/eclipse/emf/cdo/spi/common/id/AbstractCDOID.class
+SHA1-Digest: kWqUiUbV6f514TH0p0hF1aGSeJA=
+
+Name: org/eclipse/emf/cdo/common/util/TransportException.class
+SHA1-Digest: UalGll6RfGKO+2bE834OYVlZOSw=
+
+Name: org/eclipse/emf/cdo/common/revision/CDOIDAndVersion.class
+SHA1-Digest: ErgivKWQfnq9V6szyCll8Q64aDQ=
+
+Name: org/eclipse/emf/cdo/internal/common/id/CDOIDObjectStringImpl$Str
+ ingInterner.class
+SHA1-Digest: pImSYXjgRo+VH64MMCSFZMaXe64=
+
+Name: org/eclipse/emf/cdo/internal/common/model/CDOTypeImpl$12.class
+SHA1-Digest: ooRfKbHcAbrcCaOBDqrtPe9Os2M=
+
+Name: org/eclipse/emf/cdo/internal/common/revision/delta/CDOListFeatur
+ eDeltaImpl.class
+SHA1-Digest: JHQM2YZ8ErUZdU/ZLuiTCnPEtLU=
+
+Name: org/eclipse/emf/cdo/spi/common/model/InternalCDOPackageUnit.clas
+ s
+SHA1-Digest: +AATDvtNL57QQ3j4lG9e4ARZdng=
+
+Name: org/eclipse/emf/cdo/internal/common/commit/CDOCommitInfoManagerI
+ mpl.class
+SHA1-Digest: aNyZE/B7r13VL/8pdJoCCGFDFss=
+
+Name: org/eclipse/emf/cdo/internal/common/commit/CDOCommitHistoryImpl$
+ 1.class
+SHA1-Digest: BiO5jjHnksLB/j5xfpTfq7r1q8s=
+
+Name: org/eclipse/emf/cdo/common/revision/CDORevisionUtil$AllRevisions
+ Dumper$Stream.class
+SHA1-Digest: F79wWeeZF6B0bZNS9ba3mu1FL6E=
+
+Name: org/eclipse/emf/cdo/spi/common/revision/RevisionInfo.class
+SHA1-Digest: 9+1A+S3iiJTZ1tRlTvzt1xLmFYo=
+
+Name: org/eclipse/emf/cdo/common/revision/CDORevisionProvider.class
+SHA1-Digest: HbiOuSJXpYQHXmozm3Ydprv5rlE=
+
+Name: org/eclipse/emf/cdo/internal/common/bundle/OM$Activator.class
+SHA1-Digest: brqqEQArz3SwlcH6dgtkhuDyttU=
+
+Name: org/eclipse/emf/cdo/common/CDOCommonRepository$IDGenerationLocat
+ ion.class
+SHA1-Digest: /TRpwbBq5GDXOu8rWTxsVizGG6Y=
+
+Name: org/eclipse/emf/cdo/internal/common/commit/CDOCommitInfoManagerI
+ mpl$1.class
+SHA1-Digest: 6o/VbPCzNQo5Ms31i5QlSBXRyYk=
+
+Name: org/eclipse/emf/cdo/internal/common/model/CDOFeatureType$1.class
+SHA1-Digest: wgRd+0M6gDDfy62CZO8NWc5RSwI=
+
+Name: org/eclipse/emf/cdo/internal/common/revision/CDOIDAndVersionImpl
+ .class
+SHA1-Digest: wCrFBOdf0ypaMzkCeViVigzmPuE=
+
+Name: org/eclipse/emf/cdo/internal/common/id/CDOIDObjectLongWithClassi
+ fierImpl.class
+SHA1-Digest: XIqWhXbOuLt0pR94+1+7qRWBndQ=
+
+Name: org/eclipse/emf/cdo/internal/common/revision/delta/CDORevisionDe
+ ltaImpl$1.class
+SHA1-Digest: xRd55GakmFCuVUwwc3ubFBK2EWE=
+
+Name: org/eclipse/emf/cdo/spi/common/revision/CDOIDMapper.class
+SHA1-Digest: KRJvhHvm3IfEFy1vWoP9BczXfoA=
+
+Name: org/eclipse/emf/cdo/common/commit/handler/package-info.class
+SHA1-Digest: RYD96KPpRINKYiifpzLRYm0hnKg=
+
+Name: org/eclipse/emf/cdo/internal/common/model/CDOTypeImpl$23.class
+SHA1-Digest: SNNmmmxmLZNcyWgrookY5cvhjzc=
+
+Name: org/eclipse/emf/cdo/common/lob/CDOClob.class
+SHA1-Digest: lS+CWUj0hy1GaC4zxKj4Oy4v160=
+
+Name: org/eclipse/emf/cdo/internal/common/branch/CDOBranchVersionImpl.
+ class
+SHA1-Digest: 4eKFnZhicQZVxypnD2YnKZnNe+0=
+
+Name: org/eclipse/emf/cdo/common/protocol/CDODataOutput.class
+SHA1-Digest: U56iPnATsFDWZJX2BZj79xsD9sM=
+
+Name: org/eclipse/emf/cdo/common/revision/delta/CDOFeatureDelta.class
+SHA1-Digest: rLbc+28pq4wBnIPzToXnnNMSvgI=
+
+Name: org/eclipse/emf/cdo/spi/common/branch/InternalCDOBranchManager$B
+ ranchLoader2.class
+SHA1-Digest: Xc5EBe9DDfjYA4nb4tSyeZWAAZM=
+
+Name: org/eclipse/emf/cdo/common/revision/CDOIDAndBranch.class
+SHA1-Digest: 81eQ3zYKRgkqiSDQsfbVqVsF7bo=
+
+Name: org/eclipse/emf/cdo/common/model/EMFUtil$4.class
+SHA1-Digest: kCZCGaMAItijyIL4oLjHLjtvZUA=
+
+Name: org/eclipse/emf/cdo/internal/common/revision/delta/CDODetachedRe
+ visionDeltaImpl.class
+SHA1-Digest: 5gy55pwZ2Z3X9GID5iNbHaCN3Pc=
+
+Name: org/eclipse/emf/cdo/common/id/CDOIDObject.class
+SHA1-Digest: ukh8M3a9wgDNSU7hbEy/SQIgG7E=
+
+Name: org/eclipse/emf/cdo/common/branch/CDOBranchVersion.class
+SHA1-Digest: kDEwcyDTJ6xgxOft1HavpSnk/m8=
+
+Name: org/eclipse/emf/cdo/internal/common/id/CDOIDObjectLongWithClassi
+ fierImpl$LongWithClassifierInterner.class
+SHA1-Digest: 403yIEYNmSJzRfcxbokvvJXEFbo=
+
+Name: org/eclipse/emf/cdo/internal/common/model/CDOTypeImpl$34.class
+SHA1-Digest: YgqD6/LVgnH+ueOOsblhMGPOYRU=
+
+Name: org/eclipse/emf/cdo/spi/common/admin/CDOAdminProtocolConstants.c
+ lass
+SHA1-Digest: mEnMvAQsmfWCDimy7NS55nb0GH0=
+
+Name: org/eclipse/emf/cdo/internal/common/model/CDOTypeImpl$4.class
+SHA1-Digest: bMrked9y/Fc2qWggovfIgzWa1CQ=
+
+Name: org/eclipse/emf/cdo/common/lob/CDOBlobOutputStream.class
+SHA1-Digest: oNFnV/IcDvZ2jk5hE5EWSc/GAQA=
+
+Name: org/eclipse/emf/cdo/spi/common/lock/package-info.class
+SHA1-Digest: 5WzLus2ONU1wM9KXRn8NJ7GtmIs=
+
+Name: org/eclipse/emf/cdo/spi/common/revision/DetachedCDORevision.clas
+ s
+SHA1-Digest: NCisSykA7H05vDQSzlT57MMLzhE=
+
+Name: org/eclipse/emf/cdo/common/lock/CDOLockOwner.class
+SHA1-Digest: dKRrUytZifYeoNBjTvKZTc5yOLs=
+
+Name: org/eclipse/emf/cdo/internal/common/model/CDOTypeImpl$17.class
+SHA1-Digest: VGJqAjC2Q9uID6YUmn5pivNsj+k=
+
+Name: org/eclipse/emf/cdo/spi/common/revision/PointerCDORevision.class
+SHA1-Digest: 4S6gTS/lgxs7+YqvleNq83cLnl0=
+
+Name: org/eclipse/emf/cdo/common/revision/CDORevisionHandler$Filtered$
+ Undetached.class
+SHA1-Digest: EfOAp3pM+hobaMYA7NzYisER2ww=
+
+Name: org/eclipse/emf/cdo/common/id/package-info.class
+SHA1-Digest: JuXDRazHQV6pF7T6QwjfeK1hgTM=
+
+Name: org/eclipse/emf/cdo/internal/common/commit/CDOCommitDataImpl.cla
+ ss
+SHA1-Digest: EjVtx/jgyACYgS1aC54nAvQAhEk=
+
+Name: org/eclipse/emf/cdo/internal/common/model/CDOFeatureType$6.class
+SHA1-Digest: YQmXiieNGgYcqv45MbriWucELsk=
+
+Name: org/eclipse/emf/cdo/internal/common/commit/CDOCommitInfoImpl.cla
+ ss
+SHA1-Digest: GPIxsmvc1GPiUQw0QqCg11OMUP0=
+
+Name: org/eclipse/emf/cdo/spi/common/revision/InternalCDORevision.clas
+ s
+SHA1-Digest: ZzmN7mqdb/rZhe9nvW40/kemudU=
+
+Name: org/eclipse/emf/cdo/internal/common/branch/CDOBranchPointImpl.cl
+ ass
+SHA1-Digest: VxF/3gFHkIIy4Vvy6/kIp+ew+Fo=
+
+Name: org/eclipse/emf/cdo/common/commit/CDOChangeKind.class
+SHA1-Digest: u+olFrxR756CvsmV9D5AJ0OyTSM=
+
+Name: org/eclipse/emf/cdo/internal/common/lock/CDOLockAreaImpl.class
+SHA1-Digest: kYpnXHvp786gQJkluhu199HV4vk=
+
+Name: org/eclipse/emf/cdo/spi/common/revision/RevisionInfo$Type.class
+SHA1-Digest: OfC9KVUF5gGlsFwULs6qG6qFSeg=
+
+Name: org/eclipse/emf/cdo/common/util/CDOTimeProvider.class
+SHA1-Digest: hRH6LZDSLgZeOXRU33K1D+zEoms=
+
+Name: org/eclipse/emf/cdo/common/CDOCommonView.class
+SHA1-Digest: 9hSY+idww9hOisd1ypvnHs5LCxo=
+
+Name: org/eclipse/emf/cdo/internal/common/model/CDOTypeImpl$28.class
+SHA1-Digest: 1uukYSRigyjSKFTlmF8c4zJkaHE=
+
+Name: org/eclipse/emf/cdo/common/revision/delta/CDOListFeatureDelta.cl
+ ass
+SHA1-Digest: R3oLv1XMbH6T3Jw2i6doKniqPPk=
+
+Name: org/eclipse/emf/cdo/spi/common/commit/CDOChangeSetDataRevisionPr
+ ovider$1.class
+SHA1-Digest: fewm6TZAmddcdbRuiV9SZTfkdwU=
+
+Name: org/eclipse/emf/cdo/common/revision/CDORevisionHandler$Filtered.
+ class
+SHA1-Digest: Xaef7mG9P9DffA3gtnRXsxoj9Rg=
+
+Name: org/eclipse/emf/cdo/common/id/CDOIDProvider.class
+SHA1-Digest: OAnHxknlOSP/MVTfy8GrGo0DZS8=
+
+Name: org/eclipse/emf/cdo/spi/common/protocol/CDODataInputImpl$Default
+ .class
+SHA1-Digest: uQUe3ICvQy62/8nGBd6k5D/iGHI=
+
+Name: org/eclipse/emf/cdo/internal/common/id/CDOIDTempObjectExternalIm
+ pl.class
+SHA1-Digest: oAF4yBiDUNrN1qZKsIH7ImKEx4c=
+
+Name: org/eclipse/emf/cdo/common/model/CDOPackageInfo.class
+SHA1-Digest: q7JfUytWrObGYhfeOF9Fgweit0g=
+
+Name: org/eclipse/emf/cdo/common/revision/CDORevisionUtil$Uninitialize
+ d.class
+SHA1-Digest: U1oxdyXkWkISI9Bl0mbRujHhdzI=
+
+Name: org/eclipse/emf/cdo/common/revision/CDORevisionCache.class
+SHA1-Digest: Jnw1p4cdoeOc14V+4uSG4l8BqYA=
+
+Name: org/eclipse/emf/cdo/internal/common/commit/CDOChangeSetDataImpl.
+ class
+SHA1-Digest: mLqS4sks6ATiFIqp+D7POo3vFjA=
+
+Name: org/eclipse/emf/cdo/common/commit/CDOCommitInfoHandler.class
+SHA1-Digest: qsHY29tsZtBwqV5nKyDEe7oTq0M=
+
+Name: org/eclipse/emf/cdo/spi/common/model/InternalCDOPackageRegistry.
+ class
+SHA1-Digest: 3tamDumEo/E2H0ImCvT4SS4wsF0=
+
+Name: org/eclipse/emf/cdo/common/branch/CDOBranchTag.class
+SHA1-Digest: Bomy+0tVf8r/svVHXDEcLQLGk8k=
+
+Name: org/eclipse/emf/cdo/common/util/CDOPackageNotFoundException.clas
+ s
+SHA1-Digest: I0BFx82vINGfKzNnuh2I/OZXEyI=
+
+Name: org/eclipse/emf/cdo/common/CDOCommonRepository$Type.class
+SHA1-Digest: SfHQz2WBLn0yR5JMxQ5JVWxQgbA=
+
+Name: org/eclipse/emf/cdo/internal/common/model/CDOTypeImpl$9.class
+SHA1-Digest: o8y2/cuLAlqG20o8RoZpEyGkSFU=
+
+Name: org/eclipse/emf/cdo/common/revision/CDORevision$1.class
+SHA1-Digest: Gkxj6QFcPUjfFdw3JbMntCO7ohM=
+
+Name: org/eclipse/emf/cdo/common/revision/CDORevisionKey.class
+SHA1-Digest: yZL6mAIUn5NJyPONu5gc73aZ1og=
+
+Name: org/eclipse/emf/cdo/common/model/CDOClassifierRef$Provider.class
+SHA1-Digest: 9zQXwfS6AJPf8kuwG+UQ+BfH/2s=
+
+Name: org/eclipse/emf/cdo/internal/common/revision/CDOIDAndBranchImpl.
+ class
+SHA1-Digest: +ghu16zk+UXlI3SgsapysBGJ4UY=
+
+Name: org/eclipse/emf/cdo/internal/common/commit/CDOCommitHistoryProvi
+ derImpl$1.class
+SHA1-Digest: GBU+gSkaF+6tPKnIvIKOxOk7AAo=
+
+Name: org/eclipse/emf/cdo/spi/common/revision/CDORevisionUnchunker.cla
+ ss
+SHA1-Digest: M/TqXqhZVAVYySHWKJK5FI/qvCw=
+
+Name: org/eclipse/emf/cdo/internal/common/revision/CDOListWithElementP
+ roxiesImpl$1.class
+SHA1-Digest: lR7OTAUu9KotliS0ZTt8mtBCV+0=
+
+Name: org/eclipse/emf/cdo/common/revision/CDOListFactory.class
+SHA1-Digest: tvzavf97++F6eEMObCv2lmiTaOk=
+
+Name: org/eclipse/emf/cdo/common/util/CDOCommonUtil$2.class
+SHA1-Digest: fxYsr9Zs9Ek2pHbSIKlp0/X3Sh0=
+
+Name: org/eclipse/emf/cdo/common/revision/delta/CDORevisionDelta.class
+SHA1-Digest: CRqC9XDTtu+6q3ER6El/kK1/IhA=
+
+Name: org/eclipse/emf/cdo/internal/common/revision/EvictionEventImpl.c
+ lass
+SHA1-Digest: sIBP/ysq14AbpEm1ucPtudhOW9s=
+
+Name: org/eclipse/emf/cdo/common/id/CDOIDGenerator.class
+SHA1-Digest: uh5DA5cGnuSTCUPHstkQWrLst5M=
+
+Name: org/eclipse/emf/cdo/internal/common/branch/CDOBranchImpl$Main.cl
+ ass
+SHA1-Digest: 1OJW5oQSmmtjXryk+08+FG5YqIQ=
+
+Name: org/eclipse/emf/cdo/spi/common/branch/InternalCDOBranchManager$B
+ ranchLoader$BranchInfo.class
+SHA1-Digest: wEEp9Pw6NIIDukaFAWWBN/yPQzM=
+
+Name: org/eclipse/emf/cdo/common/commit/CDOChangeKindProvider.class
+SHA1-Digest: byKvOqnyYFeNfkBPHBOfexJmkSg=
+
+Name: org/eclipse/emf/cdo/common/lob/CDOLobHandler.class
+SHA1-Digest: /5QZkvMiPtkK6tiweqqfovrHPuQ=
+
+Name: org/eclipse/emf/cdo/spi/common/revision/CDORevisionMerger.class
+SHA1-Digest: rlH5dEYJdSV7xGCmPdpihDn3UHs=
+
+Name: org/eclipse/emf/cdo/spi/common/revision/RevisionInfo$Available$D
+ etached.class
+SHA1-Digest: Lh6KHsM3EDgPSSqUWFlTdlRyTiY=
+
+Name: org/eclipse/emf/cdo/common/revision/CDORevisionUtil$CDORevisionC
+ omparator.class
+SHA1-Digest: 4J0fTQCnms5+Yagxgb6ytGqFVZA=
+
+Name: org/eclipse/emf/cdo/internal/common/branch/CDOBranchManagerImpl.
+ class
+SHA1-Digest: u6Ss72rsD1FyYQC3FNYVAQ9u258=
+
+Name: org/eclipse/emf/cdo/common/commit/CDOCommitData.class
+SHA1-Digest: ZhtR6sTCy0FONhu8utXvjydrbV4=
+
+Name: org/eclipse/emf/cdo/internal/common/model/CDOTypeImpl$11.class
+SHA1-Digest: coWOL8KxdPueFd4vHg3EHE0zyTY=
+
+Name: org/eclipse/emf/cdo/spi/common/commit/CDOCommitInfoUtil.class
+SHA1-Digest: 5IXh03TJnbNXnLpAm9EU0HR+57w=
+
+Name: org/eclipse/emf/cdo/internal/common/revision/delta/CDOListFeatur
+ eDeltaImpl$1DeltaProxy.class
+SHA1-Digest: aO+biJg0fASHCRTx7Fxzt+PZu1Q=
+
+Name: org/eclipse/emf/cdo/common/revision/delta/package-info.class
+SHA1-Digest: 5N2M130SV0/26fj5+kYY0MlvL/Q=
+
+Name: org/eclipse/emf/cdo/common/model/CDOPackageUnit.class
+SHA1-Digest: e+0snpWW8on72qDPA2756p+02gc=
+
+Name: org/eclipse/emf/cdo/common/model/CDOClassifierRef.class
+SHA1-Digest: iqZozKVY57pQ8JIfK0C8veKTK8s=
+
+Name: org/eclipse/emf/cdo/internal/common/id/CDOIDTempObjectImpl$IntIn
+ terner.class
+SHA1-Digest: vj7E/gpyhOkoNC33bvlqRWKj3ZA=
+
+Name: org/eclipse/emf/cdo/common/revision/package-info.class
+SHA1-Digest: 3bd4EG67pKx7z0VzQncD2XJtmYk=
+
+Name: org/eclipse/emf/cdo/common/revision/delta/CDOClearFeatureDelta.c
+ lass
+SHA1-Digest: KL0BJJkXWIvQ7IunDZepNS2gbC0=
+
+Name: org/eclipse/emf/cdo/internal/common/revision/CDOListImpl.class
+SHA1-Digest: MyTvOUFl0KFHjQKoqfRHv4EVq9M=
+
+Name: org/eclipse/emf/cdo/common/revision/CDORevisionValueVisitor.clas
+ s
+SHA1-Digest: IvuZVxSB0jy5+g20O2w5edQX6Uc=
+
+Name: org/eclipse/emf/cdo/spi/common/commit/CDOChangeSetSegment.class
+SHA1-Digest: Js6tvEG2vbd3xPfYVdFKVqiRG0o=
+
+Name: org/eclipse/emf/cdo/common/revision/delta/CDOMoveFeatureDelta.cl
+ ass
+SHA1-Digest: FpfJoyQ+Omr3Tw35lqZtI1+9yOc=
+
+Name: org/eclipse/emf/cdo/internal/common/revision/AbstractCDORevision
+ Cache.class
+SHA1-Digest: U9kMTkZwFa8qGpmSbc0g6Lp22zM=
+
+Name: org/eclipse/emf/cdo/internal/common/model/CDOTypeImpl$22.class
+SHA1-Digest: jTJuY8qBbuQIFkXH/cfp2KkHZcA=
+
+Name: org/eclipse/emf/cdo/common/model/CDOClassInfo.class
+SHA1-Digest: 0UNF+Rtcu4H1T472ZKZxS12KN10=
+
+Name: org/eclipse/emf/cdo/internal/common/revision/CDORevisionCacheNon
+ Auditing.class
+SHA1-Digest: 8j9/Wpr29twZSBwQEEkVwGEqbV4=
+
+Name: org/eclipse/emf/cdo/internal/common/revision/delta/CDORemoveFeat
+ ureDeltaImpl.class
+SHA1-Digest: 050HdNp7pnV2i3uoL5G6GCYsahE=
+
+Name: org/eclipse/emf/cdo/common/lob/CDOLobStore$Delegating.class
+SHA1-Digest: bK6NXYVc/7MLdRtnPGzrzrJROdE=
+
+Name: org/eclipse/emf/cdo/spi/common/AbstractQueryResult.class
+SHA1-Digest: n3nJ+I0PkfWywPx1apKgSKlTFIo=
+
+Name: org/eclipse/emf/cdo/common/model/EMFUtil$3.class
+SHA1-Digest: +Zu3q7ztVQqdDfAqzQIx+PI2irw=
+
+Name: org/eclipse/emf/cdo/internal/common/commit/FailureCommitInfo.cla
+ ss
+SHA1-Digest: 9Cf92DTGuYniXIWkkR17J0rSMa8=
+
+Name: org/eclipse/emf/cdo/common/id/CDOIdentifiable.class
+SHA1-Digest: jEIpdjdlgm+t3Yl329/lrzIbyGg=
+
+Name: org/eclipse/emf/cdo/spi/common/CDOReplicationContext.class
+SHA1-Digest: baCc1fCqOsVqzkACwYoxgHeJ1w0=
+
+Name: org/eclipse/emf/cdo/common/revision/CDORevisionFactory.class
+SHA1-Digest: XfjmeEcN4DB4XpyY1m+/USoSaPk=
+
+Name: org/eclipse/emf/cdo/internal/common/model/CDOTypeImpl$33.class
+SHA1-Digest: alOkHXo6JLPOEE6L5ZjPaU/5FcQ=
+
+Name: META-INF/eclipse.inf
+SHA1-Digest: 09gN05tobgS/MdtqyTNQhOhB73M=
+
+Name: org/eclipse/emf/cdo/internal/common/model/CDOTypeImpl$3.class
+SHA1-Digest: jsc1FARrAUrkmlOWzAFMza5UAgU=
+
+Name: org/eclipse/emf/cdo/spi/common/revision/DelegatingCDORevisionMan
+ ager.class
+SHA1-Digest: ZFcZFYZXL6Prez12rj32gTQiDdc=
+
+Name: org/eclipse/emf/cdo/common/revision/CDORevisionData.class
+SHA1-Digest: jE7Mj7Sm4eDQuV/wf8lLj/1vCgk=
+
+Name: org/eclipse/emf/cdo/internal/common/model/CDOTypeImpl$16.class
+SHA1-Digest: 9BZAcId9m+Nh5csxZxVReip25bs=
+
+Name: org/eclipse/emf/cdo/internal/common/model/CDOFeatureType.class
+SHA1-Digest: QgA6EIWeLFMreklxszTirZB2+8Q=
+
+Name: org/eclipse/emf/cdo/common/lob/CDOLobStore.class
+SHA1-Digest: AOCYJTYSCBlG8/+a7dwhM8kASBs=
+
+Name: org/eclipse/emf/cdo/common/branch/CDOBranch.class
+SHA1-Digest: RwupnGV26Q9rSPEMPprlzWpyZZw=
+
+Name: org/eclipse/emf/cdo/common/revision/CDORevisionUtil$AllRevisions
+ Dumper$Stream$Plain.class
+SHA1-Digest: TZ1pRnC79rUYyk83hDOAsnLPlxQ=
+
+Name: org/eclipse/emf/cdo/common/util/NotAuthenticatedException.class
+SHA1-Digest: PJ0PFQgGD8z/gz9F/t1PqoMGafc=
+
+Name: .options
+SHA1-Digest: ePJBjCm2GGLOn1IMRIQgM7V40vI=
+
+Name: org/eclipse/emf/cdo/common/commit/CDOChangeSetData.class
+SHA1-Digest: Hsv/lWcbx99Apsuy3XiSrwq61lc=
+
+Name: org/eclipse/emf/cdo/common/model/CDOPackageUnit$State.class
+SHA1-Digest: 6dTJaApWtaPSCL8uBdnjXcLvxGI=
+
+Name: org/eclipse/emf/cdo/spi/common/branch/InternalCDOBranchManager$B
+ ranchLoader.class
+SHA1-Digest: ZZw41PCeppX4jkIPlT/Rt2Y0csg=
+
+Name: org/eclipse/emf/cdo/internal/common/model/CDOFeatureType$5.class
+SHA1-Digest: 5kPk7DESAt1ou7G5jkFlsUOdmbA=
+
+Name: org/eclipse/emf/cdo/internal/common/revision/delta/CDOUnsetFeatu
+ reDeltaImpl.class
+SHA1-Digest: GxNcxq0dtN94sgCF2FXyA7zSEiw=
+
+Name: org/eclipse/emf/cdo/spi/common/CDOLobStoreImpl.class
+SHA1-Digest: fnMu4Jz3kvo+E6z19F2PzKCvfJ0=
+
+Name: org/eclipse/emf/cdo/spi/common/revision/InternalCDOFeatureDelta.
+ class
+SHA1-Digest: aGNfCajjBfnzmVjyRgjhK5VUSHg=
+
+Name: org/eclipse/emf/cdo/common/util/CDOQueryQueue$QueueEntry.class
+SHA1-Digest: VbPCRm3rX0NdrbKuDgDBuf7KThQ=
+
+Name: org/eclipse/emf/cdo/common/protocol/CDOAuthenticator.class
+SHA1-Digest: /AZPqbFxnIkeAU6VtWBi4K7/vq4=
+
+Name: org/eclipse/emf/cdo/spi/common/revision/CDOReferenceAdjustable.c
+ lass
+SHA1-Digest: I/s3QGt+6xOdl1zrTNfjiLMZoIU=
+
+Name: org/eclipse/emf/cdo/internal/common/model/CDOTypeImpl$27.class
+SHA1-Digest: M6Mw/4JIRLXwgD9etqXwKyVwziY=
+
+Name: plugin.properties
+SHA1-Digest: 7N5SXxVXpygXJpClEwF54eIiMMQ=
+
+Name: org/eclipse/emf/cdo/common/branch/CDOBranchHandler.class
+SHA1-Digest: 5uA4fxeYvtm/urcKfemxMLfgans=
+
+Name: org/eclipse/emf/cdo/common/protocol/CDODataInput.class
+SHA1-Digest: mxpnSgwQlYOduc8L6g4NqPUUPfo=
+
+Name: org/eclipse/emf/cdo/common/id/CDOID$Type.class
+SHA1-Digest: XX/rt43z0JfwrzRFATB1jIw285E=
+
+Name: org/eclipse/emf/cdo/spi/common/commit/CDOChangeKindCache.class
+SHA1-Digest: UIDZfQs09J4SM6v7Fa5Nw+Ehta8=
+
+Name: org/eclipse/emf/cdo/common/protocol/CDOProtocol.class
+SHA1-Digest: A1UiETMA/xe+aJroj+IMsG2N1es=
+
+Name: org/eclipse/emf/cdo/common/branch/CDOBranchCreationContext.class
+SHA1-Digest: U1IHfdae6hUchg9R+8YzpcixkgA=
+
+Name: org/eclipse/emf/cdo/internal/common/commit/CDOCommitHistoryImpl.
+ class
+SHA1-Digest: YbAelk8IzC3plBU7YiPuLteblF0=
+
+Name: org/eclipse/emf/cdo/common/admin/package-info.class
+SHA1-Digest: Nv/eufTX0E6Na0lHFtkwF3J5imw=
+
+Name: org/eclipse/emf/cdo/common/branch/CDOBranchCreatedEvent.class
+SHA1-Digest: gxq61BfqZYfmxbkP7No5lbk+i6I=
+
+Name: org/eclipse/emf/cdo/internal/common/revision/delta/CDOClearFeatu
+ reDeltaImpl.class
+SHA1-Digest: jWpMrpZDMd1YrPvh9Q1Ebt+Nbmg=
+
+Name: org/eclipse/emf/cdo/spi/common/model/package-info.class
+SHA1-Digest: gOeipj/f9HFWCwVjRsxPZ+Qe4vM=
+
+Name: org/eclipse/emf/cdo/internal/common/id/CDOIDTempObjectImpl.class
+SHA1-Digest: lCofrLmgS5lLW7tlbopWwun1R8E=
+
+Name: org/eclipse/emf/cdo/internal/common/model/CDOTypeImpl$8.class
+SHA1-Digest: +yOwCMYQx6EP/iRSoP+7bYz+WzE=
+
+Name: org/eclipse/emf/cdo/common/protocol/CDOProtocolConstants.class
+SHA1-Digest: Ddd0wtmv55Ka9lxVHHBZcSQLEYI=
+
+Name: org/eclipse/emf/cdo/spi/common/revision/InternalCDOFeatureDelta$
+ WithIndex.class
+SHA1-Digest: jphzCqAW2fIeUMxK6aDpusNj3SE=
+
+Name: org/eclipse/emf/cdo/common/security/package-info.class
+SHA1-Digest: 4wnn5KHfrNvL99KVwedgEVWBWMg=
+
+Name: org/eclipse/emf/cdo/internal/common/revision/CDORevisionCacheBra
+ nching.class
+SHA1-Digest: DgFLIjTGDnpPdRwsOTbe2LslJAc=
+
+Name: org/eclipse/emf/cdo/internal/common/revision/CDORevisableImpl.cl
+ ass
+SHA1-Digest: cPqI4kWYKEfbs7CV7YFemOMvCCY=
+
+Name: org/eclipse/emf/cdo/common/revision/CDORevisionManager.class
+SHA1-Digest: RHML8VaIrhEJZdSHZvW5FK5sJ68=
+
+Name: org/eclipse/emf/cdo/common/util/CDOCommonUtil$1.class
+SHA1-Digest: kAnAbPe0BbNW1VnHm73wuw6uFlU=
+
+Name: org/eclipse/emf/cdo/common/CDOCommonRepository$TypeChangedEvent.
+ class
+SHA1-Digest: tPfB1W/o7sdCnLYxvosiZMdXOIA=
+
+Name: org/eclipse/emf/cdo/internal/common/revision/CDORevisionCacheAud
+ iting$RevisionList.class
+SHA1-Digest: 1rOYLRKkaRjnWU85+uV0tOMG+h0=
+
+Name: org/eclipse/emf/cdo/spi/common/branch/package-info.class
+SHA1-Digest: SzUUoMUYUZzNyZ1XtYHCjBSIUcs=
+
+Name: org/eclipse/emf/cdo/internal/common/id/CDOIDObjectLongImpl.class
+SHA1-Digest: g7LfgvzhrLROiLdPfCoPnKP3ASs=
+
+Name: org/eclipse/emf/cdo/common/util/CDOQueryQueue.class
+SHA1-Digest: tcf7XWh02Tqwa6xdHBEoZPwVElY=
+
+Name: org/eclipse/emf/cdo/internal/common/revision/delta/CDOContainerF
+ eatureDeltaImpl.class
+SHA1-Digest: 9NxkO5b9WgYN2p74pqsPzLD4YOc=
+
+Name: org/eclipse/emf/cdo/spi/common/branch/InternalCDOBranchManager.c
+ lass
+SHA1-Digest: TQf2P4mdsxL8DsO5HHqORKBCiLg=
+
+Name: org/eclipse/emf/cdo/common/CDOCommonSession$Options.class
+SHA1-Digest: r06rN7gfUCNczDQ5xkL8TE0lsIg=
+
+Name: org/eclipse/emf/cdo/internal/common/model/CDOTypeImpl$10.class
+SHA1-Digest: EJb1i1akdQpGExDmRALhnXrDRP8=
+
+Name: org/eclipse/emf/cdo/common/id/CDOWithID.class
+SHA1-Digest: a8uJoyttmppSkO0m87aicOBbwwQ=
+
+Name: org/eclipse/emf/cdo/internal/common/revision/CDOFeatureMapEntryI
+ mpl.class
+SHA1-Digest: K9uPe/vlRG7YvGb0ef6v30bNpyM=
+
+Name: org/eclipse/emf/cdo/spi/common/branch/CDOBranchUtil.class
+SHA1-Digest: g6XeczUXQNe4ZRkNlft/Of8PeWk=
+
+Name: org/eclipse/emf/cdo/spi/common/revision/InternalCDOFeatureDelta$
+ ListIndexAffecting.class
+SHA1-Digest: jgGeM1hBcn8Ug8CmR8mE4FNestc=
+
+Name: org/eclipse/emf/cdo/internal/common/model/CDOPackageInfoImpl.cla
+ ss
+SHA1-Digest: IJh4YfGYJ0iSixQSHL/nE18yGq0=
+
+Name: org/eclipse/emf/cdo/common/CDOCommonSession$Options$PassiveUpdat
+ eMode.class
+SHA1-Digest: j6Dgg5RhT1e3Y4Fnw5UlP9AHszw=
+
+Name: org/eclipse/emf/cdo/spi/common/revision/package-info.class
+SHA1-Digest: kLf6eP2caasYlbQChZskyJmcrtU=
+
+Name: org/eclipse/emf/cdo/spi/common/revision/AbstractCDORevision.clas
+ s
+SHA1-Digest: wwKenYeu5tevjYdJxNGof0LkgEo=
+
+Name: org/eclipse/emf/cdo/internal/common/revision/CDORevisionManagerI
+ mpl$2.class
+SHA1-Digest: MLQJUA950empsoM7D86bVghdVQg=
+
+Name: org/eclipse/emf/cdo/spi/common/package-info.class
+SHA1-Digest: pW+zeqaG6tyLTDUj7VXnfGMUOdk=
+
+Name: org/eclipse/emf/cdo/common/lock/IDurableLockingManager$LockAreaN
+ otFoundException.class
+SHA1-Digest: uDzf30aJrXF8WYPobpKDomcRQ+Y=
+
+Name: org/eclipse/emf/cdo/common/util/CDORenameContext.class
+SHA1-Digest: /G5j09wDMkxU7vGZ7XNk4lyBux4=
+
+Name: org/eclipse/emf/cdo/common/model/CDOPackageTypeRegistry.class
+SHA1-Digest: LLEA3xc4M4CY5r2EywI54XhmtM0=
+
+Name: org/eclipse/emf/cdo/internal/common/model/CDOTypeImpl$21.class
+SHA1-Digest: vEfbsDxZ77zet2ddgVafINZrv+E=
+
+Name: org/eclipse/emf/cdo/common/commit/CDOCommitHistory$TriggerLoadEl
+ ement.class
+SHA1-Digest: 9rKEXa3oQrSmB2zMNo26zUqvKQg=
+
+Name: org/eclipse/emf/cdo/spi/common/branch/InternalCDOBranchManager$B
+ ranchLoader$SubBranchInfo.class
+SHA1-Digest: DEng3OgwHNTet4uDzlsMpw1/UTM=
+
+Name: org/eclipse/emf/cdo/common/model/EMFUtil$ExtResourceSet.class
+SHA1-Digest: +gJ9iQbKW+ZZnHRy6V9K9qDOXAk=
+
+Name: org/eclipse/emf/cdo/common/util/BlockingCloseableIterator.class
+SHA1-Digest: 5AbXbx34NvnU42F/M5l7kdPtBy0=
+
+Name: org/eclipse/emf/cdo/common/revision/delta/CDOAddFeatureDelta.cla
+ ss
+SHA1-Digest: CrvEpXvm9nH3pRYNv1QwkdCVM9c=
+
+Name: org/eclipse/emf/cdo/common/model/CDOModelUtil.class
+SHA1-Digest: m1U3bRm6yU6VbhEXEH+Xz/TIRm8=
+
+Name: org/eclipse/emf/cdo/internal/common/revision/AbstractCDORevision
+ Cache$1.class
+SHA1-Digest: e6GbVv8bTrhJ42/77VEZcLom8x4=
+
+Name: org/eclipse/emf/cdo/common/protocol/CDOProtocol$CommitNotificati
+ onInfo.class
+SHA1-Digest: Ev6La301TmfUeNL2dilSL+fraa8=
+
+Name: org/eclipse/emf/cdo/internal/common/lock/CDOLockOwnerImpl.class
+SHA1-Digest: banE0ulaw8J2vwuiQFwiLoR3kFw=
+
+Name: org/eclipse/emf/cdo/common/model/EMFUtil$2.class
+SHA1-Digest: /jWl8zsIEpl4i4PlIIAlAcnyIwk=
+
+Name: org/eclipse/emf/cdo/spi/common/commit/InternalCDOCommitInfoManag
+ er$CommitInfoLoader.class
+SHA1-Digest: 3iNkXN5pUpdu8sT1BD9B33kL418=
+
+Name: org/eclipse/emf/cdo/common/admin/CDOAdminRepository.class
+SHA1-Digest: hemffIG/TLd6Tf0jbvDfZGYZsGg=
+
+Name: org/eclipse/emf/cdo/spi/common/protocol/CDODataInputImpl.class
+SHA1-Digest: ntiQC7dB0BFh6y8FE3qAYqrPxRE=
+
+Name: org/eclipse/emf/cdo/spi/common/commit/InternalCDOCommitInfoManag
+ er.class
+SHA1-Digest: vN5VKSgt/eQ2rSIECtgGmK/6xp4=
+
+Name: org/eclipse/emf/cdo/spi/common/revision/CDOFeatureDeltaVisitorIm
+ pl$StopVisitException.class
+SHA1-Digest: NnF9NIkOUsG1pjH/fhTwvK2k0hk=
+
+Name: org/eclipse/emf/cdo/common/package-info.class
+SHA1-Digest: 7UEEzGLR6jJndP65xiFx7FoAak8=
+
+Name: org/eclipse/emf/cdo/common/revision/CDOList.class
+SHA1-Digest: T3zj4z4DGf6YeljLndCQoVwEngw=
+
+Name: org/eclipse/emf/cdo/common/lock/CDOLockChangeInfoHandler.class
+SHA1-Digest: hCGrZ8NI8MMjmZ7KlTBJfNIk0AI=
+
+Name: org/eclipse/emf/cdo/internal/common/model/CDOTypeImpl$32.class
+SHA1-Digest: z5dHVClo4IBKiIsiNrJwinb7h+0=
+
+Name: org/eclipse/emf/cdo/internal/common/model/CDOTypeImpl$2.class
+SHA1-Digest: 3Ghw27fTLd+RqPXbL3EgKGVQJ+8=
+
+Name: org/eclipse/emf/cdo/internal/common/model/CDOTypeImpl$15.class
+SHA1-Digest: lRx8l+7lv9vk8/FfIkjNc17llU4=
+
+Name: org/eclipse/emf/cdo/common/admin/CDOAdmin.class
+SHA1-Digest: 1Zm/9Sibdy9yeVjF+XZgPeUvYV0=
+
+Name: org/eclipse/emf/cdo/common/util/package-info.class
+SHA1-Digest: PI5Ll53G8Gt8eV4kRtHvim95wEM=
+
+Name: org/eclipse/emf/cdo/common/CDOCommonRepository.class
+SHA1-Digest: xGkKNb+f2fy/uRZeqluBqB7nRr8=
+
+Name: org/eclipse/emf/cdo/internal/common/branch/CDOBranchManagerImpl$
+ BranchCreatedEvent.class
+SHA1-Digest: I2P+ZXH01iXHDQXRcJeZx8I3tOc=
+
+Name: org/eclipse/emf/cdo/common/id/CDOID$ObjectType.class
+SHA1-Digest: 7GH9WvY4k5OTTFap2ouFg8VLJ1E=
+
+Name: org/eclipse/emf/cdo/common/security/CDOPermissionProvider$Consta
+ nt.class
+SHA1-Digest: WAy7ZHYIq+BG7cDxikMf49Cq924=
+
+Name: org/eclipse/emf/cdo/common/util/CDOCommonUtil.class
+SHA1-Digest: /LJBSatM1O5Szobo2IraM9au4eg=
+
+Name: org/eclipse/emf/cdo/internal/common/model/CDOFeatureType$4.class
+SHA1-Digest: llRyJCDzcc3QrGqkq1kwBUhK3XI=
+
+Name: org/eclipse/emf/cdo/internal/common/id/CDOIDExternalImpl.class
+SHA1-Digest: 1lULrLWGbw+bLmvnHOSvqWPGlvM=
+
+Name: org/eclipse/emf/cdo/internal/common/model/CDOTypeImpl$26.class
+SHA1-Digest: p7NZnVvmt+GK61GFq0zunZQX9Z8=
+
+Name: org/eclipse/emf/cdo/internal/common/CDOQueryInfoImpl.class
+SHA1-Digest: ayrXNXvIWdeezcIqs4YA38UTKgw=
+
+Name: org/eclipse/emf/cdo/spi/common/revision/RevisionInfo$Available$N
+ ormal.class
+SHA1-Digest: bgawkH7nPdPHdk69mmbaGvBTdjE=
+
+Name: org/eclipse/emf/cdo/common/branch/CDOBranchChangedEvent.class
+SHA1-Digest: zNjf/tSmK1AidWCq+j7TxqeKkUI=
+
+Name: org/eclipse/emf/cdo/internal/common/revision/NOOPRevisionCache.c
+ lass
+SHA1-Digest: U9eqQEG9xEY+0YznR7ilgjZ3q1E=
+
+Name: org/eclipse/emf/cdo/common/revision/delta/CDOFeatureDeltaVisitor
+ .class
+SHA1-Digest: 7C7h7d5QPqg+rjLbuAd6JPwvDps=
+
+Name: org/eclipse/emf/cdo/common/revision/CDOElementProxy.class
+SHA1-Digest: vR6upKYR4ZoLtXdEiKkD34JUTZ8=
+
+Name: org/eclipse/emf/cdo/common/commit/CDOCommitHistory$Provider.clas
+ s
+SHA1-Digest: y8lLVTatIy+7lp3eLjfL6idA2e4=
+
+Name: org/eclipse/emf/cdo/common/revision/delta/CDOFeatureDelta$1.clas
+ s
+SHA1-Digest: 9SM+vqbV6guzbxP9z9BZCxjDODM=
+
+Name: org/eclipse/emf/cdo/common/id/CDOIDProvider$1.class
+SHA1-Digest: 1cjPn4+UF+4jEVSGrqNj7UnGPZM=
+
+Name: org/eclipse/emf/cdo/internal/common/revision/CDORevisionKeyImpl.
+ class
+SHA1-Digest: V296UKkSep2A8pF7UbHn9wE/zeo=
+
+Name: org/eclipse/emf/cdo/common/lock/CDOLockUtil.class
+SHA1-Digest: Aj9AwdWTPZ003QYB2I1Fg0I0EqM=
+
+Name: org/eclipse/emf/cdo/common/CDOCommonSession$Options$PassiveUpdat
+ eEvent.class
+SHA1-Digest: 0nca/HlgC+Xfcht/UwH/+I0Mar8=
+
+Name: org/eclipse/emf/cdo/internal/common/commit/CDOCommitHistoryImpl$
+ Empty.class
+SHA1-Digest: +SZpV2GIdh5ayKIaxH1EEcbWktY=
+
+Name: org/eclipse/emf/cdo/common/lock/package-info.class
+SHA1-Digest: ebi+ALte2v+6mH0dzJ03+JBYUos=
+
+Name: org/eclipse/emf/cdo/spi/common/model/InternalCDOPackageRegistry$
+ PackageProcessor.class
+SHA1-Digest: KYHSRHtCSmvocQ2trWZ0tHllJXU=
+
+Name: org/eclipse/emf/cdo/internal/common/id/CDOIDObjectStringImpl.cla
+ ss
+SHA1-Digest: eKeoe87XoS9N06MfHxQon+4jpaI=
+
+Name: org/eclipse/emf/cdo/internal/common/model/CDOTypeImpl$7.class
+SHA1-Digest: 0lomcRXXkGPGD5xufUcByFuf81U=
+
+Name: org/eclipse/emf/cdo/common/revision/CDOAllRevisionsProvider.clas
+ s
+SHA1-Digest: vCVh1FrlDB6NmR1u6A3GOC8/c98=
+
+Name: org/eclipse/emf/cdo/internal/common/commit/CDOCommitHistoryProvi
+ derImpl.class
+SHA1-Digest: O46C12ZIFCocYnlYPfLs7uk01+k=
+
+Name: org/eclipse/emf/cdo/internal/common/revision/delta/CDORevisionDe
+ ltaImpl.class
+SHA1-Digest: rulBw23XvxPQImBn64Ov6ylLvBw=
+
+Name: org/eclipse/emf/cdo/internal/common/lock/CDOLockStateImpl.class
+SHA1-Digest: 65yQ/BIVnrvyFxvNDYIT1oklSvc=
+
+Name: org/eclipse/emf/cdo/spi/common/revision/RevisionInfo$Available.c
+ lass
+SHA1-Digest: n+jZGEIbshnAIRcRx10y6T4Td8Q=
+
+Name: org/eclipse/emf/cdo/common/CDOCommonSession$Options$LockNotifica
+ tionMode.class
+SHA1-Digest: XDVqe4JDKKezvgo5qC/i4HHtZpg=
+
+Name: org/eclipse/emf/cdo/common/id/CDOIDTemp.class
+SHA1-Digest: VN8ddbdm7Yh5cia2LeM1wAVZfdU=
+
+Name: org/eclipse/emf/cdo/internal/common/revision/delta/CDOAddFeature
+ DeltaImpl.class
+SHA1-Digest: fOiZ4VVUxH+zFwTnmrgMBUD9EIk=
+
+Name: org/eclipse/emf/cdo/common/lock/IDurableLockingManager$LockAreaA
+ lreadyExistsException.class
+SHA1-Digest: 5MOZrUIc904AxI+HwQdM4kTpZJM=
+
+Name: org/eclipse/emf/cdo/internal/common/lock/CDOLockChangeInfoImpl.c
+ lass
+SHA1-Digest: R8nM9jGu27R27Wjk/a6MMPZqthg=
+
+Name: org/eclipse/emf/cdo/common/commit/CDOCommitInfoProvider.class
+SHA1-Digest: jTajM8eANSZU2jcMkCSXugrjrE0=
+
+Name: org/eclipse/emf/cdo/common/lob/CDOLobInfo.class
+SHA1-Digest: 7o5TD1Wc4KxNUER7diVUGinNrV8=
+
+Name: org/eclipse/emf/cdo/internal/common/model/CDOTypeImpl$ObjectType
+ .class
+SHA1-Digest: TAi5TwhSM93AU8jj6CXnxVjSBPw=
+
+Name: org/eclipse/emf/cdo/common/CDOCommonSession$Options$LockNotifica
+ tionModeEvent.class
+SHA1-Digest: VviRKCLjBmCK+iO7FsW61St/fcA=
+
+Name: org/eclipse/emf/cdo/common/util/CDOFetchRule.class
+SHA1-Digest: cqcff6utOXsANzm3hw4f7J2IKiw=
+
+Name: org/eclipse/emf/cdo/common/revision/delta/CDOFeatureDelta$Type.c
+ lass
+SHA1-Digest: 0P9bIpt28/vSf4jsnevGRdfEsVM=
+
+Name: org/eclipse/emf/cdo/internal/common/revision/CDORevisionCacheAud
+ iting.class
+SHA1-Digest: 6av3PaeNAoboQUf6ebxtsafXKJ0=
+
+Name: org/eclipse/emf/cdo/spi/common/revision/InternalCDOList$Configur
+ ableEquality.class
+SHA1-Digest: Eit9+MmfYFK9GUmrmsQ8h/gTmZw=
+
+Name: org/eclipse/emf/cdo/spi/common/revision/RevisionInfo$Missing.cla
+ ss
+SHA1-Digest: jIKfQfpMF3oSITN3CRduomPWVkA=
+
+Name: org/eclipse/emf/cdo/spi/common/CDOReplicationInfo.class
+SHA1-Digest: 3QPkAnGTUULcss9BJTVPNL7nx8c=
+
+Name: org/eclipse/emf/cdo/spi/common/admin/AbstractCDOAdmin$1.class
+SHA1-Digest: o/8KJC2OzwYqAbltGwewKoHp6sc=
+
+Name: org/eclipse/emf/cdo/common/commit/package-info.class
+SHA1-Digest: DnswKZcUsa+Wy3QCAz4tCren3TA=
+
+Name: org/eclipse/emf/cdo/common/lob/CDOClobWriter.class
+SHA1-Digest: z2jQyL2zL9Tt5GbVKUqv0UQNSm8=
+
+Name: org/eclipse/emf/cdo/common/revision/CDORevisionUtil$AllRevisions
+ Dumper$Stream$Html.class
+SHA1-Digest: LV6qUG0SK4hIYbqqi+VaoQU0R9I=
+
+Name: org/eclipse/emf/cdo/common/commit/handler/TextCommitInfoLog.clas
+ s
+SHA1-Digest: FdDOmyZV9awxxQqWKF92oD+ehi8=
+
+Name: org/eclipse/emf/cdo/common/model/CDOPackageTypeRegistry$CDOObjec
+ tMarker.class
+SHA1-Digest: qPyevGXaE9p6GePgfw3nIK1zlQQ=
+
+Name: org/eclipse/emf/cdo/common/CDOCommonRepository$StateChangedEvent
+ .class
+SHA1-Digest: o6W4Wu5aZOFQYAjC8UpV7H8igBo=
+
+Name: org/eclipse/emf/cdo/common/model/CDOPackageRegistry.class
+SHA1-Digest: 0pph59gg+odKHwGUaLBX7wiymqQ=
+
+Name: org/eclipse/emf/cdo/spi/common/revision/SyntheticCDORevision.cla
+ ss
+SHA1-Digest: HEY9Ell5vXv1DGeI+sF0GPXAVj8=
+
+Name: org/eclipse/emf/cdo/common/revision/CDORevisionFactory$1.class
+SHA1-Digest: OsDIrHZPG6I1ozmMD1Q8sMDEP08=
+
+Name: org/eclipse/emf/cdo/common/revision/delta/CDORemoveFeatureDelta.
+ class
+SHA1-Digest: TD/ExQI07/MMQRWYpH6BDyr2tUU=
+
+Name: org/eclipse/emf/cdo/common/commit/CDOCommitHistory.class
+SHA1-Digest: V3KZIbG39kgVVQREwmxzmu86DuA=
+
+Name: org/eclipse/emf/cdo/common/security/CDOPermission.class
+SHA1-Digest: Dm+RwnFNswsNm75U+qD+peDuq5w=
+
+Name: org/eclipse/emf/cdo/internal/common/revision/CDORevisionManagerI
+ mpl$1.class
+SHA1-Digest: yQ4L+9x9BHlmOfn6BawgXfl5/A0=
+

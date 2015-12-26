@@ -1,12 +1,12 @@
 {
 	 "binding": {
         "tcp": true,
-        "tcpPort": "2036",
+        "tcpPort": "2037",
         "http": false,
         "checkSSL": false
     },
     "json": {
-        "validate": true,
+        "validate": false,
         "rreferences": false,
         "creferences": false,
         "xreferences": false,
@@ -16,7 +16,8 @@
         "links": false,
         "xlinks": false,
         "xtraces": false,
-        "arrayaccessor": false
+        "arrayaccessor": false,
+        "cdometa": false
     },		
 	"repositories" : [
 		{

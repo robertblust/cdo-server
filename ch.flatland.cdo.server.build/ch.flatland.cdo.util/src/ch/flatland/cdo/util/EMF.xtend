@@ -105,6 +105,10 @@ class EMF {
 	def getAttribute(EClass eClass, String name) {
 		return eClass.EAllAttributes.filter[it.name == name && !it.derived].head
 	}
+	
+	def getReference(EClass eClass, String name) {
+		return eClass.EAllReferences.filter[it.name == name && !it.derived].head
+	}
 
 	def getExtendedFrom(EClass eClass, CDOView view) {
 		logger.trace("getExtendedFrom(EClass eClass, CDOView view)", eClass.name)

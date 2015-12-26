@@ -63,7 +63,6 @@ import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
  *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getDownStreamMappings <em>Down Stream Mappings</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getHorizontalMappings <em>Horizontal Mappings</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getHorizontalOppositeMappings <em>Horizontal Opposite Mappings</em>}</li>
- *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getDerivedContainer <em>Derived Container</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getTraceToOwn <em>Trace To Own</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getTraceToUse <em>Trace To Use</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.impl.FLElementImpl#getTraceToRealize <em>Trace To Realize</em>}</li>
@@ -400,24 +399,6 @@ public abstract class FLElementImpl extends FLIDImpl implements FLElement {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public EObject getDerivedContainer() {
-		return this.resolveContainer();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EObject basicGetDerivedContainer() {
-		return (EObject)eDynamicGet(BasePackage.FL_ELEMENT__DERIVED_CONTAINER, BasePackage.Literals.FL_ELEMENT__DERIVED_CONTAINER, false, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
 	public EList<FLElement> getTraceToOwn() {
 		return this.toFilterByType(FLTraceType.OWN);
 	}
@@ -706,15 +687,6 @@ public abstract class FLElementImpl extends FLIDImpl implements FLElement {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EObject resolveContainer() {
-		return this.eContainer();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EList<FLElement> toFilterByType(final FLTraceType traceType) {
 		final BasicEList<FLElement> targets = new BasicEList<FLElement>();
 		EList<FLTrace> _traces = this.getTraces();
@@ -782,7 +754,7 @@ public abstract class FLElementImpl extends FLIDImpl implements FLElement {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public <T extends FLElement> EList<T> resolveXrefs(final EReference eRefernce, final Class<T> classType) {
+	public <T extends EObject> EList<T> resolveXrefs(final EReference eRefernce, final Class<T> classType) {
 		final BasicEList<T> elements = new BasicEList<T>();
 		boolean _and = false;
 		CDOView _cdoView = this.cdoView();
@@ -796,9 +768,13 @@ public abstract class FLElementImpl extends FLIDImpl implements FLElement {
 			_and = _not;
 		}
 		if (_and) {
+			final ArrayList<EReference> eRefs = CollectionLiterals.<EReference>newArrayList();
+			boolean _notEquals_1 = (!Objects.equal(eRefernce, null));
+			if (_notEquals_1) {
+				eRefs.add(eRefernce);
+			}
 			CDOView _cdoView_2 = this.cdoView();
-			ArrayList<EReference> _newArrayList = CollectionLiterals.<EReference>newArrayList(eRefernce);
-			final List<CDOObjectReference> xrefs = _cdoView_2.queryXRefs(this, ((EReference[])org.eclipse.xtext.xbase.lib.Conversions.unwrapArray(_newArrayList, EReference.class)));
+			final List<CDOObjectReference> xrefs = _cdoView_2.queryXRefs(this, ((EReference[])org.eclipse.xtext.xbase.lib.Conversions.unwrapArray(eRefs, EReference.class)));
 			for (final CDOObjectReference x : xrefs) {
 				{
 					CDOObject _sourceObject = x.getSourceObject();
@@ -943,9 +919,6 @@ public abstract class FLElementImpl extends FLIDImpl implements FLElement {
 				return getHorizontalMappings();
 			case BasePackage.FL_ELEMENT__HORIZONTAL_OPPOSITE_MAPPINGS:
 				return getHorizontalOppositeMappings();
-			case BasePackage.FL_ELEMENT__DERIVED_CONTAINER:
-				if (resolve) return getDerivedContainer();
-				return basicGetDerivedContainer();
 			case BasePackage.FL_ELEMENT__TRACE_TO_OWN:
 				return getTraceToOwn();
 			case BasePackage.FL_ELEMENT__TRACE_TO_USE:
@@ -1168,8 +1141,6 @@ public abstract class FLElementImpl extends FLIDImpl implements FLElement {
 				return !getHorizontalMappings().isEmpty();
 			case BasePackage.FL_ELEMENT__HORIZONTAL_OPPOSITE_MAPPINGS:
 				return !getHorizontalOppositeMappings().isEmpty();
-			case BasePackage.FL_ELEMENT__DERIVED_CONTAINER:
-				return basicGetDerivedContainer() != null;
 			case BasePackage.FL_ELEMENT__TRACE_TO_OWN:
 				return !getTraceToOwn().isEmpty();
 			case BasePackage.FL_ELEMENT__TRACE_TO_USE:
@@ -1353,8 +1324,6 @@ public abstract class FLElementImpl extends FLIDImpl implements FLElement {
 	@SuppressWarnings({"rawtypes", "unchecked" })
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case BasePackage.FL_ELEMENT___RESOLVE_CONTAINER:
-				return resolveContainer();
 			case BasePackage.FL_ELEMENT___TO_FILTER_BY_TYPE__FLTRACETYPE:
 				return toFilterByType((FLTraceType)arguments.get(0));
 			case BasePackage.FL_ELEMENT___FROM_FILTER_BY_TYPE__FLTRACETYPE:

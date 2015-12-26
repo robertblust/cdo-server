@@ -56,7 +56,6 @@ public class FLElementItemProvider
 			addDownStreamMappingsPropertyDescriptor(object);
 			addHorizontalMappingsPropertyDescriptor(object);
 			addHorizontalOppositeMappingsPropertyDescriptor(object);
-			addDerivedContainerPropertyDescriptor(object);
 			addTraceToOwnPropertyDescriptor(object);
 			addTraceToUsePropertyDescriptor(object);
 			addTraceToRealizePropertyDescriptor(object);
@@ -315,28 +314,6 @@ public class FLElementItemProvider
 				 true,
 				 null,
 				 getString("_UI_MappingPropertyCategory"),
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Derived Container feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addDerivedContainerPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_FLElement_derivedContainer_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_FLElement_derivedContainer_feature", "_UI_FLElement_type"),
-				 BasePackage.Literals.FL_ELEMENT__DERIVED_CONTAINER,
-				 false,
-				 false,
-				 false,
-				 null,
-				 getString("_UI_BasePropertyCategory"),
 				 null));
 	}
 
@@ -724,12 +701,18 @@ public class FLElementItemProvider
 	public String getText(Object object) {
 		String label = ((FLElement)object).getName();
 		String id =  ((FLElement)object).getID();
-		if (id != null) {
+		if (id != null && label != null) {
 			label = "[" + id + "] " + label;
+			return label;
 		}
-		return label == null || label.length() == 0 ?
-			"?" :
-			label;
+		if (id != null) {
+			label = "[" + id + "]";
+			return label;
+		}
+		if (label != null) {
+			return label;
+		}
+		return "?";
 	}
 	
 

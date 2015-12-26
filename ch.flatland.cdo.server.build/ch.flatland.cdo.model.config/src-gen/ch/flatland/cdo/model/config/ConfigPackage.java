@@ -315,13 +315,22 @@ public interface ConfigPackage extends EPackage {
 	int JSON__XTRACES = 10;
 
 	/**
+	 * The feature id for the '<em><b>Cdometa</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JSON__CDOMETA = 11;
+
+	/**
 	 * The number of structural features of the '<em>Json</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int JSON_FEATURE_COUNT = 11;
+	int JSON_FEATURE_COUNT = 12;
 
 	/**
 	 * The number of operations of the '<em>Json</em>' class.
@@ -797,6 +806,17 @@ public interface ConfigPackage extends EPackage {
 	EAttribute getJson_Xtraces();
 
 	/**
+	 * Returns the meta object for the attribute '{@link ch.flatland.cdo.model.config.Json#isCdometa <em>Cdometa</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Cdometa</em>'.
+	 * @see ch.flatland.cdo.model.config.Json#isCdometa()
+	 * @see #getJson()
+	 * @generated
+	 */
+	EAttribute getJson_Cdometa();
+
+	/**
 	 * Returns the meta object for class '{@link ch.flatland.cdo.model.config.Repository <em>Repository</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1187,6 +1207,14 @@ public interface ConfigPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute JSON__XTRACES = eINSTANCE.getJson_Xtraces();
+
+		/**
+		 * The meta object literal for the '<em><b>Cdometa</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute JSON__CDOMETA = eINSTANCE.getJson_Cdometa();
 
 		/**
 		 * The meta object literal for the '{@link ch.flatland.cdo.model.config.impl.RepositoryImpl <em>Repository</em>}' class.

@@ -10,13 +10,16 @@
  */
 package ch.flatland.cdo.util
 
+import com.google.gson.Gson
+import java.math.BigDecimal
+import java.util.Date
 import java.util.List
-import java.util.Map
 import javax.servlet.http.HttpServletRequest
 import org.eclipse.emf.cdo.common.model.CDOPackageUnit.State
 import org.eclipse.emf.cdo.server.IRepository
 import org.eclipse.emf.cdo.server.db.IDBStore
 import org.eclipse.emf.cdo.server.db.mapping.IMappingStrategy
+import org.eclipse.emf.cdo.transaction.CDOTransaction
 import org.eclipse.emf.cdo.view.CDOView
 import org.eclipse.emf.ecore.EAttribute
 import org.eclipse.emf.ecore.EClass
@@ -31,69 +34,120 @@ class DataStore {
 	val extension Request = new Request
 	val extension EMF = new EMF
 
-	def findByTypeAndID(CDOView view, EClass eClass, String ID, HttpServletRequest req) {
-		val String[] idFilters = #[ID]
-		val filters = newHashMap(new Pair("ID", idFilters))
-		logger.debug("findByTypeAndID '{}', ID = '{}'", eClass.type, ID)
-		return findByType(view, eClass.type, req, filters, true)
+	def CommitMessage getLastCommit(CDOView view, Class<?> origin) {
+		val queryTimestamp = view.createQuery("sql", "SELECT COMMIT_TIME FROM CDO_COMMIT_INFOS WHERE COMMIT_COMMENT LIKE '%\"service\":\"" + origin.simpleName + "\"%' ORDER BY COMMIT_TIME DESC")
+		queryTimestamp.setParameter("cdoObjectQuery", false)
+		queryTimestamp.maxResults = 1
+		logger.debug("Execute '{}' query '{}'", queryTimestamp.queryLanguage, queryTimestamp.queryString)
+		var Long timeStamp = null
+		if(view.mappingStrategy.store.DBAdapter.name == "oracle") {
+			val bigDecimal = queryTimestamp.getResult(BigDecimal)?.get(0)
+			if(bigDecimal != null) {
+				timeStamp = Long.parseLong(bigDecimal.longValue.toString)
+			}
+
+		} else {
+			timeStamp = queryTimestamp.getResult(Long)?.get(0)
+		}
+		if(timeStamp != null) {
+			val queryComment = view.createQuery("sql", "SELECT COMMIT_COMMENT FROM CDO_COMMIT_INFOS WHERE COMMIT_TIME = '" + timeStamp + "'")
+			queryComment.setParameter("cdoObjectQuery", false)
+			queryComment.maxResults = 1
+			logger.debug("Execute '{}' query '{}'", queryComment.queryLanguage, queryComment.queryString)
+			val json = queryComment.getResult(String)?.get(0)
+			if(json != null) {
+				val parser = new Gson
+				val commitMessage = parser.fromJson(json, CommitMessage)
+				val extension DateConverter = new DateConverter
+				val commitDate = new Date(timeStamp)
+				commitMessage.timestamp = commitDate.formatDate
+				return commitMessage
+			}
+		}
+		return null
 	}
 
-	def findByTypeAndID(CDOView view, String type, String ID, HttpServletRequest req) {
-		val String[] idFilters = #[ID]
-		val filters = newHashMap(new Pair("ID", idFilters))
-		logger.debug("findByTypeAndID '{}', ID = '{}'", type)
-		return findByType(view,type, req, filters, true)
+	def long countType(CDOView view, EClass eClass, FLQuery flQuery, HttpServletRequest req) {
+		logger.debug("countType '{}', flQuery = '{}'", eClass.type, flQuery)
+
+		if(eClass.abstract) {
+			return 0
+		}
+
+		val packageRegistry = view.session.packageRegistry
+		val packageInfo = packageRegistry.getPackageInfo(eClass.EPackage)
+
+		if(packageInfo == null || packageInfo.packageUnit.state == State.NEW) {
+			throw new Exception("No data store for type '" + eClass.type + "' created yet")
+		}
+
+		val mappingStrategy = view.mappingStrategy
+		var tableName = eClass.name
+		val qualifiedNames = mappingStrategy.properties.get(IMappingStrategy.PROP_QUALIFIED_NAMES) == "true"
+		if(qualifiedNames) {
+			tableName = eClass.type.replace(".", "_")
+		}
+		var tableExists = true
+		try {
+			tableName = mappingStrategy.getTableName(eClass)
+		} catch(Exception e) {
+			tableExists = false
+
+			// TODO find better solution 'Depends on MappingStrategy'
+			// mappingStrategy.getTableName(eClass) causes an Exception
+			// 'StoreThreadLocal.getSession == null'
+			// when the requested class is never requested via standard cdo mechanism
+			// Solution to initialize session is a hack!!! 
+			// The exception should appears max once per eClass
+			// The tableName is known instead of asking the mappingStrategy
+			logger.debug("Hack NoSessionRegisteredException '{}'", e.message)
+			val query = view.createQuery("sql", "SELECT DISTINCT CDO_ID FROM " + tableName + " WHERE " + view.temporality)
+			query.maxResults = 1
+			logger.debug("Hack NoSessionRegisteredException Execute '{}' query '{}'", query.queryLanguage, query.queryString)
+			val iterator = query.getResultAsync(typeof(EObject))
+			while(iterator.hasNext) {
+				val obj = iterator.next
+				logger.debug("Hack NoSessionRegisteredException Found '{}'", obj)
+				tableExists = true
+			}
+			iterator.close
+		}
+		if(tableExists) {
+			val query = view.createQuery("sql", "SELECT COUNT(*) CDO_ID FROM " + mappingStrategy.getTableName(eClass) + " WHERE " + view.temporality + eClass.filterQuery(req, flQuery, mappingStrategy))
+			query.setParameter("cdoObjectQuery", false)
+			logger.debug("Execute '{}' query '{}'", query.queryLanguage, query.queryString)
+			if(mappingStrategy.store.DBAdapter.name == "oracle") {
+				val size = query.getResult(BigDecimal)
+				return size.get(0).longValue
+			}
+			val size = query.getResult(Long)
+			return size.get(0)
+		}
+
+		return 0
 	}
 
-	def findByType(CDOView view, EClass eClass, HttpServletRequest req) {
-		logger.debug("findByType '{}'", eClass)
-		return findByType(view, eClass.type, req, null, true)
-	}
-	
-	def findByType(CDOView view, EClass eClass, HttpServletRequest req, boolean like) {
-		logger.debug("findByType '{}', like = '{}'", eClass.type, like)
-		return findByType(view, eClass.type, req, null, like)
-	}
-	
-	def findByType(CDOView view, EClass eClass, HttpServletRequest req, Map<String, String[]> filters) {
-		logger.debug("findByType '{}', filters = '{}'", eClass.type, filters)
-		return findByType(view, eClass.type, req, filters, true)
-	}
-	
-	def findByType(CDOView view, EClass eClass, HttpServletRequest req, Map<String, String[]> filters, boolean like) {
-		logger.debug("findByType '{}', filters = '{}', like = '{}'", eClass.type, filters, like)
-		return findByType(view, eClass.type, req, filters, like)
-	}
-	
-	def findByType(CDOView view, String type, HttpServletRequest req) {
-		logger.debug("findByType '{}'", type)
-		return findByType(view, type, req, null, true)
-	}
-	
-	def findByType(CDOView view, String type, HttpServletRequest req, boolean like) {
-		logger.debug("findByType '{}', like = '{}'", type, like)
-		return findByType(view, type, req, null, like)
-	}
-	
-	def findByType(CDOView view, String type, HttpServletRequest req, Map<String, String[]> filters) {
-		logger.debug("findByType '{}', filters = '{}'", type, filters)
-		return findByType(view, type, req, filters, true)
+	def countType(CDOView view, String type, HttpServletRequest req) {
+		return countType(view, view.safeEClass(type), null, req)
 	}
 
-	def findByType(CDOView view, String type, HttpServletRequest req, Map<String, String[]> filters, boolean like) {
-		logger.debug("findByType '{}', filters = '{}', like = '{}'", type, filters, like)
+	def countType(CDOView view, EClass eClass, HttpServletRequest req) {
+		return countType(view, eClass, null, req)
+	}
+
+	def findByType(CDOView view, EClass eClass, FLQuery flQuery, HttpServletRequest req) {
+		logger.debug("findByType '{}', flQuery = '{}'", eClass.type, flQuery)
 		// TODO find better solution 'Depends on Relation DB Store' 
 		// sql depends on mapping strategy
 		val List<EObject> result = newArrayList
 
 		val toProcess = newArrayList
 
-		val eClass = view.safeEClass(type)
-
 		val packageRegistry = view.session.packageRegistry
 		val packageInfo = packageRegistry.getPackageInfo(eClass.EPackage)
-		if(packageInfo.packageUnit.state == State.NEW) {
-			throw new Exception("No data store for type '" + type + "' created yet")
+
+		if(packageInfo == null || packageInfo.packageUnit.state == State.NEW) {
+			throw new Exception("No data store for type '" + eClass.type + "' created yet")
 		}
 
 		if(!eClass.abstract) {
@@ -103,7 +157,11 @@ class DataStore {
 
 		toProcess.forEach [
 			val mappingStrategy = view.mappingStrategy
-			var tableName = it.type.replace(".", "_")
+			var tableName = it.name
+			val qualifiedNames = mappingStrategy.properties.get(IMappingStrategy.PROP_QUALIFIED_NAMES) == "true"
+			if(qualifiedNames) {
+				tableName = it.type.replace(".", "_")
+			}
 			var tableExists = true
 			try {
 				tableName = mappingStrategy.getTableName(it)
@@ -130,7 +188,7 @@ class DataStore {
 				iterator.close
 			}
 			if(tableExists) {
-				val query = view.createQuery("sql", "SELECT DISTINCT CDO_ID " + it.max(req, mappingStrategy) + " FROM " + mappingStrategy.getTableName(it) + " WHERE " + view.temporality + it.filterQuery(req, mappingStrategy, filters, like) + it.orderBy(req, mappingStrategy))
+				val query = view.createQuery("sql", "SELECT DISTINCT CDO_ID " + it.max(req, mappingStrategy) + " FROM " + mappingStrategy.getTableName(it) + " WHERE " + view.temporality + it.filterQuery(req, flQuery, mappingStrategy) + it.orderBy(req, mappingStrategy))
 				logger.debug("Execute '{}' query '{}'", query.queryLanguage, query.queryString)
 				val iterator = query.getResultAsync(typeof(EObject))
 				while(iterator.hasNext) {
@@ -148,6 +206,27 @@ class DataStore {
 		return result
 	}
 
+	def findByType(CDOView view, String type, HttpServletRequest req) {
+		return findByType(view, view.safeEClass(type), null, req)
+	}
+
+	def findByType(CDOView view, EClass eClass, HttpServletRequest req) {
+		return findByType(view, eClass, null, req)
+	}
+
+	def createCommitMessage(CDOView view, Class<?> origin) {
+		if(view instanceof CDOTransaction) {
+			return new CommitMessage => [
+				service = origin.simpleName
+				newObjects = view.changeSetData.newObjects.size
+				changedObjects = view.changeSetData.changedObjects.size
+				deletedObjects = view.changeSetData.detachedObjects.size
+			]
+
+		}
+		return null
+	}
+
 	def private temporality(CDOView view) {
 		if(view.timeStamp > 0) {
 			return "((CDO_CREATED <= " + view.timeStamp + " AND CDO_VERSION > 0) AND (CDO_REVISED >= " + view.timeStamp + " OR CDO_REVISED = 0 AND CDO_VERSION > 0))"
@@ -156,10 +235,11 @@ class DataStore {
 		}
 	}
 
-	def private filterQuery(EClass eClass, HttpServletRequest req, IMappingStrategy mappingStrategy, Map<String, String[]> filters, boolean like) {
-		val builder = new StringBuilder
+	def private filterQuery(EClass eClass, HttpServletRequest req, FLQuery flQuery, IMappingStrategy mappingStrategy) {
+		val reqBuilder = new StringBuilder
+		var reqQuery = ""
 		var kind = "AND"
-		if(req.xor || filters != null && filters.keySet.contains("or")) {
+		if(req.xor) {
 			kind = "OR"
 		}
 		val params = req.parameterNameAsListValueNotNull
@@ -168,38 +248,67 @@ class DataStore {
 			if(attribute != null) {
 				logger.debug("Parameter name for filter '{}'", paramName)
 				for (value : req.parameterMap.get(paramName)) {
-					if (like) {
-						builder.append(" " + kind + " LOWER(" + mappingStrategy.getFieldName(attribute) + ") LIKE '%" + attribute.getValue(value, mappingStrategy).toLowerCase + "%'")
+					if(req.isLike) {
+						reqBuilder.append(" " + kind + " LOWER(" + mappingStrategy.getFieldName(attribute) + ") LIKE '%" + attribute.getValue(value, mappingStrategy).toLowerCase + "%'")
 					} else {
-						builder.append(" " + kind + " " + mappingStrategy.getFieldName(attribute) + " = '" + attribute.getValue(value, mappingStrategy) + "'")
+						reqBuilder.append(" " + kind + " " + mappingStrategy.getFieldName(attribute) + " = '" + attribute.getValue(value, mappingStrategy) + "'")
 					}
-					
+
 				}
 			}
 		}
-		val finalKind = kind
-		if(filters != null) {
-			filters.keySet.forEach [
-				if(filters.get(it) != null) {
-					val attribute = eClass.getAttribute(it)
-					if(attribute != null) {
-						logger.debug("Parameter name for filter '{}'", it)
-						for (value : filters.get(it)) {
-							if (like) {
-								builder.append(" " + finalKind + " LOWER(" + mappingStrategy.getFieldName(attribute) + ") LIKE '%" + attribute.getValue(value, mappingStrategy).toLowerCase + "%'")
-							} else {
-								builder.append(" " + finalKind + " " + mappingStrategy.getFieldName(attribute) + " = '" + attribute.getValue(value, mappingStrategy).toLowerCase + "'")
-							}	
-						}
-					}
-				}
-			]
+		if(kind == "OR" && reqBuilder.length > 0) {
+			reqQuery = reqBuilder.toString.replaceFirst("OR ", "AND (") + ")"
+		} else {
+			reqQuery = reqBuilder.toString
+		}
+		if(flQuery == null) {
+			return reqQuery
 		}
 
-		if(kind == "OR" && builder.length > 0) {
-			return builder.toString.replaceFirst("OR ", "AND (") + ")"
+		val andBuilder = new StringBuilder
+		flQuery.andStatements.forEach [
+			val column = mappingStrategy.getFieldName(it.feature)
+			andBuilder.append(" AND ")
+			andBuilder.append(column)
+			switch it.class {
+				case typeof(FLEquals): andBuilder.append(" = ")
+				case typeof(FLGreater): andBuilder.append(" > ")
+				case typeof(FLGreaterOrEqual): andBuilder.append(" >= ")
+				case typeof(FLLess): andBuilder.append(" < ")
+				case typeof(FLLessOrEquals): andBuilder.append(" <= ")
+			}
+			if(it.feature instanceof EAttribute) {
+				val attribute = it.feature as EAttribute
+				andBuilder.append("'" + attribute.getValue(compare, mappingStrategy) + "'")
+			} else {
+				andBuilder.append("'" + it.compare + "'")
+			}
+		]
+
+		val orBuilder = new StringBuilder
+		flQuery.orStatements.forEach [
+			val column = mappingStrategy.getFieldName(it.feature)
+			orBuilder.append(" OR ")
+			orBuilder.append(column)
+			switch it.class {
+				case typeof(FLEquals): orBuilder.append(" = ")
+				case typeof(FLGreater): orBuilder.append(" > ")
+				case typeof(FLGreaterOrEqual): orBuilder.append(" >= ")
+				case typeof(FLLess): orBuilder.append(" < ")
+				case typeof(FLLessOrEquals): orBuilder.append(" <= ")
+			}
+			if(it.feature instanceof EAttribute) {
+				val attribute = it.feature as EAttribute
+				orBuilder.append("'" + attribute.getValue(compare, mappingStrategy) + "'")
+			} else {
+				orBuilder.append("'" + it.compare + "'")
+			}
+		]
+		if(orBuilder.length > 0) {
+			return reqQuery + andBuilder.toString + orBuilder.toString.replaceFirst("OR ", "AND (") + ")"
 		}
-		return builder.toString
+		return reqQuery + andBuilder.toString
 	}
 
 	def private max(EClass eClass, HttpServletRequest req, IMappingStrategy mappingStrategy) {
@@ -270,3 +379,4 @@ class DataStore {
 		return "0";
 	}
 }
+

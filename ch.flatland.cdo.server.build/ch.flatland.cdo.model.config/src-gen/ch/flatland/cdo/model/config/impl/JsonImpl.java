@@ -31,6 +31,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link ch.flatland.cdo.model.config.impl.JsonImpl#isXlinks <em>Xlinks</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.config.impl.JsonImpl#isArrayaccessor <em>Arrayaccessor</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.config.impl.JsonImpl#isXtraces <em>Xtraces</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.config.impl.JsonImpl#isCdometa <em>Cdometa</em>}</li>
  * </ul>
  *
  * @generated
@@ -255,6 +256,26 @@ public class JsonImpl extends MinimalEObjectImpl.Container implements Json {
 	 * @ordered
 	 */
 	protected boolean xtraces = XTRACES_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isCdometa() <em>Cdometa</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isCdometa()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean CDOMETA_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isCdometa() <em>Cdometa</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isCdometa()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean cdometa = CDOMETA_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -511,6 +532,27 @@ public class JsonImpl extends MinimalEObjectImpl.Container implements Json {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isCdometa() {
+		return cdometa;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setCdometa(boolean newCdometa) {
+		boolean oldCdometa = cdometa;
+		cdometa = newCdometa;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ConfigPackage.JSON__CDOMETA, oldCdometa, cdometa));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -536,6 +578,8 @@ public class JsonImpl extends MinimalEObjectImpl.Container implements Json {
 				return isArrayaccessor();
 			case ConfigPackage.JSON__XTRACES:
 				return isXtraces();
+			case ConfigPackage.JSON__CDOMETA:
+				return isCdometa();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -580,6 +624,9 @@ public class JsonImpl extends MinimalEObjectImpl.Container implements Json {
 				return;
 			case ConfigPackage.JSON__XTRACES:
 				setXtraces((Boolean)newValue);
+				return;
+			case ConfigPackage.JSON__CDOMETA:
+				setCdometa((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -626,6 +673,9 @@ public class JsonImpl extends MinimalEObjectImpl.Container implements Json {
 			case ConfigPackage.JSON__XTRACES:
 				setXtraces(XTRACES_EDEFAULT);
 				return;
+			case ConfigPackage.JSON__CDOMETA:
+				setCdometa(CDOMETA_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -660,6 +710,8 @@ public class JsonImpl extends MinimalEObjectImpl.Container implements Json {
 				return arrayaccessor != ARRAYACCESSOR_EDEFAULT;
 			case ConfigPackage.JSON__XTRACES:
 				return xtraces != XTRACES_EDEFAULT;
+			case ConfigPackage.JSON__CDOMETA:
+				return cdometa != CDOMETA_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -696,6 +748,8 @@ public class JsonImpl extends MinimalEObjectImpl.Container implements Json {
 		result.append(arrayaccessor);
 		result.append(", xtraces: ");
 		result.append(xtraces);
+		result.append(", cdometa: ");
+		result.append(cdometa);
 		result.append(')');
 		return result.toString();
 	}

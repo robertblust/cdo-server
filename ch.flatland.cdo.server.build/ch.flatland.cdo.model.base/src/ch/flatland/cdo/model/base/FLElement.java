@@ -22,7 +22,6 @@ import org.eclipse.emf.ecore.EReference;
  *   <li>{@link ch.flatland.cdo.model.base.FLElement#getDownStreamMappings <em>Down Stream Mappings</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.FLElement#getHorizontalMappings <em>Horizontal Mappings</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.FLElement#getHorizontalOppositeMappings <em>Horizontal Opposite Mappings</em>}</li>
- *   <li>{@link ch.flatland.cdo.model.base.FLElement#getDerivedContainer <em>Derived Container</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.FLElement#getTraceToOwn <em>Trace To Own</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.FLElement#getTraceToUse <em>Trace To Use</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.base.FLElement#getTraceToRealize <em>Trace To Realize</em>}</li>
@@ -196,22 +195,6 @@ public interface FLElement extends FLID, FLNameable, FLRateable, FLCommentable, 
 	 * @generated
 	 */
 	EList<FLElement> getHorizontalOppositeMappings();
-
-	/**
-	 * Returns the value of the '<em><b>Derived Container</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Derived Container</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Derived Container</em>' reference.
-	 * @see ch.flatland.cdo.model.base.BasePackage#getFLElement_DerivedContainer()
-	 * @model transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Base' get='return this.resolveContainer();'"
-	 * @generated
-	 */
-	EObject getDerivedContainer();
 
 	/**
 	 * Returns the value of the '<em><b>Trace To Own</b></em>' reference list.
@@ -726,15 +709,6 @@ public interface FLElement extends FLID, FLNameable, FLRateable, FLCommentable, 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model unique="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return this.eContainer();'"
-	 * @generated
-	 */
-	EObject resolveContainer();
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * Filters the traces to by trace type.
 	 * @return filtered list
@@ -769,9 +743,9 @@ public interface FLElement extends FLID, FLNameable, FLRateable, FLCommentable, 
 	 * </p>
 	 * <!-- end-model-doc -->
 	 * @model unique="false" many="false" eRefernceUnique="false" classTypeUnique="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='final <%org.eclipse.emf.common.util.BasicEList%><T> elements = new <%org.eclipse.emf.common.util.BasicEList%><T>();\nboolean _and = false;\n<%org.eclipse.emf.cdo.view.CDOView%> _cdoView = this.cdoView();\nboolean _notEquals = (!<%com.google.common.base.Objects%>.equal(_cdoView, null));\nif (!_notEquals)\n{\n\t_and = false;\n} else\n{\n\t<%org.eclipse.emf.cdo.view.CDOView%> _cdoView_1 = this.cdoView();\n\tboolean _isClosed = _cdoView_1.isClosed();\n\tboolean _not = (!_isClosed);\n\t_and = _not;\n}\nif (_and)\n{\n\t<%org.eclipse.emf.cdo.view.CDOView%> _cdoView_2 = this.cdoView();\n\t<%java.util.ArrayList%><<%org.eclipse.emf.ecore.EReference%>> _newArrayList = <%org.eclipse.xtext.xbase.lib.CollectionLiterals%>.<<%org.eclipse.emf.ecore.EReference%>>newArrayList(eRefernce);\n\tfinal <%java.util.List%><<%org.eclipse.emf.cdo.CDOObjectReference%>> xrefs = _cdoView_2.queryXRefs(this, ((<%org.eclipse.emf.ecore.EReference%>[])org.eclipse.xtext.xbase.lib.Conversions.unwrapArray(_newArrayList, <%org.eclipse.emf.ecore.EReference%>.class)));\n\tfor (final <%org.eclipse.emf.cdo.CDOObjectReference%> x : xrefs)\n\t{\n\t\t{\n\t\t\t<%org.eclipse.emf.cdo.CDOObject%> _sourceObject = x.getSourceObject();\n\t\t\tfinal T element = classType.cast(_sourceObject);\n\t\t\telements.add(element);\n\t\t}\n\t}\n}\nreturn elements;'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='final <%org.eclipse.emf.common.util.BasicEList%><T> elements = new <%org.eclipse.emf.common.util.BasicEList%><T>();\nboolean _and = false;\n<%org.eclipse.emf.cdo.view.CDOView%> _cdoView = this.cdoView();\nboolean _notEquals = (!<%com.google.common.base.Objects%>.equal(_cdoView, null));\nif (!_notEquals)\n{\n\t_and = false;\n} else\n{\n\t<%org.eclipse.emf.cdo.view.CDOView%> _cdoView_1 = this.cdoView();\n\tboolean _isClosed = _cdoView_1.isClosed();\n\tboolean _not = (!_isClosed);\n\t_and = _not;\n}\nif (_and)\n{\n\tfinal <%java.util.ArrayList%><<%org.eclipse.emf.ecore.EReference%>> eRefs = <%org.eclipse.xtext.xbase.lib.CollectionLiterals%>.<<%org.eclipse.emf.ecore.EReference%>>newArrayList();\n\tboolean _notEquals_1 = (!<%com.google.common.base.Objects%>.equal(eRefernce, null));\n\tif (_notEquals_1)\n\t{\n\t\teRefs.add(eRefernce);\n\t}\n\t<%org.eclipse.emf.cdo.view.CDOView%> _cdoView_2 = this.cdoView();\n\tfinal <%java.util.List%><<%org.eclipse.emf.cdo.CDOObjectReference%>> xrefs = _cdoView_2.queryXRefs(this, ((<%org.eclipse.emf.ecore.EReference%>[])org.eclipse.xtext.xbase.lib.Conversions.unwrapArray(eRefs, <%org.eclipse.emf.ecore.EReference%>.class)));\n\tfor (final <%org.eclipse.emf.cdo.CDOObjectReference%> x : xrefs)\n\t{\n\t\t{\n\t\t\t<%org.eclipse.emf.cdo.CDOObject%> _sourceObject = x.getSourceObject();\n\t\t\tfinal T element = classType.cast(_sourceObject);\n\t\t\telements.add(element);\n\t\t}\n\t}\n}\nreturn elements;'"
 	 * @generated
 	 */
-	<T extends FLElement> EList<T> resolveXrefs(EReference eRefernce, Class<T> classType);
+	<T extends EObject> EList<T> resolveXrefs(EReference eRefernce, Class<T> classType);
 
 } // FLElement

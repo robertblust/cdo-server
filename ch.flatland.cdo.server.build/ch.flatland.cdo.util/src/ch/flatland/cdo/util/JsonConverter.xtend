@@ -162,7 +162,7 @@ class JsonConverter {
 
 			for (object : objects) {
 				if(object.hasPermission) {
-					val jsonBaseObject = object.toJsonBase(false)
+					val jsonBaseObject = object.toJsonBase(0)
 					jsonArray.add(jsonBaseObject)
 				}
 			}
@@ -183,7 +183,7 @@ class JsonConverter {
 
 	def dispatch String safeToJson(EObject object) {
 		try {
-			val jsonBaseObject = object.toJsonBase(false)
+			val jsonBaseObject = object.toJsonBase(0)
 
 			// finally add status with messages
 			val objectWithStatus = newObjectWithStatus
@@ -217,7 +217,40 @@ class JsonConverter {
 		jsonStatusObject.toString
 	}
 
-	def private JsonObject toJsonBase(EObject object, boolean stop) {
+	def JsonArray safeToJsonArray(List<EObject> objects) {
+		try {
+			val jsonArray = new JsonArray
+
+			for (object : objects) {
+				if(object.hasPermission) {
+					val jsonBaseObject = object.toJsonBase(0)
+					jsonArray.add(jsonBaseObject)
+				}
+			}
+
+			return jsonArray
+		} catch(NoPermissionException npe) {
+			throw new FlatlandException(SC_FORBIDDEN, npe.message)
+		} catch(Exception e) {
+			e.printStackTrace
+			throw new FlatlandException(SC_INTERNAL_SERVER_ERROR, e.message)
+		}
+	}
+
+	def JsonObject safeToJsonObject(EObject object) {
+		try {
+			val jsonBaseObject = object.toJsonBase(0)
+
+			return jsonBaseObject
+		} catch(NoPermissionException npe) {
+			throw new FlatlandException(SC_FORBIDDEN, npe.message)
+		} catch(Exception e) {
+			e.printStackTrace
+			throw new FlatlandException(SC_INTERNAL_SERVER_ERROR, e.message)
+		}
+	}
+
+	def private JsonObject toJsonBase(EObject object, int level) {
 		val jsonBaseObject = new JsonObject
 
 		if(object.oid != null) {
@@ -232,41 +265,42 @@ class JsonConverter {
 			}
 		}
 
-		if(object instanceof Adapter) {
-			jsonBaseObject.addProperty(LABEL, ITEM_DELEGATOR.getText(object.target))
-		} else {
-			jsonBaseObject.addProperty(LABEL, ITEM_DELEGATOR.getText(object))
-		}
+		if(jsonConverterConfig.cdoMeta) {
+			if(object instanceof Adapter) {
+				jsonBaseObject.addProperty(LABEL, ITEM_DELEGATOR.getText(object.target))
+			} else {
+				jsonBaseObject.addProperty(LABEL, ITEM_DELEGATOR.getText(object))
+			}
 
-		jsonBaseObject.addType(object.eClass, stop)
-		if (ServerConfig.isBridgeMode) {
-			jsonBaseObject.addProperty(ICON, jsonConverterConfig.serverAddress + BRIDGE_MODE_PATH + ALIAS_ICON + "/" + object.eClass.type)
-		} else {
-			jsonBaseObject.addProperty(ICON, jsonConverterConfig.serverAddress + ALIAS_ICON + "/" + object.eClass.type)
-		}
-		
+			jsonBaseObject.addType(object.eClass, level)
+			if(ServerConfig.isBridgeMode) {
+				jsonBaseObject.addProperty(ICON, jsonConverterConfig.serverAddress + BRIDGE_MODE_PATH + ALIAS_ICON + "/" + object.eClass.type)
+			} else {
+				jsonBaseObject.addProperty(ICON, jsonConverterConfig.serverAddress + ALIAS_ICON + "/" + object.eClass.type)
+			}
 
-		if(object instanceof CDOObject) {
-			jsonBaseObject.addProperty(PERMISSION, object.cdoPermission.name)
-			jsonBaseObject.addProperty(REVISION, object.cdoRevision.version)
-			jsonBaseObject.addProperty(DATE, (new Date(object.cdoRevision.timeStamp).formatDate))
-			if (object.view.session.commitInfoManager.getCommitInfo(object.cdoRevision.timeStamp).userID != null) {
-				jsonBaseObject.addProperty(AUTHOR, object.view.session.commitInfoManager.getCommitInfo(object.cdoRevision.timeStamp).userID)
-			}	
+			if(object instanceof CDOObject) {
+				jsonBaseObject.addProperty(PERMISSION, object.cdoPermission.name)
+				jsonBaseObject.addProperty(REVISION, object.cdoRevision.version)
+				jsonBaseObject.addProperty(DATE,(new Date(object.cdoRevision.timeStamp).formatDate))
+				if(object.view.session.commitInfoManager.getCommitInfo(object.cdoRevision.timeStamp).userID != null) {
+					jsonBaseObject.addProperty(AUTHOR, object.view.session.commitInfoManager.getCommitInfo(object.cdoRevision.timeStamp).userID)
+				}
+			}
 		}
 
 		jsonBaseObject.addAttributes(object)
-		if(jsonConverterConfig.references && !stop) {
-			jsonBaseObject.addReferences(object)
+		if(jsonConverterConfig.references && level < jsonConverterConfig.refsLevel) {
+			jsonBaseObject.addReferences(object, level)
 		}
 
-		if(jsonConverterConfig.xreferences && !stop) {
+		if(jsonConverterConfig.xreferences && level == 0) {
 			val xrefs = object.allXReferences
 			if(xrefs.size > 0) {
 				val jsonXrefsArray = new JsonArray
 				jsonBaseObject.add(XREFERENCES, jsonXrefsArray)
 				xrefs.forEach [
-					jsonXrefsArray.add(it.toJsonBase(true))
+					jsonXrefsArray.add(it.toJsonBase(level))
 				]
 			}
 		}
@@ -324,7 +358,7 @@ class JsonConverter {
 				jsonLinksObject.add(CONTAINER, jsonContainerLink)
 
 				val jsonAllInstancesLink = new JsonObject
-				if (ServerConfig.bridgeMode) {
+				if(ServerConfig.bridgeMode) {
 					jsonAllInstancesLink.addProperty(HREF, jsonConverterConfig.serverAddress + BRIDGE_MODE_PATH + ALIAS_OBJECT + "/" + jsonConverterConfig.repoName + "/" + object.eClass.type + object.getTimestampParam(true))
 				} else {
 					jsonAllInstancesLink.addProperty(HREF, jsonConverterConfig.serverAddress + ALIAS_OBJECT + "/" + jsonConverterConfig.repoName + "/" + object.eClass.type + object.getTimestampParam(true))
@@ -342,7 +376,7 @@ class JsonConverter {
 
 				// add x reference link
 				val jsonXReferencesLink = new JsonObject
-				if (ServerConfig.bridgeMode) {
+				if(ServerConfig.bridgeMode) {
 					jsonXReferencesLink.addProperty(HREF, jsonConverterConfig.serverAddress + BRIDGE_MODE_PATH + ALIAS_XREFS + "/" + jsonConverterConfig.repoName + "/" + object.oid + "/" + REFERENCES + object.getTimestampParam(true))
 				} else {
 					jsonXReferencesLink.addProperty(HREF, jsonConverterConfig.serverAddress + ALIAS_XREFS + "/" + jsonConverterConfig.repoName + "/" + object.oid + "/" + REFERENCES + object.getTimestampParam(true))
@@ -353,7 +387,7 @@ class JsonConverter {
 				// add detailed x reference link
 				object.resolveGroupXReferences.forEach [ p1, p2 |
 					val jsonXReferenceLink = new JsonObject
-					if (ServerConfig.bridgeMode) {
+					if(ServerConfig.bridgeMode) {
 						jsonXReferenceLink.addProperty(HREF, jsonConverterConfig.serverAddress + BRIDGE_MODE_PATH + ALIAS_XREFS + "/" + jsonConverterConfig.repoName + "/" + object.oid + "/" + REFERENCES + "/" + p1.name + object.getTimestampParam(true))
 					} else {
 						jsonXReferenceLink.addProperty(HREF, jsonConverterConfig.serverAddress + ALIAS_XREFS + "/" + jsonConverterConfig.repoName + "/" + object.oid + "/" + REFERENCES + "/" + p1.name + object.getTimestampParam(true))
@@ -370,8 +404,8 @@ class JsonConverter {
 				jsonBaseObject.addRevisions(object)
 			}
 		}
-		if(!stop) {
-			jsonBaseObject.addDiagnosticsAndMeta(object)
+		if(level == 0) {
+			jsonBaseObject.addDiagnosticsAndMeta(object, level)
 		}
 
 		return jsonBaseObject
@@ -381,7 +415,7 @@ class JsonConverter {
 
 		object.cdoHistory.triggerLoad
 		while(object.cdoHistory.loading) {
-			//TODO could be long running!
+			// TODO could be long running!
 		}
 		val historySize = object.cdoHistory.size
 		if(historySize > 1) {
@@ -390,13 +424,13 @@ class JsonConverter {
 			for (var i = historySize - 1; i > 0; i--) {
 				val commitInfo = object.cdoHistory.getElement(i)
 				val jsonRevsionObject = new JsonObject
-				jsonRevsionObject.addProperty(REVISION, (historySize - i))
+				jsonRevsionObject.addProperty(REVISION,(historySize - i))
 				jsonRevsionObject.addProperty(SELF, object.getUrl(false) + "?" + PARAM_POINT_IN_TIME + "=" + commitInfo.timeStamp)
 				jsonRevsionObject.addProperty(DATE, formatDate(new Date(commitInfo.timeStamp)))
-				if (commitInfo.userID != null) {
+				if(commitInfo.userID != null) {
 					jsonRevsionObject.addProperty(AUTHOR, commitInfo.userID)
 				}
-				logger.debug("'{}' resolved revsion '{}'", object, (historySize - i))
+				logger.debug("'{}' resolved revsion '{}'", object,(historySize - i))
 				jsonRevisionsArray.add(jsonRevsionObject)
 			}
 		}
@@ -443,7 +477,8 @@ class JsonConverter {
 		}
 	}
 
-	def private addReferences(JsonObject jsonBaseObject, EObject eObject) {
+	def private addReferences(JsonObject jsonBaseObject, EObject eObject, int level) {
+	    val newlevel = level + 1
 		val references = eObject.eClass.EAllReferences
 		val jsonReferences = new JsonObject
 		val jsonReferencesArrayAccessor = new JsonArray
@@ -452,7 +487,7 @@ class JsonConverter {
 				val jsonReferencesArrayEntry = new JsonObject;
 
 				// show containments or relations or both?
-				if((reference.containment && jsonConverterConfig.creferences) || (!reference.containment && jsonConverterConfig.rreferences)) {
+				if((reference.containment && jsonConverterConfig.creferences && level < jsonConverterConfig.crefsLevel) || (!reference.containment && jsonConverterConfig.rreferences && level < jsonConverterConfig.rrefsLevel)) {
 					val name = reference.name
 					if(reference.many) {
 						val List<Object> values = eObject.eGet(reference, true) as List<Object>
@@ -461,7 +496,7 @@ class JsonConverter {
 							for (value : values) {
 								val valueAsEobject = value as EObject
 								if(valueAsEobject.hasPermission) {
-									val jsonRefObject = valueAsEobject.toJsonObject(true) as JsonObject
+									val jsonRefObject = valueAsEobject.toJsonObject(newlevel) as JsonObject
 									jsonReferencesArray.add(jsonRefObject)
 								}
 							}
@@ -477,7 +512,7 @@ class JsonConverter {
 						if(value != null) {
 							val valueAsEobject = value as EObject
 							if(valueAsEobject.hasPermission) {
-								val jsonRefObject = valueAsEobject.toJsonObject(true) as JsonObject
+								val jsonRefObject = valueAsEobject.toJsonObject(newlevel) as JsonObject
 								jsonReferences.add(name, jsonRefObject)
 								jsonReferencesArrayEntry.add(NAME, new JsonPrimitive(name))
 								jsonReferencesArrayEntry.add(VALUE, jsonRefObject)
@@ -496,7 +531,7 @@ class JsonConverter {
 		}
 	}
 
-	def private addMeta(JsonObject jsonBaseObject, EObject object) {
+	def private addMeta(JsonObject jsonBaseObject, EObject object, int level) {
 		val attributes = object.eClass.EAllAttributes.filter[!ignoredAttributes.contains(it.name)]
 		val references = object.eClass.EAllReferences
 
@@ -508,9 +543,9 @@ class JsonConverter {
 			for (attribute : attributes) {
 				val jsonAttribute = new JsonObject
 				if(object instanceof CDOResourceNode && attribute.name == "name") {
-					jsonAttribute.addFeatureMeta(attribute, true)
+					jsonAttribute.addFeatureMeta(attribute, true, level)
 				} else {
-					jsonAttribute.addFeatureMeta(attribute, false)
+					jsonAttribute.addFeatureMeta(attribute, false, level)
 				}
 				jsonAttributes.add(jsonAttribute)
 			}
@@ -521,18 +556,18 @@ class JsonConverter {
 			jsonTypeMeta.add(REFERENCES, jsonReferences)
 			for (reference : references) {
 				val jsonReference = new JsonObject
-				jsonReference.addFeatureMeta(reference, false)
+				jsonReference.addFeatureMeta(reference, false, level)
 				jsonReferences.add(jsonReference)
 			}
 		}
 		jsonBaseObject.add(PARAM_META, jsonTypeMeta)
 	}
 
-	def private addFeatureMeta(JsonObject jsonBaseObject, EStructuralFeature feature, boolean overuleRequired) {
+	def private addFeatureMeta(JsonObject jsonBaseObject, EStructuralFeature feature, boolean overuleRequired, int level) {
 
 		if(feature instanceof EAttribute) {
 			jsonBaseObject.add(FEATURE, new JsonPrimitive(feature.name))
-			jsonBaseObject.addType(feature.EAttributeType, false)
+			jsonBaseObject.addType(feature.EAttributeType, level)
 			jsonBaseObject.addJsType(feature.EAttributeType)
 
 			if(feature.EAttributeType instanceof EEnum) {
@@ -559,7 +594,7 @@ class JsonConverter {
 		}
 		if(feature instanceof EReference) {
 			jsonBaseObject.add(FEATURE, new JsonPrimitive(feature.name))
-			jsonBaseObject.addType(feature.EReferenceType, false)
+			jsonBaseObject.addType(feature.EReferenceType, level)
 			jsonBaseObject.addProperty(ABSTRACT, feature.EReferenceType.abstract)
 			if(feature.EReferenceType.name == "EObject") {
 
@@ -625,7 +660,7 @@ class JsonConverter {
 		jsonBaseObject.add(JS_TYPE, new JsonPrimitive(jsonType))
 	}
 
-	def private addDiagnosticsAndMeta(JsonObject jsonBaseObject, EObject object) {
+	def private addDiagnosticsAndMeta(JsonObject jsonBaseObject, EObject object, int level) {
 
 		// validation requested?
 		if(jsonConverterConfig.validate) {
@@ -639,11 +674,11 @@ class JsonConverter {
 
 		// meta requested?
 		if(jsonConverterConfig.meta) {
-			jsonBaseObject.addMeta(object)
+			jsonBaseObject.addMeta(object, level)
 		}
 	}
 
-	def private addType(JsonObject jsonBaseObject, EClassifier classifier, boolean stop) {
+	def private addType(JsonObject jsonBaseObject, EClassifier classifier, int level) {
 		jsonBaseObject.addProperty(TYPE, classifier.type)
 		if(classifier instanceof EClass) {
 			if(classifier.EAllSuperTypes.size > 0) {
@@ -651,11 +686,11 @@ class JsonConverter {
 				classifier.EAllSuperTypes.forEach [
 					jsonSuperTypesArray.add(new JsonPrimitive(it.type))
 				]
-				if(jsonConverterConfig.meta && !stop) {
+				if(jsonConverterConfig.meta && level == 0) {
 					jsonBaseObject.add(EXTENDS, jsonSuperTypesArray)
 				}
 			}
-			if(jsonConverterConfig.meta && !stop && classifier.getExtendedFrom.size > 0) {
+			if(jsonConverterConfig.meta && level == 0 && classifier.getExtendedFrom.size > 0) {
 				val jsonExtendedFromArray = new JsonArray
 				classifier.getExtendedFrom.forEach [
 					jsonExtendedFromArray.add(new JsonPrimitive(it.type))
@@ -670,8 +705,8 @@ class JsonConverter {
 		new JsonPrimitive(object.toString)
 	}
 
-	def private dispatch toJsonObject(EObject object, boolean stop) {
-		object.toJsonBase(stop)
+	def private dispatch toJsonObject(EObject object, int level) {
+		object.toJsonBase(level)
 	}
 
 	def private getUrl(EObject object) {
@@ -687,9 +722,9 @@ class JsonConverter {
 			// Legacy models do not inherit from CDOObject
 			id = EcoreUtil.getURI(object).fragment.replace("L", "")
 		}
-		if (ServerConfig.bridgeMode) {
+		if(ServerConfig.bridgeMode) {
 			return jsonConverterConfig.serverAddress + BRIDGE_MODE_PATH + ALIAS_OBJECT + "/" + jsonConverterConfig.repoName + "/" + object.eClass.type + "/" + id + object.getTimestampParam(withTimestamp)
-			
+
 		}
 		return jsonConverterConfig.serverAddress + ALIAS_OBJECT + "/" + jsonConverterConfig.repoName + "/" + object.eClass.type + "/" + id + object.getTimestampParam(withTimestamp)
 
@@ -867,9 +902,9 @@ class JsonConverter {
 						if(it.data.get(1) instanceof EStructuralFeature) {
 							val feature = it.data.get(1) as EStructuralFeature
 							if(feature instanceof EAttribute) {
-								diag.addProperty(FEATURE, (ATTRIBUTES + "." + feature.name))
+								diag.addProperty(FEATURE,(ATTRIBUTES + "." + feature.name))
 							} else {
-								diag.addProperty(FEATURE, (REFERENCES + "." + feature.name))
+								diag.addProperty(FEATURE,(REFERENCES + "." + feature.name))
 							}
 						}
 
@@ -902,9 +937,9 @@ class JsonConverter {
 				for (featureDelta : localRevisionDelta.get(object)) {
 					val jsonObject = featureDelta.getFeatureDeltaAsJsonObject(object) as JsonObject
 					if(featureDelta.feature instanceof EAttribute) {
-						jsonObject.addProperty(FEATURE, (ATTRIBUTES + "." + featureDelta.feature.name))
+						jsonObject.addProperty(FEATURE,(ATTRIBUTES + "." + featureDelta.feature.name))
 					} else {
-						jsonObject.addProperty(FEATURE, (REFERENCES + "." + featureDelta.feature.name))
+						jsonObject.addProperty(FEATURE,(REFERENCES + "." + featureDelta.feature.name))
 					}
 					deltasArray.add(jsonObject)
 				}

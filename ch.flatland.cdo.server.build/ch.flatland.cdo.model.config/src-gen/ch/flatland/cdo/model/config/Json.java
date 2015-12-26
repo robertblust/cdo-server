@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link ch.flatland.cdo.model.config.Json#isXlinks <em>Xlinks</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.config.Json#isArrayaccessor <em>Arrayaccessor</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.config.Json#isXtraces <em>Xtraces</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.config.Json#isCdometa <em>Cdometa</em>}</li>
  * </ul>
  *
  * @see ch.flatland.cdo.model.config.ConfigPackage#getJson()
@@ -316,5 +317,31 @@ public interface Json extends EObject {
 	 * @generated
 	 */
 	void setXtraces(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Cdometa</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Cdometa</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Cdometa</em>' attribute.
+	 * @see #setCdometa(boolean)
+	 * @see ch.flatland.cdo.model.config.ConfigPackage#getJson_Cdometa()
+	 * @model unique="false" required="true"
+	 * @generated
+	 */
+	boolean isCdometa();
+
+	/**
+	 * Sets the value of the '{@link ch.flatland.cdo.model.config.Json#isCdometa <em>Cdometa</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Cdometa</em>' attribute.
+	 * @see #isCdometa()
+	 * @generated
+	 */
+	void setCdometa(boolean value);
 
 } // Json

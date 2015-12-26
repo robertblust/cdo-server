@@ -80,7 +80,7 @@ public abstract class FLIDImpl extends CDOObjectImpl implements FLID {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final Long VERSION_EDEFAULT = null;
+	protected static final String VERSION_EDEFAULT = null;
 
 	/**
 	 * The default value of the '{@link #getCDate() <em>CDate</em>}' attribute.
@@ -208,8 +208,8 @@ public abstract class FLIDImpl extends CDOObjectImpl implements FLID {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Long getVersion() {
-		return (Long)eDynamicGet(BasePackage.FLID__VERSION, BasePackage.Literals.FLID__VERSION, true, true);
+	public String getVersion() {
+		return (String)eDynamicGet(BasePackage.FLID__VERSION, BasePackage.Literals.FLID__VERSION, true, true);
 	}
 
 	/**
@@ -217,7 +217,7 @@ public abstract class FLIDImpl extends CDOObjectImpl implements FLID {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setVersion(Long newVersion) {
+	public void setVersion(String newVersion) {
 		eDynamicSet(BasePackage.FLID__VERSION, BasePackage.Literals.FLID__VERSION, newVersion);
 	}
 
@@ -318,7 +318,7 @@ public abstract class FLIDImpl extends CDOObjectImpl implements FLID {
 				setRevisionID((String)newValue);
 				return;
 			case BasePackage.FLID__VERSION:
-				setVersion((Long)newValue);
+				setVersion((String)newValue);
 				return;
 			case BasePackage.FLID__CDATE:
 				setCDate((Date)newValue);

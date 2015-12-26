@@ -30,6 +30,7 @@ class Json {
 	boolean[1] xlinks
 	boolean[1] arrayaccessor
 	boolean[1] xtraces
+	boolean[1] cdometa
 }
 
 class Repository {

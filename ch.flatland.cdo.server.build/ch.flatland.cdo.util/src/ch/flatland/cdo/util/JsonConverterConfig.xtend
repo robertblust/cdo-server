@@ -26,6 +26,10 @@ class JsonConverterConfig {
 	var links = false
 	var xlinks = false
 	var xtraces = false
+	var cdometa = false
+	var crefslevel = 0
+	var rrefslevel = 0
+	var refslevel = 0
 	var serverAddress = ""
 	var repoName = ""
 
@@ -48,7 +52,11 @@ class JsonConverterConfig {
 		links = req.links
 		xlinks = req.xlinks
 		xtraces = req.xtraces
+		cdometa = req.cdoMeta
 		repoName = req.repoName
+		crefslevel = req.crefsLevel
+		rrefslevel = req.rrefsLevel
+		refslevel = req.refsLevel
 	}
 
 	new() {
@@ -66,6 +74,13 @@ class JsonConverterConfig {
 			return true
 		}
 		return arrayAccessor
+	}
+	
+	def isCdoMeta() {
+		if(CONFIG.json.cdometa) {
+			return true
+		}
+		return cdometa
 	}
 
 	def isReferences() {
@@ -87,6 +102,18 @@ class JsonConverterConfig {
 			return true
 		}
 		return creferences
+	}
+	
+	def getCrefsLevel() {
+		return crefslevel
+	}
+	
+	def getRrefsLevel() {
+		return rrefslevel
+	}
+	
+	def getRefsLevel() {
+		return refslevel
 	}
 	
 	def isXreferences() {

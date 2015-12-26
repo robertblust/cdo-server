@@ -165,6 +165,7 @@ class ServerConfig {
 			xlinks = false
 			arrayaccessor = false
 			xtraces = false
+			cdometa = false
 		]
 
 		config.binding = binding

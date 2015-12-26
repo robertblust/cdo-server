@@ -26,7 +26,7 @@
 					<testSuite>ch.flatland.cdo.server.product.test.ProductTestSuite</testSuite>
 					<systemProperties>
 						<org.eclipse.equinox.http.jetty.http.port>8888</org.eclipse.equinox.http.jetty.http.port>
-						<org.eclipse.equinox.http.jetty.http.host>0.0.0.0</org.eclipse.equinox.http.jetty.http.host>
+						<org.eclipse.equinox.http.jetty.http.host>127.0.0.1</org.eclipse.equinox.http.jetty.http.host>
 						<org.eclipse.equinox.http.jetty.http.enabled>true</org.eclipse.equinox.http.jetty.http.enabled>
 						<org.eclipse.equinox.http.jetty.context.sessioninactiveinterval>180</org.eclipse.equinox.http.jetty.context.sessioninactiveinterval>
 						<logback.configurationFile>${project.build.directory}/work/logback.xml</logback.configurationFile>

@@ -14,7 +14,9 @@ import com.google.gson.GsonBuilder
 import com.google.gson.JsonElement
 import com.google.gson.JsonParser
 import java.io.BufferedReader
+import java.io.InputStream
 import java.io.InputStreamReader
+import org.apache.commons.codec.binary.Base64
 import org.apache.commons.httpclient.HttpClient
 import org.apache.commons.httpclient.HttpMethodBase
 import org.apache.commons.httpclient.methods.DeleteMethod
@@ -22,6 +24,7 @@ import org.apache.commons.httpclient.methods.GetMethod
 import org.apache.commons.httpclient.methods.PostMethod
 import org.apache.commons.httpclient.methods.PutMethod
 import org.apache.commons.httpclient.methods.StringRequestEntity
+import org.apache.commons.io.IOUtils
 
 class RestUtil {
 
@@ -105,8 +108,20 @@ class RestUtil {
 	def getSelfLink(JsonElement response) {
 		response.asJsonObject.getAsJsonObject("data").getAsJsonObject("_links").getAsJsonObject("self").getAsJsonPrimitive("href").asString
 	}
+	
+	def getEAttribute(JsonElement object, String attributeName) {
+		object.asJsonObject.getAsJsonObject("attributes").getAsJsonPrimitive(attributeName)
+	}
+	
+	def getEReference(JsonElement object, String referenceName) {
+		object.asJsonObject.getAsJsonObject("references").get(referenceName)
+	}
 
 	def toPrettyJson(JsonElement jsonElement) {
 		builder.toJson(jsonElement)
+	}
+	
+	def asBase64String(InputStream inputStream) {
+		Base64.encodeBase64String(IOUtils.toByteArray(inputStream))
 	}
 }
