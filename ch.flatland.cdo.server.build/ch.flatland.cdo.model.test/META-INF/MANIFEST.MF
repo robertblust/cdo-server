@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Flatland CDO Test Model
 Bundle-SymbolicName: ch.flatland.cdo.model.test;singleton:=true
-Bundle-Version: 1.2.0.M001
+Bundle-Version: 1.4.2.M001
 Bundle-ClassPath: .
 Bundle-Vendor: flatland.ch
 Bundle-Localization: plugin

@@ -2,7 +2,7 @@
 <feature
       id="ch.flatland.cdo.server.feature"
       label="Flatland CDO Server Feature"
-      version="1.2.0.M001"
+      version="1.4.2.M001"
       provider-name="flatland.ch">
 
    <description url="http://www.example.com/description">

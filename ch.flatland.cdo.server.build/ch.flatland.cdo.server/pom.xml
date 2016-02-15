@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>ch.flatland</groupId>
 		<artifactId>ch.flatland.cdo.server.build</artifactId>
-		<version>1.2.0.M001</version>
+		<version>1.4.2.M001</version>
 	</parent>
 
 	<artifactId>ch.flatland.cdo.server</artifactId>
@@ -80,8 +80,8 @@
 								<mapping>
 									<directory>/opt/cdo/bin</directory>
 									<filemode>750</filemode>
-									<username>root</username>
-									<groupname>root</groupname>
+									<username>fluser</username>
+									<groupname>flgroup</groupname>
 									<sources>
 										<source>
 											<location>target/products/ch.flatland.cdo.server/linux/gtk/x86_64</location>
@@ -92,8 +92,8 @@
 								<mapping>
 									<directory>/opt/cdo</directory>
 									<filemode>750</filemode>
-									<username>root</username>
-									<groupname>root</groupname>
+									<username>fluser</username>
+									<groupname>flgroup</groupname>
 									<sources>
 										<source>
 											<location>x86_64</location>
@@ -105,8 +105,8 @@
 									<directory>/opt/cdo</directory>
 									<configuration>true</configuration>
 									<filemode>750</filemode>
-									<username>root</username>
-									<groupname>root</groupname>
+									<username>fluser</username>
+									<groupname>flgroup</groupname>
 									<sources>
 										<source>
 											<location>target/products/ch.flatland.cdo.server/linux/gtk/x86_64</location>

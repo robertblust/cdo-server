@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<version>1.2.0.M001</version>
+	<version>1.4.2.M001</version>
 	<groupId>ch.flatland</groupId>
 	<artifactId>ch.flatland.cdo.server.build</artifactId>
 	<packaging>pom</packaging>
@@ -99,7 +99,7 @@
 						<artifact>
 							<groupId>ch.flatland</groupId>
 							<artifactId>ch.flatland.cdo.targetplatform</artifactId>
-							<version>1.2.0.M001</version>
+							<version>1.4.2.M001</version>
 						</artifact>
 					</target>
 					<environments>

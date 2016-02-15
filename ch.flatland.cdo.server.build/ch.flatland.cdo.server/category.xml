@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/ch.flatland.cdo.model.feature_1.2.0.M001.jar" id="ch.flatland.cdo.model.feature" version="1.2.0.M001">
+   <feature url="features/ch.flatland.cdo.model.feature_1.4.2.M001.jar" id="ch.flatland.cdo.model.feature" version="1.4.2.M001">
       <category name="CDOServer"/>
    </feature>
-   <feature url="features/ch.flatland.cdo.server.feature_1.2.0.M001.jar" id="ch.flatland.cdo.server.feature" version="1.2.0.M001">
+   <feature url="features/ch.flatland.cdo.server.feature_1.4.2.M001.jar" id="ch.flatland.cdo.server.feature" version="1.4.2.M001">
       <category name="CDOServer"/>
    </feature>
-   <feature url="features/ch.flatland.cdo.server.ldap.feature_1.2.0.M001.jar" id="ch.flatland.cdo.server.ldap.feature" version="1.2.0.M001">
+   <feature url="features/ch.flatland.cdo.server.ldap.feature_1.4.2.M001.jar" id="ch.flatland.cdo.server.ldap.feature" version="1.4.2.M001">
       <category name="CDOServer"/>
    </feature>
-   <feature url="features/ch.flatland.cdo.service.feature_1.2.0.M001.jar" id="ch.flatland.cdo.service.feature" version="1.2.0.M001">
+   <feature url="features/ch.flatland.cdo.service.feature_1.4.2.M001.jar" id="ch.flatland.cdo.service.feature" version="1.4.2.M001">
       <category name="CDOServer"/>
    </feature>
-   <feature url="features/ch.flatland.cdo.util.feature_1.2.0.M001.jar" id="ch.flatland.cdo.util.feature" version="1.2.0.M001">
+   <feature url="features/ch.flatland.cdo.util.feature_1.4.2.M001.jar" id="ch.flatland.cdo.util.feature" version="1.4.2.M001">
       <category name="CDOServer"/>
    </feature>
    <category-def name="CDOServer" label="CDOServer"/>

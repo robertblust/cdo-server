@@ -84,7 +84,8 @@ class DataStore {
 		val packageInfo = packageRegistry.getPackageInfo(eClass.EPackage)
 
 		if(packageInfo == null || packageInfo.packageUnit.state == State.NEW) {
-			throw new Exception("No data store for type '" + eClass.type + "' created yet")
+			return 0L
+			//throw new Exception("No data store for type '" + eClass.type + "' created yet")
 		}
 
 		val mappingStrategy = view.mappingStrategy

@@ -28,8 +28,7 @@
 		        "repositoryName": "repo",
 		        "connectionUrl":"jdbc:h2:database/",
 		        "userName": "cdo",
-		        "password": "cdo",
-		        "temporality": false
+		        "password": "cdo"
 		    },
 		    "authenticator": {
 		        "authenticatorType": "NONE"

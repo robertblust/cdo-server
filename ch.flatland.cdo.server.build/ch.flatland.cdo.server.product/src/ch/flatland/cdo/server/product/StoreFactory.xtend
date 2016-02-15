@@ -12,6 +12,8 @@ package ch.flatland.cdo.server.product
 
 import ch.flatland.cdo.model.config.StoreType
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource
+import java.io.FileInputStream
+import java.util.Properties
 import oracle.jdbc.pool.OracleDataSource
 import org.eclipse.emf.cdo.server.db.CDODBUtil
 import org.eclipse.emf.cdo.server.db.mapping.IMappingStrategy
@@ -27,6 +29,10 @@ class StoreFactory {
 
 	val static CONNECTION_URL_PARAM = "ch.flatland.cdo.db.connection.url"
 	val static CONNECTION_URL = System.getProperty(CONNECTION_URL_PARAM)
+	val static CONNECTION_PASSWORD_PARAM = "ch.flatland.cdo.db.connection.passwd"
+	val static CONNECTION_PASSWORD = System.getProperty(CONNECTION_PASSWORD_PARAM)
+	val static CONNECTION_PROPS_PARAM = "ch.flatland.cdo.server.db.connection"
+	val static CONNECTION_PROPS = System.getProperty(CONNECTION_PROPS_PARAM)
 
 	private new() {
 		// hide constructor
@@ -130,8 +136,24 @@ class StoreFactory {
 		} else {
 			dataSource.URL = CONFIG.getByName(repoName).dataStore.connectionUrl
 		}
-		if(CONFIG.getByName(repoName).dataStore.userName != null && CONFIG.getByName(repoName).dataStore.userName.length > 0 && CONFIG.getByName(repoName).dataStore.password != null && CONFIG.getByName(repoName).dataStore.password.length > 0) {
+
+		if(CONNECTION_PROPS != null && CONNECTION_PROPS.length > 0) {
+			val pin = new FileInputStream(CONNECTION_PROPS)
+			val cnxProp = new Properties()
+			cnxProp.load(pin)
+			dataSource.setConnectionProperties(cnxProp)
+			if (logger.isDebugEnabled) {
+				dataSource.connectionProperties?.keySet.forEach[
+					logger.debug("Key {} Value {}", it, dataSource.connectionProperties.get(it))
+				]
+			}
+		}
+
+		if(CONFIG.getByName(repoName).dataStore.userName != null && CONFIG.getByName(repoName).dataStore.userName.length > 0) {
 			dataSource.user = CONFIG.getByName(repoName).dataStore.userName
+		}
+		if (CONNECTION_PASSWORD != null && CONNECTION_PASSWORD.length > 0) {
+			dataSource.password = CONNECTION_PASSWORD
 		}
 		if(CONFIG.getByName(repoName).dataStore.password != null && CONFIG.getByName(repoName).dataStore.password.length > 0) {
 			dataSource.password = CONFIG.getByName(repoName).dataStore.password

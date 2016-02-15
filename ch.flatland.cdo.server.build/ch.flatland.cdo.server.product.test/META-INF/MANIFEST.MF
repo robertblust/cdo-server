@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Flatland CDO Server Intergration Test
 Bundle-SymbolicName: ch.flatland.cdo.server.product.test
-Bundle-Version: 1.2.0.M001
+Bundle-Version: 1.4.2.M001
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-Vendor: flatland.ch
 Require-Bundle: org.junit;bundle-version="4.12.0",
