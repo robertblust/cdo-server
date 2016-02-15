@@ -1,4 +1,6 @@
 {
+	"readOnlyPassword": "password",
+	"adminPassword": "password",
 	 "binding": {
         "tcp": true,
         "tcpPort": "2036",
@@ -6,7 +8,7 @@
         "checkSSL": false
     },
     "json": {
-        "validate": true,
+        "validate": false,
         "rreferences": false,
         "creferences": false,
         "xreferences": false,
@@ -16,7 +18,8 @@
         "links": false,
         "xlinks": false,
         "xtraces": false,
-        "arrayaccessor": false
+        "arrayaccessor": false,
+        "cdometa": false
     },		
 	"repositories" : [
 		{
@@ -25,7 +28,8 @@
 		        "repositoryName": "repo",
 		        "connectionUrl":"jdbc:h2:database/",
 		        "userName": "cdo",
-		        "password": "cdo"
+		        "password": "cdo",
+		        "temporality": false
 		    },
 		    "authenticator": {
 		        "authenticatorType": "NONE"

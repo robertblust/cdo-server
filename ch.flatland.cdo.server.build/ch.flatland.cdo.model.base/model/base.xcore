@@ -333,6 +333,11 @@ interface FLRateable {
 	}
 }
 
+
+interface FLGlobalSearch {
+	
+}
+
 class FLRating {
 	@GenModel(propertyCategory="Rating")
 	FLRatingType[1] ratingType

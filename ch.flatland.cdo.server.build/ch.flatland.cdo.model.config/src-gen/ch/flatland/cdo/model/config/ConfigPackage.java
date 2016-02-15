@@ -443,13 +443,22 @@ public interface ConfigPackage extends EPackage {
 	int DATA_STORE__PASSWORD = 4;
 
 	/**
+	 * The feature id for the '<em><b>Temporality</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_STORE__TEMPORALITY = 5;
+
+	/**
 	 * The number of structural features of the '<em>Data Store</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_STORE_FEATURE_COUNT = 5;
+	int DATA_STORE_FEATURE_COUNT = 6;
 
 	/**
 	 * The number of operations of the '<em>Data Store</em>' class.
@@ -914,6 +923,17 @@ public interface ConfigPackage extends EPackage {
 	EAttribute getDataStore_Password();
 
 	/**
+	 * Returns the meta object for the attribute '{@link ch.flatland.cdo.model.config.DataStore#isTemporality <em>Temporality</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Temporality</em>'.
+	 * @see ch.flatland.cdo.model.config.DataStore#isTemporality()
+	 * @see #getDataStore()
+	 * @generated
+	 */
+	EAttribute getDataStore_Temporality();
+
+	/**
 	 * Returns the meta object for class '{@link ch.flatland.cdo.model.config.Authenticator <em>Authenticator</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1291,6 +1311,14 @@ public interface ConfigPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute DATA_STORE__PASSWORD = eINSTANCE.getDataStore_Password();
+
+		/**
+		 * The meta object literal for the '<em><b>Temporality</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATA_STORE__TEMPORALITY = eINSTANCE.getDataStore_Temporality();
 
 		/**
 		 * The meta object literal for the '{@link ch.flatland.cdo.model.config.impl.AuthenticatorImpl <em>Authenticator</em>}' class.

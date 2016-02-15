@@ -181,8 +181,9 @@ class ServerConfig {
 			storeType = StoreType.H2
 			repositoryName = "repo"
 			connectionUrl = "jdbc:h2:database/"
-			userName = "cdo"
-			password = "cdo"
+			userName = null
+			password = null
+			temporality = true
 		]
 
 		val authenticator = ConfigFactory.eINSTANCE.createAuthenticator => [

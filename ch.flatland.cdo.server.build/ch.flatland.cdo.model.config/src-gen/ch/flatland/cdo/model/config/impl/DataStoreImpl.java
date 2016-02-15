@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link ch.flatland.cdo.model.config.impl.DataStoreImpl#getConnectionUrl <em>Connection Url</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.config.impl.DataStoreImpl#getUserName <em>User Name</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.config.impl.DataStoreImpl#getPassword <em>Password</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.config.impl.DataStoreImpl#isTemporality <em>Temporality</em>}</li>
  * </ul>
  *
  * @generated
@@ -130,6 +131,26 @@ public class DataStoreImpl extends MinimalEObjectImpl.Container implements DataS
 	 * @ordered
 	 */
 	protected String password = PASSWORD_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isTemporality() <em>Temporality</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isTemporality()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean TEMPORALITY_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isTemporality() <em>Temporality</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isTemporality()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean temporality = TEMPORALITY_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -260,6 +281,27 @@ public class DataStoreImpl extends MinimalEObjectImpl.Container implements DataS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isTemporality() {
+		return temporality;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTemporality(boolean newTemporality) {
+		boolean oldTemporality = temporality;
+		temporality = newTemporality;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ConfigPackage.DATA_STORE__TEMPORALITY, oldTemporality, temporality));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -273,6 +315,8 @@ public class DataStoreImpl extends MinimalEObjectImpl.Container implements DataS
 				return getUserName();
 			case ConfigPackage.DATA_STORE__PASSWORD:
 				return getPassword();
+			case ConfigPackage.DATA_STORE__TEMPORALITY:
+				return isTemporality();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -299,6 +343,9 @@ public class DataStoreImpl extends MinimalEObjectImpl.Container implements DataS
 				return;
 			case ConfigPackage.DATA_STORE__PASSWORD:
 				setPassword((String)newValue);
+				return;
+			case ConfigPackage.DATA_STORE__TEMPORALITY:
+				setTemporality((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -327,6 +374,9 @@ public class DataStoreImpl extends MinimalEObjectImpl.Container implements DataS
 			case ConfigPackage.DATA_STORE__PASSWORD:
 				setPassword(PASSWORD_EDEFAULT);
 				return;
+			case ConfigPackage.DATA_STORE__TEMPORALITY:
+				setTemporality(TEMPORALITY_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -349,6 +399,8 @@ public class DataStoreImpl extends MinimalEObjectImpl.Container implements DataS
 				return USER_NAME_EDEFAULT == null ? userName != null : !USER_NAME_EDEFAULT.equals(userName);
 			case ConfigPackage.DATA_STORE__PASSWORD:
 				return PASSWORD_EDEFAULT == null ? password != null : !PASSWORD_EDEFAULT.equals(password);
+			case ConfigPackage.DATA_STORE__TEMPORALITY:
+				return temporality != TEMPORALITY_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -373,6 +425,8 @@ public class DataStoreImpl extends MinimalEObjectImpl.Container implements DataS
 		result.append(userName);
 		result.append(", password: ");
 		result.append(password);
+		result.append(", temporality: ");
+		result.append(temporality);
 		result.append(')');
 		return result.toString();
 	}

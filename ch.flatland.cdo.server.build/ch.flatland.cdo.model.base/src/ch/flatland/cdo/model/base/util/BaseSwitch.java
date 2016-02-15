@@ -142,6 +142,12 @@ public class BaseSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case BasePackage.FL_GLOBAL_SEARCH: {
+				FLGlobalSearch flGlobalSearch = (FLGlobalSearch)theEObject;
+				T result = caseFLGlobalSearch(flGlobalSearch);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case BasePackage.FL_RATING: {
 				FLRating flRating = (FLRating)theEObject;
 				T result = caseFLRating(flRating);
@@ -311,6 +317,21 @@ public class BaseSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseFLRateable(FLRateable object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>FL Global Search</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>FL Global Search</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseFLGlobalSearch(FLGlobalSearch object) {
 		return null;
 	}
 

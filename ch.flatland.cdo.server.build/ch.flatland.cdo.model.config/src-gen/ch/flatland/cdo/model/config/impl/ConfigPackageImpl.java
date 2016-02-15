@@ -461,6 +461,15 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getDataStore_Temporality() {
+		return (EAttribute)dataStoreEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getAuthenticator() {
 		return authenticatorEClass;
 	}
@@ -585,6 +594,7 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 		createEAttribute(dataStoreEClass, DATA_STORE__CONNECTION_URL);
 		createEAttribute(dataStoreEClass, DATA_STORE__USER_NAME);
 		createEAttribute(dataStoreEClass, DATA_STORE__PASSWORD);
+		createEAttribute(dataStoreEClass, DATA_STORE__TEMPORALITY);
 
 		authenticatorEClass = createEClass(AUTHENTICATOR);
 		createEAttribute(authenticatorEClass, AUTHENTICATOR__AUTHENTICATOR_TYPE);
@@ -670,6 +680,7 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 		initEAttribute(getDataStore_ConnectionUrl(), theEcorePackage.getEString(), "connectionUrl", null, 1, 1, DataStore.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDataStore_UserName(), theEcorePackage.getEString(), "userName", null, 1, 1, DataStore.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDataStore_Password(), theEcorePackage.getEString(), "password", null, 1, 1, DataStore.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDataStore_Temporality(), theEcorePackage.getEBoolean(), "temporality", null, 0, 1, DataStore.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(authenticatorEClass, Authenticator.class, "Authenticator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getAuthenticator_AuthenticatorType(), this.getAuthenticatorType(), "authenticatorType", null, 1, 1, Authenticator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -687,6 +698,7 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 		addEEnumLiteral(authenticatorTypeEEnum, AuthenticatorType.CDO);
 		addEEnumLiteral(authenticatorTypeEEnum, AuthenticatorType.LDAP);
 		addEEnumLiteral(authenticatorTypeEEnum, AuthenticatorType.NONE);
+		addEEnumLiteral(authenticatorTypeEEnum, AuthenticatorType.SIMPLE);
 
 		// Create resource
 		createResource(eNS_URI);

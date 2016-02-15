@@ -11,6 +11,7 @@
 package ch.flatland.cdo.service.ping
 
 import ch.flatland.cdo.service.ping.model.PingBean
+import ch.flatland.cdo.service.repoaccess.Options
 import ch.flatland.cdo.util.AbstractServlet
 import ch.flatland.cdo.util.JsonConverter
 import ch.flatland.cdo.util.Response
@@ -27,5 +28,9 @@ class PingServlet extends AbstractServlet {
 		val version = PingPlugin.^default.bundle.version
 		val ping = new PingBean("Flatland CDO Server", version.toString).safeToJson
 		resp.writeResponse(req, ping)
+	}
+	
+	override protected doOptions(HttpServletRequest req, HttpServletResponse resp) {
+		(new Options).run(req, resp)
 	}
 }

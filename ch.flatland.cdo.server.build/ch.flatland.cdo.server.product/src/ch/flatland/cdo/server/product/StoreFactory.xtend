@@ -25,6 +25,9 @@ class StoreFactory {
 
 	val static logger = LoggerFactory.getLogger(StoreFactory)
 
+	val static CONNECTION_URL_PARAM = "ch.flatland.cdo.db.connection.url"
+	val static CONNECTION_URL = System.getProperty(CONNECTION_URL_PARAM)
+
 	private new() {
 		// hide constructor
 	}
@@ -36,6 +39,7 @@ class StoreFactory {
 				Create Data Store 'ch.flatland.cdo.server.product'
 				Repository Name: «repoName»
 				Store type: «CONFIG.getByName(repoName).dataStore.storeType»
+				Temporality: «CONFIG.getByName(repoName).dataStore.temporality»
 				Connection url: «CONFIG.getByName(repoName).dataStore.connectionUrl»
 				--------------------------------------------------------------------
 		'''
@@ -57,15 +61,19 @@ class StoreFactory {
 	def private static createH2Store(String repoName) {
 
 		// db mapping strategy 
-		val mappingStrategy = CDODBUtil.createHorizontalMappingStrategy(true, false)
+		val mappingStrategy = CDODBUtil.createHorizontalMappingStrategy(CONFIG.getByName(repoName).dataStore.temporality, false)
 		val mappingProps = newHashMap(IMappingStrategy.PROP_QUALIFIED_NAMES -> "true")
 		mappingStrategy.properties = mappingProps
 
 		// db datasource
 		val dataSource = new JdbcDataSource
 		dataSource.URL = CONFIG.getByName(repoName).dataStore.connectionUrl + CONFIG.getByName(repoName).dataStore.repositoryName
-		dataSource.user = CONFIG.getByName(repoName).dataStore.userName
-		dataSource.password = CONFIG.getByName(repoName).dataStore.password
+		if(CONFIG.getByName(repoName).dataStore.userName != null && CONFIG.getByName(repoName).dataStore.userName.length > 0) {
+			dataSource.user = CONFIG.getByName(repoName).dataStore.userName
+		}
+		if(CONFIG.getByName(repoName).dataStore.password != null && CONFIG.getByName(repoName).dataStore.password.length > 0) {
+			dataSource.password = CONFIG.getByName(repoName).dataStore.password
+		}
 
 		// dbAdapter
 		val dbAdapter = DBUtil.getDBAdapter("h2")
@@ -80,15 +88,23 @@ class StoreFactory {
 	def private static createMySQLStore(String repoName) {
 
 		// db mapping strategy 
-		val mappingStrategy = CDODBUtil.createHorizontalMappingStrategy(true, false)
+		val mappingStrategy = CDODBUtil.createHorizontalMappingStrategy(CONFIG.getByName(repoName).dataStore.temporality, false)
 		val mappingProps = newHashMap(IMappingStrategy.PROP_QUALIFIED_NAMES -> "true")
 		mappingStrategy.properties = mappingProps
 
 		// db datasource
 		val dataSource = new MysqlDataSource
-		dataSource.URL = CONFIG.getByName(repoName).dataStore.connectionUrl
-		dataSource.user = CONFIG.getByName(repoName).dataStore.userName
-		dataSource.password = CONFIG.getByName(repoName).dataStore.password
+		if(CONNECTION_URL != null && CONNECTION_URL.length > 0) {
+			dataSource.URL = CONNECTION_URL
+		} else {
+			dataSource.URL = CONFIG.getByName(repoName).dataStore.connectionUrl
+		}
+		if(CONFIG.getByName(repoName).dataStore.userName != null && CONFIG.getByName(repoName).dataStore.userName.length > 0) {
+			dataSource.user = CONFIG.getByName(repoName).dataStore.userName
+		}
+		if(CONFIG.getByName(repoName).dataStore.password != null && CONFIG.getByName(repoName).dataStore.password.length > 0) {
+			dataSource.password = CONFIG.getByName(repoName).dataStore.password
+		}
 
 		// dbAdapter
 		val dbAdapter = new CustomMYSQLAdapter
@@ -103,15 +119,23 @@ class StoreFactory {
 	def private static createOracleStore(String repoName) {
 
 		// db mapping strategy 
-		val mappingStrategy = CDODBUtil.createHorizontalMappingStrategy(true, false)
+		val mappingStrategy = CDODBUtil.createHorizontalMappingStrategy(CONFIG.getByName(repoName).dataStore.temporality, false)
 		val mappingProps = newHashMap(IMappingStrategy.PROP_QUALIFIED_NAMES -> "false")
 		mappingStrategy.properties = mappingProps
 
 		// db datasource
 		val dataSource = new OracleDataSource
-		dataSource.URL = CONFIG.getByName(repoName).dataStore.connectionUrl
-		dataSource.user = CONFIG.getByName(repoName).dataStore.userName
-		dataSource.password = CONFIG.getByName(repoName).dataStore.password
+		if(CONNECTION_URL != null && CONNECTION_URL.length > 0) {
+			dataSource.URL = CONNECTION_URL
+		} else {
+			dataSource.URL = CONFIG.getByName(repoName).dataStore.connectionUrl
+		}
+		if(CONFIG.getByName(repoName).dataStore.userName != null && CONFIG.getByName(repoName).dataStore.userName.length > 0 && CONFIG.getByName(repoName).dataStore.password != null && CONFIG.getByName(repoName).dataStore.password.length > 0) {
+			dataSource.user = CONFIG.getByName(repoName).dataStore.userName
+		}
+		if(CONFIG.getByName(repoName).dataStore.password != null && CONFIG.getByName(repoName).dataStore.password.length > 0) {
+			dataSource.password = CONFIG.getByName(repoName).dataStore.password
+		}
 
 		// dbAdapter
 		val dbAdapter = new CustomOracleAdapter(CONFIG.getByName(repoName).dataStore.userName)

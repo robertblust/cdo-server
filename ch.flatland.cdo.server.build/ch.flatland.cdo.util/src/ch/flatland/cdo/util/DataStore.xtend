@@ -15,6 +15,7 @@ import java.math.BigDecimal
 import java.util.Date
 import java.util.List
 import javax.servlet.http.HttpServletRequest
+import org.eclipse.emf.cdo.CDOObject
 import org.eclipse.emf.cdo.common.model.CDOPackageUnit.State
 import org.eclipse.emf.cdo.server.IRepository
 import org.eclipse.emf.cdo.server.db.IDBStore
@@ -41,13 +42,18 @@ class DataStore {
 		logger.debug("Execute '{}' query '{}'", queryTimestamp.queryLanguage, queryTimestamp.queryString)
 		var Long timeStamp = null
 		if(view.mappingStrategy.store.DBAdapter.name == "oracle") {
-			val bigDecimal = queryTimestamp.getResult(BigDecimal)?.get(0)
-			if(bigDecimal != null) {
-				timeStamp = Long.parseLong(bigDecimal.longValue.toString)
+			val result = queryTimestamp.getResult(BigDecimal)
+			if(result.size > 0) {
+				val bigDecimal = queryTimestamp.getResult(BigDecimal).get(0)
+				if(bigDecimal != null) {
+					timeStamp = Long.parseLong(bigDecimal.longValue.toString)
+				}
 			}
-
 		} else {
-			timeStamp = queryTimestamp.getResult(Long)?.get(0)
+			val result = queryTimestamp.getResult(Long)
+			if(result.size > 0) {
+				timeStamp = queryTimestamp.getResult(Long).get(0)
+			}
 		}
 		if(timeStamp != null) {
 			val queryComment = view.createQuery("sql", "SELECT COMMIT_COMMENT FROM CDO_COMMIT_INFOS WHERE COMMIT_TIME = '" + timeStamp + "'")
@@ -133,6 +139,29 @@ class DataStore {
 
 	def countType(CDOView view, EClass eClass, HttpServletRequest req) {
 		return countType(view, eClass, null, req)
+	}
+
+	def findByCDOiD(CDOView view, String cdoId, HttpServletRequest req) {
+		logger.debug("findByCDOiD '{}'", cdoId)
+
+		val results = newArrayList
+		val query = view.createQuery("sql", "SELECT CDO_ID FROM CDO_OBJECTS WHERE CDO_ID = '" + cdoId + "'")
+		logger.debug("Execute '{}' query '{}'", query.queryLanguage, query.queryString)
+		val iterator = query.getResultAsync(typeof(CDOObject))
+		while(iterator.hasNext) {
+			val obj = iterator.next
+			results.add(obj)
+			logger.debug("Found '{}'", obj)
+
+		}
+		iterator.close
+
+		// TODO check other opinion 'Rest Standards'
+		// Should an empty list be returned or Status 404?
+		if(results.size == 1) {
+			return results.get(0)
+		}
+		return null
 	}
 
 	def findByType(CDOView view, EClass eClass, FLQuery flQuery, HttpServletRequest req) {

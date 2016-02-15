@@ -1836,6 +1836,34 @@ public interface BasePackage extends EPackage {
 	int FL_NAMEABLE_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link ch.flatland.cdo.model.base.FLGlobalSearch <em>FL Global Search</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see ch.flatland.cdo.model.base.FLGlobalSearch
+	 * @see ch.flatland.cdo.model.base.impl.BasePackageImpl#getFLGlobalSearch()
+	 * @generated
+	 */
+	int FL_GLOBAL_SEARCH = 10;
+
+	/**
+	 * The number of structural features of the '<em>FL Global Search</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_GLOBAL_SEARCH_FEATURE_COUNT = 0;
+
+	/**
+	 * The number of operations of the '<em>FL Global Search</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FL_GLOBAL_SEARCH_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link ch.flatland.cdo.model.base.impl.FLRatingImpl <em>FL Rating</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1843,7 +1871,7 @@ public interface BasePackage extends EPackage {
 	 * @see ch.flatland.cdo.model.base.impl.BasePackageImpl#getFLRating()
 	 * @generated
 	 */
-	int FL_RATING = 10;
+	int FL_RATING = 11;
 
 	/**
 	 * The feature id for the '<em><b>Rating Type</b></em>' attribute.
@@ -1880,7 +1908,7 @@ public interface BasePackage extends EPackage {
 	 * @see ch.flatland.cdo.model.base.impl.BasePackageImpl#getFLTrace()
 	 * @generated
 	 */
-	int FL_TRACE = 11;
+	int FL_TRACE = 12;
 
 	/**
 	 * The feature id for the '<em><b>Trace Type</b></em>' attribute.
@@ -1926,7 +1954,7 @@ public interface BasePackage extends EPackage {
 	 * @see ch.flatland.cdo.model.base.impl.BasePackageImpl#getFLProperty()
 	 * @generated
 	 */
-	int FL_PROPERTY = 12;
+	int FL_PROPERTY = 13;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1972,7 +2000,7 @@ public interface BasePackage extends EPackage {
 	 * @see ch.flatland.cdo.model.base.impl.BasePackageImpl#getFLRatingType()
 	 * @generated
 	 */
-	int FL_RATING_TYPE = 13;
+	int FL_RATING_TYPE = 14;
 
 	/**
 	 * The meta object id for the '{@link ch.flatland.cdo.model.base.FLTraceType <em>FL Trace Type</em>}' enum.
@@ -1982,7 +2010,7 @@ public interface BasePackage extends EPackage {
 	 * @see ch.flatland.cdo.model.base.impl.BasePackageImpl#getFLTraceType()
 	 * @generated
 	 */
-	int FL_TRACE_TYPE = 14;
+	int FL_TRACE_TYPE = 15;
 
 
 	/**
@@ -1993,7 +2021,7 @@ public interface BasePackage extends EPackage {
 	 * @see ch.flatland.cdo.model.base.impl.BasePackageImpl#getFLIdentifier()
 	 * @generated
 	 */
-	int FL_IDENTIFIER = 15;
+	int FL_IDENTIFIER = 16;
 
 	/**
 	 * The meta object id for the '<em>FL Markdown</em>' data type.
@@ -2003,7 +2031,7 @@ public interface BasePackage extends EPackage {
 	 * @see ch.flatland.cdo.model.base.impl.BasePackageImpl#getFLMarkdown()
 	 * @generated
 	 */
-	int FL_MARKDOWN = 16;
+	int FL_MARKDOWN = 17;
 
 	/**
 	 * Returns the meta object for class '{@link ch.flatland.cdo.model.base.FLID <em>FLID</em>}'.
@@ -2857,6 +2885,16 @@ public interface BasePackage extends EPackage {
 	EOperation getFLRateable__CountDislikes();
 
 	/**
+	 * Returns the meta object for class '{@link ch.flatland.cdo.model.base.FLGlobalSearch <em>FL Global Search</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>FL Global Search</em>'.
+	 * @see ch.flatland.cdo.model.base.FLGlobalSearch
+	 * @generated
+	 */
+	EClass getFLGlobalSearch();
+
+	/**
 	 * Returns the meta object for class '{@link ch.flatland.cdo.model.base.FLRating <em>FL Rating</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3658,6 +3696,16 @@ public interface BasePackage extends EPackage {
 		 * @generated
 		 */
 		EOperation FL_RATEABLE___COUNT_DISLIKES = eINSTANCE.getFLRateable__CountDislikes();
+
+		/**
+		 * The meta object literal for the '{@link ch.flatland.cdo.model.base.FLGlobalSearch <em>FL Global Search</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see ch.flatland.cdo.model.base.FLGlobalSearch
+		 * @see ch.flatland.cdo.model.base.impl.BasePackageImpl#getFLGlobalSearch()
+		 * @generated
+		 */
+		EClass FL_GLOBAL_SEARCH = eINSTANCE.getFLGlobalSearch();
 
 		/**
 		 * The meta object literal for the '{@link ch.flatland.cdo.model.base.impl.FLRatingImpl <em>FL Rating</em>}' class.

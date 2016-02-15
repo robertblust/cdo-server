@@ -12,10 +12,13 @@ import org.eclipse.net4j.db.ddl.IDBSchema;
 import org.eclipse.net4j.db.ddl.IDBTable;
 import org.eclipse.net4j.db.oracle.OracleAdapter;
 import org.eclipse.net4j.internal.db.ddl.DBField;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @SuppressWarnings("restriction")
 public class CustomOracleAdapter extends OracleAdapter {
 
+	private Logger logger = LoggerFactory.getLogger(CustomOracleAdapter.class);
 	private String user;
 
 	public CustomOracleAdapter(String user) {
@@ -30,6 +33,7 @@ public class CustomOracleAdapter extends OracleAdapter {
 
 			DatabaseMetaData metaData = connection.getMetaData();
 			Set<String> schemaNames = DBUtil.getAllSchemaNames(metaData);
+
 			if (!schemaNames.contains(schemaName)) {
 				schemaName = null;
 			}
@@ -37,9 +41,9 @@ public class CustomOracleAdapter extends OracleAdapter {
 			ResultSet tables = readTables(connection, metaData, schemaName);
 			while (tables.next()) {
 				String tableName = tables.getString(3);
-
-				IDBTable table = schema.addTable(tableName);
 				String dbUser = tables.getString(2);
+
+				logger.debug("TO Check Table {}, User {}", tableName, dbUser);
 
 				/**
 				 * BUG FIX CSMDR-32 Only if the DB schema is owned by the user
@@ -48,6 +52,9 @@ public class CustomOracleAdapter extends OracleAdapter {
 				 * toLowerCase cause oracle user names are not case sensitive.
 				 */
 				if (dbUser.toLowerCase().equals(user.toLowerCase())) {
+					
+					IDBTable table = schema.addTable(tableName);
+					logger.debug("TO Process Table {}, User {}", table, dbUser);
 					readFields(connection, table);
 					readIndices(connection, metaData, table, schemaName);
 				}

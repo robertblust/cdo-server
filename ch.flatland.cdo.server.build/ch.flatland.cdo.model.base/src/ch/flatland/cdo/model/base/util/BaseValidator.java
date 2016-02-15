@@ -108,6 +108,8 @@ public class BaseValidator extends EObjectValidator {
 				return validateFLNameable((FLNameable)value, diagnostics, context);
 			case BasePackage.FL_RATEABLE:
 				return validateFLRateable((FLRateable)value, diagnostics, context);
+			case BasePackage.FL_GLOBAL_SEARCH:
+				return validateFLGlobalSearch((FLGlobalSearch)value, diagnostics, context);
 			case BasePackage.FL_RATING:
 				return validateFLRating((FLRating)value, diagnostics, context);
 			case BasePackage.FL_TRACE:
@@ -215,6 +217,15 @@ public class BaseValidator extends EObjectValidator {
 	 */
 	public boolean validateFLRateable(FLRateable flRateable, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)flRateable, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateFLGlobalSearch(FLGlobalSearch flGlobalSearch, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint((EObject)flGlobalSearch, diagnostics, context);
 	}
 
 	/**

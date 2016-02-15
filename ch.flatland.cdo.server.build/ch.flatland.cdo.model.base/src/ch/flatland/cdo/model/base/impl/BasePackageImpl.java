@@ -8,6 +8,7 @@ import ch.flatland.cdo.model.base.FLCommentable;
 import ch.flatland.cdo.model.base.FLComment;
 import ch.flatland.cdo.model.base.FLDataProvider;
 import ch.flatland.cdo.model.base.FLElement;
+import ch.flatland.cdo.model.base.FLGlobalSearch;
 import ch.flatland.cdo.model.base.FLHyperLink;
 import ch.flatland.cdo.model.base.FLPackage;
 import ch.flatland.cdo.model.base.FLProperty;
@@ -108,6 +109,13 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 	 * @generated
 	 */
 	private EClass flRateableEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass flGlobalSearchEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -947,6 +955,15 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getFLGlobalSearch() {
+		return flGlobalSearchEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getFLRating() {
 		return flRatingEClass;
 	}
@@ -1167,6 +1184,8 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 		createEOperation(flRateableEClass, FL_RATEABLE___COUNT_LIKES);
 		createEOperation(flRateableEClass, FL_RATEABLE___COUNT_DISLIKES);
 
+		flGlobalSearchEClass = createEClass(FL_GLOBAL_SEARCH);
+
 		flRatingEClass = createEClass(FL_RATING);
 		createEAttribute(flRatingEClass, FL_RATING__RATING_TYPE);
 
@@ -1342,6 +1361,8 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 		initEOperation(getFLRateable__CountLikes(), theEcorePackage.getEInt(), "countLikes", 0, 1, !IS_UNIQUE, IS_ORDERED);
 
 		initEOperation(getFLRateable__CountDislikes(), theEcorePackage.getEInt(), "countDislikes", 0, 1, !IS_UNIQUE, IS_ORDERED);
+
+		initEClass(flGlobalSearchEClass, FLGlobalSearch.class, "FLGlobalSearch", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(flRatingEClass, FLRating.class, "FLRating", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getFLRating_RatingType(), this.getFLRatingType(), "ratingType", null, 1, 1, FLRating.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

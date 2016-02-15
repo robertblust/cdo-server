@@ -17,7 +17,7 @@
 	</properties>
 
 	<modules>
-		
+
 		<!-- Flatland CDO base -->
 		<module>ch.flatland.cdo.model.base</module>
 		<module>ch.flatland.cdo.model.base.edit</module>

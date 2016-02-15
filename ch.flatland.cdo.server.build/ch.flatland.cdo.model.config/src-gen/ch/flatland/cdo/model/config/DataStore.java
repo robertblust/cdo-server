@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link ch.flatland.cdo.model.config.DataStore#getConnectionUrl <em>Connection Url</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.config.DataStore#getUserName <em>User Name</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.config.DataStore#getPassword <em>Password</em>}</li>
+ *   <li>{@link ch.flatland.cdo.model.config.DataStore#isTemporality <em>Temporality</em>}</li>
  * </ul>
  *
  * @see ch.flatland.cdo.model.config.ConfigPackage#getDataStore()
@@ -157,5 +158,31 @@ public interface DataStore extends EObject {
 	 * @generated
 	 */
 	void setPassword(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Temporality</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Temporality</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Temporality</em>' attribute.
+	 * @see #setTemporality(boolean)
+	 * @see ch.flatland.cdo.model.config.ConfigPackage#getDataStore_Temporality()
+	 * @model unique="false"
+	 * @generated
+	 */
+	boolean isTemporality();
+
+	/**
+	 * Sets the value of the '{@link ch.flatland.cdo.model.config.DataStore#isTemporality <em>Temporality</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Temporality</em>' attribute.
+	 * @see #isTemporality()
+	 * @generated
+	 */
+	void setTemporality(boolean value);
 
 } // DataStore

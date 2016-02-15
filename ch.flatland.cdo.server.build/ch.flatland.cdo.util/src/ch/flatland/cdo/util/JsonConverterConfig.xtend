@@ -82,6 +82,10 @@ class JsonConverterConfig {
 		}
 		return cdometa
 	}
+	
+	def setCdoMeta(boolean state) {
+		cdometa = state
+	}
 
 	def isReferences() {
 		if(CONFIG.json.rreferences || CONFIG.json.creferences) {
@@ -95,6 +99,10 @@ class JsonConverterConfig {
 			return true
 		}
 		return rreferences
+	}
+	
+	def setRreferences(boolean state) {
+		rreferences = state
 	}
 	
 	def isCreferences() {

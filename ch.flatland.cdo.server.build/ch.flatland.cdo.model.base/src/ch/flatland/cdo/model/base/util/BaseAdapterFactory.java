@@ -108,6 +108,10 @@ public class BaseAdapterFactory extends AdapterFactoryImpl {
 				return createFLRateableAdapter();
 			}
 			@Override
+			public Adapter caseFLGlobalSearch(FLGlobalSearch object) {
+				return createFLGlobalSearchAdapter();
+			}
+			@Override
 			public Adapter caseFLRating(FLRating object) {
 				return createFLRatingAdapter();
 			}
@@ -276,6 +280,20 @@ public class BaseAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createFLRateableAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ch.flatland.cdo.model.base.FLGlobalSearch <em>FL Global Search</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ch.flatland.cdo.model.base.FLGlobalSearch
+	 * @generated
+	 */
+	public Adapter createFLGlobalSearchAdapter() {
 		return null;
 	}
 

@@ -44,6 +44,7 @@ class DataStore {
 	String[1] connectionUrl
 	String[1] userName
 	String[1] password
+	boolean temporality
 }
 
 enum StoreType {
@@ -63,4 +64,5 @@ enum AuthenticatorType {
 	CDO = 0
 	LDAP = 1
 	NONE = 2
+	SIMPLE = 3
 }

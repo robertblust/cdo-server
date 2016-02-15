@@ -24,6 +24,8 @@ class Response {
 	val static ACCESS_CONTROL_ALLOW_CREDENTIALS = "Access-Control-Allow-Credentials"
 	val static ACCESS_CONTROL_ALLOW_METHODS = "Access-Control-Allow-Methods"
 	val static ACCESS_CONTROL_ALLOW_HEADERS = "Access-Control-Allow-Headers"
+	val static CACHE_CONTROL_HEADER = "Cache-Control"
+
 	val static HEADER_ORIGIN = "Origin"
 
 	val extension Request = new Request
@@ -64,6 +66,7 @@ class Response {
 		resp.addHeader(ACCESS_CONTROL_ALLOW_CREDENTIALS, "true")
 		resp.addHeader(ACCESS_CONTROL_ALLOW_METHODS, "GET, POST, PUT, DELETE")
 		resp.addHeader(ACCESS_CONTROL_ALLOW_HEADERS, "Origin, X-Requested-With, Content-Type, Accept, Authorization, Cookie")
+		resp.addHeader(CACHE_CONTROL_HEADER, "no-cache")
 	}
 
 	def statusForbidden(HttpServletResponse resp) {
