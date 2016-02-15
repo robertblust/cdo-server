@@ -302,8 +302,8 @@
 	</build>
 
 	<scm>
-		<url>scm:git:git@github.com/3AP-AG/cs-cdo-server.git</url>
-		<connection>scm:git:git@github.com/3AP-AG/cs-cdo-server.git</connection>
-		<developerConnection>scm:git:git@github.com/3AP-AG/cs-cdo-server.git</developerConnection>
+		<url>scm:git:git@github.com/robertblust/cdo-server.git</url>
+		<connection>scm:git:git@github.com/robertblust/cdo-server.git</connection>
+		<developerConnection>scm:git:git@github.com/robertblust/cdo-server.git</developerConnection>
 	</scm>
 </project>
