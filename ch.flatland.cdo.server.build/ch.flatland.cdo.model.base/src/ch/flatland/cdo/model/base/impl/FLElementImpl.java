@@ -23,6 +23,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.function.Consumer;
 import org.eclipse.emf.cdo.CDOObject;
 import org.eclipse.emf.cdo.CDOObjectReference;
 import org.eclipse.emf.cdo.view.CDOView;
@@ -37,7 +38,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
-import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 
 /**
  * <!-- begin-user-doc -->
@@ -697,8 +697,8 @@ public abstract class FLElementImpl extends FLIDImpl implements FLElement {
 			}
 		};
 		Iterable<FLTrace> _filter = IterableExtensions.<FLTrace>filter(_traces, _function);
-		final Procedure1<FLTrace> _function_1 = new Procedure1<FLTrace>() {
-			public void apply(final FLTrace it) {
+		final Consumer<FLTrace> _function_1 = new Consumer<FLTrace>() {
+			public void accept(final FLTrace it) {
 				FLElement _target = it.getTarget();
 				boolean _notEquals = (!Objects.equal(_target, null));
 				if (_notEquals) {
@@ -707,7 +707,7 @@ public abstract class FLElementImpl extends FLIDImpl implements FLElement {
 				}
 			}
 		};
-		IterableExtensions.<FLTrace>forEach(_filter, _function_1);
+		_filter.forEach(_function_1);
 		return targets;
 	}
 
@@ -718,21 +718,10 @@ public abstract class FLElementImpl extends FLIDImpl implements FLElement {
 	 */
 	public EList<FLElement> fromFilterByType(final FLTraceType traceType) {
 		final BasicEList<FLElement> sources = new BasicEList<FLElement>();
-		boolean _and = false;
-		CDOView _cdoView = this.cdoView();
-		boolean _notEquals = (!Objects.equal(_cdoView, null));
-		if (!_notEquals) {
-			_and = false;
-		} else {
-			CDOView _cdoView_1 = this.cdoView();
-			boolean _isClosed = _cdoView_1.isClosed();
-			boolean _not = (!_isClosed);
-			_and = _not;
-		}
-		if (_and) {
-			CDOView _cdoView_2 = this.cdoView();
+		if (((!Objects.equal(this.cdoView(), null)) && (!this.cdoView().isClosed()))) {
+			CDOView _cdoView = this.cdoView();
 			ArrayList<EReference> _newArrayList = CollectionLiterals.<EReference>newArrayList(Literals.FL_TRACE__TARGET);
-			final List<CDOObjectReference> xrefs = _cdoView_2.queryXRefs(this, ((EReference[])org.eclipse.xtext.xbase.lib.Conversions.unwrapArray(_newArrayList, EReference.class)));
+			final List<CDOObjectReference> xrefs = _cdoView.queryXRefs(this, ((EReference[])org.eclipse.xtext.xbase.lib.Conversions.unwrapArray(_newArrayList, EReference.class)));
 			for (final CDOObjectReference x : xrefs) {
 				{
 					CDOObject _sourceObject = x.getSourceObject();
@@ -756,25 +745,14 @@ public abstract class FLElementImpl extends FLIDImpl implements FLElement {
 	 */
 	public <T extends EObject> EList<T> resolveXrefs(final EReference eRefernce, final Class<T> classType) {
 		final BasicEList<T> elements = new BasicEList<T>();
-		boolean _and = false;
-		CDOView _cdoView = this.cdoView();
-		boolean _notEquals = (!Objects.equal(_cdoView, null));
-		if (!_notEquals) {
-			_and = false;
-		} else {
-			CDOView _cdoView_1 = this.cdoView();
-			boolean _isClosed = _cdoView_1.isClosed();
-			boolean _not = (!_isClosed);
-			_and = _not;
-		}
-		if (_and) {
+		if (((!Objects.equal(this.cdoView(), null)) && (!this.cdoView().isClosed()))) {
 			final ArrayList<EReference> eRefs = CollectionLiterals.<EReference>newArrayList();
-			boolean _notEquals_1 = (!Objects.equal(eRefernce, null));
-			if (_notEquals_1) {
+			boolean _notEquals = (!Objects.equal(eRefernce, null));
+			if (_notEquals) {
 				eRefs.add(eRefernce);
 			}
-			CDOView _cdoView_2 = this.cdoView();
-			final List<CDOObjectReference> xrefs = _cdoView_2.queryXRefs(this, ((EReference[])org.eclipse.xtext.xbase.lib.Conversions.unwrapArray(eRefs, EReference.class)));
+			CDOView _cdoView = this.cdoView();
+			final List<CDOObjectReference> xrefs = _cdoView.queryXRefs(this, ((EReference[])org.eclipse.xtext.xbase.lib.Conversions.unwrapArray(eRefs, EReference.class)));
 			for (final CDOObjectReference x : xrefs) {
 				{
 					CDOObject _sourceObject = x.getSourceObject();

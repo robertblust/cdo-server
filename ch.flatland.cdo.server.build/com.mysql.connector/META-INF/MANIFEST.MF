@@ -4,7 +4,7 @@ Bundle-Name: MySql JDBC Connector
 Bundle-SymbolicName: com.mysql.connector
 Bundle-Version: 5.0.8
 Bundle-Vendor: oracle.com
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ClassPath: mysql-connector-java-5.0.8-bin.jar,
  .
 Export-Package: com.mysql.jdbc,
