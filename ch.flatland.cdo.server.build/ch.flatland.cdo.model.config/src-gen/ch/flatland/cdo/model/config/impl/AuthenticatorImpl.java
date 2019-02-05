@@ -310,7 +310,7 @@ public class AuthenticatorImpl extends MinimalEObjectImpl.Container implements A
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (authenticatorType: ");
 		result.append(authenticatorType);
 		result.append(", connectionUrl: ");

@@ -53,7 +53,7 @@ public interface FLRateable extends CDOObject {
 	 * @return the value of the '<em>Likes</em>' attribute.
 	 * @see ch.flatland.cdo.model.base.BasePackage#getFLRateable_Likes()
 	 * @model unique="false" transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Rating' get='return this.countLikes();'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Rating'"
 	 * @generated
 	 */
 	int getLikes();
@@ -69,7 +69,7 @@ public interface FLRateable extends CDOObject {
 	 * @return the value of the '<em>Dislikes</em>' attribute.
 	 * @see ch.flatland.cdo.model.base.BasePackage#getFLRateable_Dislikes()
 	 * @model unique="false" transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Rating' get='return this.countDislikes();'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Rating'"
 	 * @generated
 	 */
 	int getDislikes();
@@ -78,7 +78,6 @@ public interface FLRateable extends CDOObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model unique="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='<%org.eclipse.emf.common.util.EList%><<%ch.flatland.cdo.model.base.FLRating%>> _ratings = this.getRatings();\nfinal <%org.eclipse.xtext.xbase.lib.Functions.Function1%><<%ch.flatland.cdo.model.base.FLRating%>, <%java.lang.Boolean%>> _function = new <%org.eclipse.xtext.xbase.lib.Functions.Function1%><<%ch.flatland.cdo.model.base.FLRating%>, <%java.lang.Boolean%>>()\n{\n\tpublic <%java.lang.Boolean%> apply(final <%ch.flatland.cdo.model.base.FLRating%> it)\n\t{\n\t\t<%ch.flatland.cdo.model.base.FLRatingType%> _ratingType = it.getRatingType();\n\t\treturn <%java.lang.Boolean%>.valueOf(<%com.google.common.base.Objects%>.equal(_ratingType, <%ch.flatland.cdo.model.base.FLRatingType%>.LIKE));\n\t}\n};\n<%java.lang.Iterable%><<%ch.flatland.cdo.model.base.FLRating%>> _filter = <%org.eclipse.xtext.xbase.lib.IterableExtensions%>.<<%ch.flatland.cdo.model.base.FLRating%>>filter(_ratings, _function);\nreturn <%org.eclipse.xtext.xbase.lib.IterableExtensions%>.size(_filter);'"
 	 * @generated
 	 */
 	int countLikes();
@@ -87,7 +86,6 @@ public interface FLRateable extends CDOObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model unique="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='<%org.eclipse.emf.common.util.EList%><<%ch.flatland.cdo.model.base.FLRating%>> _ratings = this.getRatings();\nfinal <%org.eclipse.xtext.xbase.lib.Functions.Function1%><<%ch.flatland.cdo.model.base.FLRating%>, <%java.lang.Boolean%>> _function = new <%org.eclipse.xtext.xbase.lib.Functions.Function1%><<%ch.flatland.cdo.model.base.FLRating%>, <%java.lang.Boolean%>>()\n{\n\tpublic <%java.lang.Boolean%> apply(final <%ch.flatland.cdo.model.base.FLRating%> it)\n\t{\n\t\t<%ch.flatland.cdo.model.base.FLRatingType%> _ratingType = it.getRatingType();\n\t\treturn <%java.lang.Boolean%>.valueOf(<%com.google.common.base.Objects%>.equal(_ratingType, <%ch.flatland.cdo.model.base.FLRatingType%>.DISLIKE));\n\t}\n};\n<%java.lang.Iterable%><<%ch.flatland.cdo.model.base.FLRating%>> _filter = <%org.eclipse.xtext.xbase.lib.IterableExtensions%>.<<%ch.flatland.cdo.model.base.FLRating%>>filter(_ratings, _function);\nreturn <%org.eclipse.xtext.xbase.lib.IterableExtensions%>.size(_filter);'"
 	 * @generated
 	 */
 	int countDislikes();

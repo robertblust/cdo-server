@@ -15,7 +15,6 @@ import ch.flatland.cdo.model.base.BasePackage;
 import ch.flatland.cdo.model.base.FLElement;
 import ch.flatland.cdo.model.base.FLPackage;
 import com.google.common.collect.Iterables;
-import java.lang.Iterable;
 import java.lang.reflect.InvocationTargetException;
 
 /**
@@ -87,9 +86,7 @@ public class FLPackageImpl extends FLElementImpl implements FLPackage {
 	 * @generated
 	 */
 	public EList<FLPackage> filterSubPackages() {
-		EList<FLElement> _elements = this.getElements();
-		Iterable<FLPackage> _filter = Iterables.<FLPackage>filter(_elements, FLPackage.class);
-		return ECollections.<FLPackage>asEList(((FLPackage[])org.eclipse.xtext.xbase.lib.Conversions.unwrapArray(_filter, FLPackage.class)));
+		return ECollections.<FLPackage>asEList(((FLPackage[])org.eclipse.xtext.xbase.lib.Conversions.unwrapArray(Iterables.<FLPackage>filter(this.getElements(), FLPackage.class), FLPackage.class)));
 	}
 
 	/**
@@ -98,14 +95,12 @@ public class FLPackageImpl extends FLElementImpl implements FLPackage {
 	 * @generated
 	 */
 	public EList<FLElement> filterContents() {
-		EList<FLElement> _elements = this.getElements();
 		final Function1<FLElement, Boolean> _function = new Function1<FLElement, Boolean>() {
 			public Boolean apply(final FLElement it) {
 				return Boolean.valueOf((!(it instanceof FLPackage)));
 			}
 		};
-		Iterable<FLElement> _filter = IterableExtensions.<FLElement>filter(_elements, _function);
-		return ECollections.<FLElement>asEList(((FLElement[])org.eclipse.xtext.xbase.lib.Conversions.unwrapArray(_filter, FLElement.class)));
+		return ECollections.<FLElement>asEList(((FLElement[])org.eclipse.xtext.xbase.lib.Conversions.unwrapArray(IterableExtensions.<FLElement>filter(this.getElements(), _function), FLElement.class)));
 	}
 
 	/**

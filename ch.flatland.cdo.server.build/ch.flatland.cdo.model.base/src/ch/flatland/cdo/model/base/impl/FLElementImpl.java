@@ -18,7 +18,6 @@ import ch.flatland.cdo.model.base.FLHyperLinkable;
 import ch.flatland.cdo.model.base.FLNameable;
 import ch.flatland.cdo.model.base.FLRateable;
 import com.google.common.base.Objects;
-import java.lang.Iterable;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -26,7 +25,6 @@ import java.util.List;
 import java.util.function.Consumer;
 import org.eclipse.emf.cdo.CDOObject;
 import org.eclipse.emf.cdo.CDOObjectReference;
-import org.eclipse.emf.cdo.view.CDOView;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -689,25 +687,22 @@ public abstract class FLElementImpl extends FLIDImpl implements FLElement {
 	 */
 	public EList<FLElement> toFilterByType(final FLTraceType traceType) {
 		final BasicEList<FLElement> targets = new BasicEList<FLElement>();
-		EList<FLTrace> _traces = this.getTraces();
 		final Function1<FLTrace, Boolean> _function = new Function1<FLTrace, Boolean>() {
 			public Boolean apply(final FLTrace it) {
 				FLTraceType _traceType = it.getTraceType();
 				return Boolean.valueOf(Objects.equal(_traceType, traceType));
 			}
 		};
-		Iterable<FLTrace> _filter = IterableExtensions.<FLTrace>filter(_traces, _function);
 		final Consumer<FLTrace> _function_1 = new Consumer<FLTrace>() {
 			public void accept(final FLTrace it) {
 				FLElement _target = it.getTarget();
 				boolean _notEquals = (!Objects.equal(_target, null));
 				if (_notEquals) {
-					FLElement _target_1 = it.getTarget();
-					targets.add(_target_1);
+					targets.add(it.getTarget());
 				}
 			}
 		};
-		_filter.forEach(_function_1);
+		IterableExtensions.<FLTrace>filter(this.getTraces(), _function).forEach(_function_1);
 		return targets;
 	}
 
@@ -719,9 +714,8 @@ public abstract class FLElementImpl extends FLIDImpl implements FLElement {
 	public EList<FLElement> fromFilterByType(final FLTraceType traceType) {
 		final BasicEList<FLElement> sources = new BasicEList<FLElement>();
 		if (((!Objects.equal(this.cdoView(), null)) && (!this.cdoView().isClosed()))) {
-			CDOView _cdoView = this.cdoView();
-			ArrayList<EReference> _newArrayList = CollectionLiterals.<EReference>newArrayList(Literals.FL_TRACE__TARGET);
-			final List<CDOObjectReference> xrefs = _cdoView.queryXRefs(this, ((EReference[])org.eclipse.xtext.xbase.lib.Conversions.unwrapArray(_newArrayList, EReference.class)));
+			final List<CDOObjectReference> xrefs = this.cdoView().queryXRefs(this, 
+				((EReference[])org.eclipse.xtext.xbase.lib.Conversions.unwrapArray(CollectionLiterals.<EReference>newArrayList(Literals.FL_TRACE__TARGET), EReference.class)));
 			for (final CDOObjectReference x : xrefs) {
 				{
 					CDOObject _sourceObject = x.getSourceObject();
@@ -751,12 +745,10 @@ public abstract class FLElementImpl extends FLIDImpl implements FLElement {
 			if (_notEquals) {
 				eRefs.add(eRefernce);
 			}
-			CDOView _cdoView = this.cdoView();
-			final List<CDOObjectReference> xrefs = _cdoView.queryXRefs(this, ((EReference[])org.eclipse.xtext.xbase.lib.Conversions.unwrapArray(eRefs, EReference.class)));
+			final List<CDOObjectReference> xrefs = this.cdoView().queryXRefs(this, ((EReference[])org.eclipse.xtext.xbase.lib.Conversions.unwrapArray(eRefs, EReference.class)));
 			for (final CDOObjectReference x : xrefs) {
 				{
-					CDOObject _sourceObject = x.getSourceObject();
-					final T element = classType.cast(_sourceObject);
+					final T element = classType.cast(x.getSourceObject());
 					elements.add(element);
 				}
 			}
@@ -770,15 +762,13 @@ public abstract class FLElementImpl extends FLIDImpl implements FLElement {
 	 * @generated
 	 */
 	public int countLikes() {
-		EList<FLRating> _ratings = this.getRatings();
 		final Function1<FLRating, Boolean> _function = new Function1<FLRating, Boolean>() {
 			public Boolean apply(final FLRating it) {
 				FLRatingType _ratingType = it.getRatingType();
 				return Boolean.valueOf(Objects.equal(_ratingType, FLRatingType.LIKE));
 			}
 		};
-		Iterable<FLRating> _filter = IterableExtensions.<FLRating>filter(_ratings, _function);
-		return IterableExtensions.size(_filter);
+		return IterableExtensions.size(IterableExtensions.<FLRating>filter(this.getRatings(), _function));
 	}
 
 	/**
@@ -787,15 +777,13 @@ public abstract class FLElementImpl extends FLIDImpl implements FLElement {
 	 * @generated
 	 */
 	public int countDislikes() {
-		EList<FLRating> _ratings = this.getRatings();
 		final Function1<FLRating, Boolean> _function = new Function1<FLRating, Boolean>() {
 			public Boolean apply(final FLRating it) {
 				FLRatingType _ratingType = it.getRatingType();
 				return Boolean.valueOf(Objects.equal(_ratingType, FLRatingType.DISLIKE));
 			}
 		};
-		Iterable<FLRating> _filter = IterableExtensions.<FLRating>filter(_ratings, _function);
-		return IterableExtensions.size(_filter);
+		return IterableExtensions.size(IterableExtensions.<FLRating>filter(this.getRatings(), _function));
 	}
 
 	/**

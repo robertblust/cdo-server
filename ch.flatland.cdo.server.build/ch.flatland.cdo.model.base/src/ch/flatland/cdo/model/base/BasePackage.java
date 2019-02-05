@@ -3003,6 +3003,10 @@ public interface BasePackage extends EPackage {
 	 * Returns the meta object for data type '{@link java.lang.String <em>FL Identifier</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * Technical, machine readable identifier should only contain
+     * characters matching <em><b>[a-zA-Z0-9_\-\.]*</em></b>
+     * <!-- end-model-doc -->
 	 * @return the meta object for data type '<em>FL Identifier</em>'.
 	 * @see java.lang.String
 	 * @model instanceClass="java.lang.String"
@@ -3015,6 +3019,10 @@ public interface BasePackage extends EPackage {
 	 * Returns the meta object for data type '{@link java.lang.String <em>FL Markdown</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * Markdown formatted string
+     * http://en.wikipedia.org/wiki/Markdown
+     * <!-- end-model-doc -->
 	 * @return the meta object for data type '<em>FL Markdown</em>'.
 	 * @see java.lang.String
 	 * @model instanceClass="java.lang.String"

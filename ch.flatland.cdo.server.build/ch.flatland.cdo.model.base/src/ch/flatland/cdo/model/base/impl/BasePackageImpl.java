@@ -194,7 +194,7 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
+	 *
 	 * <p>This method is used to initialize {@link BasePackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
@@ -208,7 +208,8 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 		if (isInited) return (BasePackage)EPackage.Registry.INSTANCE.getEPackage(BasePackage.eNS_URI);
 
 		// Obtain or create and register package
-		BasePackageImpl theBasePackage = (BasePackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof BasePackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new BasePackageImpl());
+		Object registeredBasePackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		BasePackageImpl theBasePackage = registeredBasePackage instanceof BasePackageImpl ? (BasePackageImpl)registeredBasePackage : new BasePackageImpl();
 
 		isInited = true;
 
@@ -223,7 +224,7 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 
 		// Register package validator
 		EValidator.Registry.INSTANCE.put
-			(theBasePackage, 
+			(theBasePackage,
 			 new EValidator.Descriptor() {
 				 public EValidator getEValidator() {
 					 return BaseValidator.INSTANCE;
@@ -233,7 +234,6 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 		// Mark meta-data to indicate it can't be changed
 		theBasePackage.freeze();
 
-  
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(BasePackage.eNS_URI, theBasePackage);
 		return theBasePackage;
@@ -1420,12 +1420,12 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 	 * @generated
 	 */
 	protected void createXcoreAnnotations() {
-		String source = "http://www.eclipse.org/emf/2011/Xcore";	
+		String source = "http://www.eclipse.org/emf/2011/Xcore";
 		addAnnotation
-		  (this, 
-		   source, 
+		  (this,
+		   source,
 		   new String[] {
-			 "DBStore", "http://www.eclipse.org/CDO/DBStore"
+			   "DBStore", "http://www.eclipse.org/CDO/DBStore"
 		   });
 	}
 
@@ -1436,30 +1436,30 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 	 * @generated
 	 */
 	protected void createDBStoreAnnotations() {
-		String source = "http://www.eclipse.org/CDO/DBStore";	
+		String source = "http://www.eclipse.org/CDO/DBStore";
 		addAnnotation
-		  (getFLComment_Comment(), 
-		   source, 
+		  (getFLComment_Comment(),
+		   source,
 		   new String[] {
-			 "columnType", "CLOB"
-		   });	
+			   "columnType", "CLOB"
+		   });
 		addAnnotation
-		  (getFLNameable_Description(), 
-		   source, 
+		  (getFLNameable_Description(),
+		   source,
 		   new String[] {
-			 "columnType", "CLOB"
-		   });	
+			   "columnType", "CLOB"
+		   });
 		addAnnotation
-		  (getFLNameable_LongDescription(), 
-		   source, 
+		  (getFLNameable_LongDescription(),
+		   source,
 		   new String[] {
-			 "columnType", "CLOB"
-		   });	
+			   "columnType", "CLOB"
+		   });
 		addAnnotation
-		  (getFLNameable_Notes(), 
-		   source, 
+		  (getFLNameable_Notes(),
+		   source,
 		   new String[] {
-			 "columnType", "CLOB"
+			   "columnType", "CLOB"
 		   });
 	}
 
@@ -1470,13 +1470,13 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 	 * @generated
 	 */
 	protected void createExtendedMetaDataAnnotations() {
-		String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData";	
+		String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData";
 		addAnnotation
-		  (flIdentifierEDataType, 
-		   source, 
+		  (flIdentifierEDataType,
+		   source,
 		   new String[] {
-			 "name", "FLIdentifier",
-			 "pattern", "[a-zA-Z0-9_\\-\\.]*"
+			   "name", "FLIdentifier",
+			   "pattern", "[a-zA-Z0-9_\\-\\.]*"
 		   });
 	}
 

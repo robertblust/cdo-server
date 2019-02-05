@@ -1032,4 +1032,10 @@ public class SecurityManager extends Lifecycle implements InternalSecurityManage
 			return null;
 		}
 	}
+
+	@Override
+	public CDOCommitInfo modifyWithInfo(RealmOperation operation, boolean waitUntilReadable) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
