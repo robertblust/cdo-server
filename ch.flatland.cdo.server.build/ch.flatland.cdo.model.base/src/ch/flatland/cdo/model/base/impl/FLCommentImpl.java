@@ -8,7 +8,6 @@ import ch.flatland.cdo.model.base.FLComment;
 import ch.flatland.cdo.model.base.FLRating;
 import ch.flatland.cdo.model.base.FLRatingType;
 import com.google.common.base.Objects;
-import java.lang.Iterable;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
@@ -162,15 +161,13 @@ public class FLCommentImpl extends CDOObjectImpl implements FLComment {
 	 * @generated
 	 */
 	public int countLikes() {
-		EList<FLRating> _ratings = this.getRatings();
 		final Function1<FLRating, Boolean> _function = new Function1<FLRating, Boolean>() {
 			public Boolean apply(final FLRating it) {
 				FLRatingType _ratingType = it.getRatingType();
 				return Boolean.valueOf(Objects.equal(_ratingType, FLRatingType.LIKE));
 			}
 		};
-		Iterable<FLRating> _filter = IterableExtensions.<FLRating>filter(_ratings, _function);
-		return IterableExtensions.size(_filter);
+		return IterableExtensions.size(IterableExtensions.<FLRating>filter(this.getRatings(), _function));
 	}
 
 	/**
@@ -179,15 +176,13 @@ public class FLCommentImpl extends CDOObjectImpl implements FLComment {
 	 * @generated
 	 */
 	public int countDislikes() {
-		EList<FLRating> _ratings = this.getRatings();
 		final Function1<FLRating, Boolean> _function = new Function1<FLRating, Boolean>() {
 			public Boolean apply(final FLRating it) {
 				FLRatingType _ratingType = it.getRatingType();
 				return Boolean.valueOf(Objects.equal(_ratingType, FLRatingType.DISLIKE));
 			}
 		};
-		Iterable<FLRating> _filter = IterableExtensions.<FLRating>filter(_ratings, _function);
-		return IterableExtensions.size(_filter);
+		return IterableExtensions.size(IterableExtensions.<FLRating>filter(this.getRatings(), _function));
 	}
 
 	/**

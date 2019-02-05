@@ -725,7 +725,7 @@ public class JsonImpl extends MinimalEObjectImpl.Container implements Json {
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (validate: ");
 		result.append(validate);
 		result.append(", rreferences: ");

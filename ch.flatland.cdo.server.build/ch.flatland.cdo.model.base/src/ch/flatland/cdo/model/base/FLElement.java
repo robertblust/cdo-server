@@ -208,7 +208,7 @@ public interface FLElement extends FLID, FLNameable, FLRateable, FLCommentable, 
 	 * @return the value of the '<em>Trace To Own</em>' reference list.
 	 * @see ch.flatland.cdo.model.base.BasePackage#getFLElement_TraceToOwn()
 	 * @model transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Trace to' get='return this.toFilterByType(<%ch.flatland.cdo.model.base.FLTraceType%>.OWN);'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Trace to'"
 	 * @generated
 	 */
 	EList<FLElement> getTraceToOwn();
@@ -225,7 +225,7 @@ public interface FLElement extends FLID, FLNameable, FLRateable, FLCommentable, 
 	 * @return the value of the '<em>Trace To Use</em>' reference list.
 	 * @see ch.flatland.cdo.model.base.BasePackage#getFLElement_TraceToUse()
 	 * @model transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Trace to' get='return this.toFilterByType(<%ch.flatland.cdo.model.base.FLTraceType%>.USE);'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Trace to'"
 	 * @generated
 	 */
 	EList<FLElement> getTraceToUse();
@@ -242,7 +242,7 @@ public interface FLElement extends FLID, FLNameable, FLRateable, FLCommentable, 
 	 * @return the value of the '<em>Trace To Realize</em>' reference list.
 	 * @see ch.flatland.cdo.model.base.BasePackage#getFLElement_TraceToRealize()
 	 * @model transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Trace to' get='return this.toFilterByType(<%ch.flatland.cdo.model.base.FLTraceType%>.REALIZE);'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Trace to'"
 	 * @generated
 	 */
 	EList<FLElement> getTraceToRealize();
@@ -259,7 +259,7 @@ public interface FLElement extends FLID, FLNameable, FLRateable, FLCommentable, 
 	 * @return the value of the '<em>Trace To Specify</em>' reference list.
 	 * @see ch.flatland.cdo.model.base.BasePackage#getFLElement_TraceToSpecify()
 	 * @model transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Trace to' get='return this.toFilterByType(<%ch.flatland.cdo.model.base.FLTraceType%>.SPECIFY);'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Trace to'"
 	 * @generated
 	 */
 	EList<FLElement> getTraceToSpecify();
@@ -276,7 +276,7 @@ public interface FLElement extends FLID, FLNameable, FLRateable, FLCommentable, 
 	 * @return the value of the '<em>Trace To Implement</em>' reference list.
 	 * @see ch.flatland.cdo.model.base.BasePackage#getFLElement_TraceToImplement()
 	 * @model transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Trace to' get='return this.toFilterByType(<%ch.flatland.cdo.model.base.FLTraceType%>.IMPLEMENT);'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Trace to'"
 	 * @generated
 	 */
 	EList<FLElement> getTraceToImplement();
@@ -293,7 +293,7 @@ public interface FLElement extends FLID, FLNameable, FLRateable, FLCommentable, 
 	 * @return the value of the '<em>Trace To Elaborate</em>' reference list.
 	 * @see ch.flatland.cdo.model.base.BasePackage#getFLElement_TraceToElaborate()
 	 * @model transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Trace to' get='return this.toFilterByType(<%ch.flatland.cdo.model.base.FLTraceType%>.ELABORATE);'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Trace to'"
 	 * @generated
 	 */
 	EList<FLElement> getTraceToElaborate();
@@ -310,7 +310,7 @@ public interface FLElement extends FLID, FLNameable, FLRateable, FLCommentable, 
 	 * @return the value of the '<em>Trace To Derive</em>' reference list.
 	 * @see ch.flatland.cdo.model.base.BasePackage#getFLElement_TraceToDerive()
 	 * @model transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Trace to' get='return this.toFilterByType(<%ch.flatland.cdo.model.base.FLTraceType%>.DERIVE);'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Trace to'"
 	 * @generated
 	 */
 	EList<FLElement> getTraceToDerive();
@@ -327,7 +327,7 @@ public interface FLElement extends FLID, FLNameable, FLRateable, FLCommentable, 
 	 * @return the value of the '<em>Trace To Validate</em>' reference list.
 	 * @see ch.flatland.cdo.model.base.BasePackage#getFLElement_TraceToValidate()
 	 * @model transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Trace to' get='return this.toFilterByType(<%ch.flatland.cdo.model.base.FLTraceType%>.VALIDATE);'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Trace to'"
 	 * @generated
 	 */
 	EList<FLElement> getTraceToValidate();
@@ -344,7 +344,7 @@ public interface FLElement extends FLID, FLNameable, FLRateable, FLCommentable, 
 	 * @return the value of the '<em>Trace To Test</em>' reference list.
 	 * @see ch.flatland.cdo.model.base.BasePackage#getFLElement_TraceToTest()
 	 * @model transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Trace to' get='return this.toFilterByType(<%ch.flatland.cdo.model.base.FLTraceType%>.TEST);'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Trace to'"
 	 * @generated
 	 */
 	EList<FLElement> getTraceToTest();
@@ -361,7 +361,7 @@ public interface FLElement extends FLID, FLNameable, FLRateable, FLCommentable, 
 	 * @return the value of the '<em>Trace To Relate</em>' reference list.
 	 * @see ch.flatland.cdo.model.base.BasePackage#getFLElement_TraceToRelate()
 	 * @model transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Trace to' get='return this.toFilterByType(<%ch.flatland.cdo.model.base.FLTraceType%>.RELATE);'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Trace to'"
 	 * @generated
 	 */
 	EList<FLElement> getTraceToRelate();
@@ -378,7 +378,7 @@ public interface FLElement extends FLID, FLNameable, FLRateable, FLCommentable, 
 	 * @return the value of the '<em>Trace To Affect</em>' reference list.
 	 * @see ch.flatland.cdo.model.base.BasePackage#getFLElement_TraceToAffect()
 	 * @model transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Trace to' get='return this.toFilterByType(<%ch.flatland.cdo.model.base.FLTraceType%>.AFFECT);'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Trace to'"
 	 * @generated
 	 */
 	EList<FLElement> getTraceToAffect();
@@ -395,7 +395,7 @@ public interface FLElement extends FLID, FLNameable, FLRateable, FLCommentable, 
 	 * @return the value of the '<em>Trace To Satisfy</em>' reference list.
 	 * @see ch.flatland.cdo.model.base.BasePackage#getFLElement_TraceToSatisfy()
 	 * @model transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Trace to' get='return this.toFilterByType(<%ch.flatland.cdo.model.base.FLTraceType%>.SATISFY);'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Trace to'"
 	 * @generated
 	 */
 	EList<FLElement> getTraceToSatisfy();
@@ -412,7 +412,7 @@ public interface FLElement extends FLID, FLNameable, FLRateable, FLCommentable, 
 	 * @return the value of the '<em>Trace To Verify</em>' reference list.
 	 * @see ch.flatland.cdo.model.base.BasePackage#getFLElement_TraceToVerify()
 	 * @model transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Trace to' get='return this.toFilterByType(<%ch.flatland.cdo.model.base.FLTraceType%>.VERIFY);'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Trace to'"
 	 * @generated
 	 */
 	EList<FLElement> getTraceToVerify();
@@ -429,7 +429,7 @@ public interface FLElement extends FLID, FLNameable, FLRateable, FLCommentable, 
 	 * @return the value of the '<em>Trace To Refine</em>' reference list.
 	 * @see ch.flatland.cdo.model.base.BasePackage#getFLElement_TraceToRefine()
 	 * @model transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Trace to' get='return this.toFilterByType(<%ch.flatland.cdo.model.base.FLTraceType%>.REFINE);'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Trace to'"
 	 * @generated
 	 */
 	EList<FLElement> getTraceToRefine();
@@ -446,7 +446,7 @@ public interface FLElement extends FLID, FLNameable, FLRateable, FLCommentable, 
 	 * @return the value of the '<em>Trace To Track</em>' reference list.
 	 * @see ch.flatland.cdo.model.base.BasePackage#getFLElement_TraceToTrack()
 	 * @model transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Trace to' get='return this.toFilterByType(<%ch.flatland.cdo.model.base.FLTraceType%>.TRACK);'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Trace to'"
 	 * @generated
 	 */
 	EList<FLElement> getTraceToTrack();
@@ -463,7 +463,7 @@ public interface FLElement extends FLID, FLNameable, FLRateable, FLCommentable, 
 	 * @return the value of the '<em>Trace From Own</em>' reference list.
 	 * @see ch.flatland.cdo.model.base.BasePackage#getFLElement_TraceFromOwn()
 	 * @model transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Trace from' property='None' get='return this.fromFilterByType(<%ch.flatland.cdo.model.base.FLTraceType%>.OWN);'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Trace from' property='None'"
 	 * @generated
 	 */
 	EList<FLElement> getTraceFromOwn();
@@ -480,7 +480,7 @@ public interface FLElement extends FLID, FLNameable, FLRateable, FLCommentable, 
 	 * @return the value of the '<em>Trace From Use</em>' reference list.
 	 * @see ch.flatland.cdo.model.base.BasePackage#getFLElement_TraceFromUse()
 	 * @model transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Trace from' property='None' get='return this.fromFilterByType(<%ch.flatland.cdo.model.base.FLTraceType%>.USE);'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Trace from' property='None'"
 	 * @generated
 	 */
 	EList<FLElement> getTraceFromUse();
@@ -497,7 +497,7 @@ public interface FLElement extends FLID, FLNameable, FLRateable, FLCommentable, 
 	 * @return the value of the '<em>Trace From Realize</em>' reference list.
 	 * @see ch.flatland.cdo.model.base.BasePackage#getFLElement_TraceFromRealize()
 	 * @model transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Trace from' property='None' get='return this.fromFilterByType(<%ch.flatland.cdo.model.base.FLTraceType%>.REALIZE);'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Trace from' property='None'"
 	 * @generated
 	 */
 	EList<FLElement> getTraceFromRealize();
@@ -514,7 +514,7 @@ public interface FLElement extends FLID, FLNameable, FLRateable, FLCommentable, 
 	 * @return the value of the '<em>Trace From Specify</em>' reference list.
 	 * @see ch.flatland.cdo.model.base.BasePackage#getFLElement_TraceFromSpecify()
 	 * @model transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Trace from' property='None' get='return this.fromFilterByType(<%ch.flatland.cdo.model.base.FLTraceType%>.SPECIFY);'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Trace from' property='None'"
 	 * @generated
 	 */
 	EList<FLElement> getTraceFromSpecify();
@@ -531,7 +531,7 @@ public interface FLElement extends FLID, FLNameable, FLRateable, FLCommentable, 
 	 * @return the value of the '<em>Trace From Implement</em>' reference list.
 	 * @see ch.flatland.cdo.model.base.BasePackage#getFLElement_TraceFromImplement()
 	 * @model transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Trace from' property='None' get='return this.fromFilterByType(<%ch.flatland.cdo.model.base.FLTraceType%>.IMPLEMENT);'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Trace from' property='None'"
 	 * @generated
 	 */
 	EList<FLElement> getTraceFromImplement();
@@ -548,7 +548,7 @@ public interface FLElement extends FLID, FLNameable, FLRateable, FLCommentable, 
 	 * @return the value of the '<em>Trace From Elaborate</em>' reference list.
 	 * @see ch.flatland.cdo.model.base.BasePackage#getFLElement_TraceFromElaborate()
 	 * @model transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Trace from' property='None' get='return this.fromFilterByType(<%ch.flatland.cdo.model.base.FLTraceType%>.ELABORATE);'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Trace from' property='None'"
 	 * @generated
 	 */
 	EList<FLElement> getTraceFromElaborate();
@@ -565,7 +565,7 @@ public interface FLElement extends FLID, FLNameable, FLRateable, FLCommentable, 
 	 * @return the value of the '<em>Trace From Derive</em>' reference list.
 	 * @see ch.flatland.cdo.model.base.BasePackage#getFLElement_TraceFromDerive()
 	 * @model transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Trace from' property='None' get='return this.fromFilterByType(<%ch.flatland.cdo.model.base.FLTraceType%>.DERIVE);'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Trace from' property='None'"
 	 * @generated
 	 */
 	EList<FLElement> getTraceFromDerive();
@@ -582,7 +582,7 @@ public interface FLElement extends FLID, FLNameable, FLRateable, FLCommentable, 
 	 * @return the value of the '<em>Trace From Validate</em>' reference list.
 	 * @see ch.flatland.cdo.model.base.BasePackage#getFLElement_TraceFromValidate()
 	 * @model transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Trace from' property='None' get='return this.fromFilterByType(<%ch.flatland.cdo.model.base.FLTraceType%>.VALIDATE);'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Trace from' property='None'"
 	 * @generated
 	 */
 	EList<FLElement> getTraceFromValidate();
@@ -599,7 +599,7 @@ public interface FLElement extends FLID, FLNameable, FLRateable, FLCommentable, 
 	 * @return the value of the '<em>Trace From Test</em>' reference list.
 	 * @see ch.flatland.cdo.model.base.BasePackage#getFLElement_TraceFromTest()
 	 * @model transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Trace from' property='None' get='return this.fromFilterByType(<%ch.flatland.cdo.model.base.FLTraceType%>.TEST);'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Trace from' property='None'"
 	 * @generated
 	 */
 	EList<FLElement> getTraceFromTest();
@@ -616,7 +616,7 @@ public interface FLElement extends FLID, FLNameable, FLRateable, FLCommentable, 
 	 * @return the value of the '<em>Trace From Relate</em>' reference list.
 	 * @see ch.flatland.cdo.model.base.BasePackage#getFLElement_TraceFromRelate()
 	 * @model transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Trace from' property='None' get='return this.fromFilterByType(<%ch.flatland.cdo.model.base.FLTraceType%>.RELATE);'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Trace from' property='None'"
 	 * @generated
 	 */
 	EList<FLElement> getTraceFromRelate();
@@ -633,7 +633,7 @@ public interface FLElement extends FLID, FLNameable, FLRateable, FLCommentable, 
 	 * @return the value of the '<em>Trace From Affect</em>' reference list.
 	 * @see ch.flatland.cdo.model.base.BasePackage#getFLElement_TraceFromAffect()
 	 * @model transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Trace from' property='None' get='return this.fromFilterByType(<%ch.flatland.cdo.model.base.FLTraceType%>.AFFECT);'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Trace from' property='None'"
 	 * @generated
 	 */
 	EList<FLElement> getTraceFromAffect();
@@ -650,7 +650,7 @@ public interface FLElement extends FLID, FLNameable, FLRateable, FLCommentable, 
 	 * @return the value of the '<em>Trace From Satisfy</em>' reference list.
 	 * @see ch.flatland.cdo.model.base.BasePackage#getFLElement_TraceFromSatisfy()
 	 * @model transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Trace from' property='None' get='return this.fromFilterByType(<%ch.flatland.cdo.model.base.FLTraceType%>.SATISFY);'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Trace from' property='None'"
 	 * @generated
 	 */
 	EList<FLElement> getTraceFromSatisfy();
@@ -667,7 +667,7 @@ public interface FLElement extends FLID, FLNameable, FLRateable, FLCommentable, 
 	 * @return the value of the '<em>Trace From Verify</em>' reference list.
 	 * @see ch.flatland.cdo.model.base.BasePackage#getFLElement_TraceFromVerify()
 	 * @model transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Trace from' property='None' get='return this.fromFilterByType(<%ch.flatland.cdo.model.base.FLTraceType%>.VERIFY);'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Trace from' property='None'"
 	 * @generated
 	 */
 	EList<FLElement> getTraceFromVerify();
@@ -684,7 +684,7 @@ public interface FLElement extends FLID, FLNameable, FLRateable, FLCommentable, 
 	 * @return the value of the '<em>Trace From Refine</em>' reference list.
 	 * @see ch.flatland.cdo.model.base.BasePackage#getFLElement_TraceFromRefine()
 	 * @model transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Trace from' property='None' get='return this.fromFilterByType(<%ch.flatland.cdo.model.base.FLTraceType%>.REFINE);'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Trace from' property='None'"
 	 * @generated
 	 */
 	EList<FLElement> getTraceFromRefine();
@@ -701,7 +701,7 @@ public interface FLElement extends FLID, FLNameable, FLRateable, FLCommentable, 
 	 * @return the value of the '<em>Trace From Track</em>' reference list.
 	 * @see ch.flatland.cdo.model.base.BasePackage#getFLElement_TraceFromTrack()
 	 * @model transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Trace from' property='None' get='return this.fromFilterByType(<%ch.flatland.cdo.model.base.FLTraceType%>.TRACK);'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Trace from' property='None'"
 	 * @generated
 	 */
 	EList<FLElement> getTraceFromTrack();
@@ -714,7 +714,6 @@ public interface FLElement extends FLID, FLNameable, FLRateable, FLCommentable, 
 	 * @return filtered list
 	 * <!-- end-model-doc -->
 	 * @model unique="false" traceTypeUnique="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='final <%org.eclipse.emf.common.util.BasicEList%><<%ch.flatland.cdo.model.base.FLElement%>> targets = new <%org.eclipse.emf.common.util.BasicEList%><<%ch.flatland.cdo.model.base.FLElement%>>();\n<%org.eclipse.emf.common.util.EList%><<%ch.flatland.cdo.model.base.FLTrace%>> _traces = this.getTraces();\nfinal <%org.eclipse.xtext.xbase.lib.Functions.Function1%><<%ch.flatland.cdo.model.base.FLTrace%>, <%java.lang.Boolean%>> _function = new <%org.eclipse.xtext.xbase.lib.Functions.Function1%><<%ch.flatland.cdo.model.base.FLTrace%>, <%java.lang.Boolean%>>()\n{\n\tpublic <%java.lang.Boolean%> apply(final <%ch.flatland.cdo.model.base.FLTrace%> it)\n\t{\n\t\t<%ch.flatland.cdo.model.base.FLTraceType%> _traceType = it.getTraceType();\n\t\treturn <%java.lang.Boolean%>.valueOf(<%com.google.common.base.Objects%>.equal(_traceType, traceType));\n\t}\n};\n<%java.lang.Iterable%><<%ch.flatland.cdo.model.base.FLTrace%>> _filter = <%org.eclipse.xtext.xbase.lib.IterableExtensions%>.<<%ch.flatland.cdo.model.base.FLTrace%>>filter(_traces, _function);\nfinal <%java.util.function.Consumer%><<%ch.flatland.cdo.model.base.FLTrace%>> _function_1 = new <%java.util.function.Consumer%><<%ch.flatland.cdo.model.base.FLTrace%>>()\n{\n\tpublic void accept(final <%ch.flatland.cdo.model.base.FLTrace%> it)\n\t{\n\t\t<%ch.flatland.cdo.model.base.FLElement%> _target = it.getTarget();\n\t\tboolean _notEquals = (!<%com.google.common.base.Objects%>.equal(_target, null));\n\t\tif (_notEquals)\n\t\t{\n\t\t\t<%ch.flatland.cdo.model.base.FLElement%> _target_1 = it.getTarget();\n\t\t\ttargets.add(_target_1);\n\t\t}\n\t}\n};\n_filter.forEach(_function_1);\nreturn targets;'"
 	 * @generated
 	 */
 	EList<FLElement> toFilterByType(FLTraceType traceType);
@@ -727,7 +726,6 @@ public interface FLElement extends FLID, FLNameable, FLRateable, FLCommentable, 
 	 * @return filtered list
 	 * <!-- end-model-doc -->
 	 * @model unique="false" traceTypeUnique="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='final <%org.eclipse.emf.common.util.BasicEList%><<%ch.flatland.cdo.model.base.FLElement%>> sources = new <%org.eclipse.emf.common.util.BasicEList%><<%ch.flatland.cdo.model.base.FLElement%>>();\nif (((!<%com.google.common.base.Objects%>.equal(this.cdoView(), null)) && (!this.cdoView().isClosed())))\n{\n\t<%org.eclipse.emf.cdo.view.CDOView%> _cdoView = this.cdoView();\n\t<%java.util.ArrayList%><<%org.eclipse.emf.ecore.EReference%>> _newArrayList = <%org.eclipse.xtext.xbase.lib.CollectionLiterals%>.<<%org.eclipse.emf.ecore.EReference%>>newArrayList(<%ch.flatland.cdo.model.base.BasePackage.Literals%>.FL_TRACE__TARGET);\n\tfinal <%java.util.List%><<%org.eclipse.emf.cdo.CDOObjectReference%>> xrefs = _cdoView.queryXRefs(this, ((<%org.eclipse.emf.ecore.EReference%>[])org.eclipse.xtext.xbase.lib.Conversions.unwrapArray(_newArrayList, <%org.eclipse.emf.ecore.EReference%>.class)));\n\tfor (final <%org.eclipse.emf.cdo.CDOObjectReference%> x : xrefs)\n\t{\n\t\t{\n\t\t\t<%org.eclipse.emf.cdo.CDOObject%> _sourceObject = x.getSourceObject();\n\t\t\tfinal <%ch.flatland.cdo.model.base.FLTrace%> trace = ((<%ch.flatland.cdo.model.base.FLTrace%>) _sourceObject);\n\t\t\t<%ch.flatland.cdo.model.base.FLTraceType%> _traceType = trace.getTraceType();\n\t\t\tboolean _equals = <%com.google.common.base.Objects%>.equal(_traceType, traceType);\n\t\t\tif (_equals)\n\t\t\t{\n\t\t\t\t<%org.eclipse.emf.ecore.EObject%> _eContainer = trace.eContainer();\n\t\t\t\tsources.add(((<%ch.flatland.cdo.model.base.FLElement%>) _eContainer));\n\t\t\t}\n\t\t}\n\t}\n}\nreturn sources;'"
 	 * @generated
 	 */
 	EList<FLElement> fromFilterByType(FLTraceType traceType);
@@ -743,7 +741,6 @@ public interface FLElement extends FLID, FLNameable, FLRateable, FLCommentable, 
 	 * </p>
 	 * <!-- end-model-doc -->
 	 * @model unique="false" many="false" eRefernceUnique="false" classTypeUnique="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='final <%org.eclipse.emf.common.util.BasicEList%><T> elements = new <%org.eclipse.emf.common.util.BasicEList%><T>();\nif (((!<%com.google.common.base.Objects%>.equal(this.cdoView(), null)) && (!this.cdoView().isClosed())))\n{\n\tfinal <%java.util.ArrayList%><<%org.eclipse.emf.ecore.EReference%>> eRefs = <%org.eclipse.xtext.xbase.lib.CollectionLiterals%>.<<%org.eclipse.emf.ecore.EReference%>>newArrayList();\n\tboolean _notEquals = (!<%com.google.common.base.Objects%>.equal(eRefernce, null));\n\tif (_notEquals)\n\t{\n\t\teRefs.add(eRefernce);\n\t}\n\t<%org.eclipse.emf.cdo.view.CDOView%> _cdoView = this.cdoView();\n\tfinal <%java.util.List%><<%org.eclipse.emf.cdo.CDOObjectReference%>> xrefs = _cdoView.queryXRefs(this, ((<%org.eclipse.emf.ecore.EReference%>[])org.eclipse.xtext.xbase.lib.Conversions.unwrapArray(eRefs, <%org.eclipse.emf.ecore.EReference%>.class)));\n\tfor (final <%org.eclipse.emf.cdo.CDOObjectReference%> x : xrefs)\n\t{\n\t\t{\n\t\t\t<%org.eclipse.emf.cdo.CDOObject%> _sourceObject = x.getSourceObject();\n\t\t\tfinal T element = classType.cast(_sourceObject);\n\t\t\telements.add(element);\n\t\t}\n\t}\n}\nreturn elements;'"
 	 * @generated
 	 */
 	<T extends EObject> EList<T> resolveXrefs(EReference eRefernce, Class<T> classType);

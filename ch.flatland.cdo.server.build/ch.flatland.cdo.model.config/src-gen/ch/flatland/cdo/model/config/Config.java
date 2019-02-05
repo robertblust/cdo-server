@@ -151,7 +151,6 @@ public interface Config extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model unique="false" repoNameUnique="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='<%org.eclipse.emf.common.util.EList%><<%ch.flatland.cdo.model.config.Repository%>> _repositories = this.getRepositories();\nfinal <%org.eclipse.xtext.xbase.lib.Functions.Function1%><<%ch.flatland.cdo.model.config.Repository%>, <%java.lang.Boolean%>> _function = new <%org.eclipse.xtext.xbase.lib.Functions.Function1%><<%ch.flatland.cdo.model.config.Repository%>, <%java.lang.Boolean%>>()\n{\n\tpublic <%java.lang.Boolean%> apply(final <%ch.flatland.cdo.model.config.Repository%> it)\n\t{\n\t\t<%ch.flatland.cdo.model.config.DataStore%> _dataStore = it.getDataStore();\n\t\t<%java.lang.String%> _repositoryName = _dataStore.getRepositoryName();\n\t\treturn <%java.lang.Boolean%>.valueOf(<%com.google.common.base.Objects%>.equal(_repositoryName, repoName));\n\t}\n};\n<%java.lang.Iterable%><<%ch.flatland.cdo.model.config.Repository%>> _filter = <%org.eclipse.xtext.xbase.lib.IterableExtensions%>.<<%ch.flatland.cdo.model.config.Repository%>>filter(_repositories, _function);\nreturn <%org.eclipse.xtext.xbase.lib.IterableExtensions%>.<<%ch.flatland.cdo.model.config.Repository%>>head(_filter);'"
 	 * @generated
 	 */
 	Repository getByName(String repoName);

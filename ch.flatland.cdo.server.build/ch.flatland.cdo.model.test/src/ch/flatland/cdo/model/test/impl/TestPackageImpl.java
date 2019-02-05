@@ -98,7 +98,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
+	 *
 	 * <p>This method is used to initialize {@link TestPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
@@ -112,7 +112,8 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 		if (isInited) return (TestPackage)EPackage.Registry.INSTANCE.getEPackage(TestPackage.eNS_URI);
 
 		// Obtain or create and register package
-		TestPackageImpl theTestPackage = (TestPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof TestPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new TestPackageImpl());
+		Object registeredTestPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		TestPackageImpl theTestPackage = registeredTestPackage instanceof TestPackageImpl ? (TestPackageImpl)registeredTestPackage : new TestPackageImpl();
 
 		isInited = true;
 
@@ -128,7 +129,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 
 		// Register package validator
 		EValidator.Registry.INSTANCE.put
-			(theTestPackage, 
+			(theTestPackage,
 			 new EValidator.Descriptor() {
 				 public EValidator getEValidator() {
 					 return TestValidator.INSTANCE;
@@ -138,7 +139,6 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 		// Mark meta-data to indicate it can't be changed
 		theTestPackage.freeze();
 
-  
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(TestPackage.eNS_URI, theTestPackage);
 		return theTestPackage;
@@ -773,12 +773,12 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * @generated
 	 */
 	protected void createXcoreAnnotations() {
-		String source = "http://www.eclipse.org/emf/2011/Xcore";	
+		String source = "http://www.eclipse.org/emf/2011/Xcore";
 		addAnnotation
-		  (this, 
-		   source, 
+		  (this,
+		   source,
 		   new String[] {
-			 "DBStore", "http://www.eclipse.org/CDO/DBStore"
+			   "DBStore", "http://www.eclipse.org/CDO/DBStore"
 		   });
 	}
 
@@ -789,12 +789,12 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * @generated
 	 */
 	protected void createDBStoreAnnotations() {
-		String source = "http://www.eclipse.org/CDO/DBStore";	
+		String source = "http://www.eclipse.org/CDO/DBStore";
 		addAnnotation
-		  (getTestClob_Clob(), 
-		   source, 
+		  (getTestClob_Clob(),
+		   source,
 		   new String[] {
-			 "columnType", "CLOB"
+			   "columnType", "CLOB"
 		   });
 	}
 
@@ -805,13 +805,13 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * @generated
 	 */
 	protected void createExtendedMetaDataAnnotations() {
-		String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData";	
+		String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData";
 		addAnnotation
-		  (maxlength8EDataType, 
-		   source, 
+		  (maxlength8EDataType,
+		   source,
 		   new String[] {
-			 "name", "Maxlength8",
-			 "maxLength", "8"
+			   "name", "Maxlength8",
+			   "maxLength", "8"
 		   });
 	}
 

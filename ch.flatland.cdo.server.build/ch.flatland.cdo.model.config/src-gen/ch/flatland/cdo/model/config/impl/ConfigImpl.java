@@ -5,13 +5,10 @@ package ch.flatland.cdo.model.config.impl;
 import ch.flatland.cdo.model.config.Binding;
 import ch.flatland.cdo.model.config.Config;
 import ch.flatland.cdo.model.config.ConfigPackage;
-import ch.flatland.cdo.model.config.DataStore;
 import ch.flatland.cdo.model.config.Json;
 import ch.flatland.cdo.model.config.Repository;
 
 import com.google.common.base.Objects;
-
-import java.lang.Iterable;
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -288,16 +285,13 @@ public class ConfigImpl extends MinimalEObjectImpl.Container implements Config {
 	 * @generated
 	 */
 	public Repository getByName(final String repoName) {
-		EList<Repository> _repositories = this.getRepositories();
 		final Function1<Repository, Boolean> _function = new Function1<Repository, Boolean>() {
 			public Boolean apply(final Repository it) {
-				DataStore _dataStore = it.getDataStore();
-				String _repositoryName = _dataStore.getRepositoryName();
+				String _repositoryName = it.getDataStore().getRepositoryName();
 				return Boolean.valueOf(Objects.equal(_repositoryName, repoName));
 			}
 		};
-		Iterable<Repository> _filter = IterableExtensions.<Repository>filter(_repositories, _function);
-		return IterableExtensions.<Repository>head(_filter);
+		return IterableExtensions.<Repository>head(IterableExtensions.<Repository>filter(this.getRepositories(), _function));
 	}
 
 	/**
@@ -441,7 +435,7 @@ public class ConfigImpl extends MinimalEObjectImpl.Container implements Config {
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (readOnlyPassword: ");
 		result.append(readOnlyPassword);
 		result.append(", adminPassword: ");

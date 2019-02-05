@@ -31,7 +31,7 @@
 		        "password": "cdo"
 		    },
 		    "authenticator": {
-		        "authenticatorType": "NONE"
+		        "authenticatorType": "SIMPLE"
 		    }
 		}
 	]

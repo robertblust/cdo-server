@@ -27,6 +27,11 @@ public enum FLTraceType implements Enumerator {
 	 * The '<em><b>Own</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * ---------------------------------------------
+	 * UML2
+	 * ---------------------------------------------
+	 * <!-- end-model-doc -->
 	 * @see #OWN_VALUE
 	 * @generated
 	 * @ordered
@@ -83,6 +88,11 @@ public enum FLTraceType implements Enumerator {
 	 * The '<em><b>Validate</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * ---------------------------------------------
+	 * Test Management Domain
+	 * ---------------------------------------------
+	 * <!-- end-model-doc -->
 	 * @see #VALIDATE_VALUE
 	 * @generated
 	 * @ordered
@@ -91,6 +101,9 @@ public enum FLTraceType implements Enumerator {
 	 * The '<em><b>Test</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * OSLC TM / CM - A test case tests a change request
+	 * <!-- end-model-doc -->
 	 * @see #TEST_VALUE
 	 * @generated
 	 * @ordered
@@ -99,6 +112,9 @@ public enum FLTraceType implements Enumerator {
 	 * The '<em><b>Relate</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 *  OSLC TM / CM - A test case relates to a change request
+	 * <!-- end-model-doc -->
 	 * @see #RELATE_VALUE
 	 * @generated
 	 * @ordered
@@ -107,6 +123,9 @@ public enum FLTraceType implements Enumerator {
 	 * The '<em><b>Affect</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * OSLC TM - A defect may be said to affect a requirement.
+	 * <!-- end-model-doc -->
 	 * @see #AFFECT_VALUE
 	 * @generated
 	 * @ordered
@@ -115,6 +134,11 @@ public enum FLTraceType implements Enumerator {
 	 * The '<em><b>Satisfy</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * ---------------------------------------------
+	 * Requirement Management Domain
+	 * ---------------------------------------------
+	 * <!-- end-model-doc -->
 	 * @see #SATISFY_VALUE
 	 * @generated
 	 * @ordered
@@ -123,6 +147,9 @@ public enum FLTraceType implements Enumerator {
 	 * The '<em><b>Verify</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * SYSML REQ - A requirement satisfy a requirement
+	 * <!-- end-model-doc -->
 	 * @see #VERIFY_VALUE
 	 * @generated
 	 * @ordered
@@ -131,6 +158,9 @@ public enum FLTraceType implements Enumerator {
 	 * The '<em><b>Refine</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * SYSML REQ - A requirement verifies a requirement
+	 * <!-- end-model-doc -->
 	 * @see #REFINE_VALUE
 	 * @generated
 	 * @ordered
@@ -139,6 +169,11 @@ public enum FLTraceType implements Enumerator {
 	 * The '<em><b>Track</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * ---------------------------------------------
+	 * Change Management Domain
+	 * ---------------------------------------------
+	 * <!-- end-model-doc -->
 	 * @see #TRACK_VALUE
 	 * @generated
 	 * @ordered
