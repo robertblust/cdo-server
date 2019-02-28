@@ -78,6 +78,7 @@ public class FLHyperLinkImpl extends CDOObjectImpl implements FLHyperLink {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return (String)eDynamicGet(BasePackage.FL_HYPER_LINK__NAME, BasePackage.Literals.FL_HYPER_LINK__NAME, true, true);
 	}
@@ -87,6 +88,7 @@ public class FLHyperLinkImpl extends CDOObjectImpl implements FLHyperLink {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		eDynamicSet(BasePackage.FL_HYPER_LINK__NAME, BasePackage.Literals.FL_HYPER_LINK__NAME, newName);
 	}
@@ -96,6 +98,7 @@ public class FLHyperLinkImpl extends CDOObjectImpl implements FLHyperLink {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getHyperLink() {
 		return (String)eDynamicGet(BasePackage.FL_HYPER_LINK__HYPER_LINK, BasePackage.Literals.FL_HYPER_LINK__HYPER_LINK, true, true);
 	}
@@ -105,6 +108,7 @@ public class FLHyperLinkImpl extends CDOObjectImpl implements FLHyperLink {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setHyperLink(String newHyperLink) {
 		eDynamicSet(BasePackage.FL_HYPER_LINK__HYPER_LINK, BasePackage.Literals.FL_HYPER_LINK__HYPER_LINK, newHyperLink);
 	}

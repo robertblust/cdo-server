@@ -131,6 +131,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 		EValidator.Registry.INSTANCE.put
 			(theTestPackage,
 			 new EValidator.Descriptor() {
+				 @Override
 				 public EValidator getEValidator() {
 					 return TestValidator.INSTANCE;
 				 }
@@ -149,6 +150,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSimpleDataTypes() {
 		return simpleDataTypesEClass;
 	}
@@ -158,6 +160,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getSimpleDataTypes_TestString() {
 		return (EAttribute)simpleDataTypesEClass.getEStructuralFeatures().get(0);
 	}
@@ -167,6 +170,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getSimpleDataTypes_TestBoolean() {
 		return (EAttribute)simpleDataTypesEClass.getEStructuralFeatures().get(1);
 	}
@@ -176,6 +180,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getSimpleDataTypes_TestBooleanObject() {
 		return (EAttribute)simpleDataTypesEClass.getEStructuralFeatures().get(2);
 	}
@@ -185,6 +190,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getSimpleDataTypes_TestInt() {
 		return (EAttribute)simpleDataTypesEClass.getEStructuralFeatures().get(3);
 	}
@@ -194,6 +200,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getSimpleDataTypes_TestIntObject() {
 		return (EAttribute)simpleDataTypesEClass.getEStructuralFeatures().get(4);
 	}
@@ -203,6 +210,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getSimpleDataTypes_TestLong() {
 		return (EAttribute)simpleDataTypesEClass.getEStructuralFeatures().get(5);
 	}
@@ -212,6 +220,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getSimpleDataTypes_TestLongObject() {
 		return (EAttribute)simpleDataTypesEClass.getEStructuralFeatures().get(6);
 	}
@@ -221,6 +230,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getSimpleDataTypes_TestShort() {
 		return (EAttribute)simpleDataTypesEClass.getEStructuralFeatures().get(7);
 	}
@@ -230,6 +240,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getSimpleDataTypes_TestShortObject() {
 		return (EAttribute)simpleDataTypesEClass.getEStructuralFeatures().get(8);
 	}
@@ -239,6 +250,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getSimpleDataTypes_TestDouble() {
 		return (EAttribute)simpleDataTypesEClass.getEStructuralFeatures().get(9);
 	}
@@ -248,6 +260,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getSimpleDataTypes_TestDoubleObject() {
 		return (EAttribute)simpleDataTypesEClass.getEStructuralFeatures().get(10);
 	}
@@ -257,6 +270,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getSimpleDataTypes_TestFloat() {
 		return (EAttribute)simpleDataTypesEClass.getEStructuralFeatures().get(11);
 	}
@@ -266,6 +280,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getSimpleDataTypes_TestFloatObject() {
 		return (EAttribute)simpleDataTypesEClass.getEStructuralFeatures().get(12);
 	}
@@ -275,6 +290,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getSimpleDataTypes_TestByte() {
 		return (EAttribute)simpleDataTypesEClass.getEStructuralFeatures().get(13);
 	}
@@ -284,6 +300,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getSimpleDataTypes_TestByteObject() {
 		return (EAttribute)simpleDataTypesEClass.getEStructuralFeatures().get(14);
 	}
@@ -293,6 +310,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getSimpleDataTypes_TestChar() {
 		return (EAttribute)simpleDataTypesEClass.getEStructuralFeatures().get(15);
 	}
@@ -302,6 +320,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getSimpleDataTypes_TestCharObject() {
 		return (EAttribute)simpleDataTypesEClass.getEStructuralFeatures().get(16);
 	}
@@ -311,6 +330,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getSimpleDataTypes_TestDate() {
 		return (EAttribute)simpleDataTypesEClass.getEStructuralFeatures().get(17);
 	}
@@ -320,6 +340,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getSimpleDataTypes_TestBigDecimal() {
 		return (EAttribute)simpleDataTypesEClass.getEStructuralFeatures().get(18);
 	}
@@ -329,6 +350,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getSimpleDataTypes_TestBigInteger() {
 		return (EAttribute)simpleDataTypesEClass.getEStructuralFeatures().get(19);
 	}
@@ -338,6 +360,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getSimpleDataTypes_TestEnum() {
 		return (EAttribute)simpleDataTypesEClass.getEStructuralFeatures().get(20);
 	}
@@ -347,6 +370,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSimpleDataTypesAsArray() {
 		return simpleDataTypesAsArrayEClass;
 	}
@@ -356,6 +380,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getSimpleDataTypesAsArray_TestString() {
 		return (EAttribute)simpleDataTypesAsArrayEClass.getEStructuralFeatures().get(0);
 	}
@@ -365,6 +390,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getSimpleDataTypesAsArray_TestBoolean() {
 		return (EAttribute)simpleDataTypesAsArrayEClass.getEStructuralFeatures().get(1);
 	}
@@ -374,6 +400,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getSimpleDataTypesAsArray_TestInt() {
 		return (EAttribute)simpleDataTypesAsArrayEClass.getEStructuralFeatures().get(2);
 	}
@@ -383,6 +410,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getSimpleDataTypesAsArray_TestLong() {
 		return (EAttribute)simpleDataTypesAsArrayEClass.getEStructuralFeatures().get(3);
 	}
@@ -392,6 +420,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getSimpleDataTypesAsArray_TestShort() {
 		return (EAttribute)simpleDataTypesAsArrayEClass.getEStructuralFeatures().get(4);
 	}
@@ -401,6 +430,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getSimpleDataTypesAsArray_TestDouble() {
 		return (EAttribute)simpleDataTypesAsArrayEClass.getEStructuralFeatures().get(5);
 	}
@@ -410,6 +440,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getSimpleDataTypesAsArray_TestFloat() {
 		return (EAttribute)simpleDataTypesAsArrayEClass.getEStructuralFeatures().get(6);
 	}
@@ -419,6 +450,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getSimpleDataTypesAsArray_TestByte() {
 		return (EAttribute)simpleDataTypesAsArrayEClass.getEStructuralFeatures().get(7);
 	}
@@ -428,6 +460,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getSimpleDataTypesAsArray_TestChar() {
 		return (EAttribute)simpleDataTypesAsArrayEClass.getEStructuralFeatures().get(8);
 	}
@@ -437,6 +470,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getSimpleDataTypesAsArray_TestDate() {
 		return (EAttribute)simpleDataTypesAsArrayEClass.getEStructuralFeatures().get(9);
 	}
@@ -446,6 +480,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getSimpleDataTypesAsArray_TestBigDecimal() {
 		return (EAttribute)simpleDataTypesAsArrayEClass.getEStructuralFeatures().get(10);
 	}
@@ -455,6 +490,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getSimpleDataTypesAsArray_TestBigInteger() {
 		return (EAttribute)simpleDataTypesAsArrayEClass.getEStructuralFeatures().get(11);
 	}
@@ -464,6 +500,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getSimpleDataTypesAsArray_TestEnum() {
 		return (EAttribute)simpleDataTypesAsArrayEClass.getEStructuralFeatures().get(12);
 	}
@@ -473,6 +510,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getTestObject() {
 		return testObjectEClass;
 	}
@@ -482,6 +520,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTestObject_Name() {
 		return (EAttribute)testObjectEClass.getEStructuralFeatures().get(0);
 	}
@@ -491,6 +530,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTestObject_Maxlength8() {
 		return (EAttribute)testObjectEClass.getEStructuralFeatures().get(1);
 	}
@@ -500,6 +540,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTestObject_SingleReference() {
 		return (EReference)testObjectEClass.getEStructuralFeatures().get(2);
 	}
@@ -509,6 +550,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTestObject_MultiReferences() {
 		return (EReference)testObjectEClass.getEStructuralFeatures().get(3);
 	}
@@ -518,6 +560,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTestObject_FixUpperBoundReferences() {
 		return (EReference)testObjectEClass.getEStructuralFeatures().get(4);
 	}
@@ -527,6 +570,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTestObject_FixBoundReferences() {
 		return (EReference)testObjectEClass.getEStructuralFeatures().get(5);
 	}
@@ -536,6 +580,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTestObject_FixlowerBoundReferences() {
 		return (EReference)testObjectEClass.getEStructuralFeatures().get(6);
 	}
@@ -545,6 +590,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getTestClob() {
 		return testClobEClass;
 	}
@@ -554,6 +600,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTestClob_Clob() {
 		return (EAttribute)testClobEClass.getEStructuralFeatures().get(0);
 	}
@@ -563,6 +610,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getTestEnum() {
 		return testEnumEEnum;
 	}
@@ -572,6 +620,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EDataType getMaxlength8() {
 		return maxlength8EDataType;
 	}
@@ -581,6 +630,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TestFactory getTestFactory() {
 		return (TestFactory)getEFactoryInstance();
 	}

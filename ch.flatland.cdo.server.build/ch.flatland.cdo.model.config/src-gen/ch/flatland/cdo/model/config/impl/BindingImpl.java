@@ -133,6 +133,7 @@ public class BindingImpl extends MinimalEObjectImpl.Container implements Binding
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isTcp() {
 		return tcp;
 	}
@@ -142,6 +143,7 @@ public class BindingImpl extends MinimalEObjectImpl.Container implements Binding
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTcp(boolean newTcp) {
 		boolean oldTcp = tcp;
 		tcp = newTcp;
@@ -154,6 +156,7 @@ public class BindingImpl extends MinimalEObjectImpl.Container implements Binding
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getTcpPort() {
 		return tcpPort;
 	}
@@ -163,6 +166,7 @@ public class BindingImpl extends MinimalEObjectImpl.Container implements Binding
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTcpPort(String newTcpPort) {
 		String oldTcpPort = tcpPort;
 		tcpPort = newTcpPort;
@@ -175,6 +179,7 @@ public class BindingImpl extends MinimalEObjectImpl.Container implements Binding
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isHttp() {
 		return http;
 	}
@@ -184,6 +189,7 @@ public class BindingImpl extends MinimalEObjectImpl.Container implements Binding
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setHttp(boolean newHttp) {
 		boolean oldHttp = http;
 		http = newHttp;
@@ -196,6 +202,7 @@ public class BindingImpl extends MinimalEObjectImpl.Container implements Binding
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isCheckSSL() {
 		return checkSSL;
 	}
@@ -205,6 +212,7 @@ public class BindingImpl extends MinimalEObjectImpl.Container implements Binding
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCheckSSL(boolean newCheckSSL) {
 		boolean oldCheckSSL = checkSSL;
 		checkSSL = newCheckSSL;

@@ -134,6 +134,7 @@ public class AuthenticatorImpl extends MinimalEObjectImpl.Container implements A
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public AuthenticatorType getAuthenticatorType() {
 		return authenticatorType;
 	}
@@ -143,6 +144,7 @@ public class AuthenticatorImpl extends MinimalEObjectImpl.Container implements A
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAuthenticatorType(AuthenticatorType newAuthenticatorType) {
 		AuthenticatorType oldAuthenticatorType = authenticatorType;
 		authenticatorType = newAuthenticatorType == null ? AUTHENTICATOR_TYPE_EDEFAULT : newAuthenticatorType;
@@ -155,6 +157,7 @@ public class AuthenticatorImpl extends MinimalEObjectImpl.Container implements A
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getConnectionUrl() {
 		return connectionUrl;
 	}
@@ -164,6 +167,7 @@ public class AuthenticatorImpl extends MinimalEObjectImpl.Container implements A
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setConnectionUrl(String newConnectionUrl) {
 		String oldConnectionUrl = connectionUrl;
 		connectionUrl = newConnectionUrl;
@@ -176,6 +180,7 @@ public class AuthenticatorImpl extends MinimalEObjectImpl.Container implements A
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getDomainBase() {
 		return domainBase;
 	}
@@ -185,6 +190,7 @@ public class AuthenticatorImpl extends MinimalEObjectImpl.Container implements A
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDomainBase(String newDomainBase) {
 		String oldDomainBase = domainBase;
 		domainBase = newDomainBase;
@@ -197,6 +203,7 @@ public class AuthenticatorImpl extends MinimalEObjectImpl.Container implements A
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getUserIdField() {
 		return userIdField;
 	}
@@ -206,6 +213,7 @@ public class AuthenticatorImpl extends MinimalEObjectImpl.Container implements A
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setUserIdField(String newUserIdField) {
 		String oldUserIdField = userIdField;
 		userIdField = newUserIdField;

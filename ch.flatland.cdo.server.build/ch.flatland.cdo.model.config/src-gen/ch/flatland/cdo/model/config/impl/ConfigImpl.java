@@ -144,6 +144,7 @@ public class ConfigImpl extends MinimalEObjectImpl.Container implements Config {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getReadOnlyPassword() {
 		return readOnlyPassword;
 	}
@@ -153,6 +154,7 @@ public class ConfigImpl extends MinimalEObjectImpl.Container implements Config {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setReadOnlyPassword(String newReadOnlyPassword) {
 		String oldReadOnlyPassword = readOnlyPassword;
 		readOnlyPassword = newReadOnlyPassword;
@@ -165,6 +167,7 @@ public class ConfigImpl extends MinimalEObjectImpl.Container implements Config {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getAdminPassword() {
 		return adminPassword;
 	}
@@ -174,6 +177,7 @@ public class ConfigImpl extends MinimalEObjectImpl.Container implements Config {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAdminPassword(String newAdminPassword) {
 		String oldAdminPassword = adminPassword;
 		adminPassword = newAdminPassword;
@@ -186,6 +190,7 @@ public class ConfigImpl extends MinimalEObjectImpl.Container implements Config {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Repository> getRepositories() {
 		if (repositories == null) {
 			repositories = new EObjectContainmentEList<Repository>(Repository.class, this, ConfigPackage.CONFIG__REPOSITORIES);
@@ -198,6 +203,7 @@ public class ConfigImpl extends MinimalEObjectImpl.Container implements Config {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Binding getBinding() {
 		return binding;
 	}
@@ -222,6 +228,7 @@ public class ConfigImpl extends MinimalEObjectImpl.Container implements Config {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setBinding(Binding newBinding) {
 		if (newBinding != binding) {
 			NotificationChain msgs = null;
@@ -241,6 +248,7 @@ public class ConfigImpl extends MinimalEObjectImpl.Container implements Config {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Json getJson() {
 		return json;
 	}
@@ -265,6 +273,7 @@ public class ConfigImpl extends MinimalEObjectImpl.Container implements Config {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setJson(Json newJson) {
 		if (newJson != json) {
 			NotificationChain msgs = null;
@@ -284,6 +293,7 @@ public class ConfigImpl extends MinimalEObjectImpl.Container implements Config {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Repository getByName(final String repoName) {
 		final Function1<Repository, Boolean> _function = new Function1<Repository, Boolean>() {
 			public Boolean apply(final Repository it) {

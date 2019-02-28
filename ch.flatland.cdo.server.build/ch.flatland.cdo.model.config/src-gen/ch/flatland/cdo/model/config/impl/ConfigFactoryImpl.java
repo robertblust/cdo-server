@@ -107,6 +107,7 @@ public class ConfigFactoryImpl extends EFactoryImpl implements ConfigFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Config createConfig() {
 		ConfigImpl config = new ConfigImpl();
 		return config;
@@ -117,6 +118,7 @@ public class ConfigFactoryImpl extends EFactoryImpl implements ConfigFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Binding createBinding() {
 		BindingImpl binding = new BindingImpl();
 		return binding;
@@ -127,6 +129,7 @@ public class ConfigFactoryImpl extends EFactoryImpl implements ConfigFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Json createJson() {
 		JsonImpl json = new JsonImpl();
 		return json;
@@ -137,6 +140,7 @@ public class ConfigFactoryImpl extends EFactoryImpl implements ConfigFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Repository createRepository() {
 		RepositoryImpl repository = new RepositoryImpl();
 		return repository;
@@ -147,6 +151,7 @@ public class ConfigFactoryImpl extends EFactoryImpl implements ConfigFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public DataStore createDataStore() {
 		DataStoreImpl dataStore = new DataStoreImpl();
 		return dataStore;
@@ -157,6 +162,7 @@ public class ConfigFactoryImpl extends EFactoryImpl implements ConfigFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Authenticator createAuthenticator() {
 		AuthenticatorImpl authenticator = new AuthenticatorImpl();
 		return authenticator;
@@ -207,6 +213,7 @@ public class ConfigFactoryImpl extends EFactoryImpl implements ConfigFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ConfigPackage getConfigPackage() {
 		return (ConfigPackage)getEPackage();
 	}

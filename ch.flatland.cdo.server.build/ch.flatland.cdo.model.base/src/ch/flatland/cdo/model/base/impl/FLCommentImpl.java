@@ -105,6 +105,7 @@ public class FLCommentImpl extends CDOObjectImpl implements FLComment {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<FLRating> getRatings() {
 		return (EList<FLRating>)eDynamicGet(BasePackage.FL_COMMENT__RATINGS, BasePackage.Literals.FL_RATEABLE__RATINGS, true, true);
 	}
@@ -132,6 +133,7 @@ public class FLCommentImpl extends CDOObjectImpl implements FLComment {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getComment() {
 		return (String)eDynamicGet(BasePackage.FL_COMMENT__COMMENT, BasePackage.Literals.FL_COMMENT__COMMENT, true, true);
 	}
@@ -141,6 +143,7 @@ public class FLCommentImpl extends CDOObjectImpl implements FLComment {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setComment(String newComment) {
 		eDynamicSet(BasePackage.FL_COMMENT__COMMENT, BasePackage.Literals.FL_COMMENT__COMMENT, newComment);
 	}
@@ -151,6 +154,7 @@ public class FLCommentImpl extends CDOObjectImpl implements FLComment {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<FLComment> getComments() {
 		return (EList<FLComment>)eDynamicGet(BasePackage.FL_COMMENT__COMMENTS, BasePackage.Literals.FL_COMMENT__COMMENTS, true, true);
 	}
@@ -160,6 +164,7 @@ public class FLCommentImpl extends CDOObjectImpl implements FLComment {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int countLikes() {
 		final Function1<FLRating, Boolean> _function = new Function1<FLRating, Boolean>() {
 			public Boolean apply(final FLRating it) {
@@ -175,6 +180,7 @@ public class FLCommentImpl extends CDOObjectImpl implements FLComment {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int countDislikes() {
 		final Function1<FLRating, Boolean> _function = new Function1<FLRating, Boolean>() {
 			public Boolean apply(final FLRating it) {

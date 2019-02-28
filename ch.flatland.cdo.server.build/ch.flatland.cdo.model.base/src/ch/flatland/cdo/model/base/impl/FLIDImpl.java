@@ -136,6 +136,7 @@ public abstract class FLIDImpl extends CDOObjectImpl implements FLID {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getUUID() {
 		return (String)eDynamicGet(BasePackage.FLID__UUID, BasePackage.Literals.FLID__UUID, true, true);
 	}
@@ -145,6 +146,7 @@ public abstract class FLIDImpl extends CDOObjectImpl implements FLID {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setUUID(String newUUID) {
 		eDynamicSet(BasePackage.FLID__UUID, BasePackage.Literals.FLID__UUID, newUUID);
 	}
@@ -154,6 +156,7 @@ public abstract class FLIDImpl extends CDOObjectImpl implements FLID {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getID() {
 		return (String)eDynamicGet(BasePackage.FLID__ID, BasePackage.Literals.FLID__ID, true, true);
 	}
@@ -163,6 +166,7 @@ public abstract class FLIDImpl extends CDOObjectImpl implements FLID {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setID(String newID) {
 		eDynamicSet(BasePackage.FLID__ID, BasePackage.Literals.FLID__ID, newID);
 	}
@@ -172,6 +176,7 @@ public abstract class FLIDImpl extends CDOObjectImpl implements FLID {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getObjectID() {
 		return (String)eDynamicGet(BasePackage.FLID__OBJECT_ID, BasePackage.Literals.FLID__OBJECT_ID, true, true);
 	}
@@ -181,6 +186,7 @@ public abstract class FLIDImpl extends CDOObjectImpl implements FLID {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setObjectID(String newObjectID) {
 		eDynamicSet(BasePackage.FLID__OBJECT_ID, BasePackage.Literals.FLID__OBJECT_ID, newObjectID);
 	}
@@ -190,6 +196,7 @@ public abstract class FLIDImpl extends CDOObjectImpl implements FLID {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getRevisionID() {
 		return (String)eDynamicGet(BasePackage.FLID__REVISION_ID, BasePackage.Literals.FLID__REVISION_ID, true, true);
 	}
@@ -199,6 +206,7 @@ public abstract class FLIDImpl extends CDOObjectImpl implements FLID {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRevisionID(String newRevisionID) {
 		eDynamicSet(BasePackage.FLID__REVISION_ID, BasePackage.Literals.FLID__REVISION_ID, newRevisionID);
 	}
@@ -208,6 +216,7 @@ public abstract class FLIDImpl extends CDOObjectImpl implements FLID {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getVersion() {
 		return (String)eDynamicGet(BasePackage.FLID__VERSION, BasePackage.Literals.FLID__VERSION, true, true);
 	}
@@ -217,6 +226,7 @@ public abstract class FLIDImpl extends CDOObjectImpl implements FLID {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setVersion(String newVersion) {
 		eDynamicSet(BasePackage.FLID__VERSION, BasePackage.Literals.FLID__VERSION, newVersion);
 	}
@@ -226,6 +236,7 @@ public abstract class FLIDImpl extends CDOObjectImpl implements FLID {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Date getCDate() {
 		return (Date)eDynamicGet(BasePackage.FLID__CDATE, BasePackage.Literals.FLID__CDATE, true, true);
 	}
@@ -235,6 +246,7 @@ public abstract class FLIDImpl extends CDOObjectImpl implements FLID {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCDate(Date newCDate) {
 		eDynamicSet(BasePackage.FLID__CDATE, BasePackage.Literals.FLID__CDATE, newCDate);
 	}
@@ -244,6 +256,7 @@ public abstract class FLIDImpl extends CDOObjectImpl implements FLID {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Date getUDate() {
 		return (Date)eDynamicGet(BasePackage.FLID__UDATE, BasePackage.Literals.FLID__UDATE, true, true);
 	}
@@ -253,6 +266,7 @@ public abstract class FLIDImpl extends CDOObjectImpl implements FLID {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setUDate(Date newUDate) {
 		eDynamicSet(BasePackage.FLID__UDATE, BasePackage.Literals.FLID__UDATE, newUDate);
 	}
@@ -262,6 +276,7 @@ public abstract class FLIDImpl extends CDOObjectImpl implements FLID {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean hasPermission(final FLID object) {
 		CDOPermission _cdoPermission = object.cdoPermission();
 		boolean _notEquals = (!Objects.equal(_cdoPermission, CDOPermission.NONE));

@@ -68,6 +68,7 @@ public class FLRatingImpl extends CDOObjectImpl implements FLRating {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public FLRatingType getRatingType() {
 		return (FLRatingType)eDynamicGet(BasePackage.FL_RATING__RATING_TYPE, BasePackage.Literals.FL_RATING__RATING_TYPE, true, true);
 	}
@@ -77,6 +78,7 @@ public class FLRatingImpl extends CDOObjectImpl implements FLRating {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRatingType(FLRatingType newRatingType) {
 		eDynamicSet(BasePackage.FL_RATING__RATING_TYPE, BasePackage.Literals.FL_RATING__RATING_TYPE, newRatingType);
 	}

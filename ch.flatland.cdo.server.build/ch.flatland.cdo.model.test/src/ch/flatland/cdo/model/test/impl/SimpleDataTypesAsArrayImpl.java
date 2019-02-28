@@ -79,6 +79,7 @@ public class SimpleDataTypesAsArrayImpl extends CDOObjectImpl implements SimpleD
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<String> getTestString() {
 		return (EList<String>)eDynamicGet(TestPackage.SIMPLE_DATA_TYPES_AS_ARRAY__TEST_STRING, TestPackage.Literals.SIMPLE_DATA_TYPES_AS_ARRAY__TEST_STRING, true, true);
 	}
@@ -89,6 +90,7 @@ public class SimpleDataTypesAsArrayImpl extends CDOObjectImpl implements SimpleD
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<Boolean> getTestBoolean() {
 		return (EList<Boolean>)eDynamicGet(TestPackage.SIMPLE_DATA_TYPES_AS_ARRAY__TEST_BOOLEAN, TestPackage.Literals.SIMPLE_DATA_TYPES_AS_ARRAY__TEST_BOOLEAN, true, true);
 	}
@@ -99,6 +101,7 @@ public class SimpleDataTypesAsArrayImpl extends CDOObjectImpl implements SimpleD
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<Integer> getTestInt() {
 		return (EList<Integer>)eDynamicGet(TestPackage.SIMPLE_DATA_TYPES_AS_ARRAY__TEST_INT, TestPackage.Literals.SIMPLE_DATA_TYPES_AS_ARRAY__TEST_INT, true, true);
 	}
@@ -109,6 +112,7 @@ public class SimpleDataTypesAsArrayImpl extends CDOObjectImpl implements SimpleD
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<Long> getTestLong() {
 		return (EList<Long>)eDynamicGet(TestPackage.SIMPLE_DATA_TYPES_AS_ARRAY__TEST_LONG, TestPackage.Literals.SIMPLE_DATA_TYPES_AS_ARRAY__TEST_LONG, true, true);
 	}
@@ -119,6 +123,7 @@ public class SimpleDataTypesAsArrayImpl extends CDOObjectImpl implements SimpleD
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<Short> getTestShort() {
 		return (EList<Short>)eDynamicGet(TestPackage.SIMPLE_DATA_TYPES_AS_ARRAY__TEST_SHORT, TestPackage.Literals.SIMPLE_DATA_TYPES_AS_ARRAY__TEST_SHORT, true, true);
 	}
@@ -129,6 +134,7 @@ public class SimpleDataTypesAsArrayImpl extends CDOObjectImpl implements SimpleD
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<Double> getTestDouble() {
 		return (EList<Double>)eDynamicGet(TestPackage.SIMPLE_DATA_TYPES_AS_ARRAY__TEST_DOUBLE, TestPackage.Literals.SIMPLE_DATA_TYPES_AS_ARRAY__TEST_DOUBLE, true, true);
 	}
@@ -139,6 +145,7 @@ public class SimpleDataTypesAsArrayImpl extends CDOObjectImpl implements SimpleD
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<Float> getTestFloat() {
 		return (EList<Float>)eDynamicGet(TestPackage.SIMPLE_DATA_TYPES_AS_ARRAY__TEST_FLOAT, TestPackage.Literals.SIMPLE_DATA_TYPES_AS_ARRAY__TEST_FLOAT, true, true);
 	}
@@ -149,6 +156,7 @@ public class SimpleDataTypesAsArrayImpl extends CDOObjectImpl implements SimpleD
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<Byte> getTestByte() {
 		return (EList<Byte>)eDynamicGet(TestPackage.SIMPLE_DATA_TYPES_AS_ARRAY__TEST_BYTE, TestPackage.Literals.SIMPLE_DATA_TYPES_AS_ARRAY__TEST_BYTE, true, true);
 	}
@@ -159,6 +167,7 @@ public class SimpleDataTypesAsArrayImpl extends CDOObjectImpl implements SimpleD
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<Character> getTestChar() {
 		return (EList<Character>)eDynamicGet(TestPackage.SIMPLE_DATA_TYPES_AS_ARRAY__TEST_CHAR, TestPackage.Literals.SIMPLE_DATA_TYPES_AS_ARRAY__TEST_CHAR, true, true);
 	}
@@ -169,6 +178,7 @@ public class SimpleDataTypesAsArrayImpl extends CDOObjectImpl implements SimpleD
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<Date> getTestDate() {
 		return (EList<Date>)eDynamicGet(TestPackage.SIMPLE_DATA_TYPES_AS_ARRAY__TEST_DATE, TestPackage.Literals.SIMPLE_DATA_TYPES_AS_ARRAY__TEST_DATE, true, true);
 	}
@@ -179,6 +189,7 @@ public class SimpleDataTypesAsArrayImpl extends CDOObjectImpl implements SimpleD
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<BigDecimal> getTestBigDecimal() {
 		return (EList<BigDecimal>)eDynamicGet(TestPackage.SIMPLE_DATA_TYPES_AS_ARRAY__TEST_BIG_DECIMAL, TestPackage.Literals.SIMPLE_DATA_TYPES_AS_ARRAY__TEST_BIG_DECIMAL, true, true);
 	}
@@ -189,6 +200,7 @@ public class SimpleDataTypesAsArrayImpl extends CDOObjectImpl implements SimpleD
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<BigInteger> getTestBigInteger() {
 		return (EList<BigInteger>)eDynamicGet(TestPackage.SIMPLE_DATA_TYPES_AS_ARRAY__TEST_BIG_INTEGER, TestPackage.Literals.SIMPLE_DATA_TYPES_AS_ARRAY__TEST_BIG_INTEGER, true, true);
 	}
@@ -199,6 +211,7 @@ public class SimpleDataTypesAsArrayImpl extends CDOObjectImpl implements SimpleD
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<TestEnum> getTestEnum() {
 		return (EList<TestEnum>)eDynamicGet(TestPackage.SIMPLE_DATA_TYPES_AS_ARRAY__TEST_ENUM, TestPackage.Literals.SIMPLE_DATA_TYPES_AS_ARRAY__TEST_ENUM, true, true);
 	}

@@ -68,6 +68,7 @@ public class FLTraceImpl extends CDOObjectImpl implements FLTrace {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public FLTraceType getTraceType() {
 		return (FLTraceType)eDynamicGet(BasePackage.FL_TRACE__TRACE_TYPE, BasePackage.Literals.FL_TRACE__TRACE_TYPE, true, true);
 	}
@@ -77,6 +78,7 @@ public class FLTraceImpl extends CDOObjectImpl implements FLTrace {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTraceType(FLTraceType newTraceType) {
 		eDynamicSet(BasePackage.FL_TRACE__TRACE_TYPE, BasePackage.Literals.FL_TRACE__TRACE_TYPE, newTraceType);
 	}
@@ -86,6 +88,7 @@ public class FLTraceImpl extends CDOObjectImpl implements FLTrace {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public FLElement getTarget() {
 		return (FLElement)eDynamicGet(BasePackage.FL_TRACE__TARGET, BasePackage.Literals.FL_TRACE__TARGET, true, true);
 	}
@@ -104,6 +107,7 @@ public class FLTraceImpl extends CDOObjectImpl implements FLTrace {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTarget(FLElement newTarget) {
 		eDynamicSet(BasePackage.FL_TRACE__TARGET, BasePackage.Literals.FL_TRACE__TARGET, newTarget);
 	}

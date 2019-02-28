@@ -87,6 +87,7 @@ public class TestObjectImpl extends CDOObjectImpl implements TestObject {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return (String)eDynamicGet(TestPackage.TEST_OBJECT__NAME, TestPackage.Literals.TEST_OBJECT__NAME, true, true);
 	}
@@ -96,6 +97,7 @@ public class TestObjectImpl extends CDOObjectImpl implements TestObject {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		eDynamicSet(TestPackage.TEST_OBJECT__NAME, TestPackage.Literals.TEST_OBJECT__NAME, newName);
 	}
@@ -105,6 +107,7 @@ public class TestObjectImpl extends CDOObjectImpl implements TestObject {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getMaxlength8() {
 		return (String)eDynamicGet(TestPackage.TEST_OBJECT__MAXLENGTH8, TestPackage.Literals.TEST_OBJECT__MAXLENGTH8, true, true);
 	}
@@ -114,6 +117,7 @@ public class TestObjectImpl extends CDOObjectImpl implements TestObject {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMaxlength8(String newMaxlength8) {
 		eDynamicSet(TestPackage.TEST_OBJECT__MAXLENGTH8, TestPackage.Literals.TEST_OBJECT__MAXLENGTH8, newMaxlength8);
 	}
@@ -123,6 +127,7 @@ public class TestObjectImpl extends CDOObjectImpl implements TestObject {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TestObject getSingleReference() {
 		return (TestObject)eDynamicGet(TestPackage.TEST_OBJECT__SINGLE_REFERENCE, TestPackage.Literals.TEST_OBJECT__SINGLE_REFERENCE, true, true);
 	}
@@ -141,6 +146,7 @@ public class TestObjectImpl extends CDOObjectImpl implements TestObject {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSingleReference(TestObject newSingleReference) {
 		eDynamicSet(TestPackage.TEST_OBJECT__SINGLE_REFERENCE, TestPackage.Literals.TEST_OBJECT__SINGLE_REFERENCE, newSingleReference);
 	}
@@ -151,6 +157,7 @@ public class TestObjectImpl extends CDOObjectImpl implements TestObject {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<TestObject> getMultiReferences() {
 		return (EList<TestObject>)eDynamicGet(TestPackage.TEST_OBJECT__MULTI_REFERENCES, TestPackage.Literals.TEST_OBJECT__MULTI_REFERENCES, true, true);
 	}
@@ -161,6 +168,7 @@ public class TestObjectImpl extends CDOObjectImpl implements TestObject {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<TestObject> getFixUpperBoundReferences() {
 		return (EList<TestObject>)eDynamicGet(TestPackage.TEST_OBJECT__FIX_UPPER_BOUND_REFERENCES, TestPackage.Literals.TEST_OBJECT__FIX_UPPER_BOUND_REFERENCES, true, true);
 	}
@@ -171,6 +179,7 @@ public class TestObjectImpl extends CDOObjectImpl implements TestObject {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<TestObject> getFixBoundReferences() {
 		return (EList<TestObject>)eDynamicGet(TestPackage.TEST_OBJECT__FIX_BOUND_REFERENCES, TestPackage.Literals.TEST_OBJECT__FIX_BOUND_REFERENCES, true, true);
 	}
@@ -181,6 +190,7 @@ public class TestObjectImpl extends CDOObjectImpl implements TestObject {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<TestObject> getFixlowerBoundReferences() {
 		return (EList<TestObject>)eDynamicGet(TestPackage.TEST_OBJECT__FIXLOWER_BOUND_REFERENCES, TestPackage.Literals.TEST_OBJECT__FIXLOWER_BOUND_REFERENCES, true, true);
 	}

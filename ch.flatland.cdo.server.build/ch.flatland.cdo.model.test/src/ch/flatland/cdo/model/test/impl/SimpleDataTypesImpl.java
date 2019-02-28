@@ -293,6 +293,7 @@ public class SimpleDataTypesImpl extends CDOObjectImpl implements SimpleDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getTestString() {
 		return (String)eDynamicGet(TestPackage.SIMPLE_DATA_TYPES__TEST_STRING, TestPackage.Literals.SIMPLE_DATA_TYPES__TEST_STRING, true, true);
 	}
@@ -302,6 +303,7 @@ public class SimpleDataTypesImpl extends CDOObjectImpl implements SimpleDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTestString(String newTestString) {
 		eDynamicSet(TestPackage.SIMPLE_DATA_TYPES__TEST_STRING, TestPackage.Literals.SIMPLE_DATA_TYPES__TEST_STRING, newTestString);
 	}
@@ -311,6 +313,7 @@ public class SimpleDataTypesImpl extends CDOObjectImpl implements SimpleDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isTestBoolean() {
 		return (Boolean)eDynamicGet(TestPackage.SIMPLE_DATA_TYPES__TEST_BOOLEAN, TestPackage.Literals.SIMPLE_DATA_TYPES__TEST_BOOLEAN, true, true);
 	}
@@ -320,6 +323,7 @@ public class SimpleDataTypesImpl extends CDOObjectImpl implements SimpleDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTestBoolean(boolean newTestBoolean) {
 		eDynamicSet(TestPackage.SIMPLE_DATA_TYPES__TEST_BOOLEAN, TestPackage.Literals.SIMPLE_DATA_TYPES__TEST_BOOLEAN, newTestBoolean);
 	}
@@ -329,6 +333,7 @@ public class SimpleDataTypesImpl extends CDOObjectImpl implements SimpleDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Boolean getTestBooleanObject() {
 		return (Boolean)eDynamicGet(TestPackage.SIMPLE_DATA_TYPES__TEST_BOOLEAN_OBJECT, TestPackage.Literals.SIMPLE_DATA_TYPES__TEST_BOOLEAN_OBJECT, true, true);
 	}
@@ -338,6 +343,7 @@ public class SimpleDataTypesImpl extends CDOObjectImpl implements SimpleDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTestBooleanObject(Boolean newTestBooleanObject) {
 		eDynamicSet(TestPackage.SIMPLE_DATA_TYPES__TEST_BOOLEAN_OBJECT, TestPackage.Literals.SIMPLE_DATA_TYPES__TEST_BOOLEAN_OBJECT, newTestBooleanObject);
 	}
@@ -347,6 +353,7 @@ public class SimpleDataTypesImpl extends CDOObjectImpl implements SimpleDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getTestInt() {
 		return (Integer)eDynamicGet(TestPackage.SIMPLE_DATA_TYPES__TEST_INT, TestPackage.Literals.SIMPLE_DATA_TYPES__TEST_INT, true, true);
 	}
@@ -356,6 +363,7 @@ public class SimpleDataTypesImpl extends CDOObjectImpl implements SimpleDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTestInt(int newTestInt) {
 		eDynamicSet(TestPackage.SIMPLE_DATA_TYPES__TEST_INT, TestPackage.Literals.SIMPLE_DATA_TYPES__TEST_INT, newTestInt);
 	}
@@ -365,6 +373,7 @@ public class SimpleDataTypesImpl extends CDOObjectImpl implements SimpleDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Integer getTestIntObject() {
 		return (Integer)eDynamicGet(TestPackage.SIMPLE_DATA_TYPES__TEST_INT_OBJECT, TestPackage.Literals.SIMPLE_DATA_TYPES__TEST_INT_OBJECT, true, true);
 	}
@@ -374,6 +383,7 @@ public class SimpleDataTypesImpl extends CDOObjectImpl implements SimpleDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTestIntObject(Integer newTestIntObject) {
 		eDynamicSet(TestPackage.SIMPLE_DATA_TYPES__TEST_INT_OBJECT, TestPackage.Literals.SIMPLE_DATA_TYPES__TEST_INT_OBJECT, newTestIntObject);
 	}
@@ -383,6 +393,7 @@ public class SimpleDataTypesImpl extends CDOObjectImpl implements SimpleDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public long getTestLong() {
 		return (Long)eDynamicGet(TestPackage.SIMPLE_DATA_TYPES__TEST_LONG, TestPackage.Literals.SIMPLE_DATA_TYPES__TEST_LONG, true, true);
 	}
@@ -392,6 +403,7 @@ public class SimpleDataTypesImpl extends CDOObjectImpl implements SimpleDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTestLong(long newTestLong) {
 		eDynamicSet(TestPackage.SIMPLE_DATA_TYPES__TEST_LONG, TestPackage.Literals.SIMPLE_DATA_TYPES__TEST_LONG, newTestLong);
 	}
@@ -401,6 +413,7 @@ public class SimpleDataTypesImpl extends CDOObjectImpl implements SimpleDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Long getTestLongObject() {
 		return (Long)eDynamicGet(TestPackage.SIMPLE_DATA_TYPES__TEST_LONG_OBJECT, TestPackage.Literals.SIMPLE_DATA_TYPES__TEST_LONG_OBJECT, true, true);
 	}
@@ -410,6 +423,7 @@ public class SimpleDataTypesImpl extends CDOObjectImpl implements SimpleDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTestLongObject(Long newTestLongObject) {
 		eDynamicSet(TestPackage.SIMPLE_DATA_TYPES__TEST_LONG_OBJECT, TestPackage.Literals.SIMPLE_DATA_TYPES__TEST_LONG_OBJECT, newTestLongObject);
 	}
@@ -419,6 +433,7 @@ public class SimpleDataTypesImpl extends CDOObjectImpl implements SimpleDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public short getTestShort() {
 		return (Short)eDynamicGet(TestPackage.SIMPLE_DATA_TYPES__TEST_SHORT, TestPackage.Literals.SIMPLE_DATA_TYPES__TEST_SHORT, true, true);
 	}
@@ -428,6 +443,7 @@ public class SimpleDataTypesImpl extends CDOObjectImpl implements SimpleDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTestShort(short newTestShort) {
 		eDynamicSet(TestPackage.SIMPLE_DATA_TYPES__TEST_SHORT, TestPackage.Literals.SIMPLE_DATA_TYPES__TEST_SHORT, newTestShort);
 	}
@@ -437,6 +453,7 @@ public class SimpleDataTypesImpl extends CDOObjectImpl implements SimpleDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Short getTestShortObject() {
 		return (Short)eDynamicGet(TestPackage.SIMPLE_DATA_TYPES__TEST_SHORT_OBJECT, TestPackage.Literals.SIMPLE_DATA_TYPES__TEST_SHORT_OBJECT, true, true);
 	}
@@ -446,6 +463,7 @@ public class SimpleDataTypesImpl extends CDOObjectImpl implements SimpleDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTestShortObject(Short newTestShortObject) {
 		eDynamicSet(TestPackage.SIMPLE_DATA_TYPES__TEST_SHORT_OBJECT, TestPackage.Literals.SIMPLE_DATA_TYPES__TEST_SHORT_OBJECT, newTestShortObject);
 	}
@@ -455,6 +473,7 @@ public class SimpleDataTypesImpl extends CDOObjectImpl implements SimpleDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public double getTestDouble() {
 		return (Double)eDynamicGet(TestPackage.SIMPLE_DATA_TYPES__TEST_DOUBLE, TestPackage.Literals.SIMPLE_DATA_TYPES__TEST_DOUBLE, true, true);
 	}
@@ -464,6 +483,7 @@ public class SimpleDataTypesImpl extends CDOObjectImpl implements SimpleDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTestDouble(double newTestDouble) {
 		eDynamicSet(TestPackage.SIMPLE_DATA_TYPES__TEST_DOUBLE, TestPackage.Literals.SIMPLE_DATA_TYPES__TEST_DOUBLE, newTestDouble);
 	}
@@ -473,6 +493,7 @@ public class SimpleDataTypesImpl extends CDOObjectImpl implements SimpleDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Double getTestDoubleObject() {
 		return (Double)eDynamicGet(TestPackage.SIMPLE_DATA_TYPES__TEST_DOUBLE_OBJECT, TestPackage.Literals.SIMPLE_DATA_TYPES__TEST_DOUBLE_OBJECT, true, true);
 	}
@@ -482,6 +503,7 @@ public class SimpleDataTypesImpl extends CDOObjectImpl implements SimpleDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTestDoubleObject(Double newTestDoubleObject) {
 		eDynamicSet(TestPackage.SIMPLE_DATA_TYPES__TEST_DOUBLE_OBJECT, TestPackage.Literals.SIMPLE_DATA_TYPES__TEST_DOUBLE_OBJECT, newTestDoubleObject);
 	}
@@ -491,6 +513,7 @@ public class SimpleDataTypesImpl extends CDOObjectImpl implements SimpleDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public float getTestFloat() {
 		return (Float)eDynamicGet(TestPackage.SIMPLE_DATA_TYPES__TEST_FLOAT, TestPackage.Literals.SIMPLE_DATA_TYPES__TEST_FLOAT, true, true);
 	}
@@ -500,6 +523,7 @@ public class SimpleDataTypesImpl extends CDOObjectImpl implements SimpleDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTestFloat(float newTestFloat) {
 		eDynamicSet(TestPackage.SIMPLE_DATA_TYPES__TEST_FLOAT, TestPackage.Literals.SIMPLE_DATA_TYPES__TEST_FLOAT, newTestFloat);
 	}
@@ -509,6 +533,7 @@ public class SimpleDataTypesImpl extends CDOObjectImpl implements SimpleDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Float getTestFloatObject() {
 		return (Float)eDynamicGet(TestPackage.SIMPLE_DATA_TYPES__TEST_FLOAT_OBJECT, TestPackage.Literals.SIMPLE_DATA_TYPES__TEST_FLOAT_OBJECT, true, true);
 	}
@@ -518,6 +543,7 @@ public class SimpleDataTypesImpl extends CDOObjectImpl implements SimpleDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTestFloatObject(Float newTestFloatObject) {
 		eDynamicSet(TestPackage.SIMPLE_DATA_TYPES__TEST_FLOAT_OBJECT, TestPackage.Literals.SIMPLE_DATA_TYPES__TEST_FLOAT_OBJECT, newTestFloatObject);
 	}
@@ -527,6 +553,7 @@ public class SimpleDataTypesImpl extends CDOObjectImpl implements SimpleDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public byte getTestByte() {
 		return (Byte)eDynamicGet(TestPackage.SIMPLE_DATA_TYPES__TEST_BYTE, TestPackage.Literals.SIMPLE_DATA_TYPES__TEST_BYTE, true, true);
 	}
@@ -536,6 +563,7 @@ public class SimpleDataTypesImpl extends CDOObjectImpl implements SimpleDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTestByte(byte newTestByte) {
 		eDynamicSet(TestPackage.SIMPLE_DATA_TYPES__TEST_BYTE, TestPackage.Literals.SIMPLE_DATA_TYPES__TEST_BYTE, newTestByte);
 	}
@@ -545,6 +573,7 @@ public class SimpleDataTypesImpl extends CDOObjectImpl implements SimpleDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Byte getTestByteObject() {
 		return (Byte)eDynamicGet(TestPackage.SIMPLE_DATA_TYPES__TEST_BYTE_OBJECT, TestPackage.Literals.SIMPLE_DATA_TYPES__TEST_BYTE_OBJECT, true, true);
 	}
@@ -554,6 +583,7 @@ public class SimpleDataTypesImpl extends CDOObjectImpl implements SimpleDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTestByteObject(Byte newTestByteObject) {
 		eDynamicSet(TestPackage.SIMPLE_DATA_TYPES__TEST_BYTE_OBJECT, TestPackage.Literals.SIMPLE_DATA_TYPES__TEST_BYTE_OBJECT, newTestByteObject);
 	}
@@ -563,6 +593,7 @@ public class SimpleDataTypesImpl extends CDOObjectImpl implements SimpleDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public char getTestChar() {
 		return (Character)eDynamicGet(TestPackage.SIMPLE_DATA_TYPES__TEST_CHAR, TestPackage.Literals.SIMPLE_DATA_TYPES__TEST_CHAR, true, true);
 	}
@@ -572,6 +603,7 @@ public class SimpleDataTypesImpl extends CDOObjectImpl implements SimpleDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTestChar(char newTestChar) {
 		eDynamicSet(TestPackage.SIMPLE_DATA_TYPES__TEST_CHAR, TestPackage.Literals.SIMPLE_DATA_TYPES__TEST_CHAR, newTestChar);
 	}
@@ -581,6 +613,7 @@ public class SimpleDataTypesImpl extends CDOObjectImpl implements SimpleDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Character getTestCharObject() {
 		return (Character)eDynamicGet(TestPackage.SIMPLE_DATA_TYPES__TEST_CHAR_OBJECT, TestPackage.Literals.SIMPLE_DATA_TYPES__TEST_CHAR_OBJECT, true, true);
 	}
@@ -590,6 +623,7 @@ public class SimpleDataTypesImpl extends CDOObjectImpl implements SimpleDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTestCharObject(Character newTestCharObject) {
 		eDynamicSet(TestPackage.SIMPLE_DATA_TYPES__TEST_CHAR_OBJECT, TestPackage.Literals.SIMPLE_DATA_TYPES__TEST_CHAR_OBJECT, newTestCharObject);
 	}
@@ -599,6 +633,7 @@ public class SimpleDataTypesImpl extends CDOObjectImpl implements SimpleDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Date getTestDate() {
 		return (Date)eDynamicGet(TestPackage.SIMPLE_DATA_TYPES__TEST_DATE, TestPackage.Literals.SIMPLE_DATA_TYPES__TEST_DATE, true, true);
 	}
@@ -608,6 +643,7 @@ public class SimpleDataTypesImpl extends CDOObjectImpl implements SimpleDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTestDate(Date newTestDate) {
 		eDynamicSet(TestPackage.SIMPLE_DATA_TYPES__TEST_DATE, TestPackage.Literals.SIMPLE_DATA_TYPES__TEST_DATE, newTestDate);
 	}
@@ -617,6 +653,7 @@ public class SimpleDataTypesImpl extends CDOObjectImpl implements SimpleDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public BigDecimal getTestBigDecimal() {
 		return (BigDecimal)eDynamicGet(TestPackage.SIMPLE_DATA_TYPES__TEST_BIG_DECIMAL, TestPackage.Literals.SIMPLE_DATA_TYPES__TEST_BIG_DECIMAL, true, true);
 	}
@@ -626,6 +663,7 @@ public class SimpleDataTypesImpl extends CDOObjectImpl implements SimpleDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTestBigDecimal(BigDecimal newTestBigDecimal) {
 		eDynamicSet(TestPackage.SIMPLE_DATA_TYPES__TEST_BIG_DECIMAL, TestPackage.Literals.SIMPLE_DATA_TYPES__TEST_BIG_DECIMAL, newTestBigDecimal);
 	}
@@ -635,6 +673,7 @@ public class SimpleDataTypesImpl extends CDOObjectImpl implements SimpleDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public BigInteger getTestBigInteger() {
 		return (BigInteger)eDynamicGet(TestPackage.SIMPLE_DATA_TYPES__TEST_BIG_INTEGER, TestPackage.Literals.SIMPLE_DATA_TYPES__TEST_BIG_INTEGER, true, true);
 	}
@@ -644,6 +683,7 @@ public class SimpleDataTypesImpl extends CDOObjectImpl implements SimpleDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTestBigInteger(BigInteger newTestBigInteger) {
 		eDynamicSet(TestPackage.SIMPLE_DATA_TYPES__TEST_BIG_INTEGER, TestPackage.Literals.SIMPLE_DATA_TYPES__TEST_BIG_INTEGER, newTestBigInteger);
 	}
@@ -653,6 +693,7 @@ public class SimpleDataTypesImpl extends CDOObjectImpl implements SimpleDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TestEnum getTestEnum() {
 		return (TestEnum)eDynamicGet(TestPackage.SIMPLE_DATA_TYPES__TEST_ENUM, TestPackage.Literals.SIMPLE_DATA_TYPES__TEST_ENUM, true, true);
 	}
@@ -662,6 +703,7 @@ public class SimpleDataTypesImpl extends CDOObjectImpl implements SimpleDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTestEnum(TestEnum newTestEnum) {
 		eDynamicSet(TestPackage.SIMPLE_DATA_TYPES__TEST_ENUM, TestPackage.Literals.SIMPLE_DATA_TYPES__TEST_ENUM, newTestEnum);
 	}

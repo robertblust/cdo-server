@@ -155,6 +155,7 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getConfig() {
 		return configEClass;
 	}
@@ -164,6 +165,7 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getConfig_ReadOnlyPassword() {
 		return (EAttribute)configEClass.getEStructuralFeatures().get(0);
 	}
@@ -173,6 +175,7 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getConfig_AdminPassword() {
 		return (EAttribute)configEClass.getEStructuralFeatures().get(1);
 	}
@@ -182,6 +185,7 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getConfig_Repositories() {
 		return (EReference)configEClass.getEStructuralFeatures().get(2);
 	}
@@ -191,6 +195,7 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getConfig_Binding() {
 		return (EReference)configEClass.getEStructuralFeatures().get(3);
 	}
@@ -200,6 +205,7 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getConfig_Json() {
 		return (EReference)configEClass.getEStructuralFeatures().get(4);
 	}
@@ -209,6 +215,7 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getConfig__GetByName__String() {
 		return configEClass.getEOperations().get(0);
 	}
@@ -218,6 +225,7 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getBinding() {
 		return bindingEClass;
 	}
@@ -227,6 +235,7 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getBinding_Tcp() {
 		return (EAttribute)bindingEClass.getEStructuralFeatures().get(0);
 	}
@@ -236,6 +245,7 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getBinding_TcpPort() {
 		return (EAttribute)bindingEClass.getEStructuralFeatures().get(1);
 	}
@@ -245,6 +255,7 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getBinding_Http() {
 		return (EAttribute)bindingEClass.getEStructuralFeatures().get(2);
 	}
@@ -254,6 +265,7 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getBinding_CheckSSL() {
 		return (EAttribute)bindingEClass.getEStructuralFeatures().get(3);
 	}
@@ -263,6 +275,7 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getJson() {
 		return jsonEClass;
 	}
@@ -272,6 +285,7 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getJson_Validate() {
 		return (EAttribute)jsonEClass.getEStructuralFeatures().get(0);
 	}
@@ -281,6 +295,7 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getJson_Rreferences() {
 		return (EAttribute)jsonEClass.getEStructuralFeatures().get(1);
 	}
@@ -290,6 +305,7 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getJson_Creferences() {
 		return (EAttribute)jsonEClass.getEStructuralFeatures().get(2);
 	}
@@ -299,6 +315,7 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getJson_Xreferences() {
 		return (EAttribute)jsonEClass.getEStructuralFeatures().get(3);
 	}
@@ -308,6 +325,7 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getJson_History() {
 		return (EAttribute)jsonEClass.getEStructuralFeatures().get(4);
 	}
@@ -317,6 +335,7 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getJson_FullUrl() {
 		return (EAttribute)jsonEClass.getEStructuralFeatures().get(5);
 	}
@@ -326,6 +345,7 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getJson_Meta() {
 		return (EAttribute)jsonEClass.getEStructuralFeatures().get(6);
 	}
@@ -335,6 +355,7 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getJson_Links() {
 		return (EAttribute)jsonEClass.getEStructuralFeatures().get(7);
 	}
@@ -344,6 +365,7 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getJson_Xlinks() {
 		return (EAttribute)jsonEClass.getEStructuralFeatures().get(8);
 	}
@@ -353,6 +375,7 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getJson_Arrayaccessor() {
 		return (EAttribute)jsonEClass.getEStructuralFeatures().get(9);
 	}
@@ -362,6 +385,7 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getJson_Xtraces() {
 		return (EAttribute)jsonEClass.getEStructuralFeatures().get(10);
 	}
@@ -371,6 +395,7 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getJson_Cdometa() {
 		return (EAttribute)jsonEClass.getEStructuralFeatures().get(11);
 	}
@@ -380,6 +405,7 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getRepository() {
 		return repositoryEClass;
 	}
@@ -389,6 +415,7 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getRepository_DataStore() {
 		return (EReference)repositoryEClass.getEStructuralFeatures().get(0);
 	}
@@ -398,6 +425,7 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getRepository_Authenticator() {
 		return (EReference)repositoryEClass.getEStructuralFeatures().get(1);
 	}
@@ -407,6 +435,7 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getDataStore() {
 		return dataStoreEClass;
 	}
@@ -416,6 +445,7 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getDataStore_StoreType() {
 		return (EAttribute)dataStoreEClass.getEStructuralFeatures().get(0);
 	}
@@ -425,6 +455,7 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getDataStore_RepositoryName() {
 		return (EAttribute)dataStoreEClass.getEStructuralFeatures().get(1);
 	}
@@ -434,6 +465,7 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getDataStore_ConnectionUrl() {
 		return (EAttribute)dataStoreEClass.getEStructuralFeatures().get(2);
 	}
@@ -443,6 +475,7 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getDataStore_UserName() {
 		return (EAttribute)dataStoreEClass.getEStructuralFeatures().get(3);
 	}
@@ -452,6 +485,7 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getDataStore_Password() {
 		return (EAttribute)dataStoreEClass.getEStructuralFeatures().get(4);
 	}
@@ -461,6 +495,7 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getDataStore_Temporality() {
 		return (EAttribute)dataStoreEClass.getEStructuralFeatures().get(5);
 	}
@@ -470,6 +505,7 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getAuthenticator() {
 		return authenticatorEClass;
 	}
@@ -479,6 +515,7 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getAuthenticator_AuthenticatorType() {
 		return (EAttribute)authenticatorEClass.getEStructuralFeatures().get(0);
 	}
@@ -488,6 +525,7 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getAuthenticator_ConnectionUrl() {
 		return (EAttribute)authenticatorEClass.getEStructuralFeatures().get(1);
 	}
@@ -497,6 +535,7 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getAuthenticator_DomainBase() {
 		return (EAttribute)authenticatorEClass.getEStructuralFeatures().get(2);
 	}
@@ -506,6 +545,7 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getAuthenticator_UserIdField() {
 		return (EAttribute)authenticatorEClass.getEStructuralFeatures().get(3);
 	}
@@ -515,6 +555,7 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getStoreType() {
 		return storeTypeEEnum;
 	}
@@ -524,6 +565,7 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getAuthenticatorType() {
 		return authenticatorTypeEEnum;
 	}
@@ -533,6 +575,7 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ConfigFactory getConfigFactory() {
 		return (ConfigFactory)getEFactoryInstance();
 	}

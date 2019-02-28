@@ -45,7 +45,7 @@
 							<requirement>
 								<type>p2-installable-unit</type>
 								<id>ch.flatland.cdo.server</id>
-								<versionRange>1.2.0</versionRange>
+								<versionRange>1.4.2</versionRange>
 							</requirement>
 						</extraRequirements>
 					</dependency-resolution>

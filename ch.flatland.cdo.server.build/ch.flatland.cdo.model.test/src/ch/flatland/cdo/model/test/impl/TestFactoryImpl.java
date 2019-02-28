@@ -105,6 +105,7 @@ public class TestFactoryImpl extends EFactoryImpl implements TestFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SimpleDataTypes createSimpleDataTypes() {
 		SimpleDataTypesImpl simpleDataTypes = new SimpleDataTypesImpl();
 		return simpleDataTypes;
@@ -115,6 +116,7 @@ public class TestFactoryImpl extends EFactoryImpl implements TestFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SimpleDataTypesAsArray createSimpleDataTypesAsArray() {
 		SimpleDataTypesAsArrayImpl simpleDataTypesAsArray = new SimpleDataTypesAsArrayImpl();
 		return simpleDataTypesAsArray;
@@ -125,6 +127,7 @@ public class TestFactoryImpl extends EFactoryImpl implements TestFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TestObject createTestObject() {
 		TestObjectImpl testObject = new TestObjectImpl();
 		return testObject;
@@ -135,6 +138,7 @@ public class TestFactoryImpl extends EFactoryImpl implements TestFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TestClob createTestClob() {
 		TestClobImpl testClob = new TestClobImpl();
 		return testClob;
@@ -183,6 +187,7 @@ public class TestFactoryImpl extends EFactoryImpl implements TestFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TestPackage getTestPackage() {
 		return (TestPackage)getEPackage();
 	}

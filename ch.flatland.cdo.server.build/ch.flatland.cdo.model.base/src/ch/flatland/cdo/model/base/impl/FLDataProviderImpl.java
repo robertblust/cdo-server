@@ -100,6 +100,7 @@ public class FLDataProviderImpl extends FLIDImpl implements FLDataProvider {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return (String)eDynamicGet(BasePackage.FL_DATA_PROVIDER__NAME, BasePackage.Literals.FL_NAMEABLE__NAME, true, true);
 	}
@@ -109,6 +110,7 @@ public class FLDataProviderImpl extends FLIDImpl implements FLDataProvider {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		eDynamicSet(BasePackage.FL_DATA_PROVIDER__NAME, BasePackage.Literals.FL_NAMEABLE__NAME, newName);
 	}
@@ -118,6 +120,7 @@ public class FLDataProviderImpl extends FLIDImpl implements FLDataProvider {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getDescription() {
 		return (String)eDynamicGet(BasePackage.FL_DATA_PROVIDER__DESCRIPTION, BasePackage.Literals.FL_NAMEABLE__DESCRIPTION, true, true);
 	}
@@ -127,6 +130,7 @@ public class FLDataProviderImpl extends FLIDImpl implements FLDataProvider {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDescription(String newDescription) {
 		eDynamicSet(BasePackage.FL_DATA_PROVIDER__DESCRIPTION, BasePackage.Literals.FL_NAMEABLE__DESCRIPTION, newDescription);
 	}
@@ -136,6 +140,7 @@ public class FLDataProviderImpl extends FLIDImpl implements FLDataProvider {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getLongDescription() {
 		return (String)eDynamicGet(BasePackage.FL_DATA_PROVIDER__LONG_DESCRIPTION, BasePackage.Literals.FL_NAMEABLE__LONG_DESCRIPTION, true, true);
 	}
@@ -145,6 +150,7 @@ public class FLDataProviderImpl extends FLIDImpl implements FLDataProvider {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLongDescription(String newLongDescription) {
 		eDynamicSet(BasePackage.FL_DATA_PROVIDER__LONG_DESCRIPTION, BasePackage.Literals.FL_NAMEABLE__LONG_DESCRIPTION, newLongDescription);
 	}
@@ -154,6 +160,7 @@ public class FLDataProviderImpl extends FLIDImpl implements FLDataProvider {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getNotes() {
 		return (String)eDynamicGet(BasePackage.FL_DATA_PROVIDER__NOTES, BasePackage.Literals.FL_NAMEABLE__NOTES, true, true);
 	}
@@ -163,6 +170,7 @@ public class FLDataProviderImpl extends FLIDImpl implements FLDataProvider {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNotes(String newNotes) {
 		eDynamicSet(BasePackage.FL_DATA_PROVIDER__NOTES, BasePackage.Literals.FL_NAMEABLE__NOTES, newNotes);
 	}
@@ -173,6 +181,7 @@ public class FLDataProviderImpl extends FLIDImpl implements FLDataProvider {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<FLHyperLink> getHyperLinks() {
 		return (EList<FLHyperLink>)eDynamicGet(BasePackage.FL_DATA_PROVIDER__HYPER_LINKS, BasePackage.Literals.FL_HYPER_LINKABLE__HYPER_LINKS, true, true);
 	}
@@ -183,6 +192,7 @@ public class FLDataProviderImpl extends FLIDImpl implements FLDataProvider {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<FLComment> getComments() {
 		return (EList<FLComment>)eDynamicGet(BasePackage.FL_DATA_PROVIDER__COMMENTS, BasePackage.Literals.FL_COMMENTABLE__COMMENTS, true, true);
 	}
@@ -193,6 +203,7 @@ public class FLDataProviderImpl extends FLIDImpl implements FLDataProvider {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<FLElement> getProvidedElements() {
 		return (EList<FLElement>)eDynamicGet(BasePackage.FL_DATA_PROVIDER__PROVIDED_ELEMENTS, BasePackage.Literals.FL_DATA_PROVIDER__PROVIDED_ELEMENTS, true, true);
 	}

@@ -75,6 +75,7 @@ public class RepositoryImpl extends MinimalEObjectImpl.Container implements Repo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public DataStore getDataStore() {
 		return dataStore;
 	}
@@ -99,6 +100,7 @@ public class RepositoryImpl extends MinimalEObjectImpl.Container implements Repo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDataStore(DataStore newDataStore) {
 		if (newDataStore != dataStore) {
 			NotificationChain msgs = null;
@@ -118,6 +120,7 @@ public class RepositoryImpl extends MinimalEObjectImpl.Container implements Repo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Authenticator getAuthenticator() {
 		return authenticator;
 	}
@@ -142,6 +145,7 @@ public class RepositoryImpl extends MinimalEObjectImpl.Container implements Repo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAuthenticator(Authenticator newAuthenticator) {
 		if (newAuthenticator != authenticator) {
 			NotificationChain msgs = null;

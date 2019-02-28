@@ -39,7 +39,7 @@
 						<configuration>
 							<formats>
 								<win32>zip</win32>
-								<!-- <macosx>tar.gz</macosx> -->
+								<macosx>tar.gz</macosx>
 								<solaris>tar.gz</solaris>
 								<linux>tar.gz</linux>
 							</formats>
@@ -59,7 +59,7 @@
 							</execution>
 						</executions>
 					</plugin>
-					<!-- RPM Plugin Creation -->
+					<!-- RPM Plugin Creation 
 					<plugin>
 						<groupId>org.codehaus.mojo</groupId>
 						<artifactId>rpm-maven-plugin</artifactId>
@@ -121,6 +121,7 @@
 							</mappings>
 						</configuration>
 					</plugin>
+					-->
 				</plugins>
 			</build>
 		</profile>

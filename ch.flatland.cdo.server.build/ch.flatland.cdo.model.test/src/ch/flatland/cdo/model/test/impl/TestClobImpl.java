@@ -67,6 +67,7 @@ public class TestClobImpl extends CDOObjectImpl implements TestClob {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public byte[] getClob() {
 		return (byte[])eDynamicGet(TestPackage.TEST_CLOB__CLOB, TestPackage.Literals.TEST_CLOB__CLOB, true, true);
 	}
@@ -76,6 +77,7 @@ public class TestClobImpl extends CDOObjectImpl implements TestClob {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setClob(byte[] newClob) {
 		eDynamicSet(TestPackage.TEST_CLOB__CLOB, TestPackage.Literals.TEST_CLOB__CLOB, newClob);
 	}

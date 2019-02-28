@@ -76,6 +76,7 @@ public class FLPropertyImpl extends CDOObjectImpl implements FLProperty {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return (String)eDynamicGet(BasePackage.FL_PROPERTY__NAME, BasePackage.Literals.FL_PROPERTY__NAME, true, true);
 	}
@@ -85,6 +86,7 @@ public class FLPropertyImpl extends CDOObjectImpl implements FLProperty {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		eDynamicSet(BasePackage.FL_PROPERTY__NAME, BasePackage.Literals.FL_PROPERTY__NAME, newName);
 	}
@@ -94,6 +96,7 @@ public class FLPropertyImpl extends CDOObjectImpl implements FLProperty {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getValue() {
 		return (String)eDynamicGet(BasePackage.FL_PROPERTY__VALUE, BasePackage.Literals.FL_PROPERTY__VALUE, true, true);
 	}
@@ -103,6 +106,7 @@ public class FLPropertyImpl extends CDOObjectImpl implements FLProperty {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setValue(String newValue) {
 		eDynamicSet(BasePackage.FL_PROPERTY__VALUE, BasePackage.Literals.FL_PROPERTY__VALUE, newValue);
 	}
