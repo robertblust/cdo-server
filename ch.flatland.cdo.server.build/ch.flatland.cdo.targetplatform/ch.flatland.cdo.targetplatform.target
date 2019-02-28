@@ -1,16 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><?pde version="3.8"?><target name="Flatland CDO Server" sequenceNumber="36">
 <locations>
 	<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-		<unit id="org.eclipse.emf.cdo.sdk.feature.group" version="5.0.0.v20180530-1201"/>
-		<unit id="org.eclipse.emf.ecore.xcore.sdk.feature.group" version="1.7.0.v20180711-0440"/>
-		<unit id="org.eclipse.equinox.sdk.feature.group" version="3.15.0.v20180904-1442"/>
-		<unit id="org.eclipse.net4j.sdk.feature.group" version="4.7.0.v20180530-1201"/>
-		<unit id="org.eclipse.platform.sdk" version="4.9.0.I20180906-0745"/>
-		<unit id="org.eclipse.rcp.sdk.id" version="4.9.0.I20180906-0745"/>
-		<unit id="org.eclipse.xtext.sdk.feature.group" version="2.15.0.v20180916-1232"/>
-		<repository location="http://download.eclipse.org/releases/2018-09"/>
-	</location>
-	<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 		<unit id="org.eclipse.net4j.db.mysql.feature.group" version="4.2.500.v20180529-1130"/>
 		<unit id="org.eclipse.net4j.db.oracle.feature.group" version="1.1.400.v20180529-1130"/>
 		<unit id="org.eclipse.net4j.db.postgresql.feature.group" version="4.2.500.v20180529-1130"/>
@@ -26,6 +16,17 @@
 		<repository location="https://download.eclipse.org/tools/orbit/downloads/drops/R20181128170323/repository"/>
 		<unit id="org.slf4j.apis.jcl" version="1.7.10.v20160208-0839"/>
 		<unit id="org.slf4j.apis.jcl.source" version="1.7.10.v20160208-0839"/>
+	</location>
+	<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
+		<unit id="org.eclipse.emf.cdo.sdk.feature.group" version="5.0.0.v20180530-1201"/>
+		<unit id="org.eclipse.emf.ecore.xcore.sdk.feature.group" version="1.8.0.v20181203-0948"/>
+		<unit id="org.eclipse.equinox.sdk.feature.group" version="3.16.0.v20181130-2106"/>
+		<unit id="org.eclipse.net4j.sdk.feature.group" version="4.7.0.v20180530-1201"/>
+		<unit id="org.eclipse.net4j.sdk.source.feature.group" version="4.7.0.v20180530-1201"/>
+		<unit id="org.eclipse.platform.sdk" version="4.10.0.I20181206-0815"/>
+		<unit id="org.eclipse.rcp.sdk.id" version="4.10.0.I20181206-0815"/>
+		<unit id="org.eclipse.xtext.sdk.feature.group" version="2.16.0.v20181203-1555"/>
+		<repository location="https://download.eclipse.org/releases/2018-12/"/>
 	</location>
 </locations>
 </target>
