@@ -2,8 +2,6 @@
  */
 package ch.flatland.cdo.model.config.impl;
 
-import ch.flatland.cdo.model.config.Authenticator;
-import ch.flatland.cdo.model.config.AuthenticatorType;
 import ch.flatland.cdo.model.config.Binding;
 import ch.flatland.cdo.model.config.Config;
 import ch.flatland.cdo.model.config.ConfigFactory;
@@ -70,21 +68,7 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass authenticatorEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EEnum storeTypeEEnum = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EEnum authenticatorTypeEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -155,7 +139,6 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EClass getConfig() {
 		return configEClass;
 	}
@@ -165,28 +148,25 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public EAttribute getConfig_ReadOnlyPassword() {
-		return (EAttribute)configEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getConfig_AdminPassword() {
-		return (EAttribute)configEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EReference getConfig_Repositories() {
+		return (EReference)configEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getConfig_Binding() {
+		return (EReference)configEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getConfig_Json() {
 		return (EReference)configEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -195,27 +175,6 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public EReference getConfig_Binding() {
-		return (EReference)configEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getConfig_Json() {
-		return (EReference)configEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EOperation getConfig__GetByName__String() {
 		return configEClass.getEOperations().get(0);
 	}
@@ -225,7 +184,6 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EClass getBinding() {
 		return bindingEClass;
 	}
@@ -235,7 +193,6 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EAttribute getBinding_Tcp() {
 		return (EAttribute)bindingEClass.getEStructuralFeatures().get(0);
 	}
@@ -245,7 +202,6 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EAttribute getBinding_TcpPort() {
 		return (EAttribute)bindingEClass.getEStructuralFeatures().get(1);
 	}
@@ -255,7 +211,6 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EAttribute getBinding_Http() {
 		return (EAttribute)bindingEClass.getEStructuralFeatures().get(2);
 	}
@@ -265,7 +220,6 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EAttribute getBinding_CheckSSL() {
 		return (EAttribute)bindingEClass.getEStructuralFeatures().get(3);
 	}
@@ -275,7 +229,6 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EClass getJson() {
 		return jsonEClass;
 	}
@@ -285,7 +238,6 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EAttribute getJson_Validate() {
 		return (EAttribute)jsonEClass.getEStructuralFeatures().get(0);
 	}
@@ -295,7 +247,6 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EAttribute getJson_Rreferences() {
 		return (EAttribute)jsonEClass.getEStructuralFeatures().get(1);
 	}
@@ -305,7 +256,6 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EAttribute getJson_Creferences() {
 		return (EAttribute)jsonEClass.getEStructuralFeatures().get(2);
 	}
@@ -315,7 +265,6 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EAttribute getJson_Xreferences() {
 		return (EAttribute)jsonEClass.getEStructuralFeatures().get(3);
 	}
@@ -325,7 +274,6 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EAttribute getJson_History() {
 		return (EAttribute)jsonEClass.getEStructuralFeatures().get(4);
 	}
@@ -335,7 +283,6 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EAttribute getJson_FullUrl() {
 		return (EAttribute)jsonEClass.getEStructuralFeatures().get(5);
 	}
@@ -345,7 +292,6 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EAttribute getJson_Meta() {
 		return (EAttribute)jsonEClass.getEStructuralFeatures().get(6);
 	}
@@ -355,7 +301,6 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EAttribute getJson_Links() {
 		return (EAttribute)jsonEClass.getEStructuralFeatures().get(7);
 	}
@@ -365,7 +310,6 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EAttribute getJson_Xlinks() {
 		return (EAttribute)jsonEClass.getEStructuralFeatures().get(8);
 	}
@@ -375,7 +319,6 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EAttribute getJson_Arrayaccessor() {
 		return (EAttribute)jsonEClass.getEStructuralFeatures().get(9);
 	}
@@ -385,7 +328,6 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EAttribute getJson_Xtraces() {
 		return (EAttribute)jsonEClass.getEStructuralFeatures().get(10);
 	}
@@ -395,7 +337,6 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EAttribute getJson_Cdometa() {
 		return (EAttribute)jsonEClass.getEStructuralFeatures().get(11);
 	}
@@ -405,7 +346,6 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EClass getRepository() {
 		return repositoryEClass;
 	}
@@ -415,7 +355,6 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getRepository_DataStore() {
 		return (EReference)repositoryEClass.getEStructuralFeatures().get(0);
 	}
@@ -425,17 +364,6 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public EReference getRepository_Authenticator() {
-		return (EReference)repositoryEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EClass getDataStore() {
 		return dataStoreEClass;
 	}
@@ -445,7 +373,6 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EAttribute getDataStore_StoreType() {
 		return (EAttribute)dataStoreEClass.getEStructuralFeatures().get(0);
 	}
@@ -455,7 +382,6 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EAttribute getDataStore_RepositoryName() {
 		return (EAttribute)dataStoreEClass.getEStructuralFeatures().get(1);
 	}
@@ -465,7 +391,6 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EAttribute getDataStore_ConnectionUrl() {
 		return (EAttribute)dataStoreEClass.getEStructuralFeatures().get(2);
 	}
@@ -475,7 +400,6 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EAttribute getDataStore_UserName() {
 		return (EAttribute)dataStoreEClass.getEStructuralFeatures().get(3);
 	}
@@ -485,7 +409,6 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EAttribute getDataStore_Password() {
 		return (EAttribute)dataStoreEClass.getEStructuralFeatures().get(4);
 	}
@@ -495,7 +418,6 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EAttribute getDataStore_Temporality() {
 		return (EAttribute)dataStoreEClass.getEStructuralFeatures().get(5);
 	}
@@ -505,57 +427,6 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public EClass getAuthenticator() {
-		return authenticatorEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getAuthenticator_AuthenticatorType() {
-		return (EAttribute)authenticatorEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getAuthenticator_ConnectionUrl() {
-		return (EAttribute)authenticatorEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getAuthenticator_DomainBase() {
-		return (EAttribute)authenticatorEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getAuthenticator_UserIdField() {
-		return (EAttribute)authenticatorEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EEnum getStoreType() {
 		return storeTypeEEnum;
 	}
@@ -565,17 +436,6 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public EEnum getAuthenticatorType() {
-		return authenticatorTypeEEnum;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public ConfigFactory getConfigFactory() {
 		return (ConfigFactory)getEFactoryInstance();
 	}
@@ -600,8 +460,6 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 
 		// Create classes and their features
 		configEClass = createEClass(CONFIG);
-		createEAttribute(configEClass, CONFIG__READ_ONLY_PASSWORD);
-		createEAttribute(configEClass, CONFIG__ADMIN_PASSWORD);
 		createEReference(configEClass, CONFIG__REPOSITORIES);
 		createEReference(configEClass, CONFIG__BINDING);
 		createEReference(configEClass, CONFIG__JSON);
@@ -629,7 +487,6 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 
 		repositoryEClass = createEClass(REPOSITORY);
 		createEReference(repositoryEClass, REPOSITORY__DATA_STORE);
-		createEReference(repositoryEClass, REPOSITORY__AUTHENTICATOR);
 
 		dataStoreEClass = createEClass(DATA_STORE);
 		createEAttribute(dataStoreEClass, DATA_STORE__STORE_TYPE);
@@ -639,15 +496,8 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 		createEAttribute(dataStoreEClass, DATA_STORE__PASSWORD);
 		createEAttribute(dataStoreEClass, DATA_STORE__TEMPORALITY);
 
-		authenticatorEClass = createEClass(AUTHENTICATOR);
-		createEAttribute(authenticatorEClass, AUTHENTICATOR__AUTHENTICATOR_TYPE);
-		createEAttribute(authenticatorEClass, AUTHENTICATOR__CONNECTION_URL);
-		createEAttribute(authenticatorEClass, AUTHENTICATOR__DOMAIN_BASE);
-		createEAttribute(authenticatorEClass, AUTHENTICATOR__USER_ID_FIELD);
-
 		// Create enums
 		storeTypeEEnum = createEEnum(STORE_TYPE);
-		authenticatorTypeEEnum = createEEnum(AUTHENTICATOR_TYPE);
 	}
 
 	/**
@@ -684,8 +534,6 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(configEClass, Config.class, "Config", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getConfig_ReadOnlyPassword(), theEcorePackage.getEString(), "readOnlyPassword", null, 0, 1, Config.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getConfig_AdminPassword(), theEcorePackage.getEString(), "adminPassword", null, 0, 1, Config.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getConfig_Repositories(), this.getRepository(), null, "repositories", null, 0, -1, Config.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getConfig_Binding(), this.getBinding(), null, "binding", null, 1, 1, Config.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getConfig_Json(), this.getJson(), null, "json", null, 1, 1, Config.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -715,7 +563,6 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 
 		initEClass(repositoryEClass, Repository.class, "Repository", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getRepository_DataStore(), this.getDataStore(), null, "dataStore", null, 1, 1, Repository.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getRepository_Authenticator(), this.getAuthenticator(), null, "authenticator", null, 1, 1, Repository.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(dataStoreEClass, DataStore.class, "DataStore", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getDataStore_StoreType(), this.getStoreType(), "storeType", null, 1, 1, DataStore.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -725,23 +572,10 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 		initEAttribute(getDataStore_Password(), theEcorePackage.getEString(), "password", null, 1, 1, DataStore.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDataStore_Temporality(), theEcorePackage.getEBoolean(), "temporality", null, 0, 1, DataStore.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(authenticatorEClass, Authenticator.class, "Authenticator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getAuthenticator_AuthenticatorType(), this.getAuthenticatorType(), "authenticatorType", null, 1, 1, Authenticator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getAuthenticator_ConnectionUrl(), theEcorePackage.getEString(), "connectionUrl", null, 0, 1, Authenticator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getAuthenticator_DomainBase(), theEcorePackage.getEString(), "domainBase", null, 0, 1, Authenticator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getAuthenticator_UserIdField(), theEcorePackage.getEString(), "userIdField", null, 0, 1, Authenticator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
 		// Initialize enums and add enum literals
 		initEEnum(storeTypeEEnum, StoreType.class, "StoreType");
 		addEEnumLiteral(storeTypeEEnum, StoreType.H2);
 		addEEnumLiteral(storeTypeEEnum, StoreType.MYSQL);
-		addEEnumLiteral(storeTypeEEnum, StoreType.ORACLE);
-
-		initEEnum(authenticatorTypeEEnum, AuthenticatorType.class, "AuthenticatorType");
-		addEEnumLiteral(authenticatorTypeEEnum, AuthenticatorType.CDO);
-		addEEnumLiteral(authenticatorTypeEEnum, AuthenticatorType.LDAP);
-		addEEnumLiteral(authenticatorTypeEEnum, AuthenticatorType.NONE);
-		addEEnumLiteral(authenticatorTypeEEnum, AuthenticatorType.SIMPLE);
 
 		// Create resource
 		createResource(eNS_URI);

@@ -19,12 +19,10 @@ class App implements IApplication {
 	public static final String BUNDLE_ID = "ch.flatland.cdo.server.product.app"
 
 	var CountDownLatch stopLatch;
-	var IApplicationContext context;
 
 	override start(IApplicationContext context) throws Exception {
-		this.context = context
 
-		if(context != null) {
+		if(context !== null) {
 			context.applicationRunning()
 		}
 
@@ -36,8 +34,7 @@ class App implements IApplication {
 
 	override stop() {
 		Repository.stop
-		context = null
-		if(stopLatch != null) {
+		if(stopLatch !== null) {
 			stopLatch.countDown()
 		}
 	}

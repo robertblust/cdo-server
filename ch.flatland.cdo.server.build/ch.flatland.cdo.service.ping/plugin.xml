@@ -4,7 +4,7 @@
    <extension
          point="org.eclipse.equinox.http.registry.servlets">
       <servlet
-            alias="/ping"
+            alias="/manage"
             class="ch.flatland.cdo.service.ping.PingServlet"
             load-on-startup="false">
       </servlet>

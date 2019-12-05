@@ -12,5 +12,5 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
   <artifactId>com.mysql.connector</artifactId>
   <packaging>eclipse-plugin</packaging>
 
-  <version>5.0.8</version>
+  <version>5.1.47</version>
 </project>

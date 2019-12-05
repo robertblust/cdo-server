@@ -53,7 +53,6 @@ public interface FLRateable extends CDOObject {
 	 * @return the value of the '<em>Likes</em>' attribute.
 	 * @see ch.flatland.cdo.model.base.BasePackage#getFLRateable_Likes()
 	 * @model unique="false" transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Rating'"
 	 * @generated
 	 */
 	int getLikes();
@@ -69,7 +68,6 @@ public interface FLRateable extends CDOObject {
 	 * @return the value of the '<em>Dislikes</em>' attribute.
 	 * @see ch.flatland.cdo.model.base.BasePackage#getFLRateable_Dislikes()
 	 * @model unique="false" transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Rating'"
 	 * @generated
 	 */
 	int getDislikes();

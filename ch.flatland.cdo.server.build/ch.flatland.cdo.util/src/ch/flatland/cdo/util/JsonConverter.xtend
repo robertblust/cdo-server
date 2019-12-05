@@ -205,7 +205,7 @@ class JsonConverter {
 		val error = new JsonObject
 		jsonStatusObject.add(ERROR, error)
 
-		if(object.origin == null) {
+		if(object.origin === null) {
 			error.addProperty(ORIGIN, object.class.simpleName)
 		} else {
 			error.addProperty(ORIGIN, object.origin.url)
@@ -253,10 +253,10 @@ class JsonConverter {
 	def private JsonObject toJsonBase(EObject object, int level) {
 		val jsonBaseObject = new JsonObject
 
-		if(object.oid != null) {
+		if(object.oid !== null) {
 			jsonBaseObject.addProperty(ID, object.oid)
 
-			if(object.eContainer != null) {
+			if(object.eContainer !== null) {
 				jsonBaseObject.addProperty(CONTAINER_ID, object.eContainer.oid)
 			} else if(object.eResource instanceof CDOResourceNode) {
 
@@ -282,8 +282,8 @@ class JsonConverter {
 			if(object instanceof CDOObject) {
 				jsonBaseObject.addProperty(PERMISSION, object.cdoPermission.name)
 				jsonBaseObject.addProperty(REVISION, object.cdoRevision.version)
-				jsonBaseObject.addProperty(DATE,(new Date(object.cdoRevision.timeStamp).formatDate))
-				if(object.view.session.commitInfoManager.getCommitInfo(object.cdoRevision.timeStamp).userID != null) {
+				jsonBaseObject.addProperty(DATE, (new Date(object.cdoRevision.timeStamp).formatDate))
+				if(object.view.session.commitInfoManager.getCommitInfo(object.cdoRevision.timeStamp).userID !== null) {
 					jsonBaseObject.addProperty(AUTHOR, object.view.session.commitInfoManager.getCommitInfo(object.cdoRevision.timeStamp).userID)
 				}
 			}
@@ -305,7 +305,7 @@ class JsonConverter {
 			}
 		}
 
-		if(object.oid != null) {
+		if(object.oid !== null) {
 
 			// no meta model, a real object
 			val jsonLinksObject = new JsonObject
@@ -348,7 +348,7 @@ class JsonConverter {
 				}
 
 				val jsonContainerLink = new JsonObject
-				if(object.eContainer != null) {
+				if(object.eContainer !== null) {
 					jsonContainerLink.addProperty(HREF, object.eContainer.url)
 				} else if(object.eResource instanceof CDOResourceNode) {
 
@@ -424,13 +424,13 @@ class JsonConverter {
 			for (var i = historySize - 1; i > 0; i--) {
 				val commitInfo = object.cdoHistory.getElement(i)
 				val jsonRevsionObject = new JsonObject
-				jsonRevsionObject.addProperty(REVISION,(historySize - i))
+				jsonRevsionObject.addProperty(REVISION, (historySize - i))
 				jsonRevsionObject.addProperty(SELF, object.getUrl(false) + "?" + PARAM_POINT_IN_TIME + "=" + commitInfo.timeStamp)
 				jsonRevsionObject.addProperty(DATE, formatDate(new Date(commitInfo.timeStamp)))
-				if(commitInfo.userID != null) {
+				if(commitInfo.userID !== null) {
 					jsonRevsionObject.addProperty(AUTHOR, commitInfo.userID)
 				}
-				logger.debug("'{}' resolved revsion '{}'", object,(historySize - i))
+				logger.debug("'{}' resolved revsion '{}'", object, (historySize - i))
 				jsonRevisionsArray.add(jsonRevsionObject)
 			}
 		}
@@ -460,7 +460,7 @@ class JsonConverter {
 					}
 				} else {
 					val value = object.eGet(attribute, true)
-					if(value != null) {
+					if(value !== null) {
 						jsonAttributes.add(name, value.toJsonPrimitive)
 						jsonAttributesArrayEntry.add(NAME, new JsonPrimitive(name))
 						jsonAttributesArrayEntry.add(VALUE, value.toJsonPrimitive)
@@ -478,7 +478,7 @@ class JsonConverter {
 	}
 
 	def private addReferences(JsonObject jsonBaseObject, EObject eObject, int level) {
-	    val newlevel = level + 1
+		val newlevel = level + 1
 		val references = eObject.eClass.EAllReferences
 		val jsonReferences = new JsonObject
 		val jsonReferencesArrayAccessor = new JsonArray
@@ -509,7 +509,7 @@ class JsonConverter {
 						}
 					} else {
 						val value = eObject.eGet(reference, true)
-						if(value != null) {
+						if(value !== null) {
 							val valueAsEobject = value as EObject
 							if(valueAsEobject.hasPermission) {
 								val jsonRefObject = valueAsEobject.toJsonObject(newlevel) as JsonObject
@@ -699,13 +699,8 @@ class JsonConverter {
 			}
 		}
 	}
-
-	def private dispatch toJsonObject(Object object, boolean stop) {
-		logger.error("NO DISPATCH MEHTOD for toJsonObject({}) ", object.class.name)
-		new JsonPrimitive(object.toString)
-	}
-
-	def private dispatch toJsonObject(EObject object, int level) {
+	
+	def private toJsonObject(EObject object, int level) {
 		object.toJsonBase(level)
 	}
 
@@ -765,7 +760,7 @@ class JsonConverter {
 					logger.debug("eObject '{}' has eAttribute '{}'", eObject, it.name)
 				]
 				val eAttribute = eObject.eClass.EAllAttributes.filter[it.name == jsonName].head
-				if(eAttribute != null) {
+				if(eAttribute !== null) {
 					logger.debug("Found matching eAttribute with name '{}'", jsonName)
 					if(jsonElement.isAttributeSettable(eAttribute)) {
 						logger.debug("Match - json attribute is settable to eAttribute for '{}'", jsonName)
@@ -776,7 +771,7 @@ class JsonConverter {
 							} else {
 								jsonElement.asJsonArray.forEach [
 									val eType = it.asJsonPrimitive.safeToEType(eAttribute)
-									if(eType != null) {
+									if(eType !== null) {
 										eArray.add(eType)
 									}
 								]
@@ -788,7 +783,7 @@ class JsonConverter {
 								eObject.eUnset(eAttribute)
 							} else {
 								val eType = jsonElement.asJsonPrimitive.safeToEType(eAttribute)
-								if(eType != null) {
+								if(eType !== null) {
 									eObject.eSet(eAttribute, eType)
 								}
 							}
@@ -834,7 +829,7 @@ class JsonConverter {
 				logger.debug("'{}' is an EEnum", eAttribute.EAttributeType.name)
 				val enum = eAttribute.EAttributeType as EEnum
 				val literal = enum.getEEnumLiteral(jsonPrimitive.asString)
-				if(literal != null) {
+				if(literal !== null) {
 					return literal.instance
 				}
 				return null
@@ -902,9 +897,9 @@ class JsonConverter {
 						if(it.data.get(1) instanceof EStructuralFeature) {
 							val feature = it.data.get(1) as EStructuralFeature
 							if(feature instanceof EAttribute) {
-								diag.addProperty(FEATURE,(ATTRIBUTES + "." + feature.name))
+								diag.addProperty(FEATURE, (ATTRIBUTES + "." + feature.name))
 							} else {
-								diag.addProperty(FEATURE,(REFERENCES + "." + feature.name))
+								diag.addProperty(FEATURE, (REFERENCES + "." + feature.name))
 							}
 						}
 
@@ -937,9 +932,9 @@ class JsonConverter {
 				for (featureDelta : localRevisionDelta.get(object)) {
 					val jsonObject = featureDelta.getFeatureDeltaAsJsonObject(object) as JsonObject
 					if(featureDelta.feature instanceof EAttribute) {
-						jsonObject.addProperty(FEATURE,(ATTRIBUTES + "." + featureDelta.feature.name))
+						jsonObject.addProperty(FEATURE, (ATTRIBUTES + "." + featureDelta.feature.name))
 					} else {
-						jsonObject.addProperty(FEATURE,(REFERENCES + "." + featureDelta.feature.name))
+						jsonObject.addProperty(FEATURE, (REFERENCES + "." + featureDelta.feature.name))
 					}
 					deltasArray.add(jsonObject)
 				}
@@ -1007,7 +1002,7 @@ class JsonConverter {
 	}
 
 	def private getDeltaObjectName(Object object) {
-		if(object == null) {
+		if(object === null) {
 			return object
 		}
 		if(object instanceof Adapter) {
@@ -1046,7 +1041,7 @@ class JsonConverter {
 	// methods which could throw an Exception
 	def safeResolveId(JsonObject jsonObject) {
 		val id = jsonObject.entrySet.filter[it.key == ID].head
-		if(id == null || id.value.isJsonNull) {
+		if(id === null || id.value.isJsonNull) {
 			throw new FlatlandException(SC_BAD_REQUEST, "Attribute '{}' missing or null", ID)
 		}
 		return id
@@ -1054,7 +1049,7 @@ class JsonConverter {
 
 	def safeResolveType(JsonObject jsonObject) {
 		val type = jsonObject.entrySet.filter[it.key == TYPE].head
-		if(type == null || type.value.isJsonNull) {
+		if(type === null || type.value.isJsonNull) {
 			throw new FlatlandException(SC_BAD_REQUEST, "Attribute '{}' missing or null", TYPE)
 		}
 		return type

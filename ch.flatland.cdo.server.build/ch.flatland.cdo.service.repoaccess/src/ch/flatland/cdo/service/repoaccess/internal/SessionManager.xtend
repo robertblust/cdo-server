@@ -22,7 +22,7 @@ class SessionManager extends Thread {
 
 	override run() {
 		name = class.simpleName
-		if(timeoutProperty == null) {
+		if(timeoutProperty === null) {
 			throw new RuntimeException("-D" + TIMEOUT_PROPERTY + " not set!")
 		}
 

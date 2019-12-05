@@ -86,7 +86,7 @@ class Put {
 
 					val eReference = requestedObject.eClass.EAllReferences.filter[it.name == referenceName].head
 
-					if(eReference == null) {
+					if(eReference === null) {
 						throw new FlatlandException(SC_BAD_REQUEST, requestedObject, "Object '{}' does not support the feature '{}'", requestedObject.cdoID, referenceName)
 					}
 					if(!eReference.isReferenceSettable) {
@@ -116,7 +116,7 @@ class Put {
 				val containerNode = requestedObject.eContainer as CDOResourceNode
 
 				// check name is not null
-				if(node.name == null || node.name.length == 0) {
+				if(node.name === null || node.name.length == 0) {
 					throw new FlatlandException(SC_BAD_REQUEST, containerNode, "Name must not be null or empty")
 				}
 				// check for duplicates

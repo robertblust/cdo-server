@@ -106,10 +106,10 @@ class Constants {
 	val public static PATTERN = "pattern"
 	val public static PATTERN_NUMBER = "-?[0-9]*"
 	val public static PATTERN_DECIMAL = "-?[0-9]*\\.?[0-9]*"
-	
+
 	// when deployed in a web container this defines the servlet context of the equinox bridge
 	val public static BRIDGE_MODE_PATH = "/bridge"
-											   
+
 	// servlets
 	val public static ALIAS_NODE = "/node"
 	val public static ALIAS_OBJECT = "/obj"

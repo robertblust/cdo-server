@@ -36,7 +36,6 @@ public interface FLDataProvider extends FLID, FLNameable, FLCommentable, FLHyper
 	 * @see ch.flatland.cdo.model.base.BasePackage#getFLDataProvider_ProvidedElements()
 	 * @see ch.flatland.cdo.model.base.FLElement#getDataProvider
 	 * @model opposite="dataProvider"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Data Provider'"
 	 * @generated
 	 */
 	EList<FLElement> getProvidedElements();

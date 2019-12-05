@@ -226,7 +226,6 @@ public class BasePackageImpl extends EPackageImpl implements BasePackage {
 		EValidator.Registry.INSTANCE.put
 			(theBasePackage,
 			 new EValidator.Descriptor() {
-				 @Override
 				 public EValidator getEValidator() {
 					 return BaseValidator.INSTANCE;
 				 }

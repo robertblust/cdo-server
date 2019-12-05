@@ -1,9 +1,0 @@
-Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: Flatland CDO Client Angular Admin
-Bundle-SymbolicName: ch.flatland.cdo.client.admin;singleton:=true
-Bundle-Version: 1.4.2.M001
-Bundle-Vendor: flatland.ch
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Require-Bundle: org.eclipse.equinox.http.registry;bundle-version="1.1.300"
-

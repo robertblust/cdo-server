@@ -37,7 +37,6 @@ public interface FLNameable extends CDOObject {
 	 * @see #setName(String)
 	 * @see ch.flatland.cdo.model.base.BasePackage#getFLNameable_Name()
 	 * @model unique="false" required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Named Element'"
 	 * @generated
 	 */
 	String getName();
@@ -64,7 +63,6 @@ public interface FLNameable extends CDOObject {
 	 * @see #setDescription(String)
 	 * @see ch.flatland.cdo.model.base.BasePackage#getFLNameable_Description()
 	 * @model unique="false" dataType="ch.flatland.cdo.model.base.FLMarkdown"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyMultiLine='true' propertyCategory='Named Element'"
 	 *        annotation="http://www.eclipse.org/CDO/DBStore columnType='CLOB'"
 	 * @generated
 	 */
@@ -92,7 +90,6 @@ public interface FLNameable extends CDOObject {
 	 * @see #setLongDescription(String)
 	 * @see ch.flatland.cdo.model.base.BasePackage#getFLNameable_LongDescription()
 	 * @model unique="false" dataType="ch.flatland.cdo.model.base.FLMarkdown"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyMultiLine='true' propertyCategory='Named Element'"
 	 *        annotation="http://www.eclipse.org/CDO/DBStore columnType='CLOB'"
 	 * @generated
 	 */
@@ -120,7 +117,6 @@ public interface FLNameable extends CDOObject {
 	 * @see #setNotes(String)
 	 * @see ch.flatland.cdo.model.base.BasePackage#getFLNameable_Notes()
 	 * @model unique="false" dataType="ch.flatland.cdo.model.base.FLMarkdown"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyMultiLine='true' propertyCategory='Named Element'"
 	 *        annotation="http://www.eclipse.org/CDO/DBStore columnType='CLOB'"
 	 * @generated
 	 */

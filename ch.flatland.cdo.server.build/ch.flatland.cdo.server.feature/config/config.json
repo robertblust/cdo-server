@@ -1,39 +1,33 @@
 {
-	"readOnlyPassword": "password",
-	"adminPassword": "password",
-	 "binding": {
-        "tcp": true,
-        "tcpPort": "2036",
-        "http": false,
-        "checkSSL": false
-    },
-    "json": {
-        "validate": false,
-        "rreferences": false,
-        "creferences": false,
-        "xreferences": false,
-        "history": false,
-        "fullUrl": false,
-        "meta": false,
-        "links": false,
-        "xlinks": false,
-        "xtraces": false,
-        "arrayaccessor": false,
-        "cdometa": false
-    },		
-	"repositories" : [
+	"binding": {
+		"tcp": true,
+		"tcpPort": "2036",
+		"http": false,
+		"checkSSL": false
+	},
+	"json": {
+		"validate": false,
+		"rreferences": true,
+		"creferences": true,
+		"xreferences": false,
+		"history": false,
+		"fullUrl": true,
+		"meta": false,
+		"links": false,
+		"xlinks": false,
+		"xtraces": false,
+		"arrayaccessor": false,
+		"cdometa": false
+	},
+	"repositories": [
 		{
-		    "dataStore": {
-		      	"storeType": "H2",
-		        "repositoryName": "repo",
-		        "connectionUrl":"jdbc:h2:database/",
-		        "userName": "cdo",
-		        "password": "cdo"
-		    },
-		    "authenticator": {
-		        "authenticatorType": "SIMPLE"
-		    }
+			"dataStore": {
+				"storeType": "MYSQL",
+				"repositoryName": "repo",
+				"connectionUrl": "jdbc:mysql://localhost:3306/db?useSSL=false&allowPublicKeyRetrieval=true",
+				"userName": "user",
+				"password": "password"
+			}
 		}
 	]
 }
-

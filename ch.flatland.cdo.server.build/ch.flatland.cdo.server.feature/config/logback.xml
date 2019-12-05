@@ -2,7 +2,8 @@
 
 <configuration>
 
-	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+	<appender name="STDOUT"
+		class="ch.qos.logback.core.ConsoleAppender">
 		<!-- encoders are assigned the type ch.qos.logback.classic.encoder.PatternLayoutEncoder 
 			by default -->
 		<encoder>
@@ -23,40 +24,37 @@
 	<logger name="org.eclipse.jetty.server.Server" level="INFO"
 		additivity="false">
 		<appender-ref ref="STDOUT" />
-	</logger>ch.flatland.cdo.server.config
-	
-	<logger name="ch.flatland.cdo.server.config.ServerConfig" level="INFO"
-		additivity="false">
+	</logger>
+	ch.flatland.cdo.server.config
+
+	<logger name="ch.flatland.cdo.server.config.ServerConfig"
+		level="INFO" additivity="false">
 		<appender-ref ref="STDOUT" />
 	</logger>
-	
+
 	<logger name="ch.flatland.cdo.util.DataStore" level="DEBUG"
 		additivity="false">
 		<appender-ref ref="STDOUT" />
 	</logger>
-	
-	<logger name="ch.flatland.cdo.util.AbstractServlet" level="DEBUG"
-		additivity="false">
+
+	<logger name="ch.flatland.cdo.util.AbstractServlet"
+		level="DEBUG" additivity="false">
 		<appender-ref ref="STDOUT" />
 	</logger>
-	
+
 	<logger name="ch.flatland.cdo.util.View" level="DEBUG"
 		additivity="false">
 		<appender-ref ref="STDOUT" />
 	</logger>
-		
-	<logger name="ch.flatland.cdo.service.repoaccess.SessionFactory" level="DEBUG"
-		additivity="false">
+
+	<logger name="ch.flatland.cdo.service.repoaccess.SessionFactory"
+		level="DEBUG" additivity="false">
 		<appender-ref ref="STDOUT" />
 	</logger>
-	
-	<logger name="ch.flatland.cdo.service.repoaccess.internal.SessionManager" level="DEBUG"
-		additivity="false">
-		<appender-ref ref="STDOUT" />
-	</logger>
-	
-	<logger name="ch.flatland.cdo.server.product.CustomOracleAdapter" level="DEBUG"
-		additivity="false">
+
+	<logger
+		name="ch.flatland.cdo.service.repoaccess.internal.SessionManager"
+		level="DEBUG" additivity="false">
 		<appender-ref ref="STDOUT" />
 	</logger>
 

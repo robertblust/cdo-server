@@ -21,7 +21,7 @@ class References {
 	val extension Request = new Request
 
 	def safeResolveReferences(EObject object, String referenceName, HttpServletRequest req) {
-		if(referenceName == null) {
+		if(referenceName === null) {
 			val allReferences = object.getAllReferences(req)
 			return allReferences.checkNull
 		} else {
@@ -31,12 +31,12 @@ class References {
 	}
 
 	def referencesSize(EObject object, String referenceName, boolean includeXtraces) {
-		if(referenceName == null) {
+		if(referenceName === null) {
 			val allReferences = object.getAllReferences(includeXtraces)
 			return allReferences.size
 		} else {
 			val references = object.getReferences(referenceName, includeXtraces)
-			if(references == null) {
+			if(references === null) {
 				return 0
 			}
 			if(references instanceof List<?>) {
@@ -50,12 +50,12 @@ class References {
 	}
 
 	def hasReferences(EObject object, String referenceName, boolean includeXtraces) {
-		if(referenceName == null) {
+		if(referenceName === null) {
 			val allReferences = object.getAllReferences(includeXtraces)
 			return allReferences.size > 0
 		} else {
 			val references = object.getReferences(referenceName, includeXtraces)
-			if(references != null) {
+			if(references !== null) {
 				if(references instanceof EObject) {
 					return true
 				}
@@ -69,7 +69,7 @@ class References {
 
 	def private getAllReferences(EObject object, HttpServletRequest req) {
 		val allReferences = newArrayList
-		object.eClass.EAllReferences.forEach [	
+		object.eClass.EAllReferences.forEach [
 			if(it.needsReference(req) && it.name.includeRef(true)) {
 				if(it.many) {
 					val List<EObject> refs = object.eGet(it) as List<EObject>
@@ -80,7 +80,7 @@ class References {
 					}
 				} else {
 					val r = object.eGet(it) as EObject
-					if(r != null && r.hasPermission) {
+					if(r !== null && r.hasPermission) {
 						allReferences.addIfNotExits(r)
 					}
 				}
@@ -88,7 +88,7 @@ class References {
 		]
 		return allReferences
 	}
-	
+
 	def private getAllReferences(EObject object, boolean includeXtraces) {
 		val allReferences = newArrayList
 		object.eClass.EAllReferences.forEach [
@@ -102,7 +102,7 @@ class References {
 					}
 				} else {
 					val r = object.eGet(it) as EObject
-					if(r != null && r.hasPermission) {
+					if(r !== null && r.hasPermission) {
 						allReferences.addIfNotExits(r)
 					}
 				}
@@ -113,10 +113,10 @@ class References {
 
 	def private getReferences(EObject object, String referenceName, boolean includeXtraces) {
 		val eReference = object.eClass.EAllReferences.filter[it.name == referenceName].head
-		if (!eReference.name.includeRef(includeXtraces)) {
+		if(!eReference.name.includeRef(includeXtraces)) {
 			return null
 		}
-		if(eReference != null) {
+		if(eReference !== null) {
 			if(eReference.many) {
 				val references = newArrayList
 				val List<EObject> refs = object.eGet(eReference) as List<EObject>
@@ -128,7 +128,7 @@ class References {
 				return references
 			} else {
 				val reference = object.eGet(eReference) as EObject
-				if(reference != null && reference.hasPermission) {
+				if(reference !== null && reference.hasPermission) {
 					return reference
 				} else {
 					return null
@@ -139,20 +139,20 @@ class References {
 	}
 
 	def private checkNull(Object object) {
-		if(object == null) {
+		if(object === null) {
 			throw new Exception("Passed object is null")
 		}
 		return object
 	}
 
 	def private addIfNotExits(List<EObject> list, EObject toAdd) {
-		if(!list.contains(toAdd) && toAdd != null) {
+		if(!list.contains(toAdd) && toAdd !== null) {
 			list.add(toAdd)
 		}
 	}
 
 	def private needsReference(EReference reference, HttpServletRequest req) {
-		if(req == null || !req.refs) {
+		if(req === null || !req.refs) {
 			return true
 		}
 		if(req.crefs && reference.containment) {
@@ -163,10 +163,10 @@ class References {
 		}
 		return false
 	}
-	
+
 	def private includeRef(String referenceName, boolean includeXtraces) {
-		if (referenceName.startsWith("traceFrom")) {
-			if (includeXtraces) {
+		if(referenceName.startsWith("traceFrom")) {
+			if(includeXtraces) {
 				return true
 			}
 		} else {

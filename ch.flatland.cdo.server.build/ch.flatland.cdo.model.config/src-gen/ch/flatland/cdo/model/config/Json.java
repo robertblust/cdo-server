@@ -35,10 +35,6 @@ public interface Json extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Validate</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Validate</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Validate</em>' attribute.
 	 * @see #setValidate(boolean)
@@ -61,10 +57,6 @@ public interface Json extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Rreferences</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Rreferences</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Rreferences</em>' attribute.
 	 * @see #setRreferences(boolean)
@@ -87,10 +79,6 @@ public interface Json extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Creferences</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Creferences</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Creferences</em>' attribute.
 	 * @see #setCreferences(boolean)
@@ -113,10 +101,6 @@ public interface Json extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Xreferences</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Xreferences</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Xreferences</em>' attribute.
 	 * @see #setXreferences(boolean)
@@ -139,10 +123,6 @@ public interface Json extends EObject {
 	/**
 	 * Returns the value of the '<em><b>History</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>History</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>History</em>' attribute.
 	 * @see #setHistory(boolean)
@@ -165,10 +145,6 @@ public interface Json extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Full Url</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Full Url</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Full Url</em>' attribute.
 	 * @see #setFullUrl(boolean)
@@ -191,10 +167,6 @@ public interface Json extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Meta</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Meta</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Meta</em>' attribute.
 	 * @see #setMeta(boolean)
@@ -217,10 +189,6 @@ public interface Json extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Links</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Links</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Links</em>' attribute.
 	 * @see #setLinks(boolean)
@@ -243,10 +211,6 @@ public interface Json extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Xlinks</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Xlinks</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Xlinks</em>' attribute.
 	 * @see #setXlinks(boolean)
@@ -269,10 +233,6 @@ public interface Json extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Arrayaccessor</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Arrayaccessor</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Arrayaccessor</em>' attribute.
 	 * @see #setArrayaccessor(boolean)
@@ -295,10 +255,6 @@ public interface Json extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Xtraces</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Xtraces</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Xtraces</em>' attribute.
 	 * @see #setXtraces(boolean)
@@ -321,10 +277,6 @@ public interface Json extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Cdometa</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Cdometa</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Cdometa</em>' attribute.
 	 * @see #setCdometa(boolean)

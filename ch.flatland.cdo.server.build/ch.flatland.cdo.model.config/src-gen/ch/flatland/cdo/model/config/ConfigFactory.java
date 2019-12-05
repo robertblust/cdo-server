@@ -67,15 +67,6 @@ public interface ConfigFactory extends EFactory {
 	DataStore createDataStore();
 
 	/**
-	 * Returns a new object of class '<em>Authenticator</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Authenticator</em>'.
-	 * @generated
-	 */
-	Authenticator createAuthenticator();
-
-	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -17,7 +17,7 @@ class RepoAccessPlugin extends AbstractFlatlandPlugin {
 
 	var SessionManager sessionManager
 
-	def override start(BundleContext bundleContext) throws Exception {
+	override start(BundleContext bundleContext) throws Exception {
 		super.start(bundleContext)
 		sessionManager = new SessionManager
 		sessionManager.start

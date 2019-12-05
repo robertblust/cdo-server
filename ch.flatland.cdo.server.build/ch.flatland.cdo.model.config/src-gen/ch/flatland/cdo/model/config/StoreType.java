@@ -36,25 +36,11 @@ public enum StoreType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	MYSQL(1, "MYSQL", "MYSQL"),
-
-	/**
-	 * The '<em><b>ORACLE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ORACLE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ORACLE(2, "ORACLE", "ORACLE");
+	MYSQL(1, "MYSQL", "MYSQL");
 
 	/**
 	 * The '<em><b>H2</b></em>' literal value.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>H2</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #H2
 	 * @model
@@ -66,10 +52,6 @@ public enum StoreType implements Enumerator {
 	/**
 	 * The '<em><b>MYSQL</b></em>' literal value.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>MYSQL</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #MYSQL
 	 * @model
@@ -77,21 +59,6 @@ public enum StoreType implements Enumerator {
 	 * @ordered
 	 */
 	public static final int MYSQL_VALUE = 1;
-
-	/**
-	 * The '<em><b>ORACLE</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>ORACLE</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #ORACLE
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int ORACLE_VALUE = 2;
 
 	/**
 	 * An array of all the '<em><b>Store Type</b></em>' enumerators.
@@ -103,7 +70,6 @@ public enum StoreType implements Enumerator {
 		new StoreType[] {
 			H2,
 			MYSQL,
-			ORACLE,
 		};
 
 	/**
@@ -162,7 +128,6 @@ public enum StoreType implements Enumerator {
 		switch (value) {
 			case H2_VALUE: return H2;
 			case MYSQL_VALUE: return MYSQL;
-			case ORACLE_VALUE: return ORACLE;
 		}
 		return null;
 	}
@@ -205,7 +170,6 @@ public enum StoreType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public int getValue() {
 	  return value;
 	}
@@ -215,7 +179,6 @@ public enum StoreType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public String getName() {
 	  return name;
 	}
@@ -225,7 +188,6 @@ public enum StoreType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public String getLiteral() {
 	  return literal;
 	}

@@ -10,7 +10,6 @@
  */
 package ch.flatland.cdo.server.config
 
-import ch.flatland.cdo.model.config.AuthenticatorType
 import ch.flatland.cdo.model.config.Config
 import ch.flatland.cdo.model.config.ConfigFactory
 import ch.flatland.cdo.model.config.StoreType
@@ -39,24 +38,24 @@ class ServerConfig {
 	private new() {
 		// hide constructor
 	}
-	
-	def public static isBridgeMode() {			
-		if (bridgeProperty != null && bridgeProperty == "true") {
+
+	def static isBridgeMode() {
+		if(bridgeProperty !== null && bridgeProperty == "true") {
 			return true
 		}
 		return false
 	}
 
 	def static synchronized CONFIG() {
-		if(CONFIG == null) {
+		if(CONFIG === null) {
 			try {
 				val configFile = readFile(FILE_PATH)
 				val parser = new JsonParser
 				val jsonObject = parser.parse(configFile) as JsonObject
-				
+
 				val template = getDefaultConfig
 				jsonObject.convertObject(template)
-				
+
 				template.eClass.EAllReferences.forEach [
 					if(!it.many) {
 						val eObject = template.eGet(it) as EObject
@@ -72,10 +71,10 @@ class ServerConfig {
 								val jsonRepoDetailObject = jsonRepoObject.get(it.name) as JsonObject
 								jsonRepoDetailObject.convertObject(eObject)
 							]
-							if(HOST != null) {
+							if(HOST !== null) {
 								logger.info("Bind host ip '{}' specified by '{}'", HOST, SYSTEM_PARAM_HOST)
 							}
-							if(DB_HOST != null) {
+							if(DB_HOST !== null) {
 								detail.dataStore.connectionUrl = detail.dataStore.connectionUrl.replace("$HOST", DB_HOST)
 								logger.info("Use connection url with host replacement '{}' specified by '{}'", detail.dataStore.connectionUrl, SYSTEM_PARAM_DB_HOST)
 							}
@@ -94,9 +93,9 @@ class ServerConfig {
 
 	def private static convertObject(JsonObject jsonObject, EObject eObject) {
 		logger.debug("Read Config object '{}'", jsonObject)
-		if(jsonObject != null) {
+		if(jsonObject !== null) {
 			eObject.eClass.EAllAttributes.forEach [
-				if(jsonObject.get(it.name) != null) {
+				if(jsonObject.get(it.name) !== null) {
 					switch it.EAttributeType.instanceClass {
 						case typeof(String): {
 							eObject.eSet(it, jsonObject.get(it.name).asString)
@@ -108,7 +107,7 @@ class ServerConfig {
 					if(it.EAttributeType instanceof EEnum) {
 						val enum = it.EAttributeType as EEnum
 						val literal = enum.getEEnumLiteral(jsonObject.get(it.name).asString)
-						if(literal != null) {
+						if(literal !== null) {
 							eObject.eSet(it, literal.instance)
 						} else {
 							logger.debug("Json primitive '{}' not found", it.name)
@@ -129,7 +128,7 @@ class ServerConfig {
 		try {
 			val builder = new StringBuilder()
 			var line = reader.readLine()
-			while(line != null) {
+			while(line !== null) {
 				builder.append(line)
 				builder.append(System.lineSeparator())
 				line = reader.readLine()
@@ -141,11 +140,7 @@ class ServerConfig {
 	}
 
 	def private static getDefaultConfig() {
-		val config = ConfigFactory.eINSTANCE.createConfig => [
-			readOnlyPassword = "password"
-			adminPassword = "password"
-		]
-
+		val config = ConfigFactory.eINSTANCE.createConfig
 		val binding = ConfigFactory.eINSTANCE.createBinding => [
 			tcp = true
 			tcpPort = "2036"
@@ -186,15 +181,7 @@ class ServerConfig {
 			temporality = true
 		]
 
-		val authenticator = ConfigFactory.eINSTANCE.createAuthenticator => [
-			authenticatorType = AuthenticatorType.LDAP
-			connectionUrl = "faked://flatland.ch:333"
-			domainBase = "ou=person,o=FLATLAND,c=CH"
-			userIdField = "empid"
-		]
-
 		repo.dataStore = dataStore
-		repo.authenticator = authenticator
 
 		return repo
 	}

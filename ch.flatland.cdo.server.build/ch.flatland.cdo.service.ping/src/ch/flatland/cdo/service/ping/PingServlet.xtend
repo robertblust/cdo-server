@@ -10,26 +10,30 @@
  */
 package ch.flatland.cdo.service.ping
 
-import ch.flatland.cdo.service.ping.model.PingBean
+import ch.flatland.cdo.service.ping.model.Build
+import ch.flatland.cdo.service.ping.model.Health
+import ch.flatland.cdo.service.ping.model.Info
 import ch.flatland.cdo.service.repoaccess.Options
 import ch.flatland.cdo.util.AbstractServlet
-import ch.flatland.cdo.util.JsonConverter
 import ch.flatland.cdo.util.Response
+import com.google.gson.Gson
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
 class PingServlet extends AbstractServlet {
 
 	val extension Response = new Response
+	val gson = new Gson
 
-	val static extension JsonConverter = new JsonConverter
-	
 	override protected doGet(HttpServletRequest req, HttpServletResponse resp) {
-		val version = PingPlugin.^default.bundle.version
-		val ping = new PingBean("Flatland CDO Server", version.toString).safeToJson
-		resp.writeResponse(req, ping)
+		if(req.pathInfo.equals("/info")) {
+			val version = PingPlugin.^default.bundle.version
+			resp.writeResponse(req, gson.toJson(new Info(new Build(version.toString))))
+			return
+		}
+		resp.writeResponse(req, gson.toJson(new Health("UP")))
 	}
-	
+
 	override protected doOptions(HttpServletRequest req, HttpServletResponse resp) {
 		(new Options).run(req, resp)
 	}

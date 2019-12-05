@@ -49,7 +49,7 @@ class View {
 				}
 				case ALIAS_OBJECT: {
 					val pathSegments = req.pathSegments
-					if(pathSegments == null) {
+					if(pathSegments === null) {
 						throw new Exception
 					}
 					switch (pathSegments.size) {
@@ -105,7 +105,7 @@ class View {
 				}
 				case ALIAS_XREFS: {
 					val pathSegments = req.pathSegments
-					if(pathSegments == null) {
+					if(pathSegments === null) {
 						throw new Exception
 					}
 					switch (pathSegments.size) {
@@ -137,7 +137,7 @@ class View {
 		} catch(Exception e) {
 			e.printStackTrace
 			var path = req.servletAlias
-			if(req.pathInfo != null) {
+			if(req.pathInfo !== null) {
 				path = path + req.pathInfo
 			}
 			throw new FlatlandException(SC_NOT_FOUND, "{} not found", path)
@@ -161,7 +161,7 @@ class View {
 	def addRevisionDelta(CDOTransaction view, Map<EObject, List<CDOFeatureDelta>> revisionDeltas) {
 		view.revisionDeltas.forEach [ id, revisionDelta |
 			val scope = view.getObject(id)
-			if(scope != null) {
+			if(scope !== null) {
 				var List<CDOFeatureDelta> list = newArrayList
 				if(revisionDeltas.containsKey(scope)) {
 					list = revisionDeltas.get(scope)
@@ -179,7 +179,7 @@ class View {
 	def private safeResolveObject(CDOView view, Iterable<String> pathSegments) {
 		val ePackage = view.safeEPackage(pathSegments.get(1).safePackagePrefix)
 		val eClass = ePackage.getEClassifier(pathSegments.get(1).safeEType)
-		if(eClass == null) {
+		if(eClass === null) {
 			throw new Exception
 		}
 		val object = view.safeResolveObject(pathSegments.get(2))
@@ -211,7 +211,7 @@ class View {
 			}
 		]
 		val container = cdoObject.eContainer
-		if(container == null) {
+		if(container === null) {
 
 			// must be a CDOResource Node
 			val resource = cdoObject.cdoResource
@@ -291,7 +291,7 @@ class View {
 			val eAttribute = object.eClass.EAllAttributes.filter[it.name == paramName].head
 			val toCheck = object.eGet(eAttribute)
 
-			if(toCheck != null) {
+			if(toCheck !== null) {
 				for (value : req.parameterMap.get(paramName)) {
 					logger.debug("Check attribute '{}' with value '{}' matches '{}'", paramName, toCheck, value)
 					criterias++
@@ -322,7 +322,7 @@ class View {
 
 	def private dispatch orderBy(HttpServletRequest req, List<EObject> list) {
 		val orderBy = req.orderBy
-		if(orderBy != null) {
+		if(orderBy !== null) {
 			logger.debug("OrderBy '{}'", orderBy)
 			Collections.sort(list, new AttributeComparator(orderBy))
 		} else {

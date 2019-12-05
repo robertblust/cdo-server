@@ -1,0 +1,82 @@
+name: Build cdo-service
+
+on:
+  push:
+    tags:
+      - prod-deploy
+      - test-deploy
+      - dev-deploy
+
+env:
+  GOOGLE_PROJECT_ID_DEV: aaap-platform-dev
+  GOOGLE_PROJECT_ID_TEST: aaap-platform-test
+  GOOGLE_PROJECT_ID_PROD: aaap-platform-prod
+  GOOGLE_COMPUTE_ZONE: europe-west6-a
+  GOOGLE_K8S_CLUSTER: aaap-platform-cluster
+  GCLOUD_SERVICE_KEY_DEV: ${{ secrets.GCLOUD_SERVICE_KEY_DEV }}
+  GCLOUD_SERVICE_KEY_TEST: ${{ secrets.GCLOUD_SERVICE_KEY_TEST }}
+  GCLOUD_SERVICE_KEY_PROD: ${{ secrets.GCLOUD_SERVICE_KEY_PROD }}
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  GITHUB_REPOSITORY: 3AP-AG/3ap-cdo-cto
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - run: |
+          echo "GITHUB_REF is $GITHUB_REF"
+          GITHUB_ACTIONS_TAG=${GITHUB_REF:10}
+          echo "GITHUB_ACTIONS_TAG is $GITHUB_ACTIONS_TAG"
+
+          ENVIRONMENT=$(echo $GITHUB_ACTIONS_TAG | sed s/-deploy//g)
+          echo "ENVIRONMENT is $ENVIRONMENT"
+          ENVIRONMENT_UPPERCASE=$(echo $ENVIRONMENT | tr a-z A-Z)
+          echo "ENVIRONMENT_UPPERCASE is $ENVIRONMENT_UPPERCASE"
+
+          GOOGLE_PROJECT_ID___VARIABLE_NAME=GOOGLE_PROJECT_ID_${ENVIRONMENT_UPPERCASE}
+          GOOGLE_PROJECT_ID=${!GOOGLE_PROJECT_ID___VARIABLE_NAME}
+          echo "GOOGLE_PROJECT_ID is $GOOGLE_PROJECT_ID"
+
+          GCLOUD_SERVICE_KEY___VARIABLE_NAME=GCLOUD_SERVICE_KEY_${ENVIRONMENT_UPPERCASE}
+          GCLOUD_SERVICE_KEY=${!GCLOUD_SERVICE_KEY___VARIABLE_NAME}
+          if [[ -z "$GCLOUD_SERVICE_KEY" ]]; then
+            echo "Couldn't load GCLOUD_SERVICE_KEY (expanding variable ${GCLOUD_SERVICE_KEY___VARIABLE_NAME})"
+            exit 1
+          fi
+
+          GIT_TAG=$(git tag --points-at HEAD --sort=-version:refname --list 'DOCKER_TAG-*' | head -1)
+          if [[ -z "$GIT_TAG" ]]; then
+            echo "Couldn't determine relevant git tag starting with DOCKER_TAG-"
+            exit 1
+          fi
+          echo "The relevant git tag is $GIT_TAG"
+          DOCKER_TAG=$(echo $GIT_TAG | sed s/DOCKER_TAG-//g)
+          echo "The relevant DOCKER tag is $DOCKER_TAG"
+
+          echo $GCLOUD_SERVICE_KEY | gcloud auth activate-service-account --key-file=-
+          gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
+          gcloud --quiet config set compute/zone ${GOOGLE_COMPUTE_ZONE}
+          gcloud container clusters get-credentials ${GOOGLE_K8S_CLUSTER}
+          gcloud --quiet auth configure-docker
+
+          cd ./gcp/continuous-deployment
+          chmod +x ./deploy.sh
+          ./deploy.sh $DOCKER_TAG $ENVIRONMENT
+
+          git remote set-url --push origin https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git
+
+          TAG_CURRENT=${ENVIRONMENT}-current
+          echo "Will delete tag '${TAG_CURRENT}' (wherever it points; if existing) and retag"
+          git push origin :refs/tags/${TAG_CURRENT} || echo "ignore (eventual) errors of previous command (normal on first run)"
+          git tag --delete ${TAG_CURRENT} || echo "ignore (eventual) errors of previous command (normal on first run)"
+          git tag ${TAG_CURRENT}
+          git push origin ${TAG_CURRENT}
+
+          TIMESTAMPED_GIT_TAG="${GITHUB_ACTIONS_TAG}-$(date +'%Y.%m.%d_%H.%M.%S')"
+          echo "Will delete tag '${GITHUB_ACTIONS_TAG}' and retag as $TIMESTAMPED_GIT_TAG"
+
+          git tag --delete ${GITHUB_ACTIONS_TAG}
+          git push origin :refs/tags/${GITHUB_ACTIONS_TAG}
+          git tag $TIMESTAMPED_GIT_TAG
+          git push origin $TIMESTAMPED_GIT_TAG
+

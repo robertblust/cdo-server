@@ -716,8 +716,8 @@ public abstract class FLElementImpl extends FLIDImpl implements FLElement {
 		final Consumer<FLTrace> _function_1 = new Consumer<FLTrace>() {
 			public void accept(final FLTrace it) {
 				FLElement _target = it.getTarget();
-				boolean _notEquals = (!Objects.equal(_target, null));
-				if (_notEquals) {
+				boolean _tripleNotEquals = (_target != null);
+				if (_tripleNotEquals) {
 					targets.add(it.getTarget());
 				}
 			}
@@ -734,7 +734,7 @@ public abstract class FLElementImpl extends FLIDImpl implements FLElement {
 	@Override
 	public EList<FLElement> fromFilterByType(final FLTraceType traceType) {
 		final BasicEList<FLElement> sources = new BasicEList<FLElement>();
-		if (((!Objects.equal(this.cdoView(), null)) && (!this.cdoView().isClosed()))) {
+		if (((this.cdoView() != null) && (!this.cdoView().isClosed()))) {
 			final List<CDOObjectReference> xrefs = this.cdoView().queryXRefs(this, 
 				((EReference[])org.eclipse.xtext.xbase.lib.Conversions.unwrapArray(CollectionLiterals.<EReference>newArrayList(Literals.FL_TRACE__TARGET), EReference.class)));
 			for (final CDOObjectReference x : xrefs) {
@@ -761,10 +761,9 @@ public abstract class FLElementImpl extends FLIDImpl implements FLElement {
 	@Override
 	public <T extends EObject> EList<T> resolveXrefs(final EReference eRefernce, final Class<T> classType) {
 		final BasicEList<T> elements = new BasicEList<T>();
-		if (((!Objects.equal(this.cdoView(), null)) && (!this.cdoView().isClosed()))) {
+		if (((this.cdoView() != null) && (!this.cdoView().isClosed()))) {
 			final ArrayList<EReference> eRefs = CollectionLiterals.<EReference>newArrayList();
-			boolean _notEquals = (!Objects.equal(eRefernce, null));
-			if (_notEquals) {
+			if ((eRefernce != null)) {
 				eRefs.add(eRefernce);
 			}
 			final List<CDOObjectReference> xrefs = this.cdoView().queryXRefs(this, ((EReference[])org.eclipse.xtext.xbase.lib.Conversions.unwrapArray(eRefs, EReference.class)));

@@ -19,7 +19,7 @@ import static ch.flatland.cdo.server.config.ServerConfig.*
 class ProductPlugin extends AbstractFlatlandPlugin {
 
 	val logger = LoggerFactory.getLogger(AbstractFlatlandPlugin)
-	val static final INFO = '''
+	val static INFO = '''
 		
 			--------------------------------------------------------------------
 			Found plugin 'ch.flatland.cdo.client.admin'

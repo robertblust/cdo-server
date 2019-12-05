@@ -35,7 +35,6 @@ public interface FLHyperLink extends CDOObject {
 	 * @see #setName(String)
 	 * @see ch.flatland.cdo.model.base.BasePackage#getFLHyperLink_Name()
 	 * @model unique="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Hyper Link'"
 	 * @generated
 	 */
 	String getName();
@@ -62,7 +61,6 @@ public interface FLHyperLink extends CDOObject {
 	 * @see #setHyperLink(String)
 	 * @see ch.flatland.cdo.model.base.BasePackage#getFLHyperLink_HyperLink()
 	 * @model unique="false" required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Hyper Link'"
 	 * @generated
 	 */
 	String getHyperLink();

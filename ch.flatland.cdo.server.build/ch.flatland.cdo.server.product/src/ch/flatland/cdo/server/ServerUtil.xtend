@@ -10,14 +10,12 @@
  */
 package ch.flatland.cdo.server
 
-import ch.flatland.cdo.server.product.CredentialsProvider
+import org.eclipse.emf.cdo.net4j.CDONet4jSession
 import org.eclipse.emf.cdo.net4j.CDONet4jUtil
 import org.eclipse.emf.cdo.session.CDOSession
 import org.eclipse.net4j.Net4jUtil
 import org.eclipse.net4j.util.container.IPluginContainer
 import org.slf4j.LoggerFactory
-
-import static ch.flatland.cdo.server.config.ServerConfig.*
 
 class ServerUtil {
 
@@ -38,37 +36,16 @@ class ServerUtil {
 		Net4jUtil.getConnector(IPluginContainer.INSTANCE, "jvm", acceptorName)
 	}
 
-	def static openReadOnlySession(String repoName) {
-		ServerUtil.openSession(AuthenticationUtil.READONLY_USER, CONFIG.readOnlyPassword, repoName)
-	}
-
-	def static CDOSession openSession(String userID, String password, String repoName) {
+	def static CDOSession openSession(String repoName, String userId) {
 		val config = CDONet4jUtil.createNet4jSessionConfiguration()
-		config.setConnector(connector)
-		config.setRepositoryName(repoName)
-
-		config.credentialsProvider = new CredentialsProvider(userID, password)
-
-		val session = config.openNet4jSession() as CDOSession
-		(session as org.eclipse.emf.cdo.net4j.CDONet4jSession).options.net4jProtocol.setTimeout(Long.MAX_VALUE)
-		(session as org.eclipse.emf.cdo.net4j.CDONet4jSession).options().setCommitTimeout(10000);
-
-		logger.debug("open session '{}' for user '{}'", session.sessionID, session.userID)
-
-		return session
-	}
-	
-	def static CDOSession openUnauthenticatedSession(String repoName) {
-		val config = CDONet4jUtil.createNet4jSessionConfiguration()
+		config.userID = userId
 		config.setConnector(connector)
 		config.setRepositoryName(repoName)
 
 		val session = config.openNet4jSession() as CDOSession
-		(session as org.eclipse.emf.cdo.net4j.CDONet4jSession).options.net4jProtocol.setTimeout(Long.MAX_VALUE)
-		(session as org.eclipse.emf.cdo.net4j.CDONet4jSession).options().setCommitTimeout(10000);
-
-		logger.debug("open session '{}' for user '{}'", session.sessionID, "NONE")
-
+		(session as CDONet4jSession).options.net4jProtocol.setTimeout(Long.MAX_VALUE)
+		(session as CDONet4jSession).options().setCommitTimeout(10000);
+		logger.debug("open session '{}' for user '{}'", session.sessionID, userId)
 		return session
 	}
 }

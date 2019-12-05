@@ -1,0 +1,47 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: cdo
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: cdo
+    spec:
+      containers:
+        - name: cdo
+          image: eu.gcr.io/aaap-platform-dev/3apag/cdo-service:@@IMAGE_TAG@@
+          ports:
+            - containerPort: 8199
+          imagePullPolicy: Always
+          readinessProbe:
+            httpGet:
+              path: /manage/health
+              port: 8199
+              scheme: HTTP
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /manage/health
+              port: 8199
+              scheme: HTTP
+            initialDelaySeconds: 10
+            periodSeconds: 20
+          resources:
+            requests:
+              cpu: 100m
+              memory: 512Mi
+            limits:
+              memory: 1024Mi
+          env:
+            - name: MYSQL_JDBC_URL
+              value: jdbc:mysql://mysql-cdo:3306/CDO?useSSL=false&allowPublicKeyRetrieval=true
+            - name: MYSQL_USER
+              value: CDO
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-cdo
+                  key: mysql-password

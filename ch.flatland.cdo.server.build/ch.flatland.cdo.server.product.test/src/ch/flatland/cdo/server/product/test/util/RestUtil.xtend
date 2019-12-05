@@ -29,7 +29,7 @@ import org.apache.commons.io.IOUtils
 class RestUtil {
 
 	val static SYSTEM_PARAM_PORT = "org.eclipse.equinox.http.jetty.http.port"
-	val static PORT = System.getProperty(SYSTEM_PARAM_PORT, "8080")
+	val static PORT = System.getProperty(SYSTEM_PARAM_PORT, "8199")
 	val parser = new JsonParser
 	val builder = new GsonBuilder().setPrettyPrinting.create
 
@@ -72,7 +72,7 @@ class RestUtil {
 		val builder = new StringBuilder
 		var String line
 
-		while((line = br.readLine()) != null) {
+		while((line = br.readLine()) !== null) {
 			builder.append(line)
 		}
 		parser.parse(builder.toString)
@@ -83,7 +83,7 @@ class RestUtil {
 			val jsonObject = response.asJsonObject
 			val statusObject = jsonObject?.getAsJsonObject("status")
 			val status = statusObject?.getAsJsonPrimitive("status")?.asString
-			if(status != null && status == "OK") {
+			if(status !== null && status == "OK") {
 				return true
 			}
 		}
@@ -94,7 +94,7 @@ class RestUtil {
 		if(response.jsonObject) {
 			val jsonObject = response.asJsonObject
 			val status = jsonObject?.getAsJsonPrimitive("status")?.asString
-			if(status != null && status == "ERROR") {
+			if(status !== null && status == "ERROR") {
 				return true
 			}
 		}

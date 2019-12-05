@@ -46,7 +46,7 @@ class IconServlet extends AbstractServlet {
 		val ITEM_DELEGATOR = new AdapterFactoryItemDelegator(new ComposedAdapterFactory(EMFEditPlugin.getComposedAdapterFactoryDescriptorRegistry))
 
 		var pathInfo = req.pathInfo
-		if(pathInfo == null) {
+		if(pathInfo === null) {
 			pathInfo = ""
 		}
 

@@ -1,0 +1,12 @@
+applications:
+  - name: cdo
+    memory: 1024M
+    instances: 1
+    disk_quota: 1GB
+    services:
+    - repo-db
+    routes:
+    - route: cdo.scapp.io
+    stack: cflinuxfs3
+    docker:
+      image: robao/3ap-cdo:latest

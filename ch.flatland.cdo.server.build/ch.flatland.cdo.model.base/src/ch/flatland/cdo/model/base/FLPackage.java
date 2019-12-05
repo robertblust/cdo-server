@@ -51,7 +51,6 @@ public interface FLPackage extends FLElement {
 	 * @return the value of the '<em>Sub Packages</em>' reference list.
 	 * @see ch.flatland.cdo.model.base.BasePackage#getFLPackage_SubPackages()
 	 * @model transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Package'"
 	 * @generated
 	 */
 	EList<FLPackage> getSubPackages();
@@ -68,7 +67,6 @@ public interface FLPackage extends FLElement {
 	 * @return the value of the '<em>Contents</em>' reference list.
 	 * @see ch.flatland.cdo.model.base.BasePackage#getFLPackage_Contents()
 	 * @model transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Package'"
 	 * @generated
 	 */
 	EList<FLElement> getContents();

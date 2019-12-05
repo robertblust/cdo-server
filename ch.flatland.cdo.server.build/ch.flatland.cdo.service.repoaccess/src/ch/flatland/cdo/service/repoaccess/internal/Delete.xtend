@@ -87,7 +87,7 @@ class Delete {
 
 					val eReference = requestedObject.eClass.EAllReferences.filter[it.name == referenceName].head
 
-					if(eReference == null) {
+					if(eReference === null) {
 						throw new FlatlandException(SC_BAD_REQUEST, requestedObject, "Object '{}' does not support the feature '{}'", requestedObject.cdoID, referenceName)
 					}
 					if(!eReference.isReferenceSettable) {

@@ -1,0 +1,80 @@
+version: 2.1
+commands:
+  determine_docker_image_tag:
+    description: "Determine Docker Image Tag"
+    steps:
+      - run:
+          name: "Determine Docker Image Tag"
+          command: |
+            echo 'export DOCKER_IMAGE_TAG="$CIRCLE_BUILD_NUM"' >> $BASH_ENV
+            echo $DOCKER_IMAGE_TAG
+  authorize_access_to_gcp:
+    description: "Authorize Access to GCP"
+    steps:
+      - run:
+          name: "Authorize Access to GCP"
+          command: |
+            echo ${GCLOUD_SERVICE_KEY} | gcloud auth activate-service-account --key-file=-
+            gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
+            gcloud auth configure-docker
+  
+jobs:
+  cdo_service_build:
+    docker:
+      - image: docker:18.06.1-ce-git
+    working_directory: /build
+    environment:
+      DOCKER_IMAGE_NAME: eu.gcr.io/aaap-platform-dev/3apag/cdo-service
+    steps:
+      - checkout
+      - setup_remote_docker:
+          docker_layer_caching: false
+      - run:
+          name: "Build CDO Service Docker Image"
+          command: |
+            cd ch.flatland.cdo.server.build
+            docker build -t ${DOCKER_IMAGE_NAME} -f Dockerfile .
+
+  cdo_service_build_and_push:
+    docker:
+      - image: google/cloud-sdk:latest
+    working_directory: /build
+    environment:
+      DOCKER_IMAGE_NAME: eu.gcr.io/aaap-platform-dev/3apag/cdo-service
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - f2:88:79:e6:c1:8c:df:37:cf:ed:c3:1b:ac:1e:85:59
+      - checkout
+      - setup_remote_docker:
+          docker_layer_caching: false
+      - authorize_access_to_gcp
+      - determine_docker_image_tag
+      - run:
+          name: "Build CDO Service Docker Image"
+          command: |
+            cd ch.flatland.cdo.server.build
+            docker build -t ${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG} -f Dockerfile .
+            docker push ${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}
+            
+            git tag DOCKER_TAG-$DOCKER_IMAGE_TAG
+            git push origin DOCKER_TAG-$DOCKER_IMAGE_TAG
+
+            echo "Will tag as 'dev-deploy' to trigger deploy through github actions"
+            git tag --delete dev-deploy  || echo "ignore (eventual) errors of previous command (normal on first run)"
+            git push origin :refs/tags/dev-deploy || echo "ignore (eventual) errors of previous command (normal on first run)"
+            git tag dev-deploy
+            git push origin dev-deploy
+ 
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - cdo_service_build:
+          filters:
+            branches:
+              ignore: develop
+      - cdo_service_build_and_push:
+          filters:
+            branches:
+              only: develop

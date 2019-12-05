@@ -30,10 +30,6 @@ public interface DataStore extends EObject {
 	 * Returns the value of the '<em><b>Store Type</b></em>' attribute.
 	 * The literals are from the enumeration {@link ch.flatland.cdo.model.config.StoreType}.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Store Type</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Store Type</em>' attribute.
 	 * @see ch.flatland.cdo.model.config.StoreType
@@ -58,10 +54,6 @@ public interface DataStore extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Repository Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Repository Name</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Repository Name</em>' attribute.
 	 * @see #setRepositoryName(String)
@@ -84,10 +76,6 @@ public interface DataStore extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Connection Url</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Connection Url</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Connection Url</em>' attribute.
 	 * @see #setConnectionUrl(String)
@@ -110,10 +98,6 @@ public interface DataStore extends EObject {
 	/**
 	 * Returns the value of the '<em><b>User Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>User Name</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>User Name</em>' attribute.
 	 * @see #setUserName(String)
@@ -136,10 +120,6 @@ public interface DataStore extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Password</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Password</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Password</em>' attribute.
 	 * @see #setPassword(String)
@@ -162,10 +142,6 @@ public interface DataStore extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Temporality</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Temporality</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Temporality</em>' attribute.
 	 * @see #setTemporality(boolean)

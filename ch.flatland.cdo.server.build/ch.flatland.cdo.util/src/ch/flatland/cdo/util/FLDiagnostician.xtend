@@ -24,27 +24,27 @@ class FLDiagnostician extends Diagnostician {
 	val ITEM_DELEGATOR = new AdapterFactoryItemDelegator(new ComposedAdapterFactory(EMFEditPlugin.getComposedAdapterFactoryDescriptorRegistry))
 	var EObject context
 
-	def override getObjectLabel(EObject eObject) {
-		if (context == null)  {
+	override getObjectLabel(EObject eObject) {
+		if(context === null) {
 			return super.getObjectLabel(eObject)
 		}
-		if (context instanceof Adapter) {
+		if(context instanceof Adapter) {
 			return ITEM_DELEGATOR.getText(context.target)
 		}
 		return ITEM_DELEGATOR.getText(context)
-		
+
 	}
 
-	def override validate(EObject eObject) {
+	override validate(EObject eObject) {
 		this.context = eObject
-		if (context instanceof Adapter) {
+		if(context instanceof Adapter) {
 			return super.validate(context.target as EObject, emptyMap)
 		}
 		return super.validate(eObject, emptyMap)
 	}
-	
-	def override doValidateContents(EObject eObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
+
+	override doValidateContents(EObject eObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		// do not validate contents! it is to expensive in the context of cdo
 		return true
-  	}
+	}
 }

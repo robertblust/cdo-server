@@ -176,7 +176,6 @@ public class DataStoreImpl extends MinimalEObjectImpl.Container implements DataS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public StoreType getStoreType() {
 		return storeType;
 	}
@@ -186,7 +185,6 @@ public class DataStoreImpl extends MinimalEObjectImpl.Container implements DataS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setStoreType(StoreType newStoreType) {
 		StoreType oldStoreType = storeType;
 		storeType = newStoreType == null ? STORE_TYPE_EDEFAULT : newStoreType;
@@ -199,7 +197,6 @@ public class DataStoreImpl extends MinimalEObjectImpl.Container implements DataS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public String getRepositoryName() {
 		return repositoryName;
 	}
@@ -209,7 +206,6 @@ public class DataStoreImpl extends MinimalEObjectImpl.Container implements DataS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setRepositoryName(String newRepositoryName) {
 		String oldRepositoryName = repositoryName;
 		repositoryName = newRepositoryName;
@@ -222,7 +218,6 @@ public class DataStoreImpl extends MinimalEObjectImpl.Container implements DataS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public String getConnectionUrl() {
 		return connectionUrl;
 	}
@@ -232,7 +227,6 @@ public class DataStoreImpl extends MinimalEObjectImpl.Container implements DataS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setConnectionUrl(String newConnectionUrl) {
 		String oldConnectionUrl = connectionUrl;
 		connectionUrl = newConnectionUrl;
@@ -245,7 +239,6 @@ public class DataStoreImpl extends MinimalEObjectImpl.Container implements DataS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public String getUserName() {
 		return userName;
 	}
@@ -255,7 +248,6 @@ public class DataStoreImpl extends MinimalEObjectImpl.Container implements DataS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setUserName(String newUserName) {
 		String oldUserName = userName;
 		userName = newUserName;
@@ -268,7 +260,6 @@ public class DataStoreImpl extends MinimalEObjectImpl.Container implements DataS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public String getPassword() {
 		return password;
 	}
@@ -278,7 +269,6 @@ public class DataStoreImpl extends MinimalEObjectImpl.Container implements DataS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setPassword(String newPassword) {
 		String oldPassword = password;
 		password = newPassword;
@@ -291,7 +281,6 @@ public class DataStoreImpl extends MinimalEObjectImpl.Container implements DataS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isTemporality() {
 		return temporality;
 	}
@@ -301,7 +290,6 @@ public class DataStoreImpl extends MinimalEObjectImpl.Container implements DataS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setTemporality(boolean newTemporality) {
 		boolean oldTemporality = temporality;
 		temporality = newTemporality;

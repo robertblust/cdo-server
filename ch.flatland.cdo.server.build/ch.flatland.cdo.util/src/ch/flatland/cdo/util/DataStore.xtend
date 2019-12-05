@@ -45,7 +45,7 @@ class DataStore {
 			val result = queryTimestamp.getResult(BigDecimal)
 			if(result.size > 0) {
 				val bigDecimal = queryTimestamp.getResult(BigDecimal).get(0)
-				if(bigDecimal != null) {
+				if(bigDecimal !== null) {
 					timeStamp = Long.parseLong(bigDecimal.longValue.toString)
 				}
 			}
@@ -55,13 +55,13 @@ class DataStore {
 				timeStamp = queryTimestamp.getResult(Long).get(0)
 			}
 		}
-		if(timeStamp != null) {
+		if(timeStamp !== null) {
 			val queryComment = view.createQuery("sql", "SELECT COMMIT_COMMENT FROM CDO_COMMIT_INFOS WHERE COMMIT_TIME = '" + timeStamp + "'")
 			queryComment.setParameter("cdoObjectQuery", false)
 			queryComment.maxResults = 1
 			logger.debug("Execute '{}' query '{}'", queryComment.queryLanguage, queryComment.queryString)
 			val json = queryComment.getResult(String)?.get(0)
-			if(json != null) {
+			if(json !== null) {
 				val parser = new Gson
 				val commitMessage = parser.fromJson(json, CommitMessage)
 				val extension DateConverter = new DateConverter
@@ -83,14 +83,14 @@ class DataStore {
 		val packageRegistry = view.session.packageRegistry
 		val packageInfo = packageRegistry.getPackageInfo(eClass.EPackage)
 
-		if(packageInfo == null || packageInfo.packageUnit.state == State.NEW) {
+		if(packageInfo === null || packageInfo.packageUnit.state == State.NEW) {
 			return 0L
-			//throw new Exception("No data store for type '" + eClass.type + "' created yet")
+		// throw new Exception("No data store for type '" + eClass.type + "' created yet")
 		}
 
 		val mappingStrategy = view.mappingStrategy
 		var tableName = eClass.name
-		val qualifiedNames = mappingStrategy.properties.get(IMappingStrategy.PROP_QUALIFIED_NAMES) == "true"
+		val qualifiedNames = mappingStrategy.properties.get(IMappingStrategy.Props.QUALIFIED_NAMES) == "true"
 		if(qualifiedNames) {
 			tableName = eClass.type.replace(".", "_")
 		}
@@ -108,7 +108,7 @@ class DataStore {
 			// The exception should appears max once per eClass
 			// The tableName is known instead of asking the mappingStrategy
 			logger.debug("Hack NoSessionRegisteredException '{}'", e.message)
-			val query = view.createQuery("sql", "SELECT DISTINCT CDO_ID FROM " + tableName + " WHERE " + view.temporality)
+			val query = view.createQuery("sql", "SELECT DISTINCT CDO_ID FROM " + tableName.toUpperCase + " WHERE " + view.temporality)
 			query.maxResults = 1
 			logger.debug("Hack NoSessionRegisteredException Execute '{}' query '{}'", query.queryLanguage, query.queryString)
 			val iterator = query.getResultAsync(typeof(EObject))
@@ -120,7 +120,7 @@ class DataStore {
 			iterator.close
 		}
 		if(tableExists) {
-			val query = view.createQuery("sql", "SELECT COUNT(*) CDO_ID FROM " + mappingStrategy.getTableName(eClass) + " WHERE " + view.temporality + eClass.filterQuery(req, flQuery, mappingStrategy))
+			val query = view.createQuery("sql", "SELECT COUNT(*) CDO_ID FROM " + mappingStrategy.getTableName(eClass).toUpperCase + " WHERE " + view.temporality + eClass.filterQuery(req, flQuery, mappingStrategy))
 			query.setParameter("cdoObjectQuery", false)
 			logger.debug("Execute '{}' query '{}'", query.queryLanguage, query.queryString)
 			if(mappingStrategy.store.DBAdapter.name == "oracle") {
@@ -176,7 +176,7 @@ class DataStore {
 		val packageRegistry = view.session.packageRegistry
 		val packageInfo = packageRegistry.getPackageInfo(eClass.EPackage)
 
-		if(packageInfo == null || packageInfo.packageUnit.state == State.NEW) {
+		if(packageInfo === null || packageInfo.packageUnit.state == State.NEW) {
 			throw new Exception("No data store for type '" + eClass.type + "' created yet")
 		}
 
@@ -188,7 +188,7 @@ class DataStore {
 		toProcess.forEach [
 			val mappingStrategy = view.mappingStrategy
 			var tableName = it.name
-			val qualifiedNames = mappingStrategy.properties.get(IMappingStrategy.PROP_QUALIFIED_NAMES) == "true"
+			val qualifiedNames = mappingStrategy.properties.get(IMappingStrategy.Props.QUALIFIED_NAMES) == "true"
 			if(qualifiedNames) {
 				tableName = it.type.replace(".", "_")
 			}
@@ -206,7 +206,7 @@ class DataStore {
 				// The exception should appears max once per eClass
 				// The tableName is known instead of asking the mappingStrategy
 				logger.debug("Hack NoSessionRegisteredException '{}'", e.message)
-				val query = view.createQuery("sql", "SELECT DISTINCT CDO_ID FROM " + tableName + " WHERE " + view.temporality)
+				val query = view.createQuery("sql", "SELECT DISTINCT CDO_ID FROM " + tableName.toUpperCase + " WHERE " + view.temporality)
 				query.maxResults = 1
 				logger.debug("Hack NoSessionRegisteredException Execute '{}' query '{}'", query.queryLanguage, query.queryString)
 				val iterator = query.getResultAsync(typeof(EObject))
@@ -218,7 +218,7 @@ class DataStore {
 				iterator.close
 			}
 			if(tableExists) {
-				val query = view.createQuery("sql", "SELECT DISTINCT CDO_ID " + it.max(req, mappingStrategy) + " FROM " + mappingStrategy.getTableName(it) + " WHERE " + view.temporality + it.filterQuery(req, flQuery, mappingStrategy) + it.orderBy(req, mappingStrategy))
+				val query = view.createQuery("sql", "SELECT DISTINCT CDO_ID " + it.max(req, mappingStrategy) + " FROM " + mappingStrategy.getTableName(it).toUpperCase + " WHERE " + view.temporality + it.filterQuery(req, flQuery, mappingStrategy) + it.orderBy(req, mappingStrategy))
 				logger.debug("Execute '{}' query '{}'", query.queryLanguage, query.queryString)
 				val iterator = query.getResultAsync(typeof(EObject))
 				while(iterator.hasNext) {
@@ -275,7 +275,7 @@ class DataStore {
 		val params = req.parameterNameAsListValueNotNull
 		for (paramName : params) {
 			val attribute = eClass.getAttribute(paramName)
-			if(attribute != null) {
+			if(attribute !== null) {
 				logger.debug("Parameter name for filter '{}'", paramName)
 				for (value : req.parameterMap.get(paramName)) {
 					if(req.isLike) {
@@ -292,7 +292,7 @@ class DataStore {
 		} else {
 			reqQuery = reqBuilder.toString
 		}
-		if(flQuery == null) {
+		if(flQuery === null) {
 			return reqQuery
 		}
 
@@ -343,7 +343,7 @@ class DataStore {
 
 	def private max(EClass eClass, HttpServletRequest req, IMappingStrategy mappingStrategy) {
 		val max = eClass.orderByName(req, mappingStrategy)
-		if(max != null) {
+		if(max !== null) {
 			return ", MAX(" + max + ")"
 		}
 		return ""
@@ -351,17 +351,17 @@ class DataStore {
 
 	def private orderBy(EClass eClass, HttpServletRequest req, IMappingStrategy mappingStrategy) {
 		val name = eClass.orderByName(req, mappingStrategy)
-		if(name != null) {
+		if(name !== null) {
 			return " GROUP BY CDO_ID ORDER BY MAX(" + name + ")"
 		}
 		return ""
 	}
 
 	def private orderByName(EClass eClass, HttpServletRequest req, IMappingStrategy mappingStrategy) {
-		if(req.orderBy != null && eClass.getAttribute(req.orderBy) != null) {
+		if(req.orderBy !== null && eClass.getAttribute(req.orderBy) !== null) {
 			return mappingStrategy.getFieldName(eClass.getAttribute(req.orderBy))
 		}
-		if(eClass.nameAttribute != null) {
+		if(eClass.nameAttribute !== null) {
 			return "NAME"
 		}
 		return null
@@ -409,4 +409,3 @@ class DataStore {
 		return "0";
 	}
 }
-

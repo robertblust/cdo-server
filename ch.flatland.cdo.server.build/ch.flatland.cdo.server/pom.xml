@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
@@ -59,69 +60,6 @@
 							</execution>
 						</executions>
 					</plugin>
-					<!-- RPM Plugin Creation 
-					<plugin>
-						<groupId>org.codehaus.mojo</groupId>
-						<artifactId>rpm-maven-plugin</artifactId>
-						<version>2.1.4</version>
-						<executions>
-							<execution>
-								<phase>package</phase>
-								<goals>
-									<goal>rpm</goal>
-								</goals>
-							</execution>
-						</executions>
-						<configuration>
-							<group>Application/OSGI</group>
-							<license>EPL</license>
-							<needarch>x86_64</needarch>
-							<mappings>
-								<mapping>
-									<directory>/opt/cdo/bin</directory>
-									<filemode>750</filemode>
-									<username>fluser</username>
-									<groupname>flgroup</groupname>
-									<sources>
-										<source>
-											<location>target/products/ch.flatland.cdo.server/linux/gtk/x86_64</location>
-											<targetArchitecture>x86_64</targetArchitecture>
-										</source>
-									</sources>
-								</mapping>
-								<mapping>
-									<directory>/opt/cdo</directory>
-									<filemode>750</filemode>
-									<username>fluser</username>
-									<groupname>flgroup</groupname>
-									<sources>
-										<source>
-											<location>x86_64</location>
-											<targetArchitecture>x86_64</targetArchitecture>
-										</source>
-									</sources>
-								</mapping>
-								<mapping>
-									<directory>/opt/cdo</directory>
-									<configuration>true</configuration>
-									<filemode>750</filemode>
-									<username>fluser</username>
-									<groupname>flgroup</groupname>
-									<sources>
-										<source>
-											<location>target/products/ch.flatland.cdo.server/linux/gtk/x86_64</location>
-											<includes>
-												<include>logback.xml</include>
-												<include>config.json</include>
-											</includes>
-											<targetArchitecture>x86_64</targetArchitecture>
-										</source>
-									</sources>
-								</mapping>
-							</mappings>
-						</configuration>
-					</plugin>
-					-->
 				</plugins>
 			</build>
 		</profile>

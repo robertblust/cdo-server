@@ -10,7 +10,6 @@
  */
 package ch.flatland.cdo.service.repoaccess
 
-import ch.flatland.cdo.model.config.AuthenticatorType
 import ch.flatland.cdo.util.FlatlandException
 import ch.flatland.cdo.util.JsonConverter
 import ch.flatland.cdo.util.Request
@@ -27,43 +26,38 @@ import static ch.flatland.cdo.util.Constants.*
 class AuthHttpContext implements HttpContext {
 
 	val logger = LoggerFactory.getLogger(this.class)
-	
+
 	override handleSecurity(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
 		val extension Request = new Request
 		val extension Response = new Response
-		
+
 		req.logRequest
-		
+
 		// only allow https
-		if(!req.secureConnection) {
+		if (!req.secureConnection) {
 			logger.debug("Forbidden - not secure (https)")
 			resp.sendError(req, resp.statusForbidden)
 			return false
 		}
-		
+
 		// CORS request
 		if (req.method == METHOD_OPTIONS) {
 			return true
 		}
 
 		// check accepted contentypes
-		if(!req.acceptable) {
+		if (!req.acceptable) {
 			logger.debug("Forbidden - wrong content type")
 			resp.sendError(req, resp.statusNotAcceptable)
 			return false
 		}
 
 		val repository = CONFIG.repositories.filter[it.dataStore.repositoryName == req.repoName].head
-		if (repository == null) {
+		if (repository === null) {
 			resp.status = HttpServletResponse.SC_BAD_REQUEST
-			resp.sendError(req, new FlatlandException(HttpServletResponse.SC_BAD_REQUEST, "Repository '{}' not valid", req.repoName))
-			return false
-		}
-		// check if authorization header is available or repo does not requires authentication
-		if(!req.basicAuth && repository.authenticator.authenticatorType != AuthenticatorType.NONE) {
-			logger.debug("No basic auth in request")
-			resp.sendError(req, resp.statusUnauthorized)
+			resp.sendError(req,
+				new FlatlandException(HttpServletResponse.SC_BAD_REQUEST, "Repository '{}' not valid", req.repoName))
 			return false
 		}
 
@@ -71,7 +65,7 @@ class AuthHttpContext implements HttpContext {
 
 			// try to create or reuse the CDOSession
 			SessionFactory.getOrCreateCDOSession(req)
-		} catch(Exception e) {
+		} catch (Exception e) {
 			logger.debug("Authentication failed - '{}' > stacktrace '{}'", req.userId, e)
 			resp.sendError(req, resp.statusUnauthorized)
 			return false

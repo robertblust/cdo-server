@@ -27,10 +27,6 @@ public interface Binding extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Tcp</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Tcp</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Tcp</em>' attribute.
 	 * @see #setTcp(boolean)
@@ -53,10 +49,6 @@ public interface Binding extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Tcp Port</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Tcp Port</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Tcp Port</em>' attribute.
 	 * @see #setTcpPort(String)
@@ -79,10 +71,6 @@ public interface Binding extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Http</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Http</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Http</em>' attribute.
 	 * @see #setHttp(boolean)
@@ -105,10 +93,6 @@ public interface Binding extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Check SSL</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Check SSL</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Check SSL</em>' attribute.
 	 * @see #setCheckSSL(boolean)

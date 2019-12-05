@@ -62,7 +62,6 @@ public class ConfigFactoryImpl extends EFactoryImpl implements ConfigFactory {
 			case ConfigPackage.JSON: return createJson();
 			case ConfigPackage.REPOSITORY: return createRepository();
 			case ConfigPackage.DATA_STORE: return createDataStore();
-			case ConfigPackage.AUTHENTICATOR: return createAuthenticator();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -78,8 +77,6 @@ public class ConfigFactoryImpl extends EFactoryImpl implements ConfigFactory {
 		switch (eDataType.getClassifierID()) {
 			case ConfigPackage.STORE_TYPE:
 				return createStoreTypeFromString(eDataType, initialValue);
-			case ConfigPackage.AUTHENTICATOR_TYPE:
-				return createAuthenticatorTypeFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -95,8 +92,6 @@ public class ConfigFactoryImpl extends EFactoryImpl implements ConfigFactory {
 		switch (eDataType.getClassifierID()) {
 			case ConfigPackage.STORE_TYPE:
 				return convertStoreTypeToString(eDataType, instanceValue);
-			case ConfigPackage.AUTHENTICATOR_TYPE:
-				return convertAuthenticatorTypeToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -107,7 +102,6 @@ public class ConfigFactoryImpl extends EFactoryImpl implements ConfigFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Config createConfig() {
 		ConfigImpl config = new ConfigImpl();
 		return config;
@@ -118,7 +112,6 @@ public class ConfigFactoryImpl extends EFactoryImpl implements ConfigFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Binding createBinding() {
 		BindingImpl binding = new BindingImpl();
 		return binding;
@@ -129,7 +122,6 @@ public class ConfigFactoryImpl extends EFactoryImpl implements ConfigFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Json createJson() {
 		JsonImpl json = new JsonImpl();
 		return json;
@@ -140,7 +132,6 @@ public class ConfigFactoryImpl extends EFactoryImpl implements ConfigFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Repository createRepository() {
 		RepositoryImpl repository = new RepositoryImpl();
 		return repository;
@@ -151,21 +142,9 @@ public class ConfigFactoryImpl extends EFactoryImpl implements ConfigFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public DataStore createDataStore() {
 		DataStoreImpl dataStore = new DataStoreImpl();
 		return dataStore;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Authenticator createAuthenticator() {
-		AuthenticatorImpl authenticator = new AuthenticatorImpl();
-		return authenticator;
 	}
 
 	/**
@@ -193,27 +172,6 @@ public class ConfigFactoryImpl extends EFactoryImpl implements ConfigFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AuthenticatorType createAuthenticatorTypeFromString(EDataType eDataType, String initialValue) {
-		AuthenticatorType result = AuthenticatorType.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertAuthenticatorTypeToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public ConfigPackage getConfigPackage() {
 		return (ConfigPackage)getEPackage();
 	}

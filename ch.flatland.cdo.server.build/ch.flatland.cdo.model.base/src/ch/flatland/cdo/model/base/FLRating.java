@@ -36,7 +36,6 @@ public interface FLRating extends CDOObject {
 	 * @see #setRatingType(FLRatingType)
 	 * @see ch.flatland.cdo.model.base.BasePackage#getFLRating_RatingType()
 	 * @model unique="false" required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Rating'"
 	 * @generated
 	 */
 	FLRatingType getRatingType();

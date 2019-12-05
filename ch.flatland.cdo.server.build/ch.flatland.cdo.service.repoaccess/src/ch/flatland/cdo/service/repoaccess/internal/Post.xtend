@@ -76,7 +76,7 @@ class Post {
 
 			val eReference = container.eClass.EAllReferences.filter[it.name == referenceName].head
 
-			if(eReference == null) {
+			if(eReference === null) {
 				throw new FlatlandException(SC_BAD_REQUEST, container, "Object '{}' does not support the feature '{}'", container.cdoID, referenceName)
 			}
 			if(!eReference.isContainmentSettable) {
@@ -134,7 +134,7 @@ class Post {
 			val containerNode = container as CDOResourceNode
 
 			// check name is not null
-			if(node.name == null || node.name.length == 0) {
+			if(node.name === null || node.name.length == 0) {
 				throw new FlatlandException(SC_BAD_REQUEST, container, "Name must not be null or empty")
 			}
 			// check for duplicates
@@ -167,7 +167,7 @@ class Post {
 	}
 
 	def private methodAllowed(HttpServletRequest req, Object object) {
-		if(!(object instanceof CDOObject) || req.pointInTime != null || req.pathSegments == null || req.pathSegments.size != 5 || req.pathSegments.get(3) != REFERENCES) {
+		if(!(object instanceof CDOObject) || req.pointInTime !== null || req.pathSegments === null || req.pathSegments.size != 5 || req.pathSegments.get(3) != REFERENCES) {
 			return false
 		}
 		return true

@@ -41,7 +41,7 @@ class Get {
 		val extension JsonConverter = req.createJsonConverter
 
 		try {
-			if(req.pointInTime != null) {
+			if(req.pointInTime !== null) {
 				try {
 					val session = SessionFactory.getCDOSession(req)
 					val creationTime = session.repositoryInfo.creationTime
@@ -68,7 +68,7 @@ class Get {
 			jsonString = e.safeToJson
 			logger.debug("Request failed", e)
 		} finally {
-			if(view != null && !view.closed) {
+			if(view !== null && !view.closed) {
 				view.close
 			}
 		}

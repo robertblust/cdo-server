@@ -15,13 +15,13 @@ import org.eclipse.emf.cdo.session.CDOSession
 class SessionEntry {
 	var CDOSession cdoSession
 	var long lastHttpSessionActivity
-	var String password
+	var String userId
 	var String repoName
 
-	new(CDOSession cdoSession, String password, String repoName) {
+	new(CDOSession cdoSession, String userId, String repoName) {
 		this.cdoSession = cdoSession
 		lastHttpSessionActivity = System.currentTimeMillis
-		this.password = password
+		this.userId = userId
 		this.repoName = repoName
 	}
 
@@ -32,15 +32,15 @@ class SessionEntry {
 	def getLastHttpSessionActivity() {
 		lastHttpSessionActivity
 	}
-	
-	def getPassword() {
-		password
+
+	def getUserId() {
+		userId
 	}
 
 	def getCDOSession() {
 		cdoSession
 	}
-	
+
 	def getRepoName() {
 		repoName
 	}
@@ -53,6 +53,6 @@ class SessionEntry {
 		if(!cdoSession.isClosed) {
 			cdoSession.close
 		}
-		cdoSession == null
+		cdoSession = null
 	}
 }

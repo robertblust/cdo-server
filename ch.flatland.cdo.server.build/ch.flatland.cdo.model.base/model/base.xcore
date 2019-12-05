@@ -208,7 +208,7 @@ abstract class FLElement extends FLID, FLNameable, FLRateable, FLCommentable, FL
 	op FLElement[] toFilterByType(FLTraceType traceType) {
 		val targets = new BasicEList
 		traces.filter[it.traceType == traceType].forEach [
-			if (it.target != null) {
+			if (it.target !== null) {
 				targets.add(it.target)
 			}
 		]
@@ -220,7 +220,7 @@ abstract class FLElement extends FLID, FLNameable, FLRateable, FLCommentable, FL
 	 */
 	op FLElement[] fromFilterByType(FLTraceType traceType) {
 		val sources = new BasicEList
-		if (this.cdoView != null && !this.cdoView.isClosed) {
+		if (this.cdoView !== null && !this.cdoView.isClosed) {
 			val xrefs = this.cdoView.queryXRefs(this,
 				newArrayList(ch.flatland.cdo.model.base.BasePackage.Literals.FL_TRACE__TARGET))
 			for (x : xrefs) {
@@ -241,9 +241,9 @@ abstract class FLElement extends FLID, FLNameable, FLRateable, FLCommentable, FL
 	 */
 	op<T extends EObject> EEList<T> resolveXrefs(EReference eRefernce, Class<T> classType) {
 		val elements = new BasicEList
-		if (this.cdoView != null && !this.cdoView.isClosed) {
+		if (this.cdoView !== null && !this.cdoView.isClosed) {
 			val eRefs = newArrayList
-			if (eRefernce != null) {
+			if (eRefernce !== null) {
 				eRefs.add(eRefernce)
 			}
 			val xrefs = this.cdoView.queryXRefs(this, eRefs)

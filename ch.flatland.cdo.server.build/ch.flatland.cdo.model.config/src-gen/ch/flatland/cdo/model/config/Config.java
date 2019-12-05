@@ -15,8 +15,6 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link ch.flatland.cdo.model.config.Config#getReadOnlyPassword <em>Read Only Password</em>}</li>
- *   <li>{@link ch.flatland.cdo.model.config.Config#getAdminPassword <em>Admin Password</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.config.Config#getRepositories <em>Repositories</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.config.Config#getBinding <em>Binding</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.config.Config#getJson <em>Json</em>}</li>
@@ -28,65 +26,9 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface Config extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Read Only Password</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Read Only Password</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Read Only Password</em>' attribute.
-	 * @see #setReadOnlyPassword(String)
-	 * @see ch.flatland.cdo.model.config.ConfigPackage#getConfig_ReadOnlyPassword()
-	 * @model unique="false"
-	 * @generated
-	 */
-	String getReadOnlyPassword();
-
-	/**
-	 * Sets the value of the '{@link ch.flatland.cdo.model.config.Config#getReadOnlyPassword <em>Read Only Password</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Read Only Password</em>' attribute.
-	 * @see #getReadOnlyPassword()
-	 * @generated
-	 */
-	void setReadOnlyPassword(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Admin Password</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Admin Password</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Admin Password</em>' attribute.
-	 * @see #setAdminPassword(String)
-	 * @see ch.flatland.cdo.model.config.ConfigPackage#getConfig_AdminPassword()
-	 * @model unique="false"
-	 * @generated
-	 */
-	String getAdminPassword();
-
-	/**
-	 * Sets the value of the '{@link ch.flatland.cdo.model.config.Config#getAdminPassword <em>Admin Password</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Admin Password</em>' attribute.
-	 * @see #getAdminPassword()
-	 * @generated
-	 */
-	void setAdminPassword(String value);
-
-	/**
 	 * Returns the value of the '<em><b>Repositories</b></em>' containment reference list.
 	 * The list contents are of type {@link ch.flatland.cdo.model.config.Repository}.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Repositories</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Repositories</em>' containment reference list.
 	 * @see ch.flatland.cdo.model.config.ConfigPackage#getConfig_Repositories()
@@ -98,10 +40,6 @@ public interface Config extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Binding</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Binding</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Binding</em>' containment reference.
 	 * @see #setBinding(Binding)
@@ -124,10 +62,6 @@ public interface Config extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Json</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Json</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Json</em>' containment reference.
 	 * @see #setJson(Json)

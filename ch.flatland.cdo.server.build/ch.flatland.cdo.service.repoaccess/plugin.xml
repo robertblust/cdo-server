@@ -26,12 +26,6 @@
             httpcontextId="ch.flatland.cdo.service.repoaccess.AuthHttpContext"
             load-on-startup="true">
       </servlet>
-      <servlet
-            alias="/auth"
-            class="ch.flatland.cdo.service.repoaccess.internal.AuthServlet"
-            httpcontextId="ch.flatland.cdo.service.repoaccess.AuthHttpContext"
-            load-on-startup="true">
-      </servlet>
    </extension>
    <extension
          point="org.eclipse.equinox.http.registry.httpcontexts">

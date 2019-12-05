@@ -68,21 +68,21 @@ class JsonConverterConfig {
 		}
 		return meta
 	}
-	
+
 	def isArrayAccessor() {
 		if(CONFIG.json.arrayaccessor) {
 			return true
 		}
 		return arrayAccessor
 	}
-	
+
 	def isCdoMeta() {
 		if(CONFIG.json.cdometa) {
 			return true
 		}
 		return cdometa
 	}
-	
+
 	def setCdoMeta(boolean state) {
 		cdometa = state
 	}
@@ -93,37 +93,37 @@ class JsonConverterConfig {
 		}
 		return references
 	}
-	
+
 	def isRreferences() {
 		if(CONFIG.json.rreferences) {
 			return true
 		}
 		return rreferences
 	}
-	
+
 	def setRreferences(boolean state) {
 		rreferences = state
 	}
-	
+
 	def isCreferences() {
 		if(CONFIG.json.creferences) {
 			return true
 		}
 		return creferences
 	}
-	
+
 	def getCrefsLevel() {
 		return crefslevel
 	}
-	
+
 	def getRrefsLevel() {
 		return rrefslevel
 	}
-	
+
 	def getRefsLevel() {
 		return refslevel
 	}
-	
+
 	def isXreferences() {
 		if(CONFIG.json.xreferences) {
 			return true
@@ -137,7 +137,7 @@ class JsonConverterConfig {
 		}
 		return validate
 	}
-	
+
 	def isXtraces() {
 		if(CONFIG.json.xtraces) {
 			return true
@@ -151,14 +151,14 @@ class JsonConverterConfig {
 		}
 		return history
 	}
-	
+
 	def isLinks() {
 		if(CONFIG.json.links) {
 			return true
 		}
 		return links
 	}
-	
+
 	def isXlinks() {
 		if(CONFIG.json.xlinks) {
 			return true
@@ -172,7 +172,7 @@ class JsonConverterConfig {
 		}
 		return ""
 	}
-	
+
 	def getRepoName() {
 		return repoName
 	}

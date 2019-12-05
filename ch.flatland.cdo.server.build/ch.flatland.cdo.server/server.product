@@ -24,22 +24,6 @@
 -Dorg.eclipse.jetty.ssl.password=password
 -Dorg.eclipse.jetty.ssl.keypassword=password
       </vmArgsMac>
-      <vmArgsSol>-Xms40m
--Xmx1024m
--Dorg.eclipse.equinox.http.jetty.http.host=0.0.0.0
--Dorg.eclipse.equinox.http.jetty.http.port=80
--Dorg.eclipse.equinox.http.jetty.http.enabled=true
--Dorg.eclipse.equinox.http.jetty.https.port=443
--Dorg.eclipse.equinox.http.jetty.https.enabled=false
--Dorg.eclipse.equinox.http.jetty.context.sessioninactiveinterval=60
--Dorg.eclipse.equinox.http.jetty.ssl.keystore=./keystore
--Djavax.net.ssl.trustStore=./keystore
--Dlogback.configurationFile=./logback.xml
--Dch.flatland.cdo.server.config=./config.json
-
--Dorg.eclipse.jetty.ssl.password=password
--Dorg.eclipse.jetty.ssl.keypassword=password
-      </vmArgsSol>
       <vmArgsWin>-Xms40m
 -Xmx1024m
 -Dorg.eclipse.equinox.http.jetty.http.host=0.0.0.0
@@ -61,7 +45,6 @@
    <windowImages/>
 
    <launcher name="flatland-cdo-server">
-      <solaris/>
       <win useIco="false">
          <bmp/>
       </win>
@@ -76,7 +59,6 @@
    <features>
       <feature id="ch.flatland.cdo.server.feature" version="1.4.2.M001"/>
       <feature id="ch.flatland.cdo.model.feature" version="1.4.2.M001"/>
-      <feature id="ch.flatland.cdo.server.ldap.feature" version="1.4.2.M001"/>
       <feature id="ch.flatland.cdo.service.feature" version="1.4.2.M001"/>
       <feature id="ch.flatland.cdo.util.feature" version="1.4.2.M001"/>
       <feature id="ch.flatland.cdo.jetty.feature" version="1.4.2.M001"/>

@@ -1,0 +1,6 @@
+mysqlDatabase: CDO
+mysqlUser: CDO
+configurationFiles:
+  mysql_custom.cnf: |-
+    [mysqld]
+    lower_case_table_names=1

@@ -1,29 +1,52 @@
-##Flatland CDO Server
+## Flatland CDO Server
 
-The goal of this project is to provide an [OSGI equinox] application server.
+Ready to use [CDO Server](https://www.eclipse.org/cdo/) with a generic rest API uses [EMF reflective API](https://www.eclipse.org/modeling/emf/).
 
-##Features
-* __[CDO Model Repository]__
-	* Storage of [EMF - Eclipse Modeling Framework] base model instances
-	* LDAP user authentication (basic auth)
-	* CDO internal user authorization
-* __Rest API__ for accessing and manipulating model instances
-	* Delegates security to CDO
-	* Operates on EMF refelctive API
-	* Mimetype __application/json; charset=utf-8__
+![CDO Service](cdo-service.png)
 
-## Component Model
-![Feature Model]
-(https://github.com/robertblust/cdo-server/blob/master/ch.flatland.cdo.doc/images/component.png)
+## Start
 
+```
+cd ch.flatland.cdo.server.build
+docker-compose up
+```
 
-##License
-[Eclipse Public License Version 1.0 ("EPL")]
+## Test
+```
+curl -X GET \
+  http://localhost:8199/manage/health
+   
+{
+    "status": "UP"
+}
+```
 
+```
+curl -X GET \
+  http://localhost:8199/node/repo/root
+   
+{
+    "status": {
+        "status": "OK"
+    },
+    "data": {
+        "id": 3,
+        "containerId": 1,
+        "attributes": {
+            "name": "root",
+            "path": "/root"
+        },
+        "_links": {
+            "self": {
+                "href": "http://localhost:8199/obj/repo/eresource.CDOResourceFolder/3"
+            }
+        }
+    }
+}
+```
 
+## Sample Request
+See [BasicProductTest.xtend](/ch.flatland.cdo.server.build/ch.flatland.cdo.server.product.test/src/ch/flatland/cdo/server/product/test/BasicProductTest.xtend)
 
-
-[OSGI equinox]:https://www.eclipse.org/equinox/
-[CDO Model Repository]:https://www.eclipse.org/cdo/
-[EMF - Eclipse Modeling Framework]:https://www.eclipse.org/modeling/emf/
-[Eclipse Public License Version 1.0 ("EPL")]:http://www.eclipse.org/legal/epl-v10.html
+## License
+[Eclipse Public License Version 1.0 ("EPL")](http://www.eclipse.org/legal/epl-v10.html)

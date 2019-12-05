@@ -23,50 +23,50 @@ class FlatlandException extends Exception {
 	new(int httpStatus, EObject origin, String format, Object... arguments) {
 		this.origin = origin
 		this.message = init(format, arguments)
-		this.httpStatus = httpStatus	
+		this.httpStatus = httpStatus
 	}
 
 	new(int httpStatus, String format, Object... arguments) {
 		this.message = init(format, arguments)
-		this.httpStatus = httpStatus	
+		this.httpStatus = httpStatus
 	}
-	
+
 	new(int httpStatus, EObject origin, String message) {
 		this.origin = origin
 		this.message = message
-		this.httpStatus = httpStatus	
+		this.httpStatus = httpStatus
 	}
-	
+
 	new(int httpStatus, String message) {
 		this.message = message
-		this.httpStatus = httpStatus	
+		this.httpStatus = httpStatus
 	}
-	
+
 	new(String message) {
 		this.message = message
 	}
-	
+
 	def getOrigin() {
 		origin
 	}
-	
+
 	def getHttpStatus() {
 		httpStatus
 	}
-	
+
 	override getMessage() {
 		message
 	}
-	
+
 	def private init(String format, Object... arguments) {
 		val segments = Splitter.on("{}").split(format)
 		val builder = new StringBuilder
 		var index = 0
 		for (s : segments) {
 			builder.append(s)
-			if (arguments.size > index) {
+			if(arguments.size > index) {
 				builder.append(arguments.get(index).toString)
-			}	
+			}
 			index++
 		}
 		return builder.toString

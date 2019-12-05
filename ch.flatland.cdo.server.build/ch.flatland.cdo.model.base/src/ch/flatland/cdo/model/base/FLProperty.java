@@ -35,7 +35,6 @@ public interface FLProperty extends CDOObject {
 	 * @see #setName(String)
 	 * @see ch.flatland.cdo.model.base.BasePackage#getFLProperty_Name()
 	 * @model unique="false" dataType="ch.flatland.cdo.model.base.FLIdentifier" required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Property'"
 	 * @generated
 	 */
 	String getName();
@@ -62,7 +61,6 @@ public interface FLProperty extends CDOObject {
 	 * @see #setValue(String)
 	 * @see ch.flatland.cdo.model.base.BasePackage#getFLProperty_Value()
 	 * @model unique="false" required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Property'"
 	 * @generated
 	 */
 	String getValue();

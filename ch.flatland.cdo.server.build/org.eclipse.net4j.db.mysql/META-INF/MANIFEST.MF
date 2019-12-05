@@ -1,0 +1,71 @@
+Manifest-Version: 1.0
+Eclipse-RegisterBuddy: org.eclipse.net4j.db
+Automatic-Module-Name: org.eclipse.net4j.db.mysql
+Bundle-SymbolicName: org.eclipse.net4j.db.mysql;singleton:=true
+Archiver-Version: Plexus Archiver
+Built-By: genie.cdo
+Require-Bundle: org.eclipse.net4j.db;bundle-version="[4.0.0,5.0.0)";visibility:=reexport,
+ com.mysql.connector;bundle-version="5.1.47"
+Bundle-ManifestVersion: 2
+Bundle-RequiredExecutionEnvironment: JavaSE-11
+Bundle-ActivationPolicy: lazy
+Eclipse-SourceReferences: scm:git:https://git.eclipse.org/r/p/cdo/cdo.
+ git;path="plugins/org.eclipse.net4j.db.mysql";commitId=62c69ee2485b8a
+ 8972cdadd8f3f71765aa10c5fa
+Bundle-Vendor: %providerName
+Import-Package: org.osgi.framework;version="[1.0.0,2.0.0)"
+Export-Package: org.eclipse.net4j.db.internal.mysql.bundle;version="4.
+ 2.500";x-internal:=true,org.eclipse.net4j.db.mysql;version="4.2.500"
+Bundle-Version: 4.3.1.patch
+Bundle-Name: %pluginName
+Bundle-Localization: plugin
+Bundle-ClassPath: .
+Bundle-Activator: org.eclipse.net4j.db.internal.mysql.bundle.OM$Activa
+ tor
+Created-By: Apache Maven 3.5.2
+Build-Jdk: 1.8.0_162
+
+Name: about.properties
+SHA-256-Digest: nl2qKUdiS5b9rtxgEiWUaumIdtxSL25X0huMv+5yeoM=
+
+Name: about.html
+SHA-256-Digest: ZYczHLHHJbJ2GSLe/MBOpU/zRznwNG9X6G0P5BecAYs=
+
+Name: plugin.xml
+SHA-256-Digest: DFweBGYLRoUzJVF7o/scaQPbMkM6Hx2ahzjMz4BEoFM=
+
+Name: org/eclipse/net4j/db/mysql/package-info.class
+SHA-256-Digest: 4W21DVsYnCqI79yQYAJvo13hRKEbNG8VJwKA0yzG86Q=
+
+Name: org/eclipse/net4j/db/mysql/MYSQLAdapter.class
+SHA-256-Digest: 30uQBHmEwGaww7BIiKzG2N6gY7kKPkJfOVfBO7ZjvKQ=
+
+Name: .options
+SHA-256-Digest: ExZnTjP8e6VzMgbc0wRHpkiycBktfBhbum3d/QxD/DA=
+
+Name: about.mappings
+SHA-256-Digest: Wk+O/YABs6VswRfHIFhMeTmVisydaFCab0pq97yvRSY=
+
+Name: META-INF/maven/org.eclipse.emf.cdo/org.eclipse.net4j.db.mysql/po
+ m.properties
+SHA-256-Digest: PL1aWbIQhOKi8TtVNTuy8iNWxzcXoTQEWvsQHDJhtQQ=
+
+Name: org/eclipse/net4j/db/internal/mysql/bundle/OM$Activator.class
+SHA-256-Digest: HvU4MprtxI9WgiSFDaOoTmXXytdrX1UisChU4SsB3LE=
+
+Name: META-INF/maven/org.eclipse.emf.cdo/org.eclipse.net4j.db.mysql/po
+ m.xml
+SHA-256-Digest: 1lTedaCrqVtl77L3fLbAZpI5yorzkh8V70fNugP05Gg=
+
+Name: about.ini
+SHA-256-Digest: eHHHTqN7Y2eiBZGYdFDZeacrMj29Mm7niUh+P3i42Ao=
+
+Name: plugin.properties
+SHA-256-Digest: kU0wzHS9by0r9yyQKQ0XRRKEwCedtBq99M3LXPm4WZs=
+
+Name: org/eclipse/net4j/db/internal/mysql/bundle/OM.class
+SHA-256-Digest: NjhZxxN3ZoaPcvXvUmyRBzI9OksYCtGRad78/Os7wU0=
+
+Name: modeling32.png
+SHA-256-Digest: saSrfvJ79Uzl2BFpCbuVBho1UTuf14LrjD+wGJG44Ok=
+

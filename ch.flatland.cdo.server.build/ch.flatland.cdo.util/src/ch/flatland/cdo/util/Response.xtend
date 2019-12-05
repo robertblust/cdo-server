@@ -20,27 +20,17 @@ import static javax.servlet.http.HttpServletResponse.*
 class Response {
 	val logger = LoggerFactory.getLogger(this.class)
 
-	val static ACCESS_CONTROL_ALLOW_ORIGIN = "Access-Control-Allow-Origin"
-	val static ACCESS_CONTROL_ALLOW_CREDENTIALS = "Access-Control-Allow-Credentials"
-	val static ACCESS_CONTROL_ALLOW_METHODS = "Access-Control-Allow-Methods"
-	val static ACCESS_CONTROL_ALLOW_HEADERS = "Access-Control-Allow-Headers"
-	val static CACHE_CONTROL_HEADER = "Cache-Control"
-
-	val static HEADER_ORIGIN = "Origin"
-
 	val extension Request = new Request
 
 	def writeResponse(HttpServletResponse resp, HttpServletRequest req, String jsonString) {
 		logger.debug("Json '{}'", jsonString)
 
-		resp.addCORSHeader(req)
-		
 		// write response
-		if(req.jsonCallback != null) {
-			resp.contentType = JSONP_CONTENTTYPE_UTF8
+		if(req.jsonCallback !== null) {
+			resp.contentType = JSONP_CONTENTTYPE
 			resp.writer.append('''«req.jsonCallback»(«jsonString»)''')
 		} else {
-			resp.contentType = JSON_CONTENTTYPE_UTF8
+			resp.contentType = JSON_CONTENTTYPE
 			resp.writer.append(jsonString)
 		}
 	}
@@ -48,25 +38,13 @@ class Response {
 	def writeEmptyResponse(HttpServletResponse resp, HttpServletRequest req) {
 		logger.debug("Return empty response")
 
-		resp.addCORSHeader(req)
-		
 		// write response
-		if(req.jsonCallback != null) {
-			resp.contentType = JSONP_CONTENTTYPE_UTF8
+		if(req.jsonCallback !== null) {
+			resp.contentType = JSONP_CONTENTTYPE
 
 		} else {
-			resp.contentType = JSON_CONTENTTYPE_UTF8
+			resp.contentType = JSON_CONTENTTYPE
 		}
-	}
-
-	def private addCORSHeader(HttpServletResponse resp, HttpServletRequest req) {
-		if (req.getHeader(HEADER_ORIGIN) != null) {
-			resp.addHeader(ACCESS_CONTROL_ALLOW_ORIGIN, req.getHeader("Origin"))
-		}
-		resp.addHeader(ACCESS_CONTROL_ALLOW_CREDENTIALS, "true")
-		resp.addHeader(ACCESS_CONTROL_ALLOW_METHODS, "GET, POST, PUT, DELETE")
-		resp.addHeader(ACCESS_CONTROL_ALLOW_HEADERS, "Origin, X-Requested-With, Content-Type, Accept, Authorization, Cookie")
-		resp.addHeader(CACHE_CONTROL_HEADER, "no-cache")
 	}
 
 	def statusForbidden(HttpServletResponse resp) {
@@ -88,7 +66,7 @@ class Response {
 		resp.status = SC_NOT_ACCEPTABLE
 		return new FlatlandException(SC_NOT_ACCEPTABLE, "Not acceptable")
 	}
-	
+
 	def statusCreated(HttpServletResponse resp) {
 		resp.status = SC_CREATED
 	}

@@ -40,8 +40,6 @@ import org.eclipse.xtext.xbase.lib.IterableExtensions;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link ch.flatland.cdo.model.config.impl.ConfigImpl#getReadOnlyPassword <em>Read Only Password</em>}</li>
- *   <li>{@link ch.flatland.cdo.model.config.impl.ConfigImpl#getAdminPassword <em>Admin Password</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.config.impl.ConfigImpl#getRepositories <em>Repositories</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.config.impl.ConfigImpl#getBinding <em>Binding</em>}</li>
  *   <li>{@link ch.flatland.cdo.model.config.impl.ConfigImpl#getJson <em>Json</em>}</li>
@@ -50,46 +48,6 @@ import org.eclipse.xtext.xbase.lib.IterableExtensions;
  * @generated
  */
 public class ConfigImpl extends MinimalEObjectImpl.Container implements Config {
-	/**
-	 * The default value of the '{@link #getReadOnlyPassword() <em>Read Only Password</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getReadOnlyPassword()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String READ_ONLY_PASSWORD_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getReadOnlyPassword() <em>Read Only Password</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getReadOnlyPassword()
-	 * @generated
-	 * @ordered
-	 */
-	protected String readOnlyPassword = READ_ONLY_PASSWORD_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getAdminPassword() <em>Admin Password</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getAdminPassword()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String ADMIN_PASSWORD_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getAdminPassword() <em>Admin Password</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getAdminPassword()
-	 * @generated
-	 * @ordered
-	 */
-	protected String adminPassword = ADMIN_PASSWORD_EDEFAULT;
-
 	/**
 	 * The cached value of the '{@link #getRepositories() <em>Repositories</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -144,53 +102,6 @@ public class ConfigImpl extends MinimalEObjectImpl.Container implements Config {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public String getReadOnlyPassword() {
-		return readOnlyPassword;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setReadOnlyPassword(String newReadOnlyPassword) {
-		String oldReadOnlyPassword = readOnlyPassword;
-		readOnlyPassword = newReadOnlyPassword;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ConfigPackage.CONFIG__READ_ONLY_PASSWORD, oldReadOnlyPassword, readOnlyPassword));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String getAdminPassword() {
-		return adminPassword;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setAdminPassword(String newAdminPassword) {
-		String oldAdminPassword = adminPassword;
-		adminPassword = newAdminPassword;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ConfigPackage.CONFIG__ADMIN_PASSWORD, oldAdminPassword, adminPassword));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EList<Repository> getRepositories() {
 		if (repositories == null) {
 			repositories = new EObjectContainmentEList<Repository>(Repository.class, this, ConfigPackage.CONFIG__REPOSITORIES);
@@ -203,7 +114,6 @@ public class ConfigImpl extends MinimalEObjectImpl.Container implements Config {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Binding getBinding() {
 		return binding;
 	}
@@ -228,7 +138,6 @@ public class ConfigImpl extends MinimalEObjectImpl.Container implements Config {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setBinding(Binding newBinding) {
 		if (newBinding != binding) {
 			NotificationChain msgs = null;
@@ -248,7 +157,6 @@ public class ConfigImpl extends MinimalEObjectImpl.Container implements Config {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Json getJson() {
 		return json;
 	}
@@ -273,7 +181,6 @@ public class ConfigImpl extends MinimalEObjectImpl.Container implements Config {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setJson(Json newJson) {
 		if (newJson != json) {
 			NotificationChain msgs = null;
@@ -293,7 +200,6 @@ public class ConfigImpl extends MinimalEObjectImpl.Container implements Config {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Repository getByName(final String repoName) {
 		final Function1<Repository, Boolean> _function = new Function1<Repository, Boolean>() {
 			public Boolean apply(final Repository it) {
@@ -330,10 +236,6 @@ public class ConfigImpl extends MinimalEObjectImpl.Container implements Config {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ConfigPackage.CONFIG__READ_ONLY_PASSWORD:
-				return getReadOnlyPassword();
-			case ConfigPackage.CONFIG__ADMIN_PASSWORD:
-				return getAdminPassword();
 			case ConfigPackage.CONFIG__REPOSITORIES:
 				return getRepositories();
 			case ConfigPackage.CONFIG__BINDING:
@@ -353,12 +255,6 @@ public class ConfigImpl extends MinimalEObjectImpl.Container implements Config {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ConfigPackage.CONFIG__READ_ONLY_PASSWORD:
-				setReadOnlyPassword((String)newValue);
-				return;
-			case ConfigPackage.CONFIG__ADMIN_PASSWORD:
-				setAdminPassword((String)newValue);
-				return;
 			case ConfigPackage.CONFIG__REPOSITORIES:
 				getRepositories().clear();
 				getRepositories().addAll((Collection<? extends Repository>)newValue);
@@ -381,12 +277,6 @@ public class ConfigImpl extends MinimalEObjectImpl.Container implements Config {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ConfigPackage.CONFIG__READ_ONLY_PASSWORD:
-				setReadOnlyPassword(READ_ONLY_PASSWORD_EDEFAULT);
-				return;
-			case ConfigPackage.CONFIG__ADMIN_PASSWORD:
-				setAdminPassword(ADMIN_PASSWORD_EDEFAULT);
-				return;
 			case ConfigPackage.CONFIG__REPOSITORIES:
 				getRepositories().clear();
 				return;
@@ -408,10 +298,6 @@ public class ConfigImpl extends MinimalEObjectImpl.Container implements Config {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ConfigPackage.CONFIG__READ_ONLY_PASSWORD:
-				return READ_ONLY_PASSWORD_EDEFAULT == null ? readOnlyPassword != null : !READ_ONLY_PASSWORD_EDEFAULT.equals(readOnlyPassword);
-			case ConfigPackage.CONFIG__ADMIN_PASSWORD:
-				return ADMIN_PASSWORD_EDEFAULT == null ? adminPassword != null : !ADMIN_PASSWORD_EDEFAULT.equals(adminPassword);
 			case ConfigPackage.CONFIG__REPOSITORIES:
 				return repositories != null && !repositories.isEmpty();
 			case ConfigPackage.CONFIG__BINDING:
@@ -434,24 +320,6 @@ public class ConfigImpl extends MinimalEObjectImpl.Container implements Config {
 				return getByName((String)arguments.get(0));
 		}
 		return super.eInvoke(operationID, arguments);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (readOnlyPassword: ");
-		result.append(readOnlyPassword);
-		result.append(", adminPassword: ");
-		result.append(adminPassword);
-		result.append(')');
-		return result.toString();
 	}
 
 } //ConfigImpl

@@ -23,12 +23,12 @@ abstract class AbstractFlatlandPlugin extends Plugin {
 	// The shared instance
 	var static AbstractFlatlandPlugin plugin
 
-	def override start(BundleContext bundleContext) throws Exception {
+	override start(BundleContext bundleContext) throws Exception {
 		AbstractFlatlandPlugin.context = bundleContext
 		plugin = this
 	}
 
-	def override stop(BundleContext bundleContext) throws Exception {
+	override stop(BundleContext bundleContext) throws Exception {
 		plugin = null
 		AbstractFlatlandPlugin.context = null;
 	}

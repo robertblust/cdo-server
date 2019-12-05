@@ -54,7 +54,6 @@ public interface FLID extends CDOObject {
 	 * @see #setUUID(String)
 	 * @see ch.flatland.cdo.model.base.BasePackage#getFLID_UUID()
 	 * @model unique="false" dataType="ch.flatland.cdo.model.base.FLIdentifier"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='ID'"
 	 * @generated
 	 */
 	String getUUID();
@@ -84,7 +83,6 @@ public interface FLID extends CDOObject {
 	 * @see #setID(String)
 	 * @see ch.flatland.cdo.model.base.BasePackage#getFLID_ID()
 	 * @model unique="false" dataType="ch.flatland.cdo.model.base.FLIdentifier"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='ID'"
 	 * @generated
 	 */
 	String getID();
@@ -112,7 +110,6 @@ public interface FLID extends CDOObject {
 	 * @see #setObjectID(String)
 	 * @see ch.flatland.cdo.model.base.BasePackage#getFLID_ObjectID()
 	 * @model unique="false" dataType="ch.flatland.cdo.model.base.FLIdentifier"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='ID'"
 	 * @generated
 	 */
 	String getObjectID();
@@ -139,7 +136,6 @@ public interface FLID extends CDOObject {
 	 * @see #setRevisionID(String)
 	 * @see ch.flatland.cdo.model.base.BasePackage#getFLID_RevisionID()
 	 * @model unique="false" dataType="ch.flatland.cdo.model.base.FLIdentifier"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='ID'"
 	 * @generated
 	 */
 	String getRevisionID();
@@ -166,7 +162,6 @@ public interface FLID extends CDOObject {
 	 * @see #setVersion(String)
 	 * @see ch.flatland.cdo.model.base.BasePackage#getFLID_Version()
 	 * @model unique="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='ID'"
 	 * @generated
 	 */
 	String getVersion();
@@ -193,7 +188,6 @@ public interface FLID extends CDOObject {
 	 * @see #setCDate(Date)
 	 * @see ch.flatland.cdo.model.base.BasePackage#getFLID_CDate()
 	 * @model unique="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='ID'"
 	 * @generated
 	 */
 	Date getCDate();
@@ -220,7 +214,6 @@ public interface FLID extends CDOObject {
 	 * @see #setUDate(Date)
 	 * @see ch.flatland.cdo.model.base.BasePackage#getFLID_UDate()
 	 * @model unique="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='ID'"
 	 * @generated
 	 */
 	Date getUDate();

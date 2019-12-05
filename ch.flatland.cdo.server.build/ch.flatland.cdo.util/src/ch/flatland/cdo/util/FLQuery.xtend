@@ -27,6 +27,7 @@ class FLQuery {
 
 interface FLConstraint {
 	def EStructuralFeature getFeature()
+
 	def String getCompare()
 }
 

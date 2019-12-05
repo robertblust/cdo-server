@@ -301,7 +301,6 @@ public class JsonImpl extends MinimalEObjectImpl.Container implements Json {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isValidate() {
 		return validate;
 	}
@@ -311,7 +310,6 @@ public class JsonImpl extends MinimalEObjectImpl.Container implements Json {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setValidate(boolean newValidate) {
 		boolean oldValidate = validate;
 		validate = newValidate;
@@ -324,7 +322,6 @@ public class JsonImpl extends MinimalEObjectImpl.Container implements Json {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isRreferences() {
 		return rreferences;
 	}
@@ -334,7 +331,6 @@ public class JsonImpl extends MinimalEObjectImpl.Container implements Json {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setRreferences(boolean newRreferences) {
 		boolean oldRreferences = rreferences;
 		rreferences = newRreferences;
@@ -347,7 +343,6 @@ public class JsonImpl extends MinimalEObjectImpl.Container implements Json {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isCreferences() {
 		return creferences;
 	}
@@ -357,7 +352,6 @@ public class JsonImpl extends MinimalEObjectImpl.Container implements Json {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setCreferences(boolean newCreferences) {
 		boolean oldCreferences = creferences;
 		creferences = newCreferences;
@@ -370,7 +364,6 @@ public class JsonImpl extends MinimalEObjectImpl.Container implements Json {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isXreferences() {
 		return xreferences;
 	}
@@ -380,7 +373,6 @@ public class JsonImpl extends MinimalEObjectImpl.Container implements Json {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setXreferences(boolean newXreferences) {
 		boolean oldXreferences = xreferences;
 		xreferences = newXreferences;
@@ -393,7 +385,6 @@ public class JsonImpl extends MinimalEObjectImpl.Container implements Json {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isHistory() {
 		return history;
 	}
@@ -403,7 +394,6 @@ public class JsonImpl extends MinimalEObjectImpl.Container implements Json {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setHistory(boolean newHistory) {
 		boolean oldHistory = history;
 		history = newHistory;
@@ -416,7 +406,6 @@ public class JsonImpl extends MinimalEObjectImpl.Container implements Json {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isFullUrl() {
 		return fullUrl;
 	}
@@ -426,7 +415,6 @@ public class JsonImpl extends MinimalEObjectImpl.Container implements Json {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setFullUrl(boolean newFullUrl) {
 		boolean oldFullUrl = fullUrl;
 		fullUrl = newFullUrl;
@@ -439,7 +427,6 @@ public class JsonImpl extends MinimalEObjectImpl.Container implements Json {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isMeta() {
 		return meta;
 	}
@@ -449,7 +436,6 @@ public class JsonImpl extends MinimalEObjectImpl.Container implements Json {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setMeta(boolean newMeta) {
 		boolean oldMeta = meta;
 		meta = newMeta;
@@ -462,7 +448,6 @@ public class JsonImpl extends MinimalEObjectImpl.Container implements Json {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isLinks() {
 		return links;
 	}
@@ -472,7 +457,6 @@ public class JsonImpl extends MinimalEObjectImpl.Container implements Json {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setLinks(boolean newLinks) {
 		boolean oldLinks = links;
 		links = newLinks;
@@ -485,7 +469,6 @@ public class JsonImpl extends MinimalEObjectImpl.Container implements Json {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isXlinks() {
 		return xlinks;
 	}
@@ -495,7 +478,6 @@ public class JsonImpl extends MinimalEObjectImpl.Container implements Json {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setXlinks(boolean newXlinks) {
 		boolean oldXlinks = xlinks;
 		xlinks = newXlinks;
@@ -508,7 +490,6 @@ public class JsonImpl extends MinimalEObjectImpl.Container implements Json {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isArrayaccessor() {
 		return arrayaccessor;
 	}
@@ -518,7 +499,6 @@ public class JsonImpl extends MinimalEObjectImpl.Container implements Json {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setArrayaccessor(boolean newArrayaccessor) {
 		boolean oldArrayaccessor = arrayaccessor;
 		arrayaccessor = newArrayaccessor;
@@ -531,7 +511,6 @@ public class JsonImpl extends MinimalEObjectImpl.Container implements Json {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isXtraces() {
 		return xtraces;
 	}
@@ -541,7 +520,6 @@ public class JsonImpl extends MinimalEObjectImpl.Container implements Json {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setXtraces(boolean newXtraces) {
 		boolean oldXtraces = xtraces;
 		xtraces = newXtraces;
@@ -554,7 +532,6 @@ public class JsonImpl extends MinimalEObjectImpl.Container implements Json {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isCdometa() {
 		return cdometa;
 	}
@@ -564,7 +541,6 @@ public class JsonImpl extends MinimalEObjectImpl.Container implements Json {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setCdometa(boolean newCdometa) {
 		boolean oldCdometa = cdometa;
 		cdometa = newCdometa;

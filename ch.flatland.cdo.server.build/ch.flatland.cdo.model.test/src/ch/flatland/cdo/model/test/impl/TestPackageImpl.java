@@ -131,7 +131,6 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 		EValidator.Registry.INSTANCE.put
 			(theTestPackage,
 			 new EValidator.Descriptor() {
-				 @Override
 				 public EValidator getEValidator() {
 					 return TestValidator.INSTANCE;
 				 }
