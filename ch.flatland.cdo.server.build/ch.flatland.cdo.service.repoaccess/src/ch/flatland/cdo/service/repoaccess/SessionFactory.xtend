@@ -43,8 +43,8 @@ class SessionFactory {
 			logger.debug("Create CDO Session")
 		}
 
-		logger.debug("CDO Session '{}' for http Session '{}' and user '{}' for repo '{}'",
-			getCDOSession(request).sessionID, request.sessionId, request.userId, request.repoName)
+		logger.debug("CDO Session '{}' for user '{}' for repo '{}'",
+			getCDOSession(request).sessionID, request.userId, request.repoName)
 
 		return getCDOSession(request)
 	}

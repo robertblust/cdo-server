@@ -25,7 +25,6 @@
 		additivity="false">
 		<appender-ref ref="STDOUT" />
 	</logger>
-	ch.flatland.cdo.server.config
 
 	<logger name="ch.flatland.cdo.server.config.ServerConfig"
 		level="INFO" additivity="false">

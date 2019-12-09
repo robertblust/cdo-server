@@ -7,7 +7,7 @@
 -Dch.flatland.cdo.db.connection.url=${MYSQL_JDBC_URL} \
 -Dch.flatland.cdo.db.connection.username=${MYSQL_USER} \
 -Dch.flatland.cdo.db.connection.password=${MYSQL_PASSWORD} \
--Dorg.eclipse.equinox.http.jetty.context.sessioninactiveinterval=300 \
+-Dorg.eclipse.equinox.http.jetty.context.sessioninactiveinterval=0 \
 -Dlogback.configurationFile=/opt/cdo/bin/logback.xml \
 -Dch.flatland.cdo.server.config=/opt/cdo/config.json
 

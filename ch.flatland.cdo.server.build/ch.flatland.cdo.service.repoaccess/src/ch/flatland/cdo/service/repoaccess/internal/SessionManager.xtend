@@ -15,18 +15,14 @@ import org.slf4j.LoggerFactory
 
 class SessionManager extends Thread {
 
-	val TIMEOUT_PROPERTY = "org.eclipse.equinox.http.jetty.context.sessioninactiveinterval"
-	val timeoutProperty = System.getProperty(TIMEOUT_PROPERTY)
+	int SESSION_TIMEOUT = 300
 
 	val logger = LoggerFactory.getLogger(this.class)
 
 	override run() {
 		name = class.simpleName
-		if(timeoutProperty === null) {
-			throw new RuntimeException("-D" + TIMEOUT_PROPERTY + " not set!")
-		}
 
-		val timeout = Long.parseLong(timeoutProperty) * 1000
+		val timeout = SESSION_TIMEOUT * 1000
 
 		logger.debug("run with session timeout '{}' ms", timeout)
 

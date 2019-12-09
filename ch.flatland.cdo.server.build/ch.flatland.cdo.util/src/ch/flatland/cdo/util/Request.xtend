@@ -237,11 +237,11 @@ class Request {
 	}
 
 	def getSessionId(HttpServletRequest request) {
-		return request.session.id
+		return request.userId
 	}
 
 	def getSessionKey(HttpServletRequest request) {
-		return request.repoName + "-" + request.sessionId + "-" + request.userId
+		return request.repoName + "-" + request.userId
 	}
 
 	def isBasicAuth(HttpServletRequest request) {
