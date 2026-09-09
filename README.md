@@ -1,3 +1,5 @@
+This repository is no longer maintained. It stays online as a reference.
+
 ## Flatland CDO Server
 
 Ready to use [CDO Server](https://www.eclipse.org/cdo/) with a generic rest API uses [EMF reflective API](https://www.eclipse.org/modeling/emf/).
@@ -49,4 +51,4 @@ curl -X GET \
 See [BasicProductTest.xtend](/ch.flatland.cdo.server.build/ch.flatland.cdo.server.product.test/src/ch/flatland/cdo/server/product/test/BasicProductTest.xtend)
 
 ## License
-[Eclipse Public License Version 1.0 ("EPL")](http://www.eclipse.org/legal/epl-v10.html)
+[Eclipse Public License Version 1.0 ("EPL")](LICENSE)
